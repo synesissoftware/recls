@@ -4,11 +4,11 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     4th March 2014
+ * Updated:     30th September 2015
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -52,7 +52,7 @@
 
 #include "impl.trace.h"
 
-#include <winstl/filesystem/path_functions.hpp>
+#include <platformstl/filesystem/path_functions.hpp>
 
 #include <platformstl/filesystem/path_functions.hpp>
 
