@@ -1,0 +1,1671 @@
+============================================================================
+recls - Changes
+---------------
+
+; Created:  28th May 2006
+; Updated:  29th September 2015
+
+============================================================================
+
+    *******************************************************************
+    * Change key:                                                     *
+    *                                                                 *
+    *  ~  means something has changed                                 *
+    *  +  means a new addition (mapping / file / functionality)       *
+    *  -  means removal of something (mapping / file / functionality) *
+    *                                                                 *
+    *******************************************************************
+
+
+recls 1.9.1 released - 28th September 2015
+==========================================
+
+Summary:
+--------
+
+ * added new API and entry methods
+ * Clang-compatibility
+ * VC++ 11/12/14-compatibility
+ * Widestring-compatibility in makefiles
+ * NOTE: bundles shwild 0.10.1
+ * NOTE: bundles xTests 0.18.3
+ * NOTE: depends on STLSoft 1.9.121
+
+Details:
+--------
+
+General / C-API:
+
+Core:
+
+ ~ include/recls/recls.h:
+
+    + Recls_EntryExists()
+
+C++ API:
+
+ ~ include/recls/cpp/entry.hpp:
+
+    + added recls::entry::exist()
+    + added recls::entry::get_short_path() [Windows-only]
+
+
+Makefiles / Project-files:
+
+ ~ substantially refactored makefile structure
+
+Examples:
+
+ ~ widestring-compatibility
+
+Test.Unit:
+
+ ~ widestring-compatibility
+
+Test.Component:
+
+ ~ widestring-compatibility
+
+Test.Scratch:
+
+ ~ widestring-compatibility
+
+Depends on:
+
+ * STLSoft 1.9.121 or later
+   (http://stlsoft.org/)
+
+
+
+recls 1.9.1 (alpha 8) released - 4th June 2012
+==============================================
+
+Summary:
+--------
+
+ * changed entry field volumeSerialNumber to deviceId
+ * added entry field volumeSerialNumber (and search flag RECLS_F_NODE_INDEX)
+ * added entry field nodeIndex
+ * improvements to diagnostic logging
+ * corrected wildcards-all use in test programs for given all platforms
+ * NOTE: bundles shwild 0.9.19
+ * NOTE: bundles xTests 0.16.2
+ * NOTE: depends on STLSoft 1.9.113
+
+Details:
+--------
+
+General / C-API:
+
+ ~ include/recls/internal/platform_types.h:
+    ~ changed volumeSerialNumber to deviceId
+    + added volumeSerialNumber attribute, which is populated along with nodeIndex when RECLS_F_NODE_INDEX is specified in search flags
+    + added nodeIndex attribute (and RECLS_F_NODE_INDEX flag)
+    ~ number of links now size_t, not uint32_t
+
+ ~ include/recls/recls.h:
+    + added nodeIndex attribute (and RECLS_F_NODE_INDEX flag)
+
+Core:
+
+ ~ src/ReclsFileSearchDirectoryNode.cpp:
+ ~ src/api.util.combine_paths.cpp:
+ ~ src/api.util.stat.cpp:
+    ~ changed use of magic number to RECLS_SEVIX_* enumerator in call to recls_log_printf_()
+
+ ~ src/impl.entryinfo.cpp:
+    ~ changed volumeSerialNumber to deviceId
+    + added volumeSerialNumber attribute, which is populated along with nodeIndex when RECLS_F_NODE_INDEX is specified in search flags
+    + added nodeIndex attribute (and RECLS_F_NODE_INDEX flag)
+
+ ~ src/incl.stlsoft.h:
+    ~ now requires STLSoft 1.9.133 or later
+
+C++ API:
+
+ ~ include/recls/cpp/common.hpp:
+    ~ now requires STLSoft 1.9.133 or later
+
+ ~ include/recls/cpp/entry.hpp:
+    ~ changed volumeSerialNumber to deviceId
+    + added volumeSerialNumber attribute, which is populated along with nodeIndex when RECLS_F_NODE_INDEX is specified in search flags
+    + added nodeIndex attribute (and RECLS_F_NODE_INDEX flag)
+    ~ number of links now size_t, not uint32_t
+    + added get_file_basename()
+    ~ deprecated get_file_name()
+
+Makefiles / Project-files:
+
+ ~ projects/core/vc6/recls.core.dsp:
+    ~ corrected erroneous library names for "Release Multithreaded DLL", "Debug Multithreaded DLL", and "Release Multithreaded pseudoUNIX" configurations
+
+Examples:
+
+Test.Unit:
+
+ ~ test/unit/test.unit.api.squeeze_path/test.unit.api.squeeze_path.c:
+    ~ improved test cases
+
+Test.Scratch:
+
+ ~ test/scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp:
+ ~ test/scratch/test.scratch.search.1/test.scratch.search.1.c:
+ ~ test/scratch/test.scratch.with_pantheios/test.scratch.with_pantheios.cpp:
+    ~ now uses wildcards-all for correct wildcards for given platform
+
+Depends on:
+
+ * STLSoft 1.9.113 or later
+   (http://stlsoft.org/)
+
+
+
+recls 1.9.1 (alpha 7) released - 30th November 2011
+===================================================
+
+Summary:
+--------
+
+ * added numLinks member to recls_entryinfo_t
+ * added member numRelativeDirectoryParts to recls_entryinfo_t
+ * added RECLS_F_LINK_COUNT flag
+ * added Recls_GetErrno()
+ * added Recls_ResultCodeToUnixErrorCode()
+ * added Recls_ResultCodeToWindowsErrorCode()
+ * added 64-bit compatibility (currently Windows-only)
+ * removed RECLS_RC_WRONG_ENTRY_TYPE status code; added RECLS_RC_ENTRY_IS_DIRECTORY and RECLS_RC_ENTRY_IS_NOT_DIRECTORY status codes
+ * Recls_Stat() now returns RECLS_RC_FAIL when a std::exception-derived exception is caught
+ * fix to RECLS_FAILED() (C-definition)
+ * weakened contract (on Windows) to allow for full-path pattern
+ * now copes with search directory surrounded by quotes
+ * added test.unit.cpp.retcodes project
+ * added test.unit.c.retcodes project
+ * added test.scratch.links project
+ * added GCC 4.5 and GCC 4.6 makefile
+ * simplified the naming of bin and lib targets within the makefiles
+ * corrected defect in clean.libs target, whereby the snprintf*.obj files were not cleaned (Windows-only)
+ * NOTE: bundles shwild 0.9.19
+ * NOTE: bundles xTests 0.16.2
+ * NOTE: depends on STLSoft 1.9.111
+
+Details:
+--------
+
+General / C-API:
+
+ ~ include/recls/internal/compiler_borland.h:
+ ~ include/recls/internal/compiler_ch.h:
+ ~ include/recls/internal/compiler_como.h:
+ ~ include/recls/internal/compiler_dmc.h:
+ ~ include/recls/internal/compiler_gcc.h:
+ ~ include/recls/internal/compiler_intel.h:
+ ~ include/recls/internal/compiler_msvc.h:
+ ~ include/recls/internal/compiler_mwerks.h:
+ ~ include/recls/internal/compiler_vectorc.h:
+ ~ include/recls/internal/compiler_watcom.h:
+    ~ 64-bit compatibility (currently Windows-only)
+
+ ~ include/recls/internal/platform_types.h:
+    + added numLinks member to recls_entryinfo_t
+    + added member numRelativeDirectoryParts to recls_entryinfo_t
+
+ ~ include/recls/internal/retcodes.h:
+    - removed RECLS_RC_WRONG_ENTRY_TYPE
+    + added RECLS_RC_ENTRY_IS_DIRECTORY
+    + added RECLS_RC_ENTRY_IS_NOT_DIRECTORY
+
+ ~ include/recls/recls.h:
+    ~ fix to RECLS_FAILED() (C-definition)
+    ~ minor fix (changing C++ comment to C comment)
+    ~ 64-bit compatibility (currently Windows-only)
+    + added RECLS_F_LINK_COUNT flag
+    + added Recls_GetErrno()
+    ~ minor mods
+
+ ~ include/recls/unix.h:
+    + added Recls_ResultCodeToUnixErrorCode()
+
+ ~ include/recls/windows.h:
+    + added Recls_ResultCodeToWindowsErrorCode()
+
+Core:
+
+ ~ src/ReclsFileSearch.cpp:
+    ~ weakened contract (on Windows) to allow for full-path pattern
+    ~ now copes with search directory surrounded by quotes
+    ~ trivial formatting changes
+
+ ~ src/api.entryinfo.cpp:
+    ~ improved boolean testing
+
+ ~ src/api.error.cpp:
+    ~ GCC pedanticism compatibility
+    + added Recls_GetErrno()
+    - removed RECLS_RC_WRONG_ENTRY_TYPE
+    + added RECLS_RC_ENTRY_IS_DIRECTORY
+    + added RECLS_RC_ENTRY_IS_NOT_DIRECTORY
+
+ + src/api.retcodes.windows.cpp:
+    - removed RECLS_RC_WRONG_ENTRY_TYPE
+    + added RECLS_RC_ENTRY_IS_DIRECTORY
+    + added RECLS_RC_ENTRY_IS_NOT_DIRECTORY
+
+ ~ src/api.search.cpp:
+    ~ trivial formatting changes
+
+ ~ src/api.util.create_directory.cpp:
+    - removed RECLS_RC_WRONG_ENTRY_TYPE
+    + added RECLS_RC_ENTRY_IS_DIRECTORY
+    + added RECLS_RC_ENTRY_IS_NOT_DIRECTORY
+
+ ~ src/api.util.stat.cpp:
+    - removed RECLS_RC_WRONG_ENTRY_TYPE
+    + added RECLS_RC_ENTRY_IS_DIRECTORY
+    + added RECLS_RC_ENTRY_IS_NOT_DIRECTORY
+    ~ Recls_Stat() now returns RECLS_RC_FAIL when a std::exception-derived exception is caught
+
+ ~ src/impl.entryinfo.cpp:
+    ~ fixed defect whereby top-level directories did not have attributes set correctly
+    ~ fixed defect where attributes of non-existant stat'd entry were garbage
+    + added RECLS_F_LINK_COUNT flag
+    + added member numRelativeDirectoryParts to recls_entryinfo_t
+
+ ~ src/impl.snprintf.cpp:
+    ~ puts recls_snprintf() and recls_vsnprintf() into recls::util namespace
+
+ ~ src/impl.trace.cpp:
+    ~ diagnostic logging defaults are now { fatal=0 (on), error=3 (on), warning=4 (on), informational=6 (on), debug0=7 (on), debug1=7 (on), debug2=-1 (off) }
+    ~ diagnostic of function scope tracing is no longer on by default
+
+ ~ src/impl.types.ftp.hpp:
+    ~ CodeWarrior compatibility
+
+C++ API:
+
+ ~ include/recls/cpp/entry.hpp:
+    + added num_links() method
+    + added method num_relative_directory_parts() to recls::entry class
+    + added property NumRelativeDirectoryParts to recls::entry class
+
+ ~ include/recls/recls.hpp:
+    + added operating system-specific functionality
+
+Makefiles / Project-files:
+
+ ~ build/ar/makefile:
+ ~ build/bc56/makefile:
+ ~ build/bc582/makefile:
+ ~ build/cw8.unix/makefile:
+ ~ build/cw8.win32/makefile:
+ ~ build/dm/makefile:
+ ~ build/gcc34.unix/makefile:
+ ~ build/gcc34.win32/makefile:
+ ~ build/gcc40.unix/makefile:
+ ~ build/gcc41.unix/makefile:
+ ~ build/gcc42.unix/makefile:
+ ~ build/gcc43.unix/makefile:
+ ~ build/gcc44.unix/makefile:
+ ~ build/icl10.win32/makefile:
+ ~ build/icl11.win32/makefile:
+ ~ build/icl8.win32/makefile:
+ ~ build/icl9.win32/makefile:
+ ~ build/vc10.unixem/makefile:
+ ~ build/vc10.x64/makefile:
+ ~ build/vc10/makefile:
+ ~ build/vc6.unixem/makefile:
+ ~ build/vc6/makefile:
+ ~ build/vc71/makefile:
+ ~ build/vc8.unixem/makefile:
+ ~ build/vc8.x64/makefile:
+ ~ build/vc8/makefile:
+ ~ build/vc9.unixem/makefile:
+ ~ build/vc9.x64/makefile:
+ ~ build/vc9/makefile:
+    ~ various minor makefile structure and dependency corrections
+    + test.unit.cpp.retcodes
+    + test.unit.c.retcodes
+    ~ corrected defect in clean.libs target, whereby the snprintf*.obj files were not cleaned (Windows-only)
+    ~ simplified the naming of bin and lib targets within the makefiles
+
+ + build/gcc45.unix/makefile:
+ + build/gcc46.unix/makefile:
+    + added GCC 4.5 and GCC 4.6 makefile
+
+ ~ projects/core/vc6/recls.core.dsp:
+    + added api.retcodes.windows.cpp
+
+ ~ projects/core/vc9/recls.core.vcproj:
+    + added api.retcodes.windows.cpp to VC++ 9 project
+
+ ~ recls.vc6.dsw:
+    + added test.scratch.links project
+
+Examples:
+
+ ~ examples/cpp/example_cpp_2/example_cpp_2.cpp:
+    ~ GCC 3.x compatibility
+
+Test.Unit:
+
+ ~ test/unit/test.unit.api.combine_paths/test.unit.api.combine_paths.c:
+ ~ test/unit/test.unit.api.squeeze_path/test.unit.api.squeeze_path.c:
+ + test/unit/test.unit.c.retcodes/test.unit.c.retcodes.c:
+    + added required explicit initialisation for xCover (in C compilation unit)
+
+Test.Scratch:
+
+ + test/scratch/test.scratch.links/implicit_link.cpp:
+ + test/scratch/test.scratch.links/test.scratch.links.cpp:
+ + test/scratch/test.scratch.links/vc6/test.scratch.links.dsp:
+    + added test.scratch.links project
+
+Depends on:
+
+ * STLSoft 1.9.111 or later
+   (http://stlsoft.org/)
+
+
+
+recls 1.9.1 (alpha 6) released - 18th October 2010
+==================================================
+
+Summary:
+--------
+
+ * recls::entry: added get_file_size() method, ~ deprecated size() method
+ * recls::recls_exception: added 'patterns' property
+ * added recls_snprintf and recls_svnprintf
+ * fixed defects that prevented full wide-string compilation
+ * NOTE: bundles shwild 0.9.19
+ * NOTE: bundles xTests 0.16.1
+ * NOTE: depends on STLSoft 1.9.101
+
+Details:
+--------
+
+Core:
+
+ ~ include/recls/recls.h:
+    ~ Borland compatibility
+    ~ markup improvements
+    + added Recls_LogSeverities_Init() function
+    + added Recls_LogSeverities_Init2/3/4/5/6() macros
+    ~ handled namespace qualification defect
+
+ ~ src/impl.cover.h:
+    ~ coverage only on by default in test variants, where RECLS_VARIANT_TEST is specified
+
+ ~ src/impl.snprintf.cpp:
+ ~ src/impl.util.h:
+    + added recls_vsnprintf_a()
+    + added recls_snprintf_a()
+    + added recls_vsnprintf()
+    + added recls_snprintf()
+
+ ~ src/impl.trace.cpp:
+    + added Recls_LogSeverities_Init()
+    ~ reimplemented in terms of new recls_snprintf() & recls_vsnprintf() functions
+    ~ ensured wide-string compatibility
+
+ ~ src/impl.types.hpp:
+    ~ Borland compatibility
+
+C++ API:
+
+ ~ include/recls/cpp/entry.hpp:
+    + added get_file_size() method
+    ~ deprecated size() method
+    + added 'patterns' property to recls_exception
+
+ ~ include/recls/cpp/exceptions.hpp:
+    ~ markup improvements
+    + added 'patterns' property to recls_exception
+
+ ~ include/recls/cpp/ftp_search_sequence.hpp:
+ ~ include/recls/cpp/search_sequence.hpp:
+ ~ include/recls/cpp/util.hpp:
+    + added 'patterns' property to recls_exception
+
+Makefiles / Project-files:
+
+ ~ build/ar/makefile:
+ ~ build/bc56/makefile:
+ ~ build/bc582/makefile:
+ ~ build/cw8.unix/makefile:
+ ~ build/cw8.win32/makefile:
+ ~ build/dm/makefile:
+ ~ build/gcc34.unix/makefile:
+ ~ build/gcc34.win32/makefile:
+ ~ build/gcc40.unix/makefile:
+ ~ build/gcc41.unix/makefile:
+ ~ build/gcc42.unix/makefile:
+ ~ build/gcc43.unix/makefile:
+ ~ build/gcc44.unix/makefile:
+ ~ build/icl10.win32/makefile:
+ ~ build/icl11.win32/makefile:
+ ~ build/icl8.win32/makefile:
+ ~ build/icl9.win32/makefile:
+ ~ build/vc10.unixem/makefile:
+ ~ build/vc10.x64/makefile:
+ ~ build/vc10/makefile:
+ ~ build/vc6.unixem/makefile:
+ ~ build/vc6/makefile:
+ ~ build/vc71/makefile:
+ ~ build/vc8.unixem/makefile:
+ ~ build/vc8.x64/makefile:
+ ~ build/vc8/makefile:
+ ~ build/vc9.unixem/makefile:
+ ~ build/vc9.x64/makefile:
+ ~ build/vc9/makefile:
+    + added recls_snprintf()
+
+ ~ projects/core/vc6/recls.core.dsp:
+    + added "Unicode Debug Multithreaded" configuration
+
+ ~ projects/core/vc9/recls.core.vcproj:
+    + added 64-bit targets to core library project
+
+Examples:
+
+Test.Unit:
+
+ ~ test/unit/test.unit.cpp.derive_relative_path/test.unit.cpp.derive_relative_path.cpp:
+    + additional test cases
+
+Depends on:
+
+ * STLSoft 1.9.101 or later
+   (http://stlsoft.org/)
+
+
+
+recls 1.9.1 (alpha 5) released - 7th June 2010
+==============================================
+
+Summary:
+--------
+
+ * added comparison operators for recls::cpp::entry
+	* added subscript operator to recls::cpp::root_sequence
+	* changed recls_rc_t to be an opaque type, in order to avoid problems with string access shims matching any integers
+ * failure to stat is not reported as an error
+	* various minor fixes
+ * NOTE: bundles shwild 0.9.19
+ * NOTE: bundles xTests 0.15.1
+ * NOTE: depends on STLSoft 1.9.98
+
+Details:
+--------
+
+Core:
+
+ ~ include/recls/internal/retcodes.h:
+ ~ include/recls/recls.h:
+    ~ changed recls_rc_t to be an opaque type, in order to avoid problems with string access shims matching any integers
+
+ ~ src/ReclsFileSearchDirectoryNode.cpp:
+    ~ failure to stat should not be reported as an error
+
+ ~ src/impl.entryinfo.cpp:
+    ~ reversed earlier "correction" to path defect, by reintroducing rootDirLen as the determinant of relative path length
+
+C++ API:
+
+ ~ include/recls/cpp/entry.hpp:
+    + added comparison operators for recls::entry
+    ~ spacing
+    ~ increased flexibility for recls::stat()
+
+ ~ include/recls/cpp/exceptions.hpp:
+    ~ "safe string" compatibility
+
+ ~ include/recls/cpp/ftp_search_sequence.hpp:
+ ~ include/recls/cpp/search_sequence.hpp:
+ ~ include/recls/cpp/util.hpp:
+    ~ stlsoft compatibility
+    ~ refactoring of internal implementation namespaces
+
+ ~ include/recls/cpp/root_sequence.hpp:
+    + added subscript operator
+
+Makefiles / Project-files:
+
+Examples:
+
+Test.Unit:
+
+ ~ test/unit/test.unit.cpp.derive_relative_path/test.unit.cpp.derive_relative_path.cpp:
+    ~ additional test cases
+
+Depends on:
+
+ * STLSoft 1.9.98 or later
+   (http://stlsoft.org/)
+
+
+
+recls 1.9.1 (alpha 4) released - 4th April 2010
+===============================================
+
+Summary:
+--------
+
+ * fixed invalid calculation in stat()
+ * fixed path-relativity defect
+ * widestring compatibility in C++ API
+ * NOTE: bundles shwild 0.9.19
+ * NOTE: bundles xTests 0.15.1
+ * NOTE: depends on STLSoft 1.9.97
+
+Details:
+--------
+
+Core:
+
+ ~ include/recls/internal/platform_types.h:
+    ~ C-compatibility
+
+ ~ src/api.util.stat.cpp:
+    ~ fixed invalid pathLen calculation when stat()-ing ~ path
+
+ ~ src/impl.cover.h:
+    ~ temporarily suppress xCover for GCC, until properly sorted in that library
+
+ ~ src/impl.entryinfo.cpp:
+    ~ fixed path-relativity defect
+
+C++ API:
+
+ ~ include/recls/cpp/common.hpp:
+    + added C++ API typedefs string_a_t and string_w_t
+
+ ~ include/recls/cpp/entry.hpp:
+    ~ widestring compatibility
+    + inserter operator
+
+ ~ include/recls/cpp/exceptions.hpp:
+ ~ include/recls/cpp/search_sequence.hpp:
+    ~ widestring compatibility
+
+Makefiles / Project-files:
+
+ ~ build/gcc43.unix/makefile:
+ ~ build/gcc44.unix/makefile:
+ ~ build/makefile.tools.xml:
+    - removed xCover use from GCC 4.3+ (temporarily)
+
+Examples:
+
+Test.Unit:
+
+Depends on:
+
+ * STLSoft 1.9.97 or later
+   (http://stlsoft.org/)
+
+
+
+recls 1.9.1 (alpha 3) released - 10th March 2010
+================================================
+
+Summary:
+--------
+
+ * Added support for Visual C++ 10 (including makefiles and implicit linking)
+ * NOTE: bundles shwild 0.9.19
+ * NOTE: bundles xTests 0.14.5
+ * NOTE: depends on STLSoft 1.9.96
+
+Details:
+--------
+
+Core:
+
+ ~ include/recls/implicit_link.h:
+    + added VC++ 10 support
+
+Makefiles / Project-files:
+
+ ~ build/vc10.unixem/makefile:
+ ~ build/vc10.x64/makefile:
+ ~ build/vc10/makefile:
+    + VC++ 10
+
+Examples:
+
+Test.Unit:
+
+Depends on:
+
+ * STLSoft 1.9.96 or later
+   (http://stlsoft.org/)
+
+
+
+recls 1.9.1 (alpha 2) released - 11th February 2010
+===================================================
+
+Summary:
+--------
+
+ * added VC++ 9 (Visual Studio 2008) solution/project files
+ * added Recls_GetFileSizeGigaBytes(), Recls_GetFileSizeMegaBytes(), Recls_GetFileSizeKiloBytes() API functions
+ * corrected defects/missing features in examples
+ * corrected 32/64-bit compiler warnings
+ * NOTE: core depends on STLSoft 1.9.92 (or later)
+ * NOTE: C++ mapping also depends on STLSoft 1.10 alpha 13 (or later)
+
+Details:
+--------
+
+Core:
+
+ ~ include/recls/recls.h:
+    + added Recls_GetFileSizeGigaBytes()
+    + added Recls_GetFileSizeMegaBytes()
+    + added Recls_GetFileSizeKiloBytes()
+    ~ in/out/inout annotations
+
+ ~ src/api.util.create_directory.cpp:
+    ~ fixed 32/64-bit conversion warning
+
+ ~ src/api.util.get_file_sizes.cpp:
+    + added Recls_GetFileSizeGigaBytes()
+    + added Recls_GetFileSizeMegaBytes()
+    + added Recls_GetFileSizeKiloBytes()
+
+ ~ src/api.util.remove_directory.cpp:
+    ~ fixed 32/64-bit conversion warning
+
+Makefiles / Project-files:
+
+ ~ recls.vc9.sln:
+    + added VC++ 9 solution file
+
+ ~ projects/core/vc9/recls.core.vcproj:
+    + added VC++ 9 project file
+
+ ~ projects/core/vc6/recls.core.dsp:
+    ~ moved pch.cpp into common projects/core directory
+
+ ~ build/bc56/makefile:
+ ~ build/bc582/makefile:
+ ~ build/cw8.unix/makefile:
+ ~ build/cw8.win32/makefile:
+ ~ build/dm/makefile:
+ ~ build/gcc34.win32/makefile:
+ ~ build/gcc40.unix/makefile:
+ ~ build/gcc41.unix/makefile:
+ ~ build/gcc42.unix/makefile:
+ ~ build/gcc43.unix/makefile:
+ ~ build/icl10.win32/makefile:
+ ~ build/icl11.win32/makefile:
+ ~ build/icl8.win32/makefile:
+ ~ build/icl9.win32/makefile:
+ ~ build/vc6.unixem/makefile:
+ ~ build/vc6/makefile:
+ ~ build/vc71/makefile:
+ ~ build/vc8.unixem/makefile:
+ ~ build/vc8.x64/makefile:
+ ~ build/vc8/makefile:
+ ~ build/vc9.unixem/makefile:
+ ~ build/vc9/makefile:
+    + added Recls_GetFileSizeGigaBytes(), Recls_GetFileSizeMegaBytes(), Recls_GetFileSizeKiloBytes(), in get_file_sizes.cpp
+
+Examples:
+
+ ~ examples/c/example_c_3/example_c_3.c:
+ ~ examples/c/example_c_8/example_c_8.c:
+    ~ correctly implemented in terms of Recls_GetFileSizeGigaBytes(), Recls_GetFileSizeMegaBytes(), Recls_GetFileSizeKiloBytes()
+
+Test.Unit:
+
+Depends on:
+
+ * STLSoft 1.9.92 or later
+   (http://stlsoft.org/)
+
+
+
+recls 1.9.1 (alpha 1) released - 9th February 2010
+==================================================
+
+Summary:
+--------
+
+ * first release of recls 1.9
+ * merging 1.8's C++ and STL APIs into one: include <recls/recls.hpp> for new C++ API
+ * prototypical code coverage
+ * refactored implicit link functionality
+ * API type name changes, e.g. recls_fileinfo_t => recls_entryinfo_t, recls_info_t => recls_entry_t
+ * removed the Recls_OutstandingDetails() API function
+ * user-specifiable diagnostic logging
+ * NOTE: this distribution contains only core library and C++ mapping; other language mappings are not included
+
+Details:
+--------
+
+Core:
+
+ ~ include/recls/ftp.h:
+    ~ recls support for FTP is now discriminated in main include (recls/recls.h)
+
+ ~ include/recls/implicit_link.h:
+    + added support for Intel 9, 10, 11
+    ~ changed naming for 64-bit
+    + added support for widestring
+    + added support for (pseudo-)UNIX
+
+ ~ include/recls/internal/platform.h:
+    ~ recls support for FTP is now discriminated in main include (recls/recls.h)
+    + RECLS_ARCH_IS_X64
+    + RECLS_ARCH_IS_IA64
+    + RECLS_ARCH_IS_X86
+    ~ minor layout changes
+
+ ~ include/recls/internal/platform_types.h:
+    + string access shims for recls_entryinfo_t
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    ~ minor layout changes
+    + added data+len string access shims for recls_strptrs_t
+
+ ~ include/recls/internal/recls_filesize.h:
+    ~ no-namespace compatibility
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    ~ minor layout changes
+    + added data+len string access shims for recls_strptrs_t
+
+ ~ include/recls/internal/recls_time.h:
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    ~ minor layout changes
+    + added data+len string access shims for recls_strptrs_t
+
+ ~ include/recls/internal/retcodes.h:
+    ~ renamed RECLS_RC_INVALID_DIRECTORY to RECLS_RC_PATH_IS_NOT_DIRECTORY
+    + added RECLS_RC_DIRECTORY_NOT_FOUND
+    + RECLS_RC_ACCESS_DENIED
+    ~ minor layout changes
+
+ ~ include/recls/recls.h:
+    ~ widestring compatibility
+    + added RECLS_F_STOP_ON_ACCESS_FAILURE
+    ~ no-namespace compatibility
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    - Recls_OutstandingDetails()
+    ~ minor layout changes
+
+ ~ include/recls/recls.hpp:
+    ~ separated FTP functionality out of search_sequence, into new class ftp_search_sequence
+
+ ~ include/recls/windows.h:
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+
+ ~ src/ReclsFileSearch.cpp:
+    ~ improved error-handling (for access-denied)
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/ReclsFileSearch.hpp:
+    ~ improved error-handling (for access-denied)
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+
+ ~ src/ReclsFileSearchDirectoryNode.cpp:
+    ~ widestring compatibility
+    ~ fixed defect in (new) access-denied propagation
+    ~ improved error-handling (for access-denied)
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ removal of dependency on so-called "unsafe" string functions
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+    ~ now implemented in terms of types structure
+
+ ~ src/ReclsFileSearchDirectoryNode.hpp:
+    ~ improved error-handling (for access-denied)
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    ~ now implemented in terms of types structure
+
+ ~ src/ReclsFtpSearchDirectoryNode_windows.cpp:
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ removed dependency on so-called "unsafe" string functions
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/ReclsFtpSearchDirectoryNode_windows.hpp:
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+
+ ~ src/ReclsFtpSearch_windows.cpp:
+    + added code coverage
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/ReclsSearch.cpp:
+    ~ reordered coverage constructs
+    ~ marking files
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+
+ ~ src/ReclsSearch.hpp:
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+
+ ~ src/api.entryinfo.cpp:
+    ~ reordered coverage constructs
+    ~ marking files
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ renaming of utility functions
+
+ ~ src/api.error.cpp:
+    ~ reordered coverage constructs
+    ~ marking files
+    ~ widestring compatibility
+    + added code coverage
+    ~ renamed RECLS_RC_INVALID_DIRECTORY to RECLS_RC_PATH_IS_NOT_DIRECTORY
+    + added RECLS_RC_DIRECTORY_NOT_FOUND
+    + added RECLS_RC_ACCESS_DENIED
+    ~ renaming of utility functions
+
+ ~ src/api.extended.cpp:
+    ~ split Recls_CombinePaths() into its own source file
+    ~ split Recls_DeriveRelativePath(), Recls_SqueezePath(), Recls_Stat() into their own source files
+    ~ marking files
+    ~ stat() now rejects too-large path
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ verifies the path for length, either too small or too large
+    ~ fixed defect in stat(), when target does not exist
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/api.ftp.windows.cpp:
+    ~ reordered coverage constructs
+    ~ marking files
+    + added code coverage
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/api.search.cpp:
+    ~ reordered coverage constructs
+    ~ marking files
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ removal of dependency on so-called "unsafe" string functions
+    ~ verifies the path for length, either too small or too large
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    - removal of Recls_OutstandingDetails()
+    ~ using union cast for function cast
+    ~ using constants class constants
+    ~ simplified tracing functionality, and made it programmable
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/api.unix.cpp:
+    ~ reordered coverage constructs
+    ~ marking files
+    + added code coverage
+
+ ~ src/api.util.combine_paths.cpp:
+    ~ exception refactoring
+    ~ split Recls_CombinePaths() into its own source file
+    ~ split Recls_DeriveRelativePath(), Recls_SqueezePath(), Recls_Stat() into their own source files
+    ~ marking files
+    ~ stat() now rejects too-large path
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ verifies the path for length, either too small or too large
+    ~ fixed defect in stat(), when target does not exist
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/api.util.create_directory.cpp:
+    ~ separating out exception-handling from main function body, to work around code-generation defect in VC++ 9 (debug, dll)
+    ~ split create_directory and remove_directory into their own source files
+    ~ marking files
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+
+ ~ src/api.util.derive_relative_path.cpp:
+    ~ reordered coverage constructs
+    ~ split Recls_DeriveRelativePath(), Recls_SqueezePath(), Recls_Stat() into their own source files
+    ~ marking files
+    ~ stat() now rejects too-large path
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ verifies the path for length, either too small or too large
+    ~ fixed defect in stat(), when target does not exist
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/api.util.remove_directory.cpp:
+    ~ improved exception-handling
+    ~ separating out exception-handling from main function body, to work around code-generation defect in VC++ 9 (debug, dll)
+    ~ split create_directory and remove_directory into their own source files
+    ~ marking files
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+
+ ~ src/api.util.squeeze_path.cpp:
+    ~ refactored exception-handling
+    ~ split Recls_DeriveRelativePath(), Recls_SqueezePath(), Recls_Stat() into their own source files
+    ~ marking files
+    ~ stat() now rejects too-large path
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ verifies the path for length, either too small or too large
+    ~ fixed defect in stat(), when target does not exist
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/api.util.stat.cpp:
+    ~ exception refactoring
+    ~ reordered coverage constructs
+    ~ split Recls_DeriveRelativePath(), Recls_SqueezePath(), Recls_Stat() into their own source files
+    ~ marking files
+    ~ stat() now rejects too-large path
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ verifies the path for length, either too small or too large
+    ~ fixed defect in stat(), when target does not exist
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/api.windows.cpp:
+    ~ reordered coverage constructs
+    ~ marking files
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+    ~ renaming of utility functions
+
+ ~ src/impl.atomic.h:
+    ~ recls_debug_printf_() => recls_trace_printf_()
+
+ ~ src/impl.constants.hpp:
+    ~ reordered coverage constructs
+    ~ marking files
+    ~ improved error-handling (for access-denied)
+    + added code coverage
+    + constants class
+    - removal of char array constants
+
+ ~ src/impl.cover.h:
+    ~ marking files
+    + xCover
+
+ ~ src/impl.entryfunctions.h:
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+
+ ~ src/impl.entryinfo.cpp:
+    ~ reordered coverage constructs
+    ~ marking files
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+    ~ removal of dependency on so-called "unsafe" string functions
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/impl.entryinfo.hpp:
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    ~ now implemented in terms of types structure
+
+ ~ src/impl.fileinfo.cpp:
+    ~ reordered coverage constructs
+    ~ marking files
+    ~ recls_fileinfo_t => recls_entryinfo_t and recls_info_t => recls_entry_t
+    + added code coverage
+
+ ~ src/impl.fileinfo.unix.cpp:
+    + added code coverage
+    ~ recls_debug_printf_() => recls_trace_printf_()
+
+ ~ src/impl.fileinfo.windows.cpp:
+    + added code coverage
+    ~ recls_debug_printf_() => recls_trace_printf_()
+
+ ~ src/impl.root.h:
+    - RECLS_TRACE_LEVEL removed, and is not dynamic
+    ~ recls_debug_printf_() => recls_trace_printf_()
+
+ ~ src/impl.trace.cpp:
+    ~ debug-logging not enabled in release builds
+    + added code coverage
+    ~ logging now in terms of recls_char_t
+    + added default debug logging functionality
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+
+ ~ src/impl.trace.h:
+    ~ logging now in terms of recls_char_t
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+
+ ~ src/impl.types.ftp.hpp:
+    ~ improved error-handling (for access-denied)
+    + added code coverage
+    + count_char_instances()
+    + count_dir_parts()
+
+ ~ src/impl.types.hpp:
+    ~ improved error-handling (for access-denied)
+    + added code coverage
+    + count_char_instances()
+    + count_dir_parts()
+
+ ~ src/impl.util.cpp:
+    + added code coverage
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+ ~ src/impl.util.h:
+    ~ renaming of utility functions
+
+ ~ src/impl.util.unix.cpp:
+    + added code coverage
+    ~ removal of dependency on so-called "unsafe" string functions
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ renaming of utility functions
+
+ ~ src/impl.util.windows.cpp:
+    + added code coverage
+    ~ recls_debug_printf_() => recls_trace_printf_()
+    ~ simplified tracing functionality, and made it programmable
+    ~ renaming of utility functions
+    ~ now implemented in terms of types structure
+
+C++ API:
+
+ ~ include/recls/cpp/exceptions.hpp:
+    ~ documentation corrections
+    ~ no-namespace compatibility
+
+ ~ include/recls/cpp/ftp_search_sequence.hpp:
+    ~ separated FTP functionality out of search_sequence, into new class ftp_search_sequence
+    ~ search_sequence is now a non-template class
+    ~ safe-string compatible
+    ~ ensures forward compatibility with recls 1.9
+    ~ corrected defect in get_search_relative_path()
+
+ ~ include/recls/cpp/root_sequence.hpp:
+    ~ root_sequence is now a non-template class
+
+ ~ include/recls/cpp/search_sequence.hpp:
+    ~ separated FTP functionality out of search_sequence, into new class ftp_search_sequence
+    ~ search_sequence is now a non-template class
+    ~ safe-string compatible
+    ~ ensures forward compatibility with recls 1.9
+    ~ corrected defect in get_search_relative_path()
+
+ ~ include/recls/cpp/traits.hpp:
+    ~ separated FTP functionality out of search_sequence, into new class ftp_search_sequence
+    ~ safe-string compatible
+
+ ~ include/recls/cpp/util.hpp:
+    ~ documentation corrections
+    ~ no-namespace compatibility
+
+Makefiles:
+
+ ~ recls.vc6.dsw:
+    + added test.component.util.cpp.remove_directory
+
+ ~ projects/core/vc6/recls.core.dsp:
+    ~ split Recls_CombinePaths() into its own source file
+    ~ split Recls_DeriveRelativePath(), Recls_SqueezePath(), Recls_Stat() into their own source files
+    ~ split api.extended.2.cpp into api.util.create_directory.cpp and api.util.remove_directory.cpp
+
+ ~ build/bc56/makefile:
+ ~ build/bc582/makefile:
+ ~ build/cw8.unix/makefile:
+ ~ build/cw8.win32/makefile:
+ ~ build/dm/makefile:
+ ~ build/gcc34.win32/makefile:
+ ~ build/gcc40.unix/makefile:
+ ~ build/gcc41.unix/makefile:
+ ~ build/gcc42.unix/makefile:
+ ~ build/gcc43.unix/makefile:
+ ~ build/icl10.win32/makefile:
+ ~ build/icl11.win32/makefile:
+ ~ build/icl8.win32/makefile:
+ ~ build/icl9.win32/makefile:
+ ~ build/vc6.unixem/makefile:
+ ~ build/vc6/makefile:
+ ~ build/vc71/makefile:
+ ~ build/vc8.unixem/makefile:
+ ~ build/vc8.x64/makefile:
+ ~ build/vc8/makefile:
+ ~ build/vc9.unixem/makefile:
+ ~ build/vc9.x64/makefile:
+ ~ build/vc9/makefile:
+    ~ split Recls_CombinePaths() into its own source file
+    ~ split Recls_DeriveRelativePath(), Recls_SqueezePath(), Recls_Stat() into their own source files
+    ~ split create_directory and remove_directory into their own source files
+    + added test.component.util.cpp.remove_directory
+    + added test.component.util.cpp.create_directory
+    ~ cleaning up all files properly
+    ~ updated makefiles, including xCover
+    ~ libs only; xCover-compatibility
+
+Examples:
+
+Test.Unit:
+
+ ~ test/unit/test.unit.api.squeeze_path/test.unit.api.squeeze_path.c:
+    + added code coverage reporting
+
+ ~ test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp:
+    + added code coverage reporting
+
+Depends on:
+
+ * STLSoft 1.9.91 or later
+   (http://stlsoft.org/)
+
+
+
+recls 1.8.13 released - 8th June 2008
+=====================================
+
+Summary:
+--------
+  * Unicode compatibility and builds
+
+Core:
+-----
+  + Unicode compatibility in implicit_link.h header
+  ~ Mac-OS-X bug in definition of rc_atomic_t
+  ~ fix to src/recls_atomic.h, to prevent inclusion of
+    platformstl/synch/atomic_functions.h on platformst that do not
+	support atomic integer operations
+
+Makefiles:
+----------
+  + Unicode builds for core library and examples for VC++ (all versions)
+
+Examples:
+----------
+  ~ Unicode compatibility
+
+
+recls 1.8.12 released - 8th June 2008
+=====================================
+
+Summary:
+--------
+  * added 64-bit Windows compatibility
+  * now relies on STLSoft 1.9.45
+
+Core:
+-----
+  ~ fix to Recls_DeriveRelativePath() for when origin is empty string
+
+recls/STL:
+----------
+  ~ fix to basic_search_sequence_value_type against self-assignment
+
+Makefiles:
+----------
+  + Borland C/C++ 5.82 (Turbo C++) makefile
+
+Test:
+---------
+  + test.unit.combine_paths
+  + test.unit.derive_relative_path
+  + test.unit.squeeze_path
+
+
+recls 1.8.11 released - 7th October 2007
+========================================
+
+Core:
+-----
+  ~ fix to home path ('~') elicitation on UNIX
+
+Makefiles:
+----------
+  ~ compilation on 64-bit UNIX
+
+Examples:
+---------
+  ~ compilation on 64-bit UNIX
+
+
+recls 1.8.10 released - 2nd June 2007
+=====================================
+
+Core:
+-----
+  ~ fix to Recls_SearchFeedback() (and, hence, Recls_Search()) when
+    both searchRoot and pattern are NULL.
+  ~ general fixes for Unicode compilation
+
+recls/C++:
+----------
+  ~ fixes to namespace-exports for shims for Recls::Entry
+
+recls/STL:
+----------
+  ~ general fixes for Unicode compilation
+
+
+recls 1.8.9 released - 19th May 2007
+====================================
+
+General:
+--------
+  ~ distribution is now rooted at recls-1.8.9. In other words, the file 
+    include/recls/recls.h will now be at recls-1.8.9/include/recls/recls.h
+
+recls/Ruby:
+-----------
+  + Recls::Entry::to_str method, to allow use with operations that expect
+    a string
+
+
+
+recls 1.8.8 released - 30th April 2007
+======================================
+
+Core:
+-----
+  ~ Compatible with STLSoft 1.9.1 (version released with Extended
+    STL, vol 1: CD)
+
+recls/C++:
+----------
+  ~ Compatible with STLSoft 1.9.1 (version released with Extended
+    STL, vol 1: CD)
+
+recls/STL:
+----------
+  ~ Compatible with STLSoft 1.9.1 (version released with Extended
+    STL, vol 1: CD)
+
+
+recls 1.8.7 released - 16th April 2007
+======================================
+
+recls/Ruby:
+-----------
+  ~ Recls::combinePaths can now accept either/both of the two
+    path (fragment) parameters as Entry instances. For the left-hand
+    parameter, the instance will be converted to string via the
+    'Entry::path' attribute. For the right-hand instance parameter,
+    the instance will be converted to string via the
+    'Entry::searchRelativePath' attribute. This provides significant
+    simplification (and convenience) in client code when working with
+    source and destination directory hierarchies.
+
+
+recls 1.8.6 released - 6th April 2007
+=====================================
+
+Core:
+-----
+  ~ fixed 'bug' (in Recls_DeriveRelativePath()) whereby deriving a
+    relative path would contain unnecessary parts, e.g. the relativity of
+      /usr/include/stlsoft/unixstl/
+    with respect to
+      /usr/include/stlsoft/
+    would be
+      ../stlsoft/unixstl
+
+  ~ if (searchRoot is NULL and pattern is a single absolute + wild) or
+    (searchRoot is a single absolute + wild and pattern is NULL), it will
+     split them and do "the sensible thing".
+
+recls/Ruby:
+-----------
+  ~ Recls::FileSearch::new can now accept nil for search directory and/or
+    pattern.
+
+recls/STL:
+----------
+  ~ fixed recls/stl/search_sequence.hpp to be compatible with
+    STLSoft 1.9.1 beta 47 (or later)
+
+Dependencies:
+-------------
+  * now relies on STLSoft 1.9.1 beta 47 (or later), available from 
+    http://stlsoft.org/downloads.html
+
+
+recls 1.8.5 released - 27th February 2007
+=========================================
+
+Core:
+-----
+  ~ fixed bug whereby an unrelated search dir is not correctly represented in
+    the file entry info.
+
+    Note this only happens when an absolute path is included in the pattern.
+    In ("/usr/include/", "*.h|/home/matthew/.bashrc", Recls::RECURSIVE)
+    the file entry info corresponding to /matthew/home/.bashrc would not
+    have /usr/include as the search directory, and would not have the correct
+    search relative path.
+
+  ~ all STLSoft inclusions are now updated for the changes to the STLSoft
+    directory structure with STLSoft 1.9.1 beta 44 (download from
+    http://stlsoft.org/downloads.html)
+
+
+recls 1.8.4 released - 8th September 2006
+=========================================
+
+Core:
+-----
+  ~ all STLSoft inclusions are now updated for the changes to the
+    STLSoft directory structure with STLSoft 1.9.1 beta 22 (download
+    from http://stlsoft.org/downloads.html)
+
+recls/.NET:
+-----------
+  + FileSearch.WildcardsAll
+
+recls/Ruby:
+-----------
+  ~ now allows searchRoot and/or pattern parameters to FileSearch::new
+    to be instances of Entry, as well as strings
+
+
+recls 1.8.3 released - 16th August 2006
+=======================================
+
+Core:
+-----
+  ~ all STLSoft inclusions are now updated for the changes to the
+    STLSoft directory structure with STLSoft 1.9.1 beta 19 (download
+    from http://stlsoft.org/downloads.html)
+
+recls/C++:
+----------
+  + FileEntry::length()
+  + FileEntry::Exists
+
+recls/.NET:
+-----------
+  ~ Fixed bugs in FileSearch.CombinePaths() and
+    FileSearch.DeriveRelativePaths()
+
+
+recls 1.8.2 released - 26th July 2006
+=====================================
+
+Core:
+-----
+  ~ all STLSoft inclusions are now updated for the changes to the
+    STLSoft directory structure with STLSoft 1.9.1 beta 16 (download
+    from http://stlsoft.org/downloads.html)
+
+recls/.NET:
+-----------
+  ~ Fixed minor bug in recls_api.SqueezePath()
+  + Recls_DoesEntryExist()
+
+recls/Ruby:
+-----------
+  + Entry.isFile property
+  + Entry.exist? property
+
+
+recls 1.8.1 released - 17th June 2006
+=====================================
+
+Core:
+-----
+  + supports handling of ~ home directory mapping
+  + supports platform-independent pattern separator of |
+  + all headers incorporate #pragma once (for supporting compilers).
+  + RECLS_ASSERT() and RECLS_MESSAGE_ASSERT() replace now deprecated
+    recls_assert() and recls_message_assert()
+  + implicit linking header now responds to RECLS_NO_IMPLICIT_LINK
+  + RECLS_F_USE_TILDE_ON_NO_SEARCHROOT flag, which interprets a NULL or
+    empty searchRoot as the home directory, rather than the current
+    directory.
+  + RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WIN32 flag, which causes hidden
+    files and directories to be skipped on Win32. The next release will
+    rename this flag to RECLS_F_IGNORE_HIDDEN_FILES, and will also work
+    for UNIX.
+  - all obsolete headers in the include directory now use #error to
+    prevent their inclusion.
+
+recls/C++:
+----------
+  + Property syntax support for DMC++ (8.46+)
+  + Unicode (wchar_t) build compatible
+  + recls::cpp::FileSearch::CombinePaths() method
+  + recls::cpp::FileSearch::DeriveRelativePath() method
+  + recls::cpp::FileSearch::SqueezePath() method
+
+recls/COM:
+----------
+  + SearchFlags class, which acts as an enumeration
+  + SelectedRootsFlags class, which acts as an enumeration
+  + SearchFlags coclass, that may be used for named specification of
+    search constants in scripts
+  + SelectedRootsFlags coclass, that may be used for named specification
+    of root type constants in scripts
+  + IFileSearch3 interface, and new methods SelectedRoots(),
+    CombinePaths(), DeriveRelativePath() and SqueezePath()
+  ~ fixed bug in EnumEntry::Reset(), where the search handle was not set
+    to NULL.
+
+recls/D:
+--------
+  + one-parameter stat() overload, where flags are implicitly 0
+  + getSelectedRoots() method
+  + combinePaths() method
+  + deriveRelativePath() method
+  + squeezePath() method 
+
+recls/Java:
+-----------
+  + updated Search member constants with RECLS_F_MARK_DIRS,
+    RECLS_F_ALLOW_REPARSE_DIRS and RECLS_F_USE_TILDE_ON_NO_SEARCHROOT.
+  + org.recls.FileSearch.getRoots()
+  - org.recls.Search.getRoots()
+  + org.recls.FileSearch.getSelectedRoots()
+  + org.recls.FileSearch.combinePaths()
+  + org.recls.FileSearch.deriveRelativePath()
+  + org.recls.FileSearch.squeezePath()
+  ~ JNI library renamed from recls_jni[.dll|.so] to recls.jni[.dll|.so]
+
+recls/.NET:
+-----------
+  + recls.FileEntry.SearchRelativePath property
+  + recls.FileEntry.SearchDirectory property
+  + recls.FileSearch.Roots()
+  + recls.FileSearch.SelectedRoots()
+  + recls.FileSearch.CombinePaths()
+  + recls.FileSearch.DeriveRelativePath()
+  + recls.FileSearch.SqueezePath()
+  ~ recls.FileSearch.Stat() now returns null if a matching entry is not
+    found. It still throws an instance of ReclsException if the
+    operation fails for another reason.
+
+recls/Python:
+-------------
+  + module flags FIXED_DRIVES, NETWORK_DRIVES, CDROM_DRIVES,
+    REMOVABLE_DRIVES and RAM_DRIVES, for use with module function
+    selectedRoots()
+  + module function roots()
+  + module function selectedRoots()
+  + module function combinePaths()
+  + module function deriveRelativePath()
+  + module function squeezePath()
+
+recls/Ruby:
+-----------
+  + module flags FIXED_DRIVES, NETWORK_DRIVES, CDROM_DRIVES,
+    REMOVABLE_DRIVES and RAM_DRIVES, for use with module function
+    selectedRoots()
+
+  + module function selectedRoots()
+  + module function combinePaths()
+  + module function deriveRelativePath()
+  + module function squeezePath()
+
+recls/STL:
+----------
+  + Property syntax support for DMC++ (8.46+)
+  + recls::stl::combine_paths()
+  + recls::stl::derive_relative_path()
+  + recls::stl::squeeze_path()
+  ~ recls::stl::root_sequence now has a constructor that takes 
+    RECLS_ROOTS_FLAG flags.
+
+
+recls 1.7.2 released - 31st December 2005
+=========================================
+
+recls/C++:
+recls/STL:
+----------
+  + Digital Mars now supports the C++ Property syntax
+
+recls/STL:
+----------
+  ~ changed the boolean type used by search_sequence, so that
+    adapting the iterators by all the lovely new STLSoft iterator
+    adaptors doesn't cause warnings about truncation from int to bool.
+
+
+recls 1.6.4 released - 27th December 2005
+=========================================
+
+Core:
+-----
+  + new search flag RECLS_F_MARK_DIRS, which appends a trailing slash to
+    the paths of any entries returned that are directories
+  + new search flag RECLS_F_ALLOW_REPARSE_DIRS, which follows reparse
+    directories on Win2K/XP. This is off by default, to avoid infinite
+    search loops on pathologically configured systems.
+  + new search flag RECLS_F_CALLBACKS_STDCALL_ON_WIN32, which invokes
+    callbacks using the StdCall calling convention. (This was needed to
+    interface with C# delegates.)
+  ~ [C++ only] All search flags are now declared without the
+    RECLS_F_ prefix, e.g. ALLOW_REPARSE_DIRS as well as
+    RECLS_F_ALLOW_REPARSE_DIRS.
+  ~ the core library header files now have a new structure, as follows
+    (where $RECLS_ROOT is the directory in which recls is installed):
+
+    $RECLS_ROOT/include/recls.h         => $RECLS_ROOT/include/recls/recls.h
+    $RECLS_ROOT/include/recls_assert.h  => $RECLS_ROOT/include/recls/assert.h
+    $RECLS_ROOT/include/recls_ftp.h     => $RECLS_ROOT/include/recls/ftp.h
+    $RECLS_ROOT/include/recls_minmax.h  => $RECLS_ROOT/include/recls/minmax.h
+    $RECLS_ROOT/include/recls_unix.h    => $RECLS_ROOT/include/recls/unix.h
+    $RECLS_ROOT/include/recls_win32.h   => $RECLS_ROOT/include/recls/win32.h
+
+  + new core API function Recls_GetSelectedRoots(), which only returns
+    roots of selected disk types according to its flags (a combination
+    of the new RECLS_ROOTS_FLAG enumeration).
+  + new core API function Recls_SearchFeedback(), which calls back to a
+    caller-supplied function as the search enters each directory
+    searched.
+  + new core API function Recls_CalcDirectorySizeFeedback(), which
+    provides feedback callbacks when searching directories for the
+    calculation
+
+  + new core API function Recls_GetSearchRelativePathProperty(), which
+    gives the path of each entry relative to the search directory. (In
+    other words, it removes the search path from the full path.)
+  + new core API function Recls_GetSearchDirectoryProperty(), which
+    gives the full path of the search directory.
+
+recls/C++:
+recls/COM:
+recls/Python:
+recls/Ruby:
+recls/STL:
+----------
+  + all the following mappings have corresponding changes to their
+    functions/classes:
+
+recls/C++:
+recls/STL:
+----------
+  + mappings now support C++ Properties (as described in chapter 35 of
+    Imperfect C++, http://imperfectcplusplus.com), which means that the
+    following syntax is available for those compilers that support it:
+
+    FileEntry  fe = . . . 
+
+    std::cout << "path=" << fe.Path << endl; // Rather than fe.GetPath()
+    std::cout << "size=" << fe.Size << endl; // Rather than fe.GetSize()
+
+
+recls 1.6.4 released - 17th July 2005
+=====================================
+
+Core:
+-----
+  ~ further reduction (around 2-6KB, varying between compilers) of
+    linked code size, as a result of using the updated
+    winstl::basic_findfile_sequence template, which internally handles
+    multi-part patterns
+
+  Note: This release depends on STLSoft 1.8.4 beta 1, or later.
+
+
+recls 1.6.3 released - 28th June 2005
+=====================================
+
+Test:
+-----
+  ~ minor changes to test files sources, for maximum compatibility with
+    compilers, including GCC 3.3 and 4.0 on Mac OS-X 
+  ~ addition of three more test programs - C_minimal, Cpp_minimal and
+    STL_minimal - that demonstrate minimal and easy use of the C++ and
+    STL mappings.
+
+documentation:
+--------------
+  + addition of a "Getting Started" page within the documentation.
+
+  Note: This release depends on STLSoft 1.8.4 beta 1, or later.
+
+recls 1.6.2 released - 23rd May 2005
+====================================
+
+Core:
+-----
+  ~ The implementation is significantly refactored, to reduce source and
+    binary sizes, as described in the July instalment of the "Positive
+    Integration"  column in C/C++ Users Journal (http://www.cuj.com)
+
+recls/C++:
+----------
+  ~ Header files in the old mappings/Cpp directory now redirect to
+    <recls/cpp/search.hpp>, <recls/cpp/entry.hpp>, etc.
+
+recls/Java:
+recls/Python:
+recls/Ruby:
+-------------
+  ~ mappings now use new STLSoft C-compatible components,
+    i.e. <winstl/time_conversion_functions.h>
+
+recls/Java:
+-----------
+  ~ Java mapping now uses the STLSoft sub-project PlatformSTL
+
+=============================== End of file ================================
