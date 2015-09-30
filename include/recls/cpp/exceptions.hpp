@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - exception classes.
  *
  * Created:     10th September 2003
- * Updated:     14th June 2012
+ * Updated:     30th September 2015
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       1
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    2
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        40
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    3
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        41
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,7 +125,10 @@ public:
         , m_patterns(stlsoft::c_str_ptr(patterns))
         , m_flags(0)
     {}
-#ifdef STLSOFT_COMPILER_IS_GCC
+#if 0 || \
+    defined(STLSOFT_COMPILER_IS_CLANG) || \
+    defined(STLSOFT_COMPILER_IS_GCC) || \
+	0
     virtual ~recls_exception() throw()
     {}
 #endif /* STLSOFT_COMPILER_IS_GCC */
