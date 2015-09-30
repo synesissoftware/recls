@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.cpp.retcodes project.
  *
  * Created:     13th December 2008
- * Updated:     29th November 2011
+ * Updated:     30th September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2011, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -197,16 +197,8 @@ static void test_1_3()
         u.ints[2] = rand();
         u.ints[3] = rand();
 
-        if(i < 0)
-        {
-            XTESTS_TEST_BOOLEAN_TRUE(RECLS_FAILED(u.rc));
-            XTESTS_TEST_BOOLEAN_FALSE(RECLS_SUCCEEDED(u.rc));
-        }
-        else
-        {
-            XTESTS_TEST_BOOLEAN_TRUE(RECLS_SUCCEEDED(u.rc));
-            XTESTS_TEST_BOOLEAN_FALSE(RECLS_FAILED(u.rc));
-        }
+		XTESTS_TEST_BOOLEAN_TRUE(RECLS_SUCCEEDED(u.rc));
+		XTESTS_TEST_BOOLEAN_FALSE(RECLS_FAILED(u.rc));
     }}
 }
 
