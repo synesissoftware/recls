@@ -69,6 +69,7 @@ src/backends/ber/ber.loader.c
 *~
 *.a
 *.app
+*.chm
 *.dll
 *.dylib
 *.exe
