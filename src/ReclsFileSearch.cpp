@@ -156,16 +156,16 @@ inline void ReclsFileSearch::operator delete(void* pv)
     cchFullPath = types::traits_type::get_full_path_name(rootDir, fullPath.size(), &fullPath[0]);
     if(0 == cchFullPath)
     {
-	    recls_debug0_trace_printf_(RECLS_LITERAL("could not retrieve full path of given search directory '%s'"), rootDir);
+        recls_debug0_trace_printf_(RECLS_LITERAL("could not retrieve full path of given search directory '%s'"), rootDir);
 
         RECLS_COVER_MARK_LINE();
 
         return RECLS_RC_INVALID_NAME;
     }
-	else
-	{
-	    recls_debug2_trace_printf_(RECLS_LITERAL("retrieved full path of given search directory '%s' => '%s'"), rootDir, fullPath.c_str());
-	}
+    else
+    {
+        recls_debug2_trace_printf_(RECLS_LITERAL("retrieved full path of given search directory '%s' => '%s'"), rootDir, fullPath.c_str());
+    }
     if('"' == fullPath[0])
     {
         RECLS_ASSERT('"' == fullPath[cchFullPath - 1]);

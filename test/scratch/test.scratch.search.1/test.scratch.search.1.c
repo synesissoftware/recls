@@ -46,8 +46,8 @@ void RECLS_CALLCONV_DEFAULT logfn(
 int main(int argc, char *argv[])
 {
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-	((void)argc);
-	((void)argv);
+    ((void)argc);
+    ((void)argv);
 
 #else /* ? RECLS_CHAR_TYPE_IS_WCHAR */
 # ifdef _DEBUG

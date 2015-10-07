@@ -76,7 +76,7 @@
 #if _STLSOFT_VER >= 0x010a0000 || \
     (   defined(_STLSOFT_1_10_VER) && \
         _STLSOFT_1_10_VER >= 0x010a0110) && \
-	defined(_WIN32)
+    defined(_WIN32)
 # define RECLS_USE_WINSTL_LINK_FUNCTIONS_
 # include <winstl/filesystem/link_functions.h>
 #else /* ? OS */

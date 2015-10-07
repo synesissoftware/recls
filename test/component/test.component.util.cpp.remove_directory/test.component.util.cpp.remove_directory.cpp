@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.util.cpp.remove_directory project.
  *
  * Created:     30th January 2010
- * Updated:     29th September 2015
+ * Updated:     7th October 2015
  *
  * Status:      Wizard-generated
  *
@@ -22,6 +22,8 @@
  * Test component header file include(s)
  */
 
+#include <xtests/test/util/compiler_warnings_suppression.first_include.h>
+
 #ifdef __GNUC__
 # include <platformstl/filesystem/path.hpp>
 #endif
@@ -32,23 +34,33 @@
  * Includes
  */
 
-/* xCover Header Files */
+/* xCover header files */
 #if defined(__FUNCTION__) && \
     defined(__COUNTER__)
 # include <xcover/xcover.h>
 #endif
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
+#if _XTESTS_VER < 0x001204ff
+# error Requires xTests 0.18.4 or later
+#endif
+#include <xtests/util/temp_directory.hpp>
 
-/* STLSoft Header Files */
-#include <stlsoft/stlsoft.h>
+/* STLSoft header files */
 #include <platformstl/filesystem/directory_functions.hpp>
-#include <platformstl/filesystem/file_path_buffer.hpp>
 #include <platformstl/filesystem/path.hpp>
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+# include <winstl/conversion/char_conversions.hpp>
+# define CONVERTER_m2t(s)   winstl::m2t(s)
+#else
+# define CONVERTER_m2t(s)   (s)
+#endif
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>
+
+#include <xtests/test/util/compiler_warnings_suppression.last_include.h>
 
 /* /////////////////////////////////////////////////////////////////////////
  * Forward declarations
@@ -106,13 +118,25 @@ namespace
 } // anonymous namespace
 
 /* /////////////////////////////////////////////////////////////////////////
+ * types
+ */
+
+namespace
+{
+
+    using recls::recls_char_t;
+    typedef platformstl::basic_path<recls_char_t>   path_t;
+
+} // anonymous namespace
+
+/* /////////////////////////////////////////////////////////////////////////
  * Non-local static variables
  */
 
 namespace
 {
 
-    platformstl::file_path_buffer   temp_dir;
+    path_t   temp_dir;
 
 } // anonymous namespace
 
@@ -190,61 +214,15 @@ int main(int argc, char **argv)
 
 namespace
 {
-	using recls::recls_char_t;
 
 
 static int setup(void*)
 {
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+    using ::xtests::cpp::util::temp_directory;
 
-    if(NULL == ::tmpnam(&temp_dir[0]))
-    {
-        fprintf(stderr, "tmpnam(): %d: %s\n", errno, strerror(errno));
+    temp_directory td(temp_directory::EmptyOnOpen);
 
-        return int(errno);
-    }
-
-    if(!platformstl::create_directory_recurse(temp_dir.c_str()))
-    {
-        fprintf(stderr, "platformstl::create_directory_recurse(): %d: %s\n", errno, strerror(errno));
-
-        return int(errno);
-    }
-
-# ifdef _WIN32
-    size_t  n   =   ::strlen(temp_dir.c_str());
-    char*   b   =   &temp_dir[0];
-    char*   e   =   b + n;
-
-    std::replace(b, e, '\\', '/');
-# endif /* _WIN32 */
-
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-
-    TCHAR   tdir[_MAX_PATH + 1];
-    DWORD   dw = ::GetTempPath(STLSOFT_NUM_ELEMENTS(tdir), &tdir[0]);
-
-    if(0 == dw)
-    {
-        return int(::GetLastError());
-    }
-
-    UINT    n = ::GetTempFileName(tdir, RECLS_LITERAL("rcl"), 0, &temp_dir[0]);
-
-    if(0 == n)
-    {
-        return int(::GetLastError());
-    }
-
-    if( !::DeleteFile(temp_dir.c_str()) ||
-        !::CreateDirectory(temp_dir.c_str(), NULL))
-    {
-        return int(::GetLastError());
-    }
-
-#else
-# error Platform not discriminated
-#endif
+    temp_dir = path_t(CONVERTER_m2t(td));
 
     return 0;
 }
@@ -278,11 +256,11 @@ static void test_1_1()
 
 static void test_1_2()
 {
-    platformstl::path path(temp_dir);
+    path_t path(temp_dir);
 
     path.push(RECLS_LITERAL("abc"));
 
-    platformstl::path path2remove(path);
+    path_t path2remove(path);
 
     platformstl::create_directory_recurse(path);
 
@@ -296,11 +274,11 @@ static void test_1_2()
 
 static void test_1_3()
 {
-    platformstl::path path(temp_dir);
+    path_t path(temp_dir);
 
     path.push(RECLS_LITERAL("abc"));
 
-    platformstl::path path2remove(path);
+    path_t path2remove(path);
 
     path.push(RECLS_LITERAL("def"));
 
@@ -316,11 +294,11 @@ static void test_1_3()
 
 static void test_1_4()
 {
-    platformstl::path path(temp_dir);
+    path_t path(temp_dir);
 
     path.push(RECLS_LITERAL("abc"));
 
-    platformstl::path path2remove(path);
+    path_t path2remove(path);
 
     path.push(RECLS_LITERAL("def"));
     path.push(RECLS_LITERAL("ghi"));

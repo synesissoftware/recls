@@ -165,7 +165,7 @@ int main(int argc, char **argv)
 
 namespace
 {
-	using recls::recls_char_t;
+    using recls::recls_char_t;
 
 
 static void test_1_0()

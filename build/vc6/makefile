@@ -5,7 +5,7 @@
 #           compiler, on Win32
 #
 # Created:  23rd September 2003
-# Updated:  29th September 2015
+# Updated:  30th September 2015
 #
 ############################################################################
 
@@ -68,26 +68,26 @@ PROJ_TEST_SCRATCH_DIR   =   $(PROJ_TEST_ROOT_DIR)\scratch
 PROJ_TEST_UNIT_DIR      =   $(PROJ_TEST_ROOT_DIR)\unit
 
 SHWILD_PROJ_INCLUDE		=	
-!ifdef PANTHEIOS_SHWILD_BASE_DIR
-SHWILD_INCLUDE_DIR		=   $(PANTHEIOS_SHWILD_BASE_DIR)\include
-SHWILD_SRC_DIR			=   $(PANTHEIOS_SHWILD_BASE_DIR)\src
+!ifdef RECLS_SHWILD_BASE_DIR
+SHWILD_INCLUDE_DIR		=   $(RECLS_SHWILD_BASE_DIR)\include
+SHWILD_SRC_DIR			=   $(RECLS_SHWILD_BASE_DIR)\src
 SHWILD_PROJ_INCLUDE		=	-I$(SHWILD_INCLUDE_DIR)
 !else
 SHWILD_INCLUDE_DIR		=   $(PROJ_BASE_DIR)\include
 SHWILD_SRC_DIR			=   $(PROJ_SRC_DIR)\shwild
-!endif # !PANTHEIOS_SHWILD_BASE_DIR
+!endif # !RECLS_SHWILD_BASE_DIR
 
 XCONTRACT_PROJ_INCLUDE	=	
 
 XTESTS_PROJ_INCLUDE		=	
-!ifdef PANTHEIOS_XTESTS_BASE_DIR
-XTESTS_INCLUDE_DIR		=   $(PANTHEIOS_XTESTS_BASE_DIR)\include
-XTESTS_SRC_DIR			=   $(PANTHEIOS_XTESTS_BASE_DIR)\src
+!ifdef RECLS_XTESTS_BASE_DIR
+XTESTS_INCLUDE_DIR		=   $(RECLS_XTESTS_BASE_DIR)\include
+XTESTS_SRC_DIR			=   $(RECLS_XTESTS_BASE_DIR)\src
 XTESTS_PROJ_INCLUDE		=	-I$(XTESTS_INCLUDE_DIR)
 !else
 XTESTS_INCLUDE_DIR		=   $(PROJ_BASE_DIR)\include
 XTESTS_SRC_DIR			=   $(PROJ_SRC_DIR)\xtests
-!endif # !PANTHEIOS_XTESTS_BASE_DIR
+!endif # !RECLS_XTESTS_BASE_DIR
 
 !ifdef STLSOFT_1_10
 STLSOFT_1_10_INCLUDE	=	-I$(STLSOFT_1_10)\include
@@ -576,7 +576,10 @@ CC_INCLUDES_BASE=\
  $(SHWILD_PROJ_INCLUDE)\
  $(XCONTRACT_PROJ_INCLUDE)\
  $(XTESTS_PROJ_INCLUDE)\
+ $(STLSOFT_1_10_INCLUDE)\
  $(STLSOFT_PROJ_INCLUDE)\
+ $(COMMON_INCLUDES)\
+ $(ENV_INCLUDES)\
  \
 
 CC_INCLUDES_MT_D=\
@@ -813,6 +816,9 @@ CC_XTESTS_INCLUDES_W_ST_R=\
 CPPC_INCLUDES_BASE=\
  $(INCLUDES_LEADER)\
  $(PROJ_INCLUDE)\
+ $(SHWILD_PROJ_INCLUDE)\
+ $(XCONTRACT_PROJ_INCLUDE)\
+ $(XTESTS_PROJ_INCLUDE)\
  $(STLSOFT_1_10_INCLUDE)\
  $(STLSOFT_PROJ_INCLUDE)\
  $(COMMON_INCLUDES)\
@@ -1055,108 +1061,126 @@ CC_ARGS_MT_D=\
  -MTd -D_DEBUG -Zi -Fd$*.pdb\
  $(CC_DEFS_MT_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_MT_D)
 CC_ARGS_MT_D_NOX=\
  $(CC_FLAGS_MT_D_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -MTd -D_DEBUG -Zi -Fd$*.pdb\
  $(CC_DEFS_MT_D_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_MT_D_NOX)
 CC_ARGS_DLL_D=\
  $(CC_FLAGS_DLL_D)\
  -MDd -D_DEBUG -Zi -Fd$*.pdb\
  $(CC_DEFS_DLL_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_DLL_D)
 CC_ARGS_DLL_D_NOX=\
  $(CC_FLAGS_DLL_D_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -MDd -D_DEBUG -Zi -Fd$*.pdb\
  $(CC_DEFS_DLL_D_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_DLL_D_NOX)
 CC_ARGS_DLL_R=\
  $(CC_FLAGS_DLL_R)\
  -MD -DNDEBUG\
  $(CC_DEFS_DLL_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_DLL_R)
 CC_ARGS_DLL_R_NOX=\
  $(CC_FLAGS_DLL_R_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -MD -DNDEBUG\
  $(CC_DEFS_DLL_R_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_DLL_R_NOX)
 CC_ARGS_MT_R=\
  $(CC_FLAGS_MT_R)\
  -MT -DNDEBUG\
  $(CC_DEFS_MT_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_MT_R)
 CC_ARGS_MT_R_NOX=\
  $(CC_FLAGS_MT_R_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -MT -DNDEBUG\
  $(CC_DEFS_MT_R_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_MT_R_NOX)
 CC_ARGS_ST_D=\
  $(CC_FLAGS_ST_D)\
  -MLd -D_DEBUG -Zi -Fd$*.pdb\
  $(CC_DEFS_ST_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_ST_D)
 CC_ARGS_ST_D_NOX=\
  $(CC_FLAGS_ST_D_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -MLd -D_DEBUG -Zi -Fd$*.pdb\
  $(CC_DEFS_ST_D_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_ST_D_NOX)
 CC_ARGS_ST_R=\
  $(CC_FLAGS_ST_R)\
  -ML -DNDEBUG\
  $(CC_DEFS_ST_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_ST_R)
 CC_ARGS_ST_R_NOX=\
  $(CC_FLAGS_ST_R_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -ML -DNDEBUG\
  $(CC_DEFS_ST_R_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_ST_R_NOX)
 CC_ARGS_W_MT_D=\
  $(CC_FLAGS_W_MT_D)\
  -MTd -DUNICODE -D_UNICODE -D_DEBUG -Zi -Fd$*.pdb\
  $(CC_DEFS_W_MT_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_W_MT_D)
 CC_ARGS_W_DLL_D=\
  $(CC_FLAGS_W_DLL_D)\
  -MDd -DUNICODE -D_UNICODE -D_DEBUG -Zi -Fd$*.pdb\
  $(CC_DEFS_W_DLL_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_W_DLL_D)
 CC_ARGS_W_DLL_R=\
  $(CC_FLAGS_W_DLL_R)\
  -MD -DUNICODE -D_UNICODE -DNDEBUG\
  $(CC_DEFS_W_DLL_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_W_DLL_R)
 CC_ARGS_W_MT_R=\
  $(CC_FLAGS_W_MT_R)\
  -MT -DUNICODE -D_UNICODE -DNDEBUG\
  $(CC_DEFS_W_MT_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_W_MT_R)
 CC_ARGS_W_ST_D=\
  $(CC_FLAGS_W_ST_D)\
  -MLd -DUNICODE -D_UNICODE -D_DEBUG -Zi -Fd$*.pdb\
  $(CC_DEFS_W_ST_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_W_ST_D)
 CC_ARGS_W_ST_R=\
  $(CC_FLAGS_W_ST_R)\
  -ML -DUNICODE -D_UNICODE -DNDEBUG\
  $(CC_DEFS_W_ST_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CC_INCLUDES_W_ST_R)
 
 # CPPC args (= flags + defines + includes)
@@ -1166,108 +1190,126 @@ CPPC_ARGS_MT_D=\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MTd -D_DEBUG -Zi -Fd$*.pdb\
  $(CPPC_DEFS_MT_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_MT_D)
 CPPC_ARGS_MT_D_NOX=\
  $(CPPC_FLAGS_MT_D_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -MTd -D_DEBUG -Zi -Fd$*.pdb\
  $(CPPC_DEFS_MT_D_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_MT_D_NOX)
 CPPC_ARGS_DLL_D=\
  $(CPPC_FLAGS_DLL_D)\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MDd -D_DEBUG -Zi -Fd$*.pdb\
  $(CPPC_DEFS_DLL_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_DLL_D)
 CPPC_ARGS_DLL_D_NOX=\
  $(CPPC_FLAGS_DLL_D_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -MDd -D_DEBUG -Zi -Fd$*.pdb\
  $(CPPC_DEFS_DLL_D_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_DLL_D_NOX)
 CPPC_ARGS_DLL_R=\
  $(CPPC_FLAGS_DLL_R)\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MD -DNDEBUG\
  $(CPPC_DEFS_DLL_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_DLL_R)
 CPPC_ARGS_DLL_R_NOX=\
  $(CPPC_FLAGS_DLL_R_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -MD -DNDEBUG\
  $(CPPC_DEFS_DLL_R_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_DLL_R_NOX)
 CPPC_ARGS_MT_R=\
  $(CPPC_FLAGS_MT_R)\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MT -DNDEBUG\
  $(CPPC_DEFS_MT_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_MT_R)
 CPPC_ARGS_MT_R_NOX=\
  $(CPPC_FLAGS_MT_R_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -MT -DNDEBUG\
  $(CPPC_DEFS_MT_R_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_MT_R_NOX)
 CPPC_ARGS_ST_D=\
  $(CPPC_FLAGS_ST_D)\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MLd -D_DEBUG -Zi -Fd$*.pdb\
  $(CPPC_DEFS_ST_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_ST_D)
 CPPC_ARGS_ST_D_NOX=\
  $(CPPC_FLAGS_ST_D_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -MLd -D_DEBUG -Zi -Fd$*.pdb\
  $(CPPC_DEFS_ST_D_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_ST_D_NOX)
 CPPC_ARGS_ST_R=\
  $(CPPC_FLAGS_ST_R)\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -ML -DNDEBUG\
  $(CPPC_DEFS_ST_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_ST_R)
 CPPC_ARGS_ST_R_NOX=\
  $(CPPC_FLAGS_ST_R_NOX)\
  $(CPPC_F_EXCEPTIONS_OFF) $(CPPC_F_RTTI_OFF) -ML -DNDEBUG\
  $(CPPC_DEFS_ST_R_NOX)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_ST_R_NOX)
 CPPC_ARGS_W_MT_D=\
  $(CPPC_FLAGS_W_MT_D)\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MTd -DUNICODE -D_UNICODE -D_DEBUG -Zi -Fd$*.pdb\
  $(CPPC_DEFS_W_MT_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_W_MT_D)
 CPPC_ARGS_W_DLL_D=\
  $(CPPC_FLAGS_W_DLL_D)\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MDd -DUNICODE -D_UNICODE -D_DEBUG -Zi -Fd$*.pdb\
  $(CPPC_DEFS_W_DLL_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_W_DLL_D)
 CPPC_ARGS_W_DLL_R=\
  $(CPPC_FLAGS_W_DLL_R)\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MD -DUNICODE -D_UNICODE -DNDEBUG\
  $(CPPC_DEFS_W_DLL_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_W_DLL_R)
 CPPC_ARGS_W_MT_R=\
  $(CPPC_FLAGS_W_MT_R)\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MT -DUNICODE -D_UNICODE -DNDEBUG\
  $(CPPC_DEFS_W_MT_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_W_MT_R)
 CPPC_ARGS_W_ST_D=\
  $(CPPC_FLAGS_W_ST_D)\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MLd -DUNICODE -D_UNICODE -D_DEBUG -Zi -Fd$*.pdb\
  $(CPPC_DEFS_W_ST_D)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_W_ST_D)
 CPPC_ARGS_W_ST_R=\
  $(CPPC_FLAGS_W_ST_R)\
  $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -ML -DUNICODE -D_UNICODE -DNDEBUG\
  $(CPPC_DEFS_W_ST_R)\
  -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
  $(CPPC_INCLUDES_W_ST_R)
 
 
@@ -1869,28 +1911,16 @@ TARG_EX_ex_cpp_3_W_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.example_cpp_3.$
 
 TARG_TEST_COMP_api_crdir_MT_D	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_api_rmdir_MT_D	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_api_crdir_MT_D_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).mt.nox.debug.exe
-TARG_TEST_COMP_api_rmdir_MT_D_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).mt.nox.debug.exe
 TARG_TEST_COMP_api_crdir_DLL_D	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_api_rmdir_DLL_D	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).dll.debug.exe
-TARG_TEST_COMP_api_crdir_DLL_D_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).dll.nox.debug.exe
-TARG_TEST_COMP_api_rmdir_DLL_D_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).dll.nox.debug.exe
 TARG_TEST_COMP_api_crdir_DLL_R	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_api_rmdir_DLL_R	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).dll.exe
-TARG_TEST_COMP_api_crdir_DLL_R_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).dll.nox.exe
-TARG_TEST_COMP_api_rmdir_DLL_R_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).dll.nox.exe
 TARG_TEST_COMP_api_crdir_MT_R	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_api_rmdir_MT_R	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_api_crdir_MT_R_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).mt.nox.exe
-TARG_TEST_COMP_api_rmdir_MT_R_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).mt.nox.exe
 TARG_TEST_COMP_api_crdir_ST_D	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_api_rmdir_ST_D	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_api_crdir_ST_D_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).nox.debug.exe
-TARG_TEST_COMP_api_rmdir_ST_D_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).nox.debug.exe
 TARG_TEST_COMP_api_crdir_ST_R	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_api_rmdir_ST_R	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_api_crdir_ST_R_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).nox.exe
-TARG_TEST_COMP_api_rmdir_ST_R_NOX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).nox.exe
 TARG_TEST_COMP_api_crdir_W_MT_D	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_api_rmdir_W_MT_D	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_api_crdir_W_DLL_D	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
@@ -2167,9 +2197,7 @@ OBJ_CR_api_derrpath_MT_D_NOX		= $(PROJ_OBJ_DIR)\api.derrpath.mt.nox.debug.obj
 OBJ_CR_api_getflsizs_MT_D_NOX		= $(PROJ_OBJ_DIR)\api.getflsizs.mt.nox.debug.obj
 OBJ_CR_api_sqzpath_MT_D_NOX		= $(PROJ_OBJ_DIR)\api.sqzpath.mt.nox.debug.obj
 OBJ_CR_api_stat_MT_D_NOX			= $(PROJ_OBJ_DIR)\api.stat.mt.nox.debug.obj
-OBJ_CR_api_crdir_MT_D_NOX			= $(PROJ_OBJ_DIR)\api.crdir.mt.nox.debug.obj
 OBJ_CR_api_rc_win_MT_D_NOX		= $(PROJ_OBJ_DIR)\api.retcodes.windows.mt.nox.debug.obj
-OBJ_CR_api_rmdir_MT_D_NOX			= $(PROJ_OBJ_DIR)\api.rmdir.mt.nox.debug.obj
 OBJ_CR_api_search_MT_D_NOX		= $(PROJ_OBJ_DIR)\api.search.mt.nox.debug.obj
 OBJ_CR_impl_debug_MT_D_NOX		= $(PROJ_OBJ_DIR)\impl.trace.mt.nox.debug.obj
 OBJ_CR_impl_entryinfo_MT_D_NOX	= $(PROJ_OBJ_DIR)\impl.entryinfo.mt.nox.debug.obj
@@ -2197,8 +2225,6 @@ OBJ_CORE_MT_D_NOX=\
  $(OBJ_CR_api_getflsizs_MT_D_NOX)\
  $(OBJ_CR_api_sqzpath_MT_D_NOX)\
  $(OBJ_CR_api_stat_MT_D_NOX)\
- $(OBJ_CR_api_crdir_MT_D_NOX)\
- $(OBJ_CR_api_rmdir_MT_D_NOX)\
  $(OBJ_CR_api_rc_win_MT_D_NOX)\
  $(OBJ_CR_api_search_MT_D_NOX)\
  $(OBJ_CR_impl_debug_MT_D_NOX)\
@@ -2283,9 +2309,7 @@ OBJ_CR_api_derrpath_DLL_D_NOX		= $(PROJ_OBJ_DIR)\api.derrpath.dll.nox.debug.obj
 OBJ_CR_api_getflsizs_DLL_D_NOX		= $(PROJ_OBJ_DIR)\api.getflsizs.dll.nox.debug.obj
 OBJ_CR_api_sqzpath_DLL_D_NOX		= $(PROJ_OBJ_DIR)\api.sqzpath.dll.nox.debug.obj
 OBJ_CR_api_stat_DLL_D_NOX			= $(PROJ_OBJ_DIR)\api.stat.dll.nox.debug.obj
-OBJ_CR_api_crdir_DLL_D_NOX			= $(PROJ_OBJ_DIR)\api.crdir.dll.nox.debug.obj
 OBJ_CR_api_rc_win_DLL_D_NOX		= $(PROJ_OBJ_DIR)\api.retcodes.windows.dll.nox.debug.obj
-OBJ_CR_api_rmdir_DLL_D_NOX			= $(PROJ_OBJ_DIR)\api.rmdir.dll.nox.debug.obj
 OBJ_CR_api_search_DLL_D_NOX		= $(PROJ_OBJ_DIR)\api.search.dll.nox.debug.obj
 OBJ_CR_impl_debug_DLL_D_NOX		= $(PROJ_OBJ_DIR)\impl.trace.dll.nox.debug.obj
 OBJ_CR_impl_entryinfo_DLL_D_NOX	= $(PROJ_OBJ_DIR)\impl.entryinfo.dll.nox.debug.obj
@@ -2313,8 +2337,6 @@ OBJ_CORE_DLL_D_NOX=\
  $(OBJ_CR_api_getflsizs_DLL_D_NOX)\
  $(OBJ_CR_api_sqzpath_DLL_D_NOX)\
  $(OBJ_CR_api_stat_DLL_D_NOX)\
- $(OBJ_CR_api_crdir_DLL_D_NOX)\
- $(OBJ_CR_api_rmdir_DLL_D_NOX)\
  $(OBJ_CR_api_rc_win_DLL_D_NOX)\
  $(OBJ_CR_api_search_DLL_D_NOX)\
  $(OBJ_CR_impl_debug_DLL_D_NOX)\
@@ -2399,9 +2421,7 @@ OBJ_CR_api_derrpath_DLL_R_NOX		= $(PROJ_OBJ_DIR)\api.derrpath.dll.nox.obj
 OBJ_CR_api_getflsizs_DLL_R_NOX		= $(PROJ_OBJ_DIR)\api.getflsizs.dll.nox.obj
 OBJ_CR_api_sqzpath_DLL_R_NOX		= $(PROJ_OBJ_DIR)\api.sqzpath.dll.nox.obj
 OBJ_CR_api_stat_DLL_R_NOX			= $(PROJ_OBJ_DIR)\api.stat.dll.nox.obj
-OBJ_CR_api_crdir_DLL_R_NOX			= $(PROJ_OBJ_DIR)\api.crdir.dll.nox.obj
 OBJ_CR_api_rc_win_DLL_R_NOX		= $(PROJ_OBJ_DIR)\api.retcodes.windows.dll.nox.obj
-OBJ_CR_api_rmdir_DLL_R_NOX			= $(PROJ_OBJ_DIR)\api.rmdir.dll.nox.obj
 OBJ_CR_api_search_DLL_R_NOX		= $(PROJ_OBJ_DIR)\api.search.dll.nox.obj
 OBJ_CR_impl_debug_DLL_R_NOX		= $(PROJ_OBJ_DIR)\impl.trace.dll.nox.obj
 OBJ_CR_impl_entryinfo_DLL_R_NOX	= $(PROJ_OBJ_DIR)\impl.entryinfo.dll.nox.obj
@@ -2429,8 +2449,6 @@ OBJ_CORE_DLL_R_NOX=\
  $(OBJ_CR_api_getflsizs_DLL_R_NOX)\
  $(OBJ_CR_api_sqzpath_DLL_R_NOX)\
  $(OBJ_CR_api_stat_DLL_R_NOX)\
- $(OBJ_CR_api_crdir_DLL_R_NOX)\
- $(OBJ_CR_api_rmdir_DLL_R_NOX)\
  $(OBJ_CR_api_rc_win_DLL_R_NOX)\
  $(OBJ_CR_api_search_DLL_R_NOX)\
  $(OBJ_CR_impl_debug_DLL_R_NOX)\
@@ -2515,9 +2533,7 @@ OBJ_CR_api_derrpath_MT_R_NOX		= $(PROJ_OBJ_DIR)\api.derrpath.mt.nox.obj
 OBJ_CR_api_getflsizs_MT_R_NOX		= $(PROJ_OBJ_DIR)\api.getflsizs.mt.nox.obj
 OBJ_CR_api_sqzpath_MT_R_NOX		= $(PROJ_OBJ_DIR)\api.sqzpath.mt.nox.obj
 OBJ_CR_api_stat_MT_R_NOX			= $(PROJ_OBJ_DIR)\api.stat.mt.nox.obj
-OBJ_CR_api_crdir_MT_R_NOX			= $(PROJ_OBJ_DIR)\api.crdir.mt.nox.obj
 OBJ_CR_api_rc_win_MT_R_NOX		= $(PROJ_OBJ_DIR)\api.retcodes.windows.mt.nox.obj
-OBJ_CR_api_rmdir_MT_R_NOX			= $(PROJ_OBJ_DIR)\api.rmdir.mt.nox.obj
 OBJ_CR_api_search_MT_R_NOX		= $(PROJ_OBJ_DIR)\api.search.mt.nox.obj
 OBJ_CR_impl_debug_MT_R_NOX		= $(PROJ_OBJ_DIR)\impl.trace.mt.nox.obj
 OBJ_CR_impl_entryinfo_MT_R_NOX	= $(PROJ_OBJ_DIR)\impl.entryinfo.mt.nox.obj
@@ -2545,8 +2561,6 @@ OBJ_CORE_MT_R_NOX=\
  $(OBJ_CR_api_getflsizs_MT_R_NOX)\
  $(OBJ_CR_api_sqzpath_MT_R_NOX)\
  $(OBJ_CR_api_stat_MT_R_NOX)\
- $(OBJ_CR_api_crdir_MT_R_NOX)\
- $(OBJ_CR_api_rmdir_MT_R_NOX)\
  $(OBJ_CR_api_rc_win_MT_R_NOX)\
  $(OBJ_CR_api_search_MT_R_NOX)\
  $(OBJ_CR_impl_debug_MT_R_NOX)\
@@ -2631,9 +2645,7 @@ OBJ_CR_api_derrpath_ST_D_NOX		= $(PROJ_OBJ_DIR)\api.derrpath.nox.debug.obj
 OBJ_CR_api_getflsizs_ST_D_NOX		= $(PROJ_OBJ_DIR)\api.getflsizs.nox.debug.obj
 OBJ_CR_api_sqzpath_ST_D_NOX		= $(PROJ_OBJ_DIR)\api.sqzpath.nox.debug.obj
 OBJ_CR_api_stat_ST_D_NOX			= $(PROJ_OBJ_DIR)\api.stat.nox.debug.obj
-OBJ_CR_api_crdir_ST_D_NOX			= $(PROJ_OBJ_DIR)\api.crdir.nox.debug.obj
 OBJ_CR_api_rc_win_ST_D_NOX		= $(PROJ_OBJ_DIR)\api.retcodes.windows.nox.debug.obj
-OBJ_CR_api_rmdir_ST_D_NOX			= $(PROJ_OBJ_DIR)\api.rmdir.nox.debug.obj
 OBJ_CR_api_search_ST_D_NOX		= $(PROJ_OBJ_DIR)\api.search.nox.debug.obj
 OBJ_CR_impl_debug_ST_D_NOX		= $(PROJ_OBJ_DIR)\impl.trace.nox.debug.obj
 OBJ_CR_impl_entryinfo_ST_D_NOX	= $(PROJ_OBJ_DIR)\impl.entryinfo.nox.debug.obj
@@ -2661,8 +2673,6 @@ OBJ_CORE_ST_D_NOX=\
  $(OBJ_CR_api_getflsizs_ST_D_NOX)\
  $(OBJ_CR_api_sqzpath_ST_D_NOX)\
  $(OBJ_CR_api_stat_ST_D_NOX)\
- $(OBJ_CR_api_crdir_ST_D_NOX)\
- $(OBJ_CR_api_rmdir_ST_D_NOX)\
  $(OBJ_CR_api_rc_win_ST_D_NOX)\
  $(OBJ_CR_api_search_ST_D_NOX)\
  $(OBJ_CR_impl_debug_ST_D_NOX)\
@@ -2747,9 +2757,7 @@ OBJ_CR_api_derrpath_ST_R_NOX		= $(PROJ_OBJ_DIR)\api.derrpath.nox.obj
 OBJ_CR_api_getflsizs_ST_R_NOX		= $(PROJ_OBJ_DIR)\api.getflsizs.nox.obj
 OBJ_CR_api_sqzpath_ST_R_NOX		= $(PROJ_OBJ_DIR)\api.sqzpath.nox.obj
 OBJ_CR_api_stat_ST_R_NOX			= $(PROJ_OBJ_DIR)\api.stat.nox.obj
-OBJ_CR_api_crdir_ST_R_NOX			= $(PROJ_OBJ_DIR)\api.crdir.nox.obj
 OBJ_CR_api_rc_win_ST_R_NOX		= $(PROJ_OBJ_DIR)\api.retcodes.windows.nox.obj
-OBJ_CR_api_rmdir_ST_R_NOX			= $(PROJ_OBJ_DIR)\api.rmdir.nox.obj
 OBJ_CR_api_search_ST_R_NOX		= $(PROJ_OBJ_DIR)\api.search.nox.obj
 OBJ_CR_impl_debug_ST_R_NOX		= $(PROJ_OBJ_DIR)\impl.trace.nox.obj
 OBJ_CR_impl_entryinfo_ST_R_NOX	= $(PROJ_OBJ_DIR)\impl.entryinfo.nox.obj
@@ -2777,8 +2785,6 @@ OBJ_CORE_ST_R_NOX=\
  $(OBJ_CR_api_getflsizs_ST_R_NOX)\
  $(OBJ_CR_api_sqzpath_ST_R_NOX)\
  $(OBJ_CR_api_stat_ST_R_NOX)\
- $(OBJ_CR_api_crdir_ST_R_NOX)\
- $(OBJ_CR_api_rmdir_ST_R_NOX)\
  $(OBJ_CR_api_rc_win_ST_R_NOX)\
  $(OBJ_CR_api_search_ST_R_NOX)\
  $(OBJ_CR_impl_debug_ST_R_NOX)\
@@ -3777,28 +3783,16 @@ OBJ_EX_ex_cpp_3_W_ST_R =   $(PROJ_OBJ_DIR)\ex.cpp.example_cpp_3.widestring.obj
 
 OBJ_TEST_COMP_api_crdir_MT_D =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.mt.debug.obj
 OBJ_TEST_COMP_api_rmdir_MT_D =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.mt.debug.obj
-OBJ_TEST_COMP_api_crdir_MT_D_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.mt.nox.debug.obj
-OBJ_TEST_COMP_api_rmdir_MT_D_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.mt.nox.debug.obj
 OBJ_TEST_COMP_api_crdir_DLL_D =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.dll.debug.obj
 OBJ_TEST_COMP_api_rmdir_DLL_D =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.dll.debug.obj
-OBJ_TEST_COMP_api_crdir_DLL_D_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.dll.nox.debug.obj
-OBJ_TEST_COMP_api_rmdir_DLL_D_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.dll.nox.debug.obj
 OBJ_TEST_COMP_api_crdir_DLL_R =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.dll.obj
 OBJ_TEST_COMP_api_rmdir_DLL_R =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.dll.obj
-OBJ_TEST_COMP_api_crdir_DLL_R_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.dll.nox.obj
-OBJ_TEST_COMP_api_rmdir_DLL_R_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.dll.nox.obj
 OBJ_TEST_COMP_api_crdir_MT_R =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.mt.obj
 OBJ_TEST_COMP_api_rmdir_MT_R =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.mt.obj
-OBJ_TEST_COMP_api_crdir_MT_R_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.mt.nox.obj
-OBJ_TEST_COMP_api_rmdir_MT_R_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.mt.nox.obj
 OBJ_TEST_COMP_api_crdir_ST_D =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.debug.obj
 OBJ_TEST_COMP_api_rmdir_ST_D =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.debug.obj
-OBJ_TEST_COMP_api_crdir_ST_D_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.nox.debug.obj
-OBJ_TEST_COMP_api_rmdir_ST_D_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.nox.debug.obj
 OBJ_TEST_COMP_api_crdir_ST_R =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.obj
 OBJ_TEST_COMP_api_rmdir_ST_R =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.obj
-OBJ_TEST_COMP_api_crdir_ST_R_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.nox.obj
-OBJ_TEST_COMP_api_rmdir_ST_R_NOX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.nox.obj
 OBJ_TEST_COMP_api_crdir_W_MT_D =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.widestring.mt.debug.obj
 OBJ_TEST_COMP_api_rmdir_W_MT_D =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove_directory.widestring.mt.debug.obj
 OBJ_TEST_COMP_api_crdir_W_DLL_D =   $(PROJ_OBJ_DIR)\test.component.util.cpp.create_directory.widestring.dll.debug.obj
@@ -4278,28 +4272,16 @@ OBJS_EXAMPLE=\
 OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_api_crdir_MT_D)\
  $(OBJ_TEST_COMP_api_rmdir_MT_D)\
- $(OBJ_TEST_COMP_api_crdir_MT_D_NOX)\
- $(OBJ_TEST_COMP_api_rmdir_MT_D_NOX)\
  $(OBJ_TEST_COMP_api_crdir_DLL_D)\
  $(OBJ_TEST_COMP_api_rmdir_DLL_D)\
- $(OBJ_TEST_COMP_api_crdir_DLL_D_NOX)\
- $(OBJ_TEST_COMP_api_rmdir_DLL_D_NOX)\
  $(OBJ_TEST_COMP_api_crdir_DLL_R)\
  $(OBJ_TEST_COMP_api_rmdir_DLL_R)\
- $(OBJ_TEST_COMP_api_crdir_DLL_R_NOX)\
- $(OBJ_TEST_COMP_api_rmdir_DLL_R_NOX)\
  $(OBJ_TEST_COMP_api_crdir_MT_R)\
  $(OBJ_TEST_COMP_api_rmdir_MT_R)\
- $(OBJ_TEST_COMP_api_crdir_MT_R_NOX)\
- $(OBJ_TEST_COMP_api_rmdir_MT_R_NOX)\
  $(OBJ_TEST_COMP_api_crdir_ST_D)\
  $(OBJ_TEST_COMP_api_rmdir_ST_D)\
- $(OBJ_TEST_COMP_api_crdir_ST_D_NOX)\
- $(OBJ_TEST_COMP_api_rmdir_ST_D_NOX)\
  $(OBJ_TEST_COMP_api_crdir_ST_R)\
  $(OBJ_TEST_COMP_api_rmdir_ST_R)\
- $(OBJ_TEST_COMP_api_crdir_ST_R_NOX)\
- $(OBJ_TEST_COMP_api_rmdir_ST_R_NOX)\
  $(OBJ_TEST_COMP_api_crdir_W_MT_D)\
  $(OBJ_TEST_COMP_api_rmdir_W_MT_D)\
  $(OBJ_TEST_COMP_api_crdir_W_DLL_D)\
@@ -4757,28 +4739,16 @@ TARGETS_SAMPLE=\
 TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_api_crdir_MT_D)\
  $(TARG_TEST_COMP_api_rmdir_MT_D)\
- $(TARG_TEST_COMP_api_crdir_MT_D_NOX)\
- $(TARG_TEST_COMP_api_rmdir_MT_D_NOX)\
  $(TARG_TEST_COMP_api_crdir_DLL_D)\
  $(TARG_TEST_COMP_api_rmdir_DLL_D)\
- $(TARG_TEST_COMP_api_crdir_DLL_D_NOX)\
- $(TARG_TEST_COMP_api_rmdir_DLL_D_NOX)\
  $(TARG_TEST_COMP_api_crdir_DLL_R)\
  $(TARG_TEST_COMP_api_rmdir_DLL_R)\
- $(TARG_TEST_COMP_api_crdir_DLL_R_NOX)\
- $(TARG_TEST_COMP_api_rmdir_DLL_R_NOX)\
  $(TARG_TEST_COMP_api_crdir_MT_R)\
  $(TARG_TEST_COMP_api_rmdir_MT_R)\
- $(TARG_TEST_COMP_api_crdir_MT_R_NOX)\
- $(TARG_TEST_COMP_api_rmdir_MT_R_NOX)\
  $(TARG_TEST_COMP_api_crdir_ST_D)\
  $(TARG_TEST_COMP_api_rmdir_ST_D)\
- $(TARG_TEST_COMP_api_crdir_ST_D_NOX)\
- $(TARG_TEST_COMP_api_rmdir_ST_D_NOX)\
  $(TARG_TEST_COMP_api_crdir_ST_R)\
  $(TARG_TEST_COMP_api_rmdir_ST_R)\
- $(TARG_TEST_COMP_api_crdir_ST_R_NOX)\
- $(TARG_TEST_COMP_api_rmdir_ST_R_NOX)\
  $(TARG_TEST_COMP_api_crdir_W_MT_D)\
  $(TARG_TEST_COMP_api_rmdir_W_MT_D)\
  $(TARG_TEST_COMP_api_crdir_W_DLL_D)\
@@ -5043,28 +5013,16 @@ test.component_:
 	@echo Running Test:Component programs ...
 	$(TARG_TEST_COMP_api_crdir_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_rmdir_MT_D) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_crdir_MT_D_NOX) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_rmdir_MT_D_NOX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_crdir_DLL_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_rmdir_DLL_D) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_crdir_DLL_D_NOX) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_rmdir_DLL_D_NOX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_crdir_DLL_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_rmdir_DLL_R) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_crdir_DLL_R_NOX) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_rmdir_DLL_R_NOX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_crdir_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_rmdir_MT_R) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_crdir_MT_R_NOX) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_rmdir_MT_R_NOX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_crdir_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_rmdir_ST_D) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_crdir_ST_D_NOX) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_rmdir_ST_D_NOX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_crdir_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_rmdir_ST_R) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_crdir_ST_R_NOX) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_COMP_api_rmdir_ST_R_NOX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_crdir_W_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_rmdir_W_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_api_crdir_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
@@ -5465,8 +5423,6 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_getflsizs_MT_D_NOX) $(RM) $(OBJ_CR_api_getflsizs_MT_D_NOX)
 	@-if exist $(OBJ_CR_api_sqzpath_MT_D_NOX) $(RM) $(OBJ_CR_api_sqzpath_MT_D_NOX)
 	@-if exist $(OBJ_CR_api_stat_MT_D_NOX) $(RM) $(OBJ_CR_api_stat_MT_D_NOX)
-	@-if exist $(OBJ_CR_api_crdir_MT_D_NOX) $(RM) $(OBJ_CR_api_crdir_MT_D_NOX)
-	@-if exist $(OBJ_CR_api_rmdir_MT_D_NOX) $(RM) $(OBJ_CR_api_rmdir_MT_D_NOX)
 	@-if exist $(OBJ_CR_api_rc_win_MT_D_NOX) $(RM) $(OBJ_CR_api_rc_win_MT_D_NOX)
 	@-if exist $(OBJ_CR_api_search_MT_D_NOX) $(RM) $(OBJ_CR_api_search_MT_D_NOX)
 	@-if exist $(OBJ_CR_impl_debug_MT_D_NOX) $(RM) $(OBJ_CR_impl_debug_MT_D_NOX)
@@ -5523,8 +5479,6 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_getflsizs_DLL_D_NOX) $(RM) $(OBJ_CR_api_getflsizs_DLL_D_NOX)
 	@-if exist $(OBJ_CR_api_sqzpath_DLL_D_NOX) $(RM) $(OBJ_CR_api_sqzpath_DLL_D_NOX)
 	@-if exist $(OBJ_CR_api_stat_DLL_D_NOX) $(RM) $(OBJ_CR_api_stat_DLL_D_NOX)
-	@-if exist $(OBJ_CR_api_crdir_DLL_D_NOX) $(RM) $(OBJ_CR_api_crdir_DLL_D_NOX)
-	@-if exist $(OBJ_CR_api_rmdir_DLL_D_NOX) $(RM) $(OBJ_CR_api_rmdir_DLL_D_NOX)
 	@-if exist $(OBJ_CR_api_rc_win_DLL_D_NOX) $(RM) $(OBJ_CR_api_rc_win_DLL_D_NOX)
 	@-if exist $(OBJ_CR_api_search_DLL_D_NOX) $(RM) $(OBJ_CR_api_search_DLL_D_NOX)
 	@-if exist $(OBJ_CR_impl_debug_DLL_D_NOX) $(RM) $(OBJ_CR_impl_debug_DLL_D_NOX)
@@ -5581,8 +5535,6 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_getflsizs_DLL_R_NOX) $(RM) $(OBJ_CR_api_getflsizs_DLL_R_NOX)
 	@-if exist $(OBJ_CR_api_sqzpath_DLL_R_NOX) $(RM) $(OBJ_CR_api_sqzpath_DLL_R_NOX)
 	@-if exist $(OBJ_CR_api_stat_DLL_R_NOX) $(RM) $(OBJ_CR_api_stat_DLL_R_NOX)
-	@-if exist $(OBJ_CR_api_crdir_DLL_R_NOX) $(RM) $(OBJ_CR_api_crdir_DLL_R_NOX)
-	@-if exist $(OBJ_CR_api_rmdir_DLL_R_NOX) $(RM) $(OBJ_CR_api_rmdir_DLL_R_NOX)
 	@-if exist $(OBJ_CR_api_rc_win_DLL_R_NOX) $(RM) $(OBJ_CR_api_rc_win_DLL_R_NOX)
 	@-if exist $(OBJ_CR_api_search_DLL_R_NOX) $(RM) $(OBJ_CR_api_search_DLL_R_NOX)
 	@-if exist $(OBJ_CR_impl_debug_DLL_R_NOX) $(RM) $(OBJ_CR_impl_debug_DLL_R_NOX)
@@ -5639,8 +5591,6 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_getflsizs_MT_R_NOX) $(RM) $(OBJ_CR_api_getflsizs_MT_R_NOX)
 	@-if exist $(OBJ_CR_api_sqzpath_MT_R_NOX) $(RM) $(OBJ_CR_api_sqzpath_MT_R_NOX)
 	@-if exist $(OBJ_CR_api_stat_MT_R_NOX) $(RM) $(OBJ_CR_api_stat_MT_R_NOX)
-	@-if exist $(OBJ_CR_api_crdir_MT_R_NOX) $(RM) $(OBJ_CR_api_crdir_MT_R_NOX)
-	@-if exist $(OBJ_CR_api_rmdir_MT_R_NOX) $(RM) $(OBJ_CR_api_rmdir_MT_R_NOX)
 	@-if exist $(OBJ_CR_api_rc_win_MT_R_NOX) $(RM) $(OBJ_CR_api_rc_win_MT_R_NOX)
 	@-if exist $(OBJ_CR_api_search_MT_R_NOX) $(RM) $(OBJ_CR_api_search_MT_R_NOX)
 	@-if exist $(OBJ_CR_impl_debug_MT_R_NOX) $(RM) $(OBJ_CR_impl_debug_MT_R_NOX)
@@ -5697,8 +5647,6 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_getflsizs_ST_D_NOX) $(RM) $(OBJ_CR_api_getflsizs_ST_D_NOX)
 	@-if exist $(OBJ_CR_api_sqzpath_ST_D_NOX) $(RM) $(OBJ_CR_api_sqzpath_ST_D_NOX)
 	@-if exist $(OBJ_CR_api_stat_ST_D_NOX) $(RM) $(OBJ_CR_api_stat_ST_D_NOX)
-	@-if exist $(OBJ_CR_api_crdir_ST_D_NOX) $(RM) $(OBJ_CR_api_crdir_ST_D_NOX)
-	@-if exist $(OBJ_CR_api_rmdir_ST_D_NOX) $(RM) $(OBJ_CR_api_rmdir_ST_D_NOX)
 	@-if exist $(OBJ_CR_api_rc_win_ST_D_NOX) $(RM) $(OBJ_CR_api_rc_win_ST_D_NOX)
 	@-if exist $(OBJ_CR_api_search_ST_D_NOX) $(RM) $(OBJ_CR_api_search_ST_D_NOX)
 	@-if exist $(OBJ_CR_impl_debug_ST_D_NOX) $(RM) $(OBJ_CR_impl_debug_ST_D_NOX)
@@ -5755,8 +5703,6 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_getflsizs_ST_R_NOX) $(RM) $(OBJ_CR_api_getflsizs_ST_R_NOX)
 	@-if exist $(OBJ_CR_api_sqzpath_ST_R_NOX) $(RM) $(OBJ_CR_api_sqzpath_ST_R_NOX)
 	@-if exist $(OBJ_CR_api_stat_ST_R_NOX) $(RM) $(OBJ_CR_api_stat_ST_R_NOX)
-	@-if exist $(OBJ_CR_api_crdir_ST_R_NOX) $(RM) $(OBJ_CR_api_crdir_ST_R_NOX)
-	@-if exist $(OBJ_CR_api_rmdir_ST_R_NOX) $(RM) $(OBJ_CR_api_rmdir_ST_R_NOX)
 	@-if exist $(OBJ_CR_api_rc_win_ST_R_NOX) $(RM) $(OBJ_CR_api_rc_win_ST_R_NOX)
 	@-if exist $(OBJ_CR_api_search_ST_R_NOX) $(RM) $(OBJ_CR_api_search_ST_R_NOX)
 	@-if exist $(OBJ_CR_impl_debug_ST_R_NOX) $(RM) $(OBJ_CR_impl_debug_ST_R_NOX)
@@ -6395,55 +6341,31 @@ clean.test.component:
 	@-if exist $(OBJ_TEST_COMP_api_crdir_MT_D) $(RM) $(OBJ_TEST_COMP_api_crdir_MT_D)
 	@-if exist $(OBJ_TEST_COMP_api_rmdir_MT_D) $(RM) $(OBJ_TEST_COMP_api_rmdir_MT_D)
 	@-if exist $(PROJ_OBJ_DIR)\test.component.*.pdb $(RM) $(PROJ_OBJ_DIR)\test.component.*.pdb
-	@-if exist $(TARG_TEST_COMP_api_crdir_MT_D_NOX) $(RM) $(TARG_TEST_COMP_api_crdir_MT_D_NOX)
-	@-if exist $(TARG_TEST_COMP_api_rmdir_MT_D_NOX) $(RM) $(TARG_TEST_COMP_api_rmdir_MT_D_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_crdir_MT_D_NOX) $(RM) $(OBJ_TEST_COMP_api_crdir_MT_D_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_rmdir_MT_D_NOX) $(RM) $(OBJ_TEST_COMP_api_rmdir_MT_D_NOX)
 	@-if exist $(PROJ_OBJ_DIR)\test.component.*.pdb $(RM) $(PROJ_OBJ_DIR)\test.component.*.pdb
 	@-if exist $(TARG_TEST_COMP_api_crdir_DLL_D) $(RM) $(TARG_TEST_COMP_api_crdir_DLL_D)
 	@-if exist $(TARG_TEST_COMP_api_rmdir_DLL_D) $(RM) $(TARG_TEST_COMP_api_rmdir_DLL_D)
 	@-if exist $(OBJ_TEST_COMP_api_crdir_DLL_D) $(RM) $(OBJ_TEST_COMP_api_crdir_DLL_D)
 	@-if exist $(OBJ_TEST_COMP_api_rmdir_DLL_D) $(RM) $(OBJ_TEST_COMP_api_rmdir_DLL_D)
 	@-if exist $(PROJ_OBJ_DIR)\test.component.*.pdb $(RM) $(PROJ_OBJ_DIR)\test.component.*.pdb
-	@-if exist $(TARG_TEST_COMP_api_crdir_DLL_D_NOX) $(RM) $(TARG_TEST_COMP_api_crdir_DLL_D_NOX)
-	@-if exist $(TARG_TEST_COMP_api_rmdir_DLL_D_NOX) $(RM) $(TARG_TEST_COMP_api_rmdir_DLL_D_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_crdir_DLL_D_NOX) $(RM) $(OBJ_TEST_COMP_api_crdir_DLL_D_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_rmdir_DLL_D_NOX) $(RM) $(OBJ_TEST_COMP_api_rmdir_DLL_D_NOX)
 	@-if exist $(PROJ_OBJ_DIR)\test.component.*.pdb $(RM) $(PROJ_OBJ_DIR)\test.component.*.pdb
 	@-if exist $(TARG_TEST_COMP_api_crdir_DLL_R) $(RM) $(TARG_TEST_COMP_api_crdir_DLL_R)
 	@-if exist $(TARG_TEST_COMP_api_rmdir_DLL_R) $(RM) $(TARG_TEST_COMP_api_rmdir_DLL_R)
 	@-if exist $(OBJ_TEST_COMP_api_crdir_DLL_R) $(RM) $(OBJ_TEST_COMP_api_crdir_DLL_R)
 	@-if exist $(OBJ_TEST_COMP_api_rmdir_DLL_R) $(RM) $(OBJ_TEST_COMP_api_rmdir_DLL_R)
-	@-if exist $(TARG_TEST_COMP_api_crdir_DLL_R_NOX) $(RM) $(TARG_TEST_COMP_api_crdir_DLL_R_NOX)
-	@-if exist $(TARG_TEST_COMP_api_rmdir_DLL_R_NOX) $(RM) $(TARG_TEST_COMP_api_rmdir_DLL_R_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_crdir_DLL_R_NOX) $(RM) $(OBJ_TEST_COMP_api_crdir_DLL_R_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_rmdir_DLL_R_NOX) $(RM) $(OBJ_TEST_COMP_api_rmdir_DLL_R_NOX)
 	@-if exist $(TARG_TEST_COMP_api_crdir_MT_R) $(RM) $(TARG_TEST_COMP_api_crdir_MT_R)
 	@-if exist $(TARG_TEST_COMP_api_rmdir_MT_R) $(RM) $(TARG_TEST_COMP_api_rmdir_MT_R)
 	@-if exist $(OBJ_TEST_COMP_api_crdir_MT_R) $(RM) $(OBJ_TEST_COMP_api_crdir_MT_R)
 	@-if exist $(OBJ_TEST_COMP_api_rmdir_MT_R) $(RM) $(OBJ_TEST_COMP_api_rmdir_MT_R)
-	@-if exist $(TARG_TEST_COMP_api_crdir_MT_R_NOX) $(RM) $(TARG_TEST_COMP_api_crdir_MT_R_NOX)
-	@-if exist $(TARG_TEST_COMP_api_rmdir_MT_R_NOX) $(RM) $(TARG_TEST_COMP_api_rmdir_MT_R_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_crdir_MT_R_NOX) $(RM) $(OBJ_TEST_COMP_api_crdir_MT_R_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_rmdir_MT_R_NOX) $(RM) $(OBJ_TEST_COMP_api_rmdir_MT_R_NOX)
 	@-if exist $(TARG_TEST_COMP_api_crdir_ST_D) $(RM) $(TARG_TEST_COMP_api_crdir_ST_D)
 	@-if exist $(TARG_TEST_COMP_api_rmdir_ST_D) $(RM) $(TARG_TEST_COMP_api_rmdir_ST_D)
 	@-if exist $(OBJ_TEST_COMP_api_crdir_ST_D) $(RM) $(OBJ_TEST_COMP_api_crdir_ST_D)
 	@-if exist $(OBJ_TEST_COMP_api_rmdir_ST_D) $(RM) $(OBJ_TEST_COMP_api_rmdir_ST_D)
 	@-if exist $(PROJ_OBJ_DIR)\test.component.*.pdb $(RM) $(PROJ_OBJ_DIR)\test.component.*.pdb
-	@-if exist $(TARG_TEST_COMP_api_crdir_ST_D_NOX) $(RM) $(TARG_TEST_COMP_api_crdir_ST_D_NOX)
-	@-if exist $(TARG_TEST_COMP_api_rmdir_ST_D_NOX) $(RM) $(TARG_TEST_COMP_api_rmdir_ST_D_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_crdir_ST_D_NOX) $(RM) $(OBJ_TEST_COMP_api_crdir_ST_D_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_rmdir_ST_D_NOX) $(RM) $(OBJ_TEST_COMP_api_rmdir_ST_D_NOX)
 	@-if exist $(PROJ_OBJ_DIR)\test.component.*.pdb $(RM) $(PROJ_OBJ_DIR)\test.component.*.pdb
 	@-if exist $(TARG_TEST_COMP_api_crdir_ST_R) $(RM) $(TARG_TEST_COMP_api_crdir_ST_R)
 	@-if exist $(TARG_TEST_COMP_api_rmdir_ST_R) $(RM) $(TARG_TEST_COMP_api_rmdir_ST_R)
 	@-if exist $(OBJ_TEST_COMP_api_crdir_ST_R) $(RM) $(OBJ_TEST_COMP_api_crdir_ST_R)
 	@-if exist $(OBJ_TEST_COMP_api_rmdir_ST_R) $(RM) $(OBJ_TEST_COMP_api_rmdir_ST_R)
-	@-if exist $(TARG_TEST_COMP_api_crdir_ST_R_NOX) $(RM) $(TARG_TEST_COMP_api_crdir_ST_R_NOX)
-	@-if exist $(TARG_TEST_COMP_api_rmdir_ST_R_NOX) $(RM) $(TARG_TEST_COMP_api_rmdir_ST_R_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_crdir_ST_R_NOX) $(RM) $(OBJ_TEST_COMP_api_crdir_ST_R_NOX)
-	@-if exist $(OBJ_TEST_COMP_api_rmdir_ST_R_NOX) $(RM) $(OBJ_TEST_COMP_api_rmdir_ST_R_NOX)
 	@-if exist $(TARG_TEST_COMP_api_crdir_W_MT_D) $(RM) $(TARG_TEST_COMP_api_crdir_W_MT_D)
 	@-if exist $(TARG_TEST_COMP_api_rmdir_W_MT_D) $(RM) $(TARG_TEST_COMP_api_rmdir_W_MT_D)
 	@-if exist $(OBJ_TEST_COMP_api_crdir_W_MT_D) $(RM) $(OBJ_TEST_COMP_api_crdir_W_MT_D)
@@ -6948,10 +6870,6 @@ $(OBJ_CR_api_sqzpath_MT_D_NOX): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE
 	$(CPPC) $(CPPC_ARGS_MT_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_MT_D_NOX): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
-$(OBJ_CR_api_crdir_MT_D_NOX): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
-$(OBJ_CR_api_rmdir_MT_D_NOX): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_MT_D_NOX): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_MT_D_NOX): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -7064,10 +6982,6 @@ $(OBJ_CR_api_sqzpath_DLL_D_NOX): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(COR
 	$(CPPC) $(CPPC_ARGS_DLL_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_DLL_D_NOX): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_DLL_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
-$(OBJ_CR_api_crdir_DLL_D_NOX): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
-$(OBJ_CR_api_rmdir_DLL_D_NOX): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_DLL_D_NOX): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_DLL_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_DLL_D_NOX): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -7180,10 +7094,6 @@ $(OBJ_CR_api_sqzpath_DLL_R_NOX): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(COR
 	$(CPPC) $(CPPC_ARGS_DLL_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_DLL_R_NOX): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_DLL_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
-$(OBJ_CR_api_crdir_DLL_R_NOX): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
-$(OBJ_CR_api_rmdir_DLL_R_NOX): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_DLL_R_NOX): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_DLL_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_DLL_R_NOX): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -7296,10 +7206,6 @@ $(OBJ_CR_api_sqzpath_MT_R_NOX): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE
 	$(CPPC) $(CPPC_ARGS_MT_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_MT_R_NOX): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
-$(OBJ_CR_api_crdir_MT_R_NOX): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
-$(OBJ_CR_api_rmdir_MT_R_NOX): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_MT_R_NOX): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_MT_R_NOX): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -7412,10 +7318,6 @@ $(OBJ_CR_api_sqzpath_ST_D_NOX): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE
 	$(CPPC) $(CPPC_ARGS_ST_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_ST_D_NOX): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
-$(OBJ_CR_api_crdir_ST_D_NOX): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
-$(OBJ_CR_api_rmdir_ST_D_NOX): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_ST_D_NOX): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_D_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_ST_D_NOX): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -7528,10 +7430,6 @@ $(OBJ_CR_api_sqzpath_ST_R_NOX): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE
 	$(CPPC) $(CPPC_ARGS_ST_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_ST_R_NOX): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
-$(OBJ_CR_api_crdir_ST_R_NOX): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
-$(OBJ_CR_api_rmdir_ST_R_NOX): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_ST_R_NOX): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_R_NOX) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_ST_R_NOX): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -11049,22 +10947,6 @@ $(TARG_TEST_COMP_api_crdir_MT_D):    \
 $(OBJ_TEST_COMP_api_crdir_MT_D): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_D) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
 
-$(TARG_TEST_COMP_api_crdir_MT_D_NOX):    \
-		$(OBJ_TEST_COMP_api_crdir_MT_D_NOX)\
-		$(LIB_CORE_MT_D_NOX)\
-		$(LIB_SHWILD_MT_D_NOX)\
-		$(LIB_XTESTS_MT_D_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_MT_D_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_crdir_MT_D_NOX)\
-		$(LIB_CORE_MT_D_NOX)\
-		$(LIB_SHWILD_MT_D_NOX)\
-		$(LIB_XTESTS_MT_D_NOX)\
-		$(TARGET_LIB_MT_D_NOX)
-
-$(OBJ_TEST_COMP_api_crdir_MT_D_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_D_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
-
 $(TARG_TEST_COMP_api_crdir_DLL_D):    \
 		$(OBJ_TEST_COMP_api_crdir_DLL_D)\
 		$(LIB_CORE_DLL_D)\
@@ -11080,22 +10962,6 @@ $(TARG_TEST_COMP_api_crdir_DLL_D):    \
 
 $(OBJ_TEST_COMP_api_crdir_DLL_D): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_DLL_D) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
-
-$(TARG_TEST_COMP_api_crdir_DLL_D_NOX):    \
-		$(OBJ_TEST_COMP_api_crdir_DLL_D_NOX)\
-		$(LIB_CORE_DLL_D_NOX)\
-		$(LIB_SHWILD_DLL_D_NOX)\
-		$(LIB_XTESTS_DLL_D_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_DLL_D_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_crdir_DLL_D_NOX)\
-		$(LIB_CORE_DLL_D_NOX)\
-		$(LIB_SHWILD_DLL_D_NOX)\
-		$(LIB_XTESTS_DLL_D_NOX)\
-		$(TARGET_LIB_DLL_D_NOX)
-
-$(OBJ_TEST_COMP_api_crdir_DLL_D_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_D_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
 
 $(TARG_TEST_COMP_api_crdir_DLL_R):    \
 		$(OBJ_TEST_COMP_api_crdir_DLL_R)\
@@ -11113,22 +10979,6 @@ $(TARG_TEST_COMP_api_crdir_DLL_R):    \
 $(OBJ_TEST_COMP_api_crdir_DLL_R): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_DLL_R) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
 
-$(TARG_TEST_COMP_api_crdir_DLL_R_NOX):    \
-		$(OBJ_TEST_COMP_api_crdir_DLL_R_NOX)\
-		$(LIB_CORE_DLL_R_NOX)\
-		$(LIB_SHWILD_DLL_R_NOX)\
-		$(LIB_XTESTS_DLL_R_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_DLL_R_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_crdir_DLL_R_NOX)\
-		$(LIB_CORE_DLL_R_NOX)\
-		$(LIB_SHWILD_DLL_R_NOX)\
-		$(LIB_XTESTS_DLL_R_NOX)\
-		$(TARGET_LIB_DLL_R_NOX)
-
-$(OBJ_TEST_COMP_api_crdir_DLL_R_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_R_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
-
 $(TARG_TEST_COMP_api_crdir_MT_R):    \
 		$(OBJ_TEST_COMP_api_crdir_MT_R)\
 		$(LIB_CORE_MT_R)\
@@ -11144,22 +10994,6 @@ $(TARG_TEST_COMP_api_crdir_MT_R):    \
 
 $(OBJ_TEST_COMP_api_crdir_MT_R): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_R) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
-
-$(TARG_TEST_COMP_api_crdir_MT_R_NOX):    \
-		$(OBJ_TEST_COMP_api_crdir_MT_R_NOX)\
-		$(LIB_CORE_MT_R_NOX)\
-		$(LIB_SHWILD_MT_R_NOX)\
-		$(LIB_XTESTS_MT_R_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_MT_R_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_crdir_MT_R_NOX)\
-		$(LIB_CORE_MT_R_NOX)\
-		$(LIB_SHWILD_MT_R_NOX)\
-		$(LIB_XTESTS_MT_R_NOX)\
-		$(TARGET_LIB_MT_R_NOX)
-
-$(OBJ_TEST_COMP_api_crdir_MT_R_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_R_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
 
 $(TARG_TEST_COMP_api_crdir_ST_D):    \
 		$(OBJ_TEST_COMP_api_crdir_ST_D)\
@@ -11177,22 +11011,6 @@ $(TARG_TEST_COMP_api_crdir_ST_D):    \
 $(OBJ_TEST_COMP_api_crdir_ST_D): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_D) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
 
-$(TARG_TEST_COMP_api_crdir_ST_D_NOX):    \
-		$(OBJ_TEST_COMP_api_crdir_ST_D_NOX)\
-		$(LIB_CORE_ST_D_NOX)\
-		$(LIB_SHWILD_ST_D_NOX)\
-		$(LIB_XTESTS_ST_D_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_ST_D_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_crdir_ST_D_NOX)\
-		$(LIB_CORE_ST_D_NOX)\
-		$(LIB_SHWILD_ST_D_NOX)\
-		$(LIB_XTESTS_ST_D_NOX)\
-		$(TARGET_LIB_ST_D_NOX)
-
-$(OBJ_TEST_COMP_api_crdir_ST_D_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_D_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
-
 $(TARG_TEST_COMP_api_crdir_ST_R):    \
 		$(OBJ_TEST_COMP_api_crdir_ST_R)\
 		$(LIB_CORE_ST_R)\
@@ -11208,22 +11026,6 @@ $(TARG_TEST_COMP_api_crdir_ST_R):    \
 
 $(OBJ_TEST_COMP_api_crdir_ST_R): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_R) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
-
-$(TARG_TEST_COMP_api_crdir_ST_R_NOX):    \
-		$(OBJ_TEST_COMP_api_crdir_ST_R_NOX)\
-		$(LIB_CORE_ST_R_NOX)\
-		$(LIB_SHWILD_ST_R_NOX)\
-		$(LIB_XTESTS_ST_R_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_ST_R_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_crdir_ST_R_NOX)\
-		$(LIB_CORE_ST_R_NOX)\
-		$(LIB_SHWILD_ST_R_NOX)\
-		$(LIB_XTESTS_ST_R_NOX)\
-		$(TARGET_LIB_ST_R_NOX)
-
-$(OBJ_TEST_COMP_api_crdir_ST_R_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_R_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
 
 $(TARG_TEST_COMP_api_crdir_W_MT_D):    \
 		$(OBJ_TEST_COMP_api_crdir_W_MT_D)\
@@ -11337,22 +11139,6 @@ $(TARG_TEST_COMP_api_rmdir_MT_D):    \
 $(OBJ_TEST_COMP_api_rmdir_MT_D): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_D) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
 
-$(TARG_TEST_COMP_api_rmdir_MT_D_NOX):    \
-		$(OBJ_TEST_COMP_api_rmdir_MT_D_NOX)\
-		$(LIB_CORE_MT_D_NOX)\
-		$(LIB_SHWILD_MT_D_NOX)\
-		$(LIB_XTESTS_MT_D_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_MT_D_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_rmdir_MT_D_NOX)\
-		$(LIB_CORE_MT_D_NOX)\
-		$(LIB_SHWILD_MT_D_NOX)\
-		$(LIB_XTESTS_MT_D_NOX)\
-		$(TARGET_LIB_MT_D_NOX)
-
-$(OBJ_TEST_COMP_api_rmdir_MT_D_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_D_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
-
 $(TARG_TEST_COMP_api_rmdir_DLL_D):    \
 		$(OBJ_TEST_COMP_api_rmdir_DLL_D)\
 		$(LIB_CORE_DLL_D)\
@@ -11368,22 +11154,6 @@ $(TARG_TEST_COMP_api_rmdir_DLL_D):    \
 
 $(OBJ_TEST_COMP_api_rmdir_DLL_D): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_DLL_D) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
-
-$(TARG_TEST_COMP_api_rmdir_DLL_D_NOX):    \
-		$(OBJ_TEST_COMP_api_rmdir_DLL_D_NOX)\
-		$(LIB_CORE_DLL_D_NOX)\
-		$(LIB_SHWILD_DLL_D_NOX)\
-		$(LIB_XTESTS_DLL_D_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_DLL_D_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_rmdir_DLL_D_NOX)\
-		$(LIB_CORE_DLL_D_NOX)\
-		$(LIB_SHWILD_DLL_D_NOX)\
-		$(LIB_XTESTS_DLL_D_NOX)\
-		$(TARGET_LIB_DLL_D_NOX)
-
-$(OBJ_TEST_COMP_api_rmdir_DLL_D_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_D_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
 
 $(TARG_TEST_COMP_api_rmdir_DLL_R):    \
 		$(OBJ_TEST_COMP_api_rmdir_DLL_R)\
@@ -11401,22 +11171,6 @@ $(TARG_TEST_COMP_api_rmdir_DLL_R):    \
 $(OBJ_TEST_COMP_api_rmdir_DLL_R): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_DLL_R) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
 
-$(TARG_TEST_COMP_api_rmdir_DLL_R_NOX):    \
-		$(OBJ_TEST_COMP_api_rmdir_DLL_R_NOX)\
-		$(LIB_CORE_DLL_R_NOX)\
-		$(LIB_SHWILD_DLL_R_NOX)\
-		$(LIB_XTESTS_DLL_R_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_DLL_R_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_rmdir_DLL_R_NOX)\
-		$(LIB_CORE_DLL_R_NOX)\
-		$(LIB_SHWILD_DLL_R_NOX)\
-		$(LIB_XTESTS_DLL_R_NOX)\
-		$(TARGET_LIB_DLL_R_NOX)
-
-$(OBJ_TEST_COMP_api_rmdir_DLL_R_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_R_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
-
 $(TARG_TEST_COMP_api_rmdir_MT_R):    \
 		$(OBJ_TEST_COMP_api_rmdir_MT_R)\
 		$(LIB_CORE_MT_R)\
@@ -11432,22 +11186,6 @@ $(TARG_TEST_COMP_api_rmdir_MT_R):    \
 
 $(OBJ_TEST_COMP_api_rmdir_MT_R): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_R) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
-
-$(TARG_TEST_COMP_api_rmdir_MT_R_NOX):    \
-		$(OBJ_TEST_COMP_api_rmdir_MT_R_NOX)\
-		$(LIB_CORE_MT_R_NOX)\
-		$(LIB_SHWILD_MT_R_NOX)\
-		$(LIB_XTESTS_MT_R_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_MT_R_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_rmdir_MT_R_NOX)\
-		$(LIB_CORE_MT_R_NOX)\
-		$(LIB_SHWILD_MT_R_NOX)\
-		$(LIB_XTESTS_MT_R_NOX)\
-		$(TARGET_LIB_MT_R_NOX)
-
-$(OBJ_TEST_COMP_api_rmdir_MT_R_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_R_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
 
 $(TARG_TEST_COMP_api_rmdir_ST_D):    \
 		$(OBJ_TEST_COMP_api_rmdir_ST_D)\
@@ -11465,22 +11203,6 @@ $(TARG_TEST_COMP_api_rmdir_ST_D):    \
 $(OBJ_TEST_COMP_api_rmdir_ST_D): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_D) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
 
-$(TARG_TEST_COMP_api_rmdir_ST_D_NOX):    \
-		$(OBJ_TEST_COMP_api_rmdir_ST_D_NOX)\
-		$(LIB_CORE_ST_D_NOX)\
-		$(LIB_SHWILD_ST_D_NOX)\
-		$(LIB_XTESTS_ST_D_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_ST_D_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_rmdir_ST_D_NOX)\
-		$(LIB_CORE_ST_D_NOX)\
-		$(LIB_SHWILD_ST_D_NOX)\
-		$(LIB_XTESTS_ST_D_NOX)\
-		$(TARGET_LIB_ST_D_NOX)
-
-$(OBJ_TEST_COMP_api_rmdir_ST_D_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_D_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
-
 $(TARG_TEST_COMP_api_rmdir_ST_R):    \
 		$(OBJ_TEST_COMP_api_rmdir_ST_R)\
 		$(LIB_CORE_ST_R)\
@@ -11496,22 +11218,6 @@ $(TARG_TEST_COMP_api_rmdir_ST_R):    \
 
 $(OBJ_TEST_COMP_api_rmdir_ST_R): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_R) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
-
-$(TARG_TEST_COMP_api_rmdir_ST_R_NOX):    \
-		$(OBJ_TEST_COMP_api_rmdir_ST_R_NOX)\
-		$(LIB_CORE_ST_R_NOX)\
-		$(LIB_SHWILD_ST_R_NOX)\
-		$(LIB_XTESTS_ST_R_NOX)\
-		$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_ST_R_NOX) -out:$@ \
-		$(OBJ_TEST_COMP_api_rmdir_ST_R_NOX)\
-		$(LIB_CORE_ST_R_NOX)\
-		$(LIB_SHWILD_ST_R_NOX)\
-		$(LIB_XTESTS_ST_R_NOX)\
-		$(TARGET_LIB_ST_R_NOX)
-
-$(OBJ_TEST_COMP_api_rmdir_ST_R_NOX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_R_NOX) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
 
 $(TARG_TEST_COMP_api_rmdir_W_MT_D):    \
 		$(OBJ_TEST_COMP_api_rmdir_W_MT_D)\

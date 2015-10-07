@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     30th September 2015
+ * Updated:     7th October 2015
  *
  * Home:        http://recls.org/
  *
@@ -51,8 +51,6 @@
 #include "impl.cover.h"
 
 #include "impl.trace.h"
-
-#include <platformstl/filesystem/path_functions.hpp>
 
 #include <platformstl/filesystem/path_functions.hpp>
 

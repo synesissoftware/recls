@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - search_sequence class.
  *
  * Created:     10th September 2003
- * Updated:     30th March 2013
+ * Updated:     7th October 2015
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -51,8 +51,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MINOR      0
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   4
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       87
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   5
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       88
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -137,7 +137,10 @@ public:
             delete this;
         }
     }
-#if defined(STLSOFT_COMPILER_IS_GCC)
+#if 0 || \
+    defined(STLSOFT_COMPILER_IS_CLANG) || \
+    defined(STLSOFT_COMPILER_IS_GCC) || \
+    0
 protected:
 #else /* ? compiler */
 private:
