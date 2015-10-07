@@ -7,21 +7,21 @@
 CFG=test.component.util.cpp.remove_directory - Win32 Debug Multithreaded DLL
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "test.component.util.cpp.remove_directory.mak".
-!MESSAGE 
+!MESSAGE
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "test.component.util.cpp.remove_directory.mak" CFG="test.component.util.cpp.remove_directory - Win32 Debug Multithreaded DLL"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "test.component.util.cpp.remove_directory - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "test.component.util.cpp.remove_directory - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE "test.component.util.cpp.remove_directory - Win32 Debug pseudoUNIX" (based on "Win32 (x86) Application")
 !MESSAGE "test.component.util.cpp.remove_directory - Win32 Debug Multithreaded DLL" (based on "Win32 (x86) Application")
-!MESSAGE 
+!MESSAGE
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -133,7 +133,7 @@ LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib advapi32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept /libpath:"$(RECLS_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib"
 # ADD LINK32 kernel32.lib advapi32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept /libpath:"$(RECLS_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib"
 
-!ENDIF 
+!ENDIF
 
 # Begin Target
 
@@ -172,7 +172,23 @@ SOURCE="$(STLSOFT)\include\stlsoft\memory\allocator_features.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\..\..\..\..\..\..\STLSoft\Releases\1.10\STLSoft\include\stlsoft\memory\util\allocator_features.hpp
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\memory\allocator_features.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\memory\allocator_selector.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\..\..\..\..\..\STLSoft\Releases\1.10\STLSoft\include\stlsoft\memory\util\allocator_selector.hpp
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\memory\allocator_selector.hpp"
 # End Source File
 # Begin Source File
 
@@ -208,7 +224,11 @@ SOURCE="$(STLSOFT)\include\stlsoft\util\constraints.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\..\..\..\..\..\STLSoft\Releases\1.10\STLSoft\include\stlsoft\quality\contract.h
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\quality\contract.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\error\conversion_error.hpp"
 # End Source File
 # Begin Source File
 
@@ -216,7 +236,7 @@ SOURCE="$(STLSOFT)\include\stlsoft\string\copy_functions.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\..\..\..\..\..\STLSoft\Releases\1.10\STLSoft\include\stlsoft\quality\cover.h
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\quality\cover.h"
 # End Source File
 # Begin Source File
 
@@ -236,7 +256,15 @@ SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\fwd.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\internal\head_version.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\meta\is_integral_type.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_pointer_type.hpp"
 # End Source File
 # Begin Source File
 
@@ -245,6 +273,10 @@ SOURCE="$(STLSOFT)\include\stlsoft\meta\is_same_type.hpp"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\util\std\iterator_helper.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\internal\lead_version.h"
 # End Source File
 # Begin Source File
 
@@ -261,6 +293,10 @@ SOURCE="$(STLSOFT)\include\stlsoft\util\minmax.hpp"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\msvc.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\n_types.hpp"
 # End Source File
 # Begin Source File
 
@@ -284,7 +320,7 @@ SOURCE="$(STLSOFT)\include\stlsoft\error\project_exception.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\..\..\..\..\..\STLSoft\Releases\1.10\STLSoft\include\stlsoft\view\transforming\random_access_transforming_view_base.hpp
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\view\transforming\random_access_transforming_view_base.hpp"
 # End Source File
 # Begin Source File
 
@@ -297,6 +333,10 @@ SOURCE="$(STLSOFT)\include\stlsoft\conversion\sap_cast.hpp"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\meta\select_first_type_if.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\string\shim_string.hpp"
 # End Source File
 # Begin Source File
 
@@ -320,7 +360,7 @@ SOURCE="$(STLSOFT)\include\stlsoft\stlsoft.h"
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\..\..\..\..\..\STLSoft\Releases\1.10\STLSoft\include\stlsoft\stlsoft_1_10.h
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\stlsoft_1_10.h"
 # End Source File
 # Begin Source File
 
@@ -328,11 +368,23 @@ SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\shims\access\string.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\error\throw_policies.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\std\time.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\iterators\transform_iterator.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\shims\access\string\std\type_info.hpp"
 # End Source File
 # Begin Source File
 
@@ -360,7 +412,7 @@ SOURCE="$(STLSOFT)\include\platformstl\filesystem\filesystem_traits.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\..\..\..\..\..\STLSoft\Releases\1.10\STLSoft\include\platformstl\filesystem\path.hpp
+SOURCE="$(STLSOFT_1_10)\include\platformstl\filesystem\path.hpp"
 # End Source File
 # Begin Source File
 
@@ -536,7 +588,7 @@ SOURCE="$(RECLS_ROOT)\include\recls\internal\retcodes.h"
 SOURCE="$(RECLS_ROOT)\include\recls\unix.h"
 # End Source File
 # End Group
-# Begin Group "UNIXEm Header Files"
+# Begin Group "UNIXem Header Files"
 
 # PROP Default_Filter ""
 # Begin Source File

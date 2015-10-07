@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.c.retcodes project.
  *
  * Created:     13th December 2008
- * Updated:     30th September 2015
+ * Updated:     7th October 2015
  *
  * Status:      Wizard-generated
  *
@@ -206,8 +206,8 @@ static void test_1_3()
         u.ints[2] = rand();
         u.ints[3] = rand();
 
-		XTESTS_TEST_BOOLEAN_TRUE(RECLS_SUCCEEDED(u.rc));
-		XTESTS_TEST_BOOLEAN_FALSE(RECLS_FAILED(u.rc));
+        XTESTS_TEST_BOOLEAN_TRUE(RECLS_SUCCEEDED(u.rc));
+        XTESTS_TEST_BOOLEAN_FALSE(RECLS_FAILED(u.rc));
     }}
 }
 

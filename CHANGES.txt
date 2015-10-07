@@ -3,7 +3,7 @@ recls - Changes
 ---------------
 
 ; Created:  28th May 2006
-; Updated:  29th September 2015
+; Updated:  7th October 2015
 
 ============================================================================
 
@@ -15,6 +15,102 @@ recls - Changes
     *  -  means removal of something (mapping / file / functionality) *
     *                                                                 *
     *******************************************************************
+
+
+recls 1.9.2 released - 7th October 2015
+=======================================
+
+Summary:
+--------
+
+ * fixed makefile defects
+ * 
+ * NOTE: bundles shwild 0.10.1
+ * NOTE: bundles xTests 0.18.4
+ * NOTE: depends on STLSoft 1.9.121
+
+Details:
+--------
+
+General / C-API:
+
+Core:
+
+C++ API:
+
+
+Makefiles / Project-files:
+
+ ~ build\ar\makefile
+ ~ build\bc56\makefile
+ ~ build\bc564\makefile
+ ~ build\bc582\makefile
+ ~ build\bc59x\makefile
+ ~ build\bc61x\makefile
+ ~ build\como433\makefile
+ ~ build\cw8.unix\makefile
+ ~ build\cw8.win32\makefile
+ ~ build\dm\makefile
+ ~ build\gcc34.unix\makefile
+ ~ build\gcc34.win32\makefile
+ ~ build\gcc40.mac\makefile
+ ~ build\gcc40.unix\makefile
+ ~ build\gcc41.mac\makefile
+ ~ build\gcc41.unix\makefile
+ ~ build\gcc42.mac\makefile
+ ~ build\gcc42.unix\makefile
+ ~ build\gcc43.mac\makefile
+ ~ build\gcc43.unix\makefile
+ ~ build\gcc44.mac\makefile
+ ~ build\gcc44.unix\makefile
+ ~ build\gcc45.unix\makefile
+ ~ build\gcc46.unix\makefile
+ ~ build\gcc47.unix\makefile
+ ~ build\icl10.win32\makefile
+ ~ build\icl11.win32\makefile
+ ~ build\icl8.win32\makefile
+ ~ build\icl9.win32\makefile
+ ~ build\vc10\makefile
+ ~ build\vc10.unixem\makefile
+ ~ build\vc10.x64\makefile
+ ~ build\vc11\makefile
+ ~ build\vc11.unixem\makefile
+ ~ build\vc11.x64\makefile
+ ~ build\vc12\makefile
+ ~ build\vc12.unixem\makefile
+ ~ build\vc12.x64\makefile
+ ~ build\vc14\makefile
+ ~ build\vc14.unixem\makefile
+ ~ build\vc14.x64\makefile
+ ~ build\vc6\makefile
+ ~ build\vc6.unixem\makefile
+ ~ build\vc71\makefile
+ ~ build\vc8\makefile
+ ~ build\vc8.unixem\makefile
+ ~ build\vc8.x64\makefile
+ ~ build\vc9\makefile
+ ~ build\vc9.unixem\makefile
+ ~ build\vc9.x64\makefile
+    ~ further makefile refactoring
+    ~ corrected defective 1.9.1-introduced caller-defined/environment variables RECLS_SHWILD_BASE_DIR & RECLS_XTESTS_BASE_DIR (was PANTHEIOS_SHWILD_BASE_DIR & PANTHEIOS_XTESTS_BASE_DIR) to use non-bundled dependency libraries
+
+Examples:
+
+Test.Unit:
+
+Test.Component:
+
+ ~ test/component/test.component.util.cpp.create_directory:
+ ~ test/component/test.component.util.cpp.remove_directory:
+    ~ refactored in terms of xTests 0.18's new temp_directory utility class
+
+Test.Scratch:
+
+Depends on:
+
+ * STLSoft 1.9.121 or later
+   (http://stlsoft.org/)
+
 
 
 recls 1.9.1 released - 28th September 2015

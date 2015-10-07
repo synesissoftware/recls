@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - exception classes.
  *
  * Created:     10th September 2003
- * Updated:     30th September 2015
+ * Updated:     7th October 2015
  *
  * Home:        http://recls.org/
  *
@@ -128,10 +128,10 @@ public:
 #if 0 || \
     defined(STLSOFT_COMPILER_IS_CLANG) || \
     defined(STLSOFT_COMPILER_IS_GCC) || \
-	0
+    0
     virtual ~recls_exception() throw()
     {}
-#endif /* STLSOFT_COMPILER_IS_GCC */
+#endif /* compiler */
 private:
     class_type& operator =(class_type const& );
 /// @}

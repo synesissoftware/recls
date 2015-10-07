@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - entry class.
  *
  * Created:     18th August 2003
- * Updated:     30th July 2015
+ * Updated:     7th October 2015
  *
  * Home:        http://recls.org/
  *
@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    9
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 2
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     102
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     103
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -298,7 +298,7 @@ public:
     /// [DEPRECATED] The file name of the item
     ///
     /// \deprecated This member is deprecated in favour
-    ///   of \ref get_file_basename, and will be replaced in a future
+    ///   of get_file_basename(), and will be replaced in a future
     ///   version.
     string_type get_file_name() const
     {
