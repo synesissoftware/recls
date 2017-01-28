@@ -52,8 +52,14 @@ vc9/
 
 # files (by name)
 
+.update_deps
+update_deps.cmd
+
 list_changes.cmd
 prepare.cmd
+
+build/makefile.tmpl
+build/makefile.tools.xml
 
 include/pantheios/internal/dos2unix.has.been.performed
 
