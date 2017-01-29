@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created:     31st May 2004
- * Updated:     21st August 2015
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -64,7 +64,7 @@
 #endif /* RECLS_CHAR_TYPE_IS_???? */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -1012,7 +1012,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNextDetails(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

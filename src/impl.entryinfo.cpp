@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the create_entryinfo() function.
  *
  * Created:     31st May 2004
- * Updated:     17th November 2013
+ * Updated:     24th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -86,7 +86,7 @@
 #endif /* OS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -97,7 +97,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
@@ -105,7 +105,7 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Utility functions
+ * utility functions
  */
 
 recls_entry_t create_entryinfo(
@@ -697,13 +697,13 @@ recls_entry_t create_drive_entryinfo(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

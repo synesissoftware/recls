@@ -4,11 +4,11 @@
  * Purpose:     Traits for recls C++ mapping.
  *
  * Created:     25th March 2004
- * Updated:     30th March 2013
+ * Updated:     19th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -52,7 +52,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MAJOR       5
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MINOR       1
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    1
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        21
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        22
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/traits.hpp
@@ -64,7 +64,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/cpp/common.hpp>
@@ -82,7 +82,7 @@
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -93,7 +93,7 @@ namespace cpp
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 /// A traits class to provide character-encoding specific mappings from the \ref group__recls "recls C API" to the \ref group__recls__cpp "recls C++ mapping"

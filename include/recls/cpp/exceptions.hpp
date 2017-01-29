@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - exception classes.
  *
  * Created:     10th September 2003
- * Updated:     7th October 2015
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,11 +53,11 @@
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       1
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    3
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        41
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        42
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/cpp/common.hpp>
@@ -69,7 +69,7 @@
 #include <stdexcept>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -80,7 +80,7 @@ namespace cpp
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 /// The exception type thrown by the recls - STL mapping
@@ -226,7 +226,7 @@ private:
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

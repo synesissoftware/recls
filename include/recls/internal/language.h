@@ -4,11 +4,11 @@
  * Purpose:     Platform discrimination for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     13th December 2008
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_LANGUAGE_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_LANGUAGE_MINOR      1
 # define RECLS_VER_RECLS_INTERNAL_H_LANGUAGE_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_LANGUAGE_EDIT       16
+# define RECLS_VER_RECLS_INTERNAL_H_LANGUAGE_EDIT       17
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/language.h
@@ -57,7 +57,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Linkage
+ * linkage
  */
 
 /** \def RECLS_LINKAGE_C The linkage for <b>recls</b> functions. Is \c extern \c "C" in C++ and \c extern in C. */
@@ -70,7 +70,7 @@
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(__cplusplus)
@@ -78,7 +78,7 @@
 #endif /* !__cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -87,11 +87,11 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

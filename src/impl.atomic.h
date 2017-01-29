@@ -4,11 +4,11 @@
  * Purpose:     Implementation header.
  *
  * Created:     11th March 2005
- * Updated:     12th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -23,7 +23,7 @@
 #define RECLS_INCL_SRC_H_IMPL_ATOMIC
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* recls Header Files */
@@ -36,7 +36,7 @@
 #endif /* PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -47,7 +47,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 #if defined(RECLS_PLATFORM_IS_UNIX) && \
@@ -64,7 +64,7 @@ typedef int                                 rc_atomic_t;
 #endif /* RECLS_MT && RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * functions
  */
 
 RECLS_FNDECL(void)          RC_Increment(
@@ -80,7 +80,7 @@ RECLS_FNDECL(rc_atomic_t)   RC_ReadValue(
 );
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

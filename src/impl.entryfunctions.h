@@ -4,11 +4,11 @@
  * Purpose:     Utility functions for the recls API.
  *
  * Created:     31st May 2004
- * Updated:     30th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -43,7 +43,7 @@
 #define RECLS_INCL_SRC_H_IMPL_ENTRYFUNCTIONS
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* recls Header Files */
@@ -52,7 +52,7 @@
 #include "impl.atomic.h"
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -63,7 +63,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * functions
  */
 
 /** Allocates an entry of the given size. */
@@ -89,7 +89,7 @@ RECLS_FNDECL(void) Entry_BlockCount(
 );
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

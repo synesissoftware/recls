@@ -4,11 +4,11 @@
  * Purpose:     Platform discrimination for the recls API.
  *
  * Created:     18th August 2003
- * Updated:     14th May 2012
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_MAJOR     3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_MINOR     7
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_REVISION  2
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_EDIT      36
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_EDIT      37
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform_types.h
@@ -57,7 +57,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef RECLS_INCL_RECLS_INTERNAL_H_PLATFORM
@@ -77,7 +77,7 @@
 #endif /* platform */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -86,7 +86,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 #if defined(_UNICODE) && \
@@ -271,7 +271,7 @@ struct recls_entryinfo_t
 #endif /* !RECLS_PURE_API */
 
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifdef __cplusplus
@@ -399,7 +399,7 @@ inline size_t c_str_len(recls_strptrs_t const& ptrs)
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

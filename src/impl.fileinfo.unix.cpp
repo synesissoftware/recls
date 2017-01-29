@@ -4,11 +4,11 @@
  * Purpose:     UNIX implementation for the file information blocks of the recls API.
  *
  * Created:     2nd November 2003
- * Updated:     5th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -77,7 +77,7 @@
 #include "impl.atomic.h"
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -88,7 +88,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Statics
+ * statics
  */
 
 #if !defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
@@ -107,7 +107,7 @@ namespace
 #endif /* !RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helpers
+ * helpers
  */
 
 RECLS_FNDECL(void) RC_Increment(rc_atomic_t volatile* p)
@@ -150,7 +150,7 @@ RECLS_FNDECL(rc_atomic_t) RC_ReadValue(rc_atomic_t volatile* p)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

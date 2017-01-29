@@ -4,11 +4,11 @@
  * Purpose:     recls API functions pertaining to entry info.
  *
  * Created:     16th August 2003
- * Updated:     18th February 2014
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -57,7 +57,7 @@
 #endif /* UNIX */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -69,7 +69,7 @@ using ::recls::impl::recls_file_exists_;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
@@ -77,7 +77,7 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
@@ -91,7 +91,7 @@ RECLS_MARK_FILE_START()
 #endif /* platform */
 
 /* /////////////////////////////////////////////////////////////////////////
- * File entry info structure
+ * file entry info structure
  */
 
 RECLS_FNDECL(size_t) Recls_GetPathProperty(
@@ -470,13 +470,13 @@ RECLS_FNDECL(recls_time_t) Recls_GetLastAccessTime(recls_entry_t fileInfo)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

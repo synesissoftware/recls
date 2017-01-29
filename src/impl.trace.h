@@ -4,11 +4,11 @@
  * Purpose:     Tracing.
  *
  * Created:     30th September 2003
- * Updated:     12th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -23,7 +23,7 @@
 #define RECLS_INCL_SRC_H_IMPL_TRACE
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* recls Header Files */
@@ -31,7 +31,7 @@
 #include "impl.root.h"
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -101,7 +101,7 @@ private: /// Member Variables
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

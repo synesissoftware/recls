@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - entry class.
  *
  * Created:     18th August 2003
- * Updated:     7th October 2015
+ * Updated:     19th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,11 +53,11 @@
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    9
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 2
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     103
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     104
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/cpp/common.hpp>
@@ -70,7 +70,7 @@
 #include <platformstl/filesystem/filesystem_traits.hpp>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -81,7 +81,7 @@ namespace cpp
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 /** Class used to represent file system entries, which provides access to
@@ -563,7 +563,7 @@ inline entry stat(S const& path, int flags = 0)
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
- * Comparison
+ * comparison
  */
 
 inline bool operator <(
@@ -615,7 +615,7 @@ inline bool operator !=(
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
- * Shims
+ * shims
  */
 
 #ifndef RECLS_PURE_API
@@ -708,7 +708,7 @@ inline S& operator <<(S &s, ::recls::cpp::entry const &v)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

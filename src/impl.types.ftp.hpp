@@ -4,11 +4,11 @@
  * Purpose:     Implementation header.
  *
  * Created:     13th December 2008
- * Updated:     22nd July 2014
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2008-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -27,7 +27,7 @@
 # endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -52,7 +52,7 @@
 #include <algorithm>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -63,7 +63,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Types
+ * types
  */
 
 struct ftp_types
@@ -166,7 +166,7 @@ private: /// Not to be implemented
 typedef ftp_types   types; // This is required to avoid bad linker behaviour (which makes sense!)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

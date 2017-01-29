@@ -4,11 +4,11 @@
  * Purpose:     Main header file for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     7th October 2015
+ * Updated:     29th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      21
 # define RECLS_VER_RECLS_H_RECLS_REVISION   4
-# define RECLS_VER_RECLS_H_RECLS_EDIT       122
+# define RECLS_VER_RECLS_H_RECLS_EDIT       123
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -126,7 +126,7 @@
 #define RECLS_VER               RECLS_VER_1_9_3
 
 /* /////////////////////////////////////////////////////////////////////////
- * Strictness
+ * strictness
  */
 
 #ifndef RECLS_NO_STRICT
@@ -141,7 +141,7 @@
 #include <recls/internal/language.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -168,7 +168,7 @@
 #include <stdarg.h> /* for logging function pointer */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -182,7 +182,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 #if defined(STLSOFT_NUM_ELEMENTS)
@@ -192,7 +192,7 @@ namespace recls
 #endif /* STLSOFT_NUM_ELEMENTS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants and definitions
+ * constants and definitions
  */
 
 /** \def RECLS_ROOT_NAME_LEN
@@ -214,7 +214,7 @@ namespace recls
 #endif /* platform */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Function specifications
+ * function specifications
  */
 
 /** Defines the recls linkage and calling convention.
@@ -231,7 +231,7 @@ namespace recls
 #define RECLS_API                           RECLS_FNDECL(recls_rc_t)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /* recls_rc_t */
@@ -333,7 +333,7 @@ struct hrecls_t_;
 typedef struct hrecls_t_ const*             hrecls_t;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Trying to get Borland to get over itself
+ * trying to get Borland to get over itself
  */
 
 #if defined(__cplusplus) && \
@@ -360,7 +360,7 @@ namespace borland_compatibility
 #endif /* C++ & Borland */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -368,14 +368,14 @@ namespace borland_compatibility
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* Defines result codes */
 #include <recls/internal/retcodes.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -384,7 +384,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Enumerations
+ * enumerations
  */
 
 /** Search flags
@@ -578,7 +578,7 @@ typedef enum RECLS_ROOTS_FLAG   RECLS_ROOTS_FLAG;
 #endif /* !__cplusplus && !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /* #if defined(RECLS_PLATFORM_IS_WINDOWS)
@@ -691,7 +691,7 @@ typedef int (RECLS_CALLCONV_DEFAULT *hrecls_progress_fn_t)(
 );
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace typedefs
+ * namespace typedefs
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -700,7 +700,7 @@ typedef recls_process_fn_param_t    process_fn_param_t;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * functions
  */
 
 /***************************************
@@ -1946,7 +1946,7 @@ RECLS_API Recls_RemoveDirectory(
 /** @} */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Shims
+ * shims
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -2106,7 +2106,7 @@ inline size_t c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 #endif /* !RECLS_PURE_API */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
@@ -2114,7 +2114,7 @@ inline size_t c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 #endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 #ifdef RECLS_DOCUMENTATION_SKIP_SECTION

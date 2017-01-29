@@ -4,11 +4,11 @@
  * Purpose:     Platform discrimination for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     5th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      2
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       26
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       27
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -57,7 +57,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Platform recognition
+ * platform recognition
  *
  * Define the symbol RECLS_OVERRIDE_PLATFORM to provide your own platform
  * discrimination
@@ -149,7 +149,7 @@
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
@@ -179,7 +179,7 @@
 #endif /* !RECLS_NO_API_FTP */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -188,11 +188,11 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants and definitions
+ * constants and definitions
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

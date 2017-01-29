@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - Windows-specific functions.
  *
  * Created:     13th November 2010
- * Updated:     13th November 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
@@ -53,11 +53,11 @@
 # define RECLS_VER_RECLS_CPP_HPP_WINDOWS_MAJOR    1
 # define RECLS_VER_RECLS_CPP_HPP_WINDOWS_MINOR    0
 # define RECLS_VER_RECLS_CPP_HPP_WINDOWS_REVISION 1
-# define RECLS_VER_RECLS_CPP_HPP_WINDOWS_EDIT     1
+# define RECLS_VER_RECLS_CPP_HPP_WINDOWS_EDIT     2
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/cpp/common.hpp>
@@ -67,7 +67,7 @@
 //#include <stlsoft/shims/access/string.hpp>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -78,7 +78,7 @@ namespace cpp
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Implementation
+ * implementation
  */
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
@@ -103,7 +103,7 @@ inline DWORD result_code_to_windows_error_code(recls_rc_t rc)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

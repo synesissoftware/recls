@@ -4,11 +4,11 @@
  * Purpose:     Implementation header.
  *
  * Created:     12th December 2008
- * Updated:     18th October 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2008-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -27,7 +27,7 @@
 # endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -45,7 +45,7 @@
 #include <algorithm>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -56,7 +56,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Types
+ * types
  */
 
 struct file_types
@@ -137,7 +137,7 @@ private: /// Not to be implemented
 typedef file_types  types; // This is required to avoid bad linker behaviour (which makes sense!)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

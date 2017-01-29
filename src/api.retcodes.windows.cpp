@@ -4,11 +4,11 @@
  * Purpose:     This file contains the Windows versions of the recls API.
  *
  * Created:     13th November 2010
- * Updated:     11th September 2011
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2010-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -57,7 +57,7 @@
 #include "impl.trace.h"
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -68,7 +68,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
@@ -76,13 +76,13 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.retcodes")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -92,7 +92,7 @@ RECLS_MARK_FILE_START()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Error handling
+ * error handling
  */
 
 RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
@@ -129,13 +129,13 @@ RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

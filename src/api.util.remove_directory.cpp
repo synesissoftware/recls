@@ -4,11 +4,11 @@
  * Purpose:     more recls API extended functions.
  *
  * Created:     30th January 2009
- * Updated:     22nd July 2014
+ * Updated:     24th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2009-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2009-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -67,7 +67,7 @@
 #endif /* RECLS_PLATFORM_IS_UNIX */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compatibility
+ * compatibility
  */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -76,7 +76,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -96,7 +96,7 @@ using ::recls::impl::recls_debug2_trace_printf_;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
@@ -105,7 +105,7 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util.remove_directory")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Implementation functions
+ * implementation functions
  */
 
 namespace
@@ -429,7 +429,7 @@ namespace
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Extended API functions
+ * extended API functions
  */
 
 #ifdef RECLS_EXCEPTION_SUPPORT_
@@ -542,13 +542,13 @@ static recls_rc_t Recls_RemoveDirectory_X_(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

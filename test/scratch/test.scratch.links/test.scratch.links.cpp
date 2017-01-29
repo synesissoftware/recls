@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.links project.
  *
  * Created:     23rd February 2011
- * Updated:     23rd February 2011
+ * Updated:     10th January 2017
  *
  * Status:      Wizard-generated
  *
@@ -19,7 +19,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* recls Header Files */
@@ -47,12 +47,12 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 #if 0
@@ -61,7 +61,7 @@ typedef std::basic_string<char_t>   string_t;
 #endif /* 0 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 /* /////////////////////////////////////////////////////////////////////////

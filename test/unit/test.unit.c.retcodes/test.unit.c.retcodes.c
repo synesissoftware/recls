@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.c.retcodes project.
  *
  * Created:     13th December 2008
- * Updated:     7th October 2015
+ * Updated:     10th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -25,7 +25,7 @@
 #include <recls/recls.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* xTests Header Files */
@@ -38,7 +38,7 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_1_0(void);
@@ -63,7 +63,7 @@ static void test_1_18(void);
 static void test_1_19(void);
 
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main
  */
 
 #ifdef XCOVER_VER
@@ -136,7 +136,7 @@ static int main_xc(int argc, char** argv)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * test function implementations
  */
 
 static recls_rc_t const s_FAILURE_CODES[] =

@@ -4,11 +4,11 @@
  * Purpose:     Ch specific types and includes for the recls API.
  *
  * Created:     9th August 2004
- * Updated:     2nd March 2011
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CH_MAJOR       3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CH_MINOR       2
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CH_REVISION    1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CH_EDIT        10
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CH_EDIT        11
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_ch.h
@@ -63,13 +63,13 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <stddef.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -78,7 +78,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** \def recls_byte_t The byte type for the \ref group__recls  API */
@@ -113,7 +113,7 @@ typedef char                recls_char_a_t;
 typedef wchar_t             recls_char_w_t;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

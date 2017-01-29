@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - directory_parts class.
  *
  * Created:     18th August 2003
- * Updated:     19th May 2010
+ * Updated:     19th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,11 +53,11 @@
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_MINOR    0
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_REVISION 1
-# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_EDIT     50
+# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_EDIT     51
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes - 1
  */
 
 #include <recls/cpp/common.hpp>
@@ -80,7 +80,7 @@
 #include <stlsoft/view/transforming/random_access_transforming_view_base.hpp>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -91,7 +91,7 @@ namespace cpp
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 /** This class represents a read-only STL collection of all the elements of
@@ -103,14 +103,16 @@ class directory_parts
     : public stlsoft::random_access_transforming_view_base<directory_parts, string_t, recls_strptrs_t const*>
 {
 public: // Member Types
+    /// The parent class type
     typedef stlsoft::random_access_transforming_view_base<
                 directory_parts
             ,   string_t
             ,   recls_strptrs_t const*
-            >                                   parent_class_type;
-    typedef parent_class_type::value_type       value_type;
-    typedef parent_class_type::const_iterator   const_iterator;
-    typedef directory_parts                     class_type;
+            >                                               parent_class_type;
+    typedef parent_class_type::value_type                   value_type;
+    typedef parent_class_type::const_iterator               const_iterator;
+    /// This type
+    typedef directory_parts                                 class_type;
 
 public: // Construction
     /// Conversion constructor
@@ -148,7 +150,7 @@ private: // Member Variables
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

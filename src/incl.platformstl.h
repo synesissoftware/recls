@@ -4,11 +4,11 @@
  * Purpose:     #includes the PlatformSTL root header and verifies the version.
  *
  * Created:     13th December 2008
- * Updated:     29th November 2011
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2008-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -36,7 +36,7 @@
 #endif /* PlatformSTL version */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compatibility
+ * compatibility
  */
 
 #ifdef _PLATFORMSTL_NO_NAMESPACE

@@ -4,11 +4,11 @@
  * Purpose:     This file contains the Windows versions of the recls API.
  *
  * Created:     16th August 2003
- * Updated:     21st August 2015
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -61,7 +61,7 @@
 #include <ctype.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -72,7 +72,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
@@ -80,7 +80,7 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 #if defined(RECLS_COMPILER_IS_WATCOM)
@@ -182,7 +182,7 @@ static size_t check_drives(char (*drives)[26], recls_uint32_t flags)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -200,7 +200,7 @@ using ::recls::impl::recls_debug2_trace_printf_;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Property elicitation
+ * property elicitation
  */
 
 RECLS_FNDECL(size_t) Recls_GetShortFileProperty(    recls_entry_t   fileInfo
@@ -234,7 +234,7 @@ RECLS_FNDECL(void) Recls_GetDriveProperty(  recls_entry_t   fileInfo
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Roots
+ * roots
  */
 
 static size_t Recls_GetRoots_(  recls_root_t*   roots
@@ -368,13 +368,13 @@ RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

@@ -4,7 +4,7 @@
  * Purpose:     recls API utility functions.
  *
  * Created:     10th February 2010
- * Updated:     10th February 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -53,7 +53,7 @@
 #include "impl.trace.h"
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -62,7 +62,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
@@ -71,11 +71,11 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util.get_file_sizes")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Extended API functions
+ * extended API functions
  */
 
 RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeGigaBytes(recls_filesize_t size)
@@ -100,13 +100,13 @@ RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeKiloBytes(recls_filesize_t size)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

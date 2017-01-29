@@ -4,11 +4,11 @@
  * Purpose:     Partially platform-independent time type for recls.
  *
  * Created:     18th August 2003
- * Updated:     12th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_MAJOR    1
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_MINOR    0
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_REVISION 1
-# define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_EDIT     1
+# define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_EDIT     2
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/recls_time.h
@@ -57,7 +57,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef RECLS_INCL_RECLS_INTERNAL_H_PLATFORM
@@ -77,7 +77,7 @@
 #endif /* platform */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -86,7 +86,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** \def recls_time_t
@@ -123,7 +123,7 @@ namespace recls
 #endif /* platform */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

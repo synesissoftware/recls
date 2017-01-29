@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.api.createdirectory project.
  *
  * Created:     29th January 2009
- * Updated:     30th January 2009
+ * Updated:     10th January 2017
  *
  * Status:      Wizard-generated
  *
@@ -25,7 +25,7 @@
 #include <recls/recls.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* xTests Header Files */
@@ -47,7 +47,7 @@
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * character encoding
  */
 
 #if defined(RECLS_CHAR_TYPE_IS_WCHAR)
@@ -66,7 +66,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_1_0(void);
@@ -91,7 +91,7 @@ static void test_1_18(void);
 static void test_1_19(void);
 
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main
  */
 
 recls_char_t*   s_cwd;
@@ -206,7 +206,7 @@ int main(int argc, char **argv)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * test function implementations
  */
 
 #define RECLS_TEST_DIR_ROOT         "/recls_test_dir_root_D01441CA_A1CD_4916_B095_B2D65B15E517"

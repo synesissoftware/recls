@@ -4,11 +4,11 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     14th May 2012
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -53,7 +53,7 @@
 #include "impl.trace.h"
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -76,7 +76,7 @@ using ::recls::impl::recls_debug2_trace_printf_;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
@@ -85,11 +85,11 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util.combine_paths")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Extended API functions
+ * extended API functions
  */
 
 #ifdef RECLS_EXCEPTION_SUPPORT_
@@ -170,13 +170,13 @@ static size_t Recls_CombinePaths_X_(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

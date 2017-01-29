@@ -4,11 +4,11 @@
  * Purpose:     Compiler discrimination for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     12th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_MAJOR      4
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_MINOR      1
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_EDIT       20
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_EDIT       21
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler.h
@@ -56,7 +56,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler detection
+ * compiler detection
  */
 
 #if defined(__COMO__)
@@ -84,7 +84,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #if defined(RECLS_COMPILER_IS_BORLAND)
@@ -112,7 +112,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Calling convention
+ * calling convention
  */
 
 /** \def RECLS_CALLCONV_NULL
@@ -175,7 +175,7 @@
 #endif /* __SYNSOFT_VAL_OS_WIN16 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -184,14 +184,14 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** \def recls_bool_t The boolean type of the \c recls API */
 typedef unsigned int        recls_bool_t;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace typedefs
+ * namespace typedefs
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -211,11 +211,11 @@ typedef recls_bool_t        bool_t;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants and definitions
+ * constants and definitions
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

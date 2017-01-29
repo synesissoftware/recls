@@ -12,11 +12,11 @@
  *                - elicitation of entry properties via method calls
  *
  * Created:     18th June 2006
- * Updated:     30th November 2011
+ * Updated:     10th January 2017
  *
  * www:         http://www.recls.org/
  *
- * License:     Copyright (c) 2006-2011, Synesis Software Pty Ltd.
+ * License:     Copyright (c) 2006-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              (Licensed under the Synesis Software Open License)
@@ -39,7 +39,7 @@
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros and definitions
+ * macros and definitions
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR

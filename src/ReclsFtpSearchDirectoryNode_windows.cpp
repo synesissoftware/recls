@@ -5,11 +5,11 @@
  *              Windows.
  *
  * Created:     1st June 2004
- * Updated:     30th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -41,7 +41,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -73,7 +73,7 @@
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -84,7 +84,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Utility functions
+ * utility functions
  */
 
 /// Creates an entry from the platform-specific record
@@ -809,7 +809,7 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetNextDetails(recls_entry_t* pinfo)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

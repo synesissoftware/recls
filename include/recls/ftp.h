@@ -4,11 +4,11 @@
  * Purpose:     FTP-specific header file for the recls API.
  *
  * Created:     18th August 2003
- * Updated:     5th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -47,7 +47,7 @@
 # define RECLS_VER_RECLS_H_FTP_MAJOR    3
 # define RECLS_VER_RECLS_H_FTP_MINOR    2
 # define RECLS_VER_RECLS_H_FTP_REVISION 2
-# define RECLS_VER_RECLS_H_FTP_EDIT     13
+# define RECLS_VER_RECLS_H_FTP_EDIT     14
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/ftp.h
@@ -56,7 +56,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -66,7 +66,7 @@
 #endif /* !RECLS_API_FTP */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -75,7 +75,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * functions
  */
 
 
@@ -116,7 +116,7 @@ RECLS_FNDECL(recls_rc_t) Recls_SearchFtp(   recls_char_t const* host
 /** @} */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -124,7 +124,7 @@ RECLS_FNDECL(recls_rc_t) Recls_SearchFtp(   recls_char_t const* host
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT

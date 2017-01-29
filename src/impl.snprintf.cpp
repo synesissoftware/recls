@@ -5,11 +5,11 @@
  *              the recls API. (Was borrowed from Pantheios.)
  *
  * Created:     21st June 2005
- * Updated:     30th November 2011
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2005-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -41,7 +41,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -63,7 +63,7 @@
 #include <stdio.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -108,7 +108,7 @@ namespace impl
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Private API
+ * private API
  */
 
 RECLS_FNDECL(int) recls_vsnprintf_a(
@@ -186,7 +186,7 @@ RECLS_FNDECL(int) recls_snprintf(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

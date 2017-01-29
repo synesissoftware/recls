@@ -4,11 +4,11 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     22nd August 2015
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -58,7 +58,7 @@
 #include "impl.trace.h"
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -69,7 +69,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
@@ -77,7 +77,7 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 #if defined(RECLS_PLATFORM_IS_WINDOWSx)
@@ -160,7 +160,7 @@ private:
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -189,7 +189,7 @@ using ::recls::impl::recls_is_valid_pattern_;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Search control
+ * search control
  */
 
 RECLS_API Recls_Search(
@@ -601,7 +601,7 @@ RECLS_FNDECL(void) Recls_SearchClose(hrecls_t hSrch)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Search enumeration
+ * search enumeration
  */
 
 RECLS_API Recls_SearchProcessFeedback(
@@ -812,13 +812,13 @@ RECLS_API Recls_CopyDetails(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

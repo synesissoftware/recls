@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - ftp_search_sequence class.
  *
  * Created:     10th September 2003
- * Updated:     16th June 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_MINOR      0
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_REVISION   2
-# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_EDIT       84
+# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_EDIT       85
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/ftp_search_sequence.hpp
@@ -63,7 +63,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/cpp/common.hpp>
@@ -93,7 +93,7 @@
 #endif /* WIN32 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -104,7 +104,7 @@ namespace cpp
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 // class ftp_search_sequence

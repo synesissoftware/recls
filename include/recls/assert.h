@@ -4,11 +4,11 @@
  * Purpose:     Assertion macros for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     12th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -47,7 +47,7 @@
 # define RECLS_VER_RECLS_H_ASSERT_MAJOR     3
 # define RECLS_VER_RECLS_H_ASSERT_MINOR     1
 # define RECLS_VER_RECLS_H_ASSERT_REVISION  2
-# define RECLS_VER_RECLS_H_ASSERT_EDIT      26
+# define RECLS_VER_RECLS_H_ASSERT_EDIT      27
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/assert.h
@@ -56,7 +56,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -98,7 +98,7 @@
 #define recls_assert(expr)                  RECLS_ASSERT(expr)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 /** \def RECLS_MESSAGE_ASSERT
@@ -139,7 +139,7 @@
 #define recls_message_assert(msg, expr)     RECLS_MESSAGE_ASSERT(msg, expr)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -148,7 +148,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -156,7 +156,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT

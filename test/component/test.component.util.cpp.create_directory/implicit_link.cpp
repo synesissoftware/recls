@@ -4,7 +4,7 @@
  * Purpose:     Implicit link file for the test.component.util.cpp.create_directory project.
  *
  * Created:     30th January 2010
- * Updated:     30th January 2010
+ * Updated:     10th January 2017
  *
  * Status:      Wizard-generated
  *
@@ -19,7 +19,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* recls Header Files */

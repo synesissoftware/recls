@@ -4,11 +4,11 @@
  * Purpose:     Partially platform-independent time type for recls.
  *
  * Created:     18th August 2003
- * Updated:     1st April 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_FILESIZE_MAJOR    1
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_FILESIZE_MINOR    0
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_FILESIZE_REVISION 4
-# define RECLS_VER_RECLS_INTERNAL_H_RECLS_FILESIZE_EDIT     4
+# define RECLS_VER_RECLS_INTERNAL_H_RECLS_FILESIZE_EDIT     5
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/recls_filesize.h
@@ -57,7 +57,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef RECLS_INCL_RECLS_INTERNAL_H_PLATFORM
@@ -67,7 +67,7 @@
 #include <time.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -76,7 +76,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** The file-size type for the recls API.
@@ -88,7 +88,7 @@ typedef recls_filesize_t            filesize_t;
 #endif /* !__cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

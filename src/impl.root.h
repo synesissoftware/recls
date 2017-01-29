@@ -4,11 +4,11 @@
  * Purpose:     Implementation root header.
  *
  * Created:     7th March 2005
- * Updated:     16th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -23,7 +23,7 @@
 #define RECLS_INCL_SRC_H_IMPL_ROOT
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -46,7 +46,7 @@
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Exceptions
+ * exceptions
  */
 
 #ifdef __cplusplus
@@ -102,7 +102,7 @@
 #endif /* debug */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Contract enforcement
+ * contract enforcement
  */
 
 /** \def RECLS_ENFORCING_CONTRACTS If defined, it indicates that contract enforcement will be active */
@@ -113,7 +113,7 @@
 #endif /* RECLS_DEBUG || RECLS_ENFORCE_CONTRACTS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Multithreading
+ * multithreading
  */
 
 /** \def RECLS_MT If defined, it indicates a multithreaded build */

@@ -4,11 +4,11 @@
  * Purpose:     Digital Mars specific types and includes for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     2nd March 2011
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_DMC_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_DMC_MINOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_DMC_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_DMC_EDIT       14
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_DMC_EDIT       15
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_dmc.h
@@ -63,7 +63,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <stddef.h>
@@ -76,7 +76,7 @@
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -85,7 +85,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Messaging
+ * messaging
  */
 
 #define RECLS_PRAGMA_MESSAGE_SUPPORT
@@ -97,7 +97,7 @@ namespace recls
 #define RECLS_CF_PRAGMA_ONCE_SUPPORT
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** \def recls_byte_t The byte type for the \ref group__recls API */
@@ -136,7 +136,7 @@ typedef char                recls_char_a_t;
 typedef wchar_t             recls_char_w_t;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

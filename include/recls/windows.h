@@ -4,11 +4,11 @@
  * Purpose:     Windows-specific header file for the recls API.
  *
  * Created:     18th August 2003
- * Updated:     13th November 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -47,7 +47,7 @@
 # define RECLS_VER_RECLS_H_WINDOWS_MAJOR    4
 # define RECLS_VER_RECLS_H_WINDOWS_MINOR    2
 # define RECLS_VER_RECLS_H_WINDOWS_REVISION 1
-# define RECLS_VER_RECLS_H_WINDOWS_EDIT     24
+# define RECLS_VER_RECLS_H_WINDOWS_EDIT     25
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/windows.h
@@ -56,7 +56,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -68,7 +68,7 @@
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -77,7 +77,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * functions
  */
 
 /***************************************
@@ -122,7 +122,7 @@ RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
 /** @} */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -130,7 +130,7 @@ RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT

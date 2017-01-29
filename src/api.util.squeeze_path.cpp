@@ -4,11 +4,11 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     7th October 2015
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -55,7 +55,7 @@
 #include <platformstl/filesystem/path_functions.hpp>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -78,7 +78,7 @@ using ::recls::impl::recls_debug2_trace_printf_;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
@@ -87,7 +87,7 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util.squeeze_path")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Extended API functions
+ * extended API functions
  */
 
 #ifdef RECLS_EXCEPTION_SUPPORT_
@@ -171,13 +171,13 @@ static size_t Recls_SqueezePath_X_(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

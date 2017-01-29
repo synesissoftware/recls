@@ -4,11 +4,11 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     2nd April 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -53,7 +53,7 @@
 #include "impl.trace.h"
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -76,7 +76,7 @@ using ::recls::impl::recls_debug2_trace_printf_;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
@@ -84,7 +84,7 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
@@ -100,7 +100,7 @@ RECLS_MARK_FILE_START()
 #endif /* platform */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Extended API functions
+ * extended API functions
  */
 
 RECLS_LINKAGE_C recls_char_t const* Recls_GetPathNameSeparator()
@@ -137,7 +137,7 @@ RECLS_LINKAGE_C recls_char_t const* Recls_GetWildcardsAll()
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Extended API functions
+ * extended API functions
  */
 
 static int RECLS_CALLCONV_DEFAULT IsDirectoryEmpty_proc(recls_entry_t /* info */, recls_process_fn_param_t /* param */)
@@ -242,13 +242,13 @@ RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySizeFeedback(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

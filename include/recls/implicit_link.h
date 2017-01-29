@@ -4,11 +4,11 @@
  * Purpose:     Implicit linking for the recls API
  *
  * Created:     20th September 2005
- * Updated:     21st August 2015
+ * Updated:     10th January 2017
  *
  * Home:        http://fastformat.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,18 +48,18 @@
 #define RECLS_INCL_RECLS_H_IMPLICIT_LINK
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_MAJOR      1
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_MINOR      5
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_REVISION   1
-# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       12
+# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       13
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef RECLS_INCL_RECLS_H_RECLS
@@ -67,14 +67,14 @@
 #endif /* !RECLS_INCL_RECLS_H_RECLS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros and definitions
+ * macros and definitions
  */
 
 #define RECLS_STRINGIZE_(x) #x
 #define RECLS_STRINGIZE(x)  RECLS_STRINGIZE_(x)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Implicit linking
+ * implicit linking
  */
 
 #if defined(_WIN32) || \

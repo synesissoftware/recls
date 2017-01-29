@@ -4,11 +4,11 @@
  * Purpose:     Definition of the create_entryinfo() function.
  *
  * Created:     31st May 2004
- * Updated:     5th January 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -43,14 +43,14 @@
 #define RECLS_INCL_SRC_HPP_IMPL_ENTRYINFO
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
 #include "impl.types.hpp"
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -61,7 +61,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Utility functions
+ * utility functions
  */
 
 extern "C"
@@ -89,7 +89,7 @@ recls_entry_t create_drive_entryinfo(
 } // extern "C"
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

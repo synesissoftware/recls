@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - root_sequence class.
  *
  * Created:     25th March 2004
- * Updated:     25th May 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MINOR    1
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 1
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     21
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     22
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/root_sequence.hpp
@@ -64,7 +64,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/cpp/common.hpp>
@@ -76,7 +76,7 @@
 #include <functional>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -87,7 +87,7 @@ namespace cpp
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helpers
+ * helpers
  */
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
@@ -109,7 +109,7 @@ namespace root_sequence_impl
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 // class root_sequence
@@ -215,7 +215,7 @@ private:
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * Shims
+ * shims
  */
 
 /// is_empty shim
@@ -234,7 +234,7 @@ inline recls_bool_t is_empty(root_sequence const& s)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Implementation
+ * implementation
  */
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION

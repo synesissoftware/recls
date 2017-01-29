@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping.
  *
  * Created:     5th January 2010
- * Updated:     13th November 2010
+ * Updated:     19th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,11 +47,11 @@
 # define RECLS_VER_RECLS_HPP_RECLS_MAJOR    1
 # define RECLS_VER_RECLS_HPP_RECLS_MINOR    1
 # define RECLS_VER_RECLS_HPP_RECLS_REVISION 1
-# define RECLS_VER_RECLS_HPP_RECLS_EDIT     2
+# define RECLS_VER_RECLS_HPP_RECLS_EDIT     3
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/cpp/common.hpp>
@@ -81,7 +81,7 @@
 #endif /* !RECLS_PURE_API */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

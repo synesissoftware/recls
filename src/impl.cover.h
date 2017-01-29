@@ -4,11 +4,11 @@
  * Purpose:     Code Coverage.
  *
  * Created:     8th February 2009
- * Updated:     23rd June 2010
+ * Updated:     19th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2009-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2009-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -96,7 +96,7 @@
 #endif /* RECLS_QUALITY_USE_XCOVER */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -107,7 +107,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 #ifdef RECLS_QUALITY_USE_XCOVER
@@ -115,7 +115,7 @@ namespace impl
 #endif /* RECLS_QUALITY_USE_XCOVER */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

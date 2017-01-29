@@ -4,11 +4,11 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     1st February 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/recls.h>
@@ -52,7 +52,7 @@
 #include "impl.trace.h"
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -63,7 +63,7 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
@@ -71,7 +71,7 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 struct counted_recls_info_t
@@ -82,7 +82,7 @@ struct counted_recls_info_t
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -98,7 +98,7 @@ volatile rc_atomic_t s_sharedInfoBlocks  =   rc_atomic_init(0);
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 inline struct counted_recls_info_t* counted_info_from_info(recls_entry_t i)
@@ -124,7 +124,7 @@ inline recls_entry_t info_from_counted_info(struct counted_recls_info_t* ci)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * File info functions
+ * file info functions
  */
 
 RECLS_FNDECL(recls_entry_t) Entry_Allocate(size_t cb)
@@ -226,13 +226,13 @@ RECLS_FNDECL(void) Entry_BlockCount(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Coverage
+ * coverage
  */
 
 RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - utility functions.
  *
  * Created:     18th August 2003
- * Updated:     16th June 2010
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,11 +53,11 @@
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_MAJOR     5
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_MINOR     0
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_REVISION  6
-# define RECLS_VER_RECLS_CPP_HPP_UTIL_EDIT      39
+# define RECLS_VER_RECLS_CPP_HPP_UTIL_EDIT      40
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <recls/cpp/common.hpp>
@@ -66,7 +66,7 @@
 #include <stlsoft/shims/access/string.hpp>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -77,7 +77,7 @@ namespace cpp
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Implementation
+ * implementation
  */
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
@@ -285,7 +285,7 @@ inline void remove_directory(S const& path, int flags, recls_directoryResults_t*
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

@@ -4,11 +4,11 @@
  * Purpose:     Return codes for the  recls API.
  *
  * Created:     15th August 2003
- * Updated:     10th July 2015
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MINOR      6
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       35
+# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       36
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/retcodes.h
@@ -59,7 +59,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -68,7 +68,7 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper macros
+ * helper macros
  */
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
@@ -81,7 +81,7 @@ namespace recls
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Error codes
+ * error codes
  */
 
 /** \name Error codes
@@ -142,7 +142,7 @@ namespace recls
 /** @} */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)

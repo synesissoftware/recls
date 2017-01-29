@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - common types and feature discrimination.
  *
  * Created:     18th August 2003
- * Updated:     4th June 2012
+ * Updated:     19th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,11 +53,11 @@
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MINOR       0
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    7
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        39
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        40
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes - 1
+ * includes - 1
  */
 
 #include <recls/recls.h>
@@ -65,7 +65,7 @@
 #include <stlsoft/stlsoft.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version checks
+ * version checks
  */
 
 #if !defined(RECLS_VER) || \
@@ -83,7 +83,7 @@
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Feature support - 1: Properties (see chapter 35 of Imperfect C++; http://imperfectcplusplus.com/)
+ * feature support - 1: Properties (see chapter 35 of Imperfect C++; http://imperfectcplusplus.com/)
  */
 
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
@@ -129,13 +129,13 @@
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Feature support - 2: string type
+ * feature support - 2: string type
  */
 
 #define RECLS_CPP_USE_STD_STRING
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes - 2
+ * includes - 2
  */
 
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
@@ -147,7 +147,7 @@
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
@@ -164,7 +164,7 @@ namespace cpp
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 typedef recls_char_t                                char_t;
@@ -176,7 +176,7 @@ typedef std::basic_string<recls_char_t>             string_t;
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
