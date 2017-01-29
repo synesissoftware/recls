@@ -3,7 +3,7 @@ recls - Changes
 ---------------
 
 ; Created:  28th May 2006
-; Updated:  7th October 2015
+; Updated:  29th January 2017
 
 ============================================================================
 
@@ -15,6 +15,228 @@ recls - Changes
     *  -  means removal of something (mapping / file / functionality) *
     *                                                                 *
     *******************************************************************
+
+
+recls 1.9.6 released - 29th January 2017
+========================================
+
+Summary:
+--------
+
+ * added NO_MORE_DATA_exception
+ * added (CC|CPPC)_CUSTOM_DEFS_(DEBUG|RELEASE) to makefiles, for customising builds
+ * forward compatibility with STLSoft 1.10+
+ * now only uses xCover if RECLS_QUALITY_USE_XCOVER defined (and requisite features are supported)
+
+Details:
+--------
+
+General / C-API:
+
+ ~ include/recls/recls.h:
+    ~ reduced warning susceptibility
+
+Core:
+
+ ~ src/impl.trace.cpp:
+ ~ src/impl.trace.h:
+ ~ src/incl.stlsoft.h:
+    ~ changed no-throw declaration from stlsoft_throw_0() to STLSOFT_NOEXCEPT
+
+ ~ src/ReclsFileSearchDirectoryNode.cpp:
+    ~ forward compatibility with STLSoft 1.10+
+    ~ changed no-throw declaration from stlsoft_throw_0() to STLSOFT_NOEXCEPT
+
+ ~ src/api.entryinfo.cpp:
+    ~ reduced warning susceptibility
+
+ ~ src/api.util.create_directory.cpp:
+ ~ src/api.util.remove_directory.cpp:
+    ~ UNIX compatibility
+    ~ forward compatibility with STLSoft 1.10+
+
+ ~ src/impl.cover.h:
+    ~ now only uses xCover if RECLS_QUALITY_USE_XCOVER defined (and requisite features are supported)
+
+ ~ src/impl.entryinfo.cpp:
+    ~ UNIX compatibility
+
+C++ API:
+
+ + include/recls/cpp/classfwd.hpp:
+    ~ discrimination support of directory parts between STLSoft 1.9 and STLSoft 1.10
+    + added NO_MORE_DATA_exception
+
+ ~ include/recls/cpp/common.hpp:
+ ~ include/recls/cpp/directory_parts.hpp:
+    ~ discrimination support of directory parts between STLSoft 1.9 and STLSoft 1.10
+    ~ changed no-throw declaration from stlsoft_throw_0() to STLSOFT_NOEXCEPT
+
+ ~ include/recls/cpp/entry.hpp:
+    ~ discrimination support of directory parts between STLSoft 1.9 and STLSoft 1.10
+    + added NO_MORE_DATA_exception
+    ~ changed no-throw declaration from stlsoft_throw_0() to STLSOFT_NOEXCEPT
+
+ ~ include/recls/cpp/exceptions.hpp:
+ ~ include/recls/cpp/util.hpp:
+ ~ include/recls/recls.hpp:
+    + added NO_MORE_DATA_exception
+
+ ~ include/recls/cpp/ftp_search_sequence.hpp:
+ ~ include/recls/cpp/root_sequence.hpp:
+ ~ include/recls/cpp/search_sequence.hpp:
+ ~ include/recls/cpp/traits.hpp:
+    ~ changed no-throw declaration from stlsoft_throw_0() to STLSOFT_NOEXCEPT
+
+Makefiles / Project-files:
+
+ ~ build/ar/makefile:
+ ~ build/bc56/makefile:
+ ~ build/bc582/makefile:
+ ~ build/cw8.unix/makefile:
+ ~ build/cw8.win32/makefile:
+ ~ build/dm/makefile:
+ ~ build/gcc34.unix/makefile:
+ ~ build/gcc34.win32/makefile:
+ ~ build/gcc40.unix/makefile:
+ ~ build/gcc41.unix/makefile:
+ ~ build/gcc42.unix/makefile:
+ ~ build/gcc43.unix/makefile:
+ ~ build/gcc44.unix/makefile:
+ ~ build/gcc45.unix/makefile:
+ ~ build/gcc46.unix/makefile:
+ ~ build/gcc47.mingw/makefile:
+ ~ build/icl10.win32/makefile:
+ ~ build/icl11.win32/makefile:
+ ~ build/icl8.win32/makefile:
+ ~ build/icl9.win32/makefile:
+ ~ build/vc10.x64/makefile:
+ ~ build/vc10/makefile:
+ ~ build/vc11.x64/makefile:
+ ~ build/vc11/makefile:
+ ~ build/vc12.x64/makefile:
+ ~ build/vc12/makefile:
+ ~ build/vc6/makefile:
+ ~ build/vc71/makefile:
+ ~ build/vc8.x64/makefile:
+ ~ build/vc8/makefile:
+ ~ build/vc9.x64/makefile:
+ ~ build/vc9/makefile:
+    + added (CC|CPPC)_CUSTOM_DEFS_(DEBUG|RELEASE)
+    + added CC_CUSTOM_DEFS and CPPC_CUSTOM_DEFS
+
+ ~ build/vc10.unixem/makefile:
+ ~ build/vc6.unixem/makefile:
+ ~ build/vc8.unixem/makefile:
+ ~ build/vc9.unixem/makefile:
+    + added (CC|CPPC)_CUSTOM_DEFS_(DEBUG|RELEASE)
+    - removed unnecessary dependencies
+    ~ uses updated name of UNIXem libs
+    + added CC_CUSTOM_DEFS and CPPC_CUSTOM_DEFS
+
+Examples:
+
+Test.Unit:
+
+Test.Component:
+
+Test.Scratch:
+
+Depends on:
+
+ * STLSoft 1.9.129 or later
+   (http://stlsoft.org/)
+
+
+
+recls 1.9.4 released - 9th October 2015
+=======================================
+
+Summary:
+--------
+
+ * GCC compatibility
+ * added MinGW (GCC 4.7) makefile
+ * NOTE: bundles shwild 0.10.1
+ * NOTE: bundles xCover 0.3.3
+ * NOTE: bundles xTests 0.18.5
+ * NOTE: depends on STLSoft 1.9.121
+
+Details:
+--------
+
+General / C-API:
+
+Core:
+
+ ~ src/api.retcodes.windows.cpp:
+    ~ GCC compatibility
+
+C++ API:
+
+ ~ include/recls/cpp/entry.hpp:
+ ~ include/recls/cpp/ftp_search_sequence.hpp:
+ ~ include/recls/cpp/search_sequence.hpp:
+ ~ include/recls/cpp/util.hpp:
+    ~ GCC compatibility in use of shims
+
+ ~ include/recls/cpp/exceptions.hpp:
+    ~ simplified use of shims
+
+Makefiles / Project-files:
+
+ + build/gcc47.mingw/makefile:
+
+ ~ build/ar/makefile:
+ ~ build/bc56/makefile:
+ ~ build/bc582/makefile:
+ ~ build/cw8.unix/makefile:
+ ~ build/cw8.win32/makefile:
+ ~ build/dm/makefile:
+ ~ build/gcc34.unix/makefile:
+ ~ build/gcc34.win32/makefile:
+ ~ build/gcc40.unix/makefile:
+ ~ build/gcc41.unix/makefile:
+ ~ build/gcc42.unix/makefile:
+ ~ build/gcc43.unix/makefile:
+ ~ build/gcc44.unix/makefile:
+ ~ build/gcc45.unix/makefile:
+ ~ build/gcc46.unix/makefile:
+ ~ build/icl10.win32/makefile:
+ ~ build/icl11.win32/makefile:
+ ~ build/icl8.win32/makefile:
+ ~ build/icl9.win32/makefile:
+ ~ build/vc10.unixem/makefile:
+ ~ build/vc10.x64/makefile:
+ ~ build/vc10/makefile:
+ ~ build/vc11.x64/makefile:
+ ~ build/vc11/makefile:
+ ~ build/vc12.x64/makefile:
+ ~ build/vc12/makefile:
+ ~ build/vc6.unixem/makefile:
+ ~ build/vc6/makefile:
+ ~ build/vc71/makefile:
+ ~ build/vc8.unixem/makefile:
+ ~ build/vc8.x64/makefile:
+ ~ build/vc8/makefile:
+ ~ build/vc9.unixem/makefile:
+ ~ build/vc9.x64/makefile:
+ ~ build/vc9/makefile:
+    ~ simplified creation of bin & lib directories
+
+Examples:
+
+Test.Unit:
+
+Test.Component:
+
+Test.Scratch:
+
+Depends on:
+
+ * STLSoft 1.9.121 or later
+   (http://stlsoft.org/)
+
 
 
 recls 1.9.3 released - 7th October 2015

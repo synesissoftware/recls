@@ -1,0 +1,368 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "example_c_1"=.\examples\c\example_c_1\vc6\example_c_1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example_c_2"=.\examples\c\example_c_2\vc6\example_c_2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example_c_3"=.\examples\c\example_c_3\vc6\example_c_3.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example_c_4"=.\examples\c\example_c_4\vc6\example_c_4.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example_c_5"=.\examples\c\example_c_5\vc6\example_c_5.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example_c_6"=.\examples\c\example_c_6\vc6\example_c_6.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "example_c_7"=.\examples\c\example_c_7\vc6\example_c_7.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "example_c_8"=.\examples\c\example_c_8\vc6\example_c_8.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "example_cpp_1"=.\examples\cpp\example_cpp_1\vc6\example_cpp_1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example_cpp_2"=.\examples\cpp\example_cpp_2\vc6\example_cpp_2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example_cpp_3"=.\examples\cpp\example_cpp_3\vc6\example_cpp_3.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "recls.core"=.\projects\core\vc6\recls.core.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.util.cpp.create_directory"=.\test\component\test.component.util.cpp.create_directory\vc6\test.component.util.cpp.create_directory.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.util.cpp.remove_directory"=.\test\component\test.component.util.cpp.remove_directory\vc6\test.component.util.cpp.remove_directory.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.cpp_api"=.\test\scratch\test.scratch.cpp_api\vc6\test.scratch.cpp_api.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.filesize.shims"=.\test\scratch\test.scratch.filesize.shims\vc6\test.scratch.filesize.shims.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.scratch.links"=.\test\scratch\test.scratch.links\vc6\test.scratch.links.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.string.access.shims"=.\test\scratch\test.scratch.string.access.shims\vc6\test.scratch.string.access.shims.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.api.combine_paths"=.\test\unit\test.unit.api.combine_paths\vc6\test.unit.api.combine_paths.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.api.createdirectory"=.\test\unit\test.unit.api.createdirectory\vc6\test.unit.api.createdirectory.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.api.squeeze_path"=.\test\unit\test.unit.api.squeeze_path\vc6\test.unit.api.squeeze_path.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.api.stat"=.\test\unit\test.unit.api.stat\vc6\test.unit.api.stat.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.cpp.combine_paths"=.\test\unit\test.unit.cpp.combine_paths\vc6\test.unit.cpp.combine_paths.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name recls.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.cpp.derive_relative_path"=.\test\unit\test.unit.cpp.derive_relative_path\vc6\test.unit.cpp.derive_relative_path.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.cpp.squeeze_path"=.\test\unit\test.unit.cpp.squeeze_path\vc6\test.unit.cpp.squeeze_path.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+
