@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       1
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    3
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        42
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    4
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        43
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,7 @@
 #include <recls/internal/safestr.h>
 
 #include <stlsoft/memory/auto_buffer.hpp>
-#include <stlsoft/shims/access/string.hpp>
+#include <stlsoft/shims/access/string/fwd.h>
 
 #include <stdexcept>
 

@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the ReclsFileSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     29th January 2017
  *
  * Home:        http://recls.org/
  *
@@ -73,7 +73,7 @@ RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
 RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
- * reclssearch
+ * ReclsSearch
  */
 
 ReclsSearch::ReclsSearch()

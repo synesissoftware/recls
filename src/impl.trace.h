@@ -88,7 +88,7 @@ public:
 
 public: /// Construction
     explicit function_scope(recls_char_t const* fn);
-    ~function_scope() stlsoft_throw_0();
+    ~function_scope() STLSOFT_NOEXCEPT;
 private:
     function_scope(class_type const &);
     class_type &operator =(class_type const &);

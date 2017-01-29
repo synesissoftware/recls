@@ -63,6 +63,16 @@
 # endif /* RECLS_PLATFORM_IS_WINDOWS */
 #endif /* RECLS_CHAR_TYPE_IS_???? */
 
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# if defined(RECLS_PLATFORM_IS_WINDOWS)
+#  ifdef RECLS_STLSOFT_1_10_B01_OR_LATER
+#   include <winstl/exception/access_exception.hpp>
+#  else /* ? STLSoft verosion */
+#   include <winstl/error/exceptions.hpp>
+#  endif /* STLSoft verosion */
+# endif /* RECLS_PLATFORM_IS_WINDOWS */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -374,7 +384,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
         node = new ReclsFileSearchDirectoryNode(flags, searchDir, rootDirLen, pattern, patternLen, pfn, param);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-# if _STLSOFT_VER >= 0x010972ff
+# if _STLSOFT_VER >= 0x01097bff
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
     catch(unixstl::readdir_sequence_exception& x)
     {

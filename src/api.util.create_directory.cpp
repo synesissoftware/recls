@@ -53,11 +53,11 @@
 
 #include "impl.trace.h"
 
-#ifdef RECLS_STLSOFT_1_12_OR_LATER
-# include <platformstl/exception/exceptions.hpp>
-#else /* ? RECLS_STLSOFT_1_12_OR_LATER */
+#ifdef RECLS_STLSOFT_1_10_B01_OR_LATER
+# include <platformstl/exception/platformstl_exception.hpp>
+#else /* ? STLSoft verosion */
 # include <platformstl/error/exceptions.hpp>
-#endif /* RECLS_STLSOFT_1_12_OR_LATER */
+#endif /* STLSoft verosion */
 #include <platformstl/filesystem/directory_functions.hpp>
 
 #include <vector>
@@ -104,6 +104,40 @@ RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
 RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util")
 RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util.create_directory")
 RECLS_MARK_FILE_START()
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helpers
+ */
+
+namespace
+{
+
+inline
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+int
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+DWORD
+#endif /* platform */
+get_exception_status_code(
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+    unixstl::unix_exception&    x
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+    winstl::windows_exception&  x
+#endif /* platform */
+)
+{
+#if _STLSOFT_VER >= 0x010a0181
+
+    return x.status_code();
+#else
+
+    return x.get_error_code();
+#endif
+}
+
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation functions
@@ -311,9 +345,9 @@ RECLS_API Recls_CreateDirectory(
 
         // TODO: write a system_error_code_2_recls_rc() translator
 # if defined(PLATFORMSTL_OS_IS_UNIX)
-        if(ENOENT == x.get_error_code())
+        if(ENOENT == get_exception_status_code(x))
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-        if(ERROR_INVALID_NAME == x.get_error_code())
+        if(ERROR_INVALID_NAME == get_exception_status_code(x))
 # else /* ? OS */
 #  error Platform not discriminated
 # endif /* OS */

@@ -51,9 +51,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    9
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    10
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 2
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     104
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     108
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,9 @@
  */
 
 #include <recls/cpp/common.hpp>
-#include <recls/cpp/directory_parts.hpp>
+#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
+# include <recls/cpp/directory_parts.hpp>
+#endif
 #include <recls/cpp/exceptions.hpp>
 #include <recls/cpp/traits.hpp>
 
@@ -114,8 +116,10 @@ public: // Member Types
     typedef size_t                      size_type;
     /// The string type
     typedef string_t                    string_type;
+#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     /// The directory parts type
     typedef directory_parts             directory_parts_type;
+#endif
 private:
     typedef platformstl::filesystem_traits<
         char_type
@@ -132,7 +136,9 @@ public:
         template <typename S>
         static entry create(S const& path, int flags)
         {
-            return create_(stlsoft::c_str_ptr(path), flags);
+            STLSOFT_NS_USING(c_str_ptr);
+
+            return create_(c_str_ptr(path), flags);
         }
     private:
         static entry create_(recls_char_t const* path, int flags)
@@ -158,7 +164,7 @@ public: // Construction
     entry(class_type const& rhs)
         : m_entry(copy_entry_(rhs.m_entry))
     {}
-    ~entry() stlsoft_throw_0()
+    ~entry() STLSOFT_NOEXCEPT
     {
         delete_entry_(m_entry);
     }
@@ -264,6 +270,7 @@ public:
         return string_type(m_entry->directory.begin, m_entry->directory.end);
     }
 
+#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     /// The directory parts of the item
     directory_parts get_directory_parts() const
     {
@@ -271,6 +278,7 @@ public:
 
         return directory_parts(m_entry);
     }
+#endif
 
     /// The directory path of the item
     string_type get_directory_path() const
@@ -483,7 +491,9 @@ public: // Attribute Properties
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, Drive);
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, Directory);
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, DirectoryPath);
+#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, DirectoryParts);
+#endif
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, File);
     /* RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, ShortFile); */
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, FileName);
@@ -510,7 +520,9 @@ public: // Attribute Properties
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,     class_type, get_drive, Drive);
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,     class_type, get_directory, Directory);
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,     class_type, get_directory_path, DirectoryPath);
+#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(directory_parts, class_type, get_directory_parts, DirectoryParts);
+#endif
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,     class_type, get_file, File);
     /* RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,  class_type, get_shortFile, ShortFile); */
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,     class_type, get_file_name, FileName);

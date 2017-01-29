@@ -51,8 +51,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_MINOR      0
-# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_REVISION   2
-# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_EDIT       85
+# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_REVISION   4
+# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_EDIT       87
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/ftp_search_sequence.hpp
@@ -180,7 +180,7 @@ public:
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     /// Destructor
-    ~ftp_search_sequence() stlsoft_throw_0()
+    ~ftp_search_sequence() STLSOFT_NOEXCEPT
     {
 #if !defined(RECLS_COMPILER_IS_COMO) && \
     !defined(RECLS_COMPILER_IS_GCC) && \
@@ -239,10 +239,11 @@ private:
     template <typename S>
     static char_type const* copy_or_null_(file_path_buffer& dest, S const& src, stlsoft::no_type)
     {
-//      STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<char_type, *stlsoft::c_str_ptr(src)>()));
+        STLSOFT_NS_USING(c_str_data);
+        STLSOFT_NS_USING(c_str_len);
 
-        size_t      n   =   stlsoft::minimum(stlsoft::c_str_len(src), dest.size());
-        char_type*  s   =   traits_type::char_copy(&dest[0], stlsoft::c_str_data(src), n);
+        size_t      n   =   stlsoft::minimum(c_str_len(src), dest.size());
+        char_type*  s   =   traits_type::char_copy(&dest[0], c_str_data(src), n);
 
         s[n] = '\0';
 

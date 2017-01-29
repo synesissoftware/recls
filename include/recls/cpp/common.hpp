@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MINOR       0
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    7
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        40
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    9
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        42
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,8 +74,8 @@
 #endif /* RECLS_VER */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010971ff
-# error The recls C++ mapping now requires version 1.9.113 or later of the STLSoft libraries. (www.stlsoft.org/downloads.html)
+    _STLSOFT_VER < 0x01097bff
+# error The recls C++ mapping now requires version 1.9.123 or later of the STLSoft libraries. (www.stlsoft.org/downloads.html)
 #endif /* STLSoft version */
 
 #if defined(_STLSOFT_NO_NAMESPACE)
@@ -133,6 +133,20 @@
  */
 
 #define RECLS_CPP_USE_STD_STRING
+
+/* /////////////////////////////////////////////////////////////////////////
+ * feature support - 3: directory_parts type
+ */
+
+#if _STLSOFT_VER >= 0x010a0181 ||\
+    STLSOFT_LEAD_VER >= 0x010a0000
+# define RECLS_CPP_USE_STLSOFT_random_access_transforming_view_base
+#endif
+
+#if defined(RECLS_DOCUMENTATION_SKIP_SECTION) ||\
+    defined(RECLS_CPP_USE_STLSOFT_random_access_transforming_view_base)
+# define RECLS_CPP_SUPPORT_DIRECTORY_PARTS
+#endif
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes - 2

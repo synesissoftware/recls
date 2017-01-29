@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_MINOR    0
-# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_REVISION 1
-# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_EDIT     51
+# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_REVISION 3
+# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_EDIT     53
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,7 @@
 
 #include <recls/cpp/common.hpp>
 
+#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
 /* If this header cannot be found, you may not be using STLSoft 1.10 (or later),
  * or STLSoft 1.9 with STLSoft 1.10 alpha 13 (or later)
  *
@@ -77,7 +78,10 @@
  *
  *     . . . -I $(RECLS_ROOT)/include -I $(STLSOFT_1_10)/include -I $(STLSOFT)/include . . .
  */
-#include <stlsoft/view/transforming/random_access_transforming_view_base.hpp>
+# include <stlsoft/view/transforming/random_access_transforming_view_base.hpp>
+#else
+# error This file not supported with your version of STLSoft
+#endif
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -130,7 +134,7 @@ public: // Construction
         Recls_CopyDetails(rhs.m_entry, &m_entry);
     }
     /// Destructor
-    ~directory_parts() stlsoft_throw_0()
+    ~directory_parts() STLSOFT_NOEXCEPT
     {
         Recls_CloseDetails(m_entry);
     }

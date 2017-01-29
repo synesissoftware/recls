@@ -51,8 +51,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MINOR      0
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   5
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       89
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   7
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       91
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -145,7 +145,7 @@ protected:
 #else /* ? compiler */
 private:
 #endif /* compiler */
-    ~rss_shared_handle() stlsoft_throw_0()
+    ~rss_shared_handle() STLSOFT_NOEXCEPT
     {
         RECLS_MESSAGE_ASSERT("Shared search handle being destroyed with outstanding references!", 0 == cRefs);
 
@@ -237,7 +237,7 @@ public:
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     /// Destructor
-    ~search_sequence() stlsoft_throw_0()
+    ~search_sequence() STLSOFT_NOEXCEPT
     {
 #if !defined(RECLS_COMPILER_IS_COMO) && \
     !defined(RECLS_COMPILER_IS_GCC) && \
@@ -297,10 +297,11 @@ private:
     template <typename S>
     static char_type const* copy_or_null_(file_path_buffer& dest, S const& src, stlsoft::no_type)
     {
-//      STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<char_type, *stlsoft::c_str_ptr(src)>()));
+        STLSOFT_NS_USING(c_str_data);
+        STLSOFT_NS_USING(c_str_len);
 
-        size_t      n   =   stlsoft::minimum(stlsoft::c_str_len(src), dest.size());
-        char_type*  s   =   traits_type::char_copy(&dest[0], stlsoft::c_str_data(src), n);
+        size_t      n   =   stlsoft::minimum(c_str_len(src), dest.size());
+        char_type*  s   =   traits_type::char_copy(&dest[0], c_str_data(src), n);
 
         s[n] = '\0';
 
@@ -395,7 +396,7 @@ public:
     /// Copy constructor
     basic_search_sequence_const_iterator(class_type const& rhs);
     /// Destructor
-    ~basic_search_sequence_const_iterator() stlsoft_throw_0();
+    ~basic_search_sequence_const_iterator() STLSOFT_NOEXCEPT;
 
     // Copy assignment operator
     basic_search_sequence_const_iterator& operator =(class_type const& rhs);
@@ -538,7 +539,7 @@ inline ss_typename_type_k basic_search_sequence_const_iterator<C, T, V>::class_t
 }
 
 template <typename C, typename T, typename V>
-inline basic_search_sequence_const_iterator<C, T, V>::~basic_search_sequence_const_iterator() stlsoft_throw_0()
+inline basic_search_sequence_const_iterator<C, T, V>::~basic_search_sequence_const_iterator() STLSOFT_NOEXCEPT
 {
     if(NULL != m_handle)
     {

@@ -46,8 +46,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_HPP_RECLS_MAJOR    1
 # define RECLS_VER_RECLS_HPP_RECLS_MINOR    1
-# define RECLS_VER_RECLS_HPP_RECLS_REVISION 1
-# define RECLS_VER_RECLS_HPP_RECLS_EDIT     3
+# define RECLS_VER_RECLS_HPP_RECLS_REVISION 2
+# define RECLS_VER_RECLS_HPP_RECLS_EDIT     4
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,9 @@ namespace recls
     using ::recls::cpp::char_t;
     using ::recls::cpp::string_t;
 
+#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     using ::recls::cpp::directory_parts;
+#endif
     using ::recls::cpp::entry;
 #ifdef RECLS_API_FTP
     using ::recls::cpp::ftp_search_sequence;

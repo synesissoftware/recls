@@ -32,19 +32,24 @@
 #endif /* RECLS_STLSOFT_1_12_OR_LATER */
 
 #include <stlsoft/stlsoft.h>    /* If the compiler cannot find this, you are not using STLSoft 1.9.1 or later, as required. */
-#if defined(STLSOFT_VER) && \
-    STLSOFT_VER >= 0x010c0000
+#if 0
+#elif defined(STLSOFT_VER) && \
+      STLSOFT_VER >= 0x010c0000
 # define RECLS_STLSOFT_1_12_OR_LATER
+#elif defined(_STLSOFT_VER) && \
+      _STLSOFT_VER >= 0x010a0181
+# define RECLS_STLSOFT_1_10_B01_OR_LATER
 #elif !defined(_STLSOFT_VER) || \
-   _STLSOFT_VER < 0x010975ff
-# error Requires STLSoft 1.9.117, or later. (www.stlsoft.org)
+   _STLSOFT_VER < 0x01097bff
+# error Requires STLSoft 1.9.123, or later. (www.stlsoft.org)
 #endif /* STLSoft version */
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
 
-#ifdef _STLSOFT_NO_NAMESPACE
+#if defined(__cplusplus) && \
+    defined(_STLSOFT_NO_NAMESPACE)
 # error recls 1.9+ is not compatible with STLSoft namespace suppression
 #endif /* _STLSOFT_NO_NAMESPACE */
 

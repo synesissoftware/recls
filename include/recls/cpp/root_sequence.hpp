@@ -51,8 +51,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MINOR    1
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 1
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     22
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 2
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     23
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/root_sequence.hpp
@@ -171,7 +171,7 @@ public:
     ///  given recls::RECLS_ROOTS_FLAG flags.
     root_sequence(unsigned flags);
     /// Destructor
-    ~root_sequence() stlsoft_throw_0();
+    ~root_sequence() STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name Iteration
@@ -267,7 +267,7 @@ inline root_sequence::root_sequence(unsigned flags)
     m_cRoots = Recls_GetSelectedRoots(m_roots, m_cRoots, flags);
 }
 
-inline root_sequence::~root_sequence() stlsoft_throw_0()
+inline root_sequence::~root_sequence() STLSOFT_NOEXCEPT
 {
     delete [] m_roots;
 }

@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the ReclsFileSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     29th January 2017
  *
  * Home:        http://recls.org/
  *
@@ -74,7 +74,7 @@ namespace impl
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * reclsfilesearch
+ * ReclsFileSearch
  */
 
 inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t cbRootDir)

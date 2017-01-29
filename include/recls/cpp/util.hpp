@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_MAJOR     5
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_MINOR     0
-# define RECLS_VER_RECLS_CPP_HPP_UTIL_REVISION  6
-# define RECLS_VER_RECLS_CPP_HPP_UTIL_EDIT      40
+# define RECLS_VER_RECLS_CPP_HPP_UTIL_REVISION  7
+# define RECLS_VER_RECLS_CPP_HPP_UTIL_EDIT      42
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -164,7 +164,9 @@ template<   typename S0
         >
 inline string_t combine_paths(S0 const& path1, S1 const& path2)
 {
-    return util_impl::combine_paths(stlsoft::c_str_ptr_null(path1), stlsoft::c_str_ptr_null(path2));
+    STLSOFT_NS_USING(c_str_ptr_null);
+
+    return util_impl::combine_paths(c_str_ptr_null(path1), c_str_ptr_null(path2));
 }
 
 /** Determines the relative path between two paths
@@ -183,7 +185,9 @@ template<   typename S0
         >
 inline string_t derive_relative_path(S0 const& origin, S1 const& target)
 {
-    return util_impl::derive_relative_path(stlsoft::c_str_ptr(origin), stlsoft::c_str_ptr(target));
+    STLSOFT_NS_USING(c_str_ptr);
+
+    return util_impl::derive_relative_path(c_str_ptr(origin), c_str_ptr(target));
 }
 
 /** Prepares the path for display into a fixed maximum width field.
@@ -198,7 +202,9 @@ inline string_t derive_relative_path(S0 const& origin, S1 const& target)
 template <typename S>
 inline string_t squeeze_path(S const& path, size_t width)
 {
-    return util_impl::squeeze_path(stlsoft::c_str_ptr(path), width);
+    STLSOFT_NS_USING(c_str_ptr);
+
+    return util_impl::squeeze_path(c_str_ptr(path), width);
 }
 
 /** Returns the wildcard symbol used to represent the "all files" for the
@@ -223,7 +229,9 @@ inline char_t const* wildcardsAll()
 template <typename S>
 inline recls_filesize_t calculate_directory_size(S const& dir)
 {
-    return util_impl::calculate_directory_size(stlsoft::c_str_ptr(dir));
+    STLSOFT_NS_USING(c_str_ptr);
+
+    return util_impl::calculate_directory_size(c_str_ptr(dir));
 }
 
 /** Determines whether the given directory is empty
@@ -235,7 +243,9 @@ inline recls_filesize_t calculate_directory_size(S const& dir)
 template <typename S>
 inline bool is_directory_empty(S const& dir)
 {
-    return util_impl::is_directory_empty(stlsoft::c_str_ptr(dir));
+    STLSOFT_NS_USING(c_str_ptr);
+
+    return util_impl::is_directory_empty(c_str_ptr(dir));
 }
 
 /** Creates a directory, including all intermediate directories
@@ -248,7 +258,9 @@ inline bool is_directory_empty(S const& dir)
 template <typename S>
 inline void create_directory(S const& path)
 {
-    util_impl::create_directory(stlsoft::c_str_ptr(path), NULL);
+    STLSOFT_NS_USING(c_str_ptr);
+
+    util_impl::create_directory(c_str_ptr(path), NULL);
 }
 
 /** Creates a directory, including all intermediate directories
@@ -270,18 +282,24 @@ inline void create_directory(S const& path)
 template <typename S>
 inline void create_directory(S const& path, recls_directoryResults_t* results)
 {
-    util_impl::create_directory(stlsoft::c_str_ptr(path), results);
+    STLSOFT_NS_USING(c_str_ptr);
+
+    util_impl::create_directory(c_str_ptr(path), results);
 }
 
 template <typename S>
 inline void remove_directory(S const& path)
 {
-    util_impl::remove_directory(stlsoft::c_str_ptr(path), 0, NULL);
+    STLSOFT_NS_USING(c_str_ptr);
+
+    util_impl::remove_directory(c_str_ptr(path), 0, NULL);
 }
 template <typename S>
 inline void remove_directory(S const& path, int flags, recls_directoryResults_t* results)
 {
-    util_impl::remove_directory(stlsoft::c_str_ptr(path), flags, results);
+    STLSOFT_NS_USING(c_str_ptr);
+
+    util_impl::remove_directory(c_str_ptr(path), flags, results);
 }
 
 /* /////////////////////////////////////////////////////////////////////////

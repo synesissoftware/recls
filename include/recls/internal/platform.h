@@ -4,7 +4,7 @@
  * Purpose:     Platform discrimination for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     10th January 2017
+ * Updated:     29th January 2017
  *
  * Home:        http://recls.org/
  *

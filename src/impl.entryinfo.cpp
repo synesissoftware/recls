@@ -73,9 +73,9 @@
 # include <winstl/shims/conversion/to_uint64/WIN32_FIND_DATA.hpp>
 #endif /* OS */
 
-#if _STLSOFT_VER >= 0x010a0000 || \
-    (   defined(_STLSOFT_1_10_VER) && \
-        _STLSOFT_1_10_VER >= 0x010a0110) && \
+#if (   _STLSOFT_VER >= 0x010a0000 || \
+        (   defined(_STLSOFT_1_10_VER) && \
+            _STLSOFT_1_10_VER >= 0x010a0110)) && \
     defined(_WIN32)
 # define RECLS_USE_WINSTL_LINK_FUNCTIONS_
 # include <winstl/filesystem/link_functions.h>

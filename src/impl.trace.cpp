@@ -399,7 +399,7 @@ function_scope::function_scope(
     recls_debug2_trace_printf_(RECLS_LITERAL(">> %s()"), m_fn);
 }
 
-function_scope::~function_scope() stlsoft_throw_0()
+function_scope::~function_scope() STLSOFT_NOEXCEPT
 {
     RECLS_COVER_MARK_LINE();
 
