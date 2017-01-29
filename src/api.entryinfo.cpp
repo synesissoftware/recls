@@ -68,6 +68,27 @@ using ::recls::impl::recls_get_string_property_;
 using ::recls::impl::recls_file_exists_;
 #endif /* !RECLS_NO_NAMESPACE */
 
+namespace
+{
+
+#if 0
+static
+int
+always_true_()
+{
+    return 1;
+}
+#endif
+
+static
+int
+always_false_()
+{
+    return 0;
+}
+
+} /* anonymous namespace */
+
 /* /////////////////////////////////////////////////////////////////////////
  * coverage
  */
@@ -307,7 +328,7 @@ RECLS_FNDECL(recls_bool_t) Recls_EntryExists(recls_entry_t fileInfo)
         0 != fileInfo->GetLastStatusChangeTime_ ||
         0 != fileInfo->modificationTime ||
 #endif
-        0)
+        always_false_())
     {
         RECLS_COVER_MARK_LINE();
 

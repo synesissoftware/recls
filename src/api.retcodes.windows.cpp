@@ -79,7 +79,24 @@ RECLS_MARK_FILE_START()
  * helper functions
  */
 
+#if 0 || \
+	defined(STLSOFT_COMPILER_IS_CLANG) || \
+	defined(STLSOFT_COMPILER_IS_GCC) || \
+	0
 
+# define SWITCH_BEGIN_()        if(0) {}
+# define SWITCH_END_()          return static_cast<DWORD>(E_FAIL);
+
+# define CASE_1_(r)             else if(rc == (r)) {}
+# define CASE_2_(r, wec)        else if(rc == (r)) { return (wec); }
+#else /* ? compiler */
+
+# define SWITCH_BEGIN_()        switch(STLSOFT_REINTERPRET_CAST(recls_uintptr_t, rc)) {
+# define SWITCH_END_()          } return static_cast<DWORD>(E_FAIL);
+
+# define CASE_1_(r)             case STLSOFT_REINTERPRET_CAST(recls_uintptr_t, r): break;
+# define CASE_2_(r, wec)        case STLSOFT_REINTERPRET_CAST(recls_uintptr_t, r): return (wec);
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -99,33 +116,32 @@ RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
     /* [in] */ recls_rc_t rc
 )
 {
-    switch(stlsoft::union_cast<winstl::ws_uintptr_t>(rc))
-    {
-        case    RECLS_RC_SEARCH_NO_CURRENT:         break;
-        case    RECLS_RC_PATH_IS_NOT_DIRECTORY:     return ERROR_INVALID_NAME;
-        case    RECLS_RC_NO_MORE_DATA:              return S_FALSE;
-        case    RECLS_RC_OUT_OF_MEMORY:             return static_cast<DWORD>(E_OUTOFMEMORY);
-        case    RECLS_RC_NOT_IMPLEMENTED:           return static_cast<DWORD>(E_NOTIMPL);
-        case    RECLS_RC_INVALID_SEARCH_TYPE:       return ERROR_INVALID_PARAMETER;
-        case    RECLS_RC_INVALID_SEARCH_PROTOCOL:   return ERROR_INVALID_PARAMETER;
-        case    RECLS_RC_UNEXPECTED:                return static_cast<DWORD>(E_UNEXPECTED);
-        case    RECLS_RC_DOT_RECURSIVE_SEARCH:      return ERROR_INVALID_PARAMETER;
-        case    RECLS_RC_SEARCH_CANCELLED:          return ERROR_CANCELLED;
-        case    RECLS_RC_FTP_INIT_FAILED:           break;
-        case    RECLS_RC_FTP_CONNECTION_FAILED:     break;
-        case    RECLS_RC_CANNOT_STAT_ROOT:          break;
-        case    RECLS_RC_PATH_LIMIT_EXCEEDED:       return ERROR_INVALID_NAME;
-        case    RECLS_RC_USER_CANCELLED_SEARCH:     return ERROR_CANCELLED;
-        case    RECLS_RC_NO_HOME:                   break;
-        case    RECLS_RC_INVALID_NAME:              return ERROR_INVALID_NAME;
-        case    RECLS_RC_ACCESS_DENIED:             return ERROR_ACCESS_DENIED;
-        case    RECLS_RC_DIRECTORY_NOT_FOUND:       return ERROR_PATH_NOT_FOUND;
+    SWITCH_BEGIN_()
 
-        case    RECLS_RC_ENTRY_IS_DIRECTORY:        return ERROR_INVALID_NAME;
-        case    RECLS_RC_ENTRY_IS_NOT_DIRECTORY:    return ERROR_DIRECTORY;
-    }
+        CASE_1_(RECLS_RC_SEARCH_NO_CURRENT)
+        CASE_2_(RECLS_RC_PATH_IS_NOT_DIRECTORY,     ERROR_INVALID_NAME)
+        CASE_2_(RECLS_RC_NO_MORE_DATA,              static_cast<DWORD>(S_FALSE))
+        CASE_2_(RECLS_RC_OUT_OF_MEMORY,             static_cast<DWORD>(E_OUTOFMEMORY))
+        CASE_2_(RECLS_RC_NOT_IMPLEMENTED,           static_cast<DWORD>(E_NOTIMPL))
+        CASE_2_(RECLS_RC_INVALID_SEARCH_TYPE,       ERROR_INVALID_PARAMETER)
+        CASE_2_(RECLS_RC_INVALID_SEARCH_PROTOCOL,   ERROR_INVALID_PARAMETER)
+        CASE_2_(RECLS_RC_UNEXPECTED,                static_cast<DWORD>(E_UNEXPECTED))
+        CASE_2_(RECLS_RC_DOT_RECURSIVE_SEARCH,      ERROR_INVALID_PARAMETER)
+        CASE_2_(RECLS_RC_SEARCH_CANCELLED,          ERROR_CANCELLED)
+        CASE_1_(RECLS_RC_FTP_INIT_FAILED)
+        CASE_1_(RECLS_RC_FTP_CONNECTION_FAILED)
+        CASE_1_(RECLS_RC_CANNOT_STAT_ROOT)
+        CASE_2_(RECLS_RC_PATH_LIMIT_EXCEEDED,       ERROR_INVALID_NAME)
+        CASE_2_(RECLS_RC_USER_CANCELLED_SEARCH,     ERROR_CANCELLED)
+        CASE_1_(RECLS_RC_NO_HOME)
+        CASE_2_(RECLS_RC_INVALID_NAME,              ERROR_INVALID_NAME)
+        CASE_2_(RECLS_RC_ACCESS_DENIED,             ERROR_ACCESS_DENIED)
+        CASE_2_(RECLS_RC_DIRECTORY_NOT_FOUND,       ERROR_PATH_NOT_FOUND)
 
-    return static_cast<DWORD>(E_FAIL);
+        CASE_2_(RECLS_RC_ENTRY_IS_DIRECTORY,        ERROR_INVALID_NAME)
+        CASE_2_(RECLS_RC_ENTRY_IS_NOT_DIRECTORY,    ERROR_DIRECTORY)
+
+    SWITCH_END_()
 }
 
 /* /////////////////////////////////////////////////////////////////////////

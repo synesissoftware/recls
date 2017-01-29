@@ -222,7 +222,7 @@ static int setup(void*)
 
     temp_directory td(temp_directory::EmptyOnOpen);
 
-    temp_dir = path_t(CONVERTER_m2t(td));
+    temp_dir = path_t(CONVERTER_m2t(td.c_str()));
 
     return 0;
 }
