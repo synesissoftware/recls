@@ -51,8 +51,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      21
-# define RECLS_VER_RECLS_H_RECLS_REVISION   7
-# define RECLS_VER_RECLS_H_RECLS_EDIT       126
+# define RECLS_VER_RECLS_H_RECLS_REVISION   8
+# define RECLS_VER_RECLS_H_RECLS_EDIT       127
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -121,11 +121,12 @@
 #define RECLS_VER_1_9_3             0x010903ff
 #define RECLS_VER_1_9_4             0x010904ff
 #define RECLS_VER_1_9_5             0x010905ff
+#define RECLS_VER_1_9_6             0x010906ff
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         9
-#define RECLS_VER_REVISION      5
-#define RECLS_VER               RECLS_VER_1_9_5
+#define RECLS_VER_REVISION      6
+#define RECLS_VER               RECLS_VER_1_9_6
 
 /* /////////////////////////////////////////////////////////////////////////
  * strictness

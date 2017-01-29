@@ -42,11 +42,13 @@
  */
 
 #ifndef RECLS_QUALITY_NO_USE_XCOVER
-# ifndef RECLS_QUALITY_USE_XCOVER
-#  if defined(RECLS_VARIANT_TEST) && \
-      defined(STLSOFT_PPF_COUNTER_SYMBOL_SUPPORT) && \
-      defined(STLSOFT_PPF_FUNCTION_SYMBOL_SUPPORT)
-#   define RECLS_QUALITY_USE_XCOVER
+# ifdef RECLS_QUALITY_USE_XCOVER
+#  if 0 ||\
+      !defined(RECLS_VARIANT_TEST) ||\
+      !defined(STLSOFT_PPF_COUNTER_SYMBOL_SUPPORT) ||\
+      !defined(STLSOFT_PPF_FUNCTION_SYMBOL_SUPPORT) ||\
+      0
+#   undef RECLS_QUALITY_USE_XCOVER
 #  endif
 # endif
 #endif

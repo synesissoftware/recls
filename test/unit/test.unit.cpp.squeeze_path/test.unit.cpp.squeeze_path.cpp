@@ -22,6 +22,12 @@
  * Test component header file include(s)
  */
 
+#if defined(__FUNCTION__) && \
+    defined(__COUNTER__)
+# include <recls/recls.h>
+# include <../src/impl.cover.h>
+#endif
+
 #include <recls/recls.hpp>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -29,10 +35,9 @@
  */
 
 /* xCover Header Files */
-#if defined(__FUNCTION__) && \
-    defined(__COUNTER__)
+#ifdef RECLS_QUALITY_USE_XCOVER
 # include <xcover/xcover.h>
-#endif
+#endif /* RECLS_QUALITY_USE_XCOVER */
 
 /* xTests Header Files */
 #include <xtests/xtests.h>

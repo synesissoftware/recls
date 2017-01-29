@@ -22,6 +22,12 @@
  * Test component header file include(s)
  */
 
+#if defined(__FUNCTION__) && \
+    defined(__COUNTER__)
+# include <recls/recls.h>
+# include <../src/impl.cover.h>
+#endif
+
 #include <xtests/test/util/compiler_warnings_suppression.first_include.h>
 
 #ifdef __GNUC__
@@ -35,10 +41,9 @@
  */
 
 /* xCover header files */
-#if defined(__FUNCTION__) && \
-    defined(__COUNTER__)
+#ifdef RECLS_QUALITY_USE_XCOVER
 # include <xcover/xcover.h>
-#endif
+#endif /* RECLS_QUALITY_USE_XCOVER */
 
 /* xTests header files */
 #include <xtests/xtests.h>

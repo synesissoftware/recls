@@ -23,16 +23,16 @@
  */
 
 #include <recls/recls.h>
+#include <../src/impl.cover.h>
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
 /* xCover Header Files */
-#if defined(__FUNCTION__) && \
-    defined(__COUNTER__)
+#ifdef RECLS_QUALITY_USE_XCOVER
 # include <xcover/xcover.h>
-#endif
+#endif /* RECLS_QUALITY_USE_XCOVER */
 
 /* xTests Header Files */
 #include <xtests/xtests.h>
