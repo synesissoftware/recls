@@ -51,8 +51,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      21
-# define RECLS_VER_RECLS_H_RECLS_REVISION   4
-# define RECLS_VER_RECLS_H_RECLS_EDIT       123
+# define RECLS_VER_RECLS_H_RECLS_REVISION   5
+# define RECLS_VER_RECLS_H_RECLS_EDIT       124
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -119,11 +119,13 @@
 #define RECLS_VER_1_9_1             0x010901ff
 #define RECLS_VER_1_9_2             0x010902ff
 #define RECLS_VER_1_9_3             0x010903ff
+#define RECLS_VER_1_9_4             0x010904ff
+#define RECLS_VER_1_9_5             0x010905ff
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         9
-#define RECLS_VER_REVISION      3
-#define RECLS_VER               RECLS_VER_1_9_3
+#define RECLS_VER_REVISION      5
+#define RECLS_VER               RECLS_VER_1_9_5
 
 /* /////////////////////////////////////////////////////////////////////////
  * strictness
@@ -740,7 +742,8 @@ typedef recls_process_fn_param_t    process_fn_param_t;
  * the current operating system. If \c roots is not NULL, then this is the number of roots written into \c roots, and
  * is not more than \c cRoots.
  */
-RECLS_FNDECL(size_t) Recls_GetRoots(
+RECLS_FNDECL(size_t)
+Recls_GetRoots(
     /* [in] */ recls_root_t*    roots
 ,   /* [in] */ size_t           cRoots
 );
@@ -757,7 +760,8 @@ RECLS_FNDECL(size_t) Recls_GetRoots(
  * the current operating system. If \c roots is not NULL, then this is the number of roots written into \c roots, and
  * is not more than \c cRoots.
  */
-RECLS_FNDECL(size_t) Recls_GetSelectedRoots(
+RECLS_FNDECL(size_t)
+Recls_GetSelectedRoots(
     /* [in] */ recls_root_t*    roots
 ,   /* [in] */ size_t           cRoots
 ,   /* [in] */ recls_uint32_t   flags
@@ -767,7 +771,8 @@ RECLS_FNDECL(size_t) Recls_GetSelectedRoots(
 
 #if 0
 /* New Recls1 API. */
-RECLS_FNDECL(size_t)    Recls1_FileSystem_GetRoots(
+RECLS_FNDECL(size_t)
+Recls1_FileSystem_GetRoots(
     /* [in] */ recls_root_t*    roots
 ,   /* [in] */ size_t           cRoots
 ,   /* [in] */ recls_uint32_t   flags
@@ -789,11 +794,13 @@ RECLS_FNDECL(size_t)    Recls1_FileSystem_GetRoots(
 </pre>
 \endhtmlonly
  */
-RECLS_FNDECL(recls_char_t const*) Recls_GetPathNameSeparator(void);
+RECLS_FNDECL(recls_char_t const*)
+Recls_GetPathNameSeparator(void);
 
 #if 0
 /* New Recls1 API. */
-RECLS_FNDECL(recls_char_t const*)   Recls1_FileSystem_GetPathNameSeparator(void);
+RECLS_FNDECL(recls_char_t const*)
+Recls1_FileSystem_GetPathNameSeparator(void);
 #endif /* 0 */
 
 /** Returns the symbol used to separate the directory parts within paths.
@@ -810,11 +817,13 @@ RECLS_FNDECL(recls_char_t const*)   Recls1_FileSystem_GetPathNameSeparator(void)
 </pre>
 \endhtmlonly
  */
-RECLS_FNDECL(recls_char_t const*) Recls_GetPathSeparator(void);
+RECLS_FNDECL(recls_char_t const*)
+Recls_GetPathSeparator(void);
 
 #if 0
 /* New Recls1 API. */
-RECLS_FNDECL(recls_char_t const*)   Recls1_FileSystem_GetPathSeparator(void);
+RECLS_FNDECL(recls_char_t const*)
+Recls1_FileSystem_GetPathSeparator(void);
 #endif /* 0 */
 
 /** Returns the wildcard symbol used to represent the "all files" for the current operating system.
@@ -831,11 +840,13 @@ RECLS_FNDECL(recls_char_t const*)   Recls1_FileSystem_GetPathSeparator(void);
 </pre>
 \endhtmlonly
  */
-RECLS_FNDECL(recls_char_t const*) Recls_GetWildcardsAll(void);
+RECLS_FNDECL(recls_char_t const*)
+Recls_GetWildcardsAll(void);
 
 #if 0
 /* New Recls1 API. */
-RECLS_FNDECL(recls_char_t const*)   Recls1_FileSystem_GetWildcardsAll(void);
+RECLS_FNDECL(recls_char_t const*)
+Recls1_FileSystem_GetWildcardsAll(void);
 #endif /* 0 */
 
 /** @} */
@@ -954,7 +965,8 @@ RECLS_API Recls_SearchProcess(
  *
  * \param hSrch Handle of the search to close. May not be NULL.
  */
-RECLS_FNDECL(void) Recls_SearchClose(
+RECLS_FNDECL(void)
+Recls_SearchClose(
     /* [in] */ hrecls_t hSrch
 );
 
@@ -1088,7 +1100,8 @@ RECLS_API Recls_GetNextDetails(
  *
  * \param hEntry The info entry structure handle. Must not be NULL.
  */
-RECLS_FNDECL(void) Recls_CloseDetails(
+RECLS_FNDECL(void)
+Recls_CloseDetails(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1142,7 +1155,8 @@ RECLS_API Recls_GetLastError(
  *
  * \return The number of characters written to the buffer, or required for the error.
  */
-RECLS_FNDECL(size_t) Recls_GetErrorString(
+RECLS_FNDECL(size_t)
+Recls_GetErrorString(
     /* [in] */ recls_rc_t       rc
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1158,7 +1172,8 @@ RECLS_FNDECL(size_t) Recls_GetErrorString(
  *
  * \return The number of characters written to the buffer, or required for, the error.
  */
-RECLS_FNDECL(size_t) Recls_GetLastErrorString(
+RECLS_FNDECL(size_t)
+Recls_GetLastErrorString(
     /* [in] */ hrecls_t         hSrch
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1171,7 +1186,8 @@ RECLS_FNDECL(size_t) Recls_GetLastErrorString(
  *
  * \param rc The error code
  */
-RECLS_FNDECL(recls_char_t const*) Recls_GetSearchCodeString(/* [in] */ recls_rc_t rc);
+RECLS_FNDECL(recls_char_t const*)
+Recls_GetSearchCodeString(/* [in] */ recls_rc_t rc);
 
 /** Returns the length of the C-style string returned by
  *   Recls_GetSearchCodeString() representing the given search code
@@ -1180,7 +1196,8 @@ RECLS_FNDECL(recls_char_t const*) Recls_GetSearchCodeString(/* [in] */ recls_rc_
  *
  * \param rc The error code
  */
-RECLS_FNDECL(size_t) Recls_GetSearchCodeStringLength(/* [in] */ recls_rc_t rc);
+RECLS_FNDECL(size_t)
+Recls_GetSearchCodeStringLength(/* [in] */ recls_rc_t rc);
 
 /** Translates the recls status code, into an errno
  *
@@ -1190,7 +1207,8 @@ RECLS_FNDECL(size_t) Recls_GetSearchCodeStringLength(/* [in] */ recls_rc_t rc);
  *
  * \return The errno equivalent.
  */
-RECLS_FNDECL(int) Recls_GetErrno(
+RECLS_FNDECL(int)
+Recls_GetErrno(
     /* [in] */ recls_rc_t rc
 );
 
@@ -1216,7 +1234,8 @@ RECLS_FNDECL(int) Recls_GetErrno(
  *
  * \return The number of characters written to the buffer, or required for, the path.
  */
-RECLS_FNDECL(size_t) Recls_GetPathProperty(
+RECLS_FNDECL(size_t)
+Recls_GetPathProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1232,7 +1251,8 @@ RECLS_FNDECL(size_t) Recls_GetPathProperty(
  *
  * \return The number of characters written to the buffer, or required for, the path.
  */
-RECLS_FNDECL(size_t) Recls_GetSearchRelativePathProperty(
+RECLS_FNDECL(size_t)
+Recls_GetSearchRelativePathProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1248,7 +1268,8 @@ RECLS_FNDECL(size_t) Recls_GetSearchRelativePathProperty(
  *
  * \return The number of characters written to the buffer, or required for, the directory.
  */
-RECLS_FNDECL(size_t) Recls_GetDirectoryProperty(
+RECLS_FNDECL(size_t)
+Recls_GetDirectoryProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1266,7 +1287,8 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryProperty(
  *
  * \note On systems that do not have a drive, this function behaves identically to Recls_GetDirectoryProperty()
  */
-RECLS_FNDECL(size_t) Recls_GetDirectoryPathProperty(
+RECLS_FNDECL(size_t)
+Recls_GetDirectoryPathProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1282,7 +1304,8 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryPathProperty(
  *
  * \return The number of characters written to the buffer, or required for, the directory.
  */
-RECLS_FNDECL(size_t) Recls_GetSearchDirectoryProperty(
+RECLS_FNDECL(size_t)
+Recls_GetSearchDirectoryProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1300,7 +1323,8 @@ RECLS_FNDECL(size_t) Recls_GetSearchDirectoryProperty(
  *
  * \note On operating systems that do not support UNC, this function always returns 0, and writes the empty string into buffer (when non-NULL)
  */
-RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
+RECLS_FNDECL(size_t)
+Recls_GetUNCDriveProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1316,7 +1340,8 @@ RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
  *
  * \return The number of characters written to the buffer, or required for, the file.
  */
-RECLS_FNDECL(size_t) Recls_GetFileProperty(
+RECLS_FNDECL(size_t)
+Recls_GetFileProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1334,7 +1359,8 @@ RECLS_FNDECL(size_t) Recls_GetFileProperty(
  *
  * \note On systems where there is no concept of a short name, this function behaves exactly as Recls_GetFileProperty()
  */
-RECLS_FNDECL(size_t) Recls_GetShortFileProperty(
+RECLS_FNDECL(size_t)
+Recls_GetShortFileProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1350,7 +1376,8 @@ RECLS_FNDECL(size_t) Recls_GetShortFileProperty(
  *
  * \return The number of characters written to the buffer, or required for, the filename.
  */
-RECLS_FNDECL(size_t) Recls_GetFileNameProperty(
+RECLS_FNDECL(size_t)
+Recls_GetFileNameProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1366,7 +1393,8 @@ RECLS_FNDECL(size_t) Recls_GetFileNameProperty(
  *
  * \return The number of characters written to the buffer, or required for, the extension.
  */
-RECLS_FNDECL(size_t) Recls_GetFileExtProperty(
+RECLS_FNDECL(size_t)
+Recls_GetFileExtProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ recls_char_t*    buffer
 ,   /* [in] */ size_t           cchBuffer
@@ -1385,7 +1413,8 @@ RECLS_FNDECL(size_t) Recls_GetFileExtProperty(
  *
  * \note The behaviour is undefined if part is outside the range of parts.
  */
-RECLS_FNDECL(size_t) Recls_GetDirectoryPartProperty(
+RECLS_FNDECL(size_t)
+Recls_GetDirectoryPartProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ int              part
 ,   /* [in] */ recls_char_t*    buffer
@@ -1395,7 +1424,8 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryPartProperty(
 
 /** Indicates whether the represented file-system entity existed (at the time that the instance was elicited)
  */
-RECLS_FNDECL(recls_bool_t) Recls_EntryExists(
+RECLS_FNDECL(recls_bool_t)
+Recls_EntryExists(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1409,7 +1439,8 @@ RECLS_FNDECL(recls_bool_t) Recls_EntryExists(
  *
  * \note There is no error return
  */
-RECLS_FNDECL(recls_bool_t) Recls_IsFileReadOnly(
+RECLS_FNDECL(recls_bool_t)
+Recls_IsFileReadOnly(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1423,7 +1454,8 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileReadOnly(
  *
  * \note There is no error return
  */
-RECLS_FNDECL(recls_bool_t) Recls_IsFileDirectory(
+RECLS_FNDECL(recls_bool_t)
+Recls_IsFileDirectory(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1437,7 +1469,8 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileDirectory(
  *
  * \note There is no error return
  */
-RECLS_FNDECL(recls_bool_t) Recls_IsFileLink(
+RECLS_FNDECL(recls_bool_t)
+Recls_IsFileLink(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1451,7 +1484,8 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileLink(
  *
  * \note There is no error return.
  */
-RECLS_FNDECL(recls_bool_t) Recls_DoesEntryExist(
+RECLS_FNDECL(recls_bool_t)
+Recls_DoesEntryExist(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1465,7 +1499,8 @@ RECLS_FNDECL(recls_bool_t) Recls_DoesEntryExist(
  *
  * \note There is no error return
  */
-RECLS_FNDECL(recls_bool_t) Recls_IsFileUNC(
+RECLS_FNDECL(recls_bool_t)
+Recls_IsFileUNC(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1477,7 +1512,8 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileUNC(
  *
  * \note There is no error return. File system entries that do not have a meaningful size will be given a notional size of 0.
  */
-RECLS_FNDECL(recls_filesize_t) Recls_GetSizeProperty(
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetSizeProperty(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1487,7 +1523,8 @@ RECLS_FNDECL(recls_filesize_t) Recls_GetSizeProperty(
  *
  * \param hEntry The file entry info structure to test. May not be NULL
  */
-RECLS_FNDECL(recls_time_t) Recls_GetCreationTime(
+RECLS_FNDECL(recls_time_t)
+Recls_GetCreationTime(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1497,7 +1534,8 @@ RECLS_FNDECL(recls_time_t) Recls_GetCreationTime(
  *
  * \param hEntry The file entry info structure to test. May not be NULL
  */
-RECLS_FNDECL(recls_time_t) Recls_GetModificationTime(
+RECLS_FNDECL(recls_time_t)
+Recls_GetModificationTime(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1507,7 +1545,8 @@ RECLS_FNDECL(recls_time_t) Recls_GetModificationTime(
  *
  * \param hEntry The file entry info structure to test. May not be NULL
  */
-RECLS_FNDECL(recls_time_t) Recls_GetLastAccessTime(
+RECLS_FNDECL(recls_time_t)
+Recls_GetLastAccessTime(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1517,7 +1556,8 @@ RECLS_FNDECL(recls_time_t) Recls_GetLastAccessTime(
  *
  * \param hEntry The file entry info structure to test. May not be NULL
  */
-RECLS_FNDECL(recls_time_t) Recls_GetLastStatusChangeTime(
+RECLS_FNDECL(recls_time_t)
+Recls_GetLastStatusChangeTime(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1529,7 +1569,8 @@ RECLS_FNDECL(recls_time_t) Recls_GetLastStatusChangeTime(
  * \note This will return 0 if the entry is not a file, or its contents could
  * not be read, or RECLS_F_CALC_CHECKSUM was not specified.
  */
-RECLS_FNDECL(recls_uint32_t) Recls_GetChecksum(
+RECLS_FNDECL(recls_uint32_t)
+Recls_GetChecksum(
     /* [in] */ recls_entry_t hEntry
 );
 #endif /* 0 */
@@ -1582,7 +1623,8 @@ typedef struct recls_log_severities_t   recls_log_severities_t;
  *
  * \pre (NULL != severities)
  */
-RECLS_FNDECL(void) Recls_LogSeverities_Init(
+RECLS_FNDECL(void)
+Recls_LogSeverities_Init(
     recls_log_severities_t*         severities
 ,   int                             fatalSeverity
 ,   int                             errorSeverity
@@ -1719,7 +1761,8 @@ private:
  *
  * \pre (NULL == severities) || (NULL != pfn)
  */
-RECLS_FNDECL(void) Recls_SetApiLogFunction(
+RECLS_FNDECL(void)
+Recls_SetApiLogFunction(
     recls_log_pfn_t                 pfn
 ,   int                             flags
 ,   recls_log_severities_t const*   severities
@@ -1743,7 +1786,8 @@ RECLS_FNDECL(void) Recls_SetApiLogFunction(
  *
  * \param dir The directory to assess
  */
-RECLS_FNDECL(recls_bool_t) Recls_IsDirectoryEmpty(
+RECLS_FNDECL(recls_bool_t)
+Recls_IsDirectoryEmpty(
     /* [in] */ recls_char_t const* dir
 );
 
@@ -1753,7 +1797,8 @@ RECLS_FNDECL(recls_bool_t) Recls_IsDirectoryEmpty(
  *
  * \param hEntry The directory entry to assess
  */
-RECLS_FNDECL(recls_bool_t) Recls_IsDirectoryEntryEmpty(
+RECLS_FNDECL(recls_bool_t)
+Recls_IsDirectoryEntryEmpty(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1764,7 +1809,8 @@ RECLS_FNDECL(recls_bool_t) Recls_IsDirectoryEntryEmpty(
  *
  * \param dir The directory to assess
  */
-RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySize(
+RECLS_FNDECL(recls_filesize_t)
+Recls_CalcDirectorySize(
     /* [in] */ recls_char_t const* dir
 );
 
@@ -1775,7 +1821,8 @@ RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySize(
  *
  * \param hEntry The directory entry to assess
  */
-RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectoryEntrySize(
+RECLS_FNDECL(recls_filesize_t)
+Recls_CalcDirectoryEntrySize(
     /* [in] */ recls_entry_t hEntry
 );
 
@@ -1792,7 +1839,8 @@ RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectoryEntrySize(
  * \return A status code indicating success/failure
  *
  */
-RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySizeFeedback(
+RECLS_FNDECL(recls_filesize_t)
+Recls_CalcDirectorySizeFeedback(
     /* [in] */ recls_char_t const*      dir
 ,   /* [in] */ recls_uint32_t           flags
 ,   /* [in] */ hrecls_progress_fn_t     pfn
@@ -1815,19 +1863,22 @@ RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySizeFeedback(
  *
  * \ingroup group__recls
  */
-RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeGigaBytes(recls_filesize_t size);
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeGigaBytes(recls_filesize_t size);
 
 /** Calculates the whole number of megabytes in the file size.
  *
  * \ingroup group__recls
  */
-RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeMegaBytes(recls_filesize_t size);
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeMegaBytes(recls_filesize_t size);
 
 /** Calculates the whole number of kilobytes in the file size.
  *
  * \ingroup group__recls
  */
-RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeKiloBytes(recls_filesize_t size);
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeKiloBytes(recls_filesize_t size);
 
 /** @} */
 
@@ -1857,7 +1908,8 @@ RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeKiloBytes(recls_filesize_t size)
  * \remarks If \c path2 is an absolute path, \c path1 is ignored and
  *   \c result contains characters copied from \c path2.
  */
-RECLS_FNDECL(size_t) Recls_CombinePaths(
+RECLS_FNDECL(size_t)
+Recls_CombinePaths(
     /* [in] */ recls_char_t const*  path1
 ,   /* [in] */ recls_char_t const*  path2
 ,   /* [in] */ recls_char_t*        result
@@ -1877,7 +1929,8 @@ RECLS_FNDECL(size_t) Recls_CombinePaths(
  *   absolute path (identical to \c target, in fact) if \c target and
  *   \c origin are located on different drives
  */
-RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
+RECLS_FNDECL(size_t)
+Recls_DeriveRelativePath(
     /* [in] */ recls_char_t const*  origin
 ,   /* [in] */ recls_char_t const*  target
 ,   /* [in] */ recls_char_t*        result
@@ -1896,7 +1949,8 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
  *
  * \pre NULL != path
  */
-RECLS_FNDECL(size_t) Recls_SqueezePath(
+RECLS_FNDECL(size_t)
+Recls_SqueezePath(
     /* [in] */ recls_char_t const*  path
 ,   /* [in] */ recls_char_t*        result
 ,   /* [in] */ size_t               cchResult
