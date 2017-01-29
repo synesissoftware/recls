@@ -5,7 +5,7 @@
 #           compiler, on UNIX
 #
 # Created:  23rd September 2003
-# Updated:  30th September 2015
+# Updated:  29th January 2017
 #
 ############################################################################
 
@@ -17,15 +17,14 @@
 !ifndef STLSOFT
 !error STLSOFT must be defined
 !endif # !STLSOFT
+
 !ifndef PTHREADS_WIN32
 !error PTHREADS_WIN32 must be defined
 !endif # !PTHREADS_WIN32
+
 !ifndef UNIXEM
 !error UNIXEM must be defined
 !endif # !UNIXEM
-!ifndef SYNESIS_DEV
-!error SYNESIS_DEV must be defined
-!endif # !SYNESIS_DEV
 
 ############################################################################
 # Symbols
@@ -126,7 +125,7 @@ PROJ_INCLUDE            =   -I$(PROJ_INCLUDE_DIR)
 
 ENV_INCLUDES            =
 
-COMMON_INCLUDES         =   -I$(SYNESIS_DEV)/include -I$(SYNESIS_DEV)/libraries/include
+COMMON_INCLUDES         =   
 
 
 
@@ -139,14 +138,13 @@ LIBS_LEADER             =
 # lib paths
 
 ENV_LIBPATHS        =
-COMMON_LIBPATHS         =   -libpath:$(SYNESIS_DEV)/lib 
+COMMON_LIBPATHS         =   
 
 
 LIBPATHS=\
 $(LIBS_LEADER)\
 -libpath:"$(PTHREADS_WIN32)\lib"\
 -libpath:"$(UNIXEM)\lib"\
--libpath:"$(SYNESIS_DEV)\lib"\
 $(COMMON_LIBPATHS)\
 $(ENV_LIBPATHS)\
 \
@@ -165,8 +163,15 @@ TARGET_LIB_MT_UX_DEBUG=\
 
 # #defines
 
-COMMON_DEFS 		=	-DUNIX
+OS_DEFS				=	-DUNIX
 
+COMMON_DEFS 		=
+
+CUSTOM_DEFS			=
+
+CC_CUSTOM_DEFS		=	$(CUSTOM_DEFS)
+
+CPPC_CUSTOM_DEFS	=	$(CUSTOM_DEFS)
 
 
 
@@ -228,10 +233,13 @@ CPPC_FLAGS_MT_UX_DEBUG=\
  \
 
 
+
 # CC defines
 
 CC_DEFS_BASE=\
  $(COMMON_DEFS)\
+ $(OS_DEFS)\
+ $(CC_CUSTOM_DEFS)\
  -DEMULATE_UNIX_ON_WIN32\
  \
 
@@ -244,11 +252,12 @@ CC_DEFS_MT_UX_DEBUG=\
  \
 
 
-
 # CPPC defines
 
 CPPC_DEFS_BASE=\
  $(COMMON_DEFS)\
+ $(OS_DEFS)\
+ $(CPPC_CUSTOM_DEFS)\
  -DEMULATE_UNIX_ON_WIN32\
  \
 
@@ -259,6 +268,7 @@ CPPC_DEFS_MT_UX=\
 CPPC_DEFS_MT_UX_DEBUG=\
  $(CPPC_DEFS_BASE)\
  \
+
 
 
 
@@ -275,8 +285,6 @@ CC_INCLUDES_BASE=\
  $(COMMON_INCLUDES)\
 -I"$(PTHREADS_WIN32)\include"\
 -I"$(UNIXEM)\include"\
--I"$(SYNESIS_DEV)\include"\
--I"$(SYNESIS_DEV)\libraries\include"\
  $(ENV_INCLUDES)\
  \
 
@@ -330,8 +338,6 @@ CPPC_INCLUDES_BASE=\
  $(COMMON_INCLUDES)\
 -I"$(PTHREADS_WIN32)\include"\
 -I"$(UNIXEM)\include"\
--I"$(SYNESIS_DEV)\include"\
--I"$(SYNESIS_DEV)\libraries\include"\
  $(ENV_INCLUDES)\
  \
 
@@ -376,34 +382,34 @@ CPPC_XTESTS_INCLUDES_MT_UX_DEBUG=\
 
 CC_ARGS_MT_UX=\
  $(CC_FLAGS_MT_UX)\
- $(CPPC_F_EXCEPTIONS_ON) -MT -DNDEBUG $(CC_F_MAXIMUM_SPEED) -D_STLSOFT_FORCE_ANY_COMPILER -D_REENTRANT\
  $(CC_DEFS_MT_UX)\
  -DRECLS_NO_IMPLICIT_LINK\
  -DSHWILD_QUALITY_NO_USE_XCOVER\
+ -MT -Zi -Fd$*.pdb -D_STLSOFT_FORCE_ANY_COMPILER -D_REENTRANT -DNDEBUG $(CC_F_MAXIMUM_SPEED) $(CC_CUSTOM_DEFS_RELEASE)\
  $(CC_INCLUDES_MT_UX)
 CC_ARGS_MT_UX_DEBUG=\
  $(CC_FLAGS_MT_UX_DEBUG)\
- $(CPPC_F_EXCEPTIONS_ON) -MTd -D_DEBUG -D_STLSOFT_FORCE_ANY_COMPILER -D_REENTRANT -Zi -Fd$*.pdb\
  $(CC_DEFS_MT_UX_DEBUG)\
  -DRECLS_NO_IMPLICIT_LINK\
  -DSHWILD_QUALITY_NO_USE_XCOVER\
+ -MTd -Zi -Fd$*.pdb -D_STLSOFT_FORCE_ANY_COMPILER -D_REENTRANT -D_DEBUG $(CC_F_MAXIMUM_SPEED) $(CC_CUSTOM_DEFS_DEBUG)\
  $(CC_INCLUDES_MT_UX_DEBUG)
 
 # CPPC args (= flags + defines + includes)
 
 CPPC_ARGS_MT_UX=\
  $(CPPC_FLAGS_MT_UX)\
- $(CPPC_F_EXCEPTIONS_ON) -MT -DNDEBUG $(CPPC_F_MAXIMUM_SPEED) -D_STLSOFT_FORCE_ANY_COMPILER -D_REENTRANT\
  $(CPPC_DEFS_MT_UX)\
  -DRECLS_NO_IMPLICIT_LINK\
  -DSHWILD_QUALITY_NO_USE_XCOVER\
+ -MT -Zi -Fd$*.pdb -D_STLSOFT_FORCE_ANY_COMPILER -D_REENTRANT -DNDEBUG $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) $(CPPC_F_MAXIMUM_SPEED) $(CPPC_CUSTOM_DEFS_RELEASE)\
  $(CPPC_INCLUDES_MT_UX)
 CPPC_ARGS_MT_UX_DEBUG=\
  $(CPPC_FLAGS_MT_UX_DEBUG)\
- $(CPPC_F_EXCEPTIONS_ON) -MTd -D_DEBUG -D_STLSOFT_FORCE_ANY_COMPILER -D_REENTRANT -Zi -Fd$*.pdb\
  $(CPPC_DEFS_MT_UX_DEBUG)\
  -DRECLS_NO_IMPLICIT_LINK\
  -DSHWILD_QUALITY_NO_USE_XCOVER\
+ -MTd -Zi -Fd$*.pdb -D_STLSOFT_FORCE_ANY_COMPILER -D_REENTRANT -D_DEBUG $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) $(CPPC_F_MAXIMUM_SPEED) $(CPPC_CUSTOM_DEFS_DEBUG)\
  $(CPPC_INCLUDES_MT_UX_DEBUG)
 
 
@@ -447,8 +453,8 @@ LD_INCLUDES_MT_UX_DEBUG=\
 
 # LD args
 
-LD_ARGS_MT_UX= $(LD_FLAGS_MT_UX) libWinSysLog.$(COMP_TAG).mt.lib unixem.1.$(COMP_TAG).mt.lib -release $(LD_INCLUDES_MT_UX)
-LD_ARGS_MT_UX_DEBUG= $(LD_FLAGS_MT_UX_DEBUG) libWinSysLog.$(COMP_TAG).mt.debug.lib unixem.1.$(COMP_TAG).mt.debug.lib -debug $(LD_INCLUDES_MT_UX_DEBUG)
+LD_ARGS_MT_UX= $(LD_FLAGS_MT_UX) unixem.core.1.$(COMP_TAG).mt.lib -release $(LD_INCLUDES_MT_UX)
+LD_ARGS_MT_UX_DEBUG= $(LD_FLAGS_MT_UX_DEBUG) unixem.core.1.$(COMP_TAG).mt.debug.lib -debug $(LD_INCLUDES_MT_UX_DEBUG)
 
 
 
