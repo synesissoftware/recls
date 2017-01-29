@@ -51,9 +51,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MAJOR       4
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       1
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    4
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        43
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       2
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    1
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        44
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -223,6 +223,30 @@ private:
     string_type const         m_patterns;
     int const                 m_flags;
 /// @}
+};
+
+/// Thrown to indicate a RECLS_RC_NO_MORE_DATA condition
+class NO_MORE_DATA_exception
+    : public recls_exception
+{
+public: // Types
+    typedef recls_exception                                 parent_class_type;
+    typedef NO_MORE_DATA_exception                          class_type;
+
+public: // Construction
+    explicit NO_MORE_DATA_exception(recls_rc_t rc)
+        : parent_class_type(rc)
+    {}
+
+    NO_MORE_DATA_exception(
+        recls_rc_t          rc
+    ,   char const*         context
+    ,   recls_char_t const* path
+    ,   recls_char_t const* patterns
+    ,   int                 flags
+    )
+        : parent_class_type(rc, context, path, patterns, flags)
+    {}
 };
 
 /* /////////////////////////////////////////////////////////////////////////

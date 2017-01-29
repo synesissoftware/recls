@@ -45,9 +45,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_HPP_RECLS_MAJOR    1
-# define RECLS_VER_RECLS_HPP_RECLS_MINOR    1
+# define RECLS_VER_RECLS_HPP_RECLS_MINOR    2
 # define RECLS_VER_RECLS_HPP_RECLS_REVISION 2
-# define RECLS_VER_RECLS_HPP_RECLS_EDIT     4
+# define RECLS_VER_RECLS_HPP_RECLS_EDIT     5
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,6 +102,7 @@ namespace recls
     using ::recls::cpp::search_sequence;
     using ::recls::cpp::root_sequence;
     using ::recls::cpp::recls_exception;
+    using ::recls::cpp::NO_MORE_DATA_exception;
 
     using ::recls::cpp::calculate_directory_size;
     using ::recls::cpp::create_directory;

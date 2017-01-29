@@ -51,8 +51,8 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_MAJOR     5
-# define RECLS_VER_RECLS_CPP_HPP_UTIL_MINOR     0
-# define RECLS_VER_RECLS_CPP_HPP_UTIL_REVISION  7
+# define RECLS_VER_RECLS_CPP_HPP_UTIL_MINOR     1
+# define RECLS_VER_RECLS_CPP_HPP_UTIL_REVISION  1
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_EDIT      42
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
@@ -135,6 +135,11 @@ struct util_impl
 
         if(RECLS_FAILED(rc))
         {
+            if(RECLS_RC_NO_MORE_DATA == rc)
+            {
+                throw NO_MORE_DATA_exception(rc, "directory does not exist", path, NULL, flags);
+            }
+
             throw recls_exception(rc, "could not remove directory", path, NULL, flags);
         }     
     }

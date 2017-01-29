@@ -148,6 +148,11 @@ public:
 
             if(RECLS_FAILED(rc))
             {
+                if(RECLS_RC_NO_MORE_DATA == rc)
+                {
+                    throw NO_MORE_DATA_exception(rc, "path does not exist", path, NULL, flags);
+                }
+
                 throw recls_exception(rc, "failed to stat path", path, NULL, flags);
             }
 
@@ -566,8 +571,9 @@ private: // Member Variables
 ///
 /// \return An instance representing the "stat'd" path
 ///
-/// \exception An instance of recls::recls_exception if the information
-///   cannot be retrieved.
+/// \exception recls::NO_MORE_DATA_exception Thrown if no entry is found
+/// \exception recls::recls_exception if the information cannot otherwise be
+///   retrieved.
 template <typename S>
 inline entry stat(S const& path, int flags = 0)
 {
