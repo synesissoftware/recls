@@ -4,7 +4,7 @@
  * Purpose:     recls API functions pertaining to entry info.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     29th January 2017
  *
  * Home:        http://recls.org/
  *
@@ -71,21 +71,16 @@ using ::recls::impl::recls_file_exists_;
 namespace
 {
 
-#if 0
-static
-int
-always_true_()
-{
-    return 1;
-}
-#endif
-
+#ifdef STLSOFT_ALWAYS_FALSE
+# define always_false_()                                    STLSOFT_ALWAYS_FALSE()
+#else
 static
 int
 always_false_()
 {
     return 0;
 }
+#endif
 
 } /* anonymous namespace */
 

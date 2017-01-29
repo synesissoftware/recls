@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created:     31st May 2004
- * Updated:     10th January 2017
+ * Updated:     29th January 2017
  *
  * Home:        http://recls.org/
  *

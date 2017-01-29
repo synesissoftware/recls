@@ -4,7 +4,7 @@
  * Purpose:     #includes the STLSoft root header and verifies the version.
  *
  * Created:     8th November 2007
- * Updated:     28th January 2017
+ * Updated:     29th January 2017
  *
  * Home:        http://recls.org/
  *
@@ -40,8 +40,8 @@
       _STLSOFT_VER >= 0x010a0181
 # define RECLS_STLSOFT_1_10_B01_OR_LATER
 #elif !defined(_STLSOFT_VER) || \
-   _STLSOFT_VER < 0x01097bff
-# error Requires STLSoft 1.9.123, or later. (www.stlsoft.org)
+   _STLSOFT_VER < 0x010981ff
+# error Requires STLSoft 1.9.129, or later. (www.stlsoft.org)
 #endif /* STLSoft version */
 
 /* /////////////////////////////////////////////////////////////////////////

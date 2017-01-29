@@ -5,7 +5,7 @@
  *              Windows.
  *
  * Created:     1st June 2004
- * Updated:     10th January 2017
+ * Updated:     29th January 2017
  *
  * Home:        http://recls.org/
  *
