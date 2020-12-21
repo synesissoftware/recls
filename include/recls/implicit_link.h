@@ -174,20 +174,8 @@
 
 #  elif defined(_MSC_VER)
 #   if 0
-#   elif _MSC_VER == 1000
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc4"
-#   elif _MSC_VER == 1020
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc42"
-#   elif _MSC_VER == 1100
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc5"
-#   elif _MSC_VER == 1200
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc6"
-#   elif _MSC_VER == 1300
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc7"
-#   elif _MSC_VER == 1310
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc71"
-#   elif _MSC_VER == 1400
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc8"
+#   elif _MSC_VER < 1500
+#    error recls 1.10 is not supported for Visual C++ compilers prior to version 9 (Visual Studio 2008)
 #   elif _MSC_VER == 1500
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "vc9"
 #   elif _MSC_VER == 1600
