@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - entry class.
  *
  * Created:     18th August 2003
- * Updated:     19th January 2017
+ * Updated:     22nd August 2017
  *
  * Home:        http://recls.org/
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    10
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 2
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     108
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    11
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 1
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     109
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -483,6 +483,16 @@ public:
         return Recls_GetSizeProperty(m_entry);
     }
 
+
+    /// Access to the underlying recls API handle
+    ///
+    /// \warn The caller must NOT invoke Recls_CloseDetails() on the
+    ///   returned value
+    recls_entry_t
+    get() const
+    {
+        return m_entry;
+    }
 
 public: // Attribute Properties
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
