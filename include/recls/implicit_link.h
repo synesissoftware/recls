@@ -4,7 +4,7 @@
  * Purpose:     Implicit linking for the recls API
  *
  * Created:     20th September 2005
- * Updated:     21st December 2020
+ * Updated:     22nd December 2020
  *
  * Home:        http://fastformat.org/
  *
@@ -56,8 +56,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_MAJOR      1
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_MINOR      5
-# define RECLS_VER_RECLS_H_IMPLICIT_LINK_REVISION   2
-# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       15
+# define RECLS_VER_RECLS_H_IMPLICIT_LINK_REVISION   1
+# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       16
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,7 +118,8 @@
   /* compiler tag */
 
 #  if defined(__BORLANDC__)
-#   if __BORLANDC__ == 0x0550
+#   if 0
+#   elif __BORLANDC__ == 0x0550
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "bc55"
 #   elif (__BORLANDC__ == 0x0551)
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "bc551"
@@ -142,7 +143,8 @@
  */
 
 #  elif defined(__INTEL_COMPILER)
-#   if __INTEL_COMPILER == 600
+#   if 0
+#   elif __INTEL_COMPILER == 600
 #    define   RECLS_IMPL_LINK_COMPILER_NAME         "icl6"
 #   elif __INTEL_COMPILER == 700
 #    define   RECLS_IMPL_LINK_COMPILER_NAME         "icl7"
@@ -159,7 +161,8 @@
 #   endif /* __INTEL_COMPILER */
 
 #  elif defined(__MWERKS__)
-#   if ((__MWERKS__ & 0xFF00) == 0x2400)
+#   if 0
+#   elif ((__MWERKS__ & 0xFF00) == 0x2400)
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "cw7"
 #   elif ((__MWERKS__ & 0xFF00) == 0x3000)
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "cw8"
@@ -170,7 +173,8 @@
 #   endif /* __MWERKS__ */
 
 #  elif defined(_MSC_VER)
-#   if _MSC_VER == 1000
+#   if 0
+#   elif _MSC_VER == 1000
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "vc4"
 #   elif _MSC_VER == 1020
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "vc42"
@@ -194,15 +198,6 @@
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "vc12"
 #   elif _MSC_VER == 1900
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "vc14"
-#   elif _MSC_VER >= 1910
-#    if 0
-#    elif _MSC_VER < 1920
-#     define RECLS_IMPL_LINK_COMPILER_NAME          "vc15"
-#    elif _MSC_VER <= 1928
-#     define RECLS_IMPL_LINK_COMPILER_NAME          "vc16"
-#    else
-#     error Visual C++ version that is >= vc16 is not recognised
-#    endif
 #   else /* ? _MSC_VER */
 #    error Visual C++ version not supported
 #   endif /* _MSC_VER */
@@ -254,7 +249,8 @@
 #  if defined(__MT__) || \
       defined(_REENTRANT) || \
       defined(_MT)
-#   if defined(_DLL) || \
+#   if 0
+#   elif defined(_DLL) || \
        defined(__DLL)
 #    define RECLS_IMPL_LINK_THREADING_TAG           ".dll"
 #   else /* ? dll */
