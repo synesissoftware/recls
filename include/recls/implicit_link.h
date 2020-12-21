@@ -4,11 +4,12 @@
  * Purpose:     Implicit linking for the recls API
  *
  * Created:     20th September 2005
- * Updated:     10th January 2017
+ * Updated:     21st December 2020
  *
  * Home:        http://fastformat.org/
  *
- * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Synesis Software nor the names
- *   of any contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -54,8 +56,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_MAJOR      1
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_MINOR      5
-# define RECLS_VER_RECLS_H_IMPLICIT_LINK_REVISION   1
-# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       13
+# define RECLS_VER_RECLS_H_IMPLICIT_LINK_REVISION   2
+# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       15
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -192,6 +194,15 @@
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "vc12"
 #   elif _MSC_VER == 1900
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "vc14"
+#   elif _MSC_VER >= 1910
+#    if 0
+#    elif _MSC_VER < 1920
+#     define RECLS_IMPL_LINK_COMPILER_NAME          "vc15"
+#    elif _MSC_VER <= 1928
+#     define RECLS_IMPL_LINK_COMPILER_NAME          "vc16"
+#    else
+#     error Visual C++ version that is >= vc16 is not recognised
+#    endif
 #   else /* ? _MSC_VER */
 #    error Visual C++ version not supported
 #   endif /* _MSC_VER */
@@ -300,3 +311,4 @@
 #endif /* !RECLS_INCL_RECLS_H_IMPLICIT_LINK */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
