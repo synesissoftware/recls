@@ -50,6 +50,7 @@ DebugDll/
 DebugDLLUNIX/
 Debug Multithreaded/
 Debug Multithreaded DLL/
+Debug Multithreaded pseudoUnix/
 Unicode Debug/
 Unicode Debug Multithreaded/
 Unicode Debug Multithreaded DLL/
@@ -59,6 +60,7 @@ ReleaseDll/
 ReleaseDLLUNIX/
 Release Multithreaded/
 Release Multithreaded DLL/
+Release Multithreaded pseudoUnix/
 Unicode Release/
 Unicode Release Multithreaded/
 Unicode Release Multithreaded DLL/
