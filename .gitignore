@@ -1,6 +1,11 @@
 
 # directories (by name)
 
+/--include
+/--src
+/-include
+/-src
+
 include/b64/
 include/shwild/
 include/xcontract/
@@ -13,15 +18,29 @@ src/xcontract/
 src/xcover/
 src/xtests/
 
-_internal/
+/_internal/
 
-bin/
+/bin/
+/examples/bin
+/examples/c/bin
+/examples/cpp/bin
 
-doc/
+/doc/
 
 ideas/
 
+ipch/
+
+/lib/
+/examples/lib
+/examples/c/lib
+/examples/cpp/lib
+
+projects/util/vc10-generated/
+
 perf_test/
+
+releases/
 
 scripts/internal/
 
@@ -50,13 +69,22 @@ vc9/
 
 # directories (by pattern)
 
+/build/ar*
+/build/bc5*
+/build/como*
+/build/cw*
+/build/icl*
+/build/vc5*
+/build/*.zip
+
 # files (by name)
 
 .update_deps
-update_deps.cmd
 
 list_changes.cmd
 prepare.cmd
+tidydir.cmd
+update_deps.cmd
 
 build/makefile.tmpl
 build/makefile.tools.xml
@@ -88,6 +116,7 @@ src/backends/ber/ber.loader.c
 *.obj
 *.opensdf
 *.opt
+*.org
 *.out
 *.pch
 *.pdb
@@ -103,5 +132,4 @@ src/backends/ber/ber.loader.c
 *.vc71.sln
 *.vc8.sln
 *.vc9.sln
-
 
