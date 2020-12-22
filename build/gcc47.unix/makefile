@@ -2,7 +2,7 @@
 # File:     makefile
 #
 # Purpose:  Makefile for the recls project,
-#           for the GCC 4.7 (UNIX) compiler,
+#           for the GCC 4.7 compiler,
 #           on the UNIX platform
 #
 # Created:  23rd September 2003
