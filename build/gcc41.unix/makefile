@@ -1,36 +1,36 @@
 ############################################################################
 # File:     makefile
 #
-# Purpose:  Makefile for the recls project, for the GCC 4.1 (UNIX)
-#           compiler, on UNIX
+# Purpose:  Makefile for the recls project,
+#           for the GCC 4.1 (UNIX) compiler,
+#           on the UNIX platform
 #
 # Created:  23rd September 2003
-# Updated:  29th January 2017
+# Updated:  21st December 2020
 #
 ############################################################################
 
 
 ############################################################################
-# Environment check
-#
+# environment check
 
 ifndef STLSOFT
 $(error STLSOFT must be defined)
 endif # !STLSOFT
 
 ############################################################################
-# Symbols
+# symbols
 
 ########################################
-# Project & compiler version
+# project & compiler version
 
 COMP_TAG            =   gcc41
 ARCH_TAG            =   
-OS_TAG				=   
+OS_TAG              =   
 PROJ_TAG            =   recls
 PROJ_VER_MAJOR      =   1
 PROJ_TAG_VER        =   $(PROJ_TAG).$(PROJ_VER_MAJOR)
-COMP_ARCH_OS_TAG	=	$(COMP_TAG)$(OS_TAG)$(ARCH_TAG)
+COMP_ARCH_OS_TAG    =   $(COMP_TAG)$(OS_TAG)$(ARCH_TAG)
 
 SHWILD_VER_MAJOR    =   0
 SHWILD_TAG_VER      =   shwild.$(SHWILD_VER_MAJOR)
@@ -38,20 +38,20 @@ SHWILD_TAG_VER      =   shwild.$(SHWILD_VER_MAJOR)
 XTESTS_VER_MAJOR    =   0
 XTESTS_TAG_VER      =   xtests.$(XTESTS_VER_MAJOR)
 
-UNIXEM_VER_MAJOR	=	1
+UNIXEM_VER_MAJOR    =   1
 UNIXEM_TAG_VER      =   unixem.$(UNIXEM_VER_MAJOR)
 
 PROJ_MAKEFILE_NAME  =   makefile
 
 ########################################
-# Testing verbosity
+# testing verbosity
 
 ifndef TEST_VERBOSITY
 TEST_VERBOSITY      =   2
 endif # !TEST_VERBOSITY
 
 ########################################
-# Directories
+# directories
 
 PROJ_BASE_DIR           =   ../..
 PROJ_BIN_DIR            =   $(PROJ_BASE_DIR)/bin
@@ -109,7 +109,7 @@ RM                      =   rm -f
 CP                      =   cp
 RC                      =   
 
-# Includes
+# includes
 
 INCLUDES_LEADER         =   
 
@@ -123,7 +123,7 @@ COMMON_INCLUDES         =
 
 
 
-# Lib
+# lib
 
 LIBS_LEADER             =   
 
@@ -163,7 +163,17 @@ TARGET_LIB_ST_R=\
 
 OS_DEFS				=	-Dunix
 
-COMMON_DEFS 		=
+COMMON_DEFS_		= \
+ -DB64_NO_USE_XCONTRACT\
+ -DB64_NO_USE_XCOVER\
+ -DRECLS_NO_IMPLICIT_LINK\
+ -DSHWILD_QUALITY_NO_USE_XCONTRACT\
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
+ \
+
+COMMON_DEFS			= \
+ $(COMMON_DEFS_)\
+ \
 
 CUSTOM_DEFS			=
 
@@ -454,62 +464,54 @@ CPPC_XTESTS_INCLUDES_ST_R=\
 
 CC_ARGS_MT_D=\
  $(CC_FLAGS_MT_D)\
+ $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG\
+ \
  $(CC_DEFS_MT_D)\
- -DRECLS_NO_IMPLICIT_LINK\
- -DSHWILD_QUALITY_NO_USE_XCOVER\
- -D_REENTRANT -D_DEBUG -UNDEBUG $(CC_CUSTOM_DEFS_DEBUG)\
  $(CC_INCLUDES_MT_D)
 CC_ARGS_MT_R=\
  $(CC_FLAGS_MT_R)\
+ -D_REENTRANT -U_DEBUG -DNDEBUG $(CC_F_MAXIMUM_SPEED) $(CC_CUSTOM_DEFS_RELEASE)\
+ \
  $(CC_DEFS_MT_R)\
- -DRECLS_NO_IMPLICIT_LINK\
- -DSHWILD_QUALITY_NO_USE_XCOVER\
- -D_REENTRANT -DNDEBUG -U_DEBUG $(CC_F_MAXIMUM_SPEED) $(CC_CUSTOM_DEFS_RELEASE)\
  $(CC_INCLUDES_MT_R)
 CC_ARGS_ST_D=\
  $(CC_FLAGS_ST_D)\
+ $(CC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG\
+ \
  $(CC_DEFS_ST_D)\
- -DRECLS_NO_IMPLICIT_LINK\
- -DSHWILD_QUALITY_NO_USE_XCOVER\
- -D_DEBUG -UNDEBUG $(CC_CUSTOM_DEFS_DEBUG)\
  $(CC_INCLUDES_ST_D)
 CC_ARGS_ST_R=\
  $(CC_FLAGS_ST_R)\
+ $(CC_F_MAXIMUM_SPEED) $(CC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG\
+ \
  $(CC_DEFS_ST_R)\
- -DRECLS_NO_IMPLICIT_LINK\
- -DSHWILD_QUALITY_NO_USE_XCOVER\
- -DNDEBUG -U_DEBUG $(CC_F_MAXIMUM_SPEED) $(CC_CUSTOM_DEFS_RELEASE)\
  $(CC_INCLUDES_ST_R)
 
 # CPPC args (= flags + defines + includes)
 
 CPPC_ARGS_MT_D=\
  $(CPPC_FLAGS_MT_D)\
+ $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG\
+ \
  $(CPPC_DEFS_MT_D)\
- -DRECLS_NO_IMPLICIT_LINK\
- -DSHWILD_QUALITY_NO_USE_XCOVER\
- -D_REENTRANT -D_DEBUG -UNDEBUG $(CPPC_CUSTOM_DEFS_DEBUG)\
  $(CPPC_INCLUDES_MT_D)
 CPPC_ARGS_MT_R=\
  $(CPPC_FLAGS_MT_R)\
+ -D_REENTRANT -U_DEBUG -DNDEBUG $(CPPC_F_MAXIMUM_SPEED) $(CPPC_CUSTOM_DEFS_RELEASE)\
+ \
  $(CPPC_DEFS_MT_R)\
- -DRECLS_NO_IMPLICIT_LINK\
- -DSHWILD_QUALITY_NO_USE_XCOVER\
- -D_REENTRANT -DNDEBUG -U_DEBUG $(CPPC_F_MAXIMUM_SPEED) $(CPPC_CUSTOM_DEFS_RELEASE)\
  $(CPPC_INCLUDES_MT_R)
 CPPC_ARGS_ST_D=\
  $(CPPC_FLAGS_ST_D)\
+ $(CPPC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG\
+ \
  $(CPPC_DEFS_ST_D)\
- -DRECLS_NO_IMPLICIT_LINK\
- -DSHWILD_QUALITY_NO_USE_XCOVER\
- -D_DEBUG -UNDEBUG $(CPPC_CUSTOM_DEFS_DEBUG)\
  $(CPPC_INCLUDES_ST_D)
 CPPC_ARGS_ST_R=\
  $(CPPC_FLAGS_ST_R)\
+ $(CPPC_F_MAXIMUM_SPEED) $(CPPC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG\
+ \
  $(CPPC_DEFS_ST_R)\
- -DRECLS_NO_IMPLICIT_LINK\
- -DSHWILD_QUALITY_NO_USE_XCOVER\
- -DNDEBUG -U_DEBUG $(CPPC_F_MAXIMUM_SPEED) $(CPPC_CUSTOM_DEFS_RELEASE)\
  $(CPPC_INCLUDES_ST_R)
 
 
@@ -600,7 +602,7 @@ LD_ARGS_ST_R= $(LD_FLAGS_ST_R)  $(LD_INCLUDES_ST_R)
 
 
 ############################################################################
-# Headers
+# headers
 
 CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)/recls/assert.h\
@@ -651,10 +653,10 @@ XTESTS_HEADERS=\
  \
 
 ############################################################################
-# Targets
+# targets
 
 ########################################
-# Libraries
+# libraries
 
 # recls
 LIB_CORE_MT_D           =   $(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).mt.debug.a
@@ -675,7 +677,7 @@ LIB_XTESTS_ST_D         =   $(PROJ_LIB_DIR)/lib$(XTESTS_TAG_VER).recls.$(COMP_AR
 LIB_XTESTS_ST_R         =   $(PROJ_LIB_DIR)/lib$(XTESTS_TAG_VER).recls.$(COMP_ARCH_OS_TAG).a
 
 ########################################
-# Examples
+# examples
 
 TARG_EX_ex_c_1_MT_D	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).ex.c.example_c_1.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_EX_ex_c_2_MT_D	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).ex.c.example_c_2.$(COMP_ARCH_OS_TAG).mt.debug
@@ -724,10 +726,10 @@ TARG_EX_ex_cpp_2_ST_R	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).ex.cpp.example_cpp_2.$(C
 TARG_EX_ex_cpp_3_ST_R	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).ex.cpp.example_cpp_3.$(COMP_ARCH_OS_TAG)
 
 ########################################
-# Tests
+# tests
 
 ##############################
-# Component Tests
+# component tests
 
 TARG_TEST_COMP_api_crdir_MT_D	=   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.util.cpp.create_directory.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_COMP_api_rmdir_MT_D	=   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG).mt.debug
@@ -739,7 +741,7 @@ TARG_TEST_COMP_api_crdir_ST_R	=   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component
 TARG_TEST_COMP_api_rmdir_ST_R	=   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.util.cpp.remove_directory.$(COMP_ARCH_OS_TAG)
 
 ##############################
-# Scratch Tests
+# scratch tests
 
 TARG_TEST_SCRT_srch1_MT_D    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_SCRT_srch2_MT_D    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).mt.debug
@@ -751,7 +753,7 @@ TARG_TEST_SCRT_srch1_ST_R    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.se
 TARG_TEST_SCRT_srch2_ST_R    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG)
 
 ##############################
-# Unit Tests
+# unit tests
 
 TARG_TEST_UNIT_api_cmbpaths_MT_D  =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.api.combine_paths.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_api_drvrel_MT_D    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.api.derive_relative_path.$(COMP_ARCH_OS_TAG).mt.debug
@@ -788,10 +790,10 @@ TARG_TEST_UNIT_c_retcodes_ST_R    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.
 
 
 ############################################################################
-# Objects
+# objects
 
 ########################################
-# Libraries
+# libraries
 
 # recls
 
@@ -1067,7 +1069,7 @@ OBJ_XTESTS_ST_R=\
 
 
 ########################################
-# Examples
+# examples
 
 OBJ_EX_ex_c_1_MT_D =   $(PROJ_OBJ_DIR)/ex.c.example_c_1.mt.debug.o
 OBJ_EX_ex_c_2_MT_D =   $(PROJ_OBJ_DIR)/ex.c.example_c_2.mt.debug.o
@@ -1116,10 +1118,10 @@ OBJ_EX_ex_cpp_2_ST_R =   $(PROJ_OBJ_DIR)/ex.cpp.example_cpp_2.o
 OBJ_EX_ex_cpp_3_ST_R =   $(PROJ_OBJ_DIR)/ex.cpp.example_cpp_3.o
 
 ########################################
-# Tests
+# tests
 
 ##############################
-# Component Tests
+# component tests
 
 OBJ_TEST_COMP_api_crdir_MT_D =   $(PROJ_OBJ_DIR)/test.component.util.cpp.create_directory.mt.debug.o
 OBJ_TEST_COMP_api_rmdir_MT_D =   $(PROJ_OBJ_DIR)/test.component.util.cpp.remove_directory.mt.debug.o
@@ -1131,7 +1133,7 @@ OBJ_TEST_COMP_api_crdir_ST_R =   $(PROJ_OBJ_DIR)/test.component.util.cpp.create_
 OBJ_TEST_COMP_api_rmdir_ST_R =   $(PROJ_OBJ_DIR)/test.component.util.cpp.remove_directory.o
 
 ##############################
-# Scratch Tests
+# scratch tests
 
 OBJ_TEST_SCRT_srch1_MT_D   =   $(PROJ_OBJ_DIR)/test.scratch.search.1.mt.debug.o
 OBJ_TEST_SCRT_srch2_MT_D   =   $(PROJ_OBJ_DIR)/test.scratch.search.2.mt.debug.o
@@ -1143,7 +1145,7 @@ OBJ_TEST_SCRT_srch1_ST_R   =   $(PROJ_OBJ_DIR)/test.scratch.search.1.o
 OBJ_TEST_SCRT_srch2_ST_R   =   $(PROJ_OBJ_DIR)/test.scratch.search.2.o
 
 ##############################
-# Unit Tests
+# unit tests
 
 OBJ_TEST_UNIT_api_cmbpaths_MT_D	=   $(PROJ_OBJ_DIR)/test.unit.api.combine_paths.mt.debug.o
 OBJ_TEST_UNIT_api_drvrel_MT_D		=   $(PROJ_OBJ_DIR)/test.unit.api.derive_relative_path.mt.debug.o
@@ -1179,10 +1181,10 @@ OBJ_TEST_UNIT_cpp_retcodes_ST_R	=   $(PROJ_OBJ_DIR)/test.unit.cpp.retcodes.o
 OBJ_TEST_UNIT_c_retcodes_ST_R		=   $(PROJ_OBJ_DIR)/test.unit.c.retcodes.o
 
 ##################################################
-# Target groups
+# target groups
 
 ########################################
-# Objects
+# objects
 
 # recls
 OBJS_CORE=\
@@ -1316,7 +1318,7 @@ OBJS_TEST_UNIT=\
 # $(OBJ_TEST_UNIT_api_drvrel [ ` [ MakeSymbolTag ] ` ] ) \
 
 ########################################
-# Libraries
+# libraries
 
 TARGETS_LIB_CORE=\
  $(LIB_CORE_MT_D)\
@@ -1340,7 +1342,7 @@ TARGETS_LIB_XTESTS=\
  \
 
 ########################################
-# Programs
+# programs
 
 TARGETS_EXAMPLE_C=\
  $(TARG_EX_ex_c_1_MT_D)\
@@ -1457,7 +1459,7 @@ TARGETS_TEST_UNIT=\
 # $(TARG_TEST_UNIT_api_drvrel [ ` [ MakeSymbolTag ] ` ])\
 
 ############################################################################
-# External Targets (invokable by make)
+# external targets (invokable by make)
 
 # primary
 
@@ -1481,11 +1483,9 @@ compile.libs.core:          $(PROJ_MAKEFILE_NAME)   $(OBJS_CORE)
 
 compile.libs.shwild:        $(PROJ_MAKEFILE_NAME)   $(OBJS_SHWILD)
 
-compile.libs.xcover:        $(PROJ_MAKEFILE_NAME)   $(OBJS_XCOVER)
-
 compile.libs.xtests:        $(PROJ_MAKEFILE_NAME)   $(OBJS_XTESTS)
 
-compile.libs:                                       compile.libs.core compile.libs.shwild compile.libs.xcover compile.libs.xtests
+compile.libs:                                       compile.libs.core compile.libs.shwild compile.libs.xtests
 
 compile.examples:           $(PROJ_MAKEFILE_NAME)   $(OBJS_EXAMPLE)
 
@@ -1513,11 +1513,9 @@ build.libs.core:            check.lib.dir           $(TARGETS_LIB_CORE)
 
 build.libs.shwild:          check.lib.dir           $(TARGETS_LIB_SHWILD)
 
-build.libs.xcover:          check.lib.dir           $(TARGETS_LIB_XCOVER)
-
 build.libs.xtests:          check.lib.dir           $(TARGETS_LIB_XTESTS)
 
-build.libs:                                         build.libs.core build.libs.shwild build.libs.xcover build.libs.xtests
+build.libs:                                         build.libs.core build.libs.shwild build.libs.xtests
 
 build.examples:             check.bin.dir           $(TARGETS_EXAMPLE)
 
@@ -1768,9 +1766,6 @@ clean.libs.shwild:
 	@-$(RM) $(OBJ_SHWILD_ST_D)
 	@-$(RM) $(OBJ_SHWILD_ST_R)
 
-clean.libs.xcover:
-	@echo Cleaning xCover libraries ...
-
 clean.libs.xtests:
 	@echo Cleaning xTests libraries ...
 	@-$(RM) $(LIB_XTESTS_MT_D)
@@ -1782,7 +1777,7 @@ clean.libs.xtests:
 	@-$(RM) $(OBJ_XTESTS_ST_D)
 	@-$(RM) $(OBJ_XTESTS_ST_R)
 
-clean.libs:                                         clean.libs.core clean.libs.shwild clean.libs.xcover clean.libs.xtests
+clean.libs:                                         clean.libs.core clean.libs.shwild clean.libs.xtests
 
 clean.examples:
 	@echo cleaning Example programs ...
@@ -1992,7 +1987,7 @@ clean.all:                                          clean
 # build targets
 
 ##################################################
-# Libraries
+# libraries
 
 ########################################
 # Main library - 'recls.X.core.a'
@@ -2279,7 +2274,7 @@ $(OBJ_xts_core_ST_R): $(XTESTS_SRC_DIR)/xtests.core.cpp $(XTESTS_HEADERS) $(PROJ
 
 
 ##################################################
-# Examples
+# examples
 
 $(TARG_EX_ex_c_1_MT_D):    \
 		$(OBJ_EX_ex_c_1_MT_D)\
@@ -2900,13 +2895,13 @@ $(OBJ_EX_ex_cpp_3_ST_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/example_cpp_3.cp
 
 
 ##################################################
-# Tests
+# tests
 
 
 
 
 ##############################
-# Component Tests
+# component tests
 
 $(TARG_TEST_COMP_api_crdir_MT_D):    \
 		$(OBJ_TEST_COMP_api_crdir_MT_D)\
@@ -3038,7 +3033,7 @@ $(OBJ_TEST_COMP_api_rmdir_ST_R): $(PROJ_TEST_COMPONENT_DIR)/test.component.util.
 
 
 ##############################
-# Scratch Tests
+# scratch tests
 
 $(TARG_TEST_SCRT_srch1_MT_D):    \
 		$(OBJ_TEST_SCRT_srch1_MT_D)\
@@ -3177,7 +3172,7 @@ $(OBJ_TEST_SCRT_srch2_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.search.2/test
 
 
 ##############################
-# Unit Tests
+# unit tests
 
 $(TARG_TEST_UNIT_api_cmbpaths_MT_D):    \
 		$(OBJ_TEST_UNIT_api_cmbpaths_MT_D)\

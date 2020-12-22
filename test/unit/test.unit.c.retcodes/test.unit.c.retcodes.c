@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.c.retcodes project.
  *
  * Created:     13th December 2008
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2020, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -66,35 +66,8 @@ static void test_1_19(void);
  * main
  */
 
-#ifdef XCOVER_VER
-static int main_xc(int argc, char** argv);
-#endif /* XCOVER_VER */
-
 int main(int argc, char** argv)
 {
-#ifdef XCOVER_VER
-    xcover_rc_t const xcrc = xcover_init();
-
-    if(xcrc < 0)
-    {
-        fprintf(stderr, "failed to initialise xCover : %s (%d)\n", xcover_getApiCodeString(xcrc), xcrc);
-
-        return EXIT_FAILURE;
-    }
-    else
-    {
-        int r = main_xc(argc, argv);
-
-        xcover_uninit();
-
-        return r;
-    }
-}
-
-static int main_xc(int argc, char** argv)
-{
-#endif /* XCOVER_VER */
-
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
@@ -122,10 +95,6 @@ static int main_xc(int argc, char** argv)
         XTESTS_RUN_CASE(test_1_17);
         XTESTS_RUN_CASE(test_1_18);
         XTESTS_RUN_CASE(test_1_19);
-
-#ifdef XCOVER_VER
-        XCOVER_REPORT_GROUP_COVERAGE("recls.util.combine_paths", NULL);
-#endif /* XCOVER_VER */
 
         XTESTS_PRINT_RESULTS();
 
@@ -277,3 +246,4 @@ static void test_1_19()
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

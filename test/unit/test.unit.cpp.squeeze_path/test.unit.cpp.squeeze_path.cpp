@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.cpp.squeeze_path project.
  *
  * Created:     7th June 2008
- * Updated:     28th January 2017
+ * Updated:     22nd December 2020
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2020, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -33,11 +33,6 @@
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
-
-/* xCover Header Files */
-#ifdef RECLS_QUALITY_USE_XCOVER
-# include <xcover/xcover.h>
-#endif /* RECLS_QUALITY_USE_XCOVER */
 
 /* xTests Header Files */
 #include <xtests/xtests.h>
@@ -161,10 +156,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_37);
         XTESTS_RUN_CASE(test_1_38);
         XTESTS_RUN_CASE(test_1_39);
-
-#ifdef XCOVER_VER
-        XCOVER_REPORT_GROUP_COVERAGE("recls.util.squeeze_path", NULL);
-#endif /* XCOVER_VER */
 
         XTESTS_PRINT_RESULTS();
 
@@ -462,3 +453,4 @@ static void test_1_39()
 } // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

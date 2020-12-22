@@ -4,13 +4,13 @@
  * Purpose:     Implicit link file for the test.scratch.with_pantheios project.
  *
  * Created:     13th December 2008
- * Updated:     31st July 2015
+ * Updated:     22nd December 2020
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2020, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -36,12 +36,6 @@
 # include <unixem/implicit_link.h>
 #endif /* operating system */
 
-/* xCover Header Files */
-#if defined(__FUNCTION__) && \
-    defined(__COUNTER__)
-# include <xcover/implicit_link.h>
-#endif
-
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Pantheios Header Files */
@@ -61,3 +55,4 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
 #endif /* operating system */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

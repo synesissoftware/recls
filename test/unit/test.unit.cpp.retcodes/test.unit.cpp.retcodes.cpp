@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.cpp.retcodes project.
  *
  * Created:     13th December 2008
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2020, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -105,10 +105,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_17);
         XTESTS_RUN_CASE(test_1_18);
         XTESTS_RUN_CASE(test_1_19);
-
-#ifdef XCOVER_VER
-        XCOVER_REPORT_GROUP_COVERAGE("recls.util.combine_paths", NULL);
-#endif /* XCOVER_VER */
 
         XTESTS_PRINT_RESULTS();
 
@@ -268,3 +264,4 @@ static void test_1_19()
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
