@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug Multithreaded|Win32">
+      <Configuration>Debug Multithreaded</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Multithreaded|x64">
+      <Configuration>Debug Multithreaded</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Multithreaded DLL|Win32">
+      <Configuration>Debug Multithreaded DLL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Multithreaded DLL|x64">
+      <Configuration>Debug Multithreaded DLL</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Multithreaded pseudoUnix|Win32">
+      <Configuration>Debug Multithreaded pseudoUnix</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Multithreaded pseudoUnix|x64">
+      <Configuration>Debug Multithreaded pseudoUnix</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Multithreaded|Win32">
+      <Configuration>Release Multithreaded</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Multithreaded|x64">
+      <Configuration>Release Multithreaded</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Multithreaded DLL|Win32">
+      <Configuration>Release Multithreaded DLL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Multithreaded DLL|x64">
+      <Configuration>Release Multithreaded DLL</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Multithreaded pseudoUnix|Win32">
+      <Configuration>Release Multithreaded pseudoUnix</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Multithreaded pseudoUnix|x64">
+      <Configuration>Release Multithreaded pseudoUnix</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Debug Multithreaded|Win32">
+      <Configuration>Unicode Debug Multithreaded</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Debug Multithreaded|x64">
+      <Configuration>Unicode Debug Multithreaded</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Release Multithreaded|Win32">
+      <Configuration>Unicode Release Multithreaded</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Release Multithreaded|x64">
+      <Configuration>Unicode Release Multithreaded</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DEE56C7D-F9C8-4099-8E7E-33EB397CC2FB}</ProjectGuid>
+    <RootNamespace>recls.core</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition=" $(Configuration.ToUpper().Contains('DEBUG'))">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="!$(Configuration.ToUpper().Contains('DEBUG'))">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition=" $(Configuration.ToUpper().Contains('UNICODE'))">
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="!$(Configuration.ToUpper().Contains('UNICODE'))">
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SynSoft_LibBasename>recls.1</SynSoft_LibBasename>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded|Win32'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.mt.debug</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded|x64'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.x64.mt.debug</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded DLL|Win32'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.dll.debug</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded DLL|x64'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.x64.dll.debug</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded pseudoUnix|Win32'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.unix.mt.debug</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded pseudoUnix|x64'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.unix.x64.mt.debug</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded|Win32'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.x64</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded|x64'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.x64.mt</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded DLL|Win32'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.dll</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded DLL|x64'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.x64.dll</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded pseudoUnix|Win32'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.unix.mt</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded pseudoUnix|x64'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.unix.x64.mt</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Unicode Debug Multithreaded|Win32'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.widestring.mt</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Unicode Debug Multithreaded|x64'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.x64.widestring.mt</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Unicode Release Multithreaded|Win32'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.widestring.dll</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Unicode Release Multithreaded|x64'">
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.x64.widestring.dll</SynSoft_LibTargetStem>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SynSoft_LibTargetDir>$(ProjectDir)..\..\..\lib\</SynSoft_LibTargetDir>
+    <SynSoft_LibTargetPath>$(SynSoft_LibTargetDir)$(SynSoft_LibTargetStem).lib</SynSoft_LibTargetPath>
+    <ExtensionsToDeleteOnClean>$(SynSoft_LibTargetPath);$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SolutionDir)projects/vcprops/recls.common.props" Condition="exists('$(SolutionDir)projects/vcprops/recls.common.props')" Label="reclsStandardProperties" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Unicode Debug Multithreaded|Win32'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Unicode Release Multithreaded|Win32'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded pseudoUnix|Win32'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded pseudoUnix|Win32'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded DLL|Win32'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded|Win32'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded DLL|Win32'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded|Win32'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Unicode Debug Multithreaded|x64'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Unicode Release Multithreaded|x64'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded pseudoUnix|x64'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded pseudoUnix|x64'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded DLL|x64'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded|x64'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded DLL|x64'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded|x64'">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="!$(Configuration.ToUpper().Contains('UNIX'))">
+    <ClCompile>
+      <PreprocessorDefinitions>RECLS_API_FTP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF NOT EXIST "$(SynSoft_LibTargetDir)" (
+  ECHO "$(SynSoft_LibTargetDir)" does not exist
+) ELSE (
+  COPY /Y "$(TargetPath)" "$(SynSoft_LibTargetPath)"
+)</Command>
+      <Message>Creating Synesis-named library in lib directory ...</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded|Win32'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded|x64'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded DLL|Win32'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded DLL|x64'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded pseudoUnix|Win32'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded pseudoUnix|x64'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded|Win32'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded|x64'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded DLL|Win32'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded DLL|x64'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded pseudoUnix|Win32'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded pseudoUnix|x64'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug Multithreaded|Win32'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug Multithreaded|x64'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release Multithreaded|Win32'">
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release Multithreaded|x64'">
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClInclude Include="..\pch.hpp" />
+	<ClInclude Include="..\_dev_pragmatics_\warnings.msvc.10+.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\api.entryinfo.cpp" />
+    <ClCompile Include="..\..\..\src\api.error.cpp" />
+    <ClCompile Include="..\..\..\src\api.extended.cpp" />
+    <ClCompile Include="..\..\..\src\api.search.cpp" />
+    <ClCompile Include="..\..\..\src\api.util.combine_paths.cpp" />
+    <ClCompile Include="..\..\..\src\api.util.create_directory.cpp" />
+    <ClCompile Include="..\..\..\src\api.util.derive_relative_path.cpp" />
+    <ClCompile Include="..\..\..\src\api.util.remove_directory.cpp" />
+    <ClCompile Include="..\..\..\src\api.util.squeeze_path.cpp" />
+    <ClCompile Include="..\..\..\src\api.util.stat.cpp" />
+    <ClCompile Include="..\..\..\src\impl.entryinfo.cpp" />
+    <ClCompile Include="..\..\..\src\impl.fileinfo.cpp" />
+    <ClCompile Include="..\..\..\src\impl.snprintf.cpp" />
+    <ClCompile Include="..\..\..\src\impl.trace.cpp" />
+    <ClCompile Include="..\..\..\src\impl.util.cpp" />
+    <ClCompile Include="..\..\..\src\ReclsFileSearch.cpp" />
+    <ClCompile Include="..\..\..\src\ReclsFileSearchDirectoryNode.cpp" />
+    <ClCompile Include="..\..\..\src\ReclsSearch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\api.unix.cpp">
+      <ExcludedFromBuild Condition="!$(Configuration.ToUpper().Contains('UNIX'))">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.fileinfo.unix.cpp">
+      <ExcludedFromBuild Condition="!$(Configuration.ToUpper().Contains('UNIX'))">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.util.unix.cpp">
+      <ExcludedFromBuild Condition="!$(Configuration.ToUpper().Contains('UNIX'))">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\api.ftp.windows.cpp">
+      <ExcludedFromBuild Condition=" $(Configuration.ToUpper().Contains('UNIX'))">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.retcodes.windows.cpp">
+      <ExcludedFromBuild Condition=" $(Configuration.ToUpper().Contains('UNIX'))">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.windows.cpp">
+      <ExcludedFromBuild Condition=" $(Configuration.ToUpper().Contains('UNIX'))">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.fileinfo.windows.cpp">
+      <ExcludedFromBuild Condition=" $(Configuration.ToUpper().Contains('UNIX'))">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.util.windows.cpp">
+      <ExcludedFromBuild Condition=" $(Configuration.ToUpper().Contains('UNIX'))">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ReclsFtpSearch_windows.cpp">
+      <ExcludedFromBuild Condition=" $(Configuration.ToUpper().Contains('UNIX'))">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ReclsFtpSearchDirectoryNode_windows.cpp">
+      <ExcludedFromBuild Condition=" $(Configuration.ToUpper().Contains('UNIX'))">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\compiler.h" />
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\compiler_msvc.h" />
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\ftp.h" />
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\language.h" />
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\platform.h" />
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\platform_types.h" />
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\recls.h" />
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\recls_filesize.h" />
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\recls_time.h" />
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\retcodes.h" />
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\unix.h" />
+    <ClInclude Include="$(RECLS_ROOT)\include\recls\windows.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\impl.atomic.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\impl.constants.hpp" />
+    <ClInclude Include="$(RECLS_ROOT)\src\impl.entryfunctions.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\impl.entryinfo.hpp" />
+    <ClInclude Include="$(RECLS_ROOT)\src\impl.root.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\impl.string.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\impl.string.hpp" />
+    <ClInclude Include="$(RECLS_ROOT)\src\impl.trace.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\impl.types.ftp.hpp" />
+    <ClInclude Include="$(RECLS_ROOT)\src\impl.types.hpp" />
+    <ClInclude Include="$(RECLS_ROOT)\src\impl.util.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\incl.inetstl.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\incl.platformstl.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\incl.stlsoft.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\incl.unixstl.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\incl.winstl.h" />
+    <ClInclude Include="$(RECLS_ROOT)\src\ReclsFileSearch.hpp" />
+    <ClInclude Include="$(RECLS_ROOT)\src\ReclsFileSearchDirectoryNode.hpp" />
+    <ClInclude Include="$(RECLS_ROOT)\src\ReclsFtpSearch.hpp" />
+    <ClInclude Include="$(RECLS_ROOT)\src\ReclsFtpSearchDirectoryNode_windows.hpp" />
+    <ClInclude Include="$(RECLS_ROOT)\src\ReclsSearch.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
