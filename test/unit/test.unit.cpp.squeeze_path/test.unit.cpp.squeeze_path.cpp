@@ -25,7 +25,6 @@
 #if defined(__FUNCTION__) && \
     defined(__COUNTER__)
 # include <recls/recls.h>
-# include <../src/impl.cover.h>
 #endif
 
 #include <recls/recls.hpp>

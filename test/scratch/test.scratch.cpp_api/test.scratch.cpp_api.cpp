@@ -202,7 +202,7 @@ static void display_entry(recls::entry const& e);
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int argc, char** argv)
+static int main_(int /* argc */, char** argv)
 {
     using namespace recls;
 
