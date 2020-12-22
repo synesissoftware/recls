@@ -13,7 +13,7 @@
  *                - display of progress (of each directory traversed)
  *
  * Created:     29th May 2006
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * www:         http://www.recls.org/
  *
@@ -176,7 +176,7 @@ static size_t get_console_width_(void)
      */
 
 #ifdef RECLS_PLATFORM_API_WINDOWS
-    return winstl__get_console_width();
+    return winstl_C_get_console_width();
 #else /* ? RECLS_PLATFORM_API_??? */
     return 48;
 #endif /* RECLS_PLATFORM_API_??? */
