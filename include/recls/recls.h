@@ -4,11 +4,12 @@
  * Purpose:     Main header file for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     29th January 2017
+ * Updated:     21st December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Synesis Software nor the names
- *   of any contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -51,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      21
-# define RECLS_VER_RECLS_H_RECLS_REVISION   8
-# define RECLS_VER_RECLS_H_RECLS_EDIT       127
+# define RECLS_VER_RECLS_H_RECLS_REVISION   10
+# define RECLS_VER_RECLS_H_RECLS_EDIT       129
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -122,11 +124,14 @@
 #define RECLS_VER_1_9_4             0x010904ff
 #define RECLS_VER_1_9_5             0x010905ff
 #define RECLS_VER_1_9_6             0x010906ff
+#define RECLS_VER_1_9_7             0x010907ff
+#define RECLS_VER_1_9_8             0x010908ff
+#define RECLS_VER_1_10_0_ALPHA_1    0x010a0001
 
 #define RECLS_VER_MAJOR         1
-#define RECLS_VER_MINOR         9
-#define RECLS_VER_REVISION      6
-#define RECLS_VER               RECLS_VER_1_9_6
+#define RECLS_VER_MINOR         10
+#define RECLS_VER_REVISION      0
+#define RECLS_VER               RECLS_VER_1_10_0_ALPHA_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * strictness
@@ -2161,14 +2166,6 @@ inline size_t c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 #endif /* !RECLS_PURE_API */
 
 /* /////////////////////////////////////////////////////////////////////////
- * inclusion
- */
-
-#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
-# pragma once
-#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
-
-/* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
 
@@ -2176,8 +2173,15 @@ inline size_t c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 # include <recls/internal/doc/includes.h>
 #endif /* RECLS_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_RECLS_H_RECLS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
