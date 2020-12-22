@@ -49,7 +49,7 @@
 # define RECLS_VER_RECLS_H_UNIX_MAJOR       3
 # define RECLS_VER_RECLS_H_UNIX_MINOR       2
 # define RECLS_VER_RECLS_H_UNIX_REVISION    1
-# define RECLS_VER_RECLS_H_UNIX_EDIT        16
+# define RECLS_VER_RECLS_H_UNIX_EDIT        17
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/unix.h

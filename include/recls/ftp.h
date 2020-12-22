@@ -49,7 +49,7 @@
 # define RECLS_VER_RECLS_H_FTP_MAJOR    3
 # define RECLS_VER_RECLS_H_FTP_MINOR    2
 # define RECLS_VER_RECLS_H_FTP_REVISION 2
-# define RECLS_VER_RECLS_H_FTP_EDIT     14
+# define RECLS_VER_RECLS_H_FTP_EDIT     15
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/ftp.h

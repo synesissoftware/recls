@@ -55,7 +55,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    11
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 1
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     109
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     110
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

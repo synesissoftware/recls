@@ -55,7 +55,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_MAJOR     5
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_MINOR     1
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_REVISION  1
-# define RECLS_VER_RECLS_CPP_HPP_UTIL_EDIT      42
+# define RECLS_VER_RECLS_CPP_HPP_UTIL_EDIT      43
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
