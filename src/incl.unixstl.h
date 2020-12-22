@@ -4,12 +4,11 @@
  * Purpose:     #includes the UNIXSTL root header and verifies the version.
  *
  * Created:     8th November 2007
- * Updated:     21st December 2020
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
- * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -32,8 +31,8 @@
 
 #include <unixstl/unixstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.9.1 or later, as required. */
 #if !defined(_UNIXSTL_VER) || \
-    _UNIXSTL_VER < 0x01080183
-# error Requires UNIXSTL 1.8.1 (beta 3), or later. (www.stlsoft.org/downloads.html)
+    _UNIXSTL_VER < 0x010704ff
+# error Requires UNIXSTL 1.7.4, or later. (www.stlsoft.org/downloads.html)
 #endif /* UNIXSTL version */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -41,7 +40,7 @@
  */
 
 #ifdef _UNIXSTL_NO_NAMESPACE
-# error recls 1.10+ is not compatible with UNIXSTL namespace suppression
+# error recls 1.9+ is not compatible with UNIXSTL namespace suppression
 #endif /* _UNIXSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -49,4 +48,3 @@
 #endif /* !RECLS_INCL_SRC_H_INCL_UNIXSTL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
-

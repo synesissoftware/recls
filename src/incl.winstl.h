@@ -4,12 +4,11 @@
  * Purpose:     #includes the WinSTL root header and verifies the version.
  *
  * Created:     8th November 2007
- * Updated:     21st December 2020
+ * Updated:     10th January 2017
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
- * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -32,8 +31,8 @@
 
 #include <winstl/winstl.h>      /* If the compiler cannot find this, you are not using STLSoft 1.9.1 or later, as required. */
 #if !defined(_WINSTL_VER) || \
-    _WINSTL_VER < 0x010c0185
-# error Requires WinSTL 1.12.1 beta 5, or later. (www.stlsoft.org/downloads.html)
+    _WINSTL_VER < 0x010b07ff
+# error Requires WinSTL 1.11.7, or later. (www.stlsoft.org/downloads.html)
 #endif /* WINSTL version */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -41,7 +40,7 @@
  */
 
 #ifdef _WINSTL_NO_NAMESPACE
-# error recls 1.10+ is not compatible with WinSTL namespace suppression
+# error recls 1.9+ is not compatible with WinSTL namespace suppression
 #endif /* _WINSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -49,4 +48,3 @@
 #endif /* !RECLS_INCL_SRC_H_INCL_WINSTL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
-
