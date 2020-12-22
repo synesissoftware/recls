@@ -4,11 +4,12 @@
  * Purpose:     Platform discrimination for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     29th January 2017
+ * Updated:     21st December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Synesis Software nor the names
- *   of any contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -45,9 +47,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      2
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       27
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       28
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -169,14 +171,11 @@
  */
 
 #if defined(RECLS_API_FTP)
-# undef RECLS_API_FTP
+# if !defined(WIN32) && \
+     !defined(WIN64)
+#  undef RECLS_API_FTP
+# endif
 #endif /* RECLS_API_FTP */
-
-#if !defined(RECLS_NO_API_FTP)
-# ifdef RECLS_PLATFORM_IS_WINDOWS
-#  define RECLS_API_FTP
-# endif /* RECLS_PLATFORM_IS_WINDOWS */
-#endif /* !RECLS_NO_API_FTP */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
