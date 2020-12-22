@@ -21,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -49,7 +50,6 @@
 #include "impl.root.h"
 #include "impl.util.h"
 #include "impl.string.hpp"
-#include "impl.cover.h"
 
 #include "ReclsSearch.hpp"
 #include "ReclsFileSearch.hpp"
@@ -82,8 +82,6 @@ inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t c
 {
     function_scope_trace("ReclsFileSearch::operator new");
 
-    RECLS_COVER_MARK_LINE();
-
     cbRootDir = recls_align_up_size_(cbRootDir);
 
 #if !defined(STLSOFT_COMPILER_IS_GCC)
@@ -99,8 +97,6 @@ inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t c
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
     if(NULL == pv)
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
         throw std::bad_alloc();
@@ -115,8 +111,6 @@ inline void ReclsFileSearch::operator delete(void* pv, size_t /* cDirParts */, s
 {
     function_scope_trace("ReclsFileSearch::operator delete");
 
-    RECLS_COVER_MARK_LINE();
-
     free(pv);
 }
 #endif /* RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE */
@@ -124,8 +118,6 @@ inline void ReclsFileSearch::operator delete(void* pv, size_t /* cDirParts */, s
 inline void ReclsFileSearch::operator delete(void* pv)
 {
     function_scope_trace("ReclsFileSearch::operator delete");
-
-    RECLS_COVER_MARK_LINE();
 
     free(pv);
 }
@@ -147,8 +139,6 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
     function_scope_trace("ReclsFileSearch::FindAndCreate");
 
-    RECLS_COVER_MARK_LINE();
-
     recls_debug1_trace_printf_(RECLS_LITERAL("ReclsFileSearch::FindAndCreate(%s, %s, 0x%08x)"), rootDir, pattern, flags);
 
     types::file_path_buffer_type    fullPath;
@@ -158,8 +148,6 @@ inline void ReclsFileSearch::operator delete(void* pv)
     if(0 == cchFullPath)
     {
         recls_debug0_trace_printf_(RECLS_LITERAL("could not retrieve full path of given search directory '%s'"), rootDir);
-
-        RECLS_COVER_MARK_LINE();
 
         return RECLS_RC_INVALID_NAME;
     }
@@ -177,12 +165,8 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
     }
 
-    RECLS_COVER_MARK_LINE();
-
     if(types::traits_type::has_dir_end(&fullPath[0]))
     {
-        RECLS_COVER_MARK_LINE();
-
         cchFullPath = types::traits_type::str_len(types::traits_type::remove_dir_end(&fullPath[0]));
     }
 
@@ -190,8 +174,6 @@ inline void ReclsFileSearch::operator delete(void* pv)
     // On Windows systems that are being used to test the UNIX build, we will
     // translate all the backslashes in UNIX-like paths to forward slashes.
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_char_t* const dir0    =   const_cast<recls_char_t *>(recls_find_directory_0_(&fullPath[0]));
         recls_char_t* const end     =   &fullPath[0] + cchFullPath;
 
@@ -247,36 +229,26 @@ inline void ReclsFileSearch::operator delete(void* pv)
 #endif /* 0 */
 #endif /* UNIX */
 
-    RECLS_COVER_MARK_LINE();
-
     *ppsi = NULL;
 
     recls_rc_t rc = RECLS_RC_OK;
 
     if(!types::traits_type::file_exists(rootDir))
     {
-        RECLS_COVER_MARK_LINE();
-
         rc = RECLS_RC_DIRECTORY_NOT_FOUND;
     }
     else if(!types::traits_type::is_directory(rootDir))
     {
-        RECLS_COVER_MARK_LINE();
-
         rc = RECLS_RC_PATH_IS_NOT_DIRECTORY;
     }
     else
     {
-        RECLS_COVER_MARK_LINE();
-
         // Now we ensure that rootDir has trailing separator
 
         types::file_path_buffer_type    fullPath_;
 
         if(!types::traits_type::has_dir_end(rootDir))
         {
-            RECLS_COVER_MARK_LINE();
-
             types::traits_type::char_copy(&fullPath_[0], rootDir, rootDirLen + 1);
             RECLS_ASSERT('\0' == fullPath_[rootDirLen]);
 
@@ -297,16 +269,12 @@ inline void ReclsFileSearch::operator delete(void* pv)
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
         try
         {
-            RECLS_COVER_MARK_LINE();
-
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
             si = new(cDirParts, sizeof(recls_char_t) * (1 + rootDirLen)) ReclsFileSearch(cDirParts, rootDir, rootDirLen, pattern, patternLen, pfn, param, flags, &rc);
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
         }
         catch(std::bad_alloc&)
         {
-            RECLS_COVER_MARK_LINE();
-
             recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
             si = NULL;
@@ -315,20 +283,14 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
         if(NULL == si)
         {
-            RECLS_COVER_MARK_LINE();
-
             RECLS_ASSERT(RECLS_RC_OK != rc);
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             // This is a nasty hack. It's tantamount to ctor & create function, so
             // should be made more elegant soon.
             if(NULL == si->m_dnode)
             {
-                RECLS_COVER_MARK_LINE();
-
                 delete si;
 
                 if(RECLS_SUCCEEDED(rc))
@@ -338,8 +300,6 @@ inline void ReclsFileSearch::operator delete(void* pv)
             }
             else
             {
-                RECLS_COVER_MARK_LINE();
-
                 *ppsi = si;
 
                 rc = RECLS_RC_OK;
@@ -359,8 +319,6 @@ recls_char_t const* ReclsFileSearch::calc_rootDir_(
 )
 {
     function_scope_trace("ReclsFileSearch::calc_rootDir_");
-
-    RECLS_COVER_MARK_LINE();
 
     // Root dir is located after file parts, and before pattern
     recls_char_t* s = ::stlsoft::sap_cast<recls_char_t*>(&data[cDirParts * sizeof(recls_strptrs_t)]);
@@ -408,8 +366,6 @@ ReclsFileSearch::ReclsFileSearch(
 # error Platform not recognised
 #endif /* platform*/
 
-    RECLS_COVER_MARK_LINE();
-
     // Now start the search
     m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(m_flags, rootDir, m_rootDirLen, pattern, patternLen, pfn, param, prc);
 }
@@ -417,8 +373,6 @@ ReclsFileSearch::ReclsFileSearch(
 ReclsFileSearch::~ReclsFileSearch()
 {
     function_scope_trace("ReclsFileSearch::~ReclsFileSearch");
-
-    RECLS_COVER_MARK_LINE();
 }
 
 /* static */ recls_rc_t ReclsFileSearch::Stat(  recls_char_t const* path
@@ -426,8 +380,6 @@ ReclsFileSearch::~ReclsFileSearch()
                                             ,   recls_entry_t*      phEntry)
 {
     function_scope_trace("ReclsFileSearch::Stat");
-
-    RECLS_COVER_MARK_LINE();
 
     return ReclsFileSearchDirectoryNode::Stat(path, flags, phEntry);
 }

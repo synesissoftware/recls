@@ -4,11 +4,12 @@
  * Purpose:     recls API functions pertaining to entry info.
  *
  * Created:     16th August 2003
- * Updated:     29th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -48,7 +50,6 @@
 #include "impl.root.h"
 #include "incl.platformstl.h"
 #include "impl.util.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -85,14 +86,6 @@ always_false_()
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
  * constants
  */
 
@@ -120,8 +113,6 @@ RECLS_FNDECL(size_t) Recls_GetPathProperty(
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
     return recls_get_string_property_(&fileInfo->path, buffer, cchBuffer);
 }
 
@@ -134,8 +125,6 @@ RECLS_FNDECL(size_t) Recls_GetSearchRelativePathProperty(
     function_scope_trace("Recls_GetSearchRelativePathProperty");
 
     RECLS_ASSERT(NULL != fileInfo);
-
-    RECLS_COVER_MARK_LINE();
 
     return recls_get_string_property_(&fileInfo->searchRelativePath, buffer, cchBuffer);
 }
@@ -150,8 +139,6 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryProperty(
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
     return recls_get_string_property_(&fileInfo->directory, buffer, cchBuffer);
 }
 
@@ -164,8 +151,6 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryPathProperty(
     function_scope_trace("Recls_GetDirectoryPathProperty");
 
     RECLS_ASSERT(NULL != fileInfo);
-
-    RECLS_COVER_MARK_LINE();
 
     struct recls_strptrs_t directoryPath =
     {
@@ -186,8 +171,6 @@ RECLS_FNDECL(size_t) Recls_GetSearchDirectoryProperty(
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
     return recls_get_string_property_(&fileInfo->searchDirectory, buffer, cchBuffer);
 }
 
@@ -201,8 +184,6 @@ RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
     struct recls_strptrs_t uncDrive =
     {
             fileInfo->path.begin        /* Directory path is defined by start of path ... */
@@ -211,8 +192,6 @@ RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
 
     if(!Recls_IsFileUNC(fileInfo))
     {
-        RECLS_COVER_MARK_LINE();
-
         uncDrive.end = uncDrive.begin;
     }
 
@@ -228,8 +207,6 @@ RECLS_FNDECL(size_t) Recls_GetFileProperty(
     function_scope_trace("Recls_GetFileProperty");
 
     RECLS_ASSERT(NULL != fileInfo);
-
-    RECLS_COVER_MARK_LINE();
 
     struct recls_strptrs_t file =
     {
@@ -250,8 +227,6 @@ RECLS_FNDECL(size_t) Recls_GetFileNameProperty(
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
     return recls_get_string_property_(&fileInfo->fileName, buffer, cchBuffer);
 }
 
@@ -264,8 +239,6 @@ RECLS_FNDECL(size_t) Recls_GetFileExtProperty(
     function_scope_trace("Recls_GetFileExtProperty");
 
     RECLS_ASSERT(NULL != fileInfo);
-
-    RECLS_COVER_MARK_LINE();
 
     return recls_get_string_property_(&fileInfo->fileExt, buffer, cchBuffer);
 }
@@ -281,21 +254,15 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryPartProperty(
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
     size_t  cParts = static_cast<size_t>(fileInfo->directoryParts.end - fileInfo->directoryParts.begin);
 
     if(part < 0)
     {
-        RECLS_COVER_MARK_LINE();
-
         return cParts;
     }
     else
     {
         RECLS_ASSERT(static_cast<size_t>(part) < cParts);
-
-        RECLS_COVER_MARK_LINE();
 
         return recls_get_string_property_(&fileInfo->directoryParts.begin[part], buffer, cchBuffer);
     }
@@ -306,8 +273,6 @@ RECLS_FNDECL(recls_bool_t) Recls_EntryExists(recls_entry_t fileInfo)
     function_scope_trace("Recls_EntryExists");
 
     RECLS_ASSERT(NULL != fileInfo);
-
-    RECLS_COVER_MARK_LINE();
 
     if( 0 != fileInfo->size ||
         0 != fileInfo->attributes ||
@@ -325,12 +290,8 @@ RECLS_FNDECL(recls_bool_t) Recls_EntryExists(recls_entry_t fileInfo)
 #endif
         always_false_())
     {
-        RECLS_COVER_MARK_LINE();
-
         return true;
     }
-
-    RECLS_COVER_MARK_LINE();
 
     return false;
 }
@@ -340,8 +301,6 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileReadOnly(recls_entry_t fileInfo)
     function_scope_trace("Recls_IsFileReadOnly");
 
     RECLS_ASSERT(NULL != fileInfo);
-
-    RECLS_COVER_MARK_LINE();
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
     return (fileInfo->attributes & S_IWRITE) == 0;
@@ -358,8 +317,6 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileDirectory(recls_entry_t fileInfo)
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_PLATFORM_IS_UNIX)
     return (fileInfo->attributes & S_IFMT) == S_IFDIR;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
@@ -374,8 +331,6 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileLink(recls_entry_t fileInfo)
     function_scope_trace("Recls_IsFileLink");
 
     RECLS_ASSERT(NULL != fileInfo);
-
-    RECLS_COVER_MARK_LINE();
 
 #if defined(RECLS_PLATFORM_IS_UNIX) && \
     !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
@@ -397,8 +352,6 @@ RECLS_FNDECL(recls_bool_t) Recls_DoesEntryExist(recls_entry_t hEntry)
 
     RECLS_ASSERT(NULL != hEntry);
 
-    RECLS_COVER_MARK_LINE();
-
     return recls_file_exists_(hEntry->path.begin);
 }
 
@@ -408,16 +361,12 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileUNC(recls_entry_t fileInfo)
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
     if( '\\' == fileInfo->path.begin[0] &&
         '\\' == fileInfo->path.begin[1])
     {
-        RECLS_COVER_MARK_LINE();
-
         return true;
     }
 
@@ -436,8 +385,6 @@ RECLS_FNDECL(recls_time_t) Recls_GetCreationTime(recls_entry_t fileInfo)
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
     return fileInfo->GetCreationTime_;
 }
 
@@ -446,8 +393,6 @@ RECLS_FNDECL(recls_time_t) Recls_GetLastStatusChangeTime(recls_entry_t fileInfo)
     function_scope_trace("Recls_GetLastStatusChangeTime");
 
     RECLS_ASSERT(NULL != fileInfo);
-
-    RECLS_COVER_MARK_LINE();
 
     return fileInfo->GetLastStatusChangeTime_;
 }
@@ -458,8 +403,6 @@ RECLS_FNDECL(recls_filesize_t) Recls_GetSizeProperty(recls_entry_t fileInfo)
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
     return fileInfo->size;
 }
 
@@ -468,8 +411,6 @@ RECLS_FNDECL(recls_time_t) Recls_GetModificationTime(recls_entry_t fileInfo)
     function_scope_trace("Recls_GetModificationTime");
 
     RECLS_ASSERT(NULL != fileInfo);
-
-    RECLS_COVER_MARK_LINE();
 
     return fileInfo->modificationTime;
 }
@@ -480,16 +421,8 @@ RECLS_FNDECL(recls_time_t) Recls_GetLastAccessTime(recls_entry_t fileInfo)
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
     return fileInfo->lastAccessTime;
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -500,3 +433,4 @@ RECLS_MARK_FILE_END()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

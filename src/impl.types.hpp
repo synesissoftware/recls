@@ -4,11 +4,12 @@
  * Purpose:     Implementation header.
  *
  * Created:     12th December 2008
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2008-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -33,7 +34,6 @@
 #include <recls/recls.h>
 
 #include "incl.platformstl.h"
-#include "impl.cover.h"
 #include "impl.string.hpp"
 
 #include <stlsoft/memory/auto_buffer.hpp>
@@ -97,18 +97,12 @@ public: /// Operations
         RECLS_ASSERT(NULL != begin);
         RECLS_ASSERT(NULL != end);
 
-        RECLS_COVER_MARK_LINE();
-
         size_t cDirParts = 0;
 
         for(; begin != end; ++begin)
         {
-            RECLS_COVER_MARK_LINE();
-
             if(*begin == ch)
             {
-                RECLS_COVER_MARK_LINE();
-
                 ++cDirParts;
             }
         }
@@ -122,8 +116,6 @@ public: /// Operations
     ,   recls_char_t const* end
     )
     {
-        RECLS_COVER_MARK_LINE();
-
         // static_cast required for CodeWarrior
         return static_cast<size_t>(std::count_if(begin, end, traits_type::is_path_name_separator));
     }
@@ -150,3 +142,4 @@ typedef file_types  types; // This is required to avoid bad linker behaviour (wh
 #endif /* !RECLS_INCL_SRC_HPP_IMPL_TYPES */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

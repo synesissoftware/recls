@@ -5,11 +5,12 @@
  *              the recls API.
  *
  * Created:     15th August 2004
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -21,9 +22,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -53,7 +55,6 @@
 #include "impl.string.hpp"
 #include "impl.entryfunctions.h"
 #include "impl.types.ftp.hpp"
-#include "impl.cover.h"
 
 #if defined(RECLS_DELAY_LOAD_WININET)
 # ifdef INETSTL_INCL_H_INETSTL
@@ -88,14 +89,6 @@ using ::recls::impl::recls_is_valid_pattern_;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search.ftp")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
  * search control
  */
 
@@ -113,8 +106,6 @@ RECLS_API Recls_SearchFtp(
 
     RECLS_ASSERT(NULL != phSrch);
 
-    RECLS_COVER_MARK_LINE();
-
     *phSrch = static_cast<hrecls_t>(0);
 
     recls_rc_t  rc;
@@ -125,24 +116,18 @@ RECLS_API Recls_SearchFtp(
     if( NULL == searchRoot ||
         0 == *searchRoot)
     {
-        RECLS_COVER_MARK_LINE();
-
         searchRoot = RECLS_LITERAL("/"); // FTP always rooted at ./.
     }
 
     // Default the pattern
     if(NULL == pattern)
     {
-        RECLS_COVER_MARK_LINE();
-
         pattern = RECLS_LITERAL("*"); // FTP always uses '*' as wildcard
     }
 
     // Default the flags
     if(0 == (flags & RECLS_F_TYPEMASK))
     {
-        RECLS_COVER_MARK_LINE();
-
         flags |= RECLS_F_FILES;
     }
 
@@ -151,8 +136,6 @@ RECLS_API Recls_SearchFtp(
 
     if(RECLS_SUCCEEDED(rc))
     {
-        RECLS_COVER_MARK_LINE();
-
         ReclsFtpSearch* si;
         size_t          rootDirLen = types::traits_type::str_len(searchRoot);
         size_t          patternLen = types::traits_type::str_len(pattern);
@@ -161,8 +144,6 @@ RECLS_API Recls_SearchFtp(
 
         if(RECLS_SUCCEEDED(rc))
         {
-            RECLS_COVER_MARK_LINE();
-
             *phSrch = ReclsSearch::ToHandle(si);
 
             rc = RECLS_RC_OK;
@@ -173,12 +154,6 @@ RECLS_API Recls_SearchFtp(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
-
-/* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
@@ -187,3 +162,4 @@ RECLS_MARK_FILE_END()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

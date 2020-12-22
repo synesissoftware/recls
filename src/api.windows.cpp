@@ -4,11 +4,12 @@
  * Purpose:     This file contains the Windows versions of the recls API.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -49,7 +51,6 @@
 #include "incl.winstl.h"
 #include "impl.util.h"
 #include "impl.string.hpp"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -72,14 +73,6 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
 
@@ -89,85 +82,73 @@ static size_t check_drives(char* drives, recls_uint32_t flags)
 static size_t check_drives(char (*drives)[26], recls_uint32_t flags)
 #endif /* compiler */
 {
-    RECLS_COVER_MARK_LINE();
-
     typedef winstl::filesystem_traits<char> trait_t;
 
     size_t n = 0;
 
     for(size_t i = 0; i < 26; ++i)
     {
-        RECLS_COVER_MARK_LINE();
-
         const char letter = static_cast<char>('A' + i);
 
         if(0 == flags)
         {
-            RECLS_COVER_MARK_LINE();
-
             if(!trait_t::drive_exists(letter))
             {
-                RECLS_COVER_MARK_LINE();
-
                 continue;   // No match
             }
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             const DWORD type = trait_t::get_drive_type(letter);
 
             switch(type)
             {
                 case    DRIVE_UNKNOWN:
-                    RECLS_COVER_MARK_LINE();
+
                     continue;
                 case    DRIVE_NO_ROOT_DIR:
-                    RECLS_COVER_MARK_LINE();
+
                     continue;
                 case    DRIVE_REMOVABLE:
-                    RECLS_COVER_MARK_LINE();
+
                     if(0 == (flags & RECLS_F_REMOVABLE_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_FIXED:
-                    RECLS_COVER_MARK_LINE();
+
                     if(0 == (flags & RECLS_F_FIXED_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_REMOTE:
-                    RECLS_COVER_MARK_LINE();
+
                     if(0 == (flags & RECLS_F_NETWORK_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_CDROM:
-                    RECLS_COVER_MARK_LINE();
+
                     if(0 == (flags & RECLS_F_CDROM_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_RAMDISK:
-                    RECLS_COVER_MARK_LINE();
+
                     if(0 == (flags & RECLS_F_RAM_DRIVES))
                     {
                         continue;
                     }
                     break;
                 default:
-                    RECLS_COVER_MARK_LINE();
+
                     continue;   // No match
             }
         }
-
-        RECLS_COVER_MARK_LINE();
 
 #if defined(RECLS_COMPILER_IS_WATCOM)
         drives[n] = letter;
@@ -211,8 +192,6 @@ RECLS_FNDECL(size_t) Recls_GetShortFileProperty(    recls_entry_t   fileInfo
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
     return recls_get_string_property_(&fileInfo->shortFile, buffer, cchBuffer);
 }
 
@@ -223,8 +202,6 @@ RECLS_FNDECL(void) Recls_GetDriveProperty(  recls_entry_t   fileInfo
 
     RECLS_ASSERT(NULL != fileInfo);
     RECLS_ASSERT(NULL != pchDrive);
-
-    RECLS_COVER_MARK_LINE();
 
     // Because, as of version 1.5.1, this function can also be called for 
     // FTP files, which will not have a drive, we need to check for it,
@@ -243,8 +220,6 @@ static size_t Recls_GetRoots_(  recls_root_t*   roots
 {
     RECLS_ASSERT(NULL == roots || 0 != cRoots);
 
-    RECLS_COVER_MARK_LINE();
-
     char    drives[26];
 #if defined(RECLS_COMPILER_IS_WATCOM)
     size_t  n   =   check_drives(&drives[0], flags);
@@ -254,19 +229,13 @@ static size_t Recls_GetRoots_(  recls_root_t*   roots
 
     if(NULL != roots)
     {
-        RECLS_COVER_MARK_LINE();
-
         if(n < cRoots)
         {
-            RECLS_COVER_MARK_LINE();
-
             cRoots = n;
         }
 
         for(size_t i = 0; i < cRoots; ++i)
         {
-            RECLS_COVER_MARK_LINE();
-
             roots[i].name[0] = drives[i];
             roots[i].name[1] = ':';
             roots[i].name[2] = '\\';
@@ -284,8 +253,6 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_GetRoots(..., %u)"), unsigned(cRoots));
 
-    RECLS_COVER_MARK_LINE();
-
     // Stupid, stupid, stupid, Microsoft P/Invoke crapola has eaten 12 hours
     // of my life, and I still can't get it to work, so we're going to use a
     // disgusting hack.
@@ -297,8 +264,6 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
 
     if(static_cast<signed_t>(cRoots) < 0)
     {
-        RECLS_COVER_MARK_LINE();
-
         // To support the stupidity of .NET, we need to respond to -ve
         // indexes, hence: 
 
@@ -310,14 +275,10 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
 
         if(index < cch)
         {
-            RECLS_COVER_MARK_LINE();
-
             return roots_[index].name[0];
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             return 0;
         }
     }
@@ -333,16 +294,12 @@ RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_GetSelectedRoots(..., %u, %08x)"), unsigned(cRoots), flags);
 
-    RECLS_COVER_MARK_LINE();
-
     // Same disgusting measure necessitated by the same disgusting, poorly
     // designed and shockingly documented facilities in .NET
     typedef stlsoft::sign_traits<size_t>::signed_type   signed_t;
 
     if(static_cast<signed_t>(cRoots) < 0)
     {
-        RECLS_COVER_MARK_LINE();
-
         // To support the stupidity of .NET, we need to respond to -ve
         // indexes, hence: 
 
@@ -352,26 +309,16 @@ RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
 
         if(index < cch)
         {
-            RECLS_COVER_MARK_LINE();
-
             return roots_[index].name[0];
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             return 0;
         }
     }
 
     return Recls_GetRoots_(roots, cRoots, flags);
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -382,3 +329,4 @@ RECLS_MARK_FILE_END()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

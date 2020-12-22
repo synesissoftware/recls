@@ -4,11 +4,12 @@
  * Purpose:     Platform-independent utility functions for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -49,7 +51,6 @@
 #include "impl.types.hpp"
 #include "impl.util.h"
 #include "impl.constants.hpp"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -133,8 +134,6 @@ struct cmp_str_len
             >
     bool operator ()(S1 const &s1, S2 const &s2) const
     {
-        RECLS_COVER_MARK_LINE();
-
         return stlsoft::c_str_len(s1) < stlsoft::c_str_len(s2);
     }
 };
@@ -148,14 +147,10 @@ size_t recls_strncpy_(
 ,   size_t              cchSrc
 )
 {
-    RECLS_COVER_MARK_LINE();
-
     size_t  cchWritten;
 
     if(cchDest < cchSrc)
     {
-        RECLS_COVER_MARK_LINE();
-
         /* Just do straight strncpy. */
         recls_strncpy__(dest, src, cchDest);
 
@@ -163,14 +158,10 @@ size_t recls_strncpy_(
     }
     else
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_strncpy__(dest, src, cchSrc);
 
         if(cchSrc < cchDest)
         {
-            RECLS_COVER_MARK_LINE();
-
             /* Fill the rest up with blanks. */
             memset(&dest[cchSrc], 0, sizeof(recls_char_t) * (cchDest - cchSrc));
         }
@@ -185,8 +176,6 @@ size_t recls_strlen_(
     recls_char_t const* s
 )
 {
-    RECLS_COVER_MARK_LINE();
-
     return recls_strlen__(s);
 }
 
@@ -194,8 +183,6 @@ RECLS_LINKAGE_C size_t recls_align_up_size_(
     size_t i
 )
 {
-    RECLS_COVER_MARK_LINE();
-
 #ifdef RECLS_COMPILER_IS_BORLAND
 # define cbAlign            sizeof(void*)
 #else /* ? compiler */
@@ -215,18 +202,12 @@ RECLS_LINKAGE_C size_t count_char_instances(
     RECLS_ASSERT(NULL != begin);
     RECLS_ASSERT(NULL != end);
 
-    RECLS_COVER_MARK_LINE();
-
     size_t cDirParts = 0;
 
     for(; begin != end; ++begin)
     {
-        RECLS_COVER_MARK_LINE();
-
         if(*begin == ch)
         {
-            RECLS_COVER_MARK_LINE();
-
             ++cDirParts;
         }
     }
@@ -253,14 +234,10 @@ RECLS_FNDECL(size_t) recls_get_string_property_(
 {
     RECLS_ASSERT(NULL != ptrs);
 
-    RECLS_COVER_MARK_LINE();
-
     size_t  cch =   static_cast<size_t>(ptrs->end - ptrs->begin);
 
     if(NULL != buffer)
     {
-        RECLS_COVER_MARK_LINE();
-
         cch = recls_strncpy_(buffer, cchBuffer, ptrs->begin, cch);
     }
 
@@ -273,8 +250,6 @@ RECLS_LINKAGE_C recls_bool_t recls_file_exists_(
     recls_char_t const* f
 )
 {
-    RECLS_COVER_MARK_LINE();
-
     return types::traits_type::file_exists(f);
 }
 
@@ -290,19 +265,13 @@ RECLS_API recls_is_valid_pattern_(
 
     RECLS_ASSERT(NULL != pattern);
 
-    RECLS_COVER_MARK_LINE();
-
     if('\0' == *pattern)
     {
-        RECLS_COVER_MARK_LINE();
-
         return RECLS_RC_NO_MORE_DATA;
     }
     else
     {
         STLSOFT_SUPPRESS_UNUSED(flags);
-
-        RECLS_COVER_MARK_LINE();
 
 #if !defined(RECLS_SUPPORTS_MULTIPATTERN_)
 
@@ -318,33 +287,23 @@ RECLS_API recls_is_valid_pattern_(
 
         if(1 == len)
         {
-            RECLS_COVER_MARK_LINE();
-
             if( 0 != (flags & RECLS_F_RECURSIVE) &&
                 '.' == pattern[0])
             {
-                RECLS_COVER_MARK_LINE();
-
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
         }
         else if(2 == len)
         {
-            RECLS_COVER_MARK_LINE();
-
             if( '.' == pattern[0] && 
                 '.' == pattern[1])
             {
-                RECLS_COVER_MARK_LINE();
-
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
         }
 
         if(len > 0)
         {
-            RECLS_COVER_MARK_LINE();
-
             recls_char_t    dotPattern[4]       =   "?.?";
             recls_char_t    dotdotPattern[5]    =   "?..?";
 
@@ -354,8 +313,6 @@ RECLS_API recls_is_valid_pattern_(
                     0 == strncmp(pattern, &dotPattern[1], 2)) ||
                 0 == strncmp(pattern, &dotdotPattern[1], 3))
             {
-                RECLS_COVER_MARK_LINE();
-
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
 
@@ -363,8 +320,6 @@ RECLS_API recls_is_valid_pattern_(
                     0 == strncmp(end - 2, dotPattern, 2)) ||
                 0 == strncmp(end - 3, dotdotPattern, 3))
             {
-                RECLS_COVER_MARK_LINE();
-
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
 
@@ -372,12 +327,8 @@ RECLS_API recls_is_valid_pattern_(
                     NULL != strstr(pattern, dotPattern)) ||
                 NULL != strstr(pattern, dotdotPattern))
             {
-                RECLS_COVER_MARK_LINE();
-
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
-
-            RECLS_COVER_MARK_LINE();
         }
 # else  /* ? RECLS_MULTIPATTERN_SEARCH_MANUAL */
 
@@ -408,17 +359,11 @@ RECLS_API recls_is_valid_pattern_(
             (   0 != (flags & RECLS_F_RECURSIVE) &&
                 tokens.end() != std::find(tokens.begin(), tokens.end(), constants::local_directory())))
         {
-            RECLS_COVER_MARK_LINE();
-
             return RECLS_RC_DOT_RECURSIVE_SEARCH;
         }
 
-        RECLS_COVER_MARK_LINE();
-
         if(!tokens.empty())
         {
-            RECLS_COVER_MARK_LINE();
-
             tokeniser_t::const_iterator it = std::max_element(tokens.begin(), tokens.end(), cmp_str_len());
 
             if(stlsoft::c_str_len(*it) > maxPathCompLen)
@@ -426,8 +371,6 @@ RECLS_API recls_is_valid_pattern_(
                 return RECLS_RC_PATH_LIMIT_EXCEEDED;
             }
         }
-
-        RECLS_COVER_MARK_LINE();
 
 # endif  /* ? RECLS_MULTIPATTERN_SEARCH_MANUAL */
 #endif /* RECLS_SUPPORTS_MULTIPATTERN_ */
@@ -442,8 +385,6 @@ RECLS_LINKAGE_C recls_bool_t recls_is_home_start_(
 {
     RECLS_ASSERT(NULL != path);
 
-    RECLS_COVER_MARK_LINE();
-
     if( '~' == path[0] &&
         (   '\0' == path[1] ||
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
@@ -452,12 +393,8 @@ RECLS_LINKAGE_C recls_bool_t recls_is_home_start_(
 #endif /* platform */
             '/' == path[1]))
     {
-        RECLS_COVER_MARK_LINE();
-
         return true;
     }
-
-    RECLS_COVER_MARK_LINE();
 
     return false;
 }
@@ -472,3 +409,4 @@ RECLS_LINKAGE_C recls_bool_t recls_is_home_start_(
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

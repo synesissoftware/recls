@@ -4,11 +4,12 @@
  * Purpose:     Windows implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -49,7 +51,6 @@
 #include "incl.unixstl.h"
 #include "impl.string.hpp"
 #include "impl.util.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -68,27 +69,15 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
  * roots
  */
 
 RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
                                     ,   size_t          cRoots)
 {
-    RECLS_COVER_MARK_LINE();
-
     if(0 < cRoots)
     {
         RECLS_ASSERT(NULL != roots);
-
-        RECLS_COVER_MARK_LINE();
 
         roots[0].name[0] = '/';
         roots[0].name[1] = '\0';
@@ -101,16 +90,8 @@ RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
                                             ,   size_t          cRoots
                                             ,   recls_uint32_t  /* flags */)
 {
-    RECLS_COVER_MARK_LINE();
-
     return recls::Recls_GetRoots(roots, cRoots);
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -122,3 +103,4 @@ RECLS_MARK_FILE_END()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

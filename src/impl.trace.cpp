@@ -4,11 +4,12 @@
  * Purpose:     Tracing.
  *
  * Created:     30th September 2003
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +30,6 @@
 #include "incl.platformstl.h"
 #include "impl.trace.h"
 #include "impl.util.h"
-#include "impl.cover.h"
 
 /* STLSoft / platform-specific Header Files */
 #include <stlsoft/internal/safestr.h>
@@ -82,8 +82,6 @@ namespace
     ,   va_list             args
     )
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_char_t    message[1001];
         int             n1;
         int             n2;
@@ -91,8 +89,6 @@ namespace
 
         if(0 == (severity & 0x0f))
         {
-            RECLS_COVER_MARK_LINE();
-
             // treat it as a number
 
             n1 = recls_snprintf(&message[0]
@@ -101,8 +97,6 @@ namespace
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             // treat it as a set of flags
 
             n1 = recls_snprintf(&message[0]
@@ -116,8 +110,6 @@ namespace
 
         if(n2 < 0)
         {
-            RECLS_COVER_MARK_LINE();
-
             n2 = static_cast<int>(STLSOFT_NUM_ELEMENTS(message)) - 2 - n1;
         }
 
@@ -200,14 +192,10 @@ RECLS_FNDECL(void) Recls_SetApiLogFunction(
 {
     RECLS_ASSERT((NULL == severities) || (NULL != pfn));
 
-    RECLS_COVER_MARK_LINE();
-
     s_loggingFunction   =   pfn;
     s_flags             =   flags;
     if(NULL == severities)
     {
-        RECLS_COVER_MARK_LINE();
-
         s_severities[0]     =   fatalSeverity_DEFAULT;
         s_severities[1]     =   errorSeverity_DEFAULT;
         s_severities[2]     =   warningSeverity_DEFAULT;
@@ -218,8 +206,6 @@ RECLS_FNDECL(void) Recls_SetApiLogFunction(
     }
     else
     {
-        RECLS_COVER_MARK_LINE();
-
         s_severities[0]     =   severities->severities[0];
         s_severities[1]     =   severities->severities[1];
         s_severities[2]     =   severities->severities[2];
@@ -259,8 +245,6 @@ static void recls_log_vprintf_(
 {
     RECLS_ASSERT(NULL != fmt);
 
-    RECLS_COVER_MARK_LINE();
-
     RECLS_ASSERT(sevIndex >= 0 && sevIndex < int(STLSOFT_NUM_ELEMENTS(s_severities)));
 
     recls_log_pfn_t loggingFunction =   s_loggingFunction;
@@ -269,8 +253,6 @@ static void recls_log_vprintf_(
     if( severity >= 0 &&
         NULL != loggingFunction)
     {
-        RECLS_COVER_MARK_LINE();
-
         (*loggingFunction)(severity, fmt, args);
     }
 }
@@ -281,8 +263,6 @@ void recls_log_printf_(
 ,   ...
 )
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -294,8 +274,6 @@ void recls_log_printf_(
 
 void recls_fatal_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -307,8 +285,6 @@ void recls_fatal_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_error_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -320,8 +296,6 @@ void recls_error_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_warning_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -333,8 +307,6 @@ void recls_warning_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_info_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -346,8 +318,6 @@ void recls_info_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_debug0_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -359,8 +329,6 @@ void recls_debug0_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_debug1_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -372,8 +340,6 @@ void recls_debug1_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_debug2_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -392,8 +358,6 @@ function_scope::function_scope(
 )
     : m_fn(fn)
 {
-    RECLS_COVER_MARK_LINE();
-
     error_scope_t    error_scope;
 
     recls_debug2_trace_printf_(RECLS_LITERAL(">> %s()"), m_fn);
@@ -401,8 +365,6 @@ function_scope::function_scope(
 
 function_scope::~function_scope() STLSOFT_NOEXCEPT
 {
-    RECLS_COVER_MARK_LINE();
-
     error_scope_t    error_scope;
 
     recls_debug2_trace_printf_(RECLS_LITERAL("<< %s()"), m_fn);
@@ -418,3 +380,4 @@ function_scope::~function_scope() STLSOFT_NOEXCEPT
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

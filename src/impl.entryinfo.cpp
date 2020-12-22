@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the create_entryinfo() function.
  *
  * Created:     31st May 2004
- * Updated:     24th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -56,7 +58,6 @@
 #include "impl.util.h"
 #include "impl.entryinfo.hpp"
 #include "impl.entryfunctions.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -95,14 +96,6 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
-RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
  * utility functions
@@ -145,8 +138,6 @@ recls_entry_t create_entryinfo(
 
     RECLS_ASSERT(types::traits_type::str_rchr(entryPath, types::traits_type::path_name_separator()) + 1 == entryPath + (entryPathLen - entryFileLen));
 
-    RECLS_COVER_MARK_LINE();
-
     // size of structure is:
     //
     //    offsetof(struct recls_entryinfo_t, data)
@@ -181,8 +172,6 @@ recls_entry_t create_entryinfo(
 
     if(NULL != info)
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_byte_t* const     pData       =   &info->data[0];
         recls_byte_t* const     pParts      =   pData + 0;
         recls_byte_t* const     pPath       =   pParts + (cDirParts * sizeof(recls_strptrs_t));
@@ -213,15 +202,11 @@ recls_entry_t create_entryinfo(
         // search-relative path
         if(bSearchDirOverlap)
         {
-            RECLS_COVER_MARK_LINE();
-
             info->searchRelativePath.begin  =   info->path.begin + rootDirLen;
             info->searchRelativePath.end    =   info->path.end;
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             info->searchRelativePath.begin  =   info->path.begin;
             info->searchRelativePath.end    =   info->path.end;
         }
@@ -329,15 +314,11 @@ recls_entry_t create_entryinfo(
         info->fileName.end                  =   types::traits_type::str_rchr(info->directory.end, RECLS_LITERAL('.'));
         if(NULL != info->fileName.end)
         {
-            RECLS_COVER_MARK_LINE();
-
             info->fileExt.begin             =   info->fileName.end + 1;
             info->fileExt.end               =   info->directory.end +  cchFileName;
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             info->fileName.end              =   info->directory.end +  cchFileName;
             info->fileExt.begin             =   info->directory.end +  cchFileName;
             info->fileExt.end               =   info->directory.end +  cchFileName;
@@ -353,15 +334,11 @@ recls_entry_t create_entryinfo(
 
         if(bSearchDirOverlap)
         {
-            RECLS_COVER_MARK_LINE();
-
             info->searchDirectory.begin     =   info->path.begin;
             info->searchDirectory.end       =   info->searchDirectory.begin + rootDirLen;
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             recls_char_t*   searchCopy      =   ::stlsoft::sap_cast<recls_char_t*>(pSearchCopy);
             info->searchDirectory.begin     =   searchCopy;
             info->searchDirectory.end       =   info->searchDirectory.begin + searchDirLen;
@@ -373,24 +350,16 @@ recls_entry_t create_entryinfo(
         {
             RECLS_ASSERT((flags & RECLS_F_DIRECTORY_PARTS) == RECLS_F_DIRECTORY_PARTS);
 
-            RECLS_COVER_MARK_LINE();
-
             begin->begin = p;
 
             for(; p != l; ++p)
             {
-                RECLS_COVER_MARK_LINE();
-
                 if(*p == types::traits_type::path_name_separator())
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     begin->end = p + 1;
 
                     if(++begin != info->directoryParts.end)
                     {
-                        RECLS_COVER_MARK_LINE();
-
                         begin->begin = p + 1;
                     }
                 }
@@ -399,8 +368,6 @@ recls_entry_t create_entryinfo(
 
         if(NULL == st)
         {
-            RECLS_COVER_MARK_LINE();
-
             recls_time_t        no_time;
             recls_filesize_t    no_size;
 
@@ -431,8 +398,6 @@ recls_entry_t create_entryinfo(
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             RECLS_ASSERT(NULL != st);
 
             // alt name
@@ -472,8 +437,6 @@ recls_entry_t create_entryinfo(
             if( RECLS_F_MARK_DIRS == (flags & RECLS_F_MARK_DIRS) &&
                 types::traits_type::is_directory(st))
             {
-                RECLS_COVER_MARK_LINE();
-
                 *const_cast<recls_char_t*>(info->path.end)  =   types::traits_type::path_name_separator();
                 ++info->path.end;
                 *const_cast<recls_char_t*>(info->path.end)  =   '\0';
@@ -501,8 +464,6 @@ recls_entry_t create_drive_entryinfo(
 ,   types::stat_data_type const*    st
 )
 {
-    RECLS_COVER_MARK_LINE();
-
 #if 0
     return create_entryinfo(0, NULL, 0, entryPath, entryPathLen, NULL, 0, flags, st);
 #else /* ? 0 */
@@ -517,8 +478,6 @@ recls_entry_t create_drive_entryinfo(
 
     if(NULL != info)
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_byte_t* const pData       =   &info->data[0];
         recls_byte_t* const pParts      =   pData + 0;
         recls_byte_t* const pPath       =   pParts + (cDirParts * sizeof(recls_strptrs_t));
@@ -600,8 +559,6 @@ recls_entry_t create_drive_entryinfo(
 
         if(NULL == st)
         {
-            RECLS_COVER_MARK_LINE();
-
             recls_time_t        no_time;
             recls_filesize_t    no_size;
 
@@ -637,8 +594,6 @@ recls_entry_t create_drive_entryinfo(
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             // alt name
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
             info->shortFile.begin           =   info->path.begin;
@@ -673,8 +628,6 @@ recls_entry_t create_drive_entryinfo(
             if( RECLS_F_MARK_DIRS == (flags & RECLS_F_MARK_DIRS) &&
                 types::traits_type::is_directory(st))
             {
-                RECLS_COVER_MARK_LINE();
-
                 *const_cast<recls_char_t*>(info->path.end)  =   types::traits_type::path_name_separator();
                 ++info->path.end;
                 *const_cast<recls_char_t*>(info->path.end)  =   '\0';
@@ -697,12 +650,6 @@ recls_entry_t create_drive_entryinfo(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
-
-/* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
@@ -712,3 +659,4 @@ RECLS_MARK_FILE_END()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

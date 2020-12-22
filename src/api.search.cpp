@@ -4,11 +4,12 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -50,7 +52,6 @@
 #include "impl.util.h"     // for recls_strlen_(), recls_strncpy_()
 #include "impl.entryfunctions.h"
 #include "impl.constants.hpp"
-#include "impl.cover.h"
 
 #include "ReclsSearch.hpp"
 #include "ReclsFileSearch.hpp"
@@ -69,14 +70,6 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
@@ -91,21 +84,15 @@ struct cdecl_process_fn_translator
         : m_pfn((stdcall_process_fn_t)pfn)
         , m_param(param)
     {
-        RECLS_COVER_MARK_LINE();
-    }
 
     operator recls_process_fn_param_t()
     {
-        RECLS_COVER_MARK_LINE();
-
         return this;
     }
 
     static int RECLS_CALLCONV_DEFAULT func( recls_entry_t               hEntry
                                         ,   recls_process_fn_param_t    param)
     {
-        RECLS_COVER_MARK_LINE();
-
         cdecl_process_fn_translator *pThis = (cdecl_process_fn_translator*)param;
 
         return (*pThis->m_pfn)(hEntry, pThis->m_param);
@@ -128,14 +115,10 @@ struct cdecl_progress_fn_translator
                             ,   recls_process_fn_param_t    param)
         : m_pfn((stdcall_progress_fn_t)pfn)
         , m_param(param)
-    {
-        RECLS_COVER_MARK_LINE();
-    }
+    {}
 
     operator recls_process_fn_param_t()
     {
-        RECLS_COVER_MARK_LINE();
-
         return this;
     }
 
@@ -145,8 +128,6 @@ struct cdecl_progress_fn_translator
                                         ,   void*                       reserved0
                                         ,   recls_uint32_t              reserved1)
     {
-        RECLS_COVER_MARK_LINE();
-
         cdecl_progress_fn_translator* pThis = (cdecl_progress_fn_translator*)param;
 
         return (*pThis->m_pfn)(dir, dirLen, pThis->m_param, reserved0, reserved1);
@@ -203,8 +184,6 @@ RECLS_API Recls_Search(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_Search(%s, %s, %08x, ...)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags);
 
-    RECLS_COVER_MARK_LINE();
-
     return Recls_SearchFeedback(searchRoot, pattern, flags, NULL, NULL, phSrch);
 }
 
@@ -221,16 +200,12 @@ RECLS_API Recls_SearchFeedback(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SearchFeedback(%s, %s, 0x%04x, ..., %p, ...)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags, param);
 
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_PLATFORM_IS_WINDOWSx)
     cdecl_progress_fn_translator    translator(pfn, param);
 
     if( NULL != pfn &&
         (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS))
     {
-        RECLS_COVER_MARK_LINE();
-
         pfn     =   &cdecl_progress_fn_translator::func;
         param   =   translator;
     }
@@ -246,30 +221,22 @@ RECLS_API Recls_SearchFeedback(
     try
     {
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
-        RECLS_COVER_MARK_LINE();
-
         // Default the input parameters
         types::file_path_buffer_type   home;
 
         // Default the pattern?
         if(NULL == pattern)
         {
-            RECLS_COVER_MARK_LINE();
-
             // Pre-1.8.6, this always defaulted to '*.*' (or '*')
 
             if( NULL != searchRoot &&
                 (   NULL != types::traits_type::str_pbrk(searchRoot, RECLS_LITERAL("*?")) ||
                     types::traits_type::is_file(searchRoot)))
             {
-                RECLS_COVER_MARK_LINE();
-
                 std::swap(searchRoot, pattern);
             }
             else
             {
-                RECLS_COVER_MARK_LINE();
-
                 // Set to '*' / '*.*'
                 pattern = types::traits_type::pattern_all();
             }
@@ -279,18 +246,12 @@ RECLS_API Recls_SearchFeedback(
         if( NULL == searchRoot ||
             0 == *searchRoot)
         {
-            RECLS_COVER_MARK_LINE();
-
             if(USE_TILDE_ON_NO_SEARCHROOT & flags)
             {
-                RECLS_COVER_MARK_LINE();
-
                 searchRoot = constants::home().data();
             }
             else
             {
-                RECLS_COVER_MARK_LINE();
-
                 // Pre-1.8.6, this always defaulted to '.'
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
@@ -306,8 +267,6 @@ RECLS_API Recls_SearchFeedback(
                     types::traits_type::is_path_rooted(pattern) &&
                     NULL != (wc = types::traits_type::str_pbrk(pattern, RECLS_LITERAL("*?"))))
                 {
-                    RECLS_COVER_MARK_LINE();
-
 //                  const size_t    len     =   types::traits_type::str_len(pattern);
                     recls_char_t*   file0   =   types::traits_type::str_rchr(pattern, RECLS_LITERAL('/'));
 #if defined(RECLS_PLATFORM_IS_UNIX)
@@ -321,14 +280,10 @@ RECLS_API Recls_SearchFeedback(
                     if( wc < file ||
                         static_cast<size_t>(file - pattern) > home.size() - 1)
                     {
-                        RECLS_COVER_MARK_LINE();
-
                         searchRoot = constants::default_search_root().data();
                     }
                     else
                     {
-                        RECLS_COVER_MARK_LINE();
-
                         size_t cch = static_cast<size_t>(file - pattern) + 1;
                         types::traits_type::char_copy(&home[0], pattern, cch);
                         home[cch] = RECLS_LITERAL('\0');
@@ -339,8 +294,6 @@ RECLS_API Recls_SearchFeedback(
                 }
                 else
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     searchRoot = constants::default_search_root().data();
                 }
             }
@@ -349,34 +302,24 @@ RECLS_API Recls_SearchFeedback(
         // Handle tilde
         if(recls_is_home_start_(searchRoot))
         {
-            RECLS_COVER_MARK_LINE();
-
             size_t  n       =   recls_get_home_(&home[0], home.size());
             size_t  rootLen =   types::traits_type::str_len(searchRoot);
 
             if(0 == n)
             {
-                RECLS_COVER_MARK_LINE();
-
                 return RECLS_RC_NO_HOME;
             }
             else
             {
-                RECLS_COVER_MARK_LINE();
-
                 // recls_get_home_() always has a trailing path-name separator
                 RECLS_ASSERT(types::traits_type::has_dir_end(&home[0]));
 
                 if(rootLen + n > home.size())
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     return RECLS_RC_PATH_LIMIT_EXCEEDED;
                 }
                 else
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     // append the search root, skipping the tilde
                     //
                     // - &home[0] + (n - 1) drops the trailing separator on the home directory
@@ -397,22 +340,16 @@ RECLS_API Recls_SearchFeedback(
 #ifndef RECLS_EXCEPTION_SUPPORT_
         if(0 == pattern_.size())
         {
-            RECLS_COVER_MARK_LINE();
-
             rc = RECLS_RC_OUT_OF_MEMORY;
         }
         else
 #endif /* !RECLS_EXCEPTION_SUPPORT_ */
         {
-            RECLS_COVER_MARK_LINE();
-
             types::path_type path;
 
             if( NULL != types::traits_type::str_chr(pattern, types::traits_type::path_separator()) ||
                 NULL != types::traits_type::str_chr(pattern, RECLS_LITERAL('|')))
             {
-                RECLS_COVER_MARK_LINE();
-
                 // Has the separator, so we can proceed. (If any are too long, they will be
                 // caught by recls_is_valid_pattern_()
 
@@ -437,20 +374,14 @@ RECLS_API Recls_SearchFeedback(
             }
             else
             {
-                RECLS_COVER_MARK_LINE();
-
                 // Cater for the situation whereby the pattern is a file
 
                 if(types::traits_type::str_len(pattern) > types::traits_type::path_max())
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     rc = RECLS_RC_PATH_LIMIT_EXCEEDED;
                 }
                 else
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     rc = RECLS_RC_OK;
 
                     types::file_path_buffer_type searchRoot_;
@@ -459,8 +390,6 @@ RECLS_API Recls_SearchFeedback(
 
                     if(path.exists())
                     {
-                        RECLS_COVER_MARK_LINE();
-
                         path.make_absolute(true);
 #ifdef RECLS_EXCEPTION_SUPPORT_
                         path.canonicalise(true);
@@ -477,18 +406,12 @@ RECLS_API Recls_SearchFeedback(
 
                         if(0 == (flags & RECLS_F_TYPEMASK))
                         {
-                            RECLS_COVER_MARK_LINE();
-
                             if(types::traits_type::is_directory(path.c_str()))
                             {
-                                RECLS_COVER_MARK_LINE();
-
                                 flags |= RECLS_F_DIRECTORIES;
                             }
                             else
                             {
-                                RECLS_COVER_MARK_LINE();
-
                                 flags |= RECLS_F_FILES;
                             }
                         }
@@ -498,35 +421,25 @@ RECLS_API Recls_SearchFeedback(
 
             if(RECLS_SUCCEEDED(rc))
             {
-                RECLS_COVER_MARK_LINE();
-
                 // Default the flags
                 if(0 == (flags & RECLS_F_TYPEMASK))
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     flags |= RECLS_F_FILES;
                 }
 
                 if(0 == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     rc = RECLS_RC_INVALID_SEARCH_TYPE;
                 }
                 // Validate the pattern.
                 else
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     rc = recls_is_valid_pattern_(pattern, flags, types::traits_type::path_max());
                 }
             }
 
             if(RECLS_SUCCEEDED(rc))
             {
-                RECLS_COVER_MARK_LINE();
-
                 ReclsFileSearch *si;
                 size_t const    rootDirLen  =   types::traits_type::str_len(searchRoot);
                 size_t const    patternLen2 =   types::traits_type::str_len(pattern);
@@ -538,8 +451,6 @@ RECLS_API Recls_SearchFeedback(
 
                 if(RECLS_SUCCEEDED(rc))
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     *phSrch = ReclsSearch::ToHandle(si);
 
                     rc = RECLS_RC_OK;
@@ -551,8 +462,6 @@ RECLS_API Recls_SearchFeedback(
 # if _STLSOFT_VER >= 0x010d0000
     catch(platformstl::filesystem_exception& x)
     {
-        RECLS_COVER_MARK_LINE();
-
         return RECLS_RC_?;
     }
 #  error Implement these changes to STLSoft, including winstl::path_too_long_exception.
@@ -560,8 +469,6 @@ RECLS_API Recls_SearchFeedback(
 # ifdef STLSOFT_CF_NOTHROW_BAD_ALLOC
     catch(std::bad_alloc&)
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
         rc = RECLS_RC_OUT_OF_MEMORY;
@@ -569,8 +476,6 @@ RECLS_API Recls_SearchFeedback(
 # endif /* STLSOFT_CF_NOTHROW_BAD_ALLOC */
     catch(std::exception &x)
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_error_trace_printf_(RECLS_LITERAL("Exception in Recls_Search(): %s"), x.what());
 
         rc = RECLS_RC_UNEXPECTED;
@@ -578,8 +483,6 @@ RECLS_API Recls_SearchFeedback(
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 
     RECLS_MESSAGE_ASSERT(RECLS_LITERAL("Must not return a success code with a null search handle"), RECLS_RC_OK != rc || NULL != *phSrch);
-
-    RECLS_COVER_MARK_LINE();
 
     return rc;
 }
@@ -594,8 +497,6 @@ RECLS_FNDECL(void) Recls_SearchClose(hrecls_t hSrch)
     ReclsSearch *si = ReclsSearch::FromHandle(hSrch);
 
     RECLS_MESSAGE_ASSERT("Search handle is null!", NULL != si);
-
-    RECLS_COVER_MARK_LINE();
 
     delete si;
 }
@@ -620,16 +521,12 @@ RECLS_API Recls_SearchProcessFeedback(
 
     RECLS_ASSERT(NULL != pfn);
 
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_PLATFORM_IS_WINDOWSx)
     cdecl_process_fn_translator translator(pfn, param);
 
     if( NULL != pfn &&
         (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS))
     {
-        RECLS_COVER_MARK_LINE();
-
         pfn     =   &cdecl_process_fn_translator::func;
         param   =   translator;
     }
@@ -640,33 +537,23 @@ RECLS_API Recls_SearchProcessFeedback(
 
     if(RECLS_SUCCEEDED(rc))
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_entry_t info;
 
         do
         {
-            RECLS_COVER_MARK_LINE();
-
             rc = Recls_GetDetails(hSrch, &info);
 
             if(RECLS_FAILED(rc))
             {
-                RECLS_COVER_MARK_LINE();
-
                 break;
             }
             else
             {
-                RECLS_COVER_MARK_LINE();
-
                 int res;
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
                 if(flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     typedef int (RECLS_CALLCONV_STDDECL *stdcall_process_fn_t)( recls_entry_t               hEntry
                                                                             ,   recls_process_fn_param_t    param);
 
@@ -676,8 +563,6 @@ RECLS_API Recls_SearchProcessFeedback(
                         hrecls_process_fn_t     pfn_cdecl;
                     } u;
 
-                    RECLS_COVER_MARK_LINE();
-
                     u.pfn_cdecl = pfn;
 
                     res = (*u.pfn_stdcall)(info, param);
@@ -685,8 +570,6 @@ RECLS_API Recls_SearchProcessFeedback(
                 else
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     res = (*pfn)(info, param);
                 }
 
@@ -694,8 +577,6 @@ RECLS_API Recls_SearchProcessFeedback(
 
                 if(0 == res)
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     rc = RECLS_RC_SEARCH_CANCELLED;
 
                     break;
@@ -709,12 +590,8 @@ RECLS_API Recls_SearchProcessFeedback(
 
     if(RECLS_RC_NO_MORE_DATA == rc)
     {
-        RECLS_COVER_MARK_LINE();
-
         rc = RECLS_RC_OK;
     }
-
-    RECLS_COVER_MARK_LINE();
 
     return rc;
 }
@@ -731,8 +608,6 @@ RECLS_API Recls_SearchProcess(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SearchProcess(%s, %s, 0x%04x, ..., %p)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags, param);
 
-    RECLS_COVER_MARK_LINE();
-
     return Recls_SearchProcessFeedback(searchRoot, pattern, flags, pfn, param, NULL, NULL);
 }
 
@@ -743,8 +618,6 @@ RECLS_API Recls_GetNext(hrecls_t hSrch)
     ReclsSearch *si =   ReclsSearch::FromHandle(hSrch);
 
     RECLS_MESSAGE_ASSERT("Search handle is null!", NULL != si);
-
-    RECLS_COVER_MARK_LINE();
 
     return si->GetNext();
 }
@@ -761,8 +634,6 @@ RECLS_API Recls_GetDetails(
     RECLS_MESSAGE_ASSERT("Search handle is null!", NULL != si);
     RECLS_ASSERT(NULL != pinfo);
 
-    RECLS_COVER_MARK_LINE();
-
     return si->GetDetails(pinfo);
 }
 
@@ -777,8 +648,6 @@ RECLS_API Recls_GetNextDetails(
 
     RECLS_MESSAGE_ASSERT("Search handle is null!", NULL != si);
 
-    RECLS_COVER_MARK_LINE();
-
     return si->GetNextDetails(pinfo);
 }
 
@@ -792,8 +661,6 @@ RECLS_FNDECL(void) Recls_CloseDetails(recls_entry_t fileInfo)
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    RECLS_COVER_MARK_LINE();
-
     Entry_Release(fileInfo);
 }
 
@@ -806,16 +673,8 @@ RECLS_API Recls_CopyDetails(
 
     RECLS_ASSERT(NULL != pinfo);
 
-    RECLS_COVER_MARK_LINE();
-
     return Entry_Copy(fileInfo, pinfo);
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -826,3 +685,4 @@ RECLS_MARK_FILE_END()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

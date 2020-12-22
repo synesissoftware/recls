@@ -4,11 +4,12 @@
  * Purpose:     Common constants.
  *
  * Created:     28th February 2007
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2007-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -27,7 +28,6 @@
  */
 
 #include <recls/recls.h>
-#include "impl.cover.h"
 #include <stlsoft/string/string_view.hpp>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -40,13 +40,6 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -65,26 +58,18 @@ public: /// Member Types
 public: /// Constants
     static string_type  default_search_root()
     {
-        RECLS_COVER_MARK_LINE();
-
         return string_type(RECLS_S_DEFAULT_SEARCH_ROOT_, STLSOFT_NUM_ELEMENTS(RECLS_S_DEFAULT_SEARCH_ROOT_) - 1);
     }
     static string_type  home()
     {
-        RECLS_COVER_MARK_LINE();
-
         return string_type(RECLS_S_HOME_, STLSOFT_NUM_ELEMENTS(RECLS_S_HOME_) - 1);
     }
     static string_type  local_directory()
     {
-        RECLS_COVER_MARK_LINE();
-
         return string_type(RECLS_S_LOCAL_DIR_, STLSOFT_NUM_ELEMENTS(RECLS_S_LOCAL_DIR_) - 1);
     }
     static string_type  parent_directory()
     {
-        RECLS_COVER_MARK_LINE();
-
         return string_type(RECLS_S_PARENT_DIR_, STLSOFT_NUM_ELEMENTS(RECLS_S_PARENT_DIR_) - 1);
     }
 
@@ -93,12 +78,6 @@ private: /// Not to be implemented
     constants(constants const&);
     constants& operator =(constants const&);
 };
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -114,3 +93,4 @@ RECLS_MARK_FILE_END()
 #endif /* !RECLS_INCL_SRC_HPP_IMPL_CONSTANTS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

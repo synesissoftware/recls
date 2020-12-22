@@ -4,11 +4,12 @@
  * Purpose:     more recls API extended functions.
  *
  * Created:     30th January 2009
- * Updated:     24th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2009-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -49,15 +51,10 @@
 #include "impl.string.hpp"
 #include "impl.types.hpp"
 #include "impl.util.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
-#ifdef RECLS_STLSOFT_1_10_B01_OR_LATER
-# include <platformstl/exception/platformstl_exception.hpp>
-#else /* ? STLSoft verosion */
-# include <platformstl/error/exceptions.hpp>
-#endif /* STLSoft verosion */
+#include <platformstl/exception/platformstl_exception.hpp>
 
 #include <vector>
 
@@ -94,15 +91,6 @@ using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_debug2_trace_printf_;
 
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util")
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util.remove_directory")
-RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -156,9 +144,7 @@ namespace
             : flags(flags)
             , rc(RECLS_RC_OK)
             , numDeleted(0)
-        {
-            RECLS_COVER_MARK_LINE();
-        }
+        {}
 
     private:
         file_removal_info_t_& operator =(file_removal_info_t_ const&);
@@ -169,24 +155,16 @@ namespace
     ,   recls_process_fn_param_t    param
     )
     {
-        RECLS_COVER_MARK_LINE();
-
         types::traits_type::stat_data_type  stat_data;
         file_removal_info_t_&               info    =   *static_cast<file_removal_info_t_*>(param);
         recls_char_t const* const           path    =   hEntry->path.begin;
 
         if(RECLS_REMDIR_F_REMOVE_READONLY & info.flags)
         {
-            RECLS_COVER_MARK_LINE();
-
             if(types::traits_type::stat(path, &stat_data))
             {
-                RECLS_COVER_MARK_LINE();
-
                 if(types::traits_type::is_readonly(&stat_data))
                 {
-                    RECLS_COVER_MARK_LINE();
-
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
                     ::_chmod(path, stat_data.st_mode | _S_IWRITE);
@@ -204,14 +182,10 @@ namespace
 
         if(!types::traits_type::delete_file(path))
         {
-            RECLS_COVER_MARK_LINE();
-
             info.rc = RECLS_RC_ACCESS_DENIED;
 
             return 0;
         }
-
-        RECLS_COVER_MARK_LINE();
 
         ++info.numDeleted;
 
@@ -234,9 +208,7 @@ namespace
             , maxParts(0u)
             , rc(RECLS_RC_OK)
             , directories(directories)
-        {
-            RECLS_COVER_MARK_LINE();
-        }
+        {}
 
     private:
         directory_removal_info_t_& operator =(directory_removal_info_t_ const&);
@@ -247,8 +219,6 @@ namespace
     ,   recls_process_fn_param_t    param
     )
     {
-        RECLS_COVER_MARK_LINE();
-
         directory_removal_info_t_&  info        =   *static_cast<directory_removal_info_t_*>(param);
         recls_char_t const* const   path        =   hEntry->path.begin;
         unsigned                    numParts    =   1u + static_cast<unsigned>(hEntry->directoryParts.end - hEntry->directoryParts.begin);
@@ -267,8 +237,6 @@ namespace
     {
         bool operator ()(directory_t const& lhs, directory_t const& rhs) const
         {
-            RECLS_COVER_MARK_LINE();
-
             return lhs.size() < rhs.size();
         }
     };
@@ -284,30 +252,20 @@ namespace
         RECLS_ASSERT('\0' != 0[path]);
         RECLS_ASSERT(NULL != results);
 
-        RECLS_COVER_MARK_LINE();
-
         types::traits_type::stat_data_type stat_data;
 
         if(!types::traits_type::stat(path, &stat_data)) // Not lstat!
         {
-            RECLS_COVER_MARK_LINE();
-
             return RECLS_RC_DIRECTORY_NOT_FOUND;
         }
         else if(!types::traits_type::is_directory(&stat_data))
         {
-            RECLS_COVER_MARK_LINE();
-
             return RECLS_RC_PATH_IS_NOT_DIRECTORY;
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             if(RECLS_REMDIR_F_REMOVE_FILES & flags)
             {
-                RECLS_COVER_MARK_LINE();
-
                 // Remove all files
 
                 file_removal_info_t_    info(flags);
@@ -322,20 +280,14 @@ namespace
 
                 if(RECLS_FAILED(rc))
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     return info.rc;
                 }
-
-                RECLS_COVER_MARK_LINE();
 
                 results->numDeletedFiles    =   info.numDeleted;
             }
 
             if(0 == (RECLS_REMDIR_F_NO_REMOVE_SUBDIRS & flags))
             {
-                RECLS_COVER_MARK_LINE();
-
                 // Remove all sub-directories
 
                 directories_t               directories;
@@ -351,8 +303,6 @@ namespace
 
                 if(RECLS_FAILED(rc))
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     return info.rc;
                 }
 
@@ -360,14 +310,10 @@ namespace
 
                 { for(directories_t::reverse_iterator b = directories.rbegin(); b != directories.rend(); ++b)
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     directory_t directory = *b;
 
                     if(!types::traits_type::remove_directory(directory.c_str()))
                     {
-                        RECLS_COVER_MARK_LINE();
-
                         return RECLS_RC_ACCESS_DENIED;
                     }
                     else
@@ -382,12 +328,8 @@ namespace
                 results->numExistingElements = info.maxParts;
             }
 
-            RECLS_COVER_MARK_LINE();
-
             if(!types::traits_type::remove_directory(path))
             {
-                RECLS_COVER_MARK_LINE();
-
                 return RECLS_RC_ACCESS_DENIED;
             }
             else
@@ -411,8 +353,6 @@ namespace
                 }
             }
 
-            RECLS_COVER_MARK_LINE();
-
             return RECLS_RC_OK;
         }
     }
@@ -428,14 +368,10 @@ namespace
         RECLS_ASSERT('\0' != 0[path]);
         RECLS_ASSERT(NULL != results);
 
-        RECLS_COVER_MARK_LINE();
-
         // 1. Make path absolute
 
         if(!types::traits_type::is_path_absolute(path))
         {
-            RECLS_COVER_MARK_LINE();
-
             types::path_type    fullPath;
 
             fullPath = path;
@@ -447,8 +383,6 @@ namespace
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             /* results->numExistingElements */;
             /* results->numResultingElements */;
             /* results->existingLength; */
@@ -488,8 +422,6 @@ RECLS_API Recls_RemoveDirectory(
     }
     catch(std::bad_alloc&)
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
         return RECLS_RC_OUT_OF_MEMORY;
@@ -497,8 +429,6 @@ RECLS_API Recls_RemoveDirectory(
     catch(platformstl::platform_exception& x)
     {
         recls_fatal_trace_printf_(RECLS_LITERAL("Exception in Recls_RemoveDirectory(): %s"), x.what());
-
-        RECLS_COVER_MARK_LINE();
 
         // TODO: write a system_error_code_2_recls_rc() translator
 # if defined(PLATFORMSTL_OS_IS_UNIX)
@@ -509,20 +439,14 @@ RECLS_API Recls_RemoveDirectory(
 #  error Platform not discriminated
 # endif /* OS */
         {
-            RECLS_COVER_MARK_LINE();
-
             return RECLS_RC_INVALID_NAME;
         }
-
-        RECLS_COVER_MARK_LINE();
 
         return RECLS_RC_UNEXPECTED;
     }
     catch(std::exception& x)
     {
         recls_error_trace_printf_(RECLS_LITERAL("Exception in Recls_RemoveDirectory(): %s"), x.what());
-
-        RECLS_COVER_MARK_LINE();
 
         return RECLS_RC_UNEXPECTED;
     }
@@ -541,16 +465,12 @@ static recls_rc_t Recls_RemoveDirectory_X_(
 
     RECLS_ASSERT(NULL != path);
 
-    RECLS_COVER_MARK_LINE();
-
     // Initial parameter validation
 
     recls_directoryResults_t results_;
 
     if(NULL == results)
     {
-        RECLS_COVER_MARK_LINE();
-
         results = &results_;
     }
 
@@ -563,23 +483,13 @@ static recls_rc_t Recls_RemoveDirectory_X_(
 
     if('\0' == *path)
     {
-        RECLS_COVER_MARK_LINE();
-
         return RECLS_RC_INVALID_NAME;
     }
     else
     {
-        RECLS_COVER_MARK_LINE();
-
         return Recls_RemoveDirectory_(path, types::traits_type::str_len(path), flags, results);
     }
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -593,3 +503,4 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -48,7 +50,6 @@
 #include "impl.root.h"
 #include "impl.types.hpp"
 #include "impl.util.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -76,14 +77,6 @@ using ::recls::impl::recls_debug2_trace_printf_;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
  * constants
  */
 
@@ -107,8 +100,6 @@ RECLS_LINKAGE_C recls_char_t const* Recls_GetPathNameSeparator()
 {
     function_scope_trace("Recls_GetPathNameSeparator");
 
-    RECLS_COVER_MARK_LINE();
-
     static recls_char_t const   s_pathNameSeparator[] = { RAPI_PATHNAMESEP, '\0' };
 
     return s_pathNameSeparator;
@@ -118,8 +109,6 @@ RECLS_LINKAGE_C recls_char_t const* Recls_GetPathSeparator()
 {
     function_scope_trace("Recls_GetPathSeparator");
 
-    RECLS_COVER_MARK_LINE();
-
     static recls_char_t const   s_pathSeparator[] = { RAPI_PATHSEP, '\0' };
 
     return s_pathSeparator;
@@ -128,8 +117,6 @@ RECLS_LINKAGE_C recls_char_t const* Recls_GetPathSeparator()
 RECLS_LINKAGE_C recls_char_t const* Recls_GetWildcardsAll()
 {
     function_scope_trace("Recls_GetWildcardsAll");
-
-    RECLS_COVER_MARK_LINE();
 
     static recls_char_t const   s_wildcardsAll[] = { RAPI_WILDCARDSALL, '\0' };
 
@@ -142,8 +129,6 @@ RECLS_LINKAGE_C recls_char_t const* Recls_GetWildcardsAll()
 
 static int RECLS_CALLCONV_DEFAULT IsDirectoryEmpty_proc(recls_entry_t /* info */, recls_process_fn_param_t /* param */)
 {
-    RECLS_COVER_MARK_LINE();
-
     return 0; // Cancel on any entry
 }
 
@@ -152,8 +137,6 @@ RECLS_FNDECL(recls_bool_t) Recls_IsDirectoryEmpty(recls_char_t const* dir)
     function_scope_trace("Recls_IsDirectoryEmpty");
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_IsDirectoryEmpty(%s)"), stlsoft::c_str_ptr(dir));
-
-    RECLS_COVER_MARK_LINE();
 
     recls_rc_t rc = Recls_SearchProcess(dir, Recls_GetWildcardsAll(), RECLS_F_TYPEMASK, IsDirectoryEmpty_proc, 0);
 
@@ -169,15 +152,11 @@ RECLS_FNDECL(recls_bool_t) Recls_IsDirectoryEntryEmpty(recls_entry_t hEntry)
     RECLS_ASSERT(NULL != hEntry);
     RECLS_ASSERT(Recls_IsFileDirectory(hEntry));
 
-    RECLS_COVER_MARK_LINE();
-
     return Recls_IsDirectoryEmpty(hEntry->path.begin);
 }
 
 static int RECLS_CALLCONV_DEFAULT CalcDirectorySize_proc(recls_entry_t hEntry, recls_process_fn_param_t param)
 {
-    RECLS_COVER_MARK_LINE();
-
     recls_filesize_t&   total   =   *static_cast<recls_filesize_t*>(param);
     recls_filesize_t    size    =   Recls_GetSizeProperty(hEntry);
 
@@ -192,8 +171,6 @@ RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySize(recls_char_t const* dir)
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_CalcDirectorySize(%s)"), stlsoft::c_str_ptr(dir));
 
-    RECLS_COVER_MARK_LINE();
-
     static recls_filesize_t zero;
     recls_filesize_t        total = zero;
 
@@ -207,8 +184,6 @@ RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectoryEntrySize(recls_entry_t hEntry
     function_scope_trace("Recls_CalcDirectoryEntrySize");
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_CalcDirectoryEntrySize(%p)"), hEntry);
-
-    RECLS_COVER_MARK_LINE();
 
     RECLS_ASSERT(NULL != hEntry);
     RECLS_ASSERT(Recls_IsFileDirectory(hEntry));
@@ -227,8 +202,6 @@ RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySizeFeedback(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_CalcDirectorySizeFeedback(%s, %08x, ..., %p)"), stlsoft::c_str_ptr(dir), flags, param);
 
-    RECLS_COVER_MARK_LINE();
-
     static recls_filesize_t zero;
     recls_filesize_t        total = zero;
 
@@ -242,12 +215,6 @@ RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySizeFeedback(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
-
-/* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
@@ -259,3 +226,4 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the ReclsFtpSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     29th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -54,7 +56,6 @@
 # endif /* INETSTL_INCL_H_INETSTL */
 # include "recls_wininet_dl.h"
 #endif /* RECLS_DELAY_LOAD_WININET */
-#include "impl.cover.h"
 
 #include "ReclsSearch.hpp"
 #include "ReclsFtpSearch.hpp"
@@ -87,8 +88,6 @@ inline void* ReclsFtpSearch::operator new(size_t cb, size_t cDirParts, size_t cb
 {
     function_scope_trace("ReclsFtpSearch::operator new");
 
-    RECLS_COVER_MARK_LINE();
-
     cbRootDir = recls_align_up_size_(cbRootDir);
 
     RECLS_ASSERT(cb > STLSOFT_RAW_OFFSETOF(ReclsFtpSearch, data));
@@ -102,8 +101,6 @@ inline void* ReclsFtpSearch::operator new(size_t cb, size_t cDirParts, size_t cb
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
     if(NULL == pv)
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
         throw std::bad_alloc();
@@ -118,8 +115,6 @@ void ReclsFtpSearch::operator delete(void* pv, size_t /* cDirParts */, size_t /*
 {
     function_scope_trace("ReclsFtpSearch::operator delete");
 
-    RECLS_COVER_MARK_LINE();
-
     free(pv);
 }
 #endif /* RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE */
@@ -127,8 +122,6 @@ void ReclsFtpSearch::operator delete(void* pv, size_t /* cDirParts */, size_t /*
 void ReclsFtpSearch::operator delete(void* pv)
 {
     function_scope_trace("ReclsFtpSearch::operator delete");
-
-    RECLS_COVER_MARK_LINE();
 
     free(pv);
 }
@@ -158,8 +151,6 @@ void ReclsFtpSearch::operator delete(void* pv)
     RECLS_ASSERT(NULL != pattern);
     RECLS_ASSERT(NULL != ppsi);
 
-    RECLS_COVER_MARK_LINE();
-
     *ppsi = NULL;
 
     recls_rc_t          rc;
@@ -173,20 +164,14 @@ void ReclsFtpSearch::operator delete(void* pv)
     {
         recls_debug2_trace_printf_(RECLS_LITERAL("Failed to create sessions: %lu"), ::GetLastError());
 
-        RECLS_COVER_MARK_LINE();
-
         rc = RECLS_RC_FTP_INIT_FAILED;
     }
     else
     {
-        RECLS_COVER_MARK_LINE();
-
         DWORD   dwFlags =   0;
 
         if(flags & RECLS_F_PASSIVE_FTP)
         {
-            RECLS_COVER_MARK_LINE();
-
             dwFlags |= INTERNET_FLAG_PASSIVE;
         }
 
@@ -194,8 +179,6 @@ void ReclsFtpSearch::operator delete(void* pv)
 
         if(!connection)
         {
-            RECLS_COVER_MARK_LINE();
-
             DWORD   dwErr = connection.last_error();
 
             recls_debug2_trace_printf_(RECLS_LITERAL("Failed to open connection: %lu"), dwErr);
@@ -204,8 +187,6 @@ void ReclsFtpSearch::operator delete(void* pv)
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             ReclsFtpSearch*     si;
             size_t              cchFullPath = types::traits_type::get_full_path_name(connection, rootDir, 0, NULL);
             types::buffer_type  fullPath(1 + cchFullPath + 1); // +1 (nul) +1 (dir-end)
@@ -214,14 +195,10 @@ void ReclsFtpSearch::operator delete(void* pv)
             {
                 recls_debug2_trace_printf_(RECLS_LITERAL("Invalid directory"));
 
-                RECLS_COVER_MARK_LINE();
-
                 rc = RECLS_RC_INVALID_NAME;
             }
             else
             {
-                RECLS_COVER_MARK_LINE();
-
                 types::traits_type::get_full_path_name(connection, rootDir, fullPath.size(), &fullPath[0]);
 
                 types::traits_type::ensure_dir_end(&fullPath[0]);
@@ -241,16 +218,12 @@ void ReclsFtpSearch::operator delete(void* pv)
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
                 try
                 {
-                    RECLS_COVER_MARK_LINE();
-
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
                     si = new(cDirParts, sizeof(recls_char_t) * (1 + lenSearchRoot)) ReclsFtpSearch(session, connection, cDirParts, rootDir, rootDirLen, pattern, patternLen, flags);
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
                 }
                 catch(std::bad_alloc&)
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
                     si = NULL;
@@ -259,14 +232,10 @@ void ReclsFtpSearch::operator delete(void* pv)
 
                 if(NULL == si)
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     rc = RECLS_RC_FAIL;
                 }
                 else
                 {
-                    RECLS_COVER_MARK_LINE();
-
                     connection.detach();
                     session.detach();
 
@@ -274,8 +243,6 @@ void ReclsFtpSearch::operator delete(void* pv)
                     // should be made more elegant soon.
                     if(NULL == si->m_dnode)
                     {
-                        RECLS_COVER_MARK_LINE();
-
                         delete si;
 
 //                      si = NULL;
@@ -286,8 +253,6 @@ void ReclsFtpSearch::operator delete(void* pv)
                     }
                     else
                     {
-                        RECLS_COVER_MARK_LINE();
-
                         *ppsi = si;
 
                         rc = RECLS_RC_OK;
@@ -307,8 +272,6 @@ recls_char_t const* ReclsFtpSearch::calc_rootDir_(
 )
 {
     function_scope_trace("ReclsFtpSearch::calc_rootDir_");
-
-    RECLS_COVER_MARK_LINE();
 
     // Root dir is located after file parts, and before pattern
     recls_char_t* s = ::stlsoft::sap_cast<recls_char_t*>(&data[cDirParts * sizeof(recls_strptrs_t)]);
@@ -345,25 +308,17 @@ ReclsFtpSearch::ReclsFtpSearch(
 
     RECLS_MESSAGE_ASSERT("FTP filesystems do not allow drive specifications", rootDir[1] != ':');
 
-    RECLS_COVER_MARK_LINE();
-
     m_dnode = ReclsFtpSearchDirectoryNode::FindAndCreate(m_connection, m_flags, rootDir, rootDirLen, pattern, patternLen);
 }
 
 ReclsFtpSearch::~ReclsFtpSearch()
 {
-    RECLS_COVER_MARK_LINE();
-
     if(NULL != m_connection)
     {
-        RECLS_COVER_MARK_LINE();
-
         ::InternetCloseHandle(m_connection);
     }
     if(NULL != m_session)
     {
-        RECLS_COVER_MARK_LINE();
-
         ::InternetCloseHandle(m_session);
     }
 }

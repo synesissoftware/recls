@@ -4,11 +4,12 @@
  * Purpose:     Implementation header.
  *
  * Created:     13th December 2008
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2008-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -34,7 +35,6 @@
 
 #include "incl.inetstl.h"
 #include "impl.string.hpp"
-#include "impl.cover.h"
 
 #include <stlsoft/memory/auto_buffer.hpp>
 
@@ -125,18 +125,12 @@ public: /// Operations
         RECLS_ASSERT(NULL != begin);
         RECLS_ASSERT(NULL != end);
 
-        RECLS_COVER_MARK_LINE();
-
         size_t cDirParts = 0;
 
         for(; begin != end; ++begin)
         {
-            RECLS_COVER_MARK_LINE();
-
             if(*begin == ch)
             {
-                RECLS_COVER_MARK_LINE();
-
                 ++cDirParts;
             }
         }
@@ -150,8 +144,6 @@ public: /// Operations
     ,   recls_char_t const* end
     )
     {
-        RECLS_COVER_MARK_LINE();
-
         // Need this seemingly superflous cast (to size_t) in order to
         // placate CodeWarrior
         return size_t(std::count_if(begin, end, traits_type::is_path_name_separator));
@@ -179,3 +171,4 @@ typedef ftp_types   types; // This is required to avoid bad linker behaviour (wh
 #endif /* !RECLS_INCL_SRC_HPP_IMPL_TYPES_FTP */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

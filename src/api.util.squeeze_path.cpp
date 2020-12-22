@@ -4,11 +4,12 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -48,7 +50,6 @@
 #include "impl.root.h"
 #include "impl.types.hpp"
 #include "impl.util.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -78,15 +79,6 @@ using ::recls::impl::recls_debug2_trace_printf_;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util")
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util.squeeze_path")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
  * extended API functions
  */
 
@@ -114,8 +106,6 @@ RECLS_FNDECL(size_t) Recls_SqueezePath(
     {
         recls_error_trace_printf_(RECLS_LITERAL("Exception in Recls_SqueezePath(%s, ..., ...): %s"), path, x.what());
 
-        RECLS_COVER_MARK_LINE();
-
         return 0;
     }
 }
@@ -131,18 +121,12 @@ static size_t Recls_SqueezePath_X_(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SqueezePath(%s, ..., %u)"), stlsoft::c_str_ptr(path), unsigned(cchResult));
 
-    RECLS_COVER_MARK_LINE();
-
     if(NULL == result)
     {
-        RECLS_COVER_MARK_LINE();
-
         size_t n = platformstl::path_squeeze(path, result, cchResult);
 
         if(0 != n)
         {
-            RECLS_COVER_MARK_LINE();
-
             --n;
         }
 
@@ -150,16 +134,12 @@ static size_t Recls_SqueezePath_X_(
     }
     else
     {
-        RECLS_COVER_MARK_LINE();
-
         stlsoft::auto_buffer<recls_char_t, 512> buffer(1 + cchResult);
         size_t                                  n = platformstl::path_squeeze(path, &buffer[0], buffer.size());
 
         if(0 != n)
         {
             RECLS_ASSERT(n <= cchResult + 1);
-
-            RECLS_COVER_MARK_LINE();
 
             types::traits_type::char_copy(result, buffer.data(), n);
 
@@ -169,12 +149,6 @@ static size_t Recls_SqueezePath_X_(
         return n;
     }
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -188,3 +162,4 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

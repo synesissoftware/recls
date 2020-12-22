@@ -5,11 +5,12 @@
  *              the recls API.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -21,9 +22,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -49,7 +51,6 @@
 #include "impl.root.h"
 #include "incl.winstl.h"
 #include "impl.atomic.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -74,8 +75,6 @@ namespace impl
 
 RECLS_FNDECL(void) RC_Increment(rc_atomic_t volatile *p)
 {
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_MT)
     winstl::atomic_increment(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
 #else /* ? RECLS_MT */
@@ -85,8 +84,6 @@ RECLS_FNDECL(void) RC_Increment(rc_atomic_t volatile *p)
 
 RECLS_FNDECL(rc_atomic_t) RC_PreDecrement(rc_atomic_t volatile *p)
 {
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_MT)
     return winstl::atomic_predecrement(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
 #else /* ? RECLS_MT */
@@ -96,8 +93,6 @@ RECLS_FNDECL(rc_atomic_t) RC_PreDecrement(rc_atomic_t volatile *p)
 
 RECLS_FNDECL(rc_atomic_t) RC_ReadValue(rc_atomic_t volatile *p)
 {
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_MT)
     return winstl::atomic_read(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
 #else /* ? RECLS_MT */
@@ -115,3 +110,4 @@ RECLS_FNDECL(rc_atomic_t) RC_ReadValue(rc_atomic_t volatile *p)
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

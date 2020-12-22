@@ -4,11 +4,12 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -48,7 +50,6 @@
 #include "impl.root.h"
 #include "impl.types.hpp"
 #include "impl.util.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -74,19 +75,6 @@ using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_debug2_trace_printf_;
 
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util")
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util.combine_paths")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
- * constants
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * extended API functions
@@ -117,15 +105,11 @@ RECLS_FNDECL(size_t) Recls_CombinePaths(
     {
         recls_error_trace_printf_(RECLS_LITERAL("Exception in Recls_CombinePaths(): %s"), x.what());
 
-        RECLS_COVER_MARK_LINE();
-
         return 0u;
     }
     catch(...)
     {
         recls_log_printf_(RECLS_SEVIX_ERROR, RECLS_LITERAL("unknown exception in Recls_CombinePaths()"));
-
-        RECLS_COVER_MARK_LINE();
 
         return 0u;
     }
@@ -145,15 +129,11 @@ static size_t Recls_CombinePaths_X_(
 
     RECLS_ASSERT(NULL != path1 || NULL != path2);
 
-    RECLS_COVER_MARK_LINE();
-
     platformstl::basic_path<recls_char_t>   path((NULL != path1) ? path1 : path2);
 
     if( NULL != path1 &&
         NULL != path2)
     {
-        RECLS_COVER_MARK_LINE();
-
         path /= path2;
     }
 
@@ -164,16 +144,8 @@ static size_t Recls_CombinePaths_X_(
                     ,   int(path.size())
                     ,   path.c_str());
 
-    RECLS_COVER_MARK_LINE();
-
     return n;
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -187,3 +159,4 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
