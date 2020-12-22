@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -134,7 +134,7 @@ public:
     {}
     void Release()
     {
-        if(--cRefs == 0)
+        if (--cRefs == 0)
         {
             delete this;
         }
@@ -151,7 +151,7 @@ private:
     {
         RECLS_MESSAGE_ASSERT("Shared search handle being destroyed with outstanding references!", 0 == cRefs);
 
-        if(NULL != hSrch)
+        if (NULL != hSrch)
         {
             Recls_SearchClose(hSrch);
         }
@@ -173,7 +173,7 @@ private:
   recls::search_sequence files(".", "*.*", recls::FILES | recls::RECURSIVE);
 
   std::cout &lt;&lt; "Files:" &lt;&lt; std::endl;
-  { for(recls::search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
+  { for (recls::search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
   {
     std::cout &lt;&lt; "    " &lt;&lt; *i &lt;&lt; std::endl;
   }}
@@ -323,7 +323,7 @@ private:
     // This one is implemented in-class as it allows sequence to be used by VC++ 5
     static char_type const* copy_or_null_(file_path_buffer& dest, char_type const* src)
     {
-        if(NULL == src)
+        if (NULL == src)
         {
             return static_cast<char_type const*>(NULL);
         }
@@ -436,7 +436,7 @@ private:
 /// This returns a non-zero value if the given sequence is empty.
 /// \param s The sequence whose state is to be tested
 ///
-/// \note This fits the <a href = "http://stlsoft.org/help/main.html">STLSoft</a> shims 
+/// \note This fits the <a href = "http://stlsoft.org/help/main.html">STLSoft</a> shims
 /// concept, described in <a href = "http://synesis.com.au/resources/articles/cpp/shims.pdf">this</a>
 /// Synesis Software White Paper, and featured in the article "<a href = "http://www.cuj.com/documents/s=8681/cuj0308wilson/">Generalised String Manipulation: Access Shims and Type-tunnelling</a>",
 /// in the August 2003 issue of <a href = "http://www.cuj.com">C/C++ User's Journal</a>.
@@ -473,7 +473,7 @@ inline search_sequence::const_iterator search_sequence::begin() const
     recls_rc_t  rc = traits_type::Search(m_directory, m_pattern, m_flags, &hSrch);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if( RECLS_FAILED(rc) &&
+    if (RECLS_FAILED(rc) &&
         RECLS_RC_NO_MORE_DATA != rc)
     {
         throw recls_exception(rc, "failed to search directory", m_directory, m_pattern, m_flags);
@@ -516,7 +516,7 @@ template <typename C, typename T, typename V>
 inline basic_search_sequence_const_iterator<C, T, V>::basic_search_sequence_const_iterator(class_type const& rhs)
     : m_handle(rhs.m_handle)
 {
-    if(NULL != m_handle)
+    if (NULL != m_handle)
     {
         ++m_handle->cRefs;
     }
@@ -525,14 +525,14 @@ inline basic_search_sequence_const_iterator<C, T, V>::basic_search_sequence_cons
 template <typename C, typename T, typename V>
 inline ss_typename_type_k basic_search_sequence_const_iterator<C, T, V>::class_type& basic_search_sequence_const_iterator<C, T, V>::operator =(typename basic_search_sequence_const_iterator<C, T, V>::class_type const& rhs)
 {
-    if(NULL != m_handle)
+    if (NULL != m_handle)
     {
         m_handle->Release();
     }
 
     m_handle = rhs.m_handle;
 
-    if(NULL != m_handle)
+    if (NULL != m_handle)
     {
         ++m_handle->cRefs;
     }
@@ -543,7 +543,7 @@ inline ss_typename_type_k basic_search_sequence_const_iterator<C, T, V>::class_t
 template <typename C, typename T, typename V>
 inline basic_search_sequence_const_iterator<C, T, V>::~basic_search_sequence_const_iterator() STLSOFT_NOEXCEPT
 {
-    if(NULL != m_handle)
+    if (NULL != m_handle)
     {
         m_handle->Release();
     }
@@ -558,7 +558,7 @@ inline ss_typename_type_k basic_search_sequence_const_iterator<C, T, V>::class_t
 
     recls_rc_t const rc = Recls_GetNext(m_handle->hSrch);
 
-    if(RECLS_FAILED(rc))
+    if (RECLS_FAILED(rc))
     {
         m_handle->Release();
 
@@ -566,7 +566,7 @@ inline ss_typename_type_k basic_search_sequence_const_iterator<C, T, V>::class_t
     }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if( RECLS_FAILED(rc) &&
+    if (RECLS_FAILED(rc) &&
         RECLS_RC_NO_MORE_DATA != rc)
     {
         throw recls_exception(rc);
@@ -593,7 +593,7 @@ inline const ss_typename_type_k basic_search_sequence_const_iterator<C, T, V>::v
     entry_type  e;
     recls_rc_t  rc = traits_type::GetDetails(m_handle->hSrch, &e);
 
-    if(RECLS_FAILED(rc))
+    if (RECLS_FAILED(rc))
     {
         throw recls_exception(rc, "failed to dereference iterator", NULL, NULL, 0);
     }
@@ -627,3 +627,4 @@ inline bool basic_search_sequence_const_iterator<C, T, V>::operator !=(class_typ
 #endif /* RECLS_INCL_RECLS_CPP_HPP_SEARCH_SEQUENCE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -75,7 +75,7 @@ namespace impl
 RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
                                     ,   size_t          cRoots)
 {
-    if(0 < cRoots)
+    if (0 < cRoots)
     {
         RECLS_ASSERT(NULL != roots);
 

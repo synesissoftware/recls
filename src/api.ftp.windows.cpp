@@ -13,7 +13,7 @@
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -113,20 +113,20 @@ RECLS_API Recls_SearchFtp(
     // Default the input parameters
 
     // Default the search root
-    if( NULL == searchRoot ||
+    if (NULL == searchRoot ||
         0 == *searchRoot)
     {
         searchRoot = RECLS_LITERAL("/"); // FTP always rooted at ./.
     }
 
     // Default the pattern
-    if(NULL == pattern)
+    if (NULL == pattern)
     {
         pattern = RECLS_LITERAL("*"); // FTP always uses '*' as wildcard
     }
 
     // Default the flags
-    if(0 == (flags & RECLS_F_TYPEMASK))
+    if (0 == (flags & RECLS_F_TYPEMASK))
     {
         flags |= RECLS_F_FILES;
     }
@@ -134,7 +134,7 @@ RECLS_API Recls_SearchFtp(
     // Validate the pattern
     rc = recls_is_valid_pattern_(pattern, flags, _MAX_PATH);
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
         ReclsFtpSearch* si;
         size_t          rootDirLen = types::traits_type::str_len(searchRoot);
@@ -142,7 +142,7 @@ RECLS_API Recls_SearchFtp(
 
         rc = ReclsFtpSearch::FindAndCreate(host, username, password, searchRoot, rootDirLen, pattern, patternLen, flags, &si);
 
-        if(RECLS_SUCCEEDED(rc))
+        if (RECLS_SUCCEEDED(rc))
         {
             *phSrch = ReclsSearch::ToHandle(si);
 

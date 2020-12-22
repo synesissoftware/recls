@@ -12,7 +12,7 @@
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -159,11 +159,11 @@ namespace
         file_removal_info_t_&               info    =   *static_cast<file_removal_info_t_*>(param);
         recls_char_t const* const           path    =   hEntry->path.begin;
 
-        if(RECLS_REMDIR_F_REMOVE_READONLY & info.flags)
+        if (RECLS_REMDIR_F_REMOVE_READONLY & info.flags)
         {
-            if(types::traits_type::stat(path, &stat_data))
+            if (types::traits_type::stat(path, &stat_data))
             {
-                if(types::traits_type::is_readonly(&stat_data))
+                if (types::traits_type::is_readonly(&stat_data))
                 {
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
@@ -180,7 +180,7 @@ namespace
             }
         }
 
-        if(!types::traits_type::delete_file(path))
+        if (!types::traits_type::delete_file(path))
         {
             info.rc = RECLS_RC_ACCESS_DENIED;
 
@@ -225,7 +225,7 @@ namespace
 
         info.directories.push_back(path);
 
-        if(info.maxParts < numParts)
+        if (info.maxParts < numParts)
         {
             info.maxParts = numParts;
         }
@@ -254,17 +254,17 @@ namespace
 
         types::traits_type::stat_data_type stat_data;
 
-        if(!types::traits_type::stat(path, &stat_data)) // Not lstat!
+        if (!types::traits_type::stat(path, &stat_data)) // Not lstat!
         {
             return RECLS_RC_DIRECTORY_NOT_FOUND;
         }
-        else if(!types::traits_type::is_directory(&stat_data))
+        else if (!types::traits_type::is_directory(&stat_data))
         {
             return RECLS_RC_PATH_IS_NOT_DIRECTORY;
         }
         else
         {
-            if(RECLS_REMDIR_F_REMOVE_FILES & flags)
+            if (RECLS_REMDIR_F_REMOVE_FILES & flags)
             {
                 // Remove all files
 
@@ -278,7 +278,7 @@ namespace
                                         ,   &info
                                         );
 
-                if(RECLS_FAILED(rc))
+                if (RECLS_FAILED(rc))
                 {
                     return info.rc;
                 }
@@ -286,7 +286,7 @@ namespace
                 results->numDeletedFiles    =   info.numDeleted;
             }
 
-            if(0 == (RECLS_REMDIR_F_NO_REMOVE_SUBDIRS & flags))
+            if (0 == (RECLS_REMDIR_F_NO_REMOVE_SUBDIRS & flags))
             {
                 // Remove all sub-directories
 
@@ -301,24 +301,24 @@ namespace
                                         ,   &info
                                         );
 
-                if(RECLS_FAILED(rc))
+                if (RECLS_FAILED(rc))
                 {
                     return info.rc;
                 }
 
                 std::sort(directories.begin(), directories.end(), order_by_length());
 
-                { for(directories_t::reverse_iterator b = directories.rbegin(); b != directories.rend(); ++b)
+                { for (directories_t::reverse_iterator b = directories.rbegin(); b != directories.rend(); ++b)
                 {
                     directory_t directory = *b;
 
-                    if(!types::traits_type::remove_directory(directory.c_str()))
+                    if (!types::traits_type::remove_directory(directory.c_str()))
                     {
                         return RECLS_RC_ACCESS_DENIED;
                     }
                     else
                     {
-                        if(results->existingLength < directory.size())
+                        if (results->existingLength < directory.size())
                         {
                             results->existingLength = directory.size();
                         }
@@ -328,7 +328,7 @@ namespace
                 results->numExistingElements = info.maxParts;
             }
 
-            if(!types::traits_type::remove_directory(path))
+            if (!types::traits_type::remove_directory(path))
             {
                 return RECLS_RC_ACCESS_DENIED;
             }
@@ -336,7 +336,7 @@ namespace
             {
                 types::path_type resultingPath(path);
 
-                if(0 == results->existingLength)
+                if (0 == results->existingLength)
                 {
                     results->existingLength = resultingPath.size();
                 }
@@ -347,7 +347,7 @@ namespace
                 resultingPath.pop_sep();
                 results->resultingLength = resultingPath.size();
 
-                if(0 == results->numExistingElements)
+                if (0 == results->numExistingElements)
                 {
                     results->numExistingElements = 1u + results->numResultingElements;
                 }
@@ -370,7 +370,7 @@ namespace
 
         // 1. Make path absolute
 
-        if(!types::traits_type::is_path_absolute(path))
+        if (!types::traits_type::is_path_absolute(path))
         {
             types::path_type    fullPath;
 
@@ -432,9 +432,9 @@ RECLS_API Recls_RemoveDirectory(
 
         // TODO: write a system_error_code_2_recls_rc() translator
 # if defined(PLATFORMSTL_OS_IS_UNIX)
-        if(ENOENT == get_exception_status_code(x))
+        if (ENOENT == get_exception_status_code(x))
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-        if(ERROR_INVALID_NAME == get_exception_status_code(x))
+        if (ERROR_INVALID_NAME == get_exception_status_code(x))
 # else /* ? OS */
 #  error Platform not discriminated
 # endif /* OS */
@@ -469,7 +469,7 @@ static recls_rc_t Recls_RemoveDirectory_X_(
 
     recls_directoryResults_t results_;
 
-    if(NULL == results)
+    if (NULL == results)
     {
         results = &results_;
     }
@@ -481,7 +481,7 @@ static recls_rc_t Recls_RemoveDirectory_X_(
     results->numExistingFiles       =   0;
     results->numDeletedFiles        =   0;
 
-    if('\0' == *path)
+    if ('\0' == *path)
     {
         return RECLS_RC_INVALID_NAME;
     }

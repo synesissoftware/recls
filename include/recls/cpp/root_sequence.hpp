@@ -4,11 +4,12 @@
  * Purpose:     recls C++ mapping - root_sequence class.
  *
  * Created:     25th March 2004
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -123,7 +125,7 @@ namespace root_sequence_impl
   recls::root_sequence  roots;
 
   std::cout &lt;&lt; "Roots:" &lt;&lt; std::endl;
-  { for(recls::root_sequence::const_iterator i = roots.begin(), e = roots.end(); i != e; ++i)
+  { for (recls::root_sequence::const_iterator i = roots.begin(), e = roots.end(); i != e; ++i)
   {
     std::cout &lt;&lt; "    " &lt;&lt; *i &lt;&lt; std::endl;
   }}
@@ -197,7 +199,6 @@ public:
     /// Returns the maximum number of items in the sequence
     static size_type    max_size();
 
-    /// 
     const_reference     operator [](size_type index) const;
 /// @}
 
@@ -322,3 +323,4 @@ inline /* static */ root_sequence::const_reference root_sequence::operator [](ro
 #endif /* RECLS_INCL_RECLS_CPP_HPP_ROOT_SEQUENCE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

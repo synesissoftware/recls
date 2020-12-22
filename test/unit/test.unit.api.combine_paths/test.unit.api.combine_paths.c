@@ -83,7 +83,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.api.combine_paths", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.api.combine_paths", verbosity))
     {
         XTESTS_RUN_CASE(test_measure_0);
         XTESTS_RUN_CASE(test_measure_1);

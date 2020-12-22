@@ -10,7 +10,7 @@
  *                  Recls_CalcDirectorySize())
  *
  * Created:     17th June 2006
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * www:         http://www.recls.org/
  *
@@ -53,7 +53,7 @@ int main()
         size_t          i;
 
         printf(RECLS_LITERAL("All roots on host system:\n"));
-        for(i = 0; i != numRoots; ++i)
+        for (i = 0; i != numRoots; ++i)
         {
             printf(RECLS_LITERAL("  %s\n"), roots[i].name);
         }
@@ -72,19 +72,19 @@ int main()
         numRoots = Recls_GetSelectedRoots(&roots[0], numRoots, rootTypes);
 
         printf(RECLS_LITERAL("Measuring root directories of selected roots on host system. This could take several minutes ...\n"));
-        for(i = 0; i != numRoots; ++i)
+        for (i = 0; i != numRoots; ++i)
         {
             recls_filesize_t size = Recls_CalcDirectorySize(roots[i].name);
 
-            if(0 != Recls_GetFileSizeGigaBytes(size))
+            if (0 != Recls_GetFileSizeGigaBytes(size))
             {
                 printf(RECLS_LITERAL("  %s : %lu GB\n"), roots[i].name, (unsigned long)Recls_GetFileSizeGigaBytes(size));
             }
-            else if(0 != Recls_GetFileSizeMegaBytes(size))
+            else if (0 != Recls_GetFileSizeMegaBytes(size))
             {
                 printf(RECLS_LITERAL("  %s : %lu MB\n"), roots[i].name, (unsigned long)Recls_GetFileSizeMegaBytes(size));
             }
-            else if(0 != Recls_GetFileSizeKiloBytes(size))
+            else if (0 != Recls_GetFileSizeKiloBytes(size))
             {
                 printf(RECLS_LITERAL("  %s : %lu KB\n"), roots[i].name, (unsigned long)Recls_GetFileSizeKiloBytes(size));
             }
@@ -102,3 +102,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

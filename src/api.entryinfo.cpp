@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -190,7 +190,7 @@ RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
         ,   fileInfo->directory.begin   /* ... to start of directory. */
     };
 
-    if(!Recls_IsFileUNC(fileInfo))
+    if (!Recls_IsFileUNC(fileInfo))
     {
         uncDrive.end = uncDrive.begin;
     }
@@ -256,7 +256,7 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryPartProperty(
 
     size_t  cParts = static_cast<size_t>(fileInfo->directoryParts.end - fileInfo->directoryParts.begin);
 
-    if(part < 0)
+    if (part < 0)
     {
         return cParts;
     }
@@ -274,7 +274,7 @@ RECLS_FNDECL(recls_bool_t) Recls_EntryExists(recls_entry_t fileInfo)
 
     RECLS_ASSERT(NULL != fileInfo);
 
-    if( 0 != fileInfo->size ||
+    if (0 != fileInfo->size ||
         0 != fileInfo->attributes ||
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
         0 != fileInfo->GetCreationTime_.dwLowDateTime ||
@@ -364,7 +364,7 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileUNC(recls_entry_t fileInfo)
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
-    if( '\\' == fileInfo->path.begin[0] &&
+    if ('\\' == fileInfo->path.begin[0] &&
         '\\' == fileInfo->path.begin[1])
     {
         return true;

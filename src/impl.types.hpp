@@ -12,7 +12,7 @@
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted in accordance with the license and warranty
  * information described in recls.h (included in this distribution, or
  * available from http://recls.org/)
@@ -99,9 +99,9 @@ public: /// Operations
 
         size_t cDirParts = 0;
 
-        for(; begin != end; ++begin)
+        for (; begin != end; ++begin)
         {
-            if(*begin == ch)
+            if (*begin == ch)
             {
                 ++cDirParts;
             }

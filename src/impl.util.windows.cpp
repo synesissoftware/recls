@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -70,11 +70,11 @@ namespace impl
 
 RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* path)
 {
-    if(':' == path[1])
+    if (':' == path[1])
     {
         // It's a drive-prefixed absolute path, so ...
 #if RECLS_TRACE_LEVEL > 0
-        if(!isalpha(path[0]))
+        if (!isalpha(path[0]))
         {
             recls_trace_printf_("recls_find_directory_0_() given an invalid path: %s", path);
         }
@@ -83,14 +83,14 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
         // ... we just skip the drive
         return &path[2];
     }
-    else if('\\' == path[0] &&
+    else if ('\\' == path[0] &&
             '\\' == path[1])
     {
         // It's a UNC absolute path, so we have to find the share name (with a '\')
         // and then the next slash or backslash
         recls_char_t const* share = types::traits_type::str_chr(path + 2, '\\');
 
-        if(NULL == share)
+        if (NULL == share)
         {
             goto bad_path_given;
         }
@@ -99,14 +99,14 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
             recls_char_t const* slash   =   types::traits_type::str_chr(share + 1, '\\');
             recls_char_t const* slash_a =   types::traits_type::str_chr(share + 1, '/');
 
-            if( NULL == slash ||
+            if (NULL == slash ||
                 (   NULL != slash_a &&
                     slash_a < slash))
             {
                 slash = slash_a;
             }
 
-            if(NULL == slash)
+            if (NULL == slash)
             {
                 goto bad_path_given;
             }
@@ -146,36 +146,36 @@ RECLS_LINKAGE_C size_t recls_get_home_(recls_char_t* buff, size_t cchBuff)
                                                                         ,   &homeDir[0]
                                                                         ,   RECLS_NUM_ELEMENTS(homeDir));
 
-    if( 0 == cchHomeDrive ||
+    if (0 == cchHomeDrive ||
         RECLS_NUM_ELEMENTS(homeDrive) == cchHomeDrive)
     {
         return 0;
     }
-    if( 0 == cchHomeDir ||
+    if (0 == cchHomeDir ||
         RECLS_NUM_ELEMENTS(homeDir) == cchHomeDir)
     {
         return 0;
     }
 
-    if(!types::traits_type::has_dir_end(homeDir))
+    if (!types::traits_type::has_dir_end(homeDir))
     {
         types::traits_type::ensure_dir_end(&homeDir[0] + cchHomeDir - 1);
         ++cchHomeDir;
     }
 
-    if(NULL == buff)
+    if (NULL == buff)
     {
         return cchHomeDrive + cchHomeDir;
     }
     else
     {
-        if(cchBuff <= cchHomeDrive)
+        if (cchBuff <= cchHomeDrive)
         {
             recls_strncpy_(buff, cchBuff, homeDrive, cchHomeDrive);
 
             return cchHomeDrive;
         }
-        else if(cchBuff <= cchHomeDrive + cchHomeDir)
+        else if (cchBuff <= cchHomeDrive + cchHomeDir)
         {
             recls_strncpy_(buff, cchBuff, homeDrive, cchHomeDrive);
             recls_strncpy_(buff + cchHomeDrive, cchBuff - cchHomeDrive, homeDir, cchHomeDir);

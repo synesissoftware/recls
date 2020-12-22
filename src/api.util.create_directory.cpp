@@ -12,7 +12,7 @@
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -158,9 +158,9 @@ namespace
 
         types::traits_type::stat_data_type stat_data;
 
-        if(types::traits_type::stat(path, &stat_data)) // Not lstat!
+        if (types::traits_type::stat(path, &stat_data)) // Not lstat!
         {
-            if(types::traits_type::is_directory(&stat_data))
+            if (types::traits_type::is_directory(&stat_data))
             {
                 results->existingLength     =   pathLen;
                 results->resultingLength    =   pathLen;
@@ -180,9 +180,9 @@ namespace
 
             path_0.pop();
 
-            if(0 == path_0.size())
+            if (0 == path_0.size())
             {
-                if(types::traits_type::is_path_UNC(path))
+                if (types::traits_type::is_path_UNC(path))
                 {
                     return RECLS_RC_INVALID_NAME;
                 }
@@ -191,18 +191,18 @@ namespace
                     return RECLS_RC_UNEXPECTED;
                 }
             }
-            else if(path_0.size() != pathLen)
+            else if (path_0.size() != pathLen)
             {
                 recls_rc_t rc = Recls_CreateDirectory3_(path_0.c_str(), path_0.size(), results);
 
-                if(RECLS_FAILED(rc))
+                if (RECLS_FAILED(rc))
                 {
                     return rc;
                 }
             }
 
             // Now try and create the directory
-            if(!platformstl::create_directory_recurse(path))
+            if (!platformstl::create_directory_recurse(path))
             {
 //                fprintf(stderr, "create_directory_recurse(): %d %s\n", types::traits_type::get_last_error(), strerror(types::traits_type::get_last_error()));
 
@@ -232,7 +232,7 @@ namespace
 
         // 1. Make path absolute
 
-        if(!types::traits_type::is_path_absolute(path))
+        if (!types::traits_type::is_path_absolute(path))
         {
             types::path_type fullPath(path);
 
@@ -293,9 +293,9 @@ RECLS_API Recls_CreateDirectory(
 
         // TODO: write a system_error_code_2_recls_rc() translator
 # if defined(PLATFORMSTL_OS_IS_UNIX)
-        if(ENOENT == get_exception_status_code(x))
+        if (ENOENT == get_exception_status_code(x))
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-        if(ERROR_INVALID_NAME == get_exception_status_code(x))
+        if (ERROR_INVALID_NAME == get_exception_status_code(x))
 # else /* ? OS */
 #  error Platform not discriminated
 # endif /* OS */
@@ -329,7 +329,7 @@ static recls_rc_t Recls_CreateDirectory_X_(
 
     recls_directoryResults_t results_;
 
-    if(NULL == results)
+    if (NULL == results)
     {
         results = &results_;
     }
@@ -341,7 +341,7 @@ static recls_rc_t Recls_CreateDirectory_X_(
     results->numExistingFiles       =   0;
     results->numDeletedFiles        =   0;
 
-    if('\0' == *path)
+    if ('\0' == *path)
     {
         return RECLS_RC_INVALID_NAME;
     }

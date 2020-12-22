@@ -13,7 +13,7 @@
  *                - handling of errors and reporting of error information
  *
  * Created:     17th June 2006
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * www:         http://www.recls.org/
  *
@@ -66,7 +66,7 @@ int main()
     recls_info_t    home;
     recls_rc_t      rc  =   Recls_Stat(RECLS_LITERAL("~"), RECLS_F_DIRECTORIES, &home);
 
-    if(RECLS_FAILED(rc))
+    if (RECLS_FAILED(rc))
     {
         /* The search failed. Display the error string. */
         recls_char_t    err[1001];
@@ -83,7 +83,7 @@ int main()
         recls_uint32_t  flags   =   RECLS_F_FILES | RECLS_F_DIRECTORIES | RECLS_F_RECURSIVE;
 
         /* Process all entries under the current directory, passing the home
-         * entry's path pointer. This is valid since the path is always 
+         * entry's path pointer. This is valid since the path is always
          * nul-terminated.
          */
 
@@ -93,7 +93,7 @@ int main()
 
         Recls_CloseDetails(home);
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             /* The search failed. Display the error string. */
             recls_char_t    err[1001];

@@ -13,7 +13,7 @@
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -127,13 +127,13 @@ static recls_entry_t create_entryinfo_from_psrecord(
 
     struct recls_entryinfo_t *info   =   const_cast<struct recls_entryinfo_t*>(Entry_Allocate(cb));
 
-    if(NULL != info)
+    if (NULL != info)
     {
         recls_char_t*           fullPath    =   ::stlsoft::sap_cast<recls_char_t*>(&info->data[cDirParts * sizeof(recls_strptrs_t)]);
         recls_char_t*           altName     =   ::stlsoft::sap_cast<recls_char_t*>(&info->data[cDirParts * sizeof(recls_strptrs_t) + cbPath]);
 
         // full path
-        if(isRooted)
+        if (isRooted)
         {
             types::traits_type::char_copy(fullPath, findData.cFileName, cchEntry);
             fullPath[cchEntry] = '\0';
@@ -160,10 +160,10 @@ static recls_entry_t create_entryinfo_from_psrecord(
 #elif defined(RECLS_CHAR_TYPE_IS_WCHAR)
         info->fileName.end                  =   wcsrchr(info->directory.end, L'.');
 #else
-# error 
+# error
 #endif /* RECLS_CHAR_TYPE_IS_???? */
 
-        if(NULL != info->fileName.end)
+        if (NULL != info->fileName.end)
         {
             info->fileExt.begin             =   info->fileName.end + 1;
             info->fileExt.end               =   info->directory.end +  cchFile;
@@ -183,19 +183,19 @@ static recls_entry_t create_entryinfo_from_psrecord(
         info->directoryParts.begin          =   begin;
         info->directoryParts.end            =   begin + cDirParts;
 
-        if(info->directoryParts.begin != info->directoryParts.end)
+        if (info->directoryParts.begin != info->directoryParts.end)
         {
             RECLS_ASSERT((flags & RECLS_F_DIRECTORY_PARTS) == RECLS_F_DIRECTORY_PARTS);
 
             begin->begin = p;
 
-            for(; p != l; ++p)
+            for (; p != l; ++p)
             {
-                if(*p == types::traits_type::path_name_separator())
+                if (*p == types::traits_type::path_name_separator())
                 {
                     begin->end = p + 1;
 
-                    if(++begin != info->directoryParts.end)
+                    if (++begin != info->directoryParts.end)
                     {
                         begin->begin = p + 1;
                     }
@@ -246,7 +246,7 @@ static recls_entry_t create_entryinfo_from_psrecord(
 )
 {
     // I can't explain it, but Borland does not like the tertiary operator and the copy-ctors of the iterators
-    if(b)
+    if (b)
     {
         return trueVal;
     }
@@ -267,11 +267,11 @@ static recls_entry_t create_entryinfo_from_psrecord(
 
     int ssFlags = 0;
 
-    if(0 != (flags & RECLS_F_FILES))
+    if (0 != (flags & RECLS_F_FILES))
     {
         ssFlags |= sequence_t::files;
     }
-    if(0 != (flags & RECLS_F_DIRECTORIES))
+    if (0 != (flags & RECLS_F_DIRECTORIES))
     {
         ssFlags |= sequence_t::directories;
     }
@@ -290,14 +290,14 @@ inline /* static */ ReclsFtpSearchDirectoryNode::directory_sequence_type ReclsFt
 
     directory_sequence_type     dirs;
 
-    if(flags & RECLS_F_RECURSIVE)
+    if (flags & RECLS_F_RECURSIVE)
     {
         file_find_sequence_type     directories(connection, rootDir, types::traits_type::pattern_all(), file_find_sequence_type::directories);
 
         file_find_sequence_type::const_iterator begin   =   directories.begin();
         file_find_sequence_type::const_iterator end     =   directories.end();
 
-        for(; begin != end; ++begin)
+        for (; begin != end; ++begin)
         {
             dirs.push_back((*begin).get_path());
         }
@@ -334,12 +334,12 @@ ReclsFtpSearchDirectoryNode::ReclsFtpSearchDirectoryNode(
 
     RECLS_ASSERT(NULL != m_connection);
 
-    if(0 == types::traits_type::str_n_compare(constants::local_directory().data(), pattern, patternLen))
+    if (0 == types::traits_type::str_n_compare(constants::local_directory().data(), pattern, patternLen))
     {
         // This special case handles "." as a search pattern.
         string_type temp(rootDir, rootDirLen);
 
-        if( !temp.empty() &&
+        if (!temp.empty() &&
             temp[temp.length() - 1] == '/')
         {
             temp = string_type(&temp[0], &temp[temp.length() - 1]);
@@ -357,7 +357,7 @@ ReclsFtpSearchDirectoryNode::ReclsFtpSearchDirectoryNode(
     else
     {
         m_rootDir = rootDir;
-        if( !m_rootDir.empty() &&
+        if (!m_rootDir.empty() &&
             m_rootDir[m_rootDir.length() - 1] != '/')
         {
             m_rootDir += '/';
@@ -402,12 +402,12 @@ ReclsFtpSearchDirectoryNode::ReclsFtpSearchDirectoryNode(
     }
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
 
-    if(NULL != node)
+    if (NULL != node)
     {
         // Ensure that it, or one of its sub-nodes, has matching entries.
         recls_rc_t  rc = node->Initialise();
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             delete node;
 
@@ -438,12 +438,12 @@ recls_rc_t ReclsFtpSearchDirectoryNode::Initialise()
     RECLS_ASSERT(NULL == m_current);
     RECLS_ASSERT(NULL == m_dnode);
 
-    if(m_entriesBegin != m_entries.end())
+    if (m_entriesBegin != m_entries.end())
     {
         // (i) Try getting a file first,
         m_current = create_entryinfo_from_psrecord(stlsoft::c_str_ptr(m_rootDir), m_flags, (*m_entriesBegin).get_find_data());
 
-        if(NULL == m_current)
+        if (NULL == m_current)
         {
             rc = RECLS_RC_OUT_OF_MEMORY;
         }
@@ -454,7 +454,7 @@ recls_rc_t ReclsFtpSearchDirectoryNode::Initialise()
     }
     else
     {
-        if(m_directoriesBegin == m_directories.end())
+        if (m_directoriesBegin == m_directories.end())
         {
             rc = RECLS_RC_NO_MORE_DATA;
         }
@@ -464,13 +464,13 @@ recls_rc_t ReclsFtpSearchDirectoryNode::Initialise()
             {
                 m_dnode = ReclsFtpSearchDirectoryNode::FindAndCreate(m_connection, m_flags, stlsoft::c_str_ptr(*m_directoriesBegin), stlsoft::c_str_len(*m_directoriesBegin), m_pattern.c_str(), m_pattern.size());
 
-            } while(NULL == m_dnode && ++m_directoriesBegin != m_directories.end());
+            } while (NULL == m_dnode && ++m_directoriesBegin != m_directories.end());
 
             rc = (NULL == m_dnode) ? RECLS_RC_NO_MORE_DATA : RECLS_RC_OK;
         }
     }
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
         RECLS_ASSERT(is_valid());
     }
@@ -488,7 +488,7 @@ recls_bool_t ReclsFtpSearchDirectoryNode::is_valid() const
 #if defined(RECLS_PRAGMA_MESSAGE_SUPPORT) && \
     !defined(RECLS_PRAGMA_MESSAGE_IS_INTRUSIVE)
 # pragma message("Flesh these out")
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
     }
 #endif /* compiler */
@@ -532,7 +532,7 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetNext()
 
     recls_rc_t  rc = RECLS_RC_NO_MORE_DATA;
 
-    if(NULL != m_current)
+    if (NULL != m_current)
     {
         // Currently enumerating through the files
 
@@ -543,7 +543,7 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetNext()
         ++m_entriesBegin;
 
         Entry_Release(m_current);
-        if(m_entriesBegin != m_entries.end())
+        if (m_entriesBegin != m_entries.end())
         {
             // Still enumerating, so just update m_current
             m_current = create_entryinfo_from_psrecord(stlsoft::c_str_ptr(m_rootDir), m_flags, (*m_entriesBegin).get_find_data());
@@ -559,16 +559,16 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetNext()
         }
     }
 
-    if(NULL == m_current)
+    if (NULL == m_current)
     {
         // Now we are either enumerating the directories, or we've already done so
 
-        if(NULL != m_dnode)
+        if (NULL != m_dnode)
         {
             // Currently enumerating the directories
             rc = m_dnode->GetNext();
 
-            if(RECLS_RC_NO_MORE_DATA == rc)
+            if (RECLS_RC_NO_MORE_DATA == rc)
             {
                 ++m_directoriesBegin;
 
@@ -578,14 +578,14 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetNext()
             }
         }
 
-        if(m_directoriesBegin == m_directories.end())
+        if (m_directoriesBegin == m_directories.end())
         {
             // Enumeration is complete.
             rc = RECLS_RC_NO_MORE_DATA;
         }
         else
         {
-            if(NULL == m_dnode)
+            if (NULL == m_dnode)
             {
                 do
                 {
@@ -596,7 +596,7 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetNext()
 
                     m_dnode = ReclsFtpSearchDirectoryNode::FindAndCreate(m_connection, m_flags, stlsoft::c_str_ptr(*m_directoriesBegin), stlsoft::c_str_len(*m_directoriesBegin), m_pattern.c_str(), m_pattern.size());
 
-                    if(NULL != m_dnode)
+                    if (NULL != m_dnode)
                     {
                         rc = RECLS_RC_OK;
                     }
@@ -605,7 +605,7 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetNext()
                         ++m_directoriesBegin;
                     }
 
-                } while(NULL == m_dnode && m_directoriesBegin != m_directories.end());
+                } while (NULL == m_dnode && m_directoriesBegin != m_directories.end());
             }
         }
     }
@@ -626,7 +626,7 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetDetails(recls_entry_t* pinfo)
     RECLS_ASSERT(NULL != pinfo);
     RECLS_ASSERT(NULL == m_current || NULL == m_dnode);
 
-    if(NULL != m_current)
+    if (NULL != m_current)
     {
         // Currently searching for files from the current directory
 
@@ -649,7 +649,7 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetDetails(recls_entry_t* pinfo)
         }
 #endif /* RECLS_TRACE_LEVEL >= 2 */
     }
-    else if(NULL != m_dnode)
+    else if (NULL != m_dnode)
     {
         RECLS_ASSERT(NULL == m_current);
 
@@ -677,7 +677,7 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetNextDetails(recls_entry_t* pinfo)
 
     recls_rc_t rc = GetNext();
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
         rc = GetDetails(pinfo);
     }
@@ -697,3 +697,4 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetNextDetails(recls_entry_t* pinfo)
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

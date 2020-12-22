@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -149,7 +149,7 @@ size_t recls_strncpy_(
 {
     size_t  cchWritten;
 
-    if(cchDest < cchSrc)
+    if (cchDest < cchSrc)
     {
         /* Just do straight strncpy. */
         recls_strncpy__(dest, src, cchDest);
@@ -160,7 +160,7 @@ size_t recls_strncpy_(
     {
         recls_strncpy__(dest, src, cchSrc);
 
-        if(cchSrc < cchDest)
+        if (cchSrc < cchDest)
         {
             /* Fill the rest up with blanks. */
             memset(&dest[cchSrc], 0, sizeof(recls_char_t) * (cchDest - cchSrc));
@@ -204,9 +204,9 @@ RECLS_LINKAGE_C size_t count_char_instances(
 
     size_t cDirParts = 0;
 
-    for(; begin != end; ++begin)
+    for (; begin != end; ++begin)
     {
-        if(*begin == ch)
+        if (*begin == ch)
         {
             ++cDirParts;
         }
@@ -236,7 +236,7 @@ RECLS_FNDECL(size_t) recls_get_string_property_(
 
     size_t  cch =   static_cast<size_t>(ptrs->end - ptrs->begin);
 
-    if(NULL != buffer)
+    if (NULL != buffer)
     {
         cch = recls_strncpy_(buffer, cchBuffer, ptrs->begin, cch);
     }
@@ -265,7 +265,7 @@ RECLS_API recls_is_valid_pattern_(
 
     RECLS_ASSERT(NULL != pattern);
 
-    if('\0' == *pattern)
+    if ('\0' == *pattern)
     {
         return RECLS_RC_NO_MORE_DATA;
     }
@@ -285,45 +285,45 @@ RECLS_API recls_is_valid_pattern_(
         const size_t                len =   recls_strlen_(pattern);
         recls_char_t const* const   end =   pattern + len;
 
-        if(1 == len)
+        if (1 == len)
         {
-            if( 0 != (flags & RECLS_F_RECURSIVE) &&
+            if (0 != (flags & RECLS_F_RECURSIVE) &&
                 '.' == pattern[0])
             {
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
         }
-        else if(2 == len)
+        else if (2 == len)
         {
-            if( '.' == pattern[0] && 
+            if ('.' == pattern[0] &&
                 '.' == pattern[1])
             {
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
         }
 
-        if(len > 0)
+        if (len > 0)
         {
             recls_char_t    dotPattern[4]       =   "?.?";
             recls_char_t    dotdotPattern[5]    =   "?..?";
 
             dotPattern[0] = dotPattern[2] = dotdotPattern[0] = dotdotPattern[3] = sep;
 
-            if( (   0 != (flags & RECLS_F_RECURSIVE) &&
+            if ((   0 != (flags & RECLS_F_RECURSIVE) &&
                     0 == strncmp(pattern, &dotPattern[1], 2)) ||
                 0 == strncmp(pattern, &dotdotPattern[1], 3))
             {
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
 
-            if( (   0 != (flags & RECLS_F_RECURSIVE) &&
+            if ((   0 != (flags & RECLS_F_RECURSIVE) &&
                     0 == strncmp(end - 2, dotPattern, 2)) ||
                 0 == strncmp(end - 3, dotdotPattern, 3))
             {
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
 
-            if( (   0 != (flags & RECLS_F_RECURSIVE) &&
+            if ((   0 != (flags & RECLS_F_RECURSIVE) &&
                     NULL != strstr(pattern, dotPattern)) ||
                 NULL != strstr(pattern, dotdotPattern))
             {
@@ -355,18 +355,18 @@ RECLS_API recls_is_valid_pattern_(
         tokeniser_t     tokens(pattern, Recls_GetPathSeparator());
 # endif /* compiler */
 
-        if( tokens.end() != std::find(tokens.begin(), tokens.end(), constants::parent_directory()) ||
+        if (tokens.end() != std::find(tokens.begin(), tokens.end(), constants::parent_directory()) ||
             (   0 != (flags & RECLS_F_RECURSIVE) &&
                 tokens.end() != std::find(tokens.begin(), tokens.end(), constants::local_directory())))
         {
             return RECLS_RC_DOT_RECURSIVE_SEARCH;
         }
 
-        if(!tokens.empty())
+        if (!tokens.empty())
         {
             tokeniser_t::const_iterator it = std::max_element(tokens.begin(), tokens.end(), cmp_str_len());
 
-            if(stlsoft::c_str_len(*it) > maxPathCompLen)
+            if (stlsoft::c_str_len(*it) > maxPathCompLen)
             {
                 return RECLS_RC_PATH_LIMIT_EXCEEDED;
             }
@@ -385,7 +385,7 @@ RECLS_LINKAGE_C recls_bool_t recls_is_home_start_(
 {
     RECLS_ASSERT(NULL != path);
 
-    if( '~' == path[0] &&
+    if ('~' == path[0] &&
         (   '\0' == path[1] ||
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)

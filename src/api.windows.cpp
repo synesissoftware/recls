@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -86,13 +86,13 @@ static size_t check_drives(char (*drives)[26], recls_uint32_t flags)
 
     size_t n = 0;
 
-    for(size_t i = 0; i < 26; ++i)
+    for (size_t i = 0; i < 26; ++i)
     {
         const char letter = static_cast<char>('A' + i);
 
-        if(0 == flags)
+        if (0 == flags)
         {
-            if(!trait_t::drive_exists(letter))
+            if (!trait_t::drive_exists(letter))
             {
                 continue;   // No match
             }
@@ -101,7 +101,7 @@ static size_t check_drives(char (*drives)[26], recls_uint32_t flags)
         {
             const DWORD type = trait_t::get_drive_type(letter);
 
-            switch(type)
+            switch (type)
             {
                 case    DRIVE_UNKNOWN:
 
@@ -111,35 +111,35 @@ static size_t check_drives(char (*drives)[26], recls_uint32_t flags)
                     continue;
                 case    DRIVE_REMOVABLE:
 
-                    if(0 == (flags & RECLS_F_REMOVABLE_DRIVES))
+                    if (0 == (flags & RECLS_F_REMOVABLE_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_FIXED:
 
-                    if(0 == (flags & RECLS_F_FIXED_DRIVES))
+                    if (0 == (flags & RECLS_F_FIXED_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_REMOTE:
 
-                    if(0 == (flags & RECLS_F_NETWORK_DRIVES))
+                    if (0 == (flags & RECLS_F_NETWORK_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_CDROM:
 
-                    if(0 == (flags & RECLS_F_CDROM_DRIVES))
+                    if (0 == (flags & RECLS_F_CDROM_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_RAMDISK:
 
-                    if(0 == (flags & RECLS_F_RAM_DRIVES))
+                    if (0 == (flags & RECLS_F_RAM_DRIVES))
                     {
                         continue;
                     }
@@ -203,9 +203,9 @@ RECLS_FNDECL(void) Recls_GetDriveProperty(  recls_entry_t   fileInfo
     RECLS_ASSERT(NULL != fileInfo);
     RECLS_ASSERT(NULL != pchDrive);
 
-    // Because, as of version 1.5.1, this function can also be called for 
+    // Because, as of version 1.5.1, this function can also be called for
     // FTP files, which will not have a drive, we need to check for it,
-    // and return a nul char if it's not a 
+    // and return a nul char if it's not a
 
     *pchDrive = (':' == fileInfo->path.begin[1]) ? static_cast<recls_char_t>(toupper(fileInfo->drive)) : '\0';
 }
@@ -227,14 +227,14 @@ static size_t Recls_GetRoots_(  recls_root_t*   roots
     size_t  n   =   check_drives(&drives, flags);
 #endif /* compiler */
 
-    if(NULL != roots)
+    if (NULL != roots)
     {
-        if(n < cRoots)
+        if (n < cRoots)
         {
             cRoots = n;
         }
 
-        for(size_t i = 0; i < cRoots; ++i)
+        for (size_t i = 0; i < cRoots; ++i)
         {
             roots[i].name[0] = drives[i];
             roots[i].name[1] = ':';
@@ -262,10 +262,10 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
     // never have to go anywhere near it again.
     typedef stlsoft::sign_traits<size_t>::signed_type   signed_t;
 
-    if(static_cast<signed_t>(cRoots) < 0)
+    if (static_cast<signed_t>(cRoots) < 0)
     {
         // To support the stupidity of .NET, we need to respond to -ve
-        // indexes, hence: 
+        // indexes, hence:
 
         recls_root_t    roots_[26];
         size_t          index   =   static_cast<size_t>(-static_cast<signed_t>(cRoots) - 1);
@@ -273,7 +273,7 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
 
         recls_debug1_trace_printf_(RECLS_LITERAL("Recls_GetRoots() [.NET hack]: index=%u"), index);
 
-        if(index < cch)
+        if (index < cch)
         {
             return roots_[index].name[0];
         }
@@ -298,16 +298,16 @@ RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
     // designed and shockingly documented facilities in .NET
     typedef stlsoft::sign_traits<size_t>::signed_type   signed_t;
 
-    if(static_cast<signed_t>(cRoots) < 0)
+    if (static_cast<signed_t>(cRoots) < 0)
     {
         // To support the stupidity of .NET, we need to respond to -ve
-        // indexes, hence: 
+        // indexes, hence:
 
         recls_root_t    roots_[26];
         size_t          index   =   static_cast<size_t>(-static_cast<signed_t>(cRoots) - 1);
         size_t          cch     =   Recls_GetRoots_(&roots_[0], STLSOFT_NUM_ELEMENTS(roots_), flags);
 
-        if(index < cch)
+        if (index < cch)
         {
             return roots_[index].name[0];
         }

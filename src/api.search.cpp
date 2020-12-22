@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -203,7 +203,7 @@ RECLS_API Recls_SearchFeedback(
 #if defined(RECLS_PLATFORM_IS_WINDOWSx)
     cdecl_progress_fn_translator    translator(pfn, param);
 
-    if( NULL != pfn &&
+    if (NULL != pfn &&
         (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS))
     {
         pfn     =   &cdecl_progress_fn_translator::func;
@@ -225,11 +225,11 @@ RECLS_API Recls_SearchFeedback(
         types::file_path_buffer_type   home;
 
         // Default the pattern?
-        if(NULL == pattern)
+        if (NULL == pattern)
         {
             // Pre-1.8.6, this always defaulted to '*.*' (or '*')
 
-            if( NULL != searchRoot &&
+            if (NULL != searchRoot &&
                 (   NULL != types::traits_type::str_pbrk(searchRoot, RECLS_LITERAL("*?")) ||
                     types::traits_type::is_file(searchRoot)))
             {
@@ -243,10 +243,10 @@ RECLS_API Recls_SearchFeedback(
         }
 
         // Default the search root?
-        if( NULL == searchRoot ||
+        if (NULL == searchRoot ||
             0 == *searchRoot)
         {
-            if(USE_TILDE_ON_NO_SEARCHROOT & flags)
+            if (USE_TILDE_ON_NO_SEARCHROOT & flags)
             {
                 searchRoot = constants::home().data();
             }
@@ -263,7 +263,7 @@ RECLS_API Recls_SearchFeedback(
 
                 STLSOFT_SUPPRESS_UNUSED(wc);
 
-                if( NULL == sep &&
+                if (NULL == sep &&
                     types::traits_type::is_path_rooted(pattern) &&
                     NULL != (wc = types::traits_type::str_pbrk(pattern, RECLS_LITERAL("*?"))))
                 {
@@ -277,7 +277,7 @@ RECLS_API Recls_SearchFeedback(
                     recls_char_t*   file    =   (NULL == file0) ? file1 : (NULL == file1) ? file0 : (file0 < file1) ? file1 : file0;
 
                     // Not valid if wildcard comes before file, or pattern too long
-                    if( wc < file ||
+                    if (wc < file ||
                         static_cast<size_t>(file - pattern) > home.size() - 1)
                     {
                         searchRoot = constants::default_search_root().data();
@@ -300,12 +300,12 @@ RECLS_API Recls_SearchFeedback(
         }
         else
         // Handle tilde
-        if(recls_is_home_start_(searchRoot))
+        if (recls_is_home_start_(searchRoot))
         {
             size_t  n       =   recls_get_home_(&home[0], home.size());
             size_t  rootLen =   types::traits_type::str_len(searchRoot);
 
-            if(0 == n)
+            if (0 == n)
             {
                 return RECLS_RC_NO_HOME;
             }
@@ -314,7 +314,7 @@ RECLS_API Recls_SearchFeedback(
                 // recls_get_home_() always has a trailing path-name separator
                 RECLS_ASSERT(types::traits_type::has_dir_end(&home[0]));
 
-                if(rootLen + n > home.size())
+                if (rootLen + n > home.size())
                 {
                     return RECLS_RC_PATH_LIMIT_EXCEEDED;
                 }
@@ -338,7 +338,7 @@ RECLS_API Recls_SearchFeedback(
         types::buffer_type  pattern_(1 + patternLen);
 
 #ifndef RECLS_EXCEPTION_SUPPORT_
-        if(0 == pattern_.size())
+        if (0 == pattern_.size())
         {
             rc = RECLS_RC_OUT_OF_MEMORY;
         }
@@ -347,7 +347,7 @@ RECLS_API Recls_SearchFeedback(
         {
             types::path_type path;
 
-            if( NULL != types::traits_type::str_chr(pattern, types::traits_type::path_separator()) ||
+            if (NULL != types::traits_type::str_chr(pattern, types::traits_type::path_separator()) ||
                 NULL != types::traits_type::str_chr(pattern, RECLS_LITERAL('|')))
             {
                 // Has the separator, so we can proceed. (If any are too long, they will be
@@ -376,7 +376,7 @@ RECLS_API Recls_SearchFeedback(
             {
                 // Cater for the situation whereby the pattern is a file
 
-                if(types::traits_type::str_len(pattern) > types::traits_type::path_max())
+                if (types::traits_type::str_len(pattern) > types::traits_type::path_max())
                 {
                     rc = RECLS_RC_PATH_LIMIT_EXCEEDED;
                 }
@@ -388,7 +388,7 @@ RECLS_API Recls_SearchFeedback(
 
                     path = pattern;
 
-                    if(path.exists())
+                    if (path.exists())
                     {
                         path.make_absolute(true);
 #ifdef RECLS_EXCEPTION_SUPPORT_
@@ -404,9 +404,9 @@ RECLS_API Recls_SearchFeedback(
 
                         pattern = file;
 
-                        if(0 == (flags & RECLS_F_TYPEMASK))
+                        if (0 == (flags & RECLS_F_TYPEMASK))
                         {
-                            if(types::traits_type::is_directory(path.c_str()))
+                            if (types::traits_type::is_directory(path.c_str()))
                             {
                                 flags |= RECLS_F_DIRECTORIES;
                             }
@@ -419,15 +419,15 @@ RECLS_API Recls_SearchFeedback(
                 }
             }
 
-            if(RECLS_SUCCEEDED(rc))
+            if (RECLS_SUCCEEDED(rc))
             {
                 // Default the flags
-                if(0 == (flags & RECLS_F_TYPEMASK))
+                if (0 == (flags & RECLS_F_TYPEMASK))
                 {
                     flags |= RECLS_F_FILES;
                 }
 
-                if(0 == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
+                if (0 == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
                 {
                     rc = RECLS_RC_INVALID_SEARCH_TYPE;
                 }
@@ -438,7 +438,7 @@ RECLS_API Recls_SearchFeedback(
                 }
             }
 
-            if(RECLS_SUCCEEDED(rc))
+            if (RECLS_SUCCEEDED(rc))
             {
                 ReclsFileSearch *si;
                 size_t const    rootDirLen  =   types::traits_type::str_len(searchRoot);
@@ -449,7 +449,7 @@ RECLS_API Recls_SearchFeedback(
 
                 rc = ReclsFileSearch::FindAndCreate(searchRoot, rootDirLen, pattern, patternLen2, flags, pfn, param, &si);
 
-                if(RECLS_SUCCEEDED(rc))
+                if (RECLS_SUCCEEDED(rc))
                 {
                     *phSrch = ReclsSearch::ToHandle(si);
 
@@ -524,7 +524,7 @@ RECLS_API Recls_SearchProcessFeedback(
 #if defined(RECLS_PLATFORM_IS_WINDOWSx)
     cdecl_process_fn_translator translator(pfn, param);
 
-    if( NULL != pfn &&
+    if (NULL != pfn &&
         (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS))
     {
         pfn     =   &cdecl_process_fn_translator::func;
@@ -535,7 +535,7 @@ RECLS_API Recls_SearchProcessFeedback(
     hrecls_t    hSrch;
     recls_rc_t  rc  =   Recls_SearchFeedback(searchRoot, pattern, flags, pfnProgress, paramProgress, &hSrch);
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
         recls_entry_t info;
 
@@ -543,7 +543,7 @@ RECLS_API Recls_SearchProcessFeedback(
         {
             rc = Recls_GetDetails(hSrch, &info);
 
-            if(RECLS_FAILED(rc))
+            if (RECLS_FAILED(rc))
             {
                 break;
             }
@@ -552,7 +552,7 @@ RECLS_API Recls_SearchProcessFeedback(
                 int res;
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
-                if(flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
+                if (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
                 {
                     typedef int (RECLS_CALLCONV_STDDECL *stdcall_process_fn_t)( recls_entry_t               hEntry
                                                                             ,   recls_process_fn_param_t    param);
@@ -575,7 +575,7 @@ RECLS_API Recls_SearchProcessFeedback(
 
                 Recls_CloseDetails(info);
 
-                if(0 == res)
+                if (0 == res)
                 {
                     rc = RECLS_RC_SEARCH_CANCELLED;
 
@@ -583,12 +583,12 @@ RECLS_API Recls_SearchProcessFeedback(
                 }
             }
         }
-        while(RECLS_SUCCEEDED(rc = Recls_GetNext(hSrch)));
+        while (RECLS_SUCCEEDED(rc = Recls_GetNext(hSrch)));
 
         Recls_SearchClose(hSrch);
     }
 
-    if(RECLS_RC_NO_MORE_DATA == rc)
+    if (RECLS_RC_NO_MORE_DATA == rc)
     {
         rc = RECLS_RC_OK;
     }

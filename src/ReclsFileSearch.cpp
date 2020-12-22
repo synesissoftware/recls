@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -95,7 +95,7 @@ inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t c
     void* pv = malloc(cb);
 
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
-    if(NULL == pv)
+    if (NULL == pv)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
@@ -145,7 +145,7 @@ inline void ReclsFileSearch::operator delete(void* pv)
     size_t                          cchFullPath;
 
     cchFullPath = types::traits_type::get_full_path_name(rootDir, fullPath.size(), &fullPath[0]);
-    if(0 == cchFullPath)
+    if (0 == cchFullPath)
     {
         recls_debug0_trace_printf_(RECLS_LITERAL("could not retrieve full path of given search directory '%s'"), rootDir);
 
@@ -155,7 +155,7 @@ inline void ReclsFileSearch::operator delete(void* pv)
     {
         recls_debug2_trace_printf_(RECLS_LITERAL("retrieved full path of given search directory '%s' => '%s'"), rootDir, fullPath.c_str());
     }
-    if('"' == fullPath[0])
+    if ('"' == fullPath[0])
     {
         RECLS_ASSERT('"' == fullPath[cchFullPath - 1]);
 
@@ -165,7 +165,7 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
     }
 
-    if(types::traits_type::has_dir_end(&fullPath[0]))
+    if (types::traits_type::has_dir_end(&fullPath[0]))
     {
         cchFullPath = types::traits_type::str_len(types::traits_type::remove_dir_end(&fullPath[0]));
     }
@@ -233,11 +233,11 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
     recls_rc_t rc = RECLS_RC_OK;
 
-    if(!types::traits_type::file_exists(rootDir))
+    if (!types::traits_type::file_exists(rootDir))
     {
         rc = RECLS_RC_DIRECTORY_NOT_FOUND;
     }
-    else if(!types::traits_type::is_directory(rootDir))
+    else if (!types::traits_type::is_directory(rootDir))
     {
         rc = RECLS_RC_PATH_IS_NOT_DIRECTORY;
     }
@@ -247,7 +247,7 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
         types::file_path_buffer_type    fullPath_;
 
-        if(!types::traits_type::has_dir_end(rootDir))
+        if (!types::traits_type::has_dir_end(rootDir))
         {
             types::traits_type::char_copy(&fullPath_[0], rootDir, rootDirLen + 1);
             RECLS_ASSERT('\0' == fullPath_[rootDirLen]);
@@ -281,7 +281,7 @@ inline void ReclsFileSearch::operator delete(void* pv)
         }
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
 
-        if(NULL == si)
+        if (NULL == si)
         {
             RECLS_ASSERT(RECLS_RC_OK != rc);
         }
@@ -289,11 +289,11 @@ inline void ReclsFileSearch::operator delete(void* pv)
         {
             // This is a nasty hack. It's tantamount to ctor & create function, so
             // should be made more elegant soon.
-            if(NULL == si->m_dnode)
+            if (NULL == si->m_dnode)
             {
                 delete si;
 
-                if(RECLS_SUCCEEDED(rc))
+                if (RECLS_SUCCEEDED(rc))
                 {
                     rc = RECLS_RC_NO_MORE_DATA;
                 }

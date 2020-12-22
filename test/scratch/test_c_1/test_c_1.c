@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test_c_1 project.
  *
  * Created:     28th February 2007
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2017, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2020, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -97,9 +97,9 @@ static int main_(int argc, char** argv)
 # endif /* 0 */
 #endif /* 0 */
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
-        if(RECLS_RC_NO_MORE_DATA != rc)
+        if (RECLS_RC_NO_MORE_DATA != rc)
         {
             process_search(hSrch);
         }
@@ -115,9 +115,9 @@ static int main_(int argc, char** argv)
 #ifdef RECLS_PLATFORM_IS_WINDOWS
     rc = Recls_SearchFtp("ftp.digitalmars.com", "anonymous", "anon@mouse.com", "/", "*.zip", RECLS_F_RECURSIVE, &hSrch);
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
-        if(RECLS_RC_NO_MORE_DATA != rc)
+        if (RECLS_RC_NO_MORE_DATA != rc)
         {
             process_search(hSrch);
         }
@@ -175,12 +175,12 @@ static void process_search(hrecls_t hSrch)
 #endif /* platform */
         ,   Recls_GetFileNameProperty
         ,   Recls_GetFileExtProperty
-        ,   
+        ,
     };
 
     recls_rc_t  rc;
 
-    for(;;)
+    for (;;)
     {
         recls_char_t        buff[256];
         recls_info_t        info;
@@ -188,16 +188,16 @@ static void process_search(hrecls_t hSrch)
 
         rc = Recls_GetDetails(hSrch, &info);
 
-        if(RECLS_SUCCEEDED(rc))
+        if (RECLS_SUCCEEDED(rc))
         {
             printf("\t%.*s\n", info->path.end - info->path.begin, info->path.begin);
 
-            { size_t i; for(i = 0; i < STLSOFT_NUM_ELEMENTS(fns); ++i)
+            { size_t i; for (i = 0; i < STLSOFT_NUM_ELEMENTS(fns); ++i)
             {
                 fns[i](info, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
             }}
 
-            { size_t i; for(i = 0; i < Recls_GetDirectoryPartProperty(info, -1, NULL, 0); ++i)
+            { size_t i; for (i = 0; i < Recls_GetDirectoryPartProperty(info, -1, NULL, 0); ++i)
             {
                 Recls_GetDirectoryPartProperty(info, (int)i, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
             }}
@@ -205,7 +205,7 @@ static void process_search(hrecls_t hSrch)
             Recls_IsFileReadOnly(info);
             Recls_IsFileDirectory(info);
             Recls_IsFileLink(info);
-            
+
             Recls_DoesEntryExist(info);
             Recls_IsFileUNC(info);
             Recls_GetSizeProperty(info, &size);
@@ -220,7 +220,7 @@ static void process_search(hrecls_t hSrch)
 
         rc = Recls_GetNext(hSrch);
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             break;
         }
@@ -228,3 +228,4 @@ static void process_search(hrecls_t hSrch)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

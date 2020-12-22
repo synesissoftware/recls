@@ -12,7 +12,7 @@
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -170,7 +170,7 @@ recls_entry_t create_entryinfo(
 
     struct recls_entryinfo_t* info = const_cast<struct recls_entryinfo_t*>(Entry_Allocate(cb));
 
-    if(NULL != info)
+    if (NULL != info)
     {
         recls_byte_t* const     pData       =   &info->data[0];
         recls_byte_t* const     pParts      =   pData + 0;
@@ -200,7 +200,7 @@ recls_entry_t create_entryinfo(
         info->path.end                      =   fullPath + entryPathLen;
 
         // search-relative path
-        if(bSearchDirOverlap)
+        if (bSearchDirOverlap)
         {
             info->searchRelativePath.begin  =   info->path.begin + rootDirLen;
             info->searchRelativePath.end    =   info->path.end;
@@ -215,7 +215,7 @@ recls_entry_t create_entryinfo(
         info->numRelativeDirectoryParts     =   (RECLS_F_DIRECTORY_PARTS == (flags & RECLS_F_DIRECTORY_PARTS)) ? types::count_dir_parts(info->searchRelativePath.begin, info->searchRelativePath.end) : 0;
 
         // Number of (hard) links; node index & device Id
-        if( 0 != ((RECLS_F_LINK_COUNT|RECLS_F_NODE_INDEX) & flags) &&
+        if (0 != ((RECLS_F_LINK_COUNT|RECLS_F_NODE_INDEX) & flags) &&
             NULL != st)
         {
             recls_log_printf_(RECLS_SEVIX_DBG1, RECLS_LITERAL("looking up additional attributes; flags=0x%08x"), flags);
@@ -234,7 +234,7 @@ recls_entry_t create_entryinfo(
             DWORD   deviceId;
             DWORD   numLinks;
 
-            if(winstl::hard_link_get_link_information(
+            if (winstl::hard_link_get_link_information(
                     entryPath
                 ,   &fileIndexHigh
                 ,   &fileIndexLow
@@ -242,11 +242,11 @@ recls_entry_t create_entryinfo(
                 ,   &numLinks
                 ))
             {
-                if(RECLS_F_LINK_COUNT & flags)
+                if (RECLS_F_LINK_COUNT & flags)
                 {
                     info->numLinks          =   numLinks;
                 }
-                if(RECLS_F_NODE_INDEX & flags)
+                if (RECLS_F_NODE_INDEX & flags)
                 {
                     info->nodeIndex         =   recls_uint64_t(fileIndexHigh) << 32 | fileIndexLow;
                     info->deviceId          =   deviceId;
@@ -256,17 +256,17 @@ recls_entry_t create_entryinfo(
 
             HANDLE hFile = ::CreateFile(entryPath, 0, 0, NULL, OPEN_EXISTING, 0, NULL);
 
-            if(INVALID_HANDLE_VALUE != hFile)
+            if (INVALID_HANDLE_VALUE != hFile)
             {
                 BY_HANDLE_FILE_INFORMATION bhfi;
 
-                if(::GetFileInformationByHandle(hFile, &bhfi))
+                if (::GetFileInformationByHandle(hFile, &bhfi))
                 {
-                    if(RECLS_F_LINK_COUNT & flags)
+                    if (RECLS_F_LINK_COUNT & flags)
                     {
                         info->numLinks      =   bhfi.nNumberOfLinks;
                     }
-                    if(RECLS_F_NODE_INDEX & flags)
+                    if (RECLS_F_NODE_INDEX & flags)
                     {
                         info->nodeIndex     =   recls_uint64_t(bhfi.nFileIndexHigh) << 32 | bhfi.nFileIndexLow;
                         info->deviceId      =   bhfi.dwVolumeSerialNumber;
@@ -278,13 +278,13 @@ recls_entry_t create_entryinfo(
 # endif /*RECLS_USE_WINSTL_LINK_FUNCTIONS_*/
 
 #else /* ? OS */
-            if(RECLS_F_LINK_COUNT & flags)
+            if (RECLS_F_LINK_COUNT & flags)
             {
                 RECLS_ASSERT(NULL != st);
 
                 info->numLinks              =   st->st_nlink;
             }
-            if(RECLS_F_NODE_INDEX & flags)
+            if (RECLS_F_NODE_INDEX & flags)
             {
                 RECLS_ASSERT(NULL != st);
 
@@ -312,7 +312,7 @@ recls_entry_t create_entryinfo(
         info->directory.end                 =   fullPath + (entryPathLen - entryFileLen);
         info->fileName.begin                =   info->directory.end;
         info->fileName.end                  =   types::traits_type::str_rchr(info->directory.end, RECLS_LITERAL('.'));
-        if(NULL != info->fileName.end)
+        if (NULL != info->fileName.end)
         {
             info->fileExt.begin             =   info->fileName.end + 1;
             info->fileExt.end               =   info->directory.end +  cchFileName;
@@ -332,7 +332,7 @@ recls_entry_t create_entryinfo(
         info->directoryParts.begin          =   begin;
         info->directoryParts.end            =   begin + cDirParts;
 
-        if(bSearchDirOverlap)
+        if (bSearchDirOverlap)
         {
             info->searchDirectory.begin     =   info->path.begin;
             info->searchDirectory.end       =   info->searchDirectory.begin + rootDirLen;
@@ -346,19 +346,19 @@ recls_entry_t create_entryinfo(
             searchCopy[searchDirLen] = '\0';
         }
 
-        if(info->directoryParts.begin != info->directoryParts.end)
+        if (info->directoryParts.begin != info->directoryParts.end)
         {
             RECLS_ASSERT((flags & RECLS_F_DIRECTORY_PARTS) == RECLS_F_DIRECTORY_PARTS);
 
             begin->begin = p;
 
-            for(; p != l; ++p)
+            for (; p != l; ++p)
             {
-                if(*p == types::traits_type::path_name_separator())
+                if (*p == types::traits_type::path_name_separator())
                 {
                     begin->end = p + 1;
 
-                    if(++begin != info->directoryParts.end)
+                    if (++begin != info->directoryParts.end)
                     {
                         begin->begin = p + 1;
                     }
@@ -366,7 +366,7 @@ recls_entry_t create_entryinfo(
             }
         }
 
-        if(NULL == st)
+        if (NULL == st)
         {
             recls_time_t        no_time;
             recls_filesize_t    no_size;
@@ -434,7 +434,7 @@ recls_entry_t create_entryinfo(
 #endif /* platform */
 
             // Handle MARK_DIRS
-            if( RECLS_F_MARK_DIRS == (flags & RECLS_F_MARK_DIRS) &&
+            if (RECLS_F_MARK_DIRS == (flags & RECLS_F_MARK_DIRS) &&
                 types::traits_type::is_directory(st))
             {
                 *const_cast<recls_char_t*>(info->path.end)  =   types::traits_type::path_name_separator();
@@ -476,7 +476,7 @@ recls_entry_t create_drive_entryinfo(
 
     struct recls_entryinfo_t* info = const_cast<struct recls_entryinfo_t*>(Entry_Allocate(cb));
 
-    if(NULL != info)
+    if (NULL != info)
     {
         recls_byte_t* const pData       =   &info->data[0];
         recls_byte_t* const pParts      =   pData + 0;
@@ -504,7 +504,7 @@ recls_entry_t create_drive_entryinfo(
 
         // Number of (hard) links
 #if defined(RECLS_PLATFORM_IS_UNIX)
-        if( 0 != (RECLS_F_LINK_COUNT & flags) &&
+        if (0 != (RECLS_F_LINK_COUNT & flags) &&
             NULL != st)
         {
             RECLS_ASSERT(NULL != st);
@@ -519,7 +519,7 @@ recls_entry_t create_drive_entryinfo(
 #endif /* OS */
         // node index and device Id
 #if defined(RECLS_PLATFORM_IS_UNIX)
-        if( 0 != (RECLS_F_NODE_INDEX & flags) &&
+        if (0 != (RECLS_F_NODE_INDEX & flags) &&
             NULL != st)
         {
             RECLS_ASSERT(NULL != st);
@@ -557,7 +557,7 @@ recls_entry_t create_drive_entryinfo(
         info->searchDirectory.begin         =   info->path.end;
         info->searchDirectory.end           =   info->path.end;
 
-        if(NULL == st)
+        if (NULL == st)
         {
             recls_time_t        no_time;
             recls_filesize_t    no_size;
@@ -625,7 +625,7 @@ recls_entry_t create_drive_entryinfo(
 #endif /* platform */
 
             // Handle MARK_DIRS
-            if( RECLS_F_MARK_DIRS == (flags & RECLS_F_MARK_DIRS) &&
+            if (RECLS_F_MARK_DIRS == (flags & RECLS_F_MARK_DIRS) &&
                 types::traits_type::is_directory(st))
             {
                 *const_cast<recls_char_t*>(info->path.end)  =   types::traits_type::path_name_separator();

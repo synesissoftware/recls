@@ -10,7 +10,7 @@
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2010-2017, Synesis Software Pty Ltd.
+ *              Copyright (c) 2010-2020, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -88,7 +88,7 @@ namespace impl
             {}
             ~Ref()
             {
-                if(NULL != m_ph)
+                if (NULL != m_ph)
                 {
                     m_ph->Release();
                 }
@@ -96,21 +96,21 @@ namespace impl
             Ref(Ref const &rhs)
                 : m_ph(rhs.m_ph)
             {
-                if(NULL != m_ph)
+                if (NULL != m_ph)
                 {
                     m_ph->AddRef();
                 }
             }
             Ref &operator =(Ref const &rhs)
             {
-                if(NULL != m_ph)
+                if (NULL != m_ph)
                 {
                     m_ph->Release();
                 }
 
                 m_ph = rhs.m_ph;
 
-                if(NULL != m_ph)
+                if (NULL != m_ph)
                 {
                     m_ph->AddRef();
                 }
@@ -157,7 +157,7 @@ namespace impl
 
         void Release()
         {
-            if(0 == --cRefs)
+            if (0 == --cRefs)
             {
                 Destroy(h);
 
@@ -211,7 +211,7 @@ static int main_(int /* argc */, char** argv)
         recls::cpp::root_sequence   roots;
 
         std::cout << "Roots:" << std::endl;
-        { for(root_sequence::const_iterator i = roots.begin(), e = roots.end(); i != e; ++i)
+        { for (root_sequence::const_iterator i = roots.begin(), e = roots.end(); i != e; ++i)
         {
             std::cout << "    " << *i << std::endl;
         }}
@@ -221,7 +221,7 @@ static int main_(int /* argc */, char** argv)
 
         recls::cpp::search_sequence files("..", Recls_GetWildcardsAll(), recls::FILES | recls::RECURSIVE | recls::DIRECTORY_PARTS);
 
-        { for(search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
+        { for (search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
         {
             display_entry(*i);
         }}
@@ -232,7 +232,7 @@ static int main_(int /* argc */, char** argv)
 
         recls::cpp::ftp_search_sequence files("ftp.digitalmars.com", "", "", "/", Recls_GetWildcardsAll(), recls::FILES | recls::RECURSIVE | recls::DIRECTORY_PARTS);
 
-        { for(ftp_search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
+        { for (ftp_search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
         {
             display_entry(*i);
         }}
@@ -296,12 +296,12 @@ static void display_entry(recls::entry const& e)
     std::cout << "part end:" << &*parts.end() << std::endl;
 #endif /* 0 */
 
-    if(numParts > 3)
+    if (numParts > 3)
     {
         (parts.begin() + 3) - 3;
         parts.begin()[3];
     }
-    { for(directory_parts::const_iterator i = parts.begin(), e = parts.end(); i != e; ++i)
+    { for (directory_parts::const_iterator i = parts.begin(), e = parts.end(); i != e; ++i)
     {
         std::cout << std::setw(partWidth) << "" << "    " << (*i) << std::endl;
         partWidth += (*i).length();
@@ -350,7 +350,7 @@ int main(int argc, char** argv)
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try

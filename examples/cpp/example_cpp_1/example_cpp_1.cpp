@@ -10,7 +10,7 @@
  *                - elicitation of entry properties via method calls
  *
  * Created:     18th June 2006
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * www:         http://www.recls.org/
  *
@@ -54,7 +54,7 @@ int main()
         int                     flags   =   recls::RECLS_F_FILES | recls::RECLS_F_RECURSIVE;
         recls::search_sequence  files(RECLS_LITERAL("."), recls::Recls_GetWildcardsAll(), flags);
 
-        { for(recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
+        { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
         {
             recls::entry entry = *i;
 
@@ -90,3 +90,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

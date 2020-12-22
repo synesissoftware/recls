@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.cpp.combine_paths project.
  *
  * Created:     7th June 2008
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2020, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -108,7 +108,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.cpp.combine_paths", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.cpp.combine_paths", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);

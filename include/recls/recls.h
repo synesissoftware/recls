@@ -4,7 +4,7 @@
  * Purpose:     Main header file for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     21st December 2020
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
@@ -734,7 +734,7 @@ typedef recls_process_fn_param_t    process_fn_param_t;
   size_t        cRoots  = Recls_GetRoots(&roots[0], 26);
   size_t        i;
 
-  for(i = 0; i < cRoots; ++i)
+  for (i = 0; i < cRoots; ++i)
   {
     puts(roots[i].name);
   }

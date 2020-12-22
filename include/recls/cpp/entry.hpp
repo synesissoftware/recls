@@ -4,11 +4,12 @@
  * Purpose:     recls C++ mapping - entry class.
  *
  * Created:     18th August 2003
- * Updated:     22nd August 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -146,9 +148,9 @@ public:
             recls_entry_t   e;
             recls_rc_t      rc = Recls_Stat(path, flags, &e);
 
-            if(RECLS_FAILED(rc))
+            if (RECLS_FAILED(rc))
             {
-                if(RECLS_RC_NO_MORE_DATA == rc)
+                if (RECLS_RC_NO_MORE_DATA == rc)
                 {
                     throw NO_MORE_DATA_exception(rc, "path does not exist", path, NULL, flags);
                 }
@@ -339,7 +341,7 @@ public:
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
-        if(m_entry->fileExt.begin == m_entry->fileExt.end)
+        if (m_entry->fileExt.begin == m_entry->fileExt.end)
         {
             return string_type();
         }
@@ -401,7 +403,7 @@ public:
 
         DWORD const dw = ::GetShortPathName(m_entry->path.begin, NULL, 0);
 
-        if(0 == dw)
+        if (0 == dw)
         {
             throw recls_exception(RECLS_RC_SHORT_NAME_NOT_AVAILABLE);
         }

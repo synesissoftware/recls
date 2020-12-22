@@ -4,11 +4,12 @@
  * Purpose:     Platform discrimination for the recls API.
  *
  * Created:     18th August 2003
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -223,7 +224,7 @@ struct recls_entryinfo_t
      * \note This is <b>never</b> nul-terminated.
      */
     struct recls_strptrs_t      searchDirectory;
-    /** The opaque data of the entry; it is not accessible to any 
+    /** The opaque data of the entry; it is not accessible to any
      * client code, and <b>must not be manipulated</b> in any way
      */
     struct recls_strptrs_t      searchRelativePath;

@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.links project.
  *
  * Created:     23rd February 2011
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2011, Synesis Software Pty Ltd.
+ *              Copyright (c) 2011-2020, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -72,9 +72,9 @@ static int main_(int argc, char** argv)
 {
     recls::search_sequence files(NULL, NULL, recls::RECURSIVE | recls::LINK_COUNT);
 
-    { for(recls::search_sequence::const_iterator it = files.begin(); files.end() != it; ++it)
+    { for (recls::search_sequence::const_iterator it = files.begin(); files.end() != it; ++it)
     {
-        std::cout 
+        std::cout
             << (*it).get_path()
             << ": "
             << unsigned((*it).get_file_size())
@@ -91,7 +91,7 @@ static int main_(int argc, char** argv)
 int main(int argc, char** argv)
 {
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try
@@ -118,8 +118,5 @@ int main(int argc, char** argv)
 
     return EXIT_FAILURE;
 }
-
-/* ////////////////////////////////////////////////////////////////////// */
-
 
 /* ///////////////////////////// end of file //////////////////////////// */

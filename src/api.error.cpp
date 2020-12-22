@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -146,7 +146,7 @@ static recls_char_t const* lookup_error_string_(
 #endif
 
 
-    static const StringEntry* entries[] = 
+    static const StringEntry* entries[] =
     {
         RC_STR_ENTRY(RECLS_RC_OK),
         RC_STR_ENTRY(RECLS_RC_FAIL),
@@ -179,19 +179,19 @@ static recls_char_t const* lookup_error_string_(
     int                         e_;     // Null object pattern
     size_t                      len_;   // Null object pattern
 
-    if(NULL == e)
+    if (NULL == e)
     {
         e = &e_;
     }
 
-    if(NULL == len)
+    if (NULL == len)
     {
         len = &len_;
     }
 
-    for(size_t i = 0; i < stlsoft_num_elements_(entries); ++i)
+    for (size_t i = 0; i < stlsoft_num_elements_(entries); ++i)
     {
-        if(entries[i]->rc == rc)
+        if (entries[i]->rc == rc)
         {
             return (*len = entries[i]->len, *e = entries[i]->e, entries[i]->str);
         }
@@ -232,7 +232,7 @@ RECLS_FNDECL(size_t) Recls_GetErrorString(  recls_rc_t      rc
     size_t              cchError;
     recls_char_t const* s = ::recls::impl::lookup_error_string_(rc, NULL, &cchError);
 
-    if(NULL == buffer)
+    if (NULL == buffer)
     {
         return cchError;
     }

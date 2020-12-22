@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -100,14 +100,14 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
     originPath.make_absolute().canonicalise().pop_sep();
     targetPath.make_absolute().canonicalise().pop_sep();
 
-    if(originPath.empty())
+    if (originPath.empty())
     {
         return targetPath.copy(result, cchResult);
     }
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(EMULATE_UNIX_ON_WINDOWS)
-    if( traits_t::is_path_UNC(originPath.c_str()) ||
+    if (traits_t::is_path_UNC(originPath.c_str()) ||
         traits_t::is_path_UNC(targetPath.c_str()))
     {
         RECLS_ASSERT('\\' == originPath[0] && '\\' == originPath[1]);
@@ -116,7 +116,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
         recls_char_t const* originShare    =   traits_t::str_chr(&originPath[2], '\\');
         recls_char_t const* targetShare    =   traits_t::str_chr(&targetPath[2], '\\');
 
-        if( (originShare - &originPath[2]) != (targetShare - &targetPath[2]) ||
+        if ((originShare - &originPath[2]) != (targetShare - &targetPath[2]) ||
             0 != traits_t::str_n_compare(&originPath[2], &targetPath[2], static_cast<size_t>(originShare - &originPath[2])))
         {
             // Different shares, so return target
@@ -129,7 +129,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
         RECLS_ASSERT(isalpha(originPath[0]) && ':' == originPath[1]);
         RECLS_ASSERT(isalpha(targetPath[0]) && ':' == targetPath[1]);
 
-        if(toupper(originPath[0]) != toupper(targetPath[0]))
+        if (toupper(originPath[0]) != toupper(targetPath[0]))
         {
             // Different drives, so return target
 
@@ -138,17 +138,17 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
     }
 #endif /* RECLS_PLATFORM_IS_WINDOWS || EMULATE_UNIX_ON_WINDOWS */
 
-    // now trim the common 
+    // now trim the common
     recls_char_t const* po  =   &originPath[0];
     recls_char_t const* pt  =   &targetPath[0];
 
-    for(;;)
+    for (;;)
     {
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(EMULATE_UNIX_ON_WINDOWS)
-        if(toupper(*po) != toupper(*pt))
+        if (toupper(*po) != toupper(*pt))
 #else /* ? RECLS_PLATFORM_IS_WINDOWS || EMULATE_UNIX_ON_WINDOWS */
-        if(*po != *pt)
+        if (*po != *pt)
 #endif /* RECLS_PLATFORM_IS_WINDOWS || EMULATE_UNIX_ON_WINDOWS */
         {
             break;
@@ -157,11 +157,11 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
         ++po;
         ++pt;
 
-        if('\0' == *po)
+        if ('\0' == *po)
         {
             break;
         }
-        if('\0' == *pt)
+        if ('\0' == *pt)
         {
             break;
         }
@@ -170,13 +170,13 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
     // We may need to rewind, since "h:\abc\def" and "H:\abc\defghi" would yield
     // ghi
 
-    if( po != &originPath[0] &&
+    if (po != &originPath[0] &&
         (   '\0' != *po ||
             '\0' != *pt))
     {
         // There is some commonality
 
-        if(traits_t::is_path_name_separator(*(po - 1)))
+        if (traits_t::is_path_name_separator(*(po - 1)))
         {
             // Don't do anything, because both strings are at a unique whole point
         }
@@ -184,7 +184,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
         {
             // Previous was not a separator
 
-            if( (   '\0' == *po &&
+            if ((   '\0' == *po &&
                     traits_t::is_path_name_separator(*pt)) ||
                 (   '\0' == *pt &&
                     traits_t::is_path_name_separator(*po)))
@@ -193,23 +193,23 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
             }
             else
             {
-                for(; po != &originPath[0] && !traits_t::is_path_name_separator(*(po - 1)); --po)
+                for (; po != &originPath[0] && !traits_t::is_path_name_separator(*(po - 1)); --po)
                 {}
-                for(; pt != &originPath[0] && !traits_t::is_path_name_separator(*(pt - 1)); --pt)
+                for (; pt != &originPath[0] && !traits_t::is_path_name_separator(*(pt - 1)); --pt)
                 {}
             }
         }
 
-        if('\0' == *po)
+        if ('\0' == *po)
         {
-            if(traits_t::is_path_name_separator(*pt))
+            if (traits_t::is_path_name_separator(*pt))
             {
                 ++pt;
             }
         }
-        else if('\0' == *pt)
+        else if ('\0' == *pt)
         {
-            if(traits_t::is_path_name_separator(*po))
+            if (traits_t::is_path_name_separator(*po))
             {
                 ++po;
             }
@@ -223,14 +223,14 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
     path_t  originFragment(po);
     path_t  targetFinal;
 
-    for(; 0 != originFragment.size(); originFragment.pop(true))
+    for (; 0 != originFragment.size(); originFragment.pop(true))
     {
         targetFinal /= RECLS_LITERAL("..");
     }
 
     targetFinal /= pt;
 
-    if(bTargetHasSeparator)
+    if (bTargetHasSeparator)
     {
         targetFinal.push_sep();
     }

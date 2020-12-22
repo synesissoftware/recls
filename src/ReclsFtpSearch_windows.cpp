@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -99,7 +99,7 @@ inline void* ReclsFtpSearch::operator new(size_t cb, size_t cDirParts, size_t cb
     void    *pv =   malloc(cb);
 
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
-    if(NULL == pv)
+    if (NULL == pv)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
@@ -156,11 +156,11 @@ void ReclsFtpSearch::operator delete(void* pv)
     recls_rc_t          rc;
     types::session_type session(RECLS_LITERAL("recls-enumerator"), INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
 
-    // The session and connection are done in an exception-free manner just to 
+    // The session and connection are done in an exception-free manner just to
     // avoid CRT linking issues. It's not the best way to write software in
     // general.
 
-    if(!session)
+    if (!session)
     {
         recls_debug2_trace_printf_(RECLS_LITERAL("Failed to create sessions: %lu"), ::GetLastError());
 
@@ -170,14 +170,14 @@ void ReclsFtpSearch::operator delete(void* pv)
     {
         DWORD   dwFlags =   0;
 
-        if(flags & RECLS_F_PASSIVE_FTP)
+        if (flags & RECLS_F_PASSIVE_FTP)
         {
             dwFlags |= INTERNET_FLAG_PASSIVE;
         }
 
         types::connection_type connection(session, host, INTERNET_DEFAULT_FTP_PORT, username, password, INTERNET_SERVICE_FTP, dwFlags);
 
-        if(!connection)
+        if (!connection)
         {
             DWORD   dwErr = connection.last_error();
 
@@ -191,7 +191,7 @@ void ReclsFtpSearch::operator delete(void* pv)
             size_t              cchFullPath = types::traits_type::get_full_path_name(connection, rootDir, 0, NULL);
             types::buffer_type  fullPath(1 + cchFullPath + 1); // +1 (nul) +1 (dir-end)
 
-            if(0 == cchFullPath)
+            if (0 == cchFullPath)
             {
                 recls_debug2_trace_printf_(RECLS_LITERAL("Invalid directory"));
 
@@ -230,7 +230,7 @@ void ReclsFtpSearch::operator delete(void* pv)
                 }
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
 
-                if(NULL == si)
+                if (NULL == si)
                 {
                     rc = RECLS_RC_FAIL;
                 }
@@ -241,7 +241,7 @@ void ReclsFtpSearch::operator delete(void* pv)
 
                     // This is a nasty hack. It's tantamount to ctor & create function, so
                     // should be made more elegant soon.
-                    if(NULL == si->m_dnode)
+                    if (NULL == si->m_dnode)
                     {
                         delete si;
 
@@ -313,11 +313,11 @@ ReclsFtpSearch::ReclsFtpSearch(
 
 ReclsFtpSearch::~ReclsFtpSearch()
 {
-    if(NULL != m_connection)
+    if (NULL != m_connection)
     {
         ::InternetCloseHandle(m_connection);
     }
-    if(NULL != m_session)
+    if (NULL != m_session)
     {
         ::InternetCloseHandle(m_session);
     }

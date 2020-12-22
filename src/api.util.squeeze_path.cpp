@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -121,11 +121,11 @@ static size_t Recls_SqueezePath_X_(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SqueezePath(%s, ..., %u)"), stlsoft::c_str_ptr(path), unsigned(cchResult));
 
-    if(NULL == result)
+    if (NULL == result)
     {
         size_t n = platformstl::path_squeeze(path, result, cchResult);
 
-        if(0 != n)
+        if (0 != n)
         {
             --n;
         }
@@ -137,7 +137,7 @@ static size_t Recls_SqueezePath_X_(
         stlsoft::auto_buffer<recls_char_t, 512> buffer(1 + cchResult);
         size_t                                  n = platformstl::path_squeeze(path, &buffer[0], buffer.size());
 
-        if(0 != n)
+        if (0 != n)
         {
             RECLS_ASSERT(n <= cchResult + 1);
 

@@ -5,14 +5,14 @@
  *
  *                - searching (via Recls_Search()) for directories
  *                - non-recursive operation
- *                - filtering of non-empty directories, (via 
+ *                - filtering of non-empty directories, (via
  *                  Recls_IsDirectoryEntryEmpty())
  *                - display of search relative path
  *                - handling of errors and reporting of error information
  *                - elicitation of entry properties structure members
  *
  * Created:     29th May 2006
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * www:         http://www.recls.org/
  *
@@ -55,13 +55,13 @@ int main()
     recls_uint32_t  flags   =   RECLS_F_DIRECTORIES;
     recls_rc_t      rc      =   Recls_Search(NULL, RECLS_LITERAL("*"), flags, &hSrch);
 
-    if(RECLS_RC_NO_MORE_DATA == rc)
+    if (RECLS_RC_NO_MORE_DATA == rc)
     {
         printf(RECLS_LITERAL("  no matches found\n"));
 
         return EXIT_SUCCESS;
     }
-    else if(RECLS_FAILED(rc))
+    else if (RECLS_FAILED(rc))
     {
         /* The search failed. Display the error string. */
         recls_char_t    err[1001];
@@ -77,13 +77,13 @@ int main()
     {
         recls_info_t    entry;
 
-        /* Get the details for the first entry, ... */ 
+        /* Get the details for the first entry, ... */
         Recls_GetDetails(hSrch, &entry);
 
         do
         {
             /* ... test whether it's non-empty, ... */
-            if(!Recls_IsDirectoryEntryEmpty(entry))
+            if (!Recls_IsDirectoryEntryEmpty(entry))
             {
                 /* ... display the search relative path, ... */
                 printf(RECLS_LITERAL("%.*s\n"), (int)(entry->searchRelativePath.end - entry->searchRelativePath.begin), entry->searchRelativePath.begin);
@@ -93,7 +93,7 @@ int main()
             Recls_CloseDetails(entry);
 
         } /* ... and get the next entry. */
-        while(RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
+        while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
 
         /* Close the search handle. */
         Recls_SearchClose(hSrch);

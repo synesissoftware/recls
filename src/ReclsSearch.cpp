@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -99,7 +99,7 @@ recls_rc_t ReclsSearch::GetNext()
 
     m_lastError = m_dnode->GetNext();
 
-    if(RECLS_RC_NO_MORE_DATA == m_lastError)
+    if (RECLS_RC_NO_MORE_DATA == m_lastError)
     {
         delete m_dnode;
 
@@ -126,7 +126,7 @@ recls_rc_t ReclsSearch::GetNextDetails(recls_entry_t* pinfo)
 
     m_lastError = m_dnode->GetNextDetails(pinfo);
 
-    if(RECLS_RC_NO_MORE_DATA == m_lastError)
+    if (RECLS_RC_NO_MORE_DATA == m_lastError)
     {
         delete m_dnode;
 

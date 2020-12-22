@@ -4,7 +4,7 @@
  * Purpose:     #includes the STLSoft root header and verifies the version.
  *
  * Created:     8th November 2007
- * Updated:     21st December 2020
+ * Updated:     22nd December 2020
  *
  * Home:        http://recls.org/
  *
@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted in accordance with the license and warranty
  * information described in recls.h (included in this distribution, or
  * available from http://recls.org/)

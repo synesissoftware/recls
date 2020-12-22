@@ -73,7 +73,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.c.retcodes", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.c.retcodes", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -151,7 +151,7 @@ static void test_1_1()
 
 static void test_1_2()
 {
-    { size_t i; for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_FAILURE_CODES); ++i)
+    { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_FAILURE_CODES); ++i)
     {
         recls_rc_t const rc = s_FAILURE_CODES[i];
 
@@ -162,7 +162,7 @@ static void test_1_2()
 
 static void test_1_3()
 {
-    { size_t i; for(i = 0; i != 10000000; ++i)
+    { size_t i; for (i = 0; i != 10000000; ++i)
     {
         union
         {
@@ -243,7 +243,6 @@ static void test_1_18()
 static void test_1_19()
 {
 }
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

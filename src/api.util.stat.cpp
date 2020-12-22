@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -136,14 +136,14 @@ recls_rc_t Recls_Stat_X_(
     types::file_path_buffer_type    home;
     size_t                          pathLen = types::traits_type::str_len(path);
 
-    if( NULL != path &&
+    if (NULL != path &&
         recls_is_home_start_(path))
     {
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{2}: %s"), path);
 
         size_t n = recls_get_home_(&home[0], home.size());
 
-        if(0 == n)
+        if (0 == n)
         {
             //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{3}: %s"), path);
 
@@ -158,7 +158,7 @@ recls_rc_t Recls_Stat_X_(
 
             //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{4}: %s"), path);
 
-            if(pathLen + n > home.size())
+            if (pathLen + n > home.size())
             {
                 //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{5}: %s"), path);
 
@@ -193,7 +193,7 @@ recls_rc_t Recls_Stat_X_(
 
     //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{9}: %s"), path);
 
-    if(0 == pathLen)
+    if (0 == pathLen)
     {
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{10}: %s"), path);
 
@@ -202,7 +202,7 @@ recls_rc_t Recls_Stat_X_(
 
     //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{11}: %s"), path);
 
-    if(pathLen > types::path_type::max_size())
+    if (pathLen > types::path_type::max_size())
     {
         recls_error_trace_printf_(RECLS_LITERAL("path too long: %s"), path);
 
@@ -213,7 +213,7 @@ recls_rc_t Recls_Stat_X_(
 
     //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{12}: [%s, %s]"), path, path_.c_str());
 
-    if( !path_.exists() && 
+    if (!path_.exists() &&
         RECLS_F_DETAILS_LATER == (flags & RECLS_F_DETAILS_LATER) &&
         0 != (flags & RECLS_F_TYPEMASK)) // To allow non-existant things to be stat'd
     {
@@ -228,7 +228,7 @@ recls_rc_t Recls_Stat_X_(
 
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{15}: [%s, %s]"), path, path_.c_str());
 
-        if(!path2_.exists())
+        if (!path2_.exists())
         {
             return RECLS_RC_DIRECTORY_NOT_FOUND;
         }
@@ -241,16 +241,16 @@ recls_rc_t Recls_Stat_X_(
     {
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{17}: [%s, %s]"), path, path_.c_str());
 
-        if(types::traits_type::is_directory(path_.c_str()))
+        if (types::traits_type::is_directory(path_.c_str()))
         {
-            if(RECLS_F_FILES == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
+            if (RECLS_F_FILES == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
             {
                 return RECLS_RC_ENTRY_IS_DIRECTORY;
             }
         }
         else
         {
-            if(RECLS_F_DIRECTORIES == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
+            if (RECLS_F_DIRECTORIES == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
             {
                 return RECLS_RC_ENTRY_IS_NOT_DIRECTORY;
             }

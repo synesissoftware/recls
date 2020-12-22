@@ -12,7 +12,7 @@
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -131,7 +131,7 @@ static size_t Recls_CombinePaths_X_(
 
     platformstl::basic_path<recls_char_t>   path((NULL != path1) ? path1 : path2);
 
-    if( NULL != path1 &&
+    if (NULL != path1 &&
         NULL != path2)
     {
         path /= path2;

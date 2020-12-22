@@ -12,7 +12,7 @@
  *                - elicitation of entry properties via method calls
  *
  * Created:     18th June 2006
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * www:         http://www.recls.org/
  *
@@ -88,7 +88,7 @@ int main()
         std::cout << RECLS_LITERAL("file extension: ") << home.get_file_extension() << std::endl;
 
         // 10. Type
-        if(home.is_directory())
+        if (home.is_directory())
         {
             std::cout << RECLS_LITERAL(" <directory>") << std::endl;
         }
@@ -96,11 +96,11 @@ int main()
         {
             std::cout << RECLS_LITERAL(" <file>") << std::endl;
         }
-        if(home.is_link())
+        if (home.is_link())
         {
             std::cout << RECLS_LITERAL(" <link>") << std::endl;
         }
-        if(home.is_readonly())
+        if (home.is_readonly())
         {
             std::cout << RECLS_LITERAL(" <read-only>") << std::endl;
         }

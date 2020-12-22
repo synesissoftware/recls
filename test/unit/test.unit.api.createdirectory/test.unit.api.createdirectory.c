@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.api.createdirectory project.
  *
  * Created:     29th January 2009
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2009, Synesis Software Pty Ltd.
+ *              Copyright (c) 2009-2020, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -103,7 +103,7 @@ static void finish_off_directory(recls_char_t* s)
 {
     size_t n = strlen(s);
 
-    if(n > 0)
+    if (n > 0)
     {
     }
 }
@@ -130,7 +130,7 @@ int main(int argc, char **argv)
     s_cwd   =   (recls_char_t*)malloc(sizeof(recls_char_t) * (1 + path_max));
     s_home  =   (recls_char_t*)malloc(sizeof(recls_char_t) * (1 + path_max));
 
-    if( NULL == s_cwd ||
+    if (NULL == s_cwd ||
         NULL == s_home)
     {
         fprintf(stderr, "Cannot allocate enough memory to run tests!\n");
@@ -153,16 +153,16 @@ int main(int argc, char **argv)
 
 #if defined(PLATFORMSTL_OS_IS_UNIX) && \
     defined(_WIN32)
-    { char* s; for(s = s_cwd; *s; ++s)
+    { char* s; for (s = s_cwd; *s; ++s)
     {
-        if('\\' == *s)
+        if ('\\' == *s)
         {
             *s = '/';
         }
     }}
-    { char* s; for(s = s_home; *s; ++s)
+    { char* s; for (s = s_home; *s; ++s)
     {
-        if('\\' == *s)
+        if ('\\' == *s)
         {
             *s = '/';
         }
@@ -171,7 +171,7 @@ int main(int argc, char **argv)
 
     s_cwdLen = strlen(s_cwd);
 
-    if(XTESTS_START_RUNNER("test.unit.api.createdirectory", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.api.createdirectory", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -358,3 +358,4 @@ static void test_1_19()
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

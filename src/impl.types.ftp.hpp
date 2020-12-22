@@ -12,7 +12,7 @@
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted in accordance with the license and warranty
  * information described in recls.h (included in this distribution, or
  * available from http://recls.org/)
@@ -93,7 +93,7 @@ public: /// Member Types
     typedef ::winstl::basic_path<recls_char_t>              path_type;
 
     // The session type
-    typedef inetstl::basic_session< 
+    typedef inetstl::basic_session<
         recls_char_t
 #ifdef RECLS_STLSOFT_1_12_OR_LATER
     ,   stlsoft::nothrow_exception_policy
@@ -127,9 +127,9 @@ public: /// Operations
 
         size_t cDirParts = 0;
 
-        for(; begin != end; ++begin)
+        for (; begin != end; ++begin)
         {
-            if(*begin == ch)
+            if (*begin == ch)
             {
                 ++cDirParts;
             }

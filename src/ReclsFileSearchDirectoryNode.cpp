@@ -12,7 +12,7 @@
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
  *
@@ -104,16 +104,16 @@ namespace impl
 
     int ssFlags = 0;
 
-    if(0 != (flags & RECLS_F_FILES))
+    if (0 != (flags & RECLS_F_FILES))
     {
         ssFlags |= sequence_t::files;
     }
-    if(0 != (flags & RECLS_F_DIRECTORIES))
+    if (0 != (flags & RECLS_F_DIRECTORIES))
     {
         ssFlags |= sequence_t::directories;
     }
 
-    if(0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+    if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
     {
 #if defined(_WINSTL_VER) && \
     _WINSTL_VER >= 0x010a05ff
@@ -146,14 +146,14 @@ namespace impl
     ssFlags |= sequence_t::fullPath;
 #endif /* platform */
 
-    if(0 == (flags & RECLS_F_ALLOW_REPARSE_DIRS))
+    if (0 == (flags & RECLS_F_ALLOW_REPARSE_DIRS))
     {
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
         ssFlags |= sequence_t::skipReparseDirs;
 #endif /* platform */
     }
 
-    if(0 != (flags & RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS))
+    if (0 != (flags & RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS))
     {
 // TODO: Update this for UNIX when functionality available in UNIXSTL
 
@@ -163,7 +163,7 @@ namespace impl
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
     }
 
-    if(0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+    if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
     {
 #if defined(_WINSTL_VER) && \
     _WINSTL_VER >= 0x010a05ff
@@ -181,7 +181,7 @@ namespace impl
     function_scope_trace("ReclsFileSearchDirectoryNode::select_iter_if_");
 
     // I can't explain it, but Borland does not like the tertiary operator and the copy-ctors of the iterators
-    if(b)
+    if (b)
     {
         return trueVal;
     }
@@ -205,7 +205,7 @@ namespace impl
 
     RECLS_MESSAGE_ASSERT("I _think_ this should never happen. Please report if it does.", 0 != len);
 
-    if( 0 != len &&
+    if (0 != len &&
         !types::traits_type::has_dir_end(&buff[0] + (len - 1)))
     {
         types::traits_type::ensure_dir_end(&buff[0] + (len - 1));
@@ -237,9 +237,9 @@ namespace impl
     struct stat         st;
     recls_char_t const* entryPath = *it;
 
-    if(0 != (*pfn)(entryPath, &st))
+    if (0 != (*pfn)(entryPath, &st))
     {
-        // This will cause RECLS_F_OUT_OF_MEMORY. 
+        // This will cause RECLS_F_OUT_OF_MEMORY.
         // TODO: Fix it!
         return NULL;
     }
@@ -388,12 +388,12 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 # endif
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-    if(NULL != node)
+    if (NULL != node)
     {
         // Ensure that it, or one of its sub-nodes, has matching entries.
         recls_rc_t rc = node->Initialise();
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             delete node;
 
@@ -417,9 +417,9 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     function_scope_trace("ReclsFileSearchDirectoryNode::Stat");
 
     // 1. Ensure that the path is valid
-    // 
+    //
     // 1.a Must not be NULL
-    if( NULL == path ||
+    if (NULL == path ||
         '\0' == 0[path])
     {
         return RECLS_RC_INVALID_NAME;
@@ -427,11 +427,11 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
     recls_debug1_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(path=%s, flags=0x%08x, ...)"), path, flags);
 
-    // 
+    //
     // 1.b Must not be > max_path()
     const size_t pathLen = types::traits_type::str_len(path);
 
-    if(pathLen > types::traits_type::path_max())
+    if (pathLen > types::traits_type::path_max())
     {
         recls_log_printf_(RECLS_SEVIX_WARN, RECLS_LITERAL("path limit exceeded: limit=%u; len=%u"), unsigned(types::traits_type::path_max()), unsigned(pathLen));
 
@@ -449,7 +449,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 4"));
 
     // stat() of root is now supported!
-    if(types::traits_type::is_root_designator(path))
+    if (types::traits_type::is_root_designator(path))
     {
 # if 1
         *phEntry = create_drive_entryinfo(path, pathLen, flags, NULL);
@@ -464,7 +464,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
 #if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
     // emulated UNIX
-    if(!types::traits_type::is_path_UNC(path))
+    if (!types::traits_type::is_path_UNC(path))
     {
         std::replace(&path_[0], &path_[0] + path_.size(), RECLS_LITERAL('\\'), RECLS_LITERAL('/'));
     }
@@ -480,7 +480,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     types::traits_type::stat_data_type  st;
     types::traits_type::stat_data_type* pst = &st;
 
-    if(!types::traits_type::stat(path, &st))
+    if (!types::traits_type::stat(path, &st))
     {
         recls_log_printf_(
           (flags & RECLS_F_DETAILS_LATER) ? RECLS_SEVIX_INFO : RECLS_SEVIX_WARN
@@ -493,14 +493,14 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
     recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 10"));
 
-    if( NULL == pst &&
+    if (NULL == pst &&
         RECLS_F_DETAILS_LATER != (flags & (RECLS_F_DETAILS_LATER | RECLS_F_TYPEMASK))) // To allow non-existant things to be stat'd
     {
         recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 11"));
 
         return RECLS_RC_NO_MORE_DATA;
     }
-    else            
+    else
     {
         recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 12"));
 
@@ -515,7 +515,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
         recls_debug2_trace_printf_(RECLS_LITERAL("path=%s"), path);
 
-        recls_debug2_trace_printf_(RECLS_LITERAL("%d %d %d %d %d %d"), 
+        recls_debug2_trace_printf_(RECLS_LITERAL("%d %d %d %d %d %d"),
             int(entryDirLen), int(entryDirLen)
         ,   int(pathLen2), int(pathLen2)
         ,   int(entryFileLen), int(entryFileLen)
@@ -563,10 +563,10 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
     RECLS_ASSERT(NULL == m_current);
     RECLS_ASSERT(NULL == m_dnode);
 
-    if(NULL != m_pfn)
+    if (NULL != m_pfn)
     {
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
-        if(m_flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
+        if (m_flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
         {
             typedef int (RECLS_CALLCONV_STDDECL *stdcall_progress_fn_t)(recls_char_t const*
                                                                     ,   size_t
@@ -581,21 +581,21 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         else
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
         {
-            if(0 == (*m_pfn)(m_searchDir.c_str(), m_searchDirLen, m_param, NULL, 0))
+            if (0 == (*m_pfn)(m_searchDir.c_str(), m_searchDirLen, m_param, NULL, 0))
             {
                 return RECLS_RC_USER_CANCELLED_SEARCH;
             }
         }
     }
 
-    if(m_entriesBegin != m_entries.end())
+    if (m_entriesBegin != m_entries.end())
     {
         recls_debug2_trace_printf_(RECLS_LITERAL("Next entry in %s"), static_cast<recls_char_t const*>(stlsoft::c_str_ptr(m_searchDir)));
 
         // (i) Try getting a file first,
         m_current = CreateEntryInfo(m_rootDirLen, stlsoft::c_str_ptr(m_searchDir), m_searchDirLen, m_flags, m_entriesBegin);
 
-        if(NULL == m_current)
+        if (NULL == m_current)
         {
             rc = RECLS_RC_OUT_OF_MEMORY;
         }
@@ -606,7 +606,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
     }
     else
     {
-        if(m_directoriesBegin == m_directories.end())
+        if (m_directoriesBegin == m_directories.end())
         {
             rc = RECLS_RC_NO_MORE_DATA;
         }
@@ -639,16 +639,16 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
                                                                     ,   &rc
                                                                     );
 
-            } while(NULL == m_dnode && ++m_directoriesBegin != m_directories.end());
+            } while (NULL == m_dnode && ++m_directoriesBegin != m_directories.end());
 
-            if(RECLS_SUCCEEDED(rc))
+            if (RECLS_SUCCEEDED(rc))
             {
                 rc = (NULL == m_dnode) ? RECLS_RC_NO_MORE_DATA : RECLS_RC_OK;
             }
         }
     }
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
         RECLS_ASSERT(is_valid());
     }
@@ -666,7 +666,7 @@ recls_bool_t ReclsFileSearchDirectoryNode::is_valid() const
 #if defined(RECLS_PRAGMA_MESSAGE_SUPPORT) && \
     !defined(RECLS_PRAGMA_MESSAGE_IS_INTRUSIVE)
 # pragma message("Flesh these out")
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
     }
 #endif /* compiler */
@@ -710,7 +710,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
 
     recls_rc_t rc = RECLS_RC_NO_MORE_DATA;
 
-    if(NULL != m_current)
+    if (NULL != m_current)
     {
         // Currently enumerating through the files
         RECLS_ASSERT(m_entriesBegin != m_entries.end());
@@ -720,7 +720,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
         ++m_entriesBegin;
 
         Entry_Release(m_current);
-        if(m_entriesBegin != m_entries.end())
+        if (m_entriesBegin != m_entries.end())
         {
             // Still enumerating, so just update m_current
             m_current = CreateEntryInfo(m_rootDirLen, stlsoft::c_str_ptr(m_searchDir), m_searchDirLen, m_flags, m_entriesBegin);
@@ -736,15 +736,15 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
         }
     }
 
-    if(NULL == m_current)
+    if (NULL == m_current)
     {
         // Now we are either enumerating the directories, or we've already done so
-        if(NULL != m_dnode)
+        if (NULL != m_dnode)
         {
             // Currently enumerating the directories
             rc = m_dnode->GetNext();
 
-            if(RECLS_RC_NO_MORE_DATA == rc)
+            if (RECLS_RC_NO_MORE_DATA == rc)
             {
                 ++m_directoriesBegin;
 
@@ -754,14 +754,14 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
             }
         }
 
-        if(m_directoriesBegin == m_directories.end())
+        if (m_directoriesBegin == m_directories.end())
         {
             // Enumeration is complete.
             rc = RECLS_RC_NO_MORE_DATA;
         }
         else
         {
-            if(NULL == m_dnode)
+            if (NULL == m_dnode)
             {
                 do
                 {
@@ -783,7 +783,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
                                                                         ,   &rc
                                                                         );
 
-                    if(NULL != m_dnode)
+                    if (NULL != m_dnode)
                     {
                         rc = RECLS_RC_OK;
                     }
@@ -792,7 +792,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
                         ++m_directoriesBegin;
                     }
 
-                } while(NULL == m_dnode && m_directoriesBegin != m_directories.end());
+                } while (NULL == m_dnode && m_directoriesBegin != m_directories.end());
             }
         }
     }
@@ -815,7 +815,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetDetails(
     RECLS_ASSERT(NULL != pinfo);
     RECLS_ASSERT(NULL == m_current || NULL == m_dnode);
 
-    if(NULL != m_current)
+    if (NULL != m_current)
     {
         // Currently searching for files from the current directory
 
@@ -837,7 +837,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetDetails(
         }
 #endif /* RECLS_TRACE_LEVEL >= 2 */
     }
-    else if(NULL != m_dnode)
+    else if (NULL != m_dnode)
     {
         RECLS_ASSERT(NULL == m_current);
 
@@ -866,7 +866,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNextDetails(
 
     recls_rc_t  rc  =   GetNext();
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
         rc = GetDetails(pinfo);
     }

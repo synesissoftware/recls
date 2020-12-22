@@ -118,7 +118,7 @@ namespace cpp
   recls::ftp_search_sequence files(".", "*.*", recls::FILES | recls::RECURSIVE);
 
   std::cout &lt;&lt; "Files:" &lt;&lt; std::endl;
-  { for(recls::ftp_search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
+  { for (recls::ftp_search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
   {
     std::cout &lt;&lt; "    " &lt;&lt; *i &lt;&lt; std::endl;
   }}
@@ -263,7 +263,7 @@ private:
     // This one is implemented in-class as it allows sequence to be used by VC++ 5
     static char_type const* copy_or_null_(file_path_buffer& dest, char_type const* src)
     {
-        if(NULL == src)
+        if (NULL == src)
         {
             return static_cast<char_type const*>(NULL);
         }
@@ -348,7 +348,7 @@ inline ftp_search_sequence::const_iterator ftp_search_sequence::begin() const
     recls_rc_t  rc = traits_type::SearchFtp(m_host.c_str(), m_username.c_str(), m_password.c_str(), m_directory, m_pattern, m_flags, &hSrch);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if( RECLS_FAILED(rc) &&
+    if (RECLS_FAILED(rc) &&
         RECLS_RC_NO_MORE_DATA != rc)
     {
         throw recls_exception(rc, "failed to search FTP directory", m_directory, m_pattern, m_flags);
@@ -388,3 +388,4 @@ inline /* static */ ftp_search_sequence::size_type ftp_search_sequence::max_size
 #endif /* RECLS_INCL_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
