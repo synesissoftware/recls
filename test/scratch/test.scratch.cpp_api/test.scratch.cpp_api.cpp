@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.cpp_api project.
  *
  * Created:     4th January 2010
- * Updated:     10th January 2017
+ * Updated:     22nd December 2020
  *
  * Status:      Wizard-generated
  *
@@ -259,7 +259,7 @@ static void display_entry(recls::entry const& e)
 {
     using namespace recls;
 
-    unsigned width = 25;
+    size_t width = 25;
 
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
     std::cout << std::setw(width) << "Path:" << "    " << e.Path << std::endl;
@@ -285,7 +285,7 @@ static void display_entry(recls::entry const& e)
 #else /* ? RECLS_CPP_METHOD_PROPERTY_SUPPORT */
     directory_parts parts = e.get_directory_parts();
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    unsigned partWidth = width + e.get_drive().length();
+    size_t partWidth = width + e.get_drive().length();
     size_t numParts = parts.end() - parts.begin();
     STLSOFT_ASSERT(parts.size() == numParts);
 #if 0
@@ -384,3 +384,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
