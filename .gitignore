@@ -81,6 +81,8 @@ vc9/
 
 .update_deps
 
+sh.exe.stackdump
+
 list_changes.cmd
 prepare.cmd
 tidydir.cmd
