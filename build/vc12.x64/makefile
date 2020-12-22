@@ -6,7 +6,7 @@
 #           on the Win64 platform
 #
 # Created:  23rd September 2003
-# Updated:  21st December 2020
+# Updated:  22nd December 2020
 #
 ############################################################################
 
@@ -695,48 +695,96 @@ CPPC_ARGS_DLL_DBG=\
  -UNDEBUG -D_DEBUG\
  $(CPPC_DEFS_DLL_DBG)\
  $(CPPC_INCLUDES_DLL_DBG)
+
+CPPC_ARGS_core_DLL_DBG=\
+ -DRECLS_API_FTP\
+ $(CPPC_ARGS_DLL_DBG)\
+ \
+
 CPPC_ARGS_DLL_REL=\
  $(CPPC_FLAGS_DLL_REL)\
  -MD -D_AFXDLL $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) $(CPPC_F_MAXIMUM_SPEED) $(CPPC_CUSTOM_DEFS_RELEASE)\
  -U_DEBUG -DNDEBUG\
  $(CPPC_DEFS_DLL_REL)\
  $(CPPC_INCLUDES_DLL_REL)
+
+CPPC_ARGS_core_DLL_REL=\
+ -DRECLS_API_FTP\
+ $(CPPC_ARGS_DLL_REL)\
+ \
+
 CPPC_ARGS_MT_DBG=\
  $(CPPC_FLAGS_MT_DBG)\
  -MTd -Zi -Fd$*.pdb $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) $(CPPC_CUSTOM_DEFS_DEBUG)\
  -UNDEBUG -D_DEBUG\
  $(CPPC_DEFS_MT_DBG)\
  $(CPPC_INCLUDES_MT_DBG)
+
+CPPC_ARGS_core_MT_DBG=\
+ -DRECLS_API_FTP\
+ $(CPPC_ARGS_MT_DBG)\
+ \
+
 CPPC_ARGS_MT_REL=\
  $(CPPC_FLAGS_MT_REL)\
  -MT $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) $(CPPC_F_MAXIMUM_SPEED) $(CPPC_CUSTOM_DEFS_RELEASE)\
  -U_DEBUG -DNDEBUG\
  $(CPPC_DEFS_MT_REL)\
  $(CPPC_INCLUDES_MT_REL)
+
+CPPC_ARGS_core_MT_REL=\
+ -DRECLS_API_FTP\
+ $(CPPC_ARGS_MT_REL)\
+ \
+
 CPPC_ARGS_WS_DLL_DBG=\
  $(CPPC_FLAGS_WS_DLL_DBG)\
  -MDd -Zi -Fd$*.pdb -DUNICODE -D_UNICODE $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) $(CPPC_CUSTOM_DEFS_DEBUG)\
  -UNDEBUG -D_DEBUG\
  $(CPPC_DEFS_WS_DLL_DBG)\
  $(CPPC_INCLUDES_WS_DLL_DBG)
+
+CPPC_ARGS_core_WS_DLL_DBG=\
+ -DRECLS_API_FTP\
+ $(CPPC_ARGS_WS_DLL_DBG)\
+ \
+
 CPPC_ARGS_WS_DLL_REL=\
  $(CPPC_FLAGS_WS_DLL_REL)\
  -MD -DUNICODE -D_UNICODE $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) $(CPPC_CUSTOM_DEFS_RELEASE)\
  -U_DEBUG -DNDEBUG\
  $(CPPC_DEFS_WS_DLL_REL)\
  $(CPPC_INCLUDES_WS_DLL_REL)
+
+CPPC_ARGS_core_WS_DLL_REL=\
+ -DRECLS_API_FTP\
+ $(CPPC_ARGS_WS_DLL_REL)\
+ \
+
 CPPC_ARGS_WS_MT_DBG=\
  $(CPPC_FLAGS_WS_MT_DBG)\
  -MTd -Zi -Fd$*.pdb -DUNICODE -D_UNICODE $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) $(CPPC_CUSTOM_DEFS_DEBUG)\
  -UNDEBUG -D_DEBUG\
  $(CPPC_DEFS_WS_MT_DBG)\
  $(CPPC_INCLUDES_WS_MT_DBG)
+
+CPPC_ARGS_core_WS_MT_DBG=\
+ -DRECLS_API_FTP\
+ $(CPPC_ARGS_WS_MT_DBG)\
+ \
+
 CPPC_ARGS_WS_MT_REL=\
  $(CPPC_FLAGS_WS_MT_REL)\
  -MT -DUNICODE -D_UNICODE $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) $(CPPC_CUSTOM_DEFS_RELEASE)\
  -U_DEBUG -DNDEBUG\
  $(CPPC_DEFS_WS_MT_REL)\
  $(CPPC_INCLUDES_WS_MT_REL)
+
+CPPC_ARGS_core_WS_MT_REL=\
+ -DRECLS_API_FTP\
+ $(CPPC_ARGS_WS_MT_REL)\
+ \
+
 
 
 
@@ -3485,57 +3533,57 @@ $(LIB_CORE_DLL_DBG): $(OBJ_CORE_DLL_DBG) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_CORE_DLL_DBG)
 
 $(OBJ_CR_api_entryinfo_DLL_DBG): $(PROJ_SRC_DIR)\api.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
 $(OBJ_CR_api_error_DLL_DBG): $(PROJ_SRC_DIR)\api.error.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
 $(OBJ_CR_api_extended_DLL_DBG): $(PROJ_SRC_DIR)\api.extended.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
 $(OBJ_CR_api_combpath_DLL_DBG): $(PROJ_SRC_DIR)\api.util.combine_paths.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
 $(OBJ_CR_api_derrpath_DLL_DBG): $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
 $(OBJ_CR_api_getflsizs_DLL_DBG): $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
 $(OBJ_CR_api_sqzpath_DLL_DBG): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_DLL_DBG): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
 $(OBJ_CR_api_crdir_DLL_DBG): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
 $(OBJ_CR_api_rmdir_DLL_DBG): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_DLL_DBG): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_DLL_DBG): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
 $(OBJ_CR_impl_debug_DLL_DBG): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_DLL_DBG): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
 $(OBJ_CR_impl_fileinfo_DLL_DBG): $(PROJ_SRC_DIR)\impl.fileinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
 $(OBJ_CR_impl_snprintf_DLL_DBG): $(PROJ_SRC_DIR)\impl.snprintf.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
 $(OBJ_CR_impl_util_DLL_DBG): $(PROJ_SRC_DIR)\impl.util.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
 $(OBJ_CR_Srch_DLL_DBG): $(PROJ_SRC_DIR)\ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
 $(OBJ_CR_FlSrch_DLL_DBG): $(PROJ_SRC_DIR)\ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_DLL_DBG): $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
 $(OBJ_CR_api_win64_DLL_DBG): $(PROJ_SRC_DIR)\api.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
 $(OBJ_CR_impl_fileinfo_win64_DLL_DBG): $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
 $(OBJ_CR_impl_util_win64_DLL_DBG): $(PROJ_SRC_DIR)\impl.util.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
 $(OBJ_CR_api_ftp_windows_DLL_DBG): $(PROJ_SRC_DIR)\api.ftp.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
 $(OBJ_CR_FtpSchDirNode_win_DLL_DBG): $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
 $(OBJ_CR_FtpSrch_windows_DLL_DBG): $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
 
 
 $(LIB_CORE_DLL_REL): $(OBJ_CORE_DLL_REL) $(PROJ_MAKEFILE_NAME)
@@ -3543,57 +3591,57 @@ $(LIB_CORE_DLL_REL): $(OBJ_CORE_DLL_REL) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_CORE_DLL_REL)
 
 $(OBJ_CR_api_entryinfo_DLL_REL): $(PROJ_SRC_DIR)\api.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
 $(OBJ_CR_api_error_DLL_REL): $(PROJ_SRC_DIR)\api.error.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
 $(OBJ_CR_api_extended_DLL_REL): $(PROJ_SRC_DIR)\api.extended.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
 $(OBJ_CR_api_combpath_DLL_REL): $(PROJ_SRC_DIR)\api.util.combine_paths.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
 $(OBJ_CR_api_derrpath_DLL_REL): $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
 $(OBJ_CR_api_getflsizs_DLL_REL): $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
 $(OBJ_CR_api_sqzpath_DLL_REL): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_DLL_REL): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
 $(OBJ_CR_api_crdir_DLL_REL): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
 $(OBJ_CR_api_rmdir_DLL_REL): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_DLL_REL): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_DLL_REL): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
 $(OBJ_CR_impl_debug_DLL_REL): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_DLL_REL): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
 $(OBJ_CR_impl_fileinfo_DLL_REL): $(PROJ_SRC_DIR)\impl.fileinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
 $(OBJ_CR_impl_snprintf_DLL_REL): $(PROJ_SRC_DIR)\impl.snprintf.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
 $(OBJ_CR_impl_util_DLL_REL): $(PROJ_SRC_DIR)\impl.util.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
 $(OBJ_CR_Srch_DLL_REL): $(PROJ_SRC_DIR)\ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
 $(OBJ_CR_FlSrch_DLL_REL): $(PROJ_SRC_DIR)\ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_DLL_REL): $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
 $(OBJ_CR_api_win64_DLL_REL): $(PROJ_SRC_DIR)\api.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
 $(OBJ_CR_impl_fileinfo_win64_DLL_REL): $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
 $(OBJ_CR_impl_util_win64_DLL_REL): $(PROJ_SRC_DIR)\impl.util.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
 $(OBJ_CR_api_ftp_windows_DLL_REL): $(PROJ_SRC_DIR)\api.ftp.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
 $(OBJ_CR_FtpSchDirNode_win_DLL_REL): $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
 $(OBJ_CR_FtpSrch_windows_DLL_REL): $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
 
 
 $(LIB_CORE_MT_DBG): $(OBJ_CORE_MT_DBG) $(PROJ_MAKEFILE_NAME)
@@ -3601,57 +3649,57 @@ $(LIB_CORE_MT_DBG): $(OBJ_CORE_MT_DBG) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_CORE_MT_DBG)
 
 $(OBJ_CR_api_entryinfo_MT_DBG): $(PROJ_SRC_DIR)\api.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
 $(OBJ_CR_api_error_MT_DBG): $(PROJ_SRC_DIR)\api.error.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
 $(OBJ_CR_api_extended_MT_DBG): $(PROJ_SRC_DIR)\api.extended.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
 $(OBJ_CR_api_combpath_MT_DBG): $(PROJ_SRC_DIR)\api.util.combine_paths.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
 $(OBJ_CR_api_derrpath_MT_DBG): $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
 $(OBJ_CR_api_getflsizs_MT_DBG): $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
 $(OBJ_CR_api_sqzpath_MT_DBG): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_MT_DBG): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
 $(OBJ_CR_api_crdir_MT_DBG): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
 $(OBJ_CR_api_rmdir_MT_DBG): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_MT_DBG): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_MT_DBG): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
 $(OBJ_CR_impl_debug_MT_DBG): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_DBG): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
 $(OBJ_CR_impl_fileinfo_MT_DBG): $(PROJ_SRC_DIR)\impl.fileinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
 $(OBJ_CR_impl_snprintf_MT_DBG): $(PROJ_SRC_DIR)\impl.snprintf.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
 $(OBJ_CR_impl_util_MT_DBG): $(PROJ_SRC_DIR)\impl.util.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
 $(OBJ_CR_Srch_MT_DBG): $(PROJ_SRC_DIR)\ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
 $(OBJ_CR_FlSrch_MT_DBG): $(PROJ_SRC_DIR)\ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_MT_DBG): $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
 $(OBJ_CR_api_win64_MT_DBG): $(PROJ_SRC_DIR)\api.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
 $(OBJ_CR_impl_fileinfo_win64_MT_DBG): $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
 $(OBJ_CR_impl_util_win64_MT_DBG): $(PROJ_SRC_DIR)\impl.util.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
 $(OBJ_CR_api_ftp_windows_MT_DBG): $(PROJ_SRC_DIR)\api.ftp.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
 $(OBJ_CR_FtpSchDirNode_win_MT_DBG): $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
 $(OBJ_CR_FtpSrch_windows_MT_DBG): $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
 
 
 $(LIB_CORE_MT_REL): $(OBJ_CORE_MT_REL) $(PROJ_MAKEFILE_NAME)
@@ -3659,57 +3707,57 @@ $(LIB_CORE_MT_REL): $(OBJ_CORE_MT_REL) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_CORE_MT_REL)
 
 $(OBJ_CR_api_entryinfo_MT_REL): $(PROJ_SRC_DIR)\api.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
 $(OBJ_CR_api_error_MT_REL): $(PROJ_SRC_DIR)\api.error.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
 $(OBJ_CR_api_extended_MT_REL): $(PROJ_SRC_DIR)\api.extended.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
 $(OBJ_CR_api_combpath_MT_REL): $(PROJ_SRC_DIR)\api.util.combine_paths.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
 $(OBJ_CR_api_derrpath_MT_REL): $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
 $(OBJ_CR_api_getflsizs_MT_REL): $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
 $(OBJ_CR_api_sqzpath_MT_REL): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_MT_REL): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
 $(OBJ_CR_api_crdir_MT_REL): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
 $(OBJ_CR_api_rmdir_MT_REL): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_MT_REL): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_MT_REL): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
 $(OBJ_CR_impl_debug_MT_REL): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_REL): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
 $(OBJ_CR_impl_fileinfo_MT_REL): $(PROJ_SRC_DIR)\impl.fileinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
 $(OBJ_CR_impl_snprintf_MT_REL): $(PROJ_SRC_DIR)\impl.snprintf.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
 $(OBJ_CR_impl_util_MT_REL): $(PROJ_SRC_DIR)\impl.util.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
 $(OBJ_CR_Srch_MT_REL): $(PROJ_SRC_DIR)\ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
 $(OBJ_CR_FlSrch_MT_REL): $(PROJ_SRC_DIR)\ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_MT_REL): $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
 $(OBJ_CR_api_win64_MT_REL): $(PROJ_SRC_DIR)\api.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
 $(OBJ_CR_impl_fileinfo_win64_MT_REL): $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
 $(OBJ_CR_impl_util_win64_MT_REL): $(PROJ_SRC_DIR)\impl.util.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
 $(OBJ_CR_api_ftp_windows_MT_REL): $(PROJ_SRC_DIR)\api.ftp.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
 $(OBJ_CR_FtpSchDirNode_win_MT_REL): $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
 $(OBJ_CR_FtpSrch_windows_MT_REL): $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
 
 
 $(LIB_CORE_WS_DLL_DBG): $(OBJ_CORE_WS_DLL_DBG) $(PROJ_MAKEFILE_NAME)
@@ -3717,57 +3765,57 @@ $(LIB_CORE_WS_DLL_DBG): $(OBJ_CORE_WS_DLL_DBG) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_CORE_WS_DLL_DBG)
 
 $(OBJ_CR_api_entryinfo_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
 $(OBJ_CR_api_error_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.error.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
 $(OBJ_CR_api_extended_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.extended.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
 $(OBJ_CR_api_combpath_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.util.combine_paths.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
 $(OBJ_CR_api_derrpath_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
 $(OBJ_CR_api_getflsizs_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
 $(OBJ_CR_api_sqzpath_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
 $(OBJ_CR_api_crdir_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
 $(OBJ_CR_api_rmdir_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
 $(OBJ_CR_impl_debug_WS_DLL_DBG): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_WS_DLL_DBG): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
 $(OBJ_CR_impl_fileinfo_WS_DLL_DBG): $(PROJ_SRC_DIR)\impl.fileinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
 $(OBJ_CR_impl_snprintf_WS_DLL_DBG): $(PROJ_SRC_DIR)\impl.snprintf.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
 $(OBJ_CR_impl_util_WS_DLL_DBG): $(PROJ_SRC_DIR)\impl.util.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
 $(OBJ_CR_Srch_WS_DLL_DBG): $(PROJ_SRC_DIR)\ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
 $(OBJ_CR_FlSrch_WS_DLL_DBG): $(PROJ_SRC_DIR)\ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_WS_DLL_DBG): $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
 $(OBJ_CR_api_win64_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
 $(OBJ_CR_impl_fileinfo_win64_WS_DLL_DBG): $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
 $(OBJ_CR_impl_util_win64_WS_DLL_DBG): $(PROJ_SRC_DIR)\impl.util.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
 $(OBJ_CR_api_ftp_windows_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.ftp.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
 $(OBJ_CR_FtpSchDirNode_win_WS_DLL_DBG): $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
 $(OBJ_CR_FtpSrch_windows_WS_DLL_DBG): $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
 
 
 $(LIB_CORE_WS_DLL_REL): $(OBJ_CORE_WS_DLL_REL) $(PROJ_MAKEFILE_NAME)
@@ -3775,57 +3823,57 @@ $(LIB_CORE_WS_DLL_REL): $(OBJ_CORE_WS_DLL_REL) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_CORE_WS_DLL_REL)
 
 $(OBJ_CR_api_entryinfo_WS_DLL_REL): $(PROJ_SRC_DIR)\api.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
 $(OBJ_CR_api_error_WS_DLL_REL): $(PROJ_SRC_DIR)\api.error.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
 $(OBJ_CR_api_extended_WS_DLL_REL): $(PROJ_SRC_DIR)\api.extended.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
 $(OBJ_CR_api_combpath_WS_DLL_REL): $(PROJ_SRC_DIR)\api.util.combine_paths.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
 $(OBJ_CR_api_derrpath_WS_DLL_REL): $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
 $(OBJ_CR_api_getflsizs_WS_DLL_REL): $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
 $(OBJ_CR_api_sqzpath_WS_DLL_REL): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_WS_DLL_REL): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
 $(OBJ_CR_api_crdir_WS_DLL_REL): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
 $(OBJ_CR_api_rmdir_WS_DLL_REL): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_WS_DLL_REL): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_WS_DLL_REL): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
 $(OBJ_CR_impl_debug_WS_DLL_REL): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_WS_DLL_REL): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
 $(OBJ_CR_impl_fileinfo_WS_DLL_REL): $(PROJ_SRC_DIR)\impl.fileinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
 $(OBJ_CR_impl_snprintf_WS_DLL_REL): $(PROJ_SRC_DIR)\impl.snprintf.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
 $(OBJ_CR_impl_util_WS_DLL_REL): $(PROJ_SRC_DIR)\impl.util.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
 $(OBJ_CR_Srch_WS_DLL_REL): $(PROJ_SRC_DIR)\ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
 $(OBJ_CR_FlSrch_WS_DLL_REL): $(PROJ_SRC_DIR)\ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_WS_DLL_REL): $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
 $(OBJ_CR_api_win64_WS_DLL_REL): $(PROJ_SRC_DIR)\api.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
 $(OBJ_CR_impl_fileinfo_win64_WS_DLL_REL): $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
 $(OBJ_CR_impl_util_win64_WS_DLL_REL): $(PROJ_SRC_DIR)\impl.util.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
 $(OBJ_CR_api_ftp_windows_WS_DLL_REL): $(PROJ_SRC_DIR)\api.ftp.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
 $(OBJ_CR_FtpSchDirNode_win_WS_DLL_REL): $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
 $(OBJ_CR_FtpSrch_windows_WS_DLL_REL): $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
 
 
 $(LIB_CORE_WS_MT_DBG): $(OBJ_CORE_WS_MT_DBG) $(PROJ_MAKEFILE_NAME)
@@ -3833,57 +3881,57 @@ $(LIB_CORE_WS_MT_DBG): $(OBJ_CORE_WS_MT_DBG) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_CORE_WS_MT_DBG)
 
 $(OBJ_CR_api_entryinfo_WS_MT_DBG): $(PROJ_SRC_DIR)\api.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
 $(OBJ_CR_api_error_WS_MT_DBG): $(PROJ_SRC_DIR)\api.error.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
 $(OBJ_CR_api_extended_WS_MT_DBG): $(PROJ_SRC_DIR)\api.extended.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
 $(OBJ_CR_api_combpath_WS_MT_DBG): $(PROJ_SRC_DIR)\api.util.combine_paths.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
 $(OBJ_CR_api_derrpath_WS_MT_DBG): $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
 $(OBJ_CR_api_getflsizs_WS_MT_DBG): $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
 $(OBJ_CR_api_sqzpath_WS_MT_DBG): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_WS_MT_DBG): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
 $(OBJ_CR_api_crdir_WS_MT_DBG): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
 $(OBJ_CR_api_rmdir_WS_MT_DBG): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_WS_MT_DBG): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_WS_MT_DBG): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
 $(OBJ_CR_impl_debug_WS_MT_DBG): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_WS_MT_DBG): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
 $(OBJ_CR_impl_fileinfo_WS_MT_DBG): $(PROJ_SRC_DIR)\impl.fileinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
 $(OBJ_CR_impl_snprintf_WS_MT_DBG): $(PROJ_SRC_DIR)\impl.snprintf.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
 $(OBJ_CR_impl_util_WS_MT_DBG): $(PROJ_SRC_DIR)\impl.util.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
 $(OBJ_CR_Srch_WS_MT_DBG): $(PROJ_SRC_DIR)\ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
 $(OBJ_CR_FlSrch_WS_MT_DBG): $(PROJ_SRC_DIR)\ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_WS_MT_DBG): $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
 $(OBJ_CR_api_win64_WS_MT_DBG): $(PROJ_SRC_DIR)\api.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
 $(OBJ_CR_impl_fileinfo_win64_WS_MT_DBG): $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
 $(OBJ_CR_impl_util_win64_WS_MT_DBG): $(PROJ_SRC_DIR)\impl.util.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
 $(OBJ_CR_api_ftp_windows_WS_MT_DBG): $(PROJ_SRC_DIR)\api.ftp.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
 $(OBJ_CR_FtpSchDirNode_win_WS_MT_DBG): $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
 $(OBJ_CR_FtpSrch_windows_WS_MT_DBG): $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
 
 
 $(LIB_CORE_WS_MT_REL): $(OBJ_CORE_WS_MT_REL) $(PROJ_MAKEFILE_NAME)
@@ -3891,57 +3939,57 @@ $(LIB_CORE_WS_MT_REL): $(OBJ_CORE_WS_MT_REL) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_CORE_WS_MT_REL)
 
 $(OBJ_CR_api_entryinfo_WS_MT_REL): $(PROJ_SRC_DIR)\api.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
 $(OBJ_CR_api_error_WS_MT_REL): $(PROJ_SRC_DIR)\api.error.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
 $(OBJ_CR_api_extended_WS_MT_REL): $(PROJ_SRC_DIR)\api.extended.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
 $(OBJ_CR_api_combpath_WS_MT_REL): $(PROJ_SRC_DIR)\api.util.combine_paths.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
 $(OBJ_CR_api_derrpath_WS_MT_REL): $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
 $(OBJ_CR_api_getflsizs_WS_MT_REL): $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
 $(OBJ_CR_api_sqzpath_WS_MT_REL): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_WS_MT_REL): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
 $(OBJ_CR_api_crdir_WS_MT_REL): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
 $(OBJ_CR_api_rmdir_WS_MT_REL): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_rc_win_WS_MT_REL): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_WS_MT_REL): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
 $(OBJ_CR_impl_debug_WS_MT_REL): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_WS_MT_REL): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
 $(OBJ_CR_impl_fileinfo_WS_MT_REL): $(PROJ_SRC_DIR)\impl.fileinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
 $(OBJ_CR_impl_snprintf_WS_MT_REL): $(PROJ_SRC_DIR)\impl.snprintf.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
 $(OBJ_CR_impl_util_WS_MT_REL): $(PROJ_SRC_DIR)\impl.util.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
 $(OBJ_CR_Srch_WS_MT_REL): $(PROJ_SRC_DIR)\ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
 $(OBJ_CR_FlSrch_WS_MT_REL): $(PROJ_SRC_DIR)\ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_WS_MT_REL): $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
 $(OBJ_CR_api_win64_WS_MT_REL): $(PROJ_SRC_DIR)\api.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.windows.cpp
 $(OBJ_CR_impl_fileinfo_win64_WS_MT_REL): $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.windows.cpp
 $(OBJ_CR_impl_util_win64_WS_MT_REL): $(PROJ_SRC_DIR)\impl.util.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.util.windows.cpp
 $(OBJ_CR_api_ftp_windows_WS_MT_REL): $(PROJ_SRC_DIR)\api.ftp.windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.ftp.windows.cpp
 $(OBJ_CR_FtpSchDirNode_win_WS_MT_REL): $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearchDirectoryNode_windows.cpp
 $(OBJ_CR_FtpSrch_windows_WS_MT_REL): $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\ReclsFtpSearch_windows.cpp
 
 
 

@@ -6,7 +6,7 @@
 #           on the UNIX platform
 #
 # Created:  23rd September 2003
-# Updated:  21st December 2020
+# Updated:  22nd December 2020
 #
 ############################################################################
 
@@ -411,12 +411,24 @@ CPPC_ARGS_MT_UX_DEBUG=\
  -UNDEBUG -D_DEBUG\
  $(CPPC_DEFS_MT_UX_DEBUG)\
  $(CPPC_INCLUDES_MT_UX_DEBUG)
+
+CPPC_ARGS_core_MT_UX_DEBUG=\
+ -DRECLS_API_FTP\
+ $(CPPC_ARGS_MT_UX_DEBUG)\
+ \
+
 CPPC_ARGS_MT_UX=\
  $(CPPC_FLAGS_MT_UX)\
  -MT -Zi -Fd$*.pdb -D_STLSOFT_FORCE_ANY_COMPILER -D_REENTRANT -DNDEBUG $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) $(CPPC_F_MAXIMUM_SPEED) $(CPPC_CUSTOM_DEFS_RELEASE)\
  -U_DEBUG -DNDEBUG\
  $(CPPC_DEFS_MT_UX)\
  $(CPPC_INCLUDES_MT_UX)
+
+CPPC_ARGS_core_MT_UX=\
+ -DRECLS_API_FTP\
+ $(CPPC_ARGS_MT_UX)\
+ \
+
 
 
 
@@ -1383,49 +1395,49 @@ $(LIB_CORE_MT_UX_DEBUG): $(OBJ_CORE_MT_UX_DEBUG) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_CORE_MT_UX_DEBUG)
 
 $(OBJ_CR_api_entryinfo_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
 $(OBJ_CR_api_error_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.error.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
 $(OBJ_CR_api_extended_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.extended.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
 $(OBJ_CR_api_combpath_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.util.combine_paths.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
 $(OBJ_CR_api_derrpath_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
 $(OBJ_CR_api_getflsizs_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
 $(OBJ_CR_api_sqzpath_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
 $(OBJ_CR_api_crdir_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
 $(OBJ_CR_api_rmdir_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_search_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
 $(OBJ_CR_impl_debug_MT_UX_DEBUG): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_UX_DEBUG): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
 $(OBJ_CR_impl_fileinfo_MT_UX_DEBUG): $(PROJ_SRC_DIR)\impl.fileinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
 $(OBJ_CR_impl_snprintf_MT_UX_DEBUG): $(PROJ_SRC_DIR)\impl.snprintf.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
 $(OBJ_CR_impl_util_MT_UX_DEBUG): $(PROJ_SRC_DIR)\impl.util.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
 $(OBJ_CR_Srch_MT_UX_DEBUG): $(PROJ_SRC_DIR)\ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
 $(OBJ_CR_FlSrch_MT_UX_DEBUG): $(PROJ_SRC_DIR)\ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_MT_UX_DEBUG): $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
 $(OBJ_CR_api_unix_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.unix.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.unix.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.unix.cpp
 $(OBJ_CR_impl_fileinfo_unix_MT_UX_DEBUG): $(PROJ_SRC_DIR)\impl.fileinfo.unix.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.unix.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.unix.cpp
 $(OBJ_CR_impl_util_unix_MT_UX_DEBUG): $(PROJ_SRC_DIR)\impl.util.unix.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.unix.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.util.unix.cpp
 
 
 $(LIB_CORE_MT_UX): $(OBJ_CORE_MT_UX) $(PROJ_MAKEFILE_NAME)
@@ -1433,49 +1445,49 @@ $(LIB_CORE_MT_UX): $(OBJ_CORE_MT_UX) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_CORE_MT_UX)
 
 $(OBJ_CR_api_entryinfo_MT_UX): $(PROJ_SRC_DIR)\api.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.entryinfo.cpp
 $(OBJ_CR_api_error_MT_UX): $(PROJ_SRC_DIR)\api.error.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.error.cpp
 $(OBJ_CR_api_extended_MT_UX): $(PROJ_SRC_DIR)\api.extended.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.extended.cpp
 $(OBJ_CR_api_combpath_MT_UX): $(PROJ_SRC_DIR)\api.util.combine_paths.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.combine_paths.cpp
 $(OBJ_CR_api_derrpath_MT_UX): $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.derive_relative_path.cpp
 $(OBJ_CR_api_getflsizs_MT_UX): $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.get_file_sizes.cpp
 $(OBJ_CR_api_sqzpath_MT_UX): $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.squeeze_path.cpp
 $(OBJ_CR_api_stat_MT_UX): $(PROJ_SRC_DIR)\api.util.stat.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.stat.cpp
 $(OBJ_CR_api_crdir_MT_UX): $(PROJ_SRC_DIR)\api.util.create_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.create_directory.cpp
 $(OBJ_CR_api_rmdir_MT_UX): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_search_MT_UX): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
 $(OBJ_CR_impl_debug_MT_UX): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_UX): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.entryinfo.cpp
 $(OBJ_CR_impl_fileinfo_MT_UX): $(PROJ_SRC_DIR)\impl.fileinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.cpp
 $(OBJ_CR_impl_snprintf_MT_UX): $(PROJ_SRC_DIR)\impl.snprintf.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.snprintf.cpp
 $(OBJ_CR_impl_util_MT_UX): $(PROJ_SRC_DIR)\impl.util.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.util.cpp
 $(OBJ_CR_Srch_MT_UX): $(PROJ_SRC_DIR)\ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\ReclsSearch.cpp
 $(OBJ_CR_FlSrch_MT_UX): $(PROJ_SRC_DIR)\ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_MT_UX): $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\ReclsFileSearchDirectoryNode.cpp
 $(OBJ_CR_api_unix_MT_UX): $(PROJ_SRC_DIR)\api.unix.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.unix.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.unix.cpp
 $(OBJ_CR_impl_fileinfo_unix_MT_UX): $(PROJ_SRC_DIR)\impl.fileinfo.unix.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.unix.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.fileinfo.unix.cpp
 $(OBJ_CR_impl_util_unix_MT_UX): $(PROJ_SRC_DIR)\impl.util.unix.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.util.unix.cpp
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.util.unix.cpp
 
 
 
