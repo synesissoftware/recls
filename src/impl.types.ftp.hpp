@@ -4,7 +4,7 @@
  * Purpose:     Implementation header.
  *
  * Created:     13th December 2008
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -87,7 +87,9 @@ public: /// Member Types
     typedef traits_type::find_data_type                     find_data_type;
 
     /// The file-path buffer type
-    typedef ::winstl::basic_file_path_buffer<recls_char_t>  file_path_buffer_type;
+    typedef ::winstl::basic_file_path_buffer<
+        recls_char_t
+    >                                                       file_path_buffer_type;
 
     /// The path type
     typedef ::winstl::basic_path<recls_char_t>              path_type;
@@ -112,11 +114,18 @@ public: /// Member Types
 #endif /* RECLS_STLSOFT_1_12_OR_LATER */
     >                                                       connection_type;
 
-public: /// Operations
+private: // construction
+    ftp_types();                        // default-construction proscribed
+    ftp_types(ftp_types const&);        // copy-construction proscribed
+    void operator =(ftp_types const&);  // copy-assignment proscribed
+
+public: // operations
 
     // TODO: Factor out this with impl.types.hpp, via CRTP
 
-    static size_t count_char_instances(
+    static
+    size_t
+    count_char_instances(
         recls_char_t const* begin
     ,   recls_char_t const* end
     ,   recls_char_t const  ch
@@ -139,7 +148,9 @@ public: /// Operations
     }
     ///
     /// \note Assumes that the directory has a trailing path separator
-    static size_t count_dir_parts(
+    static
+    size_t
+    count_dir_parts(
         recls_char_t const* begin
     ,   recls_char_t const* end
     )
@@ -148,11 +159,6 @@ public: /// Operations
         // placate CodeWarrior
         return size_t(std::count_if(begin, end, traits_type::is_path_name_separator));
     }
-
-private: /// Not to be implemented
-    ftp_types();
-    ftp_types(ftp_types const&);
-    ftp_types& operator =(ftp_types const&);
 };
 
 typedef ftp_types   types; // This is required to avoid bad linker behaviour (which makes sense!)

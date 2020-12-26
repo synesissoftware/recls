@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created:     31st May 2004
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -89,7 +89,8 @@ namespace impl
  * ReclsFileSearchDirectoryNode
  */
 
-/* static */ int ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
+/* static */ int
+ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
     recls_uint32_t flags
 )
 {
@@ -126,7 +127,8 @@ namespace impl
     return ssFlags;
 }
 
-/* static */ int ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
+/* static */ int
+ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
     recls_uint32_t flags
 )
 {
@@ -176,7 +178,12 @@ namespace impl
     return ssFlags;
 }
 
-/* static */ ReclsFileSearchDirectoryNode::directory_sequence_type::const_iterator ReclsFileSearchDirectoryNode::select_iter_if_(unsigned long b, directory_sequence_type::const_iterator trueVal, directory_sequence_type::const_iterator falseVal)
+/* static */ ReclsFileSearchDirectoryNode::directory_sequence_type::const_iterator
+ReclsFileSearchDirectoryNode::select_iter_if_(
+    unsigned long                           b
+,   directory_sequence_type::const_iterator trueVal
+,   directory_sequence_type::const_iterator falseVal
+)
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::select_iter_if_");
 
@@ -215,7 +222,8 @@ namespace impl
     return len;
 }
 
-/* static */ recls_entry_t ReclsFileSearchDirectoryNode::CreateEntryInfo(
+/* static */ recls_entry_t
+ReclsFileSearchDirectoryNode::CreateEntryInfo(
     size_t                                                              rootDirLen
 ,   recls_char_t const*                                                 searchDir
 ,   size_t                                                              searchDirLen
@@ -325,7 +333,8 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 #endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 }
 
-/* static */ ReclsFileSearchDirectoryNode* ReclsFileSearchDirectoryNode::FindAndCreate(
+/* static */ ReclsFileSearchDirectoryNode*
+ReclsFileSearchDirectoryNode::FindAndCreate(
     recls_uint32_t              flags
 ,   recls_char_t const*         searchDir
 ,   size_t                      rootDirLen
@@ -408,7 +417,8 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     return node;
 }
 
-/* static */ recls_rc_t ReclsFileSearchDirectoryNode::Stat(
+/* static */ recls_rc_t
+ReclsFileSearchDirectoryNode::Stat(
     recls_char_t const* path
 ,   recls_uint32_t      flags
 ,   recls_entry_t*      phEntry
@@ -429,7 +439,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
     //
     // 1.b Must not be > max_path()
-    const size_t pathLen = types::traits_type::str_len(path);
+    size_t const pathLen = types::traits_type::str_len(path);
 
     if (pathLen > types::traits_type::path_max())
     {
@@ -623,21 +633,22 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
 //              RECLS_ASSERT('\0' != (*m_directoriesBegin).get_path()[0]);
 
-                m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(  m_flags
+                m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
+                    m_flags
 #if defined(RECLS_PLATFORM_IS_UNIX)
                 // The way glob_sequence works
-                                                                    ,   *m_directoriesBegin
+                ,   *m_directoriesBegin
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
                 // The way basic_findfile_sequence<> works
-                                                                    ,   (*m_directoriesBegin).get_path()
+                ,   (*m_directoriesBegin).get_path()
 #endif /* RECLS_PLATFORM_IS_??? */
-                                                                    ,   m_rootDirLen
-                                                                    ,   stlsoft::c_str_ptr(m_pattern)
-                                                                    ,   m_patternLen
-                                                                    ,   m_pfn
-                                                                    ,   m_param
-                                                                    ,   &rc
-                                                                    );
+                ,   m_rootDirLen
+                ,   stlsoft::c_str_ptr(m_pattern)
+                ,   m_patternLen
+                ,   m_pfn
+                ,   m_param
+                ,   &rc
+                );
 
             } while (NULL == m_dnode && ++m_directoriesBegin != m_directories.end());
 
@@ -769,19 +780,20 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
                     // state. However, if there are no matching, then NULL will be returned
                     RECLS_ASSERT(m_directoriesBegin != m_directories.end());
 
-                    m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(  m_flags
+                    m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
+                        m_flags
 #if defined(RECLS_PLATFORM_IS_UNIX)
-                                                                        ,   *m_directoriesBegin
+                    ,   *m_directoriesBegin
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
-                                                                        ,   (*m_directoriesBegin).get_path()
+                    ,   (*m_directoriesBegin).get_path()
 #endif /* RECLS_PLATFORM_IS_??? */
-                                                                        ,   m_rootDirLen
-                                                                        ,   stlsoft::c_str_ptr(m_pattern)
-                                                                        ,   m_patternLen
-                                                                        ,   m_pfn
-                                                                        ,   m_param
-                                                                        ,   &rc
-                                                                        );
+                    ,   m_rootDirLen
+                    ,   stlsoft::c_str_ptr(m_pattern)
+                    ,   m_patternLen
+                    ,   m_pfn
+                    ,   m_param
+                    ,   &rc
+                    );
 
                     if (NULL != m_dnode)
                     {
@@ -886,3 +898,4 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNextDetails(
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

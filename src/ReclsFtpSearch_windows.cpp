@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the ReclsFtpSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -126,7 +126,8 @@ void ReclsFtpSearch::operator delete(void* pv)
     free(pv);
 }
 
-/* static */ recls_rc_t ReclsFtpSearch::FindAndCreate(
+/* static */ recls_rc_t
+ReclsFtpSearch::FindAndCreate(
     recls_char_t const* host
 ,   recls_char_t const* username
 ,   recls_char_t const* password
@@ -265,7 +266,8 @@ void ReclsFtpSearch::operator delete(void* pv)
     return rc;
 }
 
-recls_char_t const* ReclsFtpSearch::calc_rootDir_(
+recls_char_t const*
+ReclsFtpSearch::calc_rootDir_(
     size_t              cDirParts
 ,   recls_char_t const* rootDir
 ,   size_t              rootDirLen
@@ -308,7 +310,14 @@ ReclsFtpSearch::ReclsFtpSearch(
 
     RECLS_MESSAGE_ASSERT("FTP filesystems do not allow drive specifications", rootDir[1] != ':');
 
-    m_dnode = ReclsFtpSearchDirectoryNode::FindAndCreate(m_connection, m_flags, rootDir, rootDirLen, pattern, patternLen);
+    m_dnode = ReclsFtpSearchDirectoryNode::FindAndCreate(
+        m_connection
+    ,   m_flags
+    ,   rootDir
+    ,   rootDirLen
+    ,   pattern
+    ,   patternLen
+    );
 }
 
 ReclsFtpSearch::~ReclsFtpSearch()

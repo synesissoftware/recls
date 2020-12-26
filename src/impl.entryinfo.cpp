@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the create_entryinfo() function.
  *
  * Created:     31st May 2004
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -115,7 +115,7 @@ recls_entry_t create_entryinfo(
 {
     function_scope_trace("create_entryinfo");
 
-    const int       bSearchDirOverlap   =   0 == types::traits_type::str_n_compare(searchDir, entryPath, searchDirLen);
+    int const       bSearchDirOverlap   =   0 == types::traits_type::str_n_compare(searchDir, entryPath, searchDirLen);
 
     STLSOFT_SUPPRESS_UNUSED(searchDir);
     STLSOFT_SUPPRESS_UNUSED(entryFile);
@@ -150,17 +150,17 @@ recls_entry_t create_entryinfo(
     recls_char_t const* const   dir0    =   recls_find_directory_0_(entryPath);
     recls_char_t const* const   end     =   entryPath + (entryPathLen - entryFileLen);
 
-    const size_t    cchFileName =   entryFileLen;
-    const size_t    cDirParts   =   (RECLS_F_DIRECTORY_PARTS == (flags & RECLS_F_DIRECTORY_PARTS)) ? types::count_dir_parts(dir0, end) : 0;
-    const size_t    cbPath      =   recls_align_up_size_(sizeof(recls_char_t) * (1 + entryPathLen));
+    size_t const    cchFileName =   entryFileLen;
+    size_t const    cDirParts   =   (RECLS_F_DIRECTORY_PARTS == (flags & RECLS_F_DIRECTORY_PARTS)) ? types::count_dir_parts(dir0, end) : 0;
+    size_t const    cbPath      =   recls_align_up_size_(sizeof(recls_char_t) * (1 + entryPathLen));
 #if defined(RECLS_PLATFORM_IS_UNIX)
-    const size_t    cbAlt       =   0;  // UNIX doesn't have alt paths
+    size_t const    cbAlt       =   0;  // UNIX doesn't have alt paths
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
-    const size_t    cbAlt       =   recls_align_up_size_(sizeof(recls_char_t) * (1 + RECLS_NUM_ELEMENTS(st->cAlternateFileName)));
+    size_t const    cbAlt       =   recls_align_up_size_(sizeof(recls_char_t) * (1 + RECLS_NUM_ELEMENTS(st->cAlternateFileName)));
 #else /* ? platform */
 # error Platform not discriminated
 #endif /* platform */
-    const size_t    cb          =   offsetof(struct recls_entryinfo_t, data)
+    size_t const    cb          =   offsetof(struct recls_entryinfo_t, data)
                                 +   cDirParts * sizeof(recls_strptrs_t)
                                 +   cbPath
                                 +   cbAlt
@@ -468,8 +468,8 @@ recls_entry_t create_drive_entryinfo(
     return create_entryinfo(0, NULL, 0, entryPath, entryPathLen, NULL, 0, flags, st);
 #else /* ? 0 */
     /* const */ size_t    cDirParts   =   0; // This is declared non-const to placate Borland C/C++
-    const size_t    cbPath      =   recls_align_up_size_(sizeof(recls_char_t) * (1 + entryPathLen));
-    const size_t    cb          =   offsetof(struct recls_entryinfo_t, data)
+    size_t const    cbPath      =   recls_align_up_size_(sizeof(recls_char_t) * (1 + entryPathLen));
+    size_t const    cb          =   offsetof(struct recls_entryinfo_t, data)
                                 +   cbPath
                                 +   1 // In case we need to expand for MARK_DIRS
                                 ;

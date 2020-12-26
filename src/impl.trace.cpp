@@ -4,7 +4,7 @@
  * Purpose:     Tracing.
  *
  * Created:     30th September 2003
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -237,7 +237,9 @@ typedef winstl::last_error_scope            error_scope_t;
  * recls_????_printf_
  */
 
-static void recls_log_vprintf_(
+static
+void
+recls_log_vprintf_(
     int                 sevIndex
 ,   recls_char_t const* fmt
 ,   va_list             args

@@ -4,7 +4,7 @@
  * Purpose:     Platform-independent utility functions for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -129,9 +129,10 @@ namespace impl
 
 struct cmp_str_len
 {
-    template<   ss_typename_param_k S1
-            ,   ss_typename_param_k S2
-            >
+    template<
+        typename S1
+    ,   typename S2
+    >
     bool operator ()(S1 const &s1, S2 const &s2) const
     {
         return stlsoft::c_str_len(s1) < stlsoft::c_str_len(s2);
@@ -186,7 +187,7 @@ RECLS_LINKAGE_C size_t recls_align_up_size_(
 #ifdef RECLS_COMPILER_IS_BORLAND
 # define cbAlign            sizeof(void*)
 #else /* ? compiler */
-    const size_t cbAlign =  sizeof(void*);
+    size_t const cbAlign =  sizeof(void*);
 #endif /* RECLS_COMPILER_IS_BORLAND */
 
     return static_cast<size_t>((i + (cbAlign - 1)) & ~(cbAlign - 1));
@@ -281,8 +282,8 @@ RECLS_API recls_is_valid_pattern_(
 
 # ifdef RECLS_MULTIPATTERN_SEARCH_MANUAL
 
-        const recls_char_t          sep =   *Recls_GetPathSeparator();
-        const size_t                len =   recls_strlen_(pattern);
+        recls_char_t const          sep =   *Recls_GetPathSeparator();
+        size_t const                len =   recls_strlen_(pattern);
         recls_char_t const* const   end =   pattern + len;
 
         if (1 == len)

@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the ReclsFileSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -122,9 +122,10 @@ inline void ReclsFileSearch::operator delete(void* pv)
     free(pv);
 }
 
-/* static */ recls_rc_t ReclsFileSearch::FindAndCreate(
+/* static */ recls_rc_t
+ReclsFileSearch::FindAndCreate(
     recls_char_t const*         rootDir
-,   size_t                      /* rootDirLen */
+,   size_t                   /* rootDirLen */
 ,   recls_char_t const*         pattern
 ,   size_t                      patternLen
 ,   recls_uint32_t              flags
@@ -191,7 +192,8 @@ inline void ReclsFileSearch::operator delete(void* pv)
     return FindAndCreate_(fullPath.c_str(), cchFullPath, pattern, patternLen, flags, pfn, param, ppsi);
 }
 
-/* static */ recls_rc_t ReclsFileSearch::FindAndCreate_(
+/* static */ recls_rc_t
+ReclsFileSearch::FindAndCreate_(
     recls_char_t const*         rootDir
 ,   size_t                      rootDirLen
 ,   recls_char_t const*         pattern
@@ -261,7 +263,7 @@ inline void ReclsFileSearch::operator delete(void* pv)
         // uses them to recurse.
         recls_char_t const*         dir0       =   recls_find_directory_0_(rootDir);
         recls_char_t const* const   end         =   rootDir + rootDirLen;
-        const size_t                cDirParts   =   types::count_dir_parts(dir0, end);
+        size_t const                cDirParts   =   types::count_dir_parts(dir0, end);
 
         // Create the search handle
         ReclsFileSearch* si;
@@ -312,7 +314,8 @@ inline void ReclsFileSearch::operator delete(void* pv)
     return rc;
 }
 
-recls_char_t const* ReclsFileSearch::calc_rootDir_(
+recls_char_t const*
+ReclsFileSearch::calc_rootDir_(
     size_t              cDirParts
 ,   recls_char_t const* rootDir
 ,   size_t              rootDirLen
@@ -375,9 +378,12 @@ ReclsFileSearch::~ReclsFileSearch()
     function_scope_trace("ReclsFileSearch::~ReclsFileSearch");
 }
 
-/* static */ recls_rc_t ReclsFileSearch::Stat(  recls_char_t const* path
-                                            ,   recls_uint32_t      flags
-                                            ,   recls_entry_t*      phEntry)
+/* static */ recls_rc_t
+ReclsFileSearch::Stat(
+    recls_char_t const* path
+,   recls_uint32_t      flags
+,   recls_entry_t*      phEntry
+)
 {
     function_scope_trace("ReclsFileSearch::Stat");
 
@@ -394,3 +400,4 @@ ReclsFileSearch::~ReclsFileSearch()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

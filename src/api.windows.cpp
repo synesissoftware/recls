@@ -4,7 +4,7 @@
  * Purpose:     This file contains the Windows versions of the recls API.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -76,10 +76,12 @@ namespace impl
  * helper functions
  */
 
+static
+size_t
 #if defined(RECLS_COMPILER_IS_WATCOM)
-static size_t check_drives(char* drives, recls_uint32_t flags)
+check_drives(char* drives, recls_uint32_t flags)
 #else /* ? compiler */
-static size_t check_drives(char (*drives)[26], recls_uint32_t flags)
+check_drives(char (*drives)[26], recls_uint32_t flags)
 #endif /* compiler */
 {
     typedef winstl::filesystem_traits<char> trait_t;
@@ -88,7 +90,7 @@ static size_t check_drives(char (*drives)[26], recls_uint32_t flags)
 
     for (size_t i = 0; i < 26; ++i)
     {
-        const char letter = static_cast<char>('A' + i);
+        char const letter = static_cast<char>('A' + i);
 
         if (0 == flags)
         {
@@ -99,7 +101,7 @@ static size_t check_drives(char (*drives)[26], recls_uint32_t flags)
         }
         else
         {
-            const DWORD type = trait_t::get_drive_type(letter);
+            DWORD const type = trait_t::get_drive_type(letter);
 
             switch (type)
             {
@@ -214,9 +216,13 @@ RECLS_FNDECL(void) Recls_GetDriveProperty(  recls_entry_t   fileInfo
  * roots
  */
 
-static size_t Recls_GetRoots_(  recls_root_t*   roots
-                            ,   size_t          cRoots
-                            ,   recls_uint32_t  flags)
+static
+size_t
+Recls_GetRoots_(
+    recls_root_t*   roots
+,   size_t          cRoots
+,   recls_uint32_t  flags
+)
 {
     RECLS_ASSERT(NULL == roots || 0 != cRoots);
 

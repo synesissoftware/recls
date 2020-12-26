@@ -4,7 +4,7 @@
  * Purpose:     more recls API extended functions.
  *
  * Created:     30th January 2009
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -135,19 +135,20 @@ namespace
 
     struct file_removal_info_t_
     {
-        const int   flags;
+        int const   flags;
         recls_rc_t  rc;
         unsigned    numDeleted;
 
     public:
-        explicit file_removal_info_t_(int flags)
+        explicit
+        file_removal_info_t_(int flags)
             : flags(flags)
             , rc(RECLS_RC_OK)
             , numDeleted(0)
         {}
 
     private:
-        file_removal_info_t_& operator =(file_removal_info_t_ const&);
+        void operator =(file_removal_info_t_ const&);
     };
 
     int RECLS_CALLCONV_DEFAULT file_removal_fn_(
@@ -197,13 +198,16 @@ namespace
 
     struct directory_removal_info_t_
     {
-        const int       flags;
+        int const       flags;
         unsigned        maxParts;
         recls_rc_t      rc;
         directories_t&  directories;
 
     public:
-        directory_removal_info_t_(int flags, directories_t& directories)
+        directory_removal_info_t_(
+            int             flags
+        ,   directories_t&  directories
+        )
             : flags(flags)
             , maxParts(0u)
             , rc(RECLS_RC_OK)
@@ -211,7 +215,7 @@ namespace
         {}
 
     private:
-        directory_removal_info_t_& operator =(directory_removal_info_t_ const&);
+        void operator =(directory_removal_info_t_ const&);
     };
 
     int RECLS_CALLCONV_DEFAULT subdirectory_search_fn_(
@@ -401,7 +405,9 @@ namespace
  */
 
 #ifdef RECLS_EXCEPTION_SUPPORT_
-static recls_rc_t Recls_RemoveDirectory_X_(
+static
+recls_rc_t
+Recls_RemoveDirectory_X_(
     recls_char_t const*         path
 ,   int                         flags
 ,   recls_directoryResults_t*   results
@@ -409,7 +415,8 @@ static recls_rc_t Recls_RemoveDirectory_X_(
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 
 
-RECLS_API Recls_RemoveDirectory(
+RECLS_API
+Recls_RemoveDirectory(
     recls_char_t const*         path
 ,   int                         flags   /* = 0 */
 ,   recls_directoryResults_t*   results /* = NULL */
@@ -452,7 +459,9 @@ RECLS_API Recls_RemoveDirectory(
     }
 }
 
-static recls_rc_t Recls_RemoveDirectory_X_(
+static
+recls_rc_t
+Recls_RemoveDirectory_X_(
     recls_char_t const*         path
 ,   int                         flags
 ,   recls_directoryResults_t*   results

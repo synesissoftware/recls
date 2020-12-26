@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - root_sequence class.
  *
  * Created:     25th March 2004
- * Updated:     22nd December 2020
+ * Updated:     23rd December 2020
  *
  * Home:        http://recls.org/
  *
@@ -54,7 +54,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MINOR    1
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 2
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     24
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     25
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/root_sequence.hpp
@@ -138,29 +138,29 @@ class root_sequence
 /// @{
 public:
     /// The character type
-    typedef char_t                                  char_type;
+    typedef char_t                                          char_type;
     /// The traits type
-    typedef reclstl_traits<char_type>               traits_type;
+    typedef reclstl_traits<char_type>                       traits_type;
     /// The allocator type
-    typedef stlsoft::new_allocator<char_type>       allocator_type;
+    typedef stlsoft::new_allocator<char_type>               allocator_type;
     /// The current parameterisation of the type
-    typedef root_sequence                           class_type;
+    typedef root_sequence                                   class_type;
     /// The value type
-    typedef char_type const*                        value_type;
+    typedef char_type const*                                value_type;
 private:
-    typedef root_sequence_impl::make_root_string    transform_function_type_;
+    typedef root_sequence_impl::make_root_string            transform_function_type_;
 public:
     /// The non-mutating (const) iterator type supporting the Input Iterator concept
     typedef stlsoft::transform_iterator<
-                recls_root_t*
-            ,   transform_function_type_
-            >                                       const_iterator;
+        recls_root_t*
+    ,   transform_function_type_
+    >                                                       const_iterator;
     /// The reference type
-    typedef void                                    reference;
+    typedef void                                            reference;
     /// The non-mutable (const) reference type
-    typedef value_type const                        const_reference;
+    typedef value_type const                                const_reference;
     /// The size type
-    typedef size_t                                  size_type;
+    typedef size_t                                          size_type;
 /// @}
 
 /// \name Construction
@@ -171,9 +171,15 @@ public:
     root_sequence();
     /// Constructs an instance containing all the roots matching the
     ///  given recls::RECLS_ROOTS_FLAG flags.
-    root_sequence(unsigned flags);
+    explicit
+    root_sequence(
+        unsigned flags
+    );
     /// Destructor
     ~root_sequence() STLSOFT_NOEXCEPT;
+private:
+    root_sequence(class_type const&);   // Copy-construction proscribed
+    void operator =(class_type const&); // Copy-assignment proscribed
 /// @}
 
 /// \name Iteration
@@ -208,11 +214,6 @@ private:
     recls_root_t*   m_roots;
     size_type       m_cRoots;
 /// @}
-
-// Not to be implemented
-private:
-    root_sequence(class_type const& );
-    root_sequence const& operator =(class_type const&);
 };
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -229,7 +230,11 @@ private:
 /// concept, described in <a href = "http://synesis.com.au/resources/articles/cpp/shims.pdf">this</a>
 /// Synesis Software White Paper, and featured in the article "<a href = "http://www.cuj.com/documents/s=8681/cuj0308wilson/">Generalised String Manipulation: Access Shims and Type-tunnelling</a>",
 /// in the August 2003 issue of <a href = "http://www.cuj.com">C/C++ User's Journal</a>.
-inline recls_bool_t is_empty(root_sequence const& s)
+inline
+recls_bool_t
+is_empty(
+    root_sequence const& s
+)
 {
     return s.empty();
 }
@@ -244,7 +249,8 @@ inline recls_bool_t is_empty(root_sequence const& s)
 
 // Construction
 
-inline root_sequence::root_sequence()
+inline
+root_sequence::root_sequence()
 #ifdef RECLS_COMPILER_IS_BORLAND
     : m_cRoots(26) // It fails to "see" Recls_GetRoots()
 #else /* ? compiler */
@@ -256,7 +262,10 @@ inline root_sequence::root_sequence()
     m_cRoots = Recls_GetRoots(m_roots, m_cRoots);
 }
 
-inline root_sequence::root_sequence(unsigned flags)
+inline
+root_sequence::root_sequence(
+    unsigned flags
+)
 #ifdef RECLS_COMPILER_IS_BORLAND
     : m_cRoots(26) // It fails to "see" Recls_GetRoots()
 #else /* ? compiler */
@@ -275,34 +284,48 @@ inline root_sequence::~root_sequence() STLSOFT_NOEXCEPT
 
 // Iteration
 
-inline root_sequence::const_iterator root_sequence::begin() const
+inline
+root_sequence::const_iterator
+root_sequence::begin() const
 {
     return stlsoft::transformer(&m_roots[0], transform_function_type_());
 }
 
-inline root_sequence::const_iterator root_sequence::end() const
+inline
+root_sequence::const_iterator
+root_sequence::end() const
 {
     return stlsoft::transformer(&m_roots[0] + m_cRoots, transform_function_type_());
 }
 
 // State
 
-inline root_sequence::size_type root_sequence::size() const
+inline
+root_sequence::size_type
+root_sequence::size() const
 {
     return m_cRoots;
 }
 
-inline recls_bool_t root_sequence::empty() const
+inline
+recls_bool_t
+root_sequence::empty() const
 {
     return 0 == m_cRoots;
 }
 
-inline /* static */ root_sequence::size_type root_sequence::max_size()
+inline /* static */
+root_sequence::size_type
+root_sequence::max_size()
 {
     return static_cast<size_type>(-1) / sizeof(value_type);
 }
 
-inline /* static */ root_sequence::const_reference root_sequence::operator [](root_sequence::size_type index) const
+inline /* static */
+root_sequence::const_reference
+root_sequence::operator [](
+    root_sequence::size_type index
+) const
 {
     STLSOFT_ASSERT(index < size());
 
@@ -317,8 +340,6 @@ inline /* static */ root_sequence::const_reference root_sequence::operator [](ro
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* RECLS_INCL_RECLS_CPP_HPP_ROOT_SEQUENCE */
 

@@ -4,7 +4,7 @@
  * Purpose:     Tracing.
  *
  * Created:     30th September 2003
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -57,13 +57,13 @@ enum recls_sev_index_t_
     ,   RECLS_SEVIX_DBG2  =   6
 };
 #if !defined(RECLS_NO_NAMESPACE)
-# define RECLS_SEVIX_FATAL    ::recls::impl::RECLS_SEVIX_FATAL
-# define RECLS_SEVIX_ERROR    ::recls::impl::RECLS_SEVIX_ERROR
-# define RECLS_SEVIX_WARN     ::recls::impl::RECLS_SEVIX_WARN
-# define RECLS_SEVIX_INFO     ::recls::impl::RECLS_SEVIX_INFO
-# define RECLS_SEVIX_DBG0     ::recls::impl::RECLS_SEVIX_DBG0
-# define RECLS_SEVIX_DBG1     ::recls::impl::RECLS_SEVIX_DBG1
-# define RECLS_SEVIX_DBG2     ::recls::impl::RECLS_SEVIX_DBG2
+# define RECLS_SEVIX_FATAL                                  ::recls::impl::RECLS_SEVIX_FATAL
+# define RECLS_SEVIX_ERROR                                  ::recls::impl::RECLS_SEVIX_ERROR
+# define RECLS_SEVIX_WARN                                   ::recls::impl::RECLS_SEVIX_WARN
+# define RECLS_SEVIX_INFO                                   ::recls::impl::RECLS_SEVIX_INFO
+# define RECLS_SEVIX_DBG0                                   ::recls::impl::RECLS_SEVIX_DBG0
+# define RECLS_SEVIX_DBG1                                   ::recls::impl::RECLS_SEVIX_DBG1
+# define RECLS_SEVIX_DBG2                                   ::recls::impl::RECLS_SEVIX_DBG2
 #endif /* !RECLS_NO_NAMESPACE */
 
 #ifndef __cplusplus
@@ -88,11 +88,12 @@ public:
     typedef function_scope  class_type;
 
 public: /// Construction
-    explicit function_scope(recls_char_t const* fn);
+    explicit
+    function_scope(recls_char_t const* fn);
     ~function_scope() STLSOFT_NOEXCEPT;
 private:
-    function_scope(class_type const &);
-    class_type &operator =(class_type const &);
+    function_scope(class_type const &);     // copy-construction proscribed
+    void operator =(class_type const &);    // copy-assignment proscribed
 
 private: /// Member Variables
     recls_char_t const* m_fn;
@@ -115,3 +116,4 @@ private: /// Member Variables
 #endif /* !RECLS_INCL_SRC_H_IMPL_TRACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

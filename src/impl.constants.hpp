@@ -4,7 +4,7 @@
  * Purpose:     Common constants.
  *
  * Created:     28th February 2007
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -45,17 +45,17 @@ namespace impl
  * constants
  */
 
-#define RECLS_S_DEFAULT_SEARCH_ROOT_    RECLS_LITERAL(".")
-#define RECLS_S_HOME_                   RECLS_LITERAL("~")
-#define RECLS_S_LOCAL_DIR_              RECLS_LITERAL(".")
-#define RECLS_S_PARENT_DIR_             RECLS_LITERAL("..")
+#define RECLS_S_DEFAULT_SEARCH_ROOT_                        RECLS_LITERAL(".")
+#define RECLS_S_HOME_                                       RECLS_LITERAL("~")
+#define RECLS_S_LOCAL_DIR_                                  RECLS_LITERAL(".")
+#define RECLS_S_PARENT_DIR_                                 RECLS_LITERAL("..")
 
 struct constants
 {
-public: /// Member Types
+public: // types
     typedef ::stlsoft::basic_string_view<recls_char_t>  string_type;
 
-public: /// Constants
+public: // constants
     static string_type  default_search_root()
     {
         return string_type(RECLS_S_DEFAULT_SEARCH_ROOT_, STLSOFT_NUM_ELEMENTS(RECLS_S_DEFAULT_SEARCH_ROOT_) - 1);
@@ -73,10 +73,10 @@ public: /// Constants
         return string_type(RECLS_S_PARENT_DIR_, STLSOFT_NUM_ELEMENTS(RECLS_S_PARENT_DIR_) - 1);
     }
 
-private: /// Not to be implemented
-    constants();
-    constants(constants const&);
-    constants& operator =(constants const&);
+private: // construction
+    constants();                        // default-construction proscribed
+    constants(constants const&);        // copy-construction proscribed
+    void operator =(constants const&);  // copy-assignment proscribed
 };
 
 /* /////////////////////////////////////////////////////////////////////////

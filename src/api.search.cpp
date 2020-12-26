@@ -4,7 +4,7 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -79,8 +79,10 @@ struct cdecl_process_fn_translator
     typedef int (RECLS_CALLCONV_STDDECL *stdcall_process_fn_t)( recls_entry_t               hEntry
                                                             ,   recls_process_fn_param_t    param);
 
-    cdecl_process_fn_translator(hrecls_process_fn_t         pfn
-                            ,   recls_process_fn_param_t    param)
+    cdecl_process_fn_translator(
+        hrecls_process_fn_t         pfn
+    ,   recls_process_fn_param_t    param
+    )
         : m_pfn((stdcall_process_fn_t)pfn)
         , m_param(param)
     {
@@ -90,8 +92,12 @@ struct cdecl_process_fn_translator
         return this;
     }
 
-    static int RECLS_CALLCONV_DEFAULT func( recls_entry_t               hEntry
-                                        ,   recls_process_fn_param_t    param)
+    static
+    int
+    RECLS_CALLCONV_DEFAULT func(
+        recls_entry_t               hEntry
+    ,   recls_process_fn_param_t    param
+    )
     {
         cdecl_process_fn_translator *pThis = (cdecl_process_fn_translator*)param;
 
@@ -105,14 +111,20 @@ private:
 
 struct cdecl_progress_fn_translator
 {
-    typedef int (RECLS_CALLCONV_STDDECL *stdcall_progress_fn_t)(recls_char_t const*         dir
-                                                            ,   size_t                      dirLen
-                                                            ,   recls_process_fn_param_t    param
-                                                            ,   void*                       reserved0
-                                                            ,   recls_uint32_t              reserved1);
+    typedef
+    int
+    (RECLS_CALLCONV_STDDECL *stdcall_progress_fn_t)(
+        recls_char_t const*         dir
+    ,   size_t                      dirLen
+    ,   recls_process_fn_param_t    param
+    ,   void*                       reserved0
+    ,   recls_uint32_t              reserved1
+    );
 
-    cdecl_progress_fn_translator(hrecls_progress_fn_t           pfn
-                            ,   recls_process_fn_param_t    param)
+    cdecl_progress_fn_translator(
+        hrecls_progress_fn_t        pfn
+    ,   recls_process_fn_param_t    param
+    )
         : m_pfn((stdcall_progress_fn_t)pfn)
         , m_param(param)
     {}
@@ -122,11 +134,15 @@ struct cdecl_progress_fn_translator
         return this;
     }
 
-    static int RECLS_CALLCONV_DEFAULT func( recls_char_t const*         dir
-                                        ,   size_t                      dirLen
-                                        ,   recls_process_fn_param_t    param
-                                        ,   void*                       reserved0
-                                        ,   recls_uint32_t              reserved1)
+    static
+    int
+    RECLS_CALLCONV_DEFAULT func(
+        recls_char_t const*         dir
+    ,   size_t                      dirLen
+    ,   recls_process_fn_param_t    param
+    ,   void*                       reserved0
+    ,   recls_uint32_t              reserved1
+    )
     {
         cdecl_progress_fn_translator* pThis = (cdecl_progress_fn_translator*)param;
 
@@ -267,7 +283,7 @@ RECLS_API Recls_SearchFeedback(
                     types::traits_type::is_path_rooted(pattern) &&
                     NULL != (wc = types::traits_type::str_pbrk(pattern, RECLS_LITERAL("*?"))))
                 {
-//                  const size_t    len     =   types::traits_type::str_len(pattern);
+//                  size_t const    len     =   types::traits_type::str_len(pattern);
                     recls_char_t*   file0   =   types::traits_type::str_rchr(pattern, RECLS_LITERAL('/'));
 #if defined(RECLS_PLATFORM_IS_UNIX)
                     recls_char_t*   file1   =   NULL;
@@ -334,7 +350,7 @@ RECLS_API Recls_SearchFeedback(
             }
         }
 
-        const size_t        patternLen = types::traits_type::str_len(pattern);
+        size_t const        patternLen = types::traits_type::str_len(pattern);
         types::buffer_type  pattern_(1 + patternLen);
 
 #ifndef RECLS_EXCEPTION_SUPPORT_
@@ -396,7 +412,7 @@ RECLS_API Recls_SearchFeedback(
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 
                         recls_char_t const* file    =   path.get_file();
-                        const size_t        cch     =   static_cast<size_t>(file - path.c_str());
+                        size_t const        cch     =   static_cast<size_t>(file - path.c_str());
 
                         types::traits_type::char_copy(&searchRoot_[0], path.c_str(), cch);
                         searchRoot_[cch] = '\0';
@@ -447,7 +463,16 @@ RECLS_API Recls_SearchFeedback(
                 RECLS_ASSERT(NULL != searchRoot);
                 RECLS_ASSERT(NULL != pattern);
 
-                rc = ReclsFileSearch::FindAndCreate(searchRoot, rootDirLen, pattern, patternLen2, flags, pfn, param, &si);
+                rc = ReclsFileSearch::FindAndCreate(
+                    searchRoot
+                ,   rootDirLen
+                ,   pattern
+                ,   patternLen2
+                ,   flags
+                ,   pfn
+                ,   param
+                ,   &si
+                );
 
                 if (RECLS_SUCCEEDED(rc))
                 {

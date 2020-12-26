@@ -4,7 +4,7 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -91,7 +91,9 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
-static recls_char_t const* lookup_error_string_(
+static
+recls_char_t const*
+lookup_error_string_(
     recls_rc_t  rc
 ,   int*        e
 ,   size_t*     len

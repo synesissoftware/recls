@@ -4,7 +4,7 @@
  * Purpose:     Windows utility functions for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -139,7 +139,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(recls_char_t* buff, size_t cchBuff)
     recls_char_t    homeDrive[1 + _MAX_DRIVE];
     recls_char_t    homeDir[1 + _MAX_DIR];
 
-    const size_t    cchHomeDrive    =   types::traits_type::get_environment_variable( RECLS_LITERAL("HOMEDRIVE")
+    size_t const    cchHomeDrive    =   types::traits_type::get_environment_variable( RECLS_LITERAL("HOMEDRIVE")
                                                                         ,   &homeDrive[0]
                                                                         ,   RECLS_NUM_ELEMENTS(homeDrive));
     size_t          cchHomeDir      =   types::traits_type::get_environment_variable( RECLS_LITERAL("HOMEPATH")

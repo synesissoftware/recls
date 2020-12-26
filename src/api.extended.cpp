@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     26th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -127,7 +127,12 @@ RECLS_LINKAGE_C recls_char_t const* Recls_GetWildcardsAll()
  * extended API functions
  */
 
-static int RECLS_CALLCONV_DEFAULT IsDirectoryEmpty_proc(recls_entry_t /* info */, recls_process_fn_param_t /* param */)
+static
+int
+RECLS_CALLCONV_DEFAULT IsDirectoryEmpty_proc(
+    recls_entry_t            /* info */
+,   recls_process_fn_param_t /* param */
+)
 {
     return 0; // Cancel on any entry
 }
@@ -155,7 +160,12 @@ RECLS_FNDECL(recls_bool_t) Recls_IsDirectoryEntryEmpty(recls_entry_t hEntry)
     return Recls_IsDirectoryEmpty(hEntry->path.begin);
 }
 
-static int RECLS_CALLCONV_DEFAULT CalcDirectorySize_proc(recls_entry_t hEntry, recls_process_fn_param_t param)
+static
+int
+RECLS_CALLCONV_DEFAULT CalcDirectorySize_proc(
+    recls_entry_t               hEntry
+,   recls_process_fn_param_t    param
+)
 {
     recls_filesize_t&   total   =   *static_cast<recls_filesize_t*>(param);
     recls_filesize_t    size    =   Recls_GetSizeProperty(hEntry);

@@ -12,7 +12,7 @@
  *                - elicitation of entry properties via method calls
  *
  * Created:     18th June 2006
- * Updated:     22nd December 2020
+ * Updated:     23rd December 2020
  *
  * www:         http://www.recls.org/
  *
@@ -106,12 +106,12 @@ int main()
         }
 
         // 11. Size
-                //
-                // We cast because some standard libraries cannot handle 64-bit
-                // integers. If the file size exceeds that representable in 32-bits
-                // then this will yield an invalid value; don't copy this into your
-                // own code unless you are *totally* sure you'll never work with
-                // files larger than 4GB in size.
+        //
+        // We cast because some standard libraries cannot handle 64-bit
+        // integers. If the file size exceeds that representable in 32-bits
+        // then this will yield an invalid value; don't copy this into your
+        // own code unless you are *totally* sure you'll never work with
+        // files larger than 4GB in size.
         std::cout << static_cast<unsigned long>(home.get_size()) << RECLS_LITERAL(" bytes") << std::endl;
     }
     catch(recls::recls_exception& x)

@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     26th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -81,7 +81,9 @@ using ::recls::impl::recls_debug2_trace_printf_;
  */
 
 #ifdef RECLS_EXCEPTION_SUPPORT_
-static size_t Recls_CombinePaths_X_(
+static
+size_t
+Recls_CombinePaths_X_(
     recls_char_t const* path1
 ,   recls_char_t const* path2
 ,   recls_char_t*       result
@@ -89,7 +91,8 @@ static size_t Recls_CombinePaths_X_(
 );
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 
-RECLS_FNDECL(size_t) Recls_CombinePaths(
+RECLS_FNDECL(size_t)
+Recls_CombinePaths(
     recls_char_t const* path1
 ,   recls_char_t const* path2
 ,   recls_char_t*       result
@@ -115,7 +118,9 @@ RECLS_FNDECL(size_t) Recls_CombinePaths(
     }
 }
 
-static size_t Recls_CombinePaths_X_(
+static
+size_t
+Recls_CombinePaths_X_(
     recls_char_t const* path1
 ,   recls_char_t const* path2
 ,   recls_char_t*       result

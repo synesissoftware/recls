@@ -4,7 +4,7 @@
  * Purpose:     more recls API extended functions.
  *
  * Created:     30th January 2009
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -263,14 +263,17 @@ namespace
  */
 
 #ifdef RECLS_EXCEPTION_SUPPORT_
-static recls_rc_t Recls_CreateDirectory_X_(
+static
+recls_rc_t
+Recls_CreateDirectory_X_(
     recls_char_t const*         path
 ,   recls_directoryResults_t*   results
 );
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 
 
-RECLS_API Recls_CreateDirectory(
+RECLS_API
+Recls_CreateDirectory(
     recls_char_t const*         path
 ,   recls_directoryResults_t*   results /* = NULL */
 )
@@ -313,7 +316,9 @@ RECLS_API Recls_CreateDirectory(
     }
 }
 
-static recls_rc_t Recls_CreateDirectory_X_(
+static
+recls_rc_t
+Recls_CreateDirectory_X_(
     recls_char_t const*         path
 ,   recls_directoryResults_t*   results
 )

@@ -5,7 +5,7 @@
  *              the recls API.
  *
  * Created:     15th August 2004
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -140,7 +140,17 @@ RECLS_API Recls_SearchFtp(
         size_t          rootDirLen = types::traits_type::str_len(searchRoot);
         size_t          patternLen = types::traits_type::str_len(pattern);
 
-        rc = ReclsFtpSearch::FindAndCreate(host, username, password, searchRoot, rootDirLen, pattern, patternLen, flags, &si);
+        rc = ReclsFtpSearch::FindAndCreate(
+            host
+        ,   username
+        ,   password
+        ,   searchRoot
+        ,   rootDirLen
+        ,   pattern
+        ,   patternLen
+        ,   flags
+        ,   &si
+        );
 
         if (RECLS_SUCCEEDED(rc))
         {

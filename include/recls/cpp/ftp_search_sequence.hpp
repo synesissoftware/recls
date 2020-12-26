@@ -4,11 +4,12 @@
  * Purpose:     recls C++ mapping - ftp_search_sequence class.
  *
  * Created:     10th September 2003
- * Updated:     22nd December 2020
+ * Updated:     23rd December 2020
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2020, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -52,7 +54,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_MINOR      0
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_REVISION   4
-# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_EDIT       88
+# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_EDIT       89
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/ftp_search_sequence.hpp
@@ -131,45 +133,53 @@ class ftp_search_sequence
 /// @{
 public:
     /// The character type
-    typedef char_t                                  char_type;
+    typedef char_t                                          char_type;
     /// The traits type
-    typedef reclstl_traits<char_type>               traits_type;
+    typedef reclstl_traits<char_type>                       traits_type;
     /// The current parameterisation of the type
-    typedef ftp_search_sequence                     class_type;
+    typedef ftp_search_sequence                             class_type;
     /// The value type
-    typedef entry                                   value_type;
+    typedef entry                                           value_type;
     /// The non-mutating (const) iterator type supporting the Input Iterator concept
     typedef basic_search_sequence_const_iterator<
-                char_type
-            ,   traits_type
-            ,   value_type
-            >                                       const_iterator;
+        char_type
+    ,   traits_type
+    ,   value_type
+    >                                                       const_iterator;
     /// The reference type
-    typedef value_type&                             reference;
+    typedef value_type&                                     reference;
     /// The non-mutable (const) reference type
-    typedef value_type const&                       const_reference;
+    typedef value_type const&                               const_reference;
     /// The find-data type
-    typedef traits_type::entry_type                 entry_type;
+    typedef traits_type::entry_type                         entry_type;
     /// The size type
-    typedef size_t                                  size_type;
+    typedef size_t                                          size_type;
     /// The difference type
-    typedef ptrdiff_t                               difference_type;
+    typedef ptrdiff_t                                       difference_type;
     /// The string type
-    typedef string_t                                string_type;
+    typedef string_t                                        string_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
     /// Commence an FTP search on the given site, according to the given search pattern and flags
-    ftp_search_sequence(char_type const* host, char_type const* username, char_type const* password, char_type const* directory, char_type const* pattern, recls_uint32_t flags);
+    ftp_search_sequence(
+        char_type const*    host
+    ,   char_type const*    username
+    ,   char_type const*    password
+    ,   char_type const*    directory
+    ,   char_type const*    pattern
+    ,   recls_uint32_t      flags
+    );
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
-    template<   typename S0
-            ,   typename S1
-            ,   typename S2
-            ,   typename S3
-            ,   typename S4
-            >
+    template<
+        typename S0
+    ,   typename S1
+    ,   typename S2
+    ,   typename S3
+    ,   typename S4
+    >
     ftp_search_sequence(S0 const& host, S1 const& username, S2 const& password, S3 const& directory, S4 const& pattern, recls_uint32_t flags)
         : m_host(stlsoft::c_str_data(host), stlsoft::c_str_len(host))
         , m_username(stlsoft::c_str_data(username), stlsoft::c_str_len(username))
@@ -189,6 +199,9 @@ public:
         STLSOFT_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_pattern_) < STLSOFT_RAW_OFFSETOF(class_type, m_pattern));
 #endif /* compiler */
     }
+private:
+    ftp_search_sequence(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&);     // copy-assignment proscribed
 /// @}
 
 /// \name Iteration
@@ -297,11 +310,6 @@ private:
     char_type const* const  m_pattern;
     recls_uint32_t          m_flags;
 /// @}
-
-// Not to be implemented
-private:
-    ftp_search_sequence(class_type const& );
-    ftp_search_sequence const& operator =(class_type const& );
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -317,7 +325,11 @@ private:
 /// concept, described in <a href = "http://synesis.com.au/resources/articles/cpp/shims.pdf">this</a>
 /// Synesis Software White Paper, and featured in the article "<a href = "http://www.cuj.com/documents/s=8681/cuj0308wilson/">Generalised String Manipulation: Access Shims and Type-tunnelling</a>",
 /// in the August 2003 issue of <a href = "http://www.cuj.com">C/C++ User's Journal</a>.
-inline recls_bool_t is_empty(ftp_search_sequence const& s)
+inline
+recls_bool_t
+is_empty(
+    ftp_search_sequence const& s
+)
 {
     return s.empty();
 }
@@ -330,7 +342,15 @@ inline recls_bool_t is_empty(ftp_search_sequence const& s)
 // ftp_search_sequence
 
 // Construction
-inline ftp_search_sequence::ftp_search_sequence(char_type const* host, char_type const* username, char_type const* password, char_type const* directory, char_type const* pattern, recls_uint32_t flags)
+inline
+ftp_search_sequence::ftp_search_sequence(
+    char_type const*    host
+,   char_type const*    username
+,   char_type const*    password
+,   char_type const*    directory
+,   char_type const*    pattern
+,   recls_uint32_t      flags
+)
     : m_host(host)
     , m_username(username)
     , m_password(password)
@@ -342,12 +362,15 @@ inline ftp_search_sequence::ftp_search_sequence(char_type const* host, char_type
 }
 
 // Iteration
-inline ftp_search_sequence::const_iterator ftp_search_sequence::begin() const
+inline
+ftp_search_sequence::const_iterator
+ftp_search_sequence::begin() const
 {
     hrecls_t    hSrch;
     recls_rc_t  rc = traits_type::SearchFtp(m_host.c_str(), m_username.c_str(), m_password.c_str(), m_directory, m_pattern, m_flags, &hSrch);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
     if (RECLS_FAILED(rc) &&
         RECLS_RC_NO_MORE_DATA != rc)
     {
@@ -358,32 +381,38 @@ inline ftp_search_sequence::const_iterator ftp_search_sequence::begin() const
     return const_iterator(hSrch);
 }
 
-inline ftp_search_sequence::const_iterator ftp_search_sequence::end() const
+inline
+ftp_search_sequence::const_iterator
+ftp_search_sequence::end() const
 {
     return const_iterator();
 }
 
 // State
-inline recls_bool_t ftp_search_sequence::empty() const
+inline
+recls_bool_t
+ftp_search_sequence::empty() const
 {
     return begin() == end();
 }
 
-inline /* static */ ftp_search_sequence::size_type ftp_search_sequence::max_size()
+inline /* static */
+ftp_search_sequence::size_type
+ftp_search_sequence::max_size() STLSOFT_NOEXCEPT
 {
     return static_cast<size_type>(-1);
 }
 
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if !defined(RECLS_NO_NAMESPACE)
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* RECLS_INCL_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE */
 

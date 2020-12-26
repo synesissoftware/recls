@@ -5,7 +5,7 @@
  *              Windows.
  *
  * Created:     1st June 2004
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -90,7 +90,8 @@ namespace impl
 
 /// Creates an entry from the platform-specific record
 
-static recls_entry_t create_entryinfo_from_psrecord(
+static recls_entry_t
+create_entryinfo_from_psrecord(
     recls_char_t const*             rootDir
 ,   recls_uint32_t                  flags
 ,   types::find_data_type const&    findData
@@ -239,7 +240,8 @@ static recls_entry_t create_entryinfo_from_psrecord(
  * ReclsFtpSearchDirectoryNode
  */
 
-/* static */ ReclsFtpSearchDirectoryNode::directory_sequence_type::const_iterator ReclsFtpSearchDirectoryNode::select_iter_if_(
+/* static */ ReclsFtpSearchDirectoryNode::directory_sequence_type::const_iterator
+ReclsFtpSearchDirectoryNode::select_iter_if_(
     unsigned long                           b
 ,   directory_sequence_type::const_iterator trueVal
 ,   directory_sequence_type::const_iterator falseVal
@@ -256,7 +258,10 @@ static recls_entry_t create_entryinfo_from_psrecord(
     }
 }
 
-/* static */ int ReclsFtpSearchDirectoryNode::essFlags_from_reclsFlags_(recls_uint32_t flags)
+/* static */ int
+ReclsFtpSearchDirectoryNode::essFlags_from_reclsFlags_(
+    recls_uint32_t flags
+)
 {
 #if defined(RECLS_USING_INETSTL_SEARCHSPEC_SEQUENCE_)
     // Because Digital Mars 8.40- has a problem, we must access the typedef separately from the enum value
@@ -279,11 +284,13 @@ static recls_entry_t create_entryinfo_from_psrecord(
     return ssFlags;
 }
 
-inline /* static */ ReclsFtpSearchDirectoryNode::directory_sequence_type ReclsFtpSearchDirectoryNode::init_directories_(
-    HINTERNET           connection
-,   recls_char_t const* rootDir
-,   size_t              /* rootDirLen */
-,   recls_uint32_t      flags
+inline
+/* static */ ReclsFtpSearchDirectoryNode::directory_sequence_type
+ReclsFtpSearchDirectoryNode::init_directories_(
+    HINTERNET               connection
+,   recls_char_t const*     rootDir
+,   size_t               /* rootDirLen */
+,   recls_uint32_t          flags
 )
 {
     RECLS_ASSERT(NULL != connection);
@@ -374,7 +381,8 @@ ReclsFtpSearchDirectoryNode::ReclsFtpSearchDirectoryNode(
 #endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 }
 
-/* static */ ReclsFtpSearchDirectoryNode *ReclsFtpSearchDirectoryNode::FindAndCreate(
+/* static */ ReclsFtpSearchDirectoryNode*
+ReclsFtpSearchDirectoryNode::FindAndCreate(
     HINTERNET           connection
 ,   recls_uint32_t      flags
 ,   recls_char_t const* rootDir
@@ -462,7 +470,14 @@ recls_rc_t ReclsFtpSearchDirectoryNode::Initialise()
         {
             do
             {
-                m_dnode = ReclsFtpSearchDirectoryNode::FindAndCreate(m_connection, m_flags, stlsoft::c_str_ptr(*m_directoriesBegin), stlsoft::c_str_len(*m_directoriesBegin), m_pattern.c_str(), m_pattern.size());
+                m_dnode = ReclsFtpSearchDirectoryNode::FindAndCreate(
+                    m_connection
+                ,   m_flags
+                ,   stlsoft::c_str_ptr(*m_directoriesBegin)
+                ,   stlsoft::c_str_len(*m_directoriesBegin)
+                ,   m_pattern.data()
+                ,   m_pattern.size()
+                );
 
             } while (NULL == m_dnode && ++m_directoriesBegin != m_directories.end());
 
@@ -594,7 +609,14 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetNext()
 
                     RECLS_ASSERT(m_directoriesBegin != m_directories.end());
 
-                    m_dnode = ReclsFtpSearchDirectoryNode::FindAndCreate(m_connection, m_flags, stlsoft::c_str_ptr(*m_directoriesBegin), stlsoft::c_str_len(*m_directoriesBegin), m_pattern.c_str(), m_pattern.size());
+                    m_dnode = ReclsFtpSearchDirectoryNode::FindAndCreate(
+                        m_connection
+                    ,   m_flags
+                    ,   stlsoft::c_str_ptr(*m_directoriesBegin)
+                    ,   stlsoft::c_str_len(*m_directoriesBegin)
+                    ,   m_pattern.data()
+                    ,   m_pattern.size()
+                    );
 
                     if (NULL != m_dnode)
                     {

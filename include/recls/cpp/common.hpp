@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - common types and feature discrimination.
  *
  * Created:     18th August 2003
- * Updated:     22nd December 2020
+ * Updated:     23rd December 2020
  *
  * Home:        http://recls.org/
  *
@@ -55,7 +55,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MINOR       0
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    10
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        44
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        45
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -183,12 +183,12 @@ namespace cpp
  * typedefs
  */
 
-typedef recls_char_t                                char_t;
+typedef recls_char_t                                        char_t;
 
 #if defined(RECLS_CPP_USE_STD_STRING)
-typedef std::string                                 string_a_t;
-typedef std::wstring                                string_w_t;
-typedef std::basic_string<recls_char_t>             string_t;
+typedef std::string                                         string_a_t;
+typedef std::wstring                                        string_w_t;
+typedef std::basic_string<recls_char_t>                     string_t;
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -200,8 +200,7 @@ typedef std::basic_string<recls_char_t>             string_t;
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_COMMON */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

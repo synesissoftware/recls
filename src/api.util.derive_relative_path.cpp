@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     24th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -94,7 +94,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
     path_t      originPath(origin);
     path_t      targetPath(target);
-    const bool  bTargetHasSeparator =   targetPath.has_sep();
+    bool const  bTargetHasSeparator =   targetPath.has_sep();
 
     // Make paths absolute, canonicalise, and remove any trailing separators
     originPath.make_absolute().canonicalise().pop_sep();
