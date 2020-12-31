@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the ReclsFtpSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     24th December 2020
+ * Updated:     26th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -182,7 +182,7 @@ ReclsFtpSearch::FindAndCreate(
         {
             DWORD   dwErr = connection.last_error();
 
-            recls_debug2_trace_printf_(RECLS_LITERAL("Failed to open connection: %lu"), dwErr);
+            recls_debug1_trace_printf_(RECLS_LITERAL("Failed to open connection: %lu"), dwErr);
 
             rc = RECLS_RC_FTP_CONNECTION_FAILED;
         }
