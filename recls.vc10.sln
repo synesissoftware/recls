@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{F089C7BF-9DD3-4A33-A430-AB877F75E323}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{03C49B5E-F29C-4F7E-B871-72BD6D7D4C3B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "recls.core", "projects\core\vc10\recls.core.vcxproj", "{DEE56C7D-F9C8-4099-8E7E-33EB397CC2FB}"
