@@ -10,7 +10,7 @@
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2010-2021, Synesis Software Pty Ltd.
+ *              Copyright (c) 2010-2021, Synesis Software / Synesis Information Systems
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -218,11 +218,13 @@ int main(int argc, char** argv)
 
 #if defined(_MSC_VER) && \
     defined(_DEBUG)
+
     _CrtMemState    memState;
 #endif /* _MSC_VER && _MSC_VER */
 
 #if defined(_MSC_VER) && \
     defined(_DEBUG)
+
     _CrtMemCheckpoint(&memState);
 #endif /* _MSC_VER && _MSC_VER */
 
@@ -234,6 +236,7 @@ int main(int argc, char** argv)
     {
 #if defined(_DEBUG) || \
     defined(__SYNSOFT_DBS_DEBUG)
+
         puts("test.scratch.cpp_api: " __STLSOFT_COMPILER_LABEL_STRING);
 #endif /* debug */
 
@@ -254,6 +257,7 @@ int main(int argc, char** argv)
 
 #if defined(_MSC_VER) && \
     defined(_DEBUG)
+
     _CrtMemDumpAllObjectsSince(&memState);
 #endif /* _MSC_VER) && _DEBUG */
 

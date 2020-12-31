@@ -10,7 +10,7 @@
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2021, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2021, Synesis Software / Synesis Information Systems
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
