@@ -250,7 +250,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClInclude Include="..\pch.hpp" />
-	<ClInclude Include="..\_dev_pragmatics_\warnings.msvc.10+.h" />
+    <ClInclude Include="..\_dev_pragmatics_\warnings.msvc.10+.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\api.entryinfo.cpp" />
