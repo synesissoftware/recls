@@ -5,11 +5,11 @@
  *              the recls API.
  *
  * Created:     15th August 2004
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,13 +56,6 @@
 #include "impl.entryfunctions.h"
 #include "impl.types.ftp.hpp"
 
-#if defined(RECLS_DELAY_LOAD_WININET)
-# ifdef INETSTL_INCL_H_INETSTL
-#  error INETSTL_INCL_H_INETSTL
-# endif /* INETSTL_INCL_H_INETSTL */
-# include "recls_wininet_dl.h"
-#endif /* RECLS_DELAY_LOAD_WININET */
-
 #include "ReclsSearch.hpp"
 #include "ReclsFtpSearch.hpp"
 
@@ -92,7 +85,8 @@ using ::recls::impl::recls_is_valid_pattern_;
  * search control
  */
 
-RECLS_API Recls_SearchFtp(
+RECLS_API
+Recls_SearchFtp(
     recls_char_t const* host
 ,   recls_char_t const* username
 ,   recls_char_t const* password

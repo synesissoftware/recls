@@ -5,11 +5,11 @@
  *              Windows.
  *
  * Created:     1st June 2004
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -51,12 +51,6 @@
 #include "impl.root.h"
 #include "impl.types.ftp.hpp"
 #include "impl.util.h"
-#if defined(RECLS_DELAY_LOAD_WININET)
-# ifdef INETSTL_INCL_H_INETSTL
-#  error INETSTL_INCL_H_INETSTL
-# endif /* INETSTL_INCL_H_INETSTL */
-# include "recls_wininet_dl.h"
-#endif /* RECLS_DELAY_LOAD_WININET */
 #include "impl.entryfunctions.h"
 #include "impl.constants.hpp"
 
@@ -437,7 +431,8 @@ ReclsFtpSearchDirectoryNode::~ReclsFtpSearchDirectoryNode()
     delete m_dnode;
 }
 
-recls_rc_t ReclsFtpSearchDirectoryNode::Initialise()
+recls_rc_t
+ReclsFtpSearchDirectoryNode::Initialise()
 {
     function_scope_trace("ReclsFtpSearchDirectoryNode::Initialise");
 
@@ -494,7 +489,8 @@ recls_rc_t ReclsFtpSearchDirectoryNode::Initialise()
 }
 
 #ifdef RECLS_ENFORCING_CONTRACTS
-recls_bool_t ReclsFtpSearchDirectoryNode::is_valid() const
+recls_bool_t
+ReclsFtpSearchDirectoryNode::is_valid() const
 {
     function_scope_trace("ReclsFtpSearchDirectoryNode::is_valid");
 
@@ -517,7 +513,8 @@ recls_bool_t ReclsFtpSearchDirectoryNode::is_valid() const
 }
 #endif /* RECLS_ENFORCING_CONTRACTS */
 
-recls_rc_t ReclsFtpSearchDirectoryNode::GetNext()
+recls_rc_t
+ReclsFtpSearchDirectoryNode::GetNext()
 {
     function_scope_trace("ReclsFtpSearchDirectoryNode::GetNext");
 
@@ -637,7 +634,10 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetNext()
     return rc;
 }
 
-recls_rc_t ReclsFtpSearchDirectoryNode::GetDetails(recls_entry_t* pinfo)
+recls_rc_t
+ReclsFtpSearchDirectoryNode::GetDetails(
+    recls_entry_t* pinfo
+)
 {
     function_scope_trace("ReclsFtpSearchDirectoryNode::GetDetails");
 
@@ -690,7 +690,10 @@ recls_rc_t ReclsFtpSearchDirectoryNode::GetDetails(recls_entry_t* pinfo)
     return rc;
 }
 
-recls_rc_t ReclsFtpSearchDirectoryNode::GetNextDetails(recls_entry_t* pinfo)
+recls_rc_t
+ReclsFtpSearchDirectoryNode::GetNextDetails(
+    recls_entry_t* pinfo
+)
 {
     function_scope_trace("ReclsFtpSearchDirectoryNode::GetNextDetails");
 

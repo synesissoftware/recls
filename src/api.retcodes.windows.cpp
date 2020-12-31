@@ -105,7 +105,8 @@ namespace impl
  * error handling
  */
 
-RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
+RECLS_FNDECL(DWORD)
+Recls_ResultCodeToWindowsErrorCode(
     /* [in] */ recls_rc_t rc
 )
 {

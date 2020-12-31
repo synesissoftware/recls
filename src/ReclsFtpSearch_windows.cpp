@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the ReclsFtpSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     26th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,12 +50,6 @@
 #include "impl.root.h"
 #include "impl.types.ftp.hpp"
 #include "impl.util.h"
-#if defined(RECLS_DELAY_LOAD_WININET)
-# ifdef INETSTL_INCL_H_INETSTL
-#  error INETSTL_INCL_H_INETSTL
-# endif /* INETSTL_INCL_H_INETSTL */
-# include "recls_wininet_dl.h"
-#endif /* RECLS_DELAY_LOAD_WININET */
 
 #include "ReclsSearch.hpp"
 #include "ReclsFtpSearch.hpp"
@@ -96,7 +90,7 @@ inline void* ReclsFtpSearch::operator new(size_t cb, size_t cDirParts, size_t cb
        + (cDirParts) * sizeof(recls_strptrs_t)
        + cbRootDir;
 
-    void    *pv =   malloc(cb);
+    void* const pv = malloc(cb);
 
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
     if (NULL == pv)
@@ -342,3 +336,4 @@ ReclsFtpSearch::~ReclsFtpSearch()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
