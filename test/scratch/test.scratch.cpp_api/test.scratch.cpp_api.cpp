@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.cpp_api project.
  *
  * Created:     4th January 2010
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2010-2020, Synesis Software Pty Ltd.
+ *              Copyright (c) 2010-2021, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -48,151 +48,6 @@
     defined(_DEBUG)
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
-
-/* /////////////////////////////////////////////////////////////////////////
- * macros and definitions
- */
-
-#include <recls/recls.h>
-
-#include <stlsoft/string/string_view.hpp>
-
-
-#include <stdexcept>
-#include <string>
-
-
-
-#if 0
-namespace recls
-{
-namespace cpp
-{
-namespace impl
-{
-
-    struct handle_t
-    {
-    public: /// Member Types
-        typedef recls_entry_t       raw_handle_type;
-        typedef stlsoft::sint32_t   rc_type;
-        typedef handle_t            class_type;
-
-        class Ref
-        {
-        private:
-            typedef handle_t        handle_type;
-        public:
-            Ref(handle_type* ph)
-                : m_ph(ph)
-            {}
-            ~Ref()
-            {
-                if (NULL != m_ph)
-                {
-                    m_ph->Release();
-                }
-            }
-            Ref(Ref const &rhs)
-                : m_ph(rhs.m_ph)
-            {
-                if (NULL != m_ph)
-                {
-                    m_ph->AddRef();
-                }
-            }
-            Ref &operator =(Ref const &rhs)
-            {
-                if (NULL != m_ph)
-                {
-                    m_ph->Release();
-                }
-
-                m_ph = rhs.m_ph;
-
-                if (NULL != m_ph)
-                {
-                    m_ph->AddRef();
-                }
-
-                return *this;
-            }
-
-            handle_type* operator ->()
-            {
-                stlsoft_message_assert("instance does not have a non-NULL handle", NULL != m_ph);
-
-                return m_ph;
-            }
-            handle_type const* operator ->() const
-            {
-                stlsoft_message_assert("instance does not have a non-NULL handle", NULL != m_ph);
-
-                return m_ph;
-            }
-
-        private:
-            handle_type* m_ph;
-        };
-
-    public:
-        raw_handle_type h;
-        rc_type         cRefs;
-        const bool      bOwn;
-
-        handle_t(raw_handle_type h_, bool bOwn_)
-            : h(h_)
-            , cRefs(1)
-            , bOwn(bOwn_)
-        {
-            Recls_CopyDetails(h_, &h);
-        }
-
-        handle_t* AddRef()
-        {
-            ++cRefs;
-
-            return this;
-        }
-
-        void Release()
-        {
-            if (0 == --cRefs)
-            {
-                Destroy(h);
-
-                delete this;
-            }
-        }
-
-    public:
-        static void Destroy(raw_handle_type h)
-        {
-            Recls_CloseDetails(h);
-        }
-
-    // Not to be implemented
-    private:
-        class_type &operator =(class_type const &);
-    };
-
-} /* namespace impl */
-} /* namespace cpp */
-} /* namespace recls */
-#endif /* 0 */
-
-/* /////////////////////////////////////////////////////////////////////////
- * globals
- */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * typedefs
- */
-
-#if 0
-typedef std::string     string_t;
-#endif /* 0 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
