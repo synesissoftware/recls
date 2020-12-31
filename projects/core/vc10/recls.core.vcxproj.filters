@@ -136,103 +136,103 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\ftp.h">
+    <ClInclude Include="..\..\..\include\recls\ftp.h">
       <Filter>Header Files\include\recls</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\recls.h">
+    <ClInclude Include="..\..\..\include\recls\recls.h">
       <Filter>Header Files\include\recls</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\unix.h">
+    <ClInclude Include="..\..\..\include\recls\unix.h">
       <Filter>Header Files\include\recls</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\windows.h">
+    <ClInclude Include="..\..\..\include\recls\windows.h">
       <Filter>Header Files\include\recls</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\impl.atomic.h">
+    <ClInclude Include="..\..\..\src\impl.atomic.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\impl.constants.hpp">
+    <ClInclude Include="..\..\..\src\impl.constants.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\impl.entryfunctions.h">
+    <ClInclude Include="..\..\..\src\impl.entryfunctions.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\impl.entryinfo.hpp">
+    <ClInclude Include="..\..\..\src\impl.entryinfo.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\impl.root.h">
+    <ClInclude Include="..\..\..\src\impl.root.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\impl.string.h">
+    <ClInclude Include="..\..\..\src\impl.string.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\impl.string.hpp">
+    <ClInclude Include="..\..\..\src\impl.string.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\impl.trace.h">
+    <ClInclude Include="..\..\..\src\impl.trace.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\impl.types.ftp.hpp">
+    <ClInclude Include="..\..\..\src\impl.types.ftp.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\impl.types.hpp">
+    <ClInclude Include="..\..\..\src\impl.types.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\impl.util.h">
+    <ClInclude Include="..\..\..\src\impl.util.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\incl.inetstl.h">
+    <ClInclude Include="..\..\..\src\incl.inetstl.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\incl.platformstl.h">
+    <ClInclude Include="..\..\..\src\incl.platformstl.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\incl.stlsoft.h">
+    <ClInclude Include="..\..\..\src\incl.stlsoft.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\incl.unixstl.h">
+    <ClInclude Include="..\..\..\src\incl.unixstl.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\incl.winstl.h">
+    <ClInclude Include="..\..\..\src\incl.winstl.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\ReclsFileSearch.hpp">
+    <ClInclude Include="..\..\..\src\ReclsFileSearch.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\ReclsFileSearchDirectoryNode.hpp">
+    <ClInclude Include="..\..\..\src\ReclsFileSearchDirectoryNode.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\ReclsFtpSearch.hpp">
+    <ClInclude Include="..\..\..\src\ReclsFtpSearch.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\ReclsFtpSearchDirectoryNode_windows.hpp">
+    <ClInclude Include="..\..\..\src\ReclsFtpSearchDirectoryNode_windows.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\src\ReclsSearch.hpp">
+    <ClInclude Include="..\..\..\src\ReclsSearch.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\compiler_msvc.h">
+    <ClInclude Include="..\..\..\include\recls\internal\compiler_msvc.h">
       <Filter>Header Files\include\recls\internal</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\compiler.h">
+    <ClInclude Include="..\..\..\include\recls\internal\compiler.h">
       <Filter>Header Files\include\recls\internal</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\platform_types.h">
+    <ClInclude Include="..\..\..\include\recls\internal\platform_types.h">
       <Filter>Header Files\include\recls\internal</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\platform.h">
+    <ClInclude Include="..\..\..\include\recls\internal\platform.h">
       <Filter>Header Files\include\recls\internal</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\language.h">
+    <ClInclude Include="..\..\..\include\recls\internal\language.h">
       <Filter>Header Files\include\recls\internal</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\retcodes.h">
+    <ClInclude Include="..\..\..\include\recls\internal\retcodes.h">
       <Filter>Header Files\include\recls\internal</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\recls_time.h">
+    <ClInclude Include="..\..\..\include\recls\internal\recls_time.h">
       <Filter>Header Files\include\recls\internal</Filter>
     </ClInclude>
-    <ClInclude Include="$(RECLS_ROOT)\include\recls\internal\recls_filesize.h">
+    <ClInclude Include="..\..\..\include\recls\internal\recls_filesize.h">
       <Filter>Header Files\include\recls\internal</Filter>
     </ClInclude>
     <ClInclude Include="..\pch.hpp">
