@@ -364,7 +364,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
     catch(unixstl::readdir_sequence_exception& x)
     {
-        recls_error_trace_printf_(RECLS_LITERAL("could not enumerate contents of directory '%s'"), x.Directory.c_str());
+        recls_error_trace_printf_(RECLS_LITERAL("could not enumerate contents of directory '%s'"), x.Directory.data());
 
         *prc = RECLS_RC_ACCESS_DENIED;
 
@@ -586,12 +586,12 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
             stdcall_progress_fn_t   pfn_stdcall =   (stdcall_progress_fn_t)m_pfn;
 
-            (*pfn_stdcall)(m_searchDir.c_str(), m_searchDirLen, m_param, NULL, 0);
+            (*pfn_stdcall)(m_searchDir.data(), m_searchDirLen, m_param, NULL, 0);
         }
         else
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
         {
-            if (0 == (*m_pfn)(m_searchDir.c_str(), m_searchDirLen, m_param, NULL, 0))
+            if (0 == (*m_pfn)(m_searchDir.data(), m_searchDirLen, m_param, NULL, 0))
             {
                 return RECLS_RC_USER_CANCELLED_SEARCH;
             }
@@ -600,10 +600,10 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
     if (m_entriesBegin != m_entries.end())
     {
-        recls_debug2_trace_printf_(RECLS_LITERAL("Next entry in %s"), static_cast<recls_char_t const*>(stlsoft::c_str_ptr(m_searchDir)));
+        recls_debug2_trace_printf_(RECLS_LITERAL("Next entry in %s"), static_cast<recls_char_t const*>(m_searchDir.data()));
 
         // (i) Try getting a file first,
-        m_current = CreateEntryInfo(m_rootDirLen, stlsoft::c_str_ptr(m_searchDir), m_searchDirLen, m_flags, m_entriesBegin);
+        m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDirLen, m_flags, m_entriesBegin);
 
         if (NULL == m_current)
         {
@@ -622,8 +622,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         }
         else
         {
-//          recls_debug2_trace_printf_("Next directory in %s", static_cast<char const*>(stlsoft::c_str_ptr(m_searchDir)));
-//          recls_debug2_trace_printf_("*m_directoriesBegin: %s", static_cast<char const*>(stlsoft::c_str_ptr(*m_directoriesBegin)));
+            recls_debug2_trace_printf_("Next directory in %s", static_cast<char const*>(m_searchDir.data()));
+            recls_debug2_trace_printf_("*m_directoriesBegin: %s", static_cast<char const*>(stlsoft::c_str_ptr(*m_directoriesBegin)));
 
             do
             {
@@ -734,7 +734,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
         if (m_entriesBegin != m_entries.end())
         {
             // Still enumerating, so just update m_current
-            m_current = CreateEntryInfo(m_rootDirLen, stlsoft::c_str_ptr(m_searchDir), m_searchDirLen, m_flags, m_entriesBegin);
+            m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDirLen, m_flags, m_entriesBegin);
 
             rc = RECLS_RC_OK;
         }
@@ -842,7 +842,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetDetails(
             Recls_GetPathProperty(m_current, &buffer[0], buffer.size());
 
 # if defined(RECLS_CHAR_TYPE_IS_CHAR)
-            recls_debug2_trace_printf_("    [%s]", static_cast<char const*>(stlsoft::c_str_ptr(buffer)));
+            recls_debug2_trace_printf_("    [%s]", static_cast<char const*>(buffer.data()));
 # elif defined(RECLS_CHAR_TYPE_IS_WCHAR)
             recls_debug2_trace_printf_("    [%s]", static_cast<char const*>(winstl::w2a(buffer)));
 # endif /* RECLS_CHAR_TYPE_IS_???? */

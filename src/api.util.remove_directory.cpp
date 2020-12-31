@@ -346,7 +346,7 @@ namespace
                 }
 
                 resultingPath.pop(false);
-                results->numResultingElements = static_cast<unsigned>(types::count_dir_parts(resultingPath.c_str(), resultingPath.c_str() + resultingPath.size()));
+                results->numResultingElements = static_cast<unsigned>(types::count_dir_parts(resultingPath.data(), resultingPath.data() + resultingPath.size()));
 
                 resultingPath.pop_sep();
                 results->resultingLength = resultingPath.size();
@@ -383,7 +383,7 @@ namespace
             fullPath.make_absolute();
             fullPath.canonicalise();
 
-            return Recls_RemoveDirectory_(fullPath.c_str(), fullPath.size(), flags, results);
+            return Recls_RemoveDirectory_(fullPath.data(), fullPath.size(), flags, results);
         }
         else
         {

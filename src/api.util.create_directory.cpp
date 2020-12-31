@@ -193,7 +193,7 @@ namespace
             }
             else if (path_0.size() != pathLen)
             {
-                recls_rc_t rc = Recls_CreateDirectory3_(path_0.c_str(), path_0.size(), results);
+                recls_rc_t rc = Recls_CreateDirectory3_(path_0.data(), path_0.size(), results);
 
                 if (RECLS_FAILED(rc))
                 {
@@ -240,7 +240,7 @@ namespace
 
             fullPath.canonicalise();
 
-            return Recls_CreateDirectory_(fullPath.c_str(), fullPath.size(), results);
+            return Recls_CreateDirectory_(fullPath.data(), fullPath.size(), results);
         }
         else
         {

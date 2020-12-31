@@ -4,7 +4,7 @@
  * Purpose:     Windows utility functions for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     26th December 2020
+ * Updated:     31st December 2020
  *
  * Home:        http://recls.org/
  *
@@ -198,7 +198,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(
     std::replace(homeDir.data(), homeDir.data() + cchHomeDir, '\\', types::traits_type::path_name_separator());
 #endif /* RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
 
-    if (!types::traits_type::has_dir_end(homeDir.c_str()))
+    if (!types::traits_type::has_dir_end(homeDir.data()))
     {
         types::traits_type::ensure_dir_end(&homeDir[0] + cchHomeDir - 1);
         ++cchHomeDir;
@@ -212,13 +212,13 @@ RECLS_LINKAGE_C size_t recls_get_home_(
     {
         if (cchBuff <= cchHomeDir)
         {
-            types::traits_type::char_copy(&buff[0], homeDir.c_str(), cchBuff);
+            types::traits_type::char_copy(&buff[0], homeDir.data(), cchBuff);
 
             return cchBuff;
         }
         else
         {
-            types::traits_type::char_copy(&buff[0], homeDir.c_str(), cchHomeDir);
+            types::traits_type::char_copy(&buff[0], homeDir.data(), cchHomeDir);
             buff[cchHomeDir] = '\0';
 
             return cchHomeDir;

@@ -147,7 +147,8 @@ Recls_CombinePaths_X_(
     recls_debug2_trace_printf_(RECLS_LITERAL("Recls_CombinePaths(): result: %u, %.*s")
                     ,   unsigned(n)
                     ,   int(path.size())
-                    ,   path.c_str());
+                    ,   path.data()
+                    );
 
     return n;
 }

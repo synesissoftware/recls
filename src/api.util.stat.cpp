@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     23rd December 2020
  *
  * Home:        http://recls.org/
  *
@@ -151,7 +151,7 @@ recls_rc_t Recls_Stat_X_(
         }
         else
         {
-            RECLS_ASSERT(n == types::traits_type::str_len(home.c_str()));
+            RECLS_ASSERT(n == types::traits_type::str_len(home.data()));
 
             // recls_get_home_() always has a trailing path-name separator
             RECLS_ASSERT(types::traits_type::has_dir_end(&home[0]));
@@ -182,7 +182,7 @@ recls_rc_t Recls_Stat_X_(
 
                 //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{7}: %s"), path);
 
-                path = home.c_str();
+                path = home.data();
 
                 //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{8}: %s"), path);
             }

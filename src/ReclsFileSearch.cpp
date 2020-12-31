@@ -154,7 +154,7 @@ ReclsFileSearch::FindAndCreate(
     }
     else
     {
-        recls_debug2_trace_printf_(RECLS_LITERAL("retrieved full path of given search directory '%s' => '%s'"), rootDir, fullPath.c_str());
+        recls_debug2_trace_printf_(RECLS_LITERAL("retrieved full path of given search directory '%s' => '%s'"), rootDir, fullPath.data());
     }
     if ('"' == fullPath[0])
     {
@@ -189,7 +189,7 @@ ReclsFileSearch::FindAndCreate(
 
 #endif /* RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
 
-    return FindAndCreate_(fullPath.c_str(), cchFullPath, pattern, patternLen, flags, pfn, param, ppsi);
+    return FindAndCreate_(fullPath.data(), cchFullPath, pattern, patternLen, flags, pfn, param, ppsi);
 }
 
 /* static */ recls_rc_t
@@ -256,7 +256,7 @@ ReclsFileSearch::FindAndCreate_(
 
             rootDirLen = types::traits_type::str_len(types::traits_type::ensure_dir_end(&fullPath_[0]));
 
-            rootDir = fullPath_.c_str();
+            rootDir = fullPath_.data();
         }
 
         // Count the directory parts. This is always done for the ReclsFileSearch class, since it

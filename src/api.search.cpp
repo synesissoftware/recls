@@ -345,7 +345,7 @@ RECLS_API Recls_SearchFeedback(
 
                     /* rootLen = n + rootLen - 1; */
 
-                    searchRoot = home.c_str();
+                    searchRoot = home.data();
                 }
             }
         }
@@ -412,11 +412,11 @@ RECLS_API Recls_SearchFeedback(
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 
                         recls_char_t const* file    =   path.get_file();
-                        size_t const        cch     =   static_cast<size_t>(file - path.c_str());
+                        size_t const        cch     =   static_cast<size_t>(file - path.data());
 
-                        types::traits_type::char_copy(&searchRoot_[0], path.c_str(), cch);
+                        types::traits_type::char_copy(&searchRoot_[0], path.data(), cch);
                         searchRoot_[cch] = '\0';
-                        searchRoot = searchRoot_.c_str();
+                        searchRoot = searchRoot_.data();
 
                         pattern = file;
 
