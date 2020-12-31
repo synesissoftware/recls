@@ -209,7 +209,7 @@ recls_rc_t Recls_Stat_X_(
         return RECLS_RC_INVALID_NAME;
     }
 
-    types::path_type   path_(path);
+    types::path_type   path_(path, pathLen);
 
     //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{12}: [%s, %s]"), path, path_.c_str());
 
