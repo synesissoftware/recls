@@ -6,10 +6,8 @@
  *                - stat()-ing of home directory
  *                - searching for files, according to multi-part pattern
  *                - recursive operation
- *                - evaluation of relative path of each entry, with respect
- *                  to home directory
+ *                - elicitation of search-relative path of each entry
  *                - handling exceptions and reporting of error information
- *                - elicitation of entry properties via method calls
  *
  * Created:     18th June 2006
  * Updated:     1st January 2021
@@ -56,26 +54,16 @@ int main()
         /* stat() the home directory */
         recls::entry            home    =   recls::stat(RECLS_LITERAL("~"));
 
-        /* Enumerate all under the current directory, matching *.??? or makefile*.*. */
+        /* Enumerate all under the home directory, matching *.??? or makefile*.*. */
         int                     flags   =   recls::RECLS_F_FILES | recls::RECLS_F_RECURSIVE;
 
-#if defined(STLSOFT_COMPILER_IS_GCC) && \
-    __GNUC__ < 4
+        recls::search_sequence  files(home, RECLS_LITERAL("*.???|makefile|makefile.*|"), flags);
 
-        /* This is only for old GCC, and ... */
-        recls::search_sequence  files(RECLS_LITERAL(""), RECLS_LITERAL("*.???|makefile|makefile.*|"), flags);
-
-#else
-
-        /* ... this is the way you can (and should) do it in everything else. */
-        recls::search_sequence  files(NULL, RECLS_LITERAL("*.???|makefile|makefile.*|"), flags);
-
-#endif
-
+        /* and display each entry's search-relative path */
         { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
         {
-            recls::entry        entry                   = *i;
-            recls::string_t relativePath  = recls::derive_relative_path(home.get_path(), entry.get_path());
+            recls::entry    entry           =   *i;
+            recls::string_t relativePath    =   entry.get_search_relative_path();
 
             std::cout << relativePath << std::endl;
         }}
