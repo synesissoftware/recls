@@ -44,6 +44,7 @@
 
 #include <winstl/filesystem/file_path_buffer.hpp>
 #include <winstl/filesystem/path.hpp>
+#include <platformstl/filesystem/path_buffer.hpp>
 
 #ifdef RECLS_STLSOFT_1_12_OR_LATER
 # include <stlsoft/exception/policy/nothrow_exception_policy.hpp>
@@ -65,6 +66,23 @@ namespace impl
 /* /////////////////////////////////////////////////////////////////////////
  * types
  */
+
+template<
+    typename T_character
+>
+struct ftp_types_base;
+
+template<>
+struct ftp_types_base<recls_char_a_t>
+{
+    typedef platformstl::path_buffer_a                          path_buffer_type;
+};
+
+template<>
+struct ftp_types_base<recls_char_w_t>
+{
+    typedef platformstl::path_buffer_w                          path_buffer_type;
+};
 
 struct ftp_types
 {
@@ -90,6 +108,11 @@ public: /// Member Types
     typedef ::winstl::basic_file_path_buffer<
         recls_char_t
     >                                                       file_path_buffer_type;
+
+    /// The path buffer type
+    typedef ftp_types_base<
+        recls_char_t
+    >                                                       path_buffer_type;
 
     /// The path type
     typedef ::winstl::basic_path<recls_char_t>              path_type;

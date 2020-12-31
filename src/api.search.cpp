@@ -411,14 +411,14 @@ RECLS_API Recls_SearchFeedback(
                         path.canonicalise(true);
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 
-                        recls_char_t const* file    =   path.get_file();
-                        size_t const        cch     =   static_cast<size_t>(file - path.data());
+                        types::path_type::string_slice_type const   file    =   path.get_file();
+                        const size_t                                cch     =   path.size() - file.len;
 
                         types::traits_type::char_copy(&searchRoot_[0], path.data(), cch);
                         searchRoot_[cch] = '\0';
                         searchRoot = searchRoot_.data();
 
-                        pattern = file;
+                        pattern = file.ptr;
 
                         if (0 == (flags & RECLS_F_TYPEMASK))
                         {

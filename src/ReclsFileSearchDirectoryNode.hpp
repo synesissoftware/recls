@@ -101,7 +101,7 @@ class ReclsFileSearchDirectoryNode
 {
 public:
     typedef ReclsFileSearchDirectoryNode                    class_type;
-    typedef types::file_path_buffer_type                    file_path_buffer_type;
+    typedef types::path_buffer_type                         path_buffer_type;
     typedef types::string_type                              string_type;
 private:
 
@@ -208,12 +208,12 @@ private:
     ,   directory_sequence_type::const_iterator falseVal
     );
 
-    /// Copies searchDir to buff, ensuring it has a trailing path name
+    /// Creates a path-buffer from the given search directory, ensuring that
+    /// it has a trailing path-name separator
     static
-    size_t
+    path_buffer_type
     prepare_searchDir_(
-        file_path_buffer_type& buff
-    ,   recls_char_t const*    searchDir
+        recls_char_t const*     searchDir
     );
 
     static
@@ -232,8 +232,7 @@ private:
     class_type*                             m_dnode;
     recls_uint32_t const                    m_flags;
     size_t const                            m_rootDirLen;
-    file_path_buffer_type                   m_searchDir;
-    size_t const                            m_searchDirLen;
+    path_buffer_type const                  m_searchDir;
     string_type const                       m_pattern;
     size_t const                            m_patternLen;
     directory_sequence_type                 m_directories;

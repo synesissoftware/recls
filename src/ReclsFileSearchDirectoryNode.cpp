@@ -198,29 +198,26 @@ ReclsFileSearchDirectoryNode::select_iter_if_(
     }
 }
 
-/* static */ size_t
+/* static */ ReclsFileSearchDirectoryNode::path_buffer_type
 ReclsFileSearchDirectoryNode::prepare_searchDir_(
-    path_buffer_type&   buff
-,   recls_char_t const* searchDir
+    recls_char_t const*     searchDir
 )
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::prepare_searchDir_");
 
-    size_t len = types::traits_type::str_len(searchDir);
+    path_buffer_type r(searchDir);
 
-    buff[len] = '\0';
-    types::traits_type::char_copy(&buff[0], searchDir, len);
-
-    RECLS_MESSAGE_ASSERT("I _think_ this should never happen. Please report if it does.", 0 != len);
-
-    if (0 != len &&
-        !types::traits_type::has_dir_end(&buff[0] + (len - 1)))
+    if (!r.empty() &&
+        !types::traits_type::has_dir_end(r.data(), r.size()))
     {
-        types::traits_type::ensure_dir_end(&buff[0] + (len - 1));
-        ++len;
+        types::char_type const sep = types::traits_type::path_name_separator();
+
+        r.append(sep);
     }
 
-    return len;
+    RECLS_ASSERT(types::traits_type::is_path_name_separator(r.back()));
+
+    return r;
 }
 
 /* static */ recls_entry_t
@@ -300,8 +297,13 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     , m_dnode(NULL)
     , m_flags(flags)
     , m_rootDirLen(rootDirLen)
-    , m_searchDir()
-    , m_searchDirLen(prepare_searchDir_(m_searchDir, searchDir))
+# ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
+
+    , m_searchDir(std::move(prepare_searchDir_(searchDir)))
+# else /* ? STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
+
+    , m_searchDir(prepare_searchDir_(searchDir))
+# endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
     , m_pattern(pattern)
     , m_patternLen(patternLen)
     , m_directories(searchDir
@@ -322,8 +324,9 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode");
 
-    RECLS_ASSERT(0 != m_searchDirLen);
-    RECLS_ASSERT(types::traits_type::is_path_name_separator(m_searchDir[m_searchDirLen - 1]));
+    RECLS_ASSERT(!m_searchDir.empty());
+    RECLS_ASSERT(types::traits_type::str_len(m_searchDir.data()) == m_searchDir.size());
+    RECLS_ASSERT(types::traits_type::is_path_name_separator(m_searchDir.back()));
 
     RECLS_ASSERT(STLSOFT_RAW_OFFSETOF(ReclsFileSearchDirectoryNode, m_entries) < STLSOFT_RAW_OFFSETOF(ReclsFileSearchDirectoryNode, m_entriesBegin));
     RECLS_ASSERT(STLSOFT_RAW_OFFSETOF(ReclsFileSearchDirectoryNode, m_directories) < STLSOFT_RAW_OFFSETOF(ReclsFileSearchDirectoryNode, m_directoriesBegin));
@@ -365,7 +368,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
     catch(unixstl::readdir_sequence_exception& x)
     {
-        recls_error_trace_printf_(RECLS_LITERAL("could not enumerate contents of directory '%s'"), x.Directory.data());
+        recls_error_trace_printf_(RECLS_LITERAL("could not enumerate contents of directory '%s'"), x.Directory.c_str());
 
         *prc = RECLS_RC_ACCESS_DENIED;
 
@@ -440,7 +443,7 @@ ReclsFileSearchDirectoryNode::Stat(
 
     //
     // 1.b Must not be > max_path()
-    const size_t pathLen = types::traits_type::str_len(path);
+    size_t const pathLen = types::traits_type::str_len(path);
 
     if (pathLen > types::traits_type::path_max())
     {
@@ -452,10 +455,9 @@ ReclsFileSearchDirectoryNode::Stat(
     recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 3"));
 
     // 1. c Ensure that is has the correct slashes
-    types::file_path_buffer_type path_;
+    types::path_buffer_type     path_(path, pathLen);
 
-    path = types::traits_type::char_copy(&path_[0], path, pathLen);
-    path_[pathLen] = '\0';
+    path = path_.c_str();
 
     recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 4"));
 
@@ -486,7 +488,7 @@ ReclsFileSearchDirectoryNode::Stat(
     recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 8"));
 
     // Now need to remove the directory end, if any
-    types::traits_type::remove_dir_end(&path_[0]);
+    types::traits_type::remove_dir_end(path_);
 
     types::traits_type::stat_data_type  st;
     types::traits_type::stat_data_type* pst = &st;
@@ -587,12 +589,12 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
             stdcall_progress_fn_t   pfn_stdcall =   (stdcall_progress_fn_t)m_pfn;
 
-            (*pfn_stdcall)(m_searchDir.data(), m_searchDirLen, m_param, NULL, 0);
+            (*pfn_stdcall)(m_searchDir.data(), m_searchDir.size(), m_param, NULL, 0);
         }
         else
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
         {
-            if (0 == (*m_pfn)(m_searchDir.data(), m_searchDirLen, m_param, NULL, 0))
+            if (0 == (*m_pfn)(m_searchDir.data(), m_searchDir.size(), m_param, NULL, 0))
             {
                 return RECLS_RC_USER_CANCELLED_SEARCH;
             }
@@ -604,7 +606,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         recls_debug2_trace_printf_(RECLS_LITERAL("Next entry in %s"), static_cast<recls_char_t const*>(m_searchDir.data()));
 
         // (i) Try getting a file first,
-        m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDirLen, m_flags, m_entriesBegin);
+        m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDir.size(), m_flags, m_entriesBegin);
 
         if (NULL == m_current)
         {
@@ -735,7 +737,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
         if (m_entriesBegin != m_entries.end())
         {
             // Still enumerating, so just update m_current
-            m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDirLen, m_flags, m_entriesBegin);
+            m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDir.size(), m_flags, m_entriesBegin);
 
             rc = RECLS_RC_OK;
         }

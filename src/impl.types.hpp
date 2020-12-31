@@ -41,6 +41,8 @@
 #include <platformstl/filesystem/file_path_buffer.hpp>
 #include <platformstl/filesystem/filesystem_traits.hpp>
 #include <platformstl/filesystem/path.hpp>
+#include <platformstl/filesystem/path_buffer.hpp>
+#include <platformstl/system/system_traits.hpp>
 
 #include <algorithm>
 
@@ -59,12 +61,33 @@ namespace impl
  * types
  */
 
+template<
+    typename T_character
+>
+struct file_types_base;
+
+template<>
+struct file_types_base<recls_char_a_t>
+{
+    typedef platformstl::path_buffer_a                      path_buffer_type;
+};
+
+template<>
+struct file_types_base<recls_char_w_t>
+{
+    typedef platformstl::path_buffer_w                      path_buffer_type;
+};
+
 struct file_types
 {
 public: /// Member Types
     typedef ::platformstl::filesystem_traits<
         recls_char_t
     >                                                       traits_type;
+
+    typedef ::platformstl::system_traits<
+        recls_char_t
+    >                                                       system_traits_type;
 
     /// The character type
     typedef recls_char_t                                    char_type;
@@ -87,6 +110,11 @@ public: /// Member Types
     typedef ::platformstl::basic_file_path_buffer<
         recls_char_t
     >                                                       file_path_buffer_type;
+
+    /// The path buffer type
+    typedef file_types_base<
+        recls_char_t
+    >::path_buffer_type                                     path_buffer_type;
 
     /// The path type
     typedef ::platformstl::basic_path<recls_char_t>         path_type;

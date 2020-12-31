@@ -223,8 +223,8 @@ recls_rc_t Recls_Stat_X_(
 
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{14}: [%s, %s]"), path, path_.c_str());
 
-        recls_char_t const* file = path_.get_file();
-        types::path_type    path2_(path_.c_str(), static_cast<size_t>(file - path_.c_str()));
+        types::path_type::string_slice_type const   file    =   path_.get_file();
+        types::path_type                            path2_(path_.c_str(), path_.size() - file.len);
 
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{15}: [%s, %s]"), path, path_.c_str());
 
