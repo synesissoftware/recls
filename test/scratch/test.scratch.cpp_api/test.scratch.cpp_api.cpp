@@ -72,6 +72,43 @@ static int main_(int /* argc */, char** argv)
         }}
     }
 
+    { // stat()
+
+        std::cout << "stat:" << std::endl;
+
+        {
+            std::cout << "stat(\".\"):" << std::endl;
+
+            recls::cpp::entry e = recls::cpp::stat(".");
+
+            display_entry(e);
+        }
+
+        {
+            std::cout << "stat(argv[0]):" << std::endl;
+
+            recls::cpp::entry e = recls::cpp::stat(argv[0], recls::DIRECTORY_PARTS);
+
+            display_entry(e);
+        }
+
+        {
+            std::cout << "stat(\"~\"):" << std::endl;
+
+            recls::cpp::entry e = recls::cpp::stat("~");
+
+            display_entry(e);
+        }
+
+        {
+            std::cout << "stat(\"/\"):" << std::endl;
+
+            recls::cpp::entry e = recls::cpp::stat("/");
+
+            display_entry(e);
+        }
+    }
+
     { // search_sequence
 
         recls::cpp::search_sequence files("..", Recls_GetWildcardsAll(), recls::FILES | recls::RECURSIVE | recls::DIRECTORY_PARTS);
@@ -93,19 +130,6 @@ static int main_(int /* argc */, char** argv)
         }}
     }
 #endif /* RECLS_API_FTP */
-
-    { // stat()
-
-        std::cout << "stat:" << std::endl;
-
-#if 0
-        recls::cpp::entry e = recls::cpp::stat(".");
-#else
-        recls::cpp::entry e = recls::cpp::stat(argv[0], recls::DIRECTORY_PARTS);
-#endif /* 0 */
-
-        display_entry(e);
-    }
 
     return EXIT_SUCCESS;
 }
