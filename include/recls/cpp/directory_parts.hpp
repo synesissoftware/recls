@@ -54,8 +54,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_MINOR    0
-# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_REVISION 3
-# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_EDIT     54
+# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_REVISION 4
+# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_EDIT     56
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,26 +64,7 @@
 
 #include <recls/cpp/common.hpp>
 
-#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
-/* If this header cannot be found, you may not be using STLSoft 1.10 (or later),
- * or STLSoft 1.9 with STLSoft 1.10 alpha 13 (or later)
- *
- * Note: At the time of release of recls 1.9, STLSoft 1.10 has not been
- *  released, and exists only in alpha form. You must download both
- *  STLSoft 1.9 (which is a complete distribution) and STLSoft 1.10 alpha
- *  (which is a delta distribution). Then, it is recommended that you create
- *  two environment variables, STLSOFT and STLSOFT_1_10 respectively, and
- *  specify them both on your include paths, in *reverse* order, in order
- *  that the components defined in STLSoft 1.10 take precendence. For
- *  example, if you're compiling from the shell on UNIX, you would specify
- *  your include paths along the following lines:
- *
- *     . . . -I $(RECLS_ROOT)/include -I $(STLSOFT_1_10)/include -I $(STLSOFT)/include . . .
- */
-# include <stlsoft/view/transforming/random_access_transforming_view_base.hpp>
-#else
-# error This file not supported with your version of STLSoft
-#endif
+#include <stlsoft/view/transforming/random_access_transforming_view_base.hpp>
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

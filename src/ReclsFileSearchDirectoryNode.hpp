@@ -209,8 +209,12 @@ private:
     );
 
     /// Copies searchDir to buff, ensuring it has a trailing path name
-    /// separator, and returns the precise length of the resultant string
-    static size_t prepare_searchDir_(file_path_buffer_type &buff, recls_char_t const* searchDir);
+    static
+    size_t
+    prepare_searchDir_(
+        file_path_buffer_type& buff
+    ,   recls_char_t const*    searchDir
+    );
 
     static
     recls_entry_t

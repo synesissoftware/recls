@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - entry class.
  *
  * Created:     18th August 2003
- * Updated:     22nd December 2020
+ * Updated:     23rd December 2020
  *
  * Home:        http://recls.org/
  *
@@ -54,8 +54,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    11
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 1
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     110
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 2
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     112
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,9 +63,7 @@
  */
 
 #include <recls/cpp/common.hpp>
-#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
-# include <recls/cpp/directory_parts.hpp>
-#endif
+#include <recls/cpp/directory_parts.hpp>
 #include <recls/cpp/exceptions.hpp>
 #include <recls/cpp/traits.hpp>
 
@@ -118,10 +116,8 @@ public: // Member Types
     typedef size_t                      size_type;
     /// The string type
     typedef string_t                    string_type;
-#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     /// The directory parts type
     typedef directory_parts             directory_parts_type;
-#endif
 private:
     typedef platformstl::filesystem_traits<
         char_type
@@ -136,14 +132,24 @@ public:
     {
     public:
         template <typename S>
-        static entry create(S const& path, int flags)
+        static
+        entry
+        create(
+            S const&    path
+        ,   int         flags
+        )
         {
             STLSOFT_NS_USING(c_str_ptr);
 
             return create_(c_str_ptr(path), flags);
         }
     private:
-        static entry create_(recls_char_t const* path, int flags)
+        static
+        entry
+        create_(
+            recls_char_t const* path
+        ,   int                 flags
+        )
         {
             recls_entry_t   e;
             recls_rc_t      rc = Recls_Stat(path, flags, &e);
@@ -277,7 +283,6 @@ public:
         return string_type(m_entry->directory.begin, m_entry->directory.end);
     }
 
-#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     /// The directory parts of the item
     directory_parts get_directory_parts() const
     {
@@ -285,7 +290,6 @@ public:
 
         return directory_parts(m_entry);
     }
-#endif
 
     /// The directory path of the item
     string_type get_directory_path() const
@@ -508,9 +512,7 @@ public: // Attribute Properties
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, Drive);
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, Directory);
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, DirectoryPath);
-#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, DirectoryParts);
-#endif
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, File);
     /* RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, ShortFile); */
     RECLS_CPP_OPT_METHOD_PROPERTY_DEFINE_OFFSET(class_type, FileName);
@@ -537,9 +539,7 @@ public: // Attribute Properties
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,     class_type, get_drive, Drive);
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,     class_type, get_directory, Directory);
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,     class_type, get_directory_path, DirectoryPath);
-#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(directory_parts, class_type, get_directory_parts, DirectoryParts);
-#endif
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,     class_type, get_file, File);
     /* RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,  class_type, get_shortFile, ShortFile); */
     RECLS_CPP_OPT_METHOD_PROPERTY_GET_PROP(string_type,     class_type, get_file_name, FileName);
@@ -587,7 +587,12 @@ private: // Member Variables
 /// \exception recls::recls_exception if the information cannot otherwise be
 ///   retrieved.
 template <typename S>
-inline entry stat(S const& path, int flags = 0)
+inline
+entry
+stat(
+    S const&    path
+,   int         flags = 0
+)
 {
     return entry::stat_impl::create(path, flags);
 }
@@ -596,7 +601,9 @@ inline entry stat(S const& path, int flags = 0)
  * comparison
  */
 
-inline bool operator <(
+inline
+bool
+operator <(
     entry const& lhs
 ,   entry const& rhs
 )
@@ -604,7 +611,9 @@ inline bool operator <(
     return lhs.compare(rhs) < 0;
 }
 
-inline bool operator <=(
+inline
+bool
+operator <=(
     entry const& lhs
 ,   entry const& rhs
 )
@@ -612,7 +621,9 @@ inline bool operator <=(
     return lhs.compare(rhs) <= 0;
 }
 
-inline bool operator >(
+inline
+bool
+operator >(
     entry const& lhs
 ,   entry const& rhs
 )
@@ -620,7 +631,9 @@ inline bool operator >(
     return lhs.compare(rhs) > 0;
 }
 
-inline bool operator >=(
+inline
+bool
+operator >=(
     entry const& lhs
 ,   entry const& rhs
 )
@@ -628,7 +641,9 @@ inline bool operator >=(
     return lhs.compare(rhs) >= 0;
 }
 
-inline bool operator ==(
+inline
+bool
+operator ==(
     entry const& lhs
 ,   entry const& rhs
 )
@@ -723,7 +738,6 @@ inline size_t c_str_len_w(entry const &fe)
     return c_str_len(fe);
 }
 # endif /* RECLS_CHAR_TYPE_IS_WCHAR */
-
 #endif /* !RECLS_PURE_API */
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -742,6 +756,7 @@ inline S& operator <<(S &s, ::recls::cpp::entry const &v)
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
+
 } /* namespace cpp */
 } /* namespace recls */
 
@@ -757,11 +772,11 @@ inline std::basic_ostream<C>& operator <<(std::basic_ostream<C>& s, ::recls::cpp
 
     return s;
 }
-
 # endif /* compiler */
 
 
 #ifdef RECLS_DOCUMENTATION_SKIP_SECTION
+
 /** The recls project inserts c_str_ptr, c_str_data and c_str_len
  * <a href = "http://www.cuj.com/documents/s=8681/cuj0308wilson/">string access shims</a>
  * into the STLSoft namespace, for generalised manipulation of its
@@ -774,12 +789,14 @@ namespace stlsoft
 //    using ::recls::cpp::c_str_ptr_null;
 
 # ifdef RECLS_CHAR_TYPE_IS_CHAR
+
     using ::recls::cpp::c_str_data_a;
     using ::recls::cpp::c_str_len_a;
     using ::recls::cpp::c_str_ptr_a;
     using ::recls::cpp::c_str_ptr_null_a;
 # endif /* RECLS_CHAR_TYPE_IS_CHAR */
 # ifdef RECLS_CHAR_TYPE_IS_WCHAR
+
     using ::recls::cpp::c_str_data_w;
     using ::recls::cpp::c_str_len_w;
     using ::recls::cpp::c_str_ptr_w;
@@ -791,11 +808,8 @@ namespace stlsoft
     using ::recls::cpp::c_str_data;
     using ::recls::cpp::c_str_len;
 }
-
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
-
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_ENTRY */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

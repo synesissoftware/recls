@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MAJOR       5
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MINOR       1
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    2
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        25
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    3
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        27
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/traits.hpp
@@ -163,11 +163,9 @@ public:
     typedef recls_strptrs_t                                 strptrs_type;
     typedef recls_strptrsptrs_t                             strptrsptrs_type;
 
-#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     /// The directory parts sequence type
     typedef directory_parts                                 directory_parts_type;
 
-#endif
     /// Constructs a value of type \c string_t from an instance of the pointers structure.
     ///
     /// \note This is required by the STLSoft proxy_sequence template.
