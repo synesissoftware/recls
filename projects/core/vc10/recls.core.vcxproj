@@ -208,6 +208,21 @@
 )</Command>
       <Message>Creating Synesis-named library in lib directory ...</Message>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>IF NOT EXIST "$(SolutionDir)bin" (
+
+	ECHO "creating 'bin' dir at $(SolutionDir)bin"
+	MKDIR "$(SolutionDir)bin"
+)
+
+IF NOT EXIST "$(SolutionDir)lib" (
+
+	ECHO "creating 'lib' dir at $(SolutionDir)lib"
+	MKDIR "$(SolutionDir)lib"
+)
+</Command>
+      <Message>Ensure directories exist ...</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup>
     <ClCompile>
