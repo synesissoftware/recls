@@ -65,9 +65,6 @@ namespace recls
 
 using ::recls::impl::types;
 
-using ::recls::impl::recls_is_home_start_;
-using ::recls::impl::recls_get_home_;
-using ::recls::impl::recls_log_printf_;
 using ::recls::impl::recls_fatal_trace_printf_;
 using ::recls::impl::recls_error_trace_printf_;
 using ::recls::impl::recls_warning_trace_printf_;
