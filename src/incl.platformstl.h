@@ -30,10 +30,10 @@
 # error Must not #include platformstl/platformstl.h before this file
 #endif /* PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL */
 
-#include <platformstl/platformstl.h>      /* If the compiler cannot find this, you are not using STLSoft 1.9.1 or later, as required. */
+#include <platformstl/platformstl.h>      /* If the compiler cannot find this, you are not using STLSoft 1.10.1 beta 26 or later, as required. */
 #if !defined(_PLATFORMSTL_VER) || \
-    _PLATFORMSTL_VER < 0x010803ff
-# error Requires PlatformSTL 1.8.3, or later. (www.stlsoft.org/downloads.html)
+    _PLATFORMSTL_VER < 0x01090183
+# error Requires PlatformSTL 1.9.1 beta 3, or later. (www.stlsoft.org/downloads.html)
 #endif /* PlatformSTL version */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@
  */
 
 #ifdef _PLATFORMSTL_NO_NAMESPACE
-# error recls 1.9+ is not compatible with PlatformSTL namespace suppression
+# error recls 1.10+ is not compatible with PlatformSTL namespace suppression
 #endif /* _PLATFORMSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
