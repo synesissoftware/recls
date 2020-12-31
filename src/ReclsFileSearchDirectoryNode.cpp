@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created:     31st May 2004
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -198,9 +198,10 @@ ReclsFileSearchDirectoryNode::select_iter_if_(
     }
 }
 
-/* static */ size_t ReclsFileSearchDirectoryNode::prepare_searchDir_(
-    file_path_buffer_type&  buff
-,   recls_char_t const*     searchDir
+/* static */ size_t
+ReclsFileSearchDirectoryNode::prepare_searchDir_(
+    path_buffer_type&   buff
+,   recls_char_t const* searchDir
 )
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::prepare_searchDir_");
@@ -439,7 +440,7 @@ ReclsFileSearchDirectoryNode::Stat(
 
     //
     // 1.b Must not be > max_path()
-    size_t const pathLen = types::traits_type::str_len(path);
+    const size_t pathLen = types::traits_type::str_len(path);
 
     if (pathLen > types::traits_type::path_max())
     {
