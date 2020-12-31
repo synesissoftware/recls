@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.links project.
  *
  * Created:     23rd February 2011
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2011-2020, Synesis Software Pty Ltd.
+ *              Copyright (c) 2011-2021, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -22,13 +22,13 @@
  * includes
  */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.hpp>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <platformstl/platformstl.h>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <iostream>
 #if 0
@@ -42,7 +42,7 @@
 #include <vector>
 #endif /* 0 */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

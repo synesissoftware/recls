@@ -4,13 +4,13 @@
  * Purpose:     Implicit link file for the test.scratch.with_pantheios project.
  *
  * Created:     13th December 2008
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2020, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2021, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -18,7 +18,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <platformstl/platformstl.h>
 #include <pantheios/implicit_link/core.h>
 #include <pantheios/implicit_link/fe.simple.h>
@@ -30,7 +30,7 @@
 # include <pantheios/implicit_link/bec.WindowsSysLog.h>
 #endif /* operating system */
 
-/* UNIXem Header Files */
+/* UNIXem header files */
 #include <platformstl/platformstl.h>
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <unixem/implicit_link.h>
@@ -38,7 +38,7 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # include <pantheios/backends/be.N.h>

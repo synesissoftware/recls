@@ -4,11 +4,11 @@
  * Purpose:     Tracing.
  *
  * Created:     30th September 2003
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -27,7 +27,7 @@
  * includes
  */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 #include "impl.root.h"
 

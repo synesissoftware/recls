@@ -4,11 +4,11 @@
  * Purpose:     Tracing.
  *
  * Created:     30th September 2003
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -24,14 +24,14 @@
  * includes
  */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 #include <recls/assert.h>
 #include "incl.platformstl.h"
 #include "impl.trace.h"
 #include "impl.util.h"
 
-/* STLSoft / platform-specific Header Files */
+/* STLSoft / platform-specific header files */
 #include <stlsoft/internal/safestr.h>
 #if defined(RECLS_PLATFORM_IS_UNIX)
 # include <stlsoft/error/errno_scope.hpp>
@@ -45,7 +45,7 @@
 # error Unrecognised platform
 #endif /* platform */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>

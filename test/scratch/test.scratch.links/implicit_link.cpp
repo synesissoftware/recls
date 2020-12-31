@@ -4,13 +4,13 @@
  * Purpose:     Implicit link file for the test.scratch.links project.
  *
  * Created:     23rd February 2011
- * Updated:     23rd February 2011
+ * Updated:     1st January 2021
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2011, Synesis Software Pty Ltd.
+ *              Copyright (c) 2011-2021, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -18,10 +18,10 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/implicit_link.h>
 
-/* UNIXem Header Files */
+/* UNIXem header files */
 #include <platformstl/platformstl.h>
 #if defined(PLATFORMSTL_OS_IS_UNIX) && \
     defined(_WIN32)

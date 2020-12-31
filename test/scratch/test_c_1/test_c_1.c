@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test_c_1 project.
  *
  * Created:     28th February 2007
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2020, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2021, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -18,16 +18,16 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 #ifdef RECLS_PLATFORM_IS_WINDOWS
 # include <recls/ftp.h>
 #endif /* platform */
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

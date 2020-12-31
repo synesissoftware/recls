@@ -10,7 +10,7 @@
  *                - elicitation of entry properties via API function calls
  *
  * Created:     29th May 2006
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * www:         http://www.recls.org/
  *
@@ -25,7 +25,7 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 
 /* Standard C Library Files */

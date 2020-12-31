@@ -4,11 +4,11 @@
  * Purpose:     Utility functions for the recls API.
  *
  * Created:     31st May 2004
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,7 +48,7 @@
  * includes
  */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 #include "impl.root.h"
 #include "impl.atomic.h"

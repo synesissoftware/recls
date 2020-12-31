@@ -13,7 +13,7 @@
  *                - display of progress (of each directory traversed)
  *
  * Created:     29th May 2006
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * www:         http://www.recls.org/
  *
@@ -28,11 +28,11 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 #include <recls/internal/safestr.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #ifdef RECLS_PLATFORM_API_WINDOWS
 # include <winstl/system/console_functions.h>
 #endif /* RECLS_PLATFORM_API_WINDOWS */

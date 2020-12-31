@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.with_pantheios project.
  *
  * Created:     13th December 2008
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2020, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2021, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -20,23 +20,23 @@
 
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/inserters/args.hpp>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* UNIXem Header Files */
+/* UNIXem header files */
 #if defined(_WIN32) || \
     defined(_WIN64)
 # include <unixem/unixem.h>
 #endif /* Win32 || Win64 */
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #if 0
 #include <algorithm>
@@ -57,7 +57,7 @@ namespace std
 }
 #endif /* __WATCOMC__ */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 
