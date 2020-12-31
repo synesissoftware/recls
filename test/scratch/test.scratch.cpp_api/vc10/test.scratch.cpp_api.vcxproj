@@ -103,6 +103,24 @@
     <ClCompile Include="..\implicit_link.cpp" />
     <ClCompile Include="..\test.scratch.cpp_api.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\recls\cpp\classfwd.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\common.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\directory_parts.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\entry.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\exceptions.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\ftp_search_sequence.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\internal\sequence_helper.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\root_sequence.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\search_sequence.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\traits.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\unix.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\util.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\cpp\windows.hpp" />
+    <ClInclude Include="..\..\..\..\include\recls\implicit_link.h" />
+    <ClInclude Include="..\..\..\..\include\recls\recls.h" />
+    <ClInclude Include="..\..\..\..\include\recls\recls.hpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
