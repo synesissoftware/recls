@@ -24,12 +24,6 @@
 /* STLSoft header files */
 #include <platformstl/platformstl.hpp>
 
-/* UNIXem header files */
-#if defined(_WIN32) || \
-    defined(_WIN64)
-# include <unixem/unixem.h>
-#endif /* Win32 || Win64 */
-
 /* Standard C++ header files */
 #include <exception>
 #include <iostream>
@@ -141,6 +135,7 @@ static void display_entry(recls::entry const& e)
     size_t width = 25;
 
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
+    std::cout << std::setw(width) << "SearchRelativePath:" << "    " << e.SearchRelativePath << std::endl;
     std::cout << std::setw(width) << "Path:" << "    " << e.Path << std::endl;
     std::cout << std::setw(width) << "DirectoryPath:" << "    " << e.DirectoryPath << std::endl;
     std::cout << std::setw(width) << "Drive:" << "    " << e.Drive << std::endl;
@@ -149,6 +144,7 @@ static void display_entry(recls::entry const& e)
     std::cout << std::setw(width) << "FileName:" << "    " << std::setw(e.get_directory_path().length()) << "" << e.FileName << std::endl;
     std::cout << std::setw(width) << "FileExtension:" << "    " << std::setw(e.get_directory_path().length() + e.get_file_name().length()) << "" << e.FileExtension << std::endl;
 #else /* ? RECLS_CPP_METHOD_PROPERTY_SUPPORT */
+    std::cout << std::setw(width) << "search_relative_path:" << "    " << e.get_search_relative_path() << std::endl;
     std::cout << std::setw(width) << "path:" << "    " << e.get_path() << std::endl;
     std::cout << std::setw(width) << "directory_path:" << "    " << e.get_directory_path() << std::endl;
     std::cout << std::setw(width) << "drive:" << "    " << e.get_drive() << std::endl;
@@ -210,6 +206,8 @@ static void display_entry(recls::entry const& e)
     std::cout << std::setw(width) << "is_readonly:" << "    " << (e.is_readonly() ? "true" : "false") << std::endl;
     std::cout << std::setw(width) << "is_unc:" << "    " << (e.is_unc() ? "true" : "false") << std::endl;
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
+
+    std::cout << std::endl;
 }
 
 /* ////////////////////////////////////////////////////////////////////// */
