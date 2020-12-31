@@ -4,7 +4,7 @@
  * Purpose:     Forward declarations of classes in recls.
  *
  * Created:     23rd November 2011
- * Updated:     26th December 2020
+ * Updated:     31st December 2020
  *
  * Home:        http://recls.org/
  *

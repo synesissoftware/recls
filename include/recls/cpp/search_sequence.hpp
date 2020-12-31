@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MINOR      0
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   7
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       94
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   8
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       95
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -274,7 +274,7 @@ public:
     /// Indicates whether the sequence is empty
     recls_bool_t        empty() const;
     /// Returns the maximum number of items in the sequence
-    static size_type    max_size();
+    static size_type    max_size() STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name Members
@@ -415,9 +415,9 @@ public:
     /// Dereference to return the value at the current position
     const value_type operator *() const;
     /// Evaluates whether \c this and \c rhs are equivalent
-    bool operator ==(class_type const& rhs) const;
+    bool operator ==(class_type const& rhs) const STLSOFT_NOEXCEPT;
     /// Evaluates whether \c this and \c rhs are not equivalent
-    bool operator !=(class_type const& rhs) const;
+    bool operator !=(class_type const& rhs) const STLSOFT_NOEXCEPT;
 
 // Implementation
 private:
@@ -519,7 +519,7 @@ search_sequence::empty() const
 
 inline /* static */
 search_sequence::size_type
-search_sequence::max_size()
+search_sequence::max_size() STLSOFT_NOEXCEPT
 {
     return static_cast<size_type>(-1);
 }
@@ -687,7 +687,7 @@ inline
 bool
 basic_search_sequence_const_iterator<C, T, V>::operator ==(
     class_type const& rhs
-) const
+) const STLSOFT_NOEXCEPT
 {
     return (m_handle == NULL) && (rhs.m_handle == NULL);
 }
@@ -701,7 +701,7 @@ inline
 bool
 basic_search_sequence_const_iterator<C, T, V>::operator !=(
     class_type const& rhs
-) const
+) const STLSOFT_NOEXCEPT
 {
     return !operator ==(rhs);
 }

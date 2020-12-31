@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MINOR    1
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 2
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     25
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 5
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     28
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/root_sequence.hpp
@@ -199,11 +199,11 @@ public:
 /// @{
 public:
     /// Returns the number of items in the sequence
-    size_type           size() const;
+    size_type           size() const STLSOFT_NOEXCEPT;
     /// Indicates whether the sequence is empty
-    recls_bool_t        empty() const;
+    recls_bool_t        empty() const STLSOFT_NOEXCEPT;
     /// Returns the maximum number of items in the sequence
-    static size_type    max_size();
+    static size_type    max_size() STLSOFT_NOEXCEPT;
 
     const_reference     operator [](size_type index) const;
 /// @}
@@ -277,7 +277,8 @@ root_sequence::root_sequence(
     m_cRoots = Recls_GetSelectedRoots(m_roots, m_cRoots, flags);
 }
 
-inline root_sequence::~root_sequence() STLSOFT_NOEXCEPT
+inline
+root_sequence::~root_sequence() STLSOFT_NOEXCEPT
 {
     delete [] m_roots;
 }
@@ -302,21 +303,21 @@ root_sequence::end() const
 
 inline
 root_sequence::size_type
-root_sequence::size() const
+root_sequence::size() const STLSOFT_NOEXCEPT
 {
     return m_cRoots;
 }
 
 inline
 recls_bool_t
-root_sequence::empty() const
+root_sequence::empty() const STLSOFT_NOEXCEPT
 {
     return 0 == m_cRoots;
 }
 
 inline /* static */
 root_sequence::size_type
-root_sequence::max_size()
+root_sequence::max_size() STLSOFT_NOEXCEPT
 {
     return static_cast<size_type>(-1) / sizeof(value_type);
 }

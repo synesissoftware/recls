@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping.
  *
  * Created:     5th January 2010
- * Updated:     26th December 2020
+ * Updated:     31st December 2020
  *
  * Home:        http://recls.org/
  *
@@ -48,8 +48,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_HPP_RECLS_MAJOR    1
 # define RECLS_VER_RECLS_HPP_RECLS_MINOR    2
-# define RECLS_VER_RECLS_HPP_RECLS_REVISION 3
-# define RECLS_VER_RECLS_HPP_RECLS_EDIT     7
+# define RECLS_VER_RECLS_HPP_RECLS_REVISION 4
+# define RECLS_VER_RECLS_HPP_RECLS_EDIT     8
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

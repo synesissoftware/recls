@@ -55,7 +55,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       2
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    1
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        45
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        47
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

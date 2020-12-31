@@ -54,8 +54,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    11
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 2
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     112
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 3
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     114
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -168,20 +168,21 @@ public:
         }
     };
 /* private: */
-    explicit entry(recls_entry_t* e)
+    explicit
+    entry(recls_entry_t* e) STLSOFT_NOEXCEPT
         : m_entry(*e)
     {}
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 public: // Construction
-    entry(class_type const& rhs)
+    entry(class_type const& rhs) STLSOFT_NOEXCEPT
         : m_entry(copy_entry_(rhs.m_entry))
     {}
     ~entry() STLSOFT_NOEXCEPT
     {
         delete_entry_(m_entry);
     }
-    class_type& operator =(class_type const& rhs)
+    class_type& operator =(class_type const& rhs) STLSOFT_NOEXCEPT
     {
         recls_entry_t e = copy_entry_(rhs.m_entry);
 
@@ -194,7 +195,8 @@ public: // Construction
 
 
 public: // Ordering
-    int compare(class_type const& rhs) const
+    int
+    compare(class_type const& rhs) const STLSOFT_NOEXCEPT
     {
       // TODO: Update with filesystem_traits<>::str_fs_compare(), when it is released
 
@@ -208,14 +210,14 @@ public: // Ordering
 
 public: // Attribute Methods
     /// Returns the full path of the entry
-    char_type const* c_str() const
+    char_type const* c_str() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
         return m_entry->path.begin;
     }
     /// Returns the length of the full path of the entry
-    size_type length() const
+    size_type length() const STLSOFT_NOEXCEPT
     {
         return size_();
     }
@@ -224,13 +226,13 @@ public: // Attribute Methods
     ///
     /// \deprecated This method is deprecated, and will be removed in a
     ///   future release of the library.
-    size_type size() const
+    size_type size() const STLSOFT_NOEXCEPT
     {
         return size_();
     }
 #endif /* RECLS_OBSOLETE */
 private:
-    size_type size_() const
+    size_type size_() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
@@ -239,7 +241,7 @@ private:
 public:
 
     /// The (operating system-specific) attributes of the entry
-    recls_uint32_t get_attributes() const
+    recls_uint32_t get_attributes() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
@@ -357,7 +359,7 @@ public:
 
     /// Indicates whether the represented file-system entity existed (at
     /// the time that the instance was elicited)
-    bool exists() const
+    bool exists() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
@@ -365,28 +367,28 @@ public:
     }
 
     /// Indicates if the entry is a directory.
-    bool is_directory() const
+    bool is_directory() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
         return 0 != Recls_IsFileDirectory(m_entry);
     }
     /// Indicates if the entry is a link.
-    bool is_link() const
+    bool is_link() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
         return 0 != Recls_IsFileLink(m_entry);
     }
     /// Indicates if the entry is read-only.
-    bool is_readonly() const
+    bool is_readonly() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
         return 0 != Recls_IsFileReadOnly(m_entry);
     }
     /// Indicates if the entry is on a UNC drive
-    bool is_unc() const
+    bool is_unc() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
@@ -440,28 +442,28 @@ public:
     /// The number of directory parts in the relative part of the entry's
     /// path, or 0 if RECLS_F_DIRECTORY_PARTS is not specified in the
     /// search.
-    size_type num_relative_directory_parts() const
+    size_type num_relative_directory_parts() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
         return m_entry->numRelativeDirectoryParts;
     }
 
-    size_type num_links() const
+    size_type num_links() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
         return m_entry->numLinks;
     }
 
-    recls_uint64_t node_index() const
+    recls_uint64_t node_index() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
         return m_entry->nodeIndex;
     }
 
-    size_type device_id() const
+    size_type device_id() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
@@ -474,7 +476,7 @@ public:
     ///
     /// \note If the item is a directory, this will always be zero. Instead,
     ///   use recls::cpp::calculate_directory_size().
-    recls_uint64_t get_size() const
+    recls_uint64_t get_size() const STLSOFT_NOEXCEPT
     {
         return get_file_size();
     }
@@ -482,7 +484,7 @@ public:
     ///
     /// \note If the item is a directory, this will always be zero. Instead,
     ///   use recls::cpp::calculate_directory_size().
-    recls_uint64_t get_file_size() const
+    recls_uint64_t get_file_size() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
@@ -495,7 +497,7 @@ public:
     /// \warn The caller must NOT invoke Recls_CloseDetails() on the
     ///   returned value
     recls_entry_t
-    get() const
+    get() const STLSOFT_NOEXCEPT
     {
         return m_entry;
     }
@@ -558,7 +560,7 @@ public: // Attribute Properties
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
 
 private: // Implementation
-    static recls_entry_t copy_entry_(recls_entry_t e)
+    static recls_entry_t copy_entry_(recls_entry_t e) STLSOFT_NOEXCEPT
     {
         recls_entry_t copy;
 
@@ -566,7 +568,7 @@ private: // Implementation
 
         return copy;
     }
-    static void delete_entry_(recls_entry_t e)
+    static void delete_entry_(recls_entry_t e) STLSOFT_NOEXCEPT
     {
         Recls_CloseDetails(e);
     }
@@ -606,7 +608,7 @@ bool
 operator <(
     entry const& lhs
 ,   entry const& rhs
-)
+) STLSOFT_NOEXCEPT
 {
     return lhs.compare(rhs) < 0;
 }
@@ -616,7 +618,7 @@ bool
 operator <=(
     entry const& lhs
 ,   entry const& rhs
-)
+) STLSOFT_NOEXCEPT
 {
     return lhs.compare(rhs) <= 0;
 }
@@ -626,7 +628,7 @@ bool
 operator >(
     entry const& lhs
 ,   entry const& rhs
-)
+) STLSOFT_NOEXCEPT
 {
     return lhs.compare(rhs) > 0;
 }
@@ -636,7 +638,7 @@ bool
 operator >=(
     entry const& lhs
 ,   entry const& rhs
-)
+) STLSOFT_NOEXCEPT
 {
     return lhs.compare(rhs) >= 0;
 }
@@ -646,15 +648,17 @@ bool
 operator ==(
     entry const& lhs
 ,   entry const& rhs
-)
+) STLSOFT_NOEXCEPT
 {
     return lhs.compare(rhs) == 0;
 }
 
-inline bool operator !=(
+inline
+bool
+operator !=(
     entry const& lhs
 ,   entry const& rhs
-)
+) STLSOFT_NOEXCEPT
 {
     return lhs.compare(rhs) != 0;
 }
@@ -664,6 +668,7 @@ inline bool operator !=(
  */
 
 #ifndef RECLS_PURE_API
+
 /// String access shim
 ///
 /// \ingroup group__recls__cpp
@@ -675,65 +680,115 @@ inline bool operator !=(
 /// concept, described in <a href = "http://synesis.com.au/resources/articles/cpp/shims.pdf">this</a>
 /// Synesis Software White Paper, and featured in the article "<a href = "http://www.cuj.com/documents/s=8681/cuj0308wilson/">Generalised String Manipulation: Access Shims and Type-tunnelling</a>",
 /// in the August 2003 issue of <a href = "http://www.cuj.com">C/C++ User's Journal</a>.
-inline entry::char_type const* c_str_ptr(entry const &fe)
+inline
+entry::char_type const*
+c_str_ptr(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return fe.c_str();
 }
 
-inline entry::char_type const* c_str_ptr_null(entry const &fe)
+inline
+entry::char_type const*
+c_str_ptr_null(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return (0u != fe.length()) ? fe.c_str() : NULL;
 }
 
-inline entry::char_type const* c_str_data(entry const &fe)
+inline
+entry::char_type const*
+c_str_data(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return fe.c_str();
 }
 
-inline size_t c_str_len(entry const &fe)
+inline
+size_t
+c_str_len(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return fe.length();
 }
 
 # ifdef RECLS_CHAR_TYPE_IS_CHAR
-inline recls_char_t const* c_str_ptr_a(entry const &fe)
+
+inline
+recls_char_t const*
+c_str_ptr_a(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return c_str_ptr(fe);
 }
 
-inline recls_char_t const* c_str_ptr_null_a(entry const &fe)
+inline
+recls_char_t const*
+c_str_ptr_null_a(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return c_str_ptr_null(fe);
 }
 
-inline recls_char_t const* c_str_data_a(entry const &fe)
+inline
+recls_char_t const*
+c_str_data_a(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return c_str_data(fe);
 }
 
-inline size_t c_str_len_a(entry const &fe)
+inline
+size_t
+c_str_len_a(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return c_str_len(fe);
 }
 # endif /* RECLS_CHAR_TYPE_IS_CHAR */
 
 # ifdef RECLS_CHAR_TYPE_IS_WCHAR
-inline recls_char_t const* c_str_ptr_w(entry const &fe)
+
+inline
+recls_char_t const*
+c_str_ptr_w(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return c_str_ptr(fe);
 }
 
-inline recls_char_t const* c_str_ptr_null_w(entry const &fe)
+inline
+recls_char_t const*
+c_str_ptr_null_w(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return c_str_ptr_null(fe);
 }
 
-inline recls_char_t const* c_str_data_w(entry const &fe)
+inline
+recls_char_t const*
+c_str_data_w(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return c_str_data(fe);
 }
 
-inline size_t c_str_len_w(entry const &fe)
+inline
+size_t
+c_str_len_w(
+    entry const&    fe
+) STLSOFT_NOEXCEPT
 {
     return c_str_len(fe);
 }
@@ -744,7 +799,12 @@ inline size_t c_str_len_w(entry const &fe)
 // IOStream compatibility
 
 template <typename S>
-inline S& operator <<(S &s, ::recls::cpp::entry const &v)
+inline
+S&
+operator <<(
+    S&                          s
+,   ::recls::cpp::entry const&  v
+)
 {
     s << v.c_str();
 
@@ -766,7 +826,12 @@ inline S& operator <<(S &s, ::recls::cpp::entry const &v)
      _MSC_VER < 1310
 
 template <typename C>
-inline std::basic_ostream<C>& operator <<(std::basic_ostream<C>& s, ::recls::cpp::entry const& v)
+inline
+std::basic_ostream<C>&
+operator <<(
+    std::basic_ostream<C>&      s
+,   ::recls::cpp::entry const&  v
+)
 {
     s << v.c_str();
 
