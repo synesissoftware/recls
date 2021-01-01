@@ -4,11 +4,11 @@
  * Purpose:     Implementation header.
  *
  * Created:     17th August 2003
- * Updated:     22nd December 2020
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,15 +55,6 @@ RECLS_FNDECL(recls_bool_t) recls_file_exists_(
 RECLS_FNDECL(size_t) recls_align_up_size_(
     size_t i
 );
-
-/* impl.strutil.h */
-#if 0
-RECLS_FNDECL(size_t) count_char_instances(
-    recls_char_t const* begin
-,   recls_char_t const* end
-,   recls_char_t const  ch
-);
-#endif /* 0 */
 
 RECLS_FNDECL(size_t) recls_strncpy_(
     recls_char_t*       dest

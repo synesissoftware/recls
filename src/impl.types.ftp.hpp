@@ -4,7 +4,7 @@
  * Purpose:     Implementation header.
  *
  * Created:     13th December 2008
- * Updated:     1st January 2021
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *
@@ -139,31 +139,6 @@ private: // construction
 
 public: // operations
 
-    // TODO: Factor out this with impl.types.hpp, via CRTP
-
-    static
-    size_t
-    count_char_instances(
-        recls_char_t const* begin
-    ,   recls_char_t const* end
-    ,   recls_char_t const  ch
-    )
-    {
-        RECLS_ASSERT(ss_nullptr_k != begin);
-        RECLS_ASSERT(ss_nullptr_k != end);
-
-        size_t cDirParts = 0;
-
-        for (; begin != end; ++begin)
-        {
-            if (*begin == ch)
-            {
-                ++cDirParts;
-            }
-        }
-
-        return cDirParts;
-    }
     ///
     /// \note Assumes that the directory has a trailing path separator
     static
