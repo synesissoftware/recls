@@ -55,7 +55,6 @@
       <PreprocessorDefinitions>_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories Condition="exists('$(UNIXEM)/lib')">$(UNIXEM)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -67,7 +66,7 @@
 
   <ItemDefinitionGroup Condition=" $(Configuration.ToUpper().Contains('UNIX'))">
     <ClCompile>
-      <AdditionalIncludeDirectories Condition="exists('$(UNIXEM)/include')">$(UNIXEM)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(UNIXEM)' != '' AND exists('$(UNIXEM)/include')">$(UNIXEM)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="exists('$(PTHREADS_WIN32)/include')">$(PTHREADS_WIN32)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 
       <PreprocessorDefinitions>UNIX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -80,7 +79,7 @@
       <UndefinePreprocessorDefinitions>WIN64;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories Condition="exists('$(UNIXEM)/lib')">$(UNIXEM)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(UNIXEM)' != '' AND exists('$(UNIXEM)/lib')">$(UNIXEM)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <PreprocessorDefinitions>UNIX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
