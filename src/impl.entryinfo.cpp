@@ -464,9 +464,6 @@ recls_entry_t create_drive_entryinfo(
 ,   types::stat_data_type const*    st
 )
 {
-#if 0
-    return create_entryinfo(0, NULL, 0, entryPath, entryPathLen, NULL, 0, flags, st);
-#else /* ? 0 */
     /* const */ size_t    cDirParts   =   0; // This is declared non-const to placate Borland C/C++
     size_t const    cbPath      =   recls_align_up_size_(sizeof(recls_char_t) * (1 + entryPathLen));
     size_t const    cb          =   offsetof(struct recls_entryinfo_t, data)
@@ -646,7 +643,6 @@ recls_entry_t create_drive_entryinfo(
     }
 
     return info;
-#endif /* 0 */
 }
 
 /* /////////////////////////////////////////////////////////////////////////

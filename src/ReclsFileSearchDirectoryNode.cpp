@@ -464,11 +464,7 @@ ReclsFileSearchDirectoryNode::Stat(
     // stat() of root is now supported!
     if (types::traits_type::is_root_designator(path))
     {
-# if 1
         *phEntry = create_drive_entryinfo(path, pathLen, flags, ss_nullptr_k);
-# else /* ? 0 */
-        *phEntry = create_entryinfo(0, ss_nullptr_k, 0, path, pathLen, path + pathLen, 0, flags, ss_nullptr_k);
-# endif /* 0 */
 
         return (ss_nullptr_k == *phEntry) ? RECLS_RC_OUT_OF_MEMORY : RECLS_RC_OK;
     }
