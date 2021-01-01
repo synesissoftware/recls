@@ -64,16 +64,6 @@
 # endif /* RECLS_PLATFORM_IS_WINDOWS */
 #endif /* RECLS_CHAR_TYPE_IS_???? */
 
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# if defined(RECLS_PLATFORM_IS_WINDOWS)
-#  ifdef RECLS_STLSOFT_1_10_B01_OR_LATER
-#   include <winstl/exception/access_exception.hpp>
-#  else /* ? STLSoft verosion */
-#   include <winstl/error/exceptions.hpp>
-#  endif /* STLSoft verosion */
-# endif /* RECLS_PLATFORM_IS_WINDOWS */
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
