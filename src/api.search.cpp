@@ -73,96 +73,6 @@ namespace impl
  * typedefs
  */
 
-#if defined(RECLS_PLATFORM_IS_WINDOWSx)
-struct cdecl_process_fn_translator
-{
-    typedef int (RECLS_CALLCONV_STDDECL *stdcall_process_fn_t)( recls_entry_t               hEntry
-                                                            ,   recls_process_fn_param_t    param);
-
-    cdecl_process_fn_translator(
-        hrecls_process_fn_t         pfn
-    ,   recls_process_fn_param_t    param
-    )
-        : m_pfn((stdcall_process_fn_t)pfn)
-        , m_param(param)
-    {
-
-    operator recls_process_fn_param_t()
-    {
-        return this;
-    }
-
-    static
-    int
-    RECLS_CALLCONV_DEFAULT func(
-        recls_entry_t               hEntry
-    ,   recls_process_fn_param_t    param
-    )
-    {
-        cdecl_process_fn_translator *pThis = (cdecl_process_fn_translator*)param;
-
-        return (*pThis->m_pfn)(hEntry, pThis->m_param);
-    }
-
-private:
-    stdcall_process_fn_t        m_pfn;
-    recls_process_fn_param_t    m_param;
-};
-
-struct cdecl_progress_fn_translator
-{
-    typedef
-    int
-    (RECLS_CALLCONV_STDDECL *stdcall_progress_fn_t)(
-        recls_char_t const*         dir
-    ,   size_t                      dirLen
-    ,   recls_process_fn_param_t    param
-    ,   void*                       reserved0
-    ,   recls_uint32_t              reserved1
-    );
-
-    cdecl_progress_fn_translator(
-        hrecls_progress_fn_t        pfn
-    ,   recls_process_fn_param_t    param
-    )
-        : m_pfn((stdcall_progress_fn_t)pfn)
-        , m_param(param)
-    {}
-
-    operator recls_process_fn_param_t()
-    {
-        return this;
-    }
-
-    static
-    int
-    RECLS_CALLCONV_DEFAULT func(
-        recls_char_t const*         dir
-    ,   size_t                      dirLen
-    ,   recls_process_fn_param_t    param
-    ,   void*                       reserved0
-    ,   recls_uint32_t              reserved1
-    )
-    {
-        cdecl_progress_fn_translator* pThis = (cdecl_progress_fn_translator*)param;
-
-        return (*pThis->m_pfn)(dir, dirLen, pThis->m_param, reserved0, reserved1);
-    }
-
-private:
-    stdcall_progress_fn_t       m_pfn;
-    recls_process_fn_param_t    m_param;
-};
-
-#endif /* RECLS_PLATFORM_IS_WINDOWS */
-
-/* /////////////////////////////////////////////////////////////////////////
- * namespace
- */
-
-#if !defined(RECLS_NO_NAMESPACE)
-} /* namespace impl */
-
 using ::recls::impl::ReclsFileSearch;
 using ::recls::impl::ReclsSearch;
 using ::recls::impl::constants;
@@ -215,17 +125,6 @@ RECLS_API Recls_SearchFeedback(
     function_scope_trace("Recls_SearchFeedback");
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SearchFeedback(%s, %s, 0x%04x, ..., %p, ...)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags, param);
-
-#if defined(RECLS_PLATFORM_IS_WINDOWSx)
-    cdecl_progress_fn_translator    translator(pfn, param);
-
-    if (ss_nullptr_k != pfn &&
-        (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS))
-    {
-        pfn     =   &cdecl_progress_fn_translator::func;
-        param   =   translator;
-    }
-#endif /* RECLS_PLATFORM_IS_WINDOWS */
 
     RECLS_ASSERT(ss_nullptr_k != phSrch);
 
@@ -545,17 +444,6 @@ RECLS_API Recls_SearchProcessFeedback(
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SearchProcessFeedback(%s, %s, 0x%04x, ..., %p, ..., %p)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags, param, paramProgress);
 
     RECLS_ASSERT(ss_nullptr_k != pfn);
-
-#if defined(RECLS_PLATFORM_IS_WINDOWSx)
-    cdecl_process_fn_translator translator(pfn, param);
-
-    if (ss_nullptr_k != pfn &&
-        (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS))
-    {
-        pfn     =   &cdecl_process_fn_translator::func;
-        param   =   translator;
-    }
-#endif /* RECLS_PLATFORM_IS_WINDOWS */
 
     hrecls_t    hSrch;
     recls_rc_t  rc  =   Recls_SearchFeedback(searchRoot, pattern, flags, pfnProgress, paramProgress, &hSrch);
