@@ -138,7 +138,7 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    getcwd(s_cwd, int(1 + path_max));
+    getcwd(s_cwd, (int)(1 + path_max));
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
     (   defined(PLATFORMSTL_OS_IS_UNIX) && \
         defined(_WIN32))
