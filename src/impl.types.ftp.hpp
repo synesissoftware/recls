@@ -43,7 +43,6 @@
 #include <inetstl/network/connection.hpp>
 #include <inetstl/network/session.hpp>
 
-#include <platformstl/filesystem/file_path_buffer.hpp>
 #include <platformstl/filesystem/path.hpp>
 #include <platformstl/filesystem/path_buffer.hpp>
 
@@ -104,11 +103,6 @@ public: /// Member Types
 
     /// The find data type
     typedef traits_type::find_data_type                     find_data_type;
-
-    /// The file-path buffer type
-    typedef ::platformstl::basic_file_path_buffer<
-        recls_char_t
-    >                                                       file_path_buffer_type;
 
     /// The path buffer type
     typedef ftp_types_base<

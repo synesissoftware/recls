@@ -38,7 +38,6 @@
 
 #include <stlsoft/memory/auto_buffer.hpp>
 
-#include <platformstl/filesystem/file_path_buffer.hpp>
 #include <platformstl/filesystem/filesystem_traits.hpp>
 #include <platformstl/filesystem/path.hpp>
 #include <platformstl/filesystem/path_buffer.hpp>
@@ -105,11 +104,6 @@ public: /// Member Types
     /// The find data type
     typedef traits_type::find_data_type                     find_data_type;
 #endif /* PLATFORMSTL_OS_IS_WINDOWS */
-
-    /// The file-path buffer type
-    typedef ::platformstl::basic_file_path_buffer<
-        recls_char_t
-    >                                                       file_path_buffer_type;
 
     /// The path buffer type
     typedef file_types_base<

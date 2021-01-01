@@ -429,55 +429,40 @@ Recls_SearchFeedback_x_(
             types::traits_type::error_type const e = types::traits_type::get_last_error();
 
 #ifndef _DEBUG
-            if (!types::traits_type::is_memory_error_code(e))
+            if (types::traits_type::is_memory_error_code(e))
             {
-                return RECLS_RC_NO_HOME;
+                return RECLS_RC_OUT_OF_MEMORY;
             }
             else
 #endif
             {
-                return RECLS_RC_OUT_OF_MEMORY;
+                return RECLS_RC_NO_HOME;
             }
         }
         else
         {
-#if 0
+            size_t const lenRequired = homeLen + (searchRootLen - 1);
 
-            size_t const homeLen2 = types::traits_type::ensure_dir_end(home);
-
-            if (0 == homeLen2)
+            if (!home.resize(lenRequired + 1))
             {
                 return RECLS_RC_OUT_OF_MEMORY;
             }
             else
-#else
-
-            size_t const homeLen2 = homeLen;
-#endif
             {
-                size_t const lenRequired = homeLen2 + (searchRootLen - 1);
+                types::traits_type::char_copy(home.data() + homeLen, searchRoot + 1, (searchRootLen - 1) + 1);
 
-                if (!home.resize(lenRequired + 1))
-                {
-                    return RECLS_RC_OUT_OF_MEMORY;
-                }
-                else
-                {
-                    types::traits_type::char_copy(home.data() + homeLen2, searchRoot + 1, (searchRootLen - 1) + 1);
-
-                    return Recls_SearchFeedback_x_(
-                        function
-                    ,   checks | CheckRootHomeStart
-                    ,   home.data()
-                    ,   lenRequired
-                    ,   patterns
-                    ,   patternsLen
-                    ,   flags
-                    ,   pfn
-                    ,   param
-                    ,   phSrch
-                    );
-                }
+                return Recls_SearchFeedback_x_(
+                    function
+                ,   checks | CheckRootHomeStart
+                ,   home.data()
+                ,   lenRequired
+                ,   patterns
+                ,   patternsLen
+                ,   flags
+                ,   pfn
+                ,   param
+                ,   phSrch
+                );
             }
         }
     }
@@ -577,7 +562,23 @@ Recls_SearchFeedback_x_(
 
     if (RECLS_SUCCEEDED(rc))
     {
-        ReclsFileSearch* si;
+        types::buffer_type  sde(1);
+        ReclsFileSearch*    si;
+
+        if (!types::traits_type::has_dir_end(searchRoot, searchRootLen))
+        {
+            if (!sde.resize(1 + searchRootLen))
+            {
+                return RECLS_RC_OUT_OF_MEMORY;
+            }
+            else
+            {
+                types::traits_type::char_copy(&sde[0], searchRoot, searchRootLen + 1);
+
+                searchRootLen   =   types::traits_type::ensure_dir_end(sde);
+                searchRoot      =   sde.data();
+            }
+        }
 
         rc = ReclsFileSearch::FindAndCreate(
             searchRoot

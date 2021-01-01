@@ -92,8 +92,8 @@ public:
 protected:
     ReclsFileSearch(
         size_t                      cDirParts
-    ,   recls_char_t const*         rootDir
-    ,   size_t                      rootDirLen
+    ,   recls_char_t const*         searchDir
+    ,   size_t                      searchDirLen
     ,   recls_char_t const*         pattern
     ,   size_t                      patternLen
     ,   hrecls_progress_fn_t        pfn
@@ -139,8 +139,8 @@ private: // implementation
     recls_char_t const*
     calc_rootDir_(
         size_t              cDirParts
-    ,   recls_char_t const* rootDir
-    ,   size_t              rootDirLen
+    ,   recls_char_t const* searchDir
+    ,   size_t              searchDirLen
     );
 
     static
@@ -158,8 +158,8 @@ private: // implementation
 
 private: // fields
     recls_uint32_t                  m_flags;
-    recls_char_t const* const       m_rootDir;
-    size_t const                    m_rootDirLen;
+    recls_char_t const* const       m_searchDir;
+    size_t const                    m_searchDirLen;
     hrecls_progress_fn_t const      m_pfn;
     recls_process_fn_param_t const  m_param;
 

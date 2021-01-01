@@ -68,7 +68,6 @@ using ::recls::impl::ReclsFileSearch;
 using ::recls::impl::types;
 
 using ::recls::impl::recls_is_home_start_;
-using ::recls::impl::recls_get_home_;
 using ::recls::impl::recls_log_printf_;
 using ::recls::impl::recls_fatal_trace_printf_;
 using ::recls::impl::recls_error_trace_printf_;
@@ -133,58 +132,42 @@ recls_rc_t Recls_Stat_X_(
 
     *phEntry = static_cast<recls_entry_t>(0);
 
-    types::file_path_buffer_type    home;
-    size_t                          pathLen = types::traits_type::str_len(path);
+    types::buffer_type  home(1);
+    size_t              pathLen = types::traits_type::str_len(path);
 
-    if (ss_nullptr_k != path &&
-        recls_is_home_start_(path, pathLen))
+    if (recls_is_home_start_(path, pathLen))
     {
-        //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{2}: %s"), path);
+        size_t const homeLen = types::traits_type::get_home_directory(home);
 
-        size_t n = recls_get_home_(&home[0], home.size());
-
-        if (0 == n)
+        if (0 == homeLen)
         {
-            //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{3}: %s"), path);
+            types::traits_type::error_type const e = types::traits_type::get_last_error();
 
-            return RECLS_RC_NO_HOME;
+#ifndef _DEBUG
+            if (types::traits_type::is_memory_error_code(e))
+            {
+                return RECLS_RC_OUT_OF_MEMORY;
+            }
+            else
+#endif
+            {
+                return RECLS_RC_NO_HOME;
+            }
         }
         else
         {
-            RECLS_ASSERT(n == types::traits_type::str_len(home.data()));
+            size_t const lenRequired = homeLen + (pathLen - 1);
 
-            // recls_get_home_() always has a trailing path-name separator
-            RECLS_ASSERT(types::traits_type::has_dir_end(&home[0]));
-
-            //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{4}: %s"), path);
-
-            if (pathLen + n > home.size())
+            if (!home.resize(lenRequired + 1))
             {
-                //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{5}: %s"), path);
-
-                return RECLS_RC_PATH_LIMIT_EXCEEDED;
+                return RECLS_RC_OUT_OF_MEMORY;
             }
             else
             {
-                //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{6}: %s"), path);
+                types::traits_type::char_copy(home.data() + homeLen, path + 1, (pathLen - 1) + 1);
 
-                // append the path, skipping the tilde
-                //
-                // - &home[0] + (n - 1) drops the trailing separator on the home directory
-                // - path + 1 skips the tilde
-                // - pathLen includes the NUL terminator
-                types::traits_type::char_copy(&home[0] + (n - 1), path + 1, pathLen);
-
-                --n;        // The dropped path name separator
-                --pathLen;  // The skipped tilde
-
-                pathLen += n;
-
-                //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{7}: %s"), path);
-
-                path = home.data();
-
-                //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{8}: %s"), path);
+                path    =   home.data();
+                pathLen =   lenRequired;
             }
         }
     }

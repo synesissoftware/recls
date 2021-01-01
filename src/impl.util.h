@@ -131,23 +131,6 @@ recls_is_home_start_(
 ,   size_t              pathLen
 );
 
-/** Provides the home directory.
- *
- * \param buff Pointer to buffer to receive the result. If NULL, function
- *   returns required size (excluding NUL terminator).
- * \param cchBuff Number of characters available in buff to write to.
- *
- * \note Function will always attempt to include a trailing path name
- *   separator, unless the home directory is the root directory, or the
- *   function fails.
- *
- * \retval The number of characters written into buff
- */
-RECLS_FNDECL(size_t) recls_get_home_(
-    recls_char_t*   buff
-,   size_t          cchBuff
-);
-
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */

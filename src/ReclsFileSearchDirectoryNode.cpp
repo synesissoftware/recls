@@ -831,20 +831,6 @@ ReclsFileSearchDirectoryNode::GetDetails(
         RECLS_ASSERT(ss_nullptr_k == m_dnode);
 
         rc = Entry_Copy(m_current, pinfo);
-
-#if RECLS_TRACE_LEVEL >= 2
-        {
-            file_path_buffer_type   buffer;
-
-            Recls_GetPathProperty(m_current, &buffer[0], buffer.size());
-
-# if defined(RECLS_CHAR_TYPE_IS_CHAR)
-            recls_debug2_trace_printf_("    [%s]", static_cast<char const*>(buffer.data()));
-# elif defined(RECLS_CHAR_TYPE_IS_WCHAR)
-            recls_debug2_trace_printf_("    [%s]", static_cast<char const*>(winstl::w2a(buffer)));
-# endif /* RECLS_CHAR_TYPE_IS_???? */
-        }
-#endif /* RECLS_TRACE_LEVEL >= 2 */
     }
     else if (ss_nullptr_k != m_dnode)
     {

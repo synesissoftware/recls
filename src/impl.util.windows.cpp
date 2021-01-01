@@ -134,66 +134,6 @@ bad_path_given:
     return path + types::traits_type::str_len(path);
 }
 
-RECLS_LINKAGE_C size_t recls_get_home_(recls_char_t* buff, size_t cchBuff)
-{
-    recls_char_t    homeDrive[1 + _MAX_DRIVE];
-    recls_char_t    homeDir[1 + _MAX_DIR];
-
-    size_t const    cchHomeDrive    =   types::traits_type::get_environment_variable( RECLS_LITERAL("HOMEDRIVE")
-                                                                        ,   &homeDrive[0]
-                                                                        ,   RECLS_NUM_ELEMENTS(homeDrive));
-    size_t          cchHomeDir      =   types::traits_type::get_environment_variable( RECLS_LITERAL("HOMEPATH")
-                                                                        ,   &homeDir[0]
-                                                                        ,   RECLS_NUM_ELEMENTS(homeDir));
-
-    if (0 == cchHomeDrive ||
-        RECLS_NUM_ELEMENTS(homeDrive) == cchHomeDrive)
-    {
-        return 0;
-    }
-    if (0 == cchHomeDir ||
-        RECLS_NUM_ELEMENTS(homeDir) == cchHomeDir)
-    {
-        return 0;
-    }
-
-    if (!types::traits_type::has_dir_end(homeDir))
-    {
-        types::traits_type::ensure_dir_end(&homeDir[0] + cchHomeDir - 1);
-        ++cchHomeDir;
-    }
-
-    if (ss_nullptr_k == buff)
-    {
-        return cchHomeDrive + cchHomeDir;
-    }
-    else
-    {
-        if (cchBuff <= cchHomeDrive)
-        {
-            recls_strncpy_(buff, cchBuff, homeDrive, cchHomeDrive);
-
-            return cchHomeDrive;
-        }
-        else if (cchBuff <= cchHomeDrive + cchHomeDir)
-        {
-            recls_strncpy_(buff, cchBuff, homeDrive, cchHomeDrive);
-            recls_strncpy_(buff + cchHomeDrive, cchBuff - cchHomeDrive, homeDir, cchHomeDir);
-
-            return cchBuff;
-        }
-        else
-        {
-            recls_strncpy_(buff, cchBuff, homeDrive, cchHomeDrive);
-            recls_strncpy_(buff + cchHomeDrive, cchBuff - cchHomeDrive, homeDir, cchHomeDir);
-
-            RECLS_ASSERT('\0' == buff[cchHomeDrive + cchHomeDir]);
-
-            return cchHomeDrive + cchHomeDir;
-        }
-    }
-}
-
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
