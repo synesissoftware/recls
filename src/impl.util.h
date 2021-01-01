@@ -124,8 +124,10 @@ RECLS_API recls_is_valid_pattern_(
 
 /** Indicates whether the path begins with a home indicator
  */
-RECLS_FNDECL(recls_bool_t) recls_is_home_start_(
+RECLS_FNDECL(recls_bool_t)
+recls_is_home_start_(
     recls_char_t const* path
+,   size_t              pathLen
 );
 
 /** Provides the home directory.

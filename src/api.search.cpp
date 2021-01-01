@@ -73,6 +73,9 @@ namespace impl
  * typedefs
  */
 
+#if !defined(RECLS_NO_NAMESPACE)
+} /* namespace impl */
+
 using ::recls::impl::ReclsFileSearch;
 using ::recls::impl::ReclsSearch;
 using ::recls::impl::constants;

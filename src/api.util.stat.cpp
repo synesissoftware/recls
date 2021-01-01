@@ -137,7 +137,7 @@ recls_rc_t Recls_Stat_X_(
     size_t                          pathLen = types::traits_type::str_len(path);
 
     if (ss_nullptr_k != path &&
-        recls_is_home_start_(path))
+        recls_is_home_start_(path, pathLen))
     {
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{2}: %s"), path);
 

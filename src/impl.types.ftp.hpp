@@ -42,8 +42,8 @@
 #include <inetstl/network/connection.hpp>
 #include <inetstl/network/session.hpp>
 
-#include <winstl/filesystem/file_path_buffer.hpp>
-#include <winstl/filesystem/path.hpp>
+#include <platformstl/filesystem/file_path_buffer.hpp>
+#include <platformstl/filesystem/path.hpp>
 #include <platformstl/filesystem/path_buffer.hpp>
 
 #ifdef RECLS_STLSOFT_1_12_OR_LATER
@@ -105,7 +105,7 @@ public: /// Member Types
     typedef traits_type::find_data_type                     find_data_type;
 
     /// The file-path buffer type
-    typedef ::winstl::basic_file_path_buffer<
+    typedef ::platformstl::basic_file_path_buffer<
         recls_char_t
     >                                                       file_path_buffer_type;
 
@@ -115,7 +115,7 @@ public: /// Member Types
     >                                                       path_buffer_type;
 
     /// The path type
-    typedef ::winstl::basic_path<recls_char_t>              path_type;
+    typedef ::platformstl::basic_path<recls_char_t>         path_type;
 
     // The session type
     typedef inetstl::basic_session<

@@ -380,21 +380,35 @@ RECLS_API recls_is_valid_pattern_(
     }
 }
 
-RECLS_LINKAGE_C recls_bool_t recls_is_home_start_(
+RECLS_LINKAGE_C
+recls_bool_t
+recls_is_home_start_(
     recls_char_t const* path
+,   size_t              pathLen
 )
 {
-    RECLS_ASSERT(ss_nullptr_k != path);
+    RECLS_ASSERT(0 == pathLen || ss_nullptr_k != path);
 
-    if ('~' == path[0] &&
-        (   '\0' == path[1] ||
-#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
-    defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
-            '\\' == path[1] ||
-#endif /* platform */
-            '/' == path[1]))
+    switch (pathLen)
     {
-        return true;
+    case 0:
+
+        break;
+    default:
+
+        if (!types::traits_type::is_path_name_separator(path[1]))
+        {
+            break;
+        }
+        else
+        {
+    case 1:
+            if ('~' == path[0])
+            {
+                return true;
+            }
+        }
+        break;
     }
 
     return false;

@@ -101,7 +101,8 @@ namespace impl
  * utility functions
  */
 
-recls_entry_t create_entryinfo(
+recls_entry_t
+create_entryinfo(
     size_t                          rootDirLen
 ,   recls_char_t const*             searchDir
 ,   size_t                          searchDirLen
@@ -457,7 +458,8 @@ recls_entry_t create_entryinfo(
     return info;
 }
 
-recls_entry_t create_drive_entryinfo(
+recls_entry_t
+create_drive_entryinfo(
     recls_char_t const*             entryPath
 ,   size_t                          entryPathLen
 ,   recls_uint32_t                  flags
