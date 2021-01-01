@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the ReclsFileSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -95,7 +95,7 @@ inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t c
     void* pv = malloc(cb);
 
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
-    if (NULL == pv)
+    if (ss_nullptr_k == pv)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
@@ -134,9 +134,9 @@ ReclsFileSearch::FindAndCreate(
 ,   ReclsFileSearch**           ppsi
 )
 {
-    RECLS_ASSERT(NULL != rootDir);
-    RECLS_ASSERT(NULL != pattern);
-    RECLS_ASSERT(NULL != ppsi);
+    RECLS_ASSERT(ss_nullptr_k != rootDir);
+    RECLS_ASSERT(ss_nullptr_k != pattern);
+    RECLS_ASSERT(ss_nullptr_k != ppsi);
 
     function_scope_trace("ReclsFileSearch::FindAndCreate");
 
@@ -206,28 +206,28 @@ ReclsFileSearch::FindAndCreate_(
 {
     function_scope_trace("ReclsFileSearch::FindAndCreate_");
 
-    RECLS_ASSERT(NULL != rootDir);
+    RECLS_ASSERT(ss_nullptr_k != rootDir);
     RECLS_ASSERT(types::traits_type::str_len(rootDir) == rootDirLen);
     RECLS_ASSERT(types::traits_type::is_path_absolute(rootDir));
 #if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX)
-    RECLS_ASSERT(NULL == types::traits_type::str_chr(rootDir, '\\'));
+    RECLS_ASSERT(ss_nullptr_k == types::traits_type::str_chr(rootDir, '\\'));
 #else /* ? UNIX */
-    RECLS_ASSERT(NULL == types::traits_type::str_chr(rootDir, '/'));
+    RECLS_ASSERT(ss_nullptr_k == types::traits_type::str_chr(rootDir, '/'));
 #endif /* UNIX */
-    RECLS_ASSERT(NULL != pattern);
+    RECLS_ASSERT(ss_nullptr_k != pattern);
     RECLS_ASSERT(types::traits_type::str_len(pattern) == patternLen);
 #if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX)
-    RECLS_ASSERT(NULL == types::traits_type::str_chr(pattern, ';'));
+    RECLS_ASSERT(ss_nullptr_k == types::traits_type::str_chr(pattern, ';'));
 #else /* ? UNIX */
 #if 0
     // Does not work, because pattern might be "C:\\dir\\file.ext"
-    RECLS_ASSERT(NULL == types::traits_type::str_chr(pattern, ':'));
+    RECLS_ASSERT(ss_nullptr_k == types::traits_type::str_chr(pattern, ':'));
 #endif /* 0 */
 #if 1
     // Would only work for pattern with only one pattern argument
-    RECLS_ASSERT(NULL != types::traits_type::str_chr(pattern, ';') || types::traits_type::is_path_absolute(pattern) || NULL == types::traits_type::str_chr(pattern, ':'));
+    RECLS_ASSERT(ss_nullptr_k != types::traits_type::str_chr(pattern, ';') || types::traits_type::is_path_absolute(pattern) || ss_nullptr_k == types::traits_type::str_chr(pattern, ':'));
 #endif /* 0 */
 #endif /* UNIX */
 
@@ -283,7 +283,7 @@ ReclsFileSearch::FindAndCreate_(
         }
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
 
-        if (NULL == si)
+        if (ss_nullptr_k == si)
         {
             RECLS_ASSERT(RECLS_RC_OK != rc);
         }
@@ -291,7 +291,7 @@ ReclsFileSearch::FindAndCreate_(
         {
             // This is a nasty hack. It's tantamount to ctor & create function, so
             // should be made more elegant soon.
-            if (NULL == si->m_dnode)
+            if (ss_nullptr_k == si->m_dnode)
             {
                 delete si;
 
@@ -309,7 +309,7 @@ ReclsFileSearch::FindAndCreate_(
         }
     }
 
-    RECLS_ASSERT(RECLS_RC_OK == rc || NULL == *ppsi);
+    RECLS_ASSERT(RECLS_RC_OK == rc || ss_nullptr_k == *ppsi);
 
     return rc;
 }
@@ -351,12 +351,12 @@ ReclsFileSearch::ReclsFileSearch(
 {
     function_scope_trace("ReclsFileSearch::ReclsFileSearch");
 
-    RECLS_ASSERT(NULL != rootDir);
-    RECLS_ASSERT(NULL != pattern);
+    RECLS_ASSERT(ss_nullptr_k != rootDir);
+    RECLS_ASSERT(ss_nullptr_k != pattern);
     RECLS_ASSERT(types::traits_type::str_len(rootDir) < types::traits_type::path_max());
-    RECLS_ASSERT(NULL != types::traits_type::str_chr(pattern, types::traits_type::path_separator()) || types::traits_type::str_len(pattern) < types::traits_type::path_max());
+    RECLS_ASSERT(ss_nullptr_k != types::traits_type::str_chr(pattern, types::traits_type::path_separator()) || types::traits_type::str_len(pattern) < types::traits_type::path_max());
     RECLS_ASSERT(m_rootDirLen == types::traits_type::str_len(rootDir));
-    RECLS_ASSERT(NULL != prc);
+    RECLS_ASSERT(ss_nullptr_k != prc);
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
     RECLS_MESSAGE_ASSERT("Root directory has improper format",  (isalpha(rootDir[0]) && rootDir[1] == ':') || (rootDir[0] == '\\' && rootDir[1] == '\\'));

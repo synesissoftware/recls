@@ -4,11 +4,11 @@
  * Purpose:     Implementation header.
  *
  * Created:     12th December 2008
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -134,8 +134,8 @@ public: // operations
     ,   recls_char_t const  ch
     )
     {
-        RECLS_ASSERT(NULL != begin);
-        RECLS_ASSERT(NULL != end);
+        RECLS_ASSERT(ss_nullptr_k != begin);
+        RECLS_ASSERT(ss_nullptr_k != end);
 
         size_t cDirParts = 0;
 

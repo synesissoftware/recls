@@ -253,7 +253,7 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
     {
         size_t const        entryPathLen    =   types::traits_type::str_len(entryPath);
         recls_char_t const* entryFile       =   types::traits_type::str_rchr(&entryPath[0], types::traits_type::path_name_separator()) + 1;
-        RECLS_ASSERT(NULL != (entryFile - 1));
+        RECLS_ASSERT(ss_nullptr_k != (entryFile - 1));
         size_t const        entryFileLen    =   entryPathLen - (entryFile - entryPath);
         RECLS_ASSERT(entryFileLen == types::traits_type::str_len(entryFile));
 
@@ -274,7 +274,7 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
     recls_char_t const* entryPath       =   value.get_path();
     size_t const        entryPathLen    =   stlsoft::c_str_len(value);
     recls_char_t const* entryFile       =   types::traits_type::str_rchr(&entryPath[0], types::traits_type::path_name_separator()) + 1;
-    RECLS_ASSERT(NULL != (entryFile - 1));
+    RECLS_ASSERT(ss_nullptr_k != (entryFile - 1));
     size_t const        entryFileLen    =   entryPathLen - (entryFile - entryPath);
     RECLS_ASSERT(entryFileLen == types::traits_type::str_len(entryFile));
 
@@ -353,7 +353,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 
     RECLS_ASSERT(rootDirLen <= types::traits_type::str_len(searchDir));
     RECLS_ASSERT(patternLen == types::traits_type::str_len(pattern));
-    RECLS_ASSERT(NULL != prc);
+    RECLS_ASSERT(ss_nullptr_k != prc);
 
     function_scope_trace("ReclsFileSearchDirectoryNode::FindAndCreate");
 
@@ -401,7 +401,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 # endif
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-    if (NULL != node)
+    if (ss_nullptr_k != node)
     {
         // Ensure that it, or one of its sub-nodes, has matching entries.
         recls_rc_t rc = node->Initialise();
@@ -416,7 +416,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
         *prc = rc;
     }
 
-    RECLS_ASSERT(NULL == node || node->is_valid());
+    RECLS_ASSERT(ss_nullptr_k == node || node->is_valid());
 
     return node;
 }
@@ -433,7 +433,7 @@ ReclsFileSearchDirectoryNode::Stat(
     // 1. Ensure that the path is valid
     //
     // 1.a Must not be NULL
-    if (NULL == path ||
+    if (ss_nullptr_k == path ||
         '\0' == 0[path])
     {
         return RECLS_RC_INVALID_NAME;
@@ -470,7 +470,7 @@ ReclsFileSearchDirectoryNode::Stat(
         *phEntry = create_entryinfo(0, NULL, 0, path, pathLen, path + pathLen, 0, flags, NULL);
 # endif /* 0 */
 
-        return (NULL == *phEntry) ? RECLS_RC_OUT_OF_MEMORY : RECLS_RC_OK;
+        return (ss_nullptr_k == *phEntry) ? RECLS_RC_OUT_OF_MEMORY : RECLS_RC_OK;
     }
 
     recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 6"));
@@ -506,7 +506,7 @@ ReclsFileSearchDirectoryNode::Stat(
 
     recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 10"));
 
-    if (NULL == pst &&
+    if (ss_nullptr_k == pst &&
         RECLS_F_DETAILS_LATER != (flags & (RECLS_F_DETAILS_LATER | RECLS_F_TYPEMASK))) // To allow non-existant things to be stat'd
     {
         recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 11"));
@@ -519,7 +519,7 @@ ReclsFileSearchDirectoryNode::Stat(
 
         size_t const        pathLen2        =   types::traits_type::str_len(path);
         recls_char_t const* entryFile       =   types::traits_type::str_rchr(path, types::traits_type::path_name_separator()) + 1;
-        RECLS_ASSERT(NULL != (entryFile - 1));
+        RECLS_ASSERT(ss_nullptr_k != (entryFile - 1));
         size_t const        entryDirLen     =   static_cast<size_t>(entryFile - path);
         size_t const        entryFileLen    =   pathLen2 - entryDirLen;
         RECLS_ASSERT(entryFileLen == types::traits_type::str_len(entryFile));
@@ -548,7 +548,7 @@ ReclsFileSearchDirectoryNode::Stat(
 
         recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 15"));
 
-        return (NULL == *phEntry) ? RECLS_RC_OUT_OF_MEMORY : RECLS_RC_OK;
+        return (ss_nullptr_k == *phEntry) ? RECLS_RC_OUT_OF_MEMORY : RECLS_RC_OK;
     }
 
 #if defined(STLSOFT_COMPILER_IS_GCC)
@@ -573,10 +573,10 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
     recls_rc_t rc = RECLS_RC_OK;
 
-    RECLS_ASSERT(NULL == m_current);
-    RECLS_ASSERT(NULL == m_dnode);
+    RECLS_ASSERT(ss_nullptr_k == m_current);
+    RECLS_ASSERT(ss_nullptr_k == m_dnode);
 
-    if (NULL != m_pfn)
+    if (ss_nullptr_k != m_pfn)
     {
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
         if (m_flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
@@ -608,7 +608,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         // (i) Try getting a file first,
         m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDir.size(), m_flags, m_entriesBegin);
 
-        if (NULL == m_current)
+        if (ss_nullptr_k == m_current)
         {
             rc = RECLS_RC_OUT_OF_MEMORY;
         }
@@ -653,11 +653,11 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
                 ,   &rc
                 );
 
-            } while (NULL == m_dnode && ++m_directoriesBegin != m_directories.end());
+            } while (ss_nullptr_k == m_dnode && ++m_directoriesBegin != m_directories.end());
 
             if (RECLS_SUCCEEDED(rc))
             {
-                rc = (NULL == m_dnode) ? RECLS_RC_NO_MORE_DATA : RECLS_RC_OK;
+                rc = (ss_nullptr_k == m_dnode) ? RECLS_RC_NO_MORE_DATA : RECLS_RC_OK;
             }
         }
     }
@@ -686,9 +686,9 @@ recls_bool_t ReclsFileSearchDirectoryNode::is_valid() const
 #endif /* compiler */
 
     // (i) Either we are enumerating files (m_current != NULL) or directories (m_dnode != NULL), but not both
-    RECLS_ASSERT(NULL == m_current || NULL == m_dnode);
+    RECLS_ASSERT(ss_nullptr_k == m_current || ss_nullptr_k == m_dnode);
     // (ii) Either we are enumerating files (m_current != NULL) or there are no more files to enumerate
-    RECLS_ASSERT(NULL != m_current || m_entriesBegin == m_entries.end());
+    RECLS_ASSERT(ss_nullptr_k != m_current || m_entriesBegin == m_entries.end());
 
     return RECLS_SUCCEEDED(rc);
 }
@@ -718,17 +718,17 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
     // Invariants
 
     // (i) Either we are enumerating files (m_current != NULL) or directories (m_dnode != NULL), but not both
-    RECLS_ASSERT(NULL == m_current || NULL == m_dnode);
+    RECLS_ASSERT(ss_nullptr_k == m_current || ss_nullptr_k == m_dnode);
     // (ii) Either we are enumerating files (m_current != NULL) or there are no more files to enumerate
-    RECLS_ASSERT(NULL != m_current || m_entriesBegin == m_entries.end());
+    RECLS_ASSERT(ss_nullptr_k != m_current || m_entriesBegin == m_entries.end());
 
     recls_rc_t rc = RECLS_RC_NO_MORE_DATA;
 
-    if (NULL != m_current)
+    if (ss_nullptr_k != m_current)
     {
         // Currently enumerating through the files
         RECLS_ASSERT(m_entriesBegin != m_entries.end());
-        RECLS_ASSERT(NULL == m_dnode);
+        RECLS_ASSERT(ss_nullptr_k == m_dnode);
 
         // Advance, and check for end of sequence
         ++m_entriesBegin;
@@ -750,10 +750,10 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
         }
     }
 
-    if (NULL == m_current)
+    if (ss_nullptr_k == m_current)
     {
         // Now we are either enumerating the directories, or we've already done so
-        if (NULL != m_dnode)
+        if (ss_nullptr_k != m_dnode)
         {
             // Currently enumerating the directories
             rc = m_dnode->GetNext();
@@ -775,7 +775,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
         }
         else
         {
-            if (NULL == m_dnode)
+            if (ss_nullptr_k == m_dnode)
             {
                 do
                 {
@@ -798,7 +798,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
                     ,   &rc
                     );
 
-                    if (NULL != m_dnode)
+                    if (ss_nullptr_k != m_dnode)
                     {
                         rc = RECLS_RC_OK;
                     }
@@ -807,7 +807,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
                         ++m_directoriesBegin;
                     }
 
-                } while (NULL == m_dnode && m_directoriesBegin != m_directories.end());
+                } while (ss_nullptr_k == m_dnode && m_directoriesBegin != m_directories.end());
             }
         }
     }
@@ -827,14 +827,14 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetDetails(
 
     recls_rc_t  rc;
 
-    RECLS_ASSERT(NULL != pinfo);
-    RECLS_ASSERT(NULL == m_current || NULL == m_dnode);
+    RECLS_ASSERT(ss_nullptr_k != pinfo);
+    RECLS_ASSERT(ss_nullptr_k == m_current || ss_nullptr_k == m_dnode);
 
-    if (NULL != m_current)
+    if (ss_nullptr_k != m_current)
     {
         // Currently searching for files from the current directory
 
-        RECLS_ASSERT(NULL == m_dnode);
+        RECLS_ASSERT(ss_nullptr_k == m_dnode);
 
         rc = Entry_Copy(m_current, pinfo);
 
@@ -852,9 +852,9 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetDetails(
         }
 #endif /* RECLS_TRACE_LEVEL >= 2 */
     }
-    else if (NULL != m_dnode)
+    else if (ss_nullptr_k != m_dnode)
     {
-        RECLS_ASSERT(NULL == m_current);
+        RECLS_ASSERT(ss_nullptr_k == m_current);
 
         // Sub-directory searching is active, so get from there.
         rc = m_dnode->GetDetails(pinfo);
@@ -877,7 +877,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNextDetails(
     function_scope_trace("ReclsFileSearchDirectoryNode::GetNextDetails");
 
     RECLS_ASSERT(is_valid());
-    RECLS_ASSERT(NULL != pinfo);
+    RECLS_ASSERT(ss_nullptr_k != pinfo);
 
     recls_rc_t  rc  =   GetNext();
 

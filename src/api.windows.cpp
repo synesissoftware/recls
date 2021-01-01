@@ -4,11 +4,11 @@
  * Purpose:     This file contains the Windows versions of the recls API.
  *
  * Created:     16th August 2003
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -192,7 +192,7 @@ RECLS_FNDECL(size_t) Recls_GetShortFileProperty(    recls_entry_t   fileInfo
 {
     function_scope_trace("Recls_GetShortFileProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return recls_get_string_property_(&fileInfo->shortFile, buffer, cchBuffer);
 }
@@ -202,8 +202,8 @@ RECLS_FNDECL(void) Recls_GetDriveProperty(  recls_entry_t   fileInfo
 {
     function_scope_trace("Recls_GetDriveProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
-    RECLS_ASSERT(NULL != pchDrive);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != pchDrive);
 
     // Because, as of version 1.5.1, this function can also be called for
     // FTP files, which will not have a drive, we need to check for it,
@@ -224,7 +224,7 @@ Recls_GetRoots_(
 ,   recls_uint32_t  flags
 )
 {
-    RECLS_ASSERT(NULL == roots || 0 != cRoots);
+    RECLS_ASSERT(ss_nullptr_k == roots || 0 != cRoots);
 
     char    drives[26];
 #if defined(RECLS_COMPILER_IS_WATCOM)
@@ -233,7 +233,7 @@ Recls_GetRoots_(
     size_t  n   =   check_drives(&drives, flags);
 #endif /* compiler */
 
-    if (NULL != roots)
+    if (ss_nullptr_k != roots)
     {
         if (n < cRoots)
         {

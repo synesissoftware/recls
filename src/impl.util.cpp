@@ -4,11 +4,11 @@
  * Purpose:     Platform-independent utility functions for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -200,8 +200,8 @@ RECLS_LINKAGE_C size_t count_char_instances(
 ,   recls_char_t const  ch
 )
 {
-    RECLS_ASSERT(NULL != begin);
-    RECLS_ASSERT(NULL != end);
+    RECLS_ASSERT(ss_nullptr_k != begin);
+    RECLS_ASSERT(ss_nullptr_k != end);
 
     size_t cDirParts = 0;
 
@@ -233,11 +233,11 @@ RECLS_FNDECL(size_t) recls_get_string_property_(
 #endif /* compiler */
 )
 {
-    RECLS_ASSERT(NULL != ptrs);
+    RECLS_ASSERT(ss_nullptr_k != ptrs);
 
     size_t  cch =   static_cast<size_t>(ptrs->end - ptrs->begin);
 
-    if (NULL != buffer)
+    if (ss_nullptr_k != buffer)
     {
         cch = recls_strncpy_(buffer, cchBuffer, ptrs->begin, cch);
     }
@@ -264,7 +264,7 @@ RECLS_API recls_is_valid_pattern_(
 {
     STLSOFT_SUPPRESS_UNUSED(maxPathCompLen);
 
-    RECLS_ASSERT(NULL != pattern);
+    RECLS_ASSERT(ss_nullptr_k != pattern);
 
     if ('\0' == *pattern)
     {
@@ -325,8 +325,8 @@ RECLS_API recls_is_valid_pattern_(
             }
 
             if ((   0 != (flags & RECLS_F_RECURSIVE) &&
-                    NULL != strstr(pattern, dotPattern)) ||
-                NULL != strstr(pattern, dotdotPattern))
+                    ss_nullptr_k != strstr(pattern, dotPattern)) ||
+                ss_nullptr_k != strstr(pattern, dotdotPattern))
             {
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
@@ -384,7 +384,7 @@ RECLS_LINKAGE_C recls_bool_t recls_is_home_start_(
     recls_char_t const* path
 )
 {
-    RECLS_ASSERT(NULL != path);
+    RECLS_ASSERT(ss_nullptr_k != path);
 
     if ('~' == path[0] &&
         (   '\0' == path[1] ||

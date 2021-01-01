@@ -4,11 +4,11 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -181,12 +181,12 @@ lookup_error_string_(
     int                         e_;     // Null object pattern
     size_t                      len_;   // Null object pattern
 
-    if (NULL == e)
+    if (ss_nullptr_k == e)
     {
         e = &e_;
     }
 
-    if (NULL == len)
+    if (ss_nullptr_k == len)
     {
         len = &len_;
     }
@@ -220,7 +220,7 @@ RECLS_API Recls_GetLastError(hrecls_t hSrch)
 
     ::recls::impl::ReclsSearch* si = ::recls::impl::ReclsSearch::FromHandle(hSrch);
 
-    RECLS_MESSAGE_ASSERT("Search handle is null!", NULL != si);
+    RECLS_MESSAGE_ASSERT("Search handle is null!", ss_nullptr_k != si);
 
     return si->GetLastError();
 }
@@ -234,7 +234,7 @@ RECLS_FNDECL(size_t) Recls_GetErrorString(  recls_rc_t      rc
     size_t              cchError;
     recls_char_t const* s = ::recls::impl::lookup_error_string_(rc, NULL, &cchError);
 
-    if (NULL == buffer)
+    if (ss_nullptr_k == buffer)
     {
         return cchError;
     }

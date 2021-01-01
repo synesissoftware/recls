@@ -4,11 +4,11 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     26th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -130,12 +130,12 @@ Recls_CombinePaths_X_(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_CombinePaths(%s, %s, ..., %u)"), stlsoft::c_str_ptr(path1), stlsoft::c_str_ptr(path2), unsigned(cchResult));
 
-    RECLS_ASSERT(NULL != path1 || NULL != path2);
+    RECLS_ASSERT(ss_nullptr_k != path1 || ss_nullptr_k != path2);
 
-    platformstl::basic_path<recls_char_t>   path((NULL != path1) ? path1 : path2);
+    platformstl::basic_path<recls_char_t>   path((ss_nullptr_k != path1) ? path1 : path2);
 
-    if (NULL != path1 &&
-        NULL != path2)
+    if (ss_nullptr_k != path1 &&
+        ss_nullptr_k != path2)
     {
         path /= path2;
     }

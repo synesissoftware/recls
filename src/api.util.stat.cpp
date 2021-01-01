@@ -4,11 +4,11 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     23rd December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -128,15 +128,15 @@ recls_rc_t Recls_Stat_X_(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_Stat(%s, %08x, ...)"), path, flags);
 
-    RECLS_ASSERT(NULL != path);
-    RECLS_ASSERT(NULL != phEntry);
+    RECLS_ASSERT(ss_nullptr_k != path);
+    RECLS_ASSERT(ss_nullptr_k != phEntry);
 
     *phEntry = static_cast<recls_entry_t>(0);
 
     types::file_path_buffer_type    home;
     size_t                          pathLen = types::traits_type::str_len(path);
 
-    if (NULL != path &&
+    if (ss_nullptr_k != path &&
         recls_is_home_start_(path))
     {
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{2}: %s"), path);

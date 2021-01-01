@@ -4,11 +4,11 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     26th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -151,7 +151,7 @@ RECLS_FNDECL(recls_bool_t) Recls_IsDirectoryEntryEmpty(recls_entry_t hEntry)
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_IsDirectoryEntryEmpty(%p)"), hEntry);
 
-    RECLS_ASSERT(NULL != hEntry);
+    RECLS_ASSERT(ss_nullptr_k != hEntry);
     RECLS_ASSERT(Recls_IsFileDirectory(hEntry));
 
     return Recls_IsDirectoryEmpty(hEntry->path.begin);
@@ -192,7 +192,7 @@ RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectoryEntrySize(recls_entry_t hEntry
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_CalcDirectoryEntrySize(%p)"), hEntry);
 
-    RECLS_ASSERT(NULL != hEntry);
+    RECLS_ASSERT(ss_nullptr_k != hEntry);
     RECLS_ASSERT(Recls_IsFileDirectory(hEntry));
 
     return Recls_CalcDirectorySize(hEntry->path.begin);

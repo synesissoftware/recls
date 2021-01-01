@@ -98,7 +98,7 @@ Recls_SearchFtp(
 {
     function_scope_trace("Recls_SearchFtp");
 
-    RECLS_ASSERT(NULL != phSrch);
+    RECLS_ASSERT(ss_nullptr_k != phSrch);
 
     *phSrch = static_cast<hrecls_t>(0);
 
@@ -107,14 +107,14 @@ Recls_SearchFtp(
     // Default the input parameters
 
     // Default the search root
-    if (NULL == searchRoot ||
+    if (ss_nullptr_k == searchRoot ||
         0 == *searchRoot)
     {
         searchRoot = RECLS_LITERAL("/"); // FTP always rooted at ./.
     }
 
     // Default the pattern
-    if (NULL == pattern)
+    if (ss_nullptr_k == pattern)
     {
         pattern = RECLS_LITERAL("*"); // FTP always uses '*' as wildcard
     }

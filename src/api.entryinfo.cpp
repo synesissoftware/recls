@@ -4,11 +4,11 @@
  * Purpose:     recls API functions pertaining to entry info.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -111,7 +111,7 @@ RECLS_FNDECL(size_t) Recls_GetPathProperty(
 {
     function_scope_trace("Recls_GetPathProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return recls_get_string_property_(&fileInfo->path, buffer, cchBuffer);
 }
@@ -124,7 +124,7 @@ RECLS_FNDECL(size_t) Recls_GetSearchRelativePathProperty(
 {
     function_scope_trace("Recls_GetSearchRelativePathProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return recls_get_string_property_(&fileInfo->searchRelativePath, buffer, cchBuffer);
 }
@@ -137,7 +137,7 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryProperty(
 {
     function_scope_trace("Recls_GetDirectoryProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return recls_get_string_property_(&fileInfo->directory, buffer, cchBuffer);
 }
@@ -150,7 +150,7 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryPathProperty(
 {
     function_scope_trace("Recls_GetDirectoryPathProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     struct recls_strptrs_t directoryPath =
     {
@@ -169,7 +169,7 @@ RECLS_FNDECL(size_t) Recls_GetSearchDirectoryProperty(
 {
     function_scope_trace("Recls_GetSearchDirectoryProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return recls_get_string_property_(&fileInfo->searchDirectory, buffer, cchBuffer);
 }
@@ -182,7 +182,7 @@ RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
 {
     function_scope_trace("Recls_GetUNCDriveProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     struct recls_strptrs_t uncDrive =
     {
@@ -206,7 +206,7 @@ RECLS_FNDECL(size_t) Recls_GetFileProperty(
 {
     function_scope_trace("Recls_GetFileProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     struct recls_strptrs_t file =
     {
@@ -225,7 +225,7 @@ RECLS_FNDECL(size_t) Recls_GetFileNameProperty(
 {
     function_scope_trace("Recls_GetFileNameProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return recls_get_string_property_(&fileInfo->fileName, buffer, cchBuffer);
 }
@@ -238,7 +238,7 @@ RECLS_FNDECL(size_t) Recls_GetFileExtProperty(
 {
     function_scope_trace("Recls_GetFileExtProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return recls_get_string_property_(&fileInfo->fileExt, buffer, cchBuffer);
 }
@@ -252,7 +252,7 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryPartProperty(
 {
     function_scope_trace("Recls_GetDirectoryPartProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     size_t  cParts = static_cast<size_t>(fileInfo->directoryParts.end - fileInfo->directoryParts.begin);
 
@@ -272,7 +272,7 @@ RECLS_FNDECL(recls_bool_t) Recls_EntryExists(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_EntryExists");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     if (0 != fileInfo->size ||
         0 != fileInfo->attributes ||
@@ -300,7 +300,7 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileReadOnly(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_IsFileReadOnly");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
     return (fileInfo->attributes & S_IWRITE) == 0;
@@ -315,7 +315,7 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileDirectory(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_IsFileDirectory");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
     return (fileInfo->attributes & S_IFMT) == S_IFDIR;
@@ -330,7 +330,7 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileLink(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_IsFileLink");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
 #if defined(RECLS_PLATFORM_IS_UNIX) && \
     !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
@@ -350,7 +350,7 @@ RECLS_FNDECL(recls_bool_t) Recls_DoesEntryExist(recls_entry_t hEntry)
 {
     function_scope_trace("Recls_DoesEntryExist");
 
-    RECLS_ASSERT(NULL != hEntry);
+    RECLS_ASSERT(ss_nullptr_k != hEntry);
 
     return recls_file_exists_(hEntry->path.begin);
 }
@@ -359,7 +359,7 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileUNC(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_IsFileUNC");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
@@ -383,7 +383,7 @@ RECLS_FNDECL(recls_time_t) Recls_GetCreationTime(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_GetCreationTime");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return fileInfo->GetCreationTime_;
 }
@@ -392,7 +392,7 @@ RECLS_FNDECL(recls_time_t) Recls_GetLastStatusChangeTime(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_GetLastStatusChangeTime");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return fileInfo->GetLastStatusChangeTime_;
 }
@@ -401,7 +401,7 @@ RECLS_FNDECL(recls_filesize_t) Recls_GetSizeProperty(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_GetSizeProperty");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return fileInfo->size;
 }
@@ -410,7 +410,7 @@ RECLS_FNDECL(recls_time_t) Recls_GetModificationTime(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_GetModificationTime");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return fileInfo->modificationTime;
 }
@@ -419,7 +419,7 @@ RECLS_FNDECL(recls_time_t) Recls_GetLastAccessTime(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_GetLastAccessTime");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     return fileInfo->lastAccessTime;
 }

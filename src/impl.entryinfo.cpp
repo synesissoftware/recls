@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the create_entryinfo() function.
  *
  * Created:     31st May 2004
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -170,7 +170,7 @@ recls_entry_t create_entryinfo(
 
     struct recls_entryinfo_t* info = const_cast<struct recls_entryinfo_t*>(Entry_Allocate(cb));
 
-    if (NULL != info)
+    if (ss_nullptr_k != info)
     {
         recls_byte_t* const     pData       =   &info->data[0];
         recls_byte_t* const     pParts      =   pData + 0;
@@ -216,7 +216,7 @@ recls_entry_t create_entryinfo(
 
         // Number of (hard) links; node index & device Id
         if (0 != ((RECLS_F_LINK_COUNT|RECLS_F_NODE_INDEX) & flags) &&
-            NULL != st)
+            ss_nullptr_k != st)
         {
             recls_log_printf_(RECLS_SEVIX_DBG1, RECLS_LITERAL("looking up additional attributes; flags=0x%08x"), flags);
 
@@ -280,13 +280,13 @@ recls_entry_t create_entryinfo(
 #else /* ? OS */
             if (RECLS_F_LINK_COUNT & flags)
             {
-                RECLS_ASSERT(NULL != st);
+                RECLS_ASSERT(ss_nullptr_k != st);
 
                 info->numLinks              =   st->st_nlink;
             }
             if (RECLS_F_NODE_INDEX & flags)
             {
-                RECLS_ASSERT(NULL != st);
+                RECLS_ASSERT(ss_nullptr_k != st);
 
                 info->nodeIndex             =   st->st_ino;
                 info->deviceId              =   st->st_dev;
@@ -312,7 +312,7 @@ recls_entry_t create_entryinfo(
         info->directory.end                 =   fullPath + (entryPathLen - entryFileLen);
         info->fileName.begin                =   info->directory.end;
         info->fileName.end                  =   types::traits_type::str_rchr(info->directory.end, RECLS_LITERAL('.'));
-        if (NULL != info->fileName.end)
+        if (ss_nullptr_k != info->fileName.end)
         {
             info->fileExt.begin             =   info->fileName.end + 1;
             info->fileExt.end               =   info->directory.end +  cchFileName;
@@ -366,7 +366,7 @@ recls_entry_t create_entryinfo(
             }
         }
 
-        if (NULL == st)
+        if (ss_nullptr_k == st)
         {
             recls_time_t        no_time;
             recls_filesize_t    no_size;
@@ -398,7 +398,7 @@ recls_entry_t create_entryinfo(
         }
         else
         {
-            RECLS_ASSERT(NULL != st);
+            RECLS_ASSERT(ss_nullptr_k != st);
 
             // alt name
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
@@ -476,7 +476,7 @@ recls_entry_t create_drive_entryinfo(
 
     struct recls_entryinfo_t* info = const_cast<struct recls_entryinfo_t*>(Entry_Allocate(cb));
 
-    if (NULL != info)
+    if (ss_nullptr_k != info)
     {
         recls_byte_t* const pData       =   &info->data[0];
         recls_byte_t* const pParts      =   pData + 0;
@@ -505,9 +505,9 @@ recls_entry_t create_drive_entryinfo(
         // Number of (hard) links
 #if defined(RECLS_PLATFORM_IS_UNIX)
         if (0 != (RECLS_F_LINK_COUNT & flags) &&
-            NULL != st)
+            ss_nullptr_k != st)
         {
-            RECLS_ASSERT(NULL != st);
+            RECLS_ASSERT(ss_nullptr_k != st);
 
             info->numLinks                  =   st->st_nlink;
         }
@@ -520,9 +520,9 @@ recls_entry_t create_drive_entryinfo(
         // node index and device Id
 #if defined(RECLS_PLATFORM_IS_UNIX)
         if (0 != (RECLS_F_NODE_INDEX & flags) &&
-            NULL != st)
+            ss_nullptr_k != st)
         {
-            RECLS_ASSERT(NULL != st);
+            RECLS_ASSERT(ss_nullptr_k != st);
 
             info->nodeIndex                 =   st->st_ino;
             info->deviceId                  =   st->st_dev;
@@ -557,7 +557,7 @@ recls_entry_t create_drive_entryinfo(
         info->searchDirectory.begin         =   info->path.end;
         info->searchDirectory.end           =   info->path.end;
 
-        if (NULL == st)
+        if (ss_nullptr_k == st)
         {
             recls_time_t        no_time;
             recls_filesize_t    no_size;

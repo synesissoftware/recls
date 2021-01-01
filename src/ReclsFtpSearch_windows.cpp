@@ -93,7 +93,7 @@ inline void* ReclsFtpSearch::operator new(size_t cb, size_t cDirParts, size_t cb
     void* const pv = malloc(cb);
 
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
-    if (NULL == pv)
+    if (ss_nullptr_k == pv)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
@@ -141,10 +141,10 @@ ReclsFtpSearch::FindAndCreate(
 
     // The first thing to do is to open the session and connection
 
-    RECLS_ASSERT(NULL != host);
-    RECLS_ASSERT(NULL != rootDir);
-    RECLS_ASSERT(NULL != pattern);
-    RECLS_ASSERT(NULL != ppsi);
+    RECLS_ASSERT(ss_nullptr_k != host);
+    RECLS_ASSERT(ss_nullptr_k != rootDir);
+    RECLS_ASSERT(ss_nullptr_k != pattern);
+    RECLS_ASSERT(ss_nullptr_k != ppsi);
 
     *ppsi = NULL;
 
@@ -225,7 +225,7 @@ ReclsFtpSearch::FindAndCreate(
                 }
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
 
-                if (NULL == si)
+                if (ss_nullptr_k == si)
                 {
                     rc = RECLS_RC_FAIL;
                 }
@@ -236,7 +236,7 @@ ReclsFtpSearch::FindAndCreate(
 
                     // This is a nasty hack. It's tantamount to ctor & create function, so
                     // should be made more elegant soon.
-                    if (NULL == si->m_dnode)
+                    if (ss_nullptr_k == si->m_dnode)
                     {
                         delete si;
 
@@ -295,10 +295,10 @@ ReclsFtpSearch::ReclsFtpSearch(
 {
     function_scope_trace("ReclsFtpSearch::ReclsFtpSearch");
 
-    RECLS_ASSERT(NULL != hSess);
-    RECLS_ASSERT(NULL != hConn);
-    RECLS_ASSERT(NULL != rootDir);
-    RECLS_ASSERT(NULL != pattern);
+    RECLS_ASSERT(ss_nullptr_k != hSess);
+    RECLS_ASSERT(ss_nullptr_k != hConn);
+    RECLS_ASSERT(ss_nullptr_k != rootDir);
+    RECLS_ASSERT(ss_nullptr_k != pattern);
 
     // Initialise the directory parts.
 
@@ -316,11 +316,11 @@ ReclsFtpSearch::ReclsFtpSearch(
 
 ReclsFtpSearch::~ReclsFtpSearch()
 {
-    if (NULL != m_connection)
+    if (ss_nullptr_k != m_connection)
     {
         ::InternetCloseHandle(m_connection);
     }
-    if (NULL != m_session)
+    if (ss_nullptr_k != m_session)
     {
         ::InternetCloseHandle(m_session);
     }

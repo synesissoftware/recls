@@ -173,7 +173,7 @@ RECLS_FNDECL(void) Recls_LogSeverities_Init(
 ,   int                             debug2Severity
 )
 {
-    RECLS_ASSERT(NULL != severities);
+    RECLS_ASSERT(ss_nullptr_k != severities);
 
     severities->severities[0] = fatalSeverity;
     severities->severities[1] = errorSeverity;
@@ -190,11 +190,11 @@ RECLS_FNDECL(void) Recls_SetApiLogFunction(
 ,   recls_log_severities_t const* severities
 )
 {
-    RECLS_ASSERT((NULL == severities) || (NULL != pfn));
+    RECLS_ASSERT((ss_nullptr_k == severities) || (ss_nullptr_k != pfn));
 
     s_loggingFunction   =   pfn;
     s_flags             =   flags;
-    if (NULL == severities)
+    if (ss_nullptr_k == severities)
     {
         s_severities[0]     =   fatalSeverity_DEFAULT;
         s_severities[1]     =   errorSeverity_DEFAULT;
@@ -245,7 +245,7 @@ recls_log_vprintf_(
 ,   va_list             args
 )
 {
-    RECLS_ASSERT(NULL != fmt);
+    RECLS_ASSERT(ss_nullptr_k != fmt);
 
     RECLS_ASSERT(sevIndex >= 0 && sevIndex < int(STLSOFT_NUM_ELEMENTS(s_severities)));
 
@@ -253,7 +253,7 @@ recls_log_vprintf_(
     int             severity        =   s_severities[sevIndex % STLSOFT_NUM_ELEMENTS(s_severities)];
 
     if (severity >= 0 &&
-        NULL != loggingFunction)
+        ss_nullptr_k != loggingFunction)
     {
         (*loggingFunction)(severity, fmt, args);
     }

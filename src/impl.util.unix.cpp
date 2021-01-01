@@ -4,11 +4,11 @@
  * Purpose:     Windows utility functions for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     31st December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -108,7 +108,7 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
         // and then the next slash or backslash
         recls_char_t const* share = types::traits_type::str_chr(path + 2, '\\');
 
-        if (NULL == share)
+        if (ss_nullptr_k == share)
         {
             goto bad_path_given;
         }
@@ -117,14 +117,14 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
             recls_char_t const* slash   =   types::traits_type::str_chr(share + 1, '\\');
             recls_char_t const* slash_a =   types::traits_type::str_chr(share + 1, '/');
 
-            if (NULL == slash ||
-                (   NULL != slash_a &&
+            if (ss_nullptr_k == slash ||
+                (   ss_nullptr_k != slash_a &&
                     slash_a < slash))
             {
                 slash = slash_a;
             }
 
-            if (NULL == slash)
+            if (ss_nullptr_k == slash)
             {
                 goto bad_path_given;
             }
@@ -168,7 +168,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(
 )
 {
 #ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
-    if (NULL == ::getenv("HOME"))
+    if (ss_nullptr_k == ::getenv("HOME"))
     {
         typedef RECLS_STRING_TEMPLATE_1(char)   string_t;
 
@@ -204,7 +204,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(
         ++cchHomeDir;
     }
 
-    if (NULL == buff)
+    if (ss_nullptr_k == buff)
     {
         return cchHomeDir;
     }

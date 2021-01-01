@@ -4,11 +4,11 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -219,7 +219,7 @@ RECLS_API Recls_SearchFeedback(
 #if defined(RECLS_PLATFORM_IS_WINDOWSx)
     cdecl_progress_fn_translator    translator(pfn, param);
 
-    if (NULL != pfn &&
+    if (ss_nullptr_k != pfn &&
         (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS))
     {
         pfn     =   &cdecl_progress_fn_translator::func;
@@ -227,7 +227,7 @@ RECLS_API Recls_SearchFeedback(
     }
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
 
-    RECLS_ASSERT(NULL != phSrch);
+    RECLS_ASSERT(ss_nullptr_k != phSrch);
 
     *phSrch = static_cast<hrecls_t>(0);
 
@@ -241,12 +241,12 @@ RECLS_API Recls_SearchFeedback(
         types::file_path_buffer_type   home;
 
         // Default the pattern?
-        if (NULL == pattern)
+        if (ss_nullptr_k == pattern)
         {
             // Pre-1.8.6, this always defaulted to '*.*' (or '*')
 
-            if (NULL != searchRoot &&
-                (   NULL != types::traits_type::str_pbrk(searchRoot, RECLS_LITERAL("*?")) ||
+            if (ss_nullptr_k != searchRoot &&
+                (   ss_nullptr_k != types::traits_type::str_pbrk(searchRoot, RECLS_LITERAL("*?")) ||
                     types::traits_type::is_file(searchRoot)))
             {
                 std::swap(searchRoot, pattern);
@@ -259,7 +259,7 @@ RECLS_API Recls_SearchFeedback(
         }
 
         // Default the search root?
-        if (NULL == searchRoot ||
+        if (ss_nullptr_k == searchRoot ||
             0 == *searchRoot)
         {
             if (USE_TILDE_ON_NO_SEARCHROOT & flags)
@@ -279,9 +279,9 @@ RECLS_API Recls_SearchFeedback(
 
                 STLSOFT_SUPPRESS_UNUSED(wc);
 
-                if (NULL == sep &&
+                if (ss_nullptr_k == sep &&
                     types::traits_type::is_path_rooted(pattern) &&
-                    NULL != (wc = types::traits_type::str_pbrk(pattern, RECLS_LITERAL("*?"))))
+                    ss_nullptr_k != (wc = types::traits_type::str_pbrk(pattern, RECLS_LITERAL("*?"))))
                 {
 //                  size_t const    len     =   types::traits_type::str_len(pattern);
                     recls_char_t*   file0   =   types::traits_type::str_rchr(pattern, RECLS_LITERAL('/'));
@@ -290,7 +290,7 @@ RECLS_API Recls_SearchFeedback(
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
                     recls_char_t*   file1   =   types::traits_type::str_rchr(pattern, RECLS_LITERAL('\\'));
 #endif /* platform */
-                    recls_char_t*   file    =   (NULL == file0) ? file1 : (NULL == file1) ? file0 : (file0 < file1) ? file1 : file0;
+                    recls_char_t*   file    =   (ss_nullptr_k == file0) ? file1 : (ss_nullptr_k == file1) ? file0 : (file0 < file1) ? file1 : file0;
 
                     // Not valid if wildcard comes before file, or pattern too long
                     if (wc < file ||
@@ -363,8 +363,8 @@ RECLS_API Recls_SearchFeedback(
         {
             types::path_type path;
 
-            if (NULL != types::traits_type::str_chr(pattern, types::traits_type::path_separator()) ||
-                NULL != types::traits_type::str_chr(pattern, RECLS_LITERAL('|')))
+            if (ss_nullptr_k != types::traits_type::str_chr(pattern, types::traits_type::path_separator()) ||
+                ss_nullptr_k != types::traits_type::str_chr(pattern, RECLS_LITERAL('|')))
             {
                 // Has the separator, so we can proceed. (If any are too long, they will be
                 // caught by recls_is_valid_pattern_()
@@ -460,8 +460,8 @@ RECLS_API Recls_SearchFeedback(
                 size_t const    rootDirLen  =   types::traits_type::str_len(searchRoot);
                 size_t const    patternLen2 =   types::traits_type::str_len(pattern);
 
-                RECLS_ASSERT(NULL != searchRoot);
-                RECLS_ASSERT(NULL != pattern);
+                RECLS_ASSERT(ss_nullptr_k != searchRoot);
+                RECLS_ASSERT(ss_nullptr_k != pattern);
 
                 rc = ReclsFileSearch::FindAndCreate(
                     searchRoot
@@ -507,7 +507,7 @@ RECLS_API Recls_SearchFeedback(
     }
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 
-    RECLS_MESSAGE_ASSERT(RECLS_LITERAL("Must not return a success code with a null search handle"), RECLS_RC_OK != rc || NULL != *phSrch);
+    RECLS_MESSAGE_ASSERT(RECLS_LITERAL("Must not return a success code with a null search handle"), RECLS_RC_OK != rc || ss_nullptr_k != *phSrch);
 
     return rc;
 }
@@ -521,7 +521,7 @@ RECLS_FNDECL(void) Recls_SearchClose(hrecls_t hSrch)
 
     ReclsSearch *si = ReclsSearch::FromHandle(hSrch);
 
-    RECLS_MESSAGE_ASSERT("Search handle is null!", NULL != si);
+    RECLS_MESSAGE_ASSERT("Search handle is null!", ss_nullptr_k != si);
 
     delete si;
 }
@@ -544,12 +544,12 @@ RECLS_API Recls_SearchProcessFeedback(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SearchProcessFeedback(%s, %s, 0x%04x, ..., %p, ..., %p)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags, param, paramProgress);
 
-    RECLS_ASSERT(NULL != pfn);
+    RECLS_ASSERT(ss_nullptr_k != pfn);
 
 #if defined(RECLS_PLATFORM_IS_WINDOWSx)
     cdecl_process_fn_translator translator(pfn, param);
 
-    if (NULL != pfn &&
+    if (ss_nullptr_k != pfn &&
         (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS))
     {
         pfn     =   &cdecl_process_fn_translator::func;
@@ -642,7 +642,7 @@ RECLS_API Recls_GetNext(hrecls_t hSrch)
 
     ReclsSearch *si =   ReclsSearch::FromHandle(hSrch);
 
-    RECLS_MESSAGE_ASSERT("Search handle is null!", NULL != si);
+    RECLS_MESSAGE_ASSERT("Search handle is null!", ss_nullptr_k != si);
 
     return si->GetNext();
 }
@@ -656,8 +656,8 @@ RECLS_API Recls_GetDetails(
 
     ReclsSearch* si = ReclsSearch::FromHandle(hSrch);
 
-    RECLS_MESSAGE_ASSERT("Search handle is null!", NULL != si);
-    RECLS_ASSERT(NULL != pinfo);
+    RECLS_MESSAGE_ASSERT("Search handle is null!", ss_nullptr_k != si);
+    RECLS_ASSERT(ss_nullptr_k != pinfo);
 
     return si->GetDetails(pinfo);
 }
@@ -671,7 +671,7 @@ RECLS_API Recls_GetNextDetails(
 
     ReclsSearch *si =   ReclsSearch::FromHandle(hSrch);
 
-    RECLS_MESSAGE_ASSERT("Search handle is null!", NULL != si);
+    RECLS_MESSAGE_ASSERT("Search handle is null!", ss_nullptr_k != si);
 
     return si->GetNextDetails(pinfo);
 }
@@ -684,7 +684,7 @@ RECLS_FNDECL(void) Recls_CloseDetails(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_CloseDetails");
 
-    RECLS_ASSERT(NULL != fileInfo);
+    RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
     Entry_Release(fileInfo);
 }
@@ -696,7 +696,7 @@ RECLS_API Recls_CopyDetails(
 {
     function_scope_trace("Recls_CopyDetails");
 
-    RECLS_ASSERT(NULL != pinfo);
+    RECLS_ASSERT(ss_nullptr_k != pinfo);
 
     return Entry_Copy(fileInfo, pinfo);
 }

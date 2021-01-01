@@ -4,11 +4,11 @@
  * Purpose:     Windows implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -77,7 +77,7 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
 {
     if (0 < cRoots)
     {
-        RECLS_ASSERT(NULL != roots);
+        RECLS_ASSERT(ss_nullptr_k != roots);
 
         roots[0].name[0] = '/';
         roots[0].name[1] = '\0';

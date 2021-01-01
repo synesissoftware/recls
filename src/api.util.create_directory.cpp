@@ -4,11 +4,11 @@
  * Purpose:     more recls API extended functions.
  *
  * Created:     30th January 2009
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -149,10 +149,10 @@ namespace
     ,   recls_directoryResults_t*   results
     )
     {
-        RECLS_ASSERT(NULL != path);
+        RECLS_ASSERT(ss_nullptr_k != path);
         RECLS_ASSERT('\0' != 0[path]);
         RECLS_ASSERT(types::traits_type::is_path_absolute(path));
-        RECLS_ASSERT(NULL != results);
+        RECLS_ASSERT(ss_nullptr_k != results);
 
         recls_debug1_trace_printf_(RECLS_LITERAL("Recls_CreateDirectory3_(%.*s, ...)"), int(pathLen), stlsoft::c_str_ptr(path));
 
@@ -224,9 +224,9 @@ namespace
     ,   recls_directoryResults_t*   results
     )
     {
-        RECLS_ASSERT(NULL != path);
+        RECLS_ASSERT(ss_nullptr_k != path);
         RECLS_ASSERT('\0' != 0[path]);
-        RECLS_ASSERT(NULL != results);
+        RECLS_ASSERT(ss_nullptr_k != results);
 
         recls_debug1_trace_printf_(RECLS_LITERAL("Recls_CreateDirectory_(%s, ...)"), path);
 
@@ -328,13 +328,13 @@ Recls_CreateDirectory_X_(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_CreateDirectory(%s, ...)"), stlsoft::c_str_ptr(path));
 
-    RECLS_ASSERT(NULL != path);
+    RECLS_ASSERT(ss_nullptr_k != path);
 
     // Initial parameter validation
 
     recls_directoryResults_t results_;
 
-    if (NULL == results)
+    if (ss_nullptr_k == results)
     {
         results = &results_;
     }

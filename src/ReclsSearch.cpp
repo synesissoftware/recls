@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the ReclsFileSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -95,7 +95,7 @@ recls_rc_t ReclsSearch::GetNext()
 {
     function_scope_trace("ReclsSearch::GetNext");
 
-    RECLS_ASSERT(NULL != m_dnode);
+    RECLS_ASSERT(ss_nullptr_k != m_dnode);
 
     m_lastError = m_dnode->GetNext();
 
@@ -113,7 +113,7 @@ recls_rc_t ReclsSearch::GetDetails(recls_entry_t* pinfo)
 {
     function_scope_trace("ReclsSearch::GetDetails");
 
-    RECLS_ASSERT(NULL != m_dnode);
+    RECLS_ASSERT(ss_nullptr_k != m_dnode);
 
     return (m_lastError = m_dnode->GetDetails(pinfo));
 }
@@ -122,7 +122,7 @@ recls_rc_t ReclsSearch::GetNextDetails(recls_entry_t* pinfo)
 {
     function_scope_trace("ReclsSearch::GetNextDetails");
 
-    RECLS_ASSERT(NULL != m_dnode);
+    RECLS_ASSERT(ss_nullptr_k != m_dnode);
 
     m_lastError = m_dnode->GetNextDetails(pinfo);
 

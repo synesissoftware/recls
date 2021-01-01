@@ -4,11 +4,11 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -122,7 +122,7 @@ RECLS_FNDECL(recls_entry_t) Entry_Allocate(size_t cb)
     counted_recls_info_t*   ci  =   static_cast<counted_recls_info_t*>(malloc(cb - sizeof(struct recls_entryinfo_t) + sizeof(struct counted_recls_info_t)));
     recls_entry_t           info;
 
-    if (NULL == ci)
+    if (ss_nullptr_k == ci)
     {
         info = NULL;
     }
@@ -141,7 +141,7 @@ RECLS_FNDECL(recls_entry_t) Entry_Allocate(size_t cb)
 
 RECLS_FNDECL(void) Entry_Release(recls_entry_t fileInfo)
 {
-    if (NULL != fileInfo)
+    if (ss_nullptr_k != fileInfo)
     {
         counted_recls_info_t* pci = counted_info_from_info(fileInfo);
 
@@ -163,9 +163,9 @@ RECLS_API Entry_Copy(
 ,   recls_entry_t*  pinfo
 )
 {
-    RECLS_ASSERT(NULL != pinfo);
+    RECLS_ASSERT(ss_nullptr_k != pinfo);
 
-    if (NULL != fileInfo)
+    if (ss_nullptr_k != fileInfo)
     {
         counted_recls_info_t* pci = counted_info_from_info(fileInfo);
 
@@ -187,8 +187,8 @@ RECLS_FNDECL(void) Entry_BlockCount(
 ,   rc_atomic_t* pcShared
 )
 {
-    RECLS_ASSERT(NULL != pcCreated);
-    RECLS_ASSERT(NULL != pcShared);
+    RECLS_ASSERT(ss_nullptr_k != pcCreated);
+    RECLS_ASSERT(ss_nullptr_k != pcShared);
 
     *pcCreated  =   RC_ReadValue(&s_createdInfoBlocks);
     *pcShared   =   RC_ReadValue(&s_sharedInfoBlocks);
