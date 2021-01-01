@@ -143,7 +143,7 @@ recls_rc_t Recls_Stat_X_(
         {
             types::traits_type::error_type const e = types::traits_type::get_last_error();
 
-#ifndef _DEBUG
+#ifdef RECLS_STLSOFT_1_11_OR_LATER
             if (types::traits_type::is_memory_error_code(e))
             {
                 return RECLS_RC_OUT_OF_MEMORY;
