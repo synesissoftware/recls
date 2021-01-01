@@ -146,10 +146,10 @@ ReclsFtpSearch::FindAndCreate(
     RECLS_ASSERT(ss_nullptr_k != pattern);
     RECLS_ASSERT(ss_nullptr_k != ppsi);
 
-    *ppsi = NULL;
+    *ppsi = ss_nullptr_k;
 
     recls_rc_t          rc;
-    types::session_type session(RECLS_LITERAL("recls-enumerator"), INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
+    types::session_type session(RECLS_LITERAL("recls-enumerator"), INTERNET_OPEN_TYPE_DIRECT, ss_nullptr_k, ss_nullptr_k, 0);
 
     // The session and connection are done in an exception-free manner just to
     // avoid CRT linking issues. It's not the best way to write software in
@@ -183,7 +183,7 @@ ReclsFtpSearch::FindAndCreate(
         else
         {
             ReclsFtpSearch*     si;
-            size_t              cchFullPath = types::traits_type::get_full_path_name(connection, rootDir, 0, NULL);
+            size_t              cchFullPath = types::traits_type::get_full_path_name(connection, rootDir, 0, ss_nullptr_k);
             types::buffer_type  fullPath(1 + cchFullPath + 1); // +1 (nul) +1 (dir-end)
 
             if (0 == cchFullPath)
@@ -221,7 +221,7 @@ ReclsFtpSearch::FindAndCreate(
                 {
                     recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
-                    si = NULL;
+                    si = ss_nullptr_k;
                 }
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
 
@@ -240,7 +240,7 @@ ReclsFtpSearch::FindAndCreate(
                     {
                         delete si;
 
-//                      si = NULL;
+//                      si = ss_nullptr_k;
 
                         recls_debug2_trace_printf_(RECLS_LITERAL("No more data"));
 

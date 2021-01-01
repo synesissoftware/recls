@@ -200,7 +200,7 @@ RECLS_API Recls_Search(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_Search(%s, %s, %08x, ...)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags);
 
-    return Recls_SearchFeedback(searchRoot, pattern, flags, NULL, NULL, phSrch);
+    return Recls_SearchFeedback(searchRoot, pattern, flags, ss_nullptr_k, ss_nullptr_k, phSrch);
 }
 
 RECLS_API Recls_SearchFeedback(
@@ -275,7 +275,7 @@ RECLS_API Recls_SearchFeedback(
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
                 recls_char_t const* sep =   types::traits_type::str_pbrk(pattern, RECLS_LITERAL("|;"));
 #endif /* platform */
-                recls_char_t const* wc  =   NULL;
+                recls_char_t const* wc  =   ss_nullptr_k;
 
                 STLSOFT_SUPPRESS_UNUSED(wc);
 
@@ -286,7 +286,7 @@ RECLS_API Recls_SearchFeedback(
 //                  size_t const    len     =   types::traits_type::str_len(pattern);
                     recls_char_t*   file0   =   types::traits_type::str_rchr(pattern, RECLS_LITERAL('/'));
 #if defined(RECLS_PLATFORM_IS_UNIX)
-                    recls_char_t*   file1   =   NULL;
+                    recls_char_t*   file1   =   ss_nullptr_k;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
                     recls_char_t*   file1   =   types::traits_type::str_rchr(pattern, RECLS_LITERAL('\\'));
 #endif /* platform */
@@ -633,7 +633,7 @@ RECLS_API Recls_SearchProcess(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SearchProcess(%s, %s, 0x%04x, ..., %p)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags, param);
 
-    return Recls_SearchProcessFeedback(searchRoot, pattern, flags, pfn, param, NULL, NULL);
+    return Recls_SearchProcessFeedback(searchRoot, pattern, flags, pfn, param, ss_nullptr_k, ss_nullptr_k);
 }
 
 RECLS_API Recls_GetNext(hrecls_t hSrch)

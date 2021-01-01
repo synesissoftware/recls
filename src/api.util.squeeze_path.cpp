@@ -123,7 +123,7 @@ Recls_SqueezePath_X_(
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SqueezePath(%s, ..., %u)"), stlsoft::c_str_ptr(path), unsigned(cchResult));
 
-    if (NULL == result)
+    if (ss_nullptr_k == result)
     {
         size_t n = platformstl::path_squeeze(path, result, cchResult);
 

@@ -231,7 +231,7 @@ ReclsFileSearch::FindAndCreate_(
 #endif /* 0 */
 #endif /* UNIX */
 
-    *ppsi = NULL;
+    *ppsi = ss_nullptr_k;
 
     recls_rc_t rc = RECLS_RC_OK;
 
@@ -279,7 +279,7 @@ ReclsFileSearch::FindAndCreate_(
         {
             recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
-            si = NULL;
+            si = ss_nullptr_k;
         }
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
 

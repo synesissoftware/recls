@@ -247,7 +247,7 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
     {
         // This will cause RECLS_F_OUT_OF_MEMORY.
         // TODO: Fix it!
-        return NULL;
+        return ss_nullptr_k;
     }
     else
     {
@@ -293,8 +293,8 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 ,   hrecls_progress_fn_t        pfn
 ,   recls_process_fn_param_t    param
 )
-    : m_current(NULL)
-    , m_dnode(NULL)
+    : m_current(ss_nullptr_k)
+    , m_dnode(ss_nullptr_k)
     , m_flags(flags)
     , m_rootDirLen(rootDirLen)
 # ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
@@ -372,7 +372,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 
         *prc = RECLS_RC_ACCESS_DENIED;
 
-        node = NULL;
+        node = ss_nullptr_k;
     }
 #  endif /* OS */
 # endif /* _STLSOFT_VER */
@@ -382,7 +382,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 
         *prc = RECLS_RC_OUT_OF_MEMORY;
 
-        node = NULL;
+        node = ss_nullptr_k;
     }
 # if defined(_WINSTL_VER) && \
      _WINSTL_VER >= 0x010a05ff
@@ -396,7 +396,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 
         *prc = RECLS_RC_ACCESS_DENIED;
 
-        node = NULL;
+        node = ss_nullptr_k;
     }
 # endif
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -410,7 +410,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
         {
             delete node;
 
-            node = NULL;
+            node = ss_nullptr_k;
         }
 
         *prc = rc;
@@ -465,9 +465,9 @@ ReclsFileSearchDirectoryNode::Stat(
     if (types::traits_type::is_root_designator(path))
     {
 # if 1
-        *phEntry = create_drive_entryinfo(path, pathLen, flags, NULL);
+        *phEntry = create_drive_entryinfo(path, pathLen, flags, ss_nullptr_k);
 # else /* ? 0 */
-        *phEntry = create_entryinfo(0, NULL, 0, path, pathLen, path + pathLen, 0, flags, NULL);
+        *phEntry = create_entryinfo(0, ss_nullptr_k, 0, path, pathLen, path + pathLen, 0, flags, ss_nullptr_k);
 # endif /* 0 */
 
         return (ss_nullptr_k == *phEntry) ? RECLS_RC_OUT_OF_MEMORY : RECLS_RC_OK;
@@ -501,7 +501,7 @@ ReclsFileSearchDirectoryNode::Stat(
         , path
         );
 
-        pst = NULL;
+        pst = ss_nullptr_k;
     }
 
     recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 10"));
@@ -589,12 +589,12 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
             stdcall_progress_fn_t   pfn_stdcall =   (stdcall_progress_fn_t)m_pfn;
 
-            (*pfn_stdcall)(m_searchDir.data(), m_searchDir.size(), m_param, NULL, 0);
+            (*pfn_stdcall)(m_searchDir.data(), m_searchDir.size(), m_param, ss_nullptr_k, 0);
         }
         else
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
         {
-            if (0 == (*m_pfn)(m_searchDir.data(), m_searchDir.size(), m_param, NULL, 0))
+            if (0 == (*m_pfn)(m_searchDir.data(), m_searchDir.size(), m_param, ss_nullptr_k, 0))
             {
                 return RECLS_RC_USER_CANCELLED_SEARCH;
             }
@@ -764,7 +764,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
 
                 delete m_dnode;
 
-                m_dnode = NULL;
+                m_dnode = ss_nullptr_k;
             }
         }
 

@@ -70,7 +70,7 @@ namespace impl
  */
 
 ReclsSearch::ReclsSearch()
-    : m_dnode(NULL)
+    : m_dnode(ss_nullptr_k)
     , m_lastError(RECLS_RC_OK)
 {}
 
@@ -103,7 +103,7 @@ recls_rc_t ReclsSearch::GetNext()
     {
         delete m_dnode;
 
-        m_dnode = NULL;
+        m_dnode = ss_nullptr_k;
     }
 
     return m_lastError;
@@ -130,7 +130,7 @@ recls_rc_t ReclsSearch::GetNextDetails(recls_entry_t* pinfo)
     {
         delete m_dnode;
 
-        m_dnode = NULL;
+        m_dnode = ss_nullptr_k;
     }
 
     return m_lastError;

@@ -129,7 +129,7 @@ namespace
 
     static recls_log_pfn_t  s_loggingFunction   =   default_debug_log_fn_;
 #else /* ? OS */
-    static recls_log_pfn_t  s_loggingFunction   =   NULL;
+    static recls_log_pfn_t  s_loggingFunction   =   ss_nullptr_k;
 #endif /* OS */
     static int              s_severities[7]     =
     {

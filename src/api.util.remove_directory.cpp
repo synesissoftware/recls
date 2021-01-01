@@ -276,7 +276,7 @@ namespace
                 recls_rc_t              rc;
 
                 rc = Recls_SearchProcess(   path
-                                        ,   NULL
+                                        ,   ss_nullptr_k
                                         ,   RECLS_F_FILES | RECLS_F_RECURSIVE | RECLS_F_DETAILS_LATER
                                         ,   file_removal_fn_
                                         ,   &info
@@ -299,7 +299,7 @@ namespace
                 recls_rc_t                  rc;
 
                 rc = Recls_SearchProcess(   path
-                                        ,   NULL
+                                        ,   ss_nullptr_k
                                         ,   RECLS_F_DIRECTORIES | RECLS_F_RECURSIVE | RECLS_F_DIRECTORY_PARTS
                                         ,   subdirectory_search_fn_
                                         ,   &info

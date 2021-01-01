@@ -316,8 +316,8 @@ ReclsFtpSearchDirectoryNode::ReclsFtpSearchDirectoryNode(
 ,   size_t              patternLen
 )
     : m_connection(connection)
-    , m_current(NULL)
-    , m_dnode(NULL)
+    , m_current(ss_nullptr_k)
+    , m_dnode(ss_nullptr_k)
     , m_flags(flags)
     , m_rootDir()
     , m_pattern()
@@ -346,7 +346,7 @@ ReclsFtpSearchDirectoryNode::ReclsFtpSearchDirectoryNode(
             temp = string_type(&temp[0], &temp[temp.length() - 1]);
         }
 
-        size_t          cch = types::traits_type::get_full_path_name(m_connection, stlsoft::c_str_ptr(temp), 0, NULL);
+        size_t          cch = types::traits_type::get_full_path_name(m_connection, stlsoft::c_str_ptr(temp), 0, ss_nullptr_k);
         string_type     temp2(cch, ' ');
         recls_char_t*   file;
 
@@ -400,7 +400,7 @@ ReclsFtpSearchDirectoryNode::FindAndCreate(
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
-        node = NULL;
+        node = ss_nullptr_k;
     }
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
 
@@ -413,7 +413,7 @@ ReclsFtpSearchDirectoryNode::FindAndCreate(
         {
             delete node;
 
-            node = NULL;
+            node = ss_nullptr_k;
         }
     }
 
@@ -565,7 +565,7 @@ ReclsFtpSearchDirectoryNode::GetNext()
         else
         {
             // No more left in the files sequence, so delete m_current
-            m_current = NULL;
+            m_current = ss_nullptr_k;
 
             rc = RECLS_RC_NO_MORE_DATA;
         }
@@ -586,7 +586,7 @@ ReclsFtpSearchDirectoryNode::GetNext()
 
                 delete m_dnode;
 
-                m_dnode = NULL;
+                m_dnode = ss_nullptr_k;
             }
         }
 
@@ -658,7 +658,7 @@ ReclsFtpSearchDirectoryNode::GetDetails(
 
 #if RECLS_TRACE_LEVEL >= 2
         {
-            size_t      cch =   Recls_GetPathProperty(m_current, NULL, 0);
+            size_t      cch =   Recls_GetPathProperty(m_current, ss_nullptr_k, 0);
             string_type buffer(cch, ' ');
 
             Recls_GetPathProperty(m_current, &buffer[0], 1 + buffer.length());

@@ -96,7 +96,7 @@ volatile rc_atomic_t s_sharedInfoBlocks  =   rc_atomic_init(0);
 
 inline struct counted_recls_info_t* counted_info_from_info(recls_entry_t i)
 {
-    RECLS_ASSERT(i != NULL);
+    RECLS_ASSERT(i != ss_nullptr_k);
 
     struct recls_entryinfo_t*   i2  =   const_cast<struct recls_entryinfo_t*>(i);
     recls_byte_t*               i3  =   reinterpret_cast<recls_byte_t*>(i2);
@@ -107,7 +107,7 @@ inline struct counted_recls_info_t* counted_info_from_info(recls_entry_t i)
 
 inline recls_entry_t info_from_counted_info(struct counted_recls_info_t* ci)
 {
-    RECLS_ASSERT(ci != NULL);
+    RECLS_ASSERT(ci != ss_nullptr_k);
 
     return &ci->info;
 }
@@ -124,7 +124,7 @@ RECLS_FNDECL(recls_entry_t) Entry_Allocate(size_t cb)
 
     if (ss_nullptr_k == ci)
     {
-        info = NULL;
+        info = ss_nullptr_k;
     }
     else
     {

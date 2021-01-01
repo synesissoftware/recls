@@ -254,7 +254,7 @@ recls_entry_t create_entryinfo(
             }
 # else /*? RECLS_USE_WINSTL_LINK_FUNCTIONS_*/
 
-            HANDLE hFile = ::CreateFile(entryPath, 0, 0, NULL, OPEN_EXISTING, 0, NULL);
+            HANDLE hFile = ::CreateFile(entryPath, 0, 0, ss_nullptr_k, OPEN_EXISTING, 0, ss_nullptr_k);
 
             if (INVALID_HANDLE_VALUE != hFile)
             {
@@ -551,8 +551,8 @@ recls_entry_t create_drive_entryinfo(
         info->fileExt.end                   =   info->path.end;
 
         // determine the directory parts
-        info->directoryParts.begin          =   NULL;
-        info->directoryParts.end            =   NULL;
+        info->directoryParts.begin          =   ss_nullptr_k;
+        info->directoryParts.end            =   ss_nullptr_k;
 
         info->searchDirectory.begin         =   info->path.end;
         info->searchDirectory.end           =   info->path.end;

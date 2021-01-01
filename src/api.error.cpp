@@ -232,7 +232,7 @@ RECLS_FNDECL(size_t) Recls_GetErrorString(  recls_rc_t      rc
     function_scope_trace("Recls_GetErrorString");
 
     size_t              cchError;
-    recls_char_t const* s = ::recls::impl::lookup_error_string_(rc, NULL, &cchError);
+    recls_char_t const* s = ::recls::impl::lookup_error_string_(rc, ss_nullptr_k, &cchError);
 
     if (ss_nullptr_k == buffer)
     {
@@ -257,7 +257,7 @@ RECLS_FNDECL(recls_char_t const*) Recls_GetSearchCodeString(recls_rc_t rc)
 {
     function_scope_trace("Recls_GetLastErrorString");
 
-    return impl::lookup_error_string_(rc, NULL, NULL);
+    return impl::lookup_error_string_(rc, ss_nullptr_k, ss_nullptr_k);
 }
 
 RECLS_FNDECL(size_t) Recls_GetSearchCodeStringLength(recls_rc_t rc)
@@ -266,7 +266,7 @@ RECLS_FNDECL(size_t) Recls_GetSearchCodeStringLength(recls_rc_t rc)
 
     size_t len;
 
-    return (impl::lookup_error_string_(rc, NULL, &len), len);
+    return (impl::lookup_error_string_(rc, ss_nullptr_k, &len), len);
 }
 
 RECLS_FNDECL(int) Recls_GetErrno(
@@ -277,7 +277,7 @@ RECLS_FNDECL(int) Recls_GetErrno(
 
     int e = 0;
 
-    return (impl::lookup_error_string_(rc, &e, NULL), e);
+    return (impl::lookup_error_string_(rc, &e, ss_nullptr_k), e);
 }
 
 /* /////////////////////////////////////////////////////////////////////////
