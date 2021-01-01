@@ -62,8 +62,8 @@ int main()
         /* and display each entry's search-relative path */
         { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
         {
-            recls::entry    entry           =   *i;
-            recls::string_t relativePath    =   entry.get_search_relative_path();
+            recls::entry        entry           =   *i;
+            recls::string_t     relativePath    =   entry.get_search_relative_path();
 
             std::cout << relativePath << std::endl;
         }}
