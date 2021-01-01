@@ -34,6 +34,7 @@
 #include <recls/recls.h>
 
 #include "incl.inetstl.h"
+#include "incl.platformstl.h"
 #include "impl.string.hpp"
 
 #include <stlsoft/memory/auto_buffer.hpp>

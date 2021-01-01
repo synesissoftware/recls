@@ -339,13 +339,18 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 ,   recls_rc_t*                 prc
 )
 {
-    ReclsFileSearchDirectoryNode* node;
+    function_scope_trace("ReclsFileSearchDirectoryNode::FindAndCreate");
 
+    // pre-conditions
+
+    RECLS_ASSERT(ss_nullptr_k != searchDir);
     RECLS_ASSERT(rootDirLen <= types::traits_type::str_len(searchDir));
+
     RECLS_ASSERT(patternLen == types::traits_type::str_len(pattern));
     RECLS_ASSERT(ss_nullptr_k != prc);
 
-    function_scope_trace("ReclsFileSearchDirectoryNode::FindAndCreate");
+
+    ReclsFileSearchDirectoryNode* node;
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     try

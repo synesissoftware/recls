@@ -124,8 +124,8 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
 /* static */ recls_rc_t
 ReclsFileSearch::FindAndCreate(
-    recls_char_t const*         rootDir
-,   size_t                   /* rootDirLen */
+    recls_char_t const*         searchDir
+,   size_t                      searchDirLen
 ,   recls_char_t const*         pattern
 ,   size_t                      patternLen
 ,   recls_uint32_t              flags
@@ -134,62 +134,24 @@ ReclsFileSearch::FindAndCreate(
 ,   ReclsFileSearch**           ppsi
 )
 {
-    RECLS_ASSERT(ss_nullptr_k != rootDir);
-    RECLS_ASSERT(ss_nullptr_k != pattern);
-    RECLS_ASSERT(ss_nullptr_k != ppsi);
-
     function_scope_trace("ReclsFileSearch::FindAndCreate");
 
-    recls_debug1_trace_printf_(RECLS_LITERAL("ReclsFileSearch::FindAndCreate(%s, %s, 0x%08x)"), rootDir, pattern, flags);
 
-    types::file_path_buffer_type    fullPath;
-    size_t                          cchFullPath;
+    // pre-conditions
 
-    cchFullPath = types::traits_type::get_full_path_name(rootDir, fullPath.size(), &fullPath[0]);
-    if (0 == cchFullPath)
-    {
-        recls_debug0_trace_printf_(RECLS_LITERAL("could not retrieve full path of given search directory '%s'"), rootDir);
+    RECLS_ASSERT(ss_nullptr_k != searchDir);
+    RECLS_ASSERT(searchDirLen == types::traits_type::str_len(searchDir));
+    RECLS_ASSERT(types::traits_type::is_path_absolute(searchDir, searchDirLen));
 
-        return RECLS_RC_INVALID_NAME;
-    }
-    else
-    {
-        recls_debug2_trace_printf_(RECLS_LITERAL("retrieved full path of given search directory '%s' => '%s'"), rootDir, fullPath.data());
-    }
-    if ('"' == fullPath[0])
-    {
-        RECLS_ASSERT('"' == fullPath[cchFullPath - 1]);
+    RECLS_ASSERT(ss_nullptr_k != pattern);
+    RECLS_ASSERT(patternLen == types::traits_type::str_len(pattern));
 
-        memmove(&fullPath[0], &fullPath[1], sizeof(recls_char_t) * (cchFullPath - 1));
-        cchFullPath -= 2;
-        fullPath[cchFullPath] = '\0';
+    RECLS_ASSERT(ss_nullptr_k != ppsi);
 
-    }
 
-    if (types::traits_type::has_dir_end(&fullPath[0]))
-    {
-        cchFullPath = types::traits_type::str_len(types::traits_type::remove_dir_end(&fullPath[0]));
-    }
+    recls_debug1_trace_printf_(RECLS_LITERAL("ReclsFileSearch::FindAndCreate(%s, %s, 0x%08x)"), searchDir, pattern, flags);
 
-#ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
-    // On Windows systems that are being used to test the UNIX build, we will
-    // translate all the backslashes in UNIX-like paths to forward slashes.
-    {
-        recls_char_t* const dir0    =   const_cast<recls_char_t *>(recls_find_directory_0_(&fullPath[0]));
-        recls_char_t* const end     =   &fullPath[0] + cchFullPath;
-
-        std::replace(dir0, end, '\\', types::traits_type::path_name_separator());
-    }
-
-    RECLS_STRING_TEMPLATE_1(recls_char_t)   pattern_(pattern);
-
-    std::replace(pattern_.begin(), pattern_.end(), ';', ':');
-
-    pattern = stlsoft::c_str_ptr(pattern_);
-
-#endif /* RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
-
-    return FindAndCreate_(fullPath.data(), cchFullPath, pattern, patternLen, flags, pfn, param, ppsi);
+    return FindAndCreate_(searchDir, searchDirLen, pattern, patternLen, flags, pfn, param, ppsi);
 }
 
 /* static */ recls_rc_t
@@ -261,7 +223,7 @@ ReclsFileSearch::FindAndCreate_(
 
         // Count the directory parts. This is always done for the ReclsFileSearch class, since it
         // uses them to recurse.
-        recls_char_t const*         dir0       =   recls_find_directory_0_(rootDir);
+        recls_char_t const*         dir0        =   recls_find_directory_0_(rootDir);
         recls_char_t const* const   end         =   rootDir + rootDirLen;
         size_t const                cDirParts   =   types::count_dir_parts(dir0, end);
 
@@ -373,7 +335,7 @@ ReclsFileSearch::ReclsFileSearch(
     m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(m_flags, rootDir, m_rootDirLen, pattern, patternLen, pfn, param, prc);
 }
 
-ReclsFileSearch::~ReclsFileSearch()
+ReclsFileSearch::~ReclsFileSearch() STLSOFT_NOEXCEPT
 {
     function_scope_trace("ReclsFileSearch::~ReclsFileSearch");
 }

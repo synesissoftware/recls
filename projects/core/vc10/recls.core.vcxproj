@@ -278,6 +278,7 @@ IF NOT EXIST "$(SolutionDir)lib" (
     <ClCompile Include="..\..\..\src\api.util.remove_directory.cpp" />
     <ClCompile Include="..\..\..\src\api.util.squeeze_path.cpp" />
     <ClCompile Include="..\..\..\src\api.util.stat.cpp" />
+    <ClCompile Include="..\..\..\src\impl.api.search.cpp" />
     <ClCompile Include="..\..\..\src\impl.entryinfo.cpp" />
     <ClCompile Include="..\..\..\src\impl.fileinfo.cpp" />
     <ClCompile Include="..\..\..\src\impl.snprintf.cpp" />
@@ -334,6 +335,7 @@ IF NOT EXIST "$(SolutionDir)lib" (
     <ClInclude Include="..\..\..\include\recls\internal\retcodes.h" />
     <ClInclude Include="..\..\..\include\recls\unix.h" />
     <ClInclude Include="..\..\..\include\recls\windows.h" />
+    <ClInclude Include="..\..\..\src\impl.api.search.h" />
     <ClInclude Include="..\..\..\src\impl.atomic.h" />
     <ClInclude Include="..\..\..\src\impl.constants.hpp" />
     <ClInclude Include="..\..\..\src\impl.entryfunctions.h" />

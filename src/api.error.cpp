@@ -146,6 +146,8 @@ lookup_error_string_(
 #ifdef RECLS_PLATFORM_IS_WINDOWS
     RC_STR_DECL(RECLS_RC_SHORT_NAME_NOT_AVAILABLE,  EFAIL,          "could not obtain short name");
 #endif
+    RC_STR_DECL(RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS,   EINVAL,         "the search-directory parameter cannot contain path separator or wildcard characters");
+    RC_STR_DECL(RECLS_RC_ROOTED_PATHS_IN_PATTERNS,              EINVAL,         "a rooted pattern must not be specified with other patterns");
 
 
     static const StringEntry* entries[] =
@@ -177,6 +179,8 @@ lookup_error_string_(
 #ifdef RECLS_PLATFORM_IS_WINDOWS
         RC_STR_ENTRY(RECLS_RC_SHORT_NAME_NOT_AVAILABLE),
 #endif
+        RC_STR_ENTRY(RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS),
+        RC_STR_ENTRY(RECLS_RC_ROOTED_PATHS_IN_PATTERNS),
     };
     int                         e_;     // Null object pattern
     size_t                      len_;   // Null object pattern
@@ -208,6 +212,8 @@ lookup_error_string_(
 
 #if !defined(RECLS_NO_NAMESPACE)
 } /* namespace impl */
+
+using ::recls::impl::ReclsSearch;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -218,7 +224,7 @@ RECLS_API Recls_GetLastError(hrecls_t hSrch)
 {
     function_scope_trace("Recls_GetLastError");
 
-    ::recls::impl::ReclsSearch* si = ::recls::impl::ReclsSearch::FromHandle(hSrch);
+    ReclsSearch* const si = ReclsSearch::FromHandle(hSrch);
 
     RECLS_MESSAGE_ASSERT("Search handle is null!", ss_nullptr_k != si);
 

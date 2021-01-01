@@ -59,7 +59,7 @@ static int main_(int /* argc */, char** argv)
 
         recls::cpp::root_sequence   roots;
 
-        std::cout << "Roots:" << std::endl;
+        std::cout << "\n" << "Roots:" << std::endl;
         { for (root_sequence::const_iterator i = roots.begin(), e = roots.end(); i != e; ++i)
         {
             std::cout << "    " << *i << std::endl;
@@ -68,10 +68,10 @@ static int main_(int /* argc */, char** argv)
 
     { // stat()
 
-        std::cout << "stat:" << std::endl;
+        std::cout << "\n" << "stat:" << std::endl;
 
         {
-            std::cout << "stat(\".\"):" << std::endl;
+            std::cout << "  " << "stat(\".\"):" << std::endl;
 
             recls::cpp::entry e = recls::cpp::stat(".");
 
@@ -79,7 +79,7 @@ static int main_(int /* argc */, char** argv)
         }
 
         {
-            std::cout << "stat(argv[0]):" << std::endl;
+            std::cout << "  " << "stat(argv[0]):" << std::endl;
 
             recls::cpp::entry e = recls::cpp::stat(argv[0], recls::DIRECTORY_PARTS);
 
@@ -87,7 +87,7 @@ static int main_(int /* argc */, char** argv)
         }
 
         {
-            std::cout << "stat(\"~\"):" << std::endl;
+            std::cout << "  " << "stat(\"~\"):" << std::endl;
 
             recls::cpp::entry e = recls::cpp::stat("~");
 
@@ -95,7 +95,7 @@ static int main_(int /* argc */, char** argv)
         }
 
         {
-            std::cout << "stat(\"/\"):" << std::endl;
+            std::cout << "  " << "stat(\"/\"):" << std::endl;
 
             recls::cpp::entry e = recls::cpp::stat("/");
 
@@ -105,6 +105,8 @@ static int main_(int /* argc */, char** argv)
 
     { // search_sequence
 
+        std::cout << "\n" << "search (from '..' for all files):" << std::endl;
+
         recls::cpp::search_sequence files("..", Recls_GetWildcardsAll(), recls::FILES | recls::RECURSIVE | recls::DIRECTORY_PARTS);
 
         { for (search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
@@ -113,8 +115,53 @@ static int main_(int /* argc */, char** argv)
         }}
     }
 
-#ifdef RECLS_API_FTP
     { // search_sequence
+
+        std::string first_path;
+
+        std::cout << "\n" << "custom searches, to illustrate flexibility in API:" << std::endl;
+
+        std::cout << "  " << "search (from '~' for all files and break after first file):" << std::endl;
+
+        recls::cpp::search_sequence files0("~/", Recls_GetWildcardsAll(), recls::FILES | recls::RECURSIVE | recls::DIRECTORY_PARTS);
+
+        { for (search_sequence::const_iterator i = files0.begin(), e = files0.end(); i != e; )
+        {
+            display_entry(*i);
+
+            recls::entry first(*i);
+
+            first_path.assign(first.get_path().c_str());
+
+            break;
+        }}
+
+        {
+            std::cout << "  " << "search using first path as patterns (and null as search-root):" << std::endl;
+
+            recls::cpp::search_sequence files(NULL, first_path, recls::FILES | recls::RECURSIVE | recls::DIRECTORY_PARTS);
+
+            { for (search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
+            {
+                display_entry(*i);
+            }}
+        }
+
+        {
+            std::cout << "  " << "search using first path as patterns (and '~' as search-root):" << std::endl;
+
+            recls::cpp::search_sequence files("~", first_path, recls::FILES | recls::RECURSIVE | recls::DIRECTORY_PARTS);
+
+            { for (search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
+            {
+                display_entry(*i);
+            }}
+        }
+    }
+
+#ifdef RECLS_API_FTP
+
+    { // ftp_search_sequence
 
         recls::cpp::ftp_search_sequence files("ftp.digitalmars.com", "", "", "/", Recls_GetWildcardsAll(), recls::FILES | recls::RECURSIVE | recls::DIRECTORY_PARTS);
 

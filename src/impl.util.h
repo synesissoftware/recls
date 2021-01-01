@@ -116,6 +116,7 @@ RECLS_FNDECL(size_t) recls_get_string_property_(
 /* impl.fileutil.h */
 RECLS_API recls_is_valid_pattern_(
     recls_char_t const* pattern
+,   size_t              patternLen
 ,   recls_uint32_t      flags
 ,   size_t              maxPathCompLen
 );

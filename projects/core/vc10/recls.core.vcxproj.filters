@@ -113,6 +113,9 @@
     <ClCompile Include="..\..\..\src\api.util.stat.cpp">
       <Filter>Implementation Files\src\: common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.api.search.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\src\impl.entryinfo.cpp">
       <Filter>Implementation Files\src\: common</Filter>
     </ClCompile>
@@ -147,6 +150,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\include\recls\windows.h">
       <Filter>Header Files\include\recls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.api.search.h">
+      <Filter>Header Files\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\impl.atomic.h">
       <Filter>Header Files\src</Filter>

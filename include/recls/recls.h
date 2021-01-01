@@ -4,11 +4,11 @@
  * Purpose:     Main header file for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     22nd December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      21
-# define RECLS_VER_RECLS_H_RECLS_REVISION   10
-# define RECLS_VER_RECLS_H_RECLS_EDIT       130
+# define RECLS_VER_RECLS_H_RECLS_REVISION   11
+# define RECLS_VER_RECLS_H_RECLS_EDIT       131
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -927,20 +927,6 @@ RECLS_API Recls_SearchProcessFeedback(
 ,   /* [in] */ hrecls_progress_fn_t         pfnProgress
 ,   /* [out] */ recls_process_fn_param_t    paramProgress
 );
-
-#if 0
-/* New Recls1 API. */
-RECLS_API Recls1_FileSystem_StartSearch(
-    /* [in] */ recls_char_t const*          searchRoot
-,   /* [in] */ recls_char_t const*          pattern
-,   /* [in] */ recls_uint32_t               flags
-,   /* [in] */ Recls1_progress_fn_t         pfnProgress
-,   /* [in] */ Recls1_process_fn_param_t    paramProgress
-,   /* [in] */ Recls1_filter_fn_t           pfnFilter
-,   /* [in] */ Recls1_filter_fn_param_t     paramFilter
-,   /* [out] */ hrecls_t*                   phSrch
-);
-#endif /* 0 */
 
 /** Searches a given directory for matching files of the given pattern, and processes them according to the given process function
  *

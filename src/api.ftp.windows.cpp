@@ -126,7 +126,7 @@ Recls_SearchFtp(
     }
 
     // Validate the pattern
-    rc = recls_is_valid_pattern_(pattern, flags, _MAX_PATH);
+    rc = recls_is_valid_pattern_(pattern, stlsoft::c_str_len(pattern), flags, _MAX_PATH);
 
     if (RECLS_SUCCEEDED(rc))
     {

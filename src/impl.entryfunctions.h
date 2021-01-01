@@ -69,23 +69,27 @@ namespace impl
  */
 
 /** Allocates an entry of the given size. */
-RECLS_FNDECL(recls_entry_t) Entry_Allocate(
+RECLS_FNDECL(recls_entry_t)
+Entry_Allocate(
     size_t cb
 );
 
 /** Releases an entry. */
-RECLS_FNDECL(void) Entry_Release(
+RECLS_FNDECL(void)
+Entry_Release(
     recls_entry_t fileInfo
 );
 
 /** Copies an entry. */
-RECLS_API Entry_Copy(
+RECLS_API
+Entry_Copy(
     recls_entry_t   fileInfo
 ,   recls_entry_t*  pinfo
 );
 
 /** Returns the block count of an entry. */
-RECLS_FNDECL(void) Entry_BlockCount(
+RECLS_FNDECL(void)
+Entry_BlockCount(
     rc_atomic_t*    pcCreated
 ,   rc_atomic_t*    pcShared
 );
@@ -104,3 +108,4 @@ RECLS_FNDECL(void) Entry_BlockCount(
 #endif /* !RECLS_INCL_SRC_H_IMPL_ENTRYFUNCTIONS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

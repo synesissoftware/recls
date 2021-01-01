@@ -257,9 +257,10 @@ RECLS_LINKAGE_C recls_bool_t recls_file_exists_(
 /* ////////////////////////////////////////////////////////////////////// */
 
 RECLS_API recls_is_valid_pattern_(
-    recls_char_t const* pattern
-,   recls_uint32_t      flags
-,   size_t              maxPathCompLen
+    recls_char_t const*     pattern
+,   size_t               /* patternLen */
+,   recls_uint32_t          flags
+,   size_t                  maxPathCompLen
 )
 {
     STLSOFT_SUPPRESS_UNUSED(maxPathCompLen);

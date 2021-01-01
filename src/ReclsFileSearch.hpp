@@ -4,11 +4,11 @@
  * Purpose:     Definition of the ReclsFileSearch class.
  *
  * Created:     31st May 2004
- * Updated:     24th December 2020
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -101,13 +101,21 @@ protected:
     ,   recls_uint32_t              flags
     ,   recls_rc_t*                 prc
     );
-    ~ReclsFileSearch();
+    ~ReclsFileSearch() STLSOFT_NOEXCEPT;
 public:
+    //
+    //
+    // \pre nullptr != searchDir
+    // \pre len(searchDir) == searchDir
+    // \pre types::traits_type::is_path_absolute(searchDir, searchDirLen)
+    //
+    // \pre nullptr != pattern
+    // \pre len(patternDir) == pattern
     static
     recls_rc_t
     FindAndCreate(
-        recls_char_t const*         rootDir
-    ,   size_t                      rootDirLen
+        recls_char_t const*         searchDir
+    ,   size_t                      searchDirLen
     ,   recls_char_t const*         pattern
     ,   size_t                      patternLen
     ,   recls_uint32_t              flags
@@ -127,8 +135,7 @@ private:
     ReclsFileSearch(class_type const &);    // copy-construction proscribed
     void operator =(class_type const &);    // copy-assignment proscribed
 
-// Implementation
-private:
+private: // implementation
     recls_char_t const*
     calc_rootDir_(
         size_t              cDirParts
@@ -139,8 +146,8 @@ private:
     static
     recls_rc_t
     FindAndCreate_(
-        recls_char_t const*         rootDir
-    ,   size_t                      rootDirLen
+        recls_char_t const*         searchDir
+    ,   size_t                      searchDirLen
     ,   recls_char_t const*         pattern
     ,   size_t                      patternLen
     ,   recls_uint32_t              flags
@@ -149,9 +156,7 @@ private:
     ,   class_type**                ppsi
     );
 
-
-// Members
-private:
+private: // fields
     recls_uint32_t                  m_flags;
     recls_char_t const* const       m_rootDir;
     size_t const                    m_rootDirLen;

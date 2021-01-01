@@ -4,11 +4,12 @@
  * Purpose:     Return codes for the  recls API.
  *
  * Created:     15th August 2003
- * Updated:     10th January 2017
+ * Updated:     1st January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Synesis Software nor the names
- *   of any contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -47,9 +49,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MAJOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MINOR      6
+# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MINOR      7
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       36
+# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       37
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/retcodes.h
@@ -139,6 +141,12 @@ namespace recls
 # define RECLS_RC_SHORT_NAME_NOT_AVAILABLE  RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1023))
 #endif
 
+/** Invalid-characters in search directory : the search-directory parameter cannot contain path separator or wildcard characters */
+#define RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS        RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1024))
+
+/** A rooted pattern must not be specified with other patterns */
+#define RECLS_RC_ROOTED_PATHS_IN_PATTERNS                   RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1025))
+
 /** @} */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -154,3 +162,4 @@ namespace recls
 #endif /* !RECLS_INCL_RECLS_H_RECLS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -30,6 +30,7 @@
 /* recls header files */
 #include <recls/recls.h>
 #include "impl.root.h"
+#include "incl.platformstl.h"
 
 #include <platformstl/synch/util/features.h>
 #ifdef PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS
