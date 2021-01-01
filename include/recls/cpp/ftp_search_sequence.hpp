@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_MINOR      0
-# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_REVISION   5
-# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_EDIT       90
+# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_REVISION   7
+# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_EDIT       93
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/ftp_search_sequence.hpp
@@ -68,31 +68,15 @@
  * includes
  */
 
+#include <recls/cpp/search_sequence.hpp>
+
 #include <recls/cpp/common.hpp>
 #include <recls/cpp/entry.hpp>
-#include <recls/cpp/search_sequence.hpp>
+#include <recls/cpp/traits.hpp>
 
 #ifndef RECLS_API_FTP
 # error Can only use recls::ftp_search_sequence in environments that support RECLS_API_FTP
 #endif /* RECLS_API_FTP */
-
-#ifndef RECLS_INCL_RECLS_CPP_HPP_TRAITS
-# include <recls/cpp/traits.hpp>
-#endif /* !RECLS_INCL_RECLS_CPP_HPP_TRAITS */
-#include <platformstl/filesystem/file_path_buffer.hpp>
-//#include <stlsoft/meta/is_same_type.hpp>
-#include <stlsoft/meta/is_integral_type.hpp>
-#include <stlsoft/meta/yesno.hpp>
-#include <stlsoft/util/minmax.hpp>
-
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1310
-# include <iosfwd>
-#endif /* compiler */
-
-#if defined(WIN32)
-# include <tchar.h>
-#endif /* WIN32 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -128,6 +112,7 @@ namespace cpp
 \endhtmlonly
  */
 class ftp_search_sequence
+    : protected sequence_helper
 {
 /// \name Types
 /// @{
@@ -184,8 +169,10 @@ public:
         : m_host(stlsoft::c_str_data(host), stlsoft::c_str_len(host))
         , m_username(stlsoft::c_str_data(username), stlsoft::c_str_len(username))
         , m_password(stlsoft::c_str_data(password), stlsoft::c_str_len(password))
-        , m_directory(copy_or_null_(m_directory_, directory))
-        , m_pattern(copy_or_null_(m_pattern_, pattern))
+        , m_directory_(1)
+        , m_pattern_(1)
+        , m_directory(copy_or_null(m_directory_, directory))
+        , m_pattern(copy_or_null(m_pattern_, pattern))
         , m_flags(flags)
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
@@ -231,81 +218,11 @@ public:
 private:
     friend class basic_search_sequence_const_iterator<char_type, traits_type, value_type>;
 
-    typedef platformstl::basic_file_path_buffer<recls_char_t>   file_path_buffer;
-
-    // These two copy_or_null_() implementations provide the following:
-    //
-    // - generic behaviour, via String Access Shims
-    // - ability to supply NULL, and have it passed through (rather than
-    //   translated into "" by the shims)
-
-    template <typename S>
-    static char_type const* copy_or_null_(file_path_buffer& dest, S const& src, stlsoft::yes_type)
-    {
-        STLSOFT_MESSAGE_ASSERT("you cannot pass an integer to the directory or patterns parameters", 0 == src);
-
-        dest[0] = '\0';
-
-        return NULL;
-    }
-
-    template <typename S>
-    static char_type const* copy_or_null_(file_path_buffer& dest, S const& src, stlsoft::no_type)
-    {
-        STLSOFT_NS_USING(c_str_data);
-        STLSOFT_NS_USING(c_str_len);
-
-        size_t      n   =   stlsoft::minimum(c_str_len(src), dest.size());
-        char_type*  s   =   traits_type::char_copy(&dest[0], c_str_data(src), n);
-
-        s[n] = '\0';
-
-        return s;
-    }
-
-    template <typename S>
-    static char_type const* copy_or_null_(file_path_buffer& dest, S const& src)
-    {
-        enum { SRC_IS_INTEGRAL_TYPE = stlsoft::is_integral_type<S>::value };
-
-        typedef ss_typename_type_k stlsoft::value_to_yesno_type<SRC_IS_INTEGRAL_TYPE>::type  is_integral_type_t;
-
-        return copy_or_null_(dest, src, is_integral_type_t());
-    }
-
-    // This one is implemented in-class as it allows sequence to be used by VC++ 5
-    static char_type const* copy_or_null_(file_path_buffer& dest, char_type const* src)
-    {
-        if (NULL == src)
-        {
-            return static_cast<char_type const*>(NULL);
-        }
-        else
-        {
-            size_t n = traits_type::str_len(src);
-
-            traits_type::char_copy(&dest[0], src, n);
-
-            dest[n] = '\0';
-
-            return &dest[0];
-        }
-    }
-
-    // This one is implemented to work with STLSoft's strong NULL
-#ifdef STLSOFT_INCL_STLSOFT_UTIL_HPP_NULL
-    static char_type const* copy_or_null_(file_path_buffer& dest, stlsoft::NULL_v const& )
-    {
-        return NULL;
-    }
-#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_NULL */
-
     string_type const       m_host;
     string_type const       m_username;
     string_type const       m_password;
-    // TODO: Lose the file_path_buffer, and use auto_buffer directly
-    file_path_buffer        m_directory_;
-    file_path_buffer        m_pattern_;
+    directory_buffer_type   m_directory_;
+    pattern_buffer_type     m_pattern_;
     char_type const* const  m_directory;
     char_type const* const  m_pattern;
     recls_uint32_t          m_flags;
@@ -354,8 +271,10 @@ ftp_search_sequence::ftp_search_sequence(
     : m_host(host)
     , m_username(username)
     , m_password(password)
-    , m_directory(copy_or_null_(m_directory_, directory))
-    , m_pattern(copy_or_null_(m_pattern_, pattern))
+    , m_directory_(1)
+    , m_pattern_(1)
+    , m_directory(copy_or_null(m_directory_, directory))
+    , m_pattern(copy_or_null(m_pattern_, pattern))
     , m_flags(flags)
 {
     RECLS_MESSAGE_ASSERT("Must specify a hostname if using FTP", (NULL == username && NULL == password) || NULL != host);
