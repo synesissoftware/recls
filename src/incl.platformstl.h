@@ -4,11 +4,11 @@
  * Purpose:     #includes the PlatformSTL root header and verifies the version.
  *
  * Created:     13th December 2008
- * Updated:     22nd December 2020
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -30,7 +30,7 @@
 # error Must not #include platformstl/platformstl.h before this file
 #endif /* PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL */
 
-#include <platformstl/platformstl.h>      /* If the compiler cannot find this, you are not using STLSoft 1.10.1 beta 26 or later, as required. */
+#include <platformstl/platformstl.h>      /* If the compiler cannot find this, you are not using STLSoft 1.10.1 or later, as required. */
 #if !defined(_PLATFORMSTL_VER) || \
     _PLATFORMSTL_VER < 0x01090183
 # error Requires PlatformSTL 1.9.1 beta 3, or later. (www.stlsoft.org/downloads.html)

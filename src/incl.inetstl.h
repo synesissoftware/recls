@@ -4,11 +4,11 @@
  * Purpose:     #includes the InetSTL root header and verifies the version.
  *
  * Created:     8th November 2007
- * Updated:     31st December 2020
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -30,7 +30,7 @@
 # error Must not #include inetstl/inetstl.h before this file
 #endif /* INETSTL_INCL_INETSTL_H_INETSTL */
 
-#include <inetstl/inetstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.10.1 beta 26 or later, as required. */
+#include <inetstl/inetstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.10.1 or later, as required. */
 #if !defined(_INETSTL_VER) || \
     _INETSTL_VER < 0x01040183
 # error Requires InetSTL 1.4.1 beta 3, or later. (www.stlsoft.org/downloads.html)
