@@ -383,9 +383,9 @@ Recls_SearchFeedback_x_(
 
             if (0 == cwdLen)
             {
+#ifdef RECLS_STLSOFT_1_11_OR_LATER
                 types::traits_type::error_type const e = types::traits_type::get_last_error();
 
-#ifdef RECLS_STLSOFT_1_11_OR_LATER
                 if (!types::traits_type::is_memory_error_code(e))
                 {
                     return RECLS_RC_NO_HOME;
@@ -426,9 +426,9 @@ Recls_SearchFeedback_x_(
 
         if (0 == homeLen)
         {
+#ifdef RECLS_STLSOFT_1_11_OR_LATER
             types::traits_type::error_type const e = types::traits_type::get_last_error();
 
-#ifdef RECLS_STLSOFT_1_11_OR_LATER
             if (types::traits_type::is_memory_error_code(e))
             {
                 return RECLS_RC_OUT_OF_MEMORY;
