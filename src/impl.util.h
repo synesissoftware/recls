@@ -47,16 +47,19 @@ namespace impl
  */
 
 /* impl.fileutil.h */
-RECLS_FNDECL(recls_bool_t) recls_file_exists_(
+RECLS_FNDECL(recls_bool_t)
+recls_file_exists_(
     recls_char_t const* f
 );
 
 /* impl.numutil.h */
-RECLS_FNDECL(size_t) recls_align_up_size_(
+RECLS_FNDECL(size_t)
+recls_align_up_size_(
     size_t i
 );
 
-RECLS_FNDECL(size_t) recls_strncpy_(
+RECLS_FNDECL(size_t)
+recls_strncpy_(
     recls_char_t*       dest
 ,   size_t              cchDest
 ,   recls_char_t const* src
@@ -67,25 +70,29 @@ RECLS_FNDECL(size_t) recls_strlen_(
     recls_char_t const* dest
 );
 
-RECLS_FNDECL(int) recls_vsnprintf_a(
+RECLS_FNDECL(int)
+recls_vsnprintf_a(
     char*       dest
 ,   size_t      cchDest
 ,   char const* fmt
 ,   va_list     args
 );
-RECLS_FNDECL(int) recls_snprintf_a(
+RECLS_FNDECL(int)
+recls_snprintf_a(
     char*       dest
 ,   size_t      cchDest
 ,   const char* fmt
 ,   ...
 );
-RECLS_FNDECL(int) recls_vsnprintf(
+RECLS_FNDECL(int)
+recls_vsnprintf(
     recls_char_t*       dest
 ,   size_t              cchDest
 ,   recls_char_t const* fmt
 ,   va_list             args
 );
-RECLS_FNDECL(int) recls_snprintf(
+RECLS_FNDECL(int)
+recls_snprintf(
     recls_char_t*       dest
 ,   size_t              cchDest
 ,   const recls_char_t* fmt
@@ -93,19 +100,22 @@ RECLS_FNDECL(int) recls_snprintf(
 );
 
 /* impl.fileutil.h */
-RECLS_FNDECL(recls_char_t const*) recls_find_directory_0_(
+RECLS_FNDECL(recls_char_t const*)
+recls_find_directory_0_(
     recls_char_t const* path
 );
 
 /* impl.apiutil.h */
-RECLS_FNDECL(size_t) recls_get_string_property_(
+RECLS_FNDECL(size_t)
+recls_get_string_property_(
     struct recls_strptrs_t const*   ptrs
 ,   recls_char_t*                   buffer
 ,   size_t                          cchBuffer
 );
 
 /* impl.fileutil.h */
-RECLS_API recls_is_valid_pattern_(
+RECLS_API
+recls_is_valid_pattern_(
     recls_char_t const* pattern
 ,   size_t              patternLen
 ,   recls_uint32_t      flags

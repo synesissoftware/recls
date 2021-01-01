@@ -4,7 +4,7 @@
  * Purpose:     recls API functions pertaining to entry info.
  *
  * Created:     16th August 2003
- * Updated:     1st January 2021
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *
@@ -90,11 +90,11 @@ always_false_()
  */
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
-# define GetCreationTime_           modificationTime
-# define GetLastStatusChangeTime_   lastStatusChangeTime
+# define GetCreationTime_                                   modificationTime
+# define GetLastStatusChangeTime_                           lastStatusChangeTime
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
-# define GetCreationTime_           creationTime
-# define GetLastStatusChangeTime_   modificationTime
+# define GetCreationTime_                                   creationTime
+# define GetLastStatusChangeTime_                           modificationTime
 #else /* unrecognised platform */
 # error platform is not recognised
 #endif /* platform */
@@ -303,10 +303,13 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileReadOnly(recls_entry_t fileInfo)
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
+
     return (fileInfo->attributes & S_IWRITE) == 0;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
     return (fileInfo->attributes & FILE_ATTRIBUTE_READONLY) == FILE_ATTRIBUTE_READONLY;
 #else /* unrecognised platform */
+
 # error platform is not recognised
 #endif /* platform */
 }
@@ -318,10 +321,13 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileDirectory(recls_entry_t fileInfo)
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
+
     return (fileInfo->attributes & S_IFMT) == S_IFDIR;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
     return (fileInfo->attributes & FILE_ATTRIBUTE_DIRECTORY) == FILE_ATTRIBUTE_DIRECTORY;
 #else /* unrecognised platform */
+
 # error platform is not recognised
 #endif /* platform */
 }
@@ -336,13 +342,11 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileLink(recls_entry_t fileInfo)
     !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
     return (fileInfo->attributes & S_IFMT) == S_IFLNK;
-
 #else /* unrecognised platform */
 
     STLSOFT_SUPPRESS_UNUSED(fileInfo);
 
     return false;
-
 #endif /* platform */
 }
 
@@ -369,11 +373,9 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileUNC(recls_entry_t fileInfo)
     {
         return true;
     }
-
 #else /* unrecognised platform */
 
     STLSOFT_SUPPRESS_UNUSED(fileInfo);
-
 #endif /* platform */
 
     return false;

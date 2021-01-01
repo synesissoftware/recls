@@ -4,11 +4,11 @@
  * Purpose:     Definition of the create_entryinfo() function.
  *
  * Created:     31st May 2004
- * Updated:     22nd December 2020
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -69,22 +69,24 @@ namespace impl
 extern "C"
 {
 
-recls_entry_t create_entryinfo(
-    size_t                              rootDirLen
-,   recls_char_t const*                 searchDir
-,   size_t                              searchDirLen
-,   recls_char_t const*                 entryPath
-,   size_t                              entryPathLen
-,   recls_char_t const*                 entryFile
-,   size_t                              entryFileLen
-,   recls_uint32_t                      flags
+recls_entry_t
+create_entryinfo(
+    size_t                          rootDirLen
+,   recls_char_t const*             searchDir
+,   size_t                          searchDirLen
+,   recls_char_t const*             entryPath
+,   size_t                          entryPathLen
+,   recls_char_t const*             entryFile
+,   size_t                          entryFileLen
+,   recls_uint32_t                  flags
 ,   types::stat_data_type const*    st
 );
 
-recls_entry_t create_drive_entryinfo(
-    recls_char_t const*                 entryPath
-,   size_t                              entryPathLen
-,   recls_uint32_t                      flags
+recls_entry_t
+create_drive_entryinfo(
+    recls_char_t const*             entryPath
+,   size_t                          entryPathLen
+,   recls_uint32_t                  flags
 ,   types::stat_data_type const*    st
 );
 
@@ -104,3 +106,4 @@ recls_entry_t create_drive_entryinfo(
 #endif /* !RECLS_INCL_SRC_HPP_IMPL_ENTRYINFO */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

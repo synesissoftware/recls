@@ -169,9 +169,6 @@
     <ClInclude Include="..\..\..\src\impl.root.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\impl.string.h">
-      <Filter>Header Files\src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\impl.string.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>

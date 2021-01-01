@@ -4,7 +4,7 @@
  * Purpose:     Implementation header.
  *
  * Created:     1st January 2021
- * Updated:     1st January 2021
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *
@@ -80,3 +80,4 @@ Recls_SearchProcessFeedback_(
 #endif /* !RECLS_INCL_SRC_H_IMPL_API_SEARCH */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

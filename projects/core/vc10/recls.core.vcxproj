@@ -341,7 +341,6 @@ IF NOT EXIST "$(SolutionDir)lib" (
     <ClInclude Include="..\..\..\src\impl.entryfunctions.h" />
     <ClInclude Include="..\..\..\src\impl.entryinfo.hpp" />
     <ClInclude Include="..\..\..\src\impl.root.h" />
-    <ClInclude Include="..\..\..\src\impl.string.h" />
     <ClInclude Include="..\..\..\src\impl.string.hpp" />
     <ClInclude Include="..\..\..\src\impl.trace.h" />
     <ClInclude Include="..\..\..\src\impl.types.ftp.hpp" />

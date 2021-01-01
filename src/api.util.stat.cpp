@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     1st January 2021
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *
@@ -174,16 +174,10 @@ recls_rc_t Recls_Stat_X_(
 
     RECLS_ASSERT(pathLen == types::traits_type::str_len(path));
 
-    //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{9}: %s"), path);
-
     if (0 == pathLen)
     {
-        //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{10}: %s"), path);
-
         return RECLS_RC_INVALID_NAME;
     }
-
-    //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{11}: %s"), path);
 
     if (pathLen > types::path_type::max_size())
     {
@@ -194,36 +188,24 @@ recls_rc_t Recls_Stat_X_(
 
     types::path_type   path_(path, pathLen);
 
-    //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{12}: [%s, %s]"), path, path_.c_str());
-
     if (!path_.exists() &&
         RECLS_F_DETAILS_LATER == (flags & RECLS_F_DETAILS_LATER) &&
         0 != (flags & RECLS_F_TYPEMASK)) // To allow non-existant things to be stat'd
     {
-        //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{13}: [%s, %s]"), path, path_.c_str());
-
         path_.make_absolute();  // Need this, or get RECLS_RC_DIRECTORY_NOT_FOUND on a non-existant relative path
-
-        //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{14}: [%s, %s]"), path, path_.c_str());
 
         types::path_type::string_slice_type const   file    =   path_.get_file();
         types::path_type                            path2_(path_.c_str(), path_.size() - file.len);
-
-        //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{15}: [%s, %s]"), path, path_.c_str());
 
         if (!path2_.exists())
         {
             return RECLS_RC_DIRECTORY_NOT_FOUND;
         }
 
-        //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{16}: [%s, %s]"), path, path_.c_str());
-
         return RECLS_RC_NO_MORE_DATA;
     }
     else
     {
-        //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{17}: [%s, %s]"), path, path_.c_str());
-
         if (types::traits_type::is_directory(path_.c_str()))
         {
             if (RECLS_F_FILES == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
@@ -239,17 +221,11 @@ recls_rc_t Recls_Stat_X_(
             }
         }
 
-        //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{18}: [%s, %s]"), path, path_.c_str());
-
         path_.make_absolute(false);
-
-        //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{19}: [%s, %s]"), path, path_.c_str());
 
 #ifdef RECLS_EXCEPTION_SUPPORT_
         path_.canonicalise(false);
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
-
-        //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{20}: [%s, %s]"), path, path_.c_str());
 
         return ReclsFileSearch::Stat(path_.c_str(), flags, phEntry);
     }

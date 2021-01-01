@@ -4,11 +4,11 @@
  * Purpose:     Implementation root header.
  *
  * Created:     7th March 2005
- * Updated:     22nd December 2020
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -74,7 +74,6 @@
 #ifdef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_DEBUG
 #endif /* RECLS_DOCUMENTATION_SKIP_SECTION */
-
 
 #if defined(NDEBUG)
 # ifdef RECLS_DEBUG
@@ -144,6 +143,7 @@
 #if (   !defined(RECLS_COMPILER_IS_MSVC) || \
         _MSC_VER >= 1200) && \
     !defined(RECLS_COMPILER_IS_WATCOM)
+
 # define RECLS_SUPPORTS_MULTIPATTERN_
 #endif /* compiler */
 
@@ -152,3 +152,4 @@
 #endif /* !RECLS_INCL_SRC_H_IMPL_ROOT */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
