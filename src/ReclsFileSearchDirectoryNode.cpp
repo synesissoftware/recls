@@ -667,7 +667,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 }
 
 #ifdef RECLS_ENFORCING_CONTRACTS
-recls_bool_t ReclsFileSearchDirectoryNode::is_valid() const
+recls_bool_t
+ReclsFileSearchDirectoryNode::is_valid() const
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::is_valid");
 
@@ -690,7 +691,8 @@ recls_bool_t ReclsFileSearchDirectoryNode::is_valid() const
 }
 #endif /* RECLS_ENFORCING_CONTRACTS */
 
-recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
+recls_rc_t
+ReclsFileSearchDirectoryNode::GetNext()
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::GetNext");
 
@@ -813,7 +815,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
     return rc;
 }
 
-recls_rc_t ReclsFileSearchDirectoryNode::GetDetails(
+recls_rc_t
+ReclsFileSearchDirectoryNode::GetDetails(
     recls_entry_t* pinfo
 )
 {
@@ -866,7 +869,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetDetails(
     return rc;
 }
 
-recls_rc_t ReclsFileSearchDirectoryNode::GetNextDetails(
+recls_rc_t
+ReclsFileSearchDirectoryNode::GetNextDetails(
     recls_entry_t* pinfo
 )
 {
