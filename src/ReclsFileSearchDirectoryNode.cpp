@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created:     31st May 2004
- * Updated:     1st January 2021
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *
@@ -346,6 +346,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     RECLS_ASSERT(ss_nullptr_k != searchDir);
     RECLS_ASSERT(rootDirLen <= types::traits_type::str_len(searchDir));
 
+    RECLS_MESSAGE_ASSERT("patternLen is an advisory, and we still require pattern to not be null", ss_nullptr_k != pattern);
     RECLS_ASSERT(patternLen == types::traits_type::str_len(pattern));
     RECLS_ASSERT(ss_nullptr_k != prc);
 
