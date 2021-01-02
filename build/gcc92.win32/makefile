@@ -5,8 +5,8 @@
 #           for the GCC 9.2 compiler,
 #           on the Win32 platform
 #
-# Created:  16th October 2019
-# Updated:  22nd December 2020
+# Created:  22nd December 2020
+# Updated:  2nd January 2021
 #
 ############################################################################
 
@@ -143,19 +143,19 @@ $(ENV_LIBPATHS)\
 # lib names
 
 TARGET_LIB_MT_D=\
- -lkernel32 -ladvapi32 -lole32 -loleaut32 -lshlwapi -luser32 -luuid -lwininet -lws2_32 \
+ -ladvapi32 -lkernel32 -lole32 -loleaut32 -lshlwapi -luser32 -luuid -lwininet -lws2_32 \
  \
 
 TARGET_LIB_MT_R=\
- -lkernel32 -ladvapi32 -lole32 -loleaut32 -lshlwapi -luser32 -luuid -lwininet -lws2_32 \
+ -ladvapi32 -lkernel32 -lole32 -loleaut32 -lshlwapi -luser32 -luuid -lwininet -lws2_32 \
  \
 
 TARGET_LIB_ST_D=\
- -lkernel32 -ladvapi32 -lole32 -loleaut32 -lshlwapi -luser32 -luuid -lwininet -lws2_32 \
+ -ladvapi32 -lkernel32 -lole32 -loleaut32 -lshlwapi -luser32 -luuid -lwininet -lws2_32 \
  \
 
 TARGET_LIB_ST_R=\
- -lkernel32 -ladvapi32 -lole32 -loleaut32 -lshlwapi -luser32 -luuid -lwininet -lws2_32 \
+ -ladvapi32 -lkernel32 -lole32 -loleaut32 -lshlwapi -luser32 -luuid -lwininet -lws2_32 \
  \
 
 
@@ -187,7 +187,7 @@ CPPC_CUSTOM_DEFS	=	$(CUSTOM_DEFS)
 
 CC_F_NOLOGO           =   
 CC_F_COMPILE_ONLY     =   -c
-CC_F_WARNING_MAX      =   -Wall -pedantic -Wno-array-bounds -Wno-long-long -Wno-unused-value -Wundef -Wshadow
+CC_F_WARNING_MAX      =   -Wall -pedantic -Wno-long-long -Wno-unused-value -Wundef -Wshadow
 CC_F_WARNING_ERR      =   -Werror
 CC_F_MINIMUM_SIZE     =   -O1
 CC_F_MAXIMUM_SPEED    =   -O3
@@ -220,8 +220,7 @@ CC_FLAGS_ST_R=\
 
 CPPC_F_NOLOGO           =   
 CPPC_F_COMPILE_ONLY     =   -c
-CPPC_F_WARNING_MAX      =   -Wall -pedantic -Wno-array-bounds -Wno-long-long -Wno-unused-value -Wno-non-virtual-dtor
-CPPC_F_WARNING_MAX      +=  -Wno-deprecated-declarations
+CPPC_F_WARNING_MAX      =   -Wall -pedantic -Wno-long-long -Wno-unused-value -Wno-non-virtual-dtor
 CPPC_F_WARNING_ERR      =   -Werror
 CPPC_F_EXCEPTIONS_ON    =   
 CPPC_F_EXCEPTIONS_OFF   =   
@@ -836,6 +835,7 @@ OBJ_CR_api_crdir_MT_D			= $(PROJ_OBJ_DIR)\api.crdir.mt.debug.obj
 OBJ_CR_api_rc_win_MT_D		= $(PROJ_OBJ_DIR)\api.retcodes.windows.mt.debug.obj
 OBJ_CR_api_rmdir_MT_D			= $(PROJ_OBJ_DIR)\api.rmdir.mt.debug.obj
 OBJ_CR_api_search_MT_D		= $(PROJ_OBJ_DIR)\api.search.mt.debug.obj
+OBJ_CR_impl_apisrch_MT_D		= $(PROJ_OBJ_DIR)\impl.api.search.mt.debug.obj
 OBJ_CR_impl_debug_MT_D		= $(PROJ_OBJ_DIR)\impl.trace.mt.debug.obj
 OBJ_CR_impl_entryinfo_MT_D	= $(PROJ_OBJ_DIR)\impl.entryinfo.mt.debug.obj
 OBJ_CR_impl_fileinfo_MT_D		= $(PROJ_OBJ_DIR)\impl.fileinfo.mt.debug.obj
@@ -866,6 +866,7 @@ OBJ_CORE_MT_D=\
  $(OBJ_CR_api_rmdir_MT_D)\
  $(OBJ_CR_api_rc_win_MT_D)\
  $(OBJ_CR_api_search_MT_D)\
+ $(OBJ_CR_impl_apisrch_MT_D)\
  $(OBJ_CR_impl_debug_MT_D)\
  $(OBJ_CR_impl_entryinfo_MT_D)\
  $(OBJ_CR_impl_fileinfo_MT_D)\
@@ -894,6 +895,7 @@ OBJ_CR_api_crdir_MT_R			= $(PROJ_OBJ_DIR)\api.crdir.mt.obj
 OBJ_CR_api_rc_win_MT_R		= $(PROJ_OBJ_DIR)\api.retcodes.windows.mt.obj
 OBJ_CR_api_rmdir_MT_R			= $(PROJ_OBJ_DIR)\api.rmdir.mt.obj
 OBJ_CR_api_search_MT_R		= $(PROJ_OBJ_DIR)\api.search.mt.obj
+OBJ_CR_impl_apisrch_MT_R		= $(PROJ_OBJ_DIR)\impl.api.search.mt.obj
 OBJ_CR_impl_debug_MT_R		= $(PROJ_OBJ_DIR)\impl.trace.mt.obj
 OBJ_CR_impl_entryinfo_MT_R	= $(PROJ_OBJ_DIR)\impl.entryinfo.mt.obj
 OBJ_CR_impl_fileinfo_MT_R		= $(PROJ_OBJ_DIR)\impl.fileinfo.mt.obj
@@ -924,6 +926,7 @@ OBJ_CORE_MT_R=\
  $(OBJ_CR_api_rmdir_MT_R)\
  $(OBJ_CR_api_rc_win_MT_R)\
  $(OBJ_CR_api_search_MT_R)\
+ $(OBJ_CR_impl_apisrch_MT_R)\
  $(OBJ_CR_impl_debug_MT_R)\
  $(OBJ_CR_impl_entryinfo_MT_R)\
  $(OBJ_CR_impl_fileinfo_MT_R)\
@@ -952,6 +955,7 @@ OBJ_CR_api_crdir_ST_D			= $(PROJ_OBJ_DIR)\api.crdir.debug.obj
 OBJ_CR_api_rc_win_ST_D		= $(PROJ_OBJ_DIR)\api.retcodes.windows.debug.obj
 OBJ_CR_api_rmdir_ST_D			= $(PROJ_OBJ_DIR)\api.rmdir.debug.obj
 OBJ_CR_api_search_ST_D		= $(PROJ_OBJ_DIR)\api.search.debug.obj
+OBJ_CR_impl_apisrch_ST_D		= $(PROJ_OBJ_DIR)\impl.api.search.debug.obj
 OBJ_CR_impl_debug_ST_D		= $(PROJ_OBJ_DIR)\impl.trace.debug.obj
 OBJ_CR_impl_entryinfo_ST_D	= $(PROJ_OBJ_DIR)\impl.entryinfo.debug.obj
 OBJ_CR_impl_fileinfo_ST_D		= $(PROJ_OBJ_DIR)\impl.fileinfo.debug.obj
@@ -982,6 +986,7 @@ OBJ_CORE_ST_D=\
  $(OBJ_CR_api_rmdir_ST_D)\
  $(OBJ_CR_api_rc_win_ST_D)\
  $(OBJ_CR_api_search_ST_D)\
+ $(OBJ_CR_impl_apisrch_ST_D)\
  $(OBJ_CR_impl_debug_ST_D)\
  $(OBJ_CR_impl_entryinfo_ST_D)\
  $(OBJ_CR_impl_fileinfo_ST_D)\
@@ -1010,6 +1015,7 @@ OBJ_CR_api_crdir_ST_R			= $(PROJ_OBJ_DIR)\api.crdir.obj
 OBJ_CR_api_rc_win_ST_R		= $(PROJ_OBJ_DIR)\api.retcodes.windows.obj
 OBJ_CR_api_rmdir_ST_R			= $(PROJ_OBJ_DIR)\api.rmdir.obj
 OBJ_CR_api_search_ST_R		= $(PROJ_OBJ_DIR)\api.search.obj
+OBJ_CR_impl_apisrch_ST_R		= $(PROJ_OBJ_DIR)\impl.api.search.obj
 OBJ_CR_impl_debug_ST_R		= $(PROJ_OBJ_DIR)\impl.trace.obj
 OBJ_CR_impl_entryinfo_ST_R	= $(PROJ_OBJ_DIR)\impl.entryinfo.obj
 OBJ_CR_impl_fileinfo_ST_R		= $(PROJ_OBJ_DIR)\impl.fileinfo.obj
@@ -1040,6 +1046,7 @@ OBJ_CORE_ST_R=\
  $(OBJ_CR_api_rmdir_ST_R)\
  $(OBJ_CR_api_rc_win_ST_R)\
  $(OBJ_CR_api_search_ST_R)\
+ $(OBJ_CR_impl_apisrch_ST_R)\
  $(OBJ_CR_impl_debug_ST_R)\
  $(OBJ_CR_impl_entryinfo_ST_R)\
  $(OBJ_CR_impl_fileinfo_ST_R)\
@@ -1737,6 +1744,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_MT_D) $(RM) $(OBJ_CR_api_rmdir_MT_D)
 	@-if exist $(OBJ_CR_api_rc_win_MT_D) $(RM) $(OBJ_CR_api_rc_win_MT_D)
 	@-if exist $(OBJ_CR_api_search_MT_D) $(RM) $(OBJ_CR_api_search_MT_D)
+	@-if exist $(OBJ_CR_impl_apisrch_MT_D) $(RM) $(OBJ_CR_impl_apisrch_MT_D)
 	@-if exist $(OBJ_CR_impl_debug_MT_D) $(RM) $(OBJ_CR_impl_debug_MT_D)
 	@-if exist $(OBJ_CR_impl_entryinfo_MT_D) $(RM) $(OBJ_CR_impl_entryinfo_MT_D)
 	@-if exist $(OBJ_CR_impl_fileinfo_MT_D) $(RM) $(OBJ_CR_impl_fileinfo_MT_D)
@@ -1763,6 +1771,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_MT_R) $(RM) $(OBJ_CR_api_rmdir_MT_R)
 	@-if exist $(OBJ_CR_api_rc_win_MT_R) $(RM) $(OBJ_CR_api_rc_win_MT_R)
 	@-if exist $(OBJ_CR_api_search_MT_R) $(RM) $(OBJ_CR_api_search_MT_R)
+	@-if exist $(OBJ_CR_impl_apisrch_MT_R) $(RM) $(OBJ_CR_impl_apisrch_MT_R)
 	@-if exist $(OBJ_CR_impl_debug_MT_R) $(RM) $(OBJ_CR_impl_debug_MT_R)
 	@-if exist $(OBJ_CR_impl_entryinfo_MT_R) $(RM) $(OBJ_CR_impl_entryinfo_MT_R)
 	@-if exist $(OBJ_CR_impl_fileinfo_MT_R) $(RM) $(OBJ_CR_impl_fileinfo_MT_R)
@@ -1789,6 +1798,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_ST_D) $(RM) $(OBJ_CR_api_rmdir_ST_D)
 	@-if exist $(OBJ_CR_api_rc_win_ST_D) $(RM) $(OBJ_CR_api_rc_win_ST_D)
 	@-if exist $(OBJ_CR_api_search_ST_D) $(RM) $(OBJ_CR_api_search_ST_D)
+	@-if exist $(OBJ_CR_impl_apisrch_ST_D) $(RM) $(OBJ_CR_impl_apisrch_ST_D)
 	@-if exist $(OBJ_CR_impl_debug_ST_D) $(RM) $(OBJ_CR_impl_debug_ST_D)
 	@-if exist $(OBJ_CR_impl_entryinfo_ST_D) $(RM) $(OBJ_CR_impl_entryinfo_ST_D)
 	@-if exist $(OBJ_CR_impl_fileinfo_ST_D) $(RM) $(OBJ_CR_impl_fileinfo_ST_D)
@@ -1815,6 +1825,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_ST_R) $(RM) $(OBJ_CR_api_rmdir_ST_R)
 	@-if exist $(OBJ_CR_api_rc_win_ST_R) $(RM) $(OBJ_CR_api_rc_win_ST_R)
 	@-if exist $(OBJ_CR_api_search_ST_R) $(RM) $(OBJ_CR_api_search_ST_R)
+	@-if exist $(OBJ_CR_impl_apisrch_ST_R) $(RM) $(OBJ_CR_impl_apisrch_ST_R)
 	@-if exist $(OBJ_CR_impl_debug_ST_R) $(RM) $(OBJ_CR_impl_debug_ST_R)
 	@-if exist $(OBJ_CR_impl_entryinfo_ST_R) $(RM) $(OBJ_CR_impl_entryinfo_ST_R)
 	@-if exist $(OBJ_CR_impl_fileinfo_ST_R) $(RM) $(OBJ_CR_impl_fileinfo_ST_R)
@@ -2083,6 +2094,8 @@ $(OBJ_CR_api_rc_win_MT_D): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADE
 	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_MT_D): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_MT_D): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_MT_D): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_D): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -2141,6 +2154,8 @@ $(OBJ_CR_api_rc_win_MT_R): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADE
 	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_MT_R): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_MT_R): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_MT_R): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_R): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -2199,6 +2214,8 @@ $(OBJ_CR_api_rc_win_ST_D): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADE
 	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_ST_D): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_ST_D): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_ST_D): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_ST_D): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -2257,6 +2274,8 @@ $(OBJ_CR_api_rc_win_ST_R): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEADE
 	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_ST_R): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_ST_R): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_ST_R): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_ST_R): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)

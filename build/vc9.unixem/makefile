@@ -6,7 +6,7 @@
 #           on the UNIX platform
 #
 # Created:  23rd September 2003
-# Updated:  22nd December 2020
+# Updated:  2nd January 2021
 #
 ############################################################################
 
@@ -646,6 +646,7 @@ OBJ_CR_api_stat_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\api.stat.mt.debug.obj
 OBJ_CR_api_crdir_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\api.crdir.mt.debug.obj
 OBJ_CR_api_rmdir_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\api.rmdir.mt.debug.obj
 OBJ_CR_api_search_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\api.search.mt.debug.obj
+OBJ_CR_impl_apisrch_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\impl.api.search.mt.debug.obj
 OBJ_CR_impl_debug_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\impl.trace.mt.debug.obj
 OBJ_CR_impl_entryinfo_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\impl.entryinfo.mt.debug.obj
 OBJ_CR_impl_fileinfo_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\impl.fileinfo.mt.debug.obj
@@ -672,6 +673,7 @@ OBJ_CORE_MT_UX_DEBUG=\
  $(OBJ_CR_api_crdir_MT_UX_DEBUG)\
  $(OBJ_CR_api_rmdir_MT_UX_DEBUG)\
  $(OBJ_CR_api_search_MT_UX_DEBUG)\
+ $(OBJ_CR_impl_apisrch_MT_UX_DEBUG)\
  $(OBJ_CR_impl_debug_MT_UX_DEBUG)\
  $(OBJ_CR_impl_entryinfo_MT_UX_DEBUG)\
  $(OBJ_CR_impl_fileinfo_MT_UX_DEBUG)\
@@ -696,6 +698,7 @@ OBJ_CR_api_stat_MT_UX			= $(PROJ_OBJ_DIR)\api.stat.mt.obj
 OBJ_CR_api_crdir_MT_UX			= $(PROJ_OBJ_DIR)\api.crdir.mt.obj
 OBJ_CR_api_rmdir_MT_UX			= $(PROJ_OBJ_DIR)\api.rmdir.mt.obj
 OBJ_CR_api_search_MT_UX		= $(PROJ_OBJ_DIR)\api.search.mt.obj
+OBJ_CR_impl_apisrch_MT_UX		= $(PROJ_OBJ_DIR)\impl.api.search.mt.obj
 OBJ_CR_impl_debug_MT_UX		= $(PROJ_OBJ_DIR)\impl.trace.mt.obj
 OBJ_CR_impl_entryinfo_MT_UX	= $(PROJ_OBJ_DIR)\impl.entryinfo.mt.obj
 OBJ_CR_impl_fileinfo_MT_UX		= $(PROJ_OBJ_DIR)\impl.fileinfo.mt.obj
@@ -722,6 +725,7 @@ OBJ_CORE_MT_UX=\
  $(OBJ_CR_api_crdir_MT_UX)\
  $(OBJ_CR_api_rmdir_MT_UX)\
  $(OBJ_CR_api_search_MT_UX)\
+ $(OBJ_CR_impl_apisrch_MT_UX)\
  $(OBJ_CR_impl_debug_MT_UX)\
  $(OBJ_CR_impl_entryinfo_MT_UX)\
  $(OBJ_CR_impl_fileinfo_MT_UX)\
@@ -1217,6 +1221,7 @@ clean.libs.core:
 	@-$(RM) $(OBJ_CR_api_crdir_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_CR_api_rmdir_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_CR_api_search_MT_UX_DEBUG)
+	@-$(RM) $(OBJ_CR_impl_apisrch_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_CR_impl_debug_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_CR_impl_entryinfo_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_CR_impl_fileinfo_MT_UX_DEBUG)
@@ -1239,6 +1244,7 @@ clean.libs.core:
 	@-$(RM) $(OBJ_CR_api_crdir_MT_UX)
 	@-$(RM) $(OBJ_CR_api_rmdir_MT_UX)
 	@-$(RM) $(OBJ_CR_api_search_MT_UX)
+	@-$(RM) $(OBJ_CR_impl_apisrch_MT_UX)
 	@-$(RM) $(OBJ_CR_impl_debug_MT_UX)
 	@-$(RM) $(OBJ_CR_impl_entryinfo_MT_UX)
 	@-$(RM) $(OBJ_CR_impl_fileinfo_MT_UX)
@@ -1416,6 +1422,8 @@ $(OBJ_CR_api_rmdir_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $
 	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_search_MT_UX_DEBUG): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_MT_UX_DEBUG): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_MT_UX_DEBUG): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_UX_DEBUG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_UX_DEBUG): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -1466,6 +1474,8 @@ $(OBJ_CR_api_rmdir_MT_UX): $(PROJ_SRC_DIR)\api.util.remove_directory.cpp $(CORE_
 	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.util.remove_directory.cpp
 $(OBJ_CR_api_search_MT_UX): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_MT_UX): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_MT_UX): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_UX) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_UX): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)

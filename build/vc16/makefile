@@ -6,7 +6,7 @@
 #           on the Win32 platform
 #
 # Created:  23rd September 2003
-# Updated:  22nd December 2020
+# Updated:  2nd January 2021
 #
 ############################################################################
 
@@ -143,35 +143,35 @@ $(ENV_LIBPATHS)\
 # lib names
 
 TARGET_LIB_DLL_DBG=\
- advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib \
+ advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib ws2_32.lib \
  \
 
 TARGET_LIB_DLL_REL=\
- advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib \
+ advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib ws2_32.lib \
  \
 
 TARGET_LIB_MT_DBG=\
- advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib \
+ advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib ws2_32.lib \
  \
 
 TARGET_LIB_MT_REL=\
- advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib \
+ advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib ws2_32.lib \
  \
 
 TARGET_LIB_WS_DLL_DBG=\
- advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib \
+ advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib ws2_32.lib \
  \
 
 TARGET_LIB_WS_DLL_REL=\
- advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib \
+ advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib ws2_32.lib \
  \
 
 TARGET_LIB_WS_MT_DBG=\
- advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib \
+ advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib ws2_32.lib \
  \
 
 TARGET_LIB_WS_MT_REL=\
- advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib \
+ advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib version.lib wininet.lib ws2_32.lib \
  \
 
 
@@ -1239,6 +1239,7 @@ OBJ_CR_api_crdir_DLL_DBG			= $(PROJ_OBJ_DIR)\api.crdir.dll.debug.obj
 OBJ_CR_api_rc_win_DLL_DBG		= $(PROJ_OBJ_DIR)\api.retcodes.windows.dll.debug.obj
 OBJ_CR_api_rmdir_DLL_DBG			= $(PROJ_OBJ_DIR)\api.rmdir.dll.debug.obj
 OBJ_CR_api_search_DLL_DBG		= $(PROJ_OBJ_DIR)\api.search.dll.debug.obj
+OBJ_CR_impl_apisrch_DLL_DBG		= $(PROJ_OBJ_DIR)\impl.api.search.dll.debug.obj
 OBJ_CR_impl_debug_DLL_DBG		= $(PROJ_OBJ_DIR)\impl.trace.dll.debug.obj
 OBJ_CR_impl_entryinfo_DLL_DBG	= $(PROJ_OBJ_DIR)\impl.entryinfo.dll.debug.obj
 OBJ_CR_impl_fileinfo_DLL_DBG		= $(PROJ_OBJ_DIR)\impl.fileinfo.dll.debug.obj
@@ -1269,6 +1270,7 @@ OBJ_CORE_DLL_DBG=\
  $(OBJ_CR_api_rmdir_DLL_DBG)\
  $(OBJ_CR_api_rc_win_DLL_DBG)\
  $(OBJ_CR_api_search_DLL_DBG)\
+ $(OBJ_CR_impl_apisrch_DLL_DBG)\
  $(OBJ_CR_impl_debug_DLL_DBG)\
  $(OBJ_CR_impl_entryinfo_DLL_DBG)\
  $(OBJ_CR_impl_fileinfo_DLL_DBG)\
@@ -1297,6 +1299,7 @@ OBJ_CR_api_crdir_DLL_REL			= $(PROJ_OBJ_DIR)\api.crdir.dll.obj
 OBJ_CR_api_rc_win_DLL_REL		= $(PROJ_OBJ_DIR)\api.retcodes.windows.dll.obj
 OBJ_CR_api_rmdir_DLL_REL			= $(PROJ_OBJ_DIR)\api.rmdir.dll.obj
 OBJ_CR_api_search_DLL_REL		= $(PROJ_OBJ_DIR)\api.search.dll.obj
+OBJ_CR_impl_apisrch_DLL_REL		= $(PROJ_OBJ_DIR)\impl.api.search.dll.obj
 OBJ_CR_impl_debug_DLL_REL		= $(PROJ_OBJ_DIR)\impl.trace.dll.obj
 OBJ_CR_impl_entryinfo_DLL_REL	= $(PROJ_OBJ_DIR)\impl.entryinfo.dll.obj
 OBJ_CR_impl_fileinfo_DLL_REL		= $(PROJ_OBJ_DIR)\impl.fileinfo.dll.obj
@@ -1327,6 +1330,7 @@ OBJ_CORE_DLL_REL=\
  $(OBJ_CR_api_rmdir_DLL_REL)\
  $(OBJ_CR_api_rc_win_DLL_REL)\
  $(OBJ_CR_api_search_DLL_REL)\
+ $(OBJ_CR_impl_apisrch_DLL_REL)\
  $(OBJ_CR_impl_debug_DLL_REL)\
  $(OBJ_CR_impl_entryinfo_DLL_REL)\
  $(OBJ_CR_impl_fileinfo_DLL_REL)\
@@ -1355,6 +1359,7 @@ OBJ_CR_api_crdir_MT_DBG			= $(PROJ_OBJ_DIR)\api.crdir.mt.debug.obj
 OBJ_CR_api_rc_win_MT_DBG		= $(PROJ_OBJ_DIR)\api.retcodes.windows.mt.debug.obj
 OBJ_CR_api_rmdir_MT_DBG			= $(PROJ_OBJ_DIR)\api.rmdir.mt.debug.obj
 OBJ_CR_api_search_MT_DBG		= $(PROJ_OBJ_DIR)\api.search.mt.debug.obj
+OBJ_CR_impl_apisrch_MT_DBG		= $(PROJ_OBJ_DIR)\impl.api.search.mt.debug.obj
 OBJ_CR_impl_debug_MT_DBG		= $(PROJ_OBJ_DIR)\impl.trace.mt.debug.obj
 OBJ_CR_impl_entryinfo_MT_DBG	= $(PROJ_OBJ_DIR)\impl.entryinfo.mt.debug.obj
 OBJ_CR_impl_fileinfo_MT_DBG		= $(PROJ_OBJ_DIR)\impl.fileinfo.mt.debug.obj
@@ -1385,6 +1390,7 @@ OBJ_CORE_MT_DBG=\
  $(OBJ_CR_api_rmdir_MT_DBG)\
  $(OBJ_CR_api_rc_win_MT_DBG)\
  $(OBJ_CR_api_search_MT_DBG)\
+ $(OBJ_CR_impl_apisrch_MT_DBG)\
  $(OBJ_CR_impl_debug_MT_DBG)\
  $(OBJ_CR_impl_entryinfo_MT_DBG)\
  $(OBJ_CR_impl_fileinfo_MT_DBG)\
@@ -1413,6 +1419,7 @@ OBJ_CR_api_crdir_MT_REL			= $(PROJ_OBJ_DIR)\api.crdir.mt.obj
 OBJ_CR_api_rc_win_MT_REL		= $(PROJ_OBJ_DIR)\api.retcodes.windows.mt.obj
 OBJ_CR_api_rmdir_MT_REL			= $(PROJ_OBJ_DIR)\api.rmdir.mt.obj
 OBJ_CR_api_search_MT_REL		= $(PROJ_OBJ_DIR)\api.search.mt.obj
+OBJ_CR_impl_apisrch_MT_REL		= $(PROJ_OBJ_DIR)\impl.api.search.mt.obj
 OBJ_CR_impl_debug_MT_REL		= $(PROJ_OBJ_DIR)\impl.trace.mt.obj
 OBJ_CR_impl_entryinfo_MT_REL	= $(PROJ_OBJ_DIR)\impl.entryinfo.mt.obj
 OBJ_CR_impl_fileinfo_MT_REL		= $(PROJ_OBJ_DIR)\impl.fileinfo.mt.obj
@@ -1443,6 +1450,7 @@ OBJ_CORE_MT_REL=\
  $(OBJ_CR_api_rmdir_MT_REL)\
  $(OBJ_CR_api_rc_win_MT_REL)\
  $(OBJ_CR_api_search_MT_REL)\
+ $(OBJ_CR_impl_apisrch_MT_REL)\
  $(OBJ_CR_impl_debug_MT_REL)\
  $(OBJ_CR_impl_entryinfo_MT_REL)\
  $(OBJ_CR_impl_fileinfo_MT_REL)\
@@ -1471,6 +1479,7 @@ OBJ_CR_api_crdir_WS_DLL_DBG			= $(PROJ_OBJ_DIR)\api.crdir.widestring.dll.debug.o
 OBJ_CR_api_rc_win_WS_DLL_DBG		= $(PROJ_OBJ_DIR)\api.retcodes.windows.widestring.dll.debug.obj
 OBJ_CR_api_rmdir_WS_DLL_DBG			= $(PROJ_OBJ_DIR)\api.rmdir.widestring.dll.debug.obj
 OBJ_CR_api_search_WS_DLL_DBG		= $(PROJ_OBJ_DIR)\api.search.widestring.dll.debug.obj
+OBJ_CR_impl_apisrch_WS_DLL_DBG		= $(PROJ_OBJ_DIR)\impl.api.search.widestring.dll.debug.obj
 OBJ_CR_impl_debug_WS_DLL_DBG		= $(PROJ_OBJ_DIR)\impl.trace.widestring.dll.debug.obj
 OBJ_CR_impl_entryinfo_WS_DLL_DBG	= $(PROJ_OBJ_DIR)\impl.entryinfo.widestring.dll.debug.obj
 OBJ_CR_impl_fileinfo_WS_DLL_DBG		= $(PROJ_OBJ_DIR)\impl.fileinfo.widestring.dll.debug.obj
@@ -1501,6 +1510,7 @@ OBJ_CORE_WS_DLL_DBG=\
  $(OBJ_CR_api_rmdir_WS_DLL_DBG)\
  $(OBJ_CR_api_rc_win_WS_DLL_DBG)\
  $(OBJ_CR_api_search_WS_DLL_DBG)\
+ $(OBJ_CR_impl_apisrch_WS_DLL_DBG)\
  $(OBJ_CR_impl_debug_WS_DLL_DBG)\
  $(OBJ_CR_impl_entryinfo_WS_DLL_DBG)\
  $(OBJ_CR_impl_fileinfo_WS_DLL_DBG)\
@@ -1529,6 +1539,7 @@ OBJ_CR_api_crdir_WS_DLL_REL			= $(PROJ_OBJ_DIR)\api.crdir.widestring.dll.obj
 OBJ_CR_api_rc_win_WS_DLL_REL		= $(PROJ_OBJ_DIR)\api.retcodes.windows.widestring.dll.obj
 OBJ_CR_api_rmdir_WS_DLL_REL			= $(PROJ_OBJ_DIR)\api.rmdir.widestring.dll.obj
 OBJ_CR_api_search_WS_DLL_REL		= $(PROJ_OBJ_DIR)\api.search.widestring.dll.obj
+OBJ_CR_impl_apisrch_WS_DLL_REL		= $(PROJ_OBJ_DIR)\impl.api.search.widestring.dll.obj
 OBJ_CR_impl_debug_WS_DLL_REL		= $(PROJ_OBJ_DIR)\impl.trace.widestring.dll.obj
 OBJ_CR_impl_entryinfo_WS_DLL_REL	= $(PROJ_OBJ_DIR)\impl.entryinfo.widestring.dll.obj
 OBJ_CR_impl_fileinfo_WS_DLL_REL		= $(PROJ_OBJ_DIR)\impl.fileinfo.widestring.dll.obj
@@ -1559,6 +1570,7 @@ OBJ_CORE_WS_DLL_REL=\
  $(OBJ_CR_api_rmdir_WS_DLL_REL)\
  $(OBJ_CR_api_rc_win_WS_DLL_REL)\
  $(OBJ_CR_api_search_WS_DLL_REL)\
+ $(OBJ_CR_impl_apisrch_WS_DLL_REL)\
  $(OBJ_CR_impl_debug_WS_DLL_REL)\
  $(OBJ_CR_impl_entryinfo_WS_DLL_REL)\
  $(OBJ_CR_impl_fileinfo_WS_DLL_REL)\
@@ -1587,6 +1599,7 @@ OBJ_CR_api_crdir_WS_MT_DBG			= $(PROJ_OBJ_DIR)\api.crdir.widestring.mt.debug.obj
 OBJ_CR_api_rc_win_WS_MT_DBG		= $(PROJ_OBJ_DIR)\api.retcodes.windows.widestring.mt.debug.obj
 OBJ_CR_api_rmdir_WS_MT_DBG			= $(PROJ_OBJ_DIR)\api.rmdir.widestring.mt.debug.obj
 OBJ_CR_api_search_WS_MT_DBG		= $(PROJ_OBJ_DIR)\api.search.widestring.mt.debug.obj
+OBJ_CR_impl_apisrch_WS_MT_DBG		= $(PROJ_OBJ_DIR)\impl.api.search.widestring.mt.debug.obj
 OBJ_CR_impl_debug_WS_MT_DBG		= $(PROJ_OBJ_DIR)\impl.trace.widestring.mt.debug.obj
 OBJ_CR_impl_entryinfo_WS_MT_DBG	= $(PROJ_OBJ_DIR)\impl.entryinfo.widestring.mt.debug.obj
 OBJ_CR_impl_fileinfo_WS_MT_DBG		= $(PROJ_OBJ_DIR)\impl.fileinfo.widestring.mt.debug.obj
@@ -1617,6 +1630,7 @@ OBJ_CORE_WS_MT_DBG=\
  $(OBJ_CR_api_rmdir_WS_MT_DBG)\
  $(OBJ_CR_api_rc_win_WS_MT_DBG)\
  $(OBJ_CR_api_search_WS_MT_DBG)\
+ $(OBJ_CR_impl_apisrch_WS_MT_DBG)\
  $(OBJ_CR_impl_debug_WS_MT_DBG)\
  $(OBJ_CR_impl_entryinfo_WS_MT_DBG)\
  $(OBJ_CR_impl_fileinfo_WS_MT_DBG)\
@@ -1645,6 +1659,7 @@ OBJ_CR_api_crdir_WS_MT_REL			= $(PROJ_OBJ_DIR)\api.crdir.widestring.mt.obj
 OBJ_CR_api_rc_win_WS_MT_REL		= $(PROJ_OBJ_DIR)\api.retcodes.windows.widestring.mt.obj
 OBJ_CR_api_rmdir_WS_MT_REL			= $(PROJ_OBJ_DIR)\api.rmdir.widestring.mt.obj
 OBJ_CR_api_search_WS_MT_REL		= $(PROJ_OBJ_DIR)\api.search.widestring.mt.obj
+OBJ_CR_impl_apisrch_WS_MT_REL		= $(PROJ_OBJ_DIR)\impl.api.search.widestring.mt.obj
 OBJ_CR_impl_debug_WS_MT_REL		= $(PROJ_OBJ_DIR)\impl.trace.widestring.mt.obj
 OBJ_CR_impl_entryinfo_WS_MT_REL	= $(PROJ_OBJ_DIR)\impl.entryinfo.widestring.mt.obj
 OBJ_CR_impl_fileinfo_WS_MT_REL		= $(PROJ_OBJ_DIR)\impl.fileinfo.widestring.mt.obj
@@ -1675,6 +1690,7 @@ OBJ_CORE_WS_MT_REL=\
  $(OBJ_CR_api_rmdir_WS_MT_REL)\
  $(OBJ_CR_api_rc_win_WS_MT_REL)\
  $(OBJ_CR_api_search_WS_MT_REL)\
+ $(OBJ_CR_impl_apisrch_WS_MT_REL)\
  $(OBJ_CR_impl_debug_WS_MT_REL)\
  $(OBJ_CR_impl_entryinfo_WS_MT_REL)\
  $(OBJ_CR_impl_fileinfo_WS_MT_REL)\
@@ -2852,6 +2868,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_DLL_DBG) $(RM) $(OBJ_CR_api_rmdir_DLL_DBG)
 	@-if exist $(OBJ_CR_api_rc_win_DLL_DBG) $(RM) $(OBJ_CR_api_rc_win_DLL_DBG)
 	@-if exist $(OBJ_CR_api_search_DLL_DBG) $(RM) $(OBJ_CR_api_search_DLL_DBG)
+	@-if exist $(OBJ_CR_impl_apisrch_DLL_DBG) $(RM) $(OBJ_CR_impl_apisrch_DLL_DBG)
 	@-if exist $(OBJ_CR_impl_debug_DLL_DBG) $(RM) $(OBJ_CR_impl_debug_DLL_DBG)
 	@-if exist $(OBJ_CR_impl_entryinfo_DLL_DBG) $(RM) $(OBJ_CR_impl_entryinfo_DLL_DBG)
 	@-if exist $(OBJ_CR_impl_fileinfo_DLL_DBG) $(RM) $(OBJ_CR_impl_fileinfo_DLL_DBG)
@@ -2881,6 +2898,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_DLL_REL) $(RM) $(OBJ_CR_api_rmdir_DLL_REL)
 	@-if exist $(OBJ_CR_api_rc_win_DLL_REL) $(RM) $(OBJ_CR_api_rc_win_DLL_REL)
 	@-if exist $(OBJ_CR_api_search_DLL_REL) $(RM) $(OBJ_CR_api_search_DLL_REL)
+	@-if exist $(OBJ_CR_impl_apisrch_DLL_REL) $(RM) $(OBJ_CR_impl_apisrch_DLL_REL)
 	@-if exist $(OBJ_CR_impl_debug_DLL_REL) $(RM) $(OBJ_CR_impl_debug_DLL_REL)
 	@-if exist $(OBJ_CR_impl_entryinfo_DLL_REL) $(RM) $(OBJ_CR_impl_entryinfo_DLL_REL)
 	@-if exist $(OBJ_CR_impl_fileinfo_DLL_REL) $(RM) $(OBJ_CR_impl_fileinfo_DLL_REL)
@@ -2910,6 +2928,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_MT_DBG) $(RM) $(OBJ_CR_api_rmdir_MT_DBG)
 	@-if exist $(OBJ_CR_api_rc_win_MT_DBG) $(RM) $(OBJ_CR_api_rc_win_MT_DBG)
 	@-if exist $(OBJ_CR_api_search_MT_DBG) $(RM) $(OBJ_CR_api_search_MT_DBG)
+	@-if exist $(OBJ_CR_impl_apisrch_MT_DBG) $(RM) $(OBJ_CR_impl_apisrch_MT_DBG)
 	@-if exist $(OBJ_CR_impl_debug_MT_DBG) $(RM) $(OBJ_CR_impl_debug_MT_DBG)
 	@-if exist $(OBJ_CR_impl_entryinfo_MT_DBG) $(RM) $(OBJ_CR_impl_entryinfo_MT_DBG)
 	@-if exist $(OBJ_CR_impl_fileinfo_MT_DBG) $(RM) $(OBJ_CR_impl_fileinfo_MT_DBG)
@@ -2939,6 +2958,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_MT_REL) $(RM) $(OBJ_CR_api_rmdir_MT_REL)
 	@-if exist $(OBJ_CR_api_rc_win_MT_REL) $(RM) $(OBJ_CR_api_rc_win_MT_REL)
 	@-if exist $(OBJ_CR_api_search_MT_REL) $(RM) $(OBJ_CR_api_search_MT_REL)
+	@-if exist $(OBJ_CR_impl_apisrch_MT_REL) $(RM) $(OBJ_CR_impl_apisrch_MT_REL)
 	@-if exist $(OBJ_CR_impl_debug_MT_REL) $(RM) $(OBJ_CR_impl_debug_MT_REL)
 	@-if exist $(OBJ_CR_impl_entryinfo_MT_REL) $(RM) $(OBJ_CR_impl_entryinfo_MT_REL)
 	@-if exist $(OBJ_CR_impl_fileinfo_MT_REL) $(RM) $(OBJ_CR_impl_fileinfo_MT_REL)
@@ -2968,6 +2988,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_WS_DLL_DBG) $(RM) $(OBJ_CR_api_rmdir_WS_DLL_DBG)
 	@-if exist $(OBJ_CR_api_rc_win_WS_DLL_DBG) $(RM) $(OBJ_CR_api_rc_win_WS_DLL_DBG)
 	@-if exist $(OBJ_CR_api_search_WS_DLL_DBG) $(RM) $(OBJ_CR_api_search_WS_DLL_DBG)
+	@-if exist $(OBJ_CR_impl_apisrch_WS_DLL_DBG) $(RM) $(OBJ_CR_impl_apisrch_WS_DLL_DBG)
 	@-if exist $(OBJ_CR_impl_debug_WS_DLL_DBG) $(RM) $(OBJ_CR_impl_debug_WS_DLL_DBG)
 	@-if exist $(OBJ_CR_impl_entryinfo_WS_DLL_DBG) $(RM) $(OBJ_CR_impl_entryinfo_WS_DLL_DBG)
 	@-if exist $(OBJ_CR_impl_fileinfo_WS_DLL_DBG) $(RM) $(OBJ_CR_impl_fileinfo_WS_DLL_DBG)
@@ -2997,6 +3018,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_WS_DLL_REL) $(RM) $(OBJ_CR_api_rmdir_WS_DLL_REL)
 	@-if exist $(OBJ_CR_api_rc_win_WS_DLL_REL) $(RM) $(OBJ_CR_api_rc_win_WS_DLL_REL)
 	@-if exist $(OBJ_CR_api_search_WS_DLL_REL) $(RM) $(OBJ_CR_api_search_WS_DLL_REL)
+	@-if exist $(OBJ_CR_impl_apisrch_WS_DLL_REL) $(RM) $(OBJ_CR_impl_apisrch_WS_DLL_REL)
 	@-if exist $(OBJ_CR_impl_debug_WS_DLL_REL) $(RM) $(OBJ_CR_impl_debug_WS_DLL_REL)
 	@-if exist $(OBJ_CR_impl_entryinfo_WS_DLL_REL) $(RM) $(OBJ_CR_impl_entryinfo_WS_DLL_REL)
 	@-if exist $(OBJ_CR_impl_fileinfo_WS_DLL_REL) $(RM) $(OBJ_CR_impl_fileinfo_WS_DLL_REL)
@@ -3026,6 +3048,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_WS_MT_DBG) $(RM) $(OBJ_CR_api_rmdir_WS_MT_DBG)
 	@-if exist $(OBJ_CR_api_rc_win_WS_MT_DBG) $(RM) $(OBJ_CR_api_rc_win_WS_MT_DBG)
 	@-if exist $(OBJ_CR_api_search_WS_MT_DBG) $(RM) $(OBJ_CR_api_search_WS_MT_DBG)
+	@-if exist $(OBJ_CR_impl_apisrch_WS_MT_DBG) $(RM) $(OBJ_CR_impl_apisrch_WS_MT_DBG)
 	@-if exist $(OBJ_CR_impl_debug_WS_MT_DBG) $(RM) $(OBJ_CR_impl_debug_WS_MT_DBG)
 	@-if exist $(OBJ_CR_impl_entryinfo_WS_MT_DBG) $(RM) $(OBJ_CR_impl_entryinfo_WS_MT_DBG)
 	@-if exist $(OBJ_CR_impl_fileinfo_WS_MT_DBG) $(RM) $(OBJ_CR_impl_fileinfo_WS_MT_DBG)
@@ -3055,6 +3078,7 @@ clean.libs.core:
 	@-if exist $(OBJ_CR_api_rmdir_WS_MT_REL) $(RM) $(OBJ_CR_api_rmdir_WS_MT_REL)
 	@-if exist $(OBJ_CR_api_rc_win_WS_MT_REL) $(RM) $(OBJ_CR_api_rc_win_WS_MT_REL)
 	@-if exist $(OBJ_CR_api_search_WS_MT_REL) $(RM) $(OBJ_CR_api_search_WS_MT_REL)
+	@-if exist $(OBJ_CR_impl_apisrch_WS_MT_REL) $(RM) $(OBJ_CR_impl_apisrch_WS_MT_REL)
 	@-if exist $(OBJ_CR_impl_debug_WS_MT_REL) $(RM) $(OBJ_CR_impl_debug_WS_MT_REL)
 	@-if exist $(OBJ_CR_impl_entryinfo_WS_MT_REL) $(RM) $(OBJ_CR_impl_entryinfo_WS_MT_REL)
 	@-if exist $(OBJ_CR_impl_fileinfo_WS_MT_REL) $(RM) $(OBJ_CR_impl_fileinfo_WS_MT_REL)
@@ -3556,6 +3580,8 @@ $(OBJ_CR_api_rc_win_DLL_DBG): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HE
 	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_DLL_DBG): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_DLL_DBG): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_DLL_DBG): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_DLL_DBG): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -3614,6 +3640,8 @@ $(OBJ_CR_api_rc_win_DLL_REL): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HE
 	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_DLL_REL): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_DLL_REL): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_DLL_REL): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_DLL_REL): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -3672,6 +3700,8 @@ $(OBJ_CR_api_rc_win_MT_DBG): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEA
 	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_MT_DBG): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_MT_DBG): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_MT_DBG): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_DBG): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -3730,6 +3760,8 @@ $(OBJ_CR_api_rc_win_MT_REL): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_HEA
 	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_MT_REL): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_MT_REL): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_MT_REL): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_REL): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -3788,6 +3820,8 @@ $(OBJ_CR_api_rc_win_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE
 	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_WS_DLL_DBG): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_WS_DLL_DBG): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_WS_DLL_DBG): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_WS_DLL_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_WS_DLL_DBG): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -3846,6 +3880,8 @@ $(OBJ_CR_api_rc_win_WS_DLL_REL): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE
 	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_WS_DLL_REL): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_WS_DLL_REL): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_WS_DLL_REL): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_WS_DLL_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_WS_DLL_REL): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -3904,6 +3940,8 @@ $(OBJ_CR_api_rc_win_WS_MT_DBG): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_
 	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_WS_MT_DBG): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_WS_MT_DBG): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_WS_MT_DBG): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_WS_MT_DBG) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_WS_MT_DBG): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -3962,6 +4000,8 @@ $(OBJ_CR_api_rc_win_WS_MT_REL): $(PROJ_SRC_DIR)\api.retcodes.windows.cpp $(CORE_
 	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.retcodes.windows.cpp
 $(OBJ_CR_api_search_WS_MT_REL): $(PROJ_SRC_DIR)\api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\api.search.cpp
+$(OBJ_CR_impl_apisrch_WS_MT_REL): $(PROJ_SRC_DIR)\impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.api.search.cpp
 $(OBJ_CR_impl_debug_WS_MT_REL): $(PROJ_SRC_DIR)\impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_WS_MT_REL) -Fo$@ $(PROJ_SRC_DIR)\impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_WS_MT_REL): $(PROJ_SRC_DIR)\impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)

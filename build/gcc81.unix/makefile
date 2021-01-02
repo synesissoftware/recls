@@ -6,7 +6,7 @@
 #           on the UNIX platform
 #
 # Created:  22nd December 2020
-# Updated:  22nd December 2020
+# Updated:  2nd January 2021
 #
 ############################################################################
 
@@ -832,6 +832,7 @@ OBJ_CR_api_stat_MT_D			= $(PROJ_OBJ_DIR)/api.stat.mt.debug.o
 OBJ_CR_api_crdir_MT_D			= $(PROJ_OBJ_DIR)/api.crdir.mt.debug.o
 OBJ_CR_api_rmdir_MT_D			= $(PROJ_OBJ_DIR)/api.rmdir.mt.debug.o
 OBJ_CR_api_search_MT_D		= $(PROJ_OBJ_DIR)/api.search.mt.debug.o
+OBJ_CR_impl_apisrch_MT_D		= $(PROJ_OBJ_DIR)/impl.api.search.mt.debug.o
 OBJ_CR_impl_debug_MT_D		= $(PROJ_OBJ_DIR)/impl.trace.mt.debug.o
 OBJ_CR_impl_entryinfo_MT_D	= $(PROJ_OBJ_DIR)/impl.entryinfo.mt.debug.o
 OBJ_CR_impl_fileinfo_MT_D		= $(PROJ_OBJ_DIR)/impl.fileinfo.mt.debug.o
@@ -858,6 +859,7 @@ OBJ_CORE_MT_D=\
  $(OBJ_CR_api_crdir_MT_D)\
  $(OBJ_CR_api_rmdir_MT_D)\
  $(OBJ_CR_api_search_MT_D)\
+ $(OBJ_CR_impl_apisrch_MT_D)\
  $(OBJ_CR_impl_debug_MT_D)\
  $(OBJ_CR_impl_entryinfo_MT_D)\
  $(OBJ_CR_impl_fileinfo_MT_D)\
@@ -882,6 +884,7 @@ OBJ_CR_api_stat_MT_R			= $(PROJ_OBJ_DIR)/api.stat.mt.o
 OBJ_CR_api_crdir_MT_R			= $(PROJ_OBJ_DIR)/api.crdir.mt.o
 OBJ_CR_api_rmdir_MT_R			= $(PROJ_OBJ_DIR)/api.rmdir.mt.o
 OBJ_CR_api_search_MT_R		= $(PROJ_OBJ_DIR)/api.search.mt.o
+OBJ_CR_impl_apisrch_MT_R		= $(PROJ_OBJ_DIR)/impl.api.search.mt.o
 OBJ_CR_impl_debug_MT_R		= $(PROJ_OBJ_DIR)/impl.trace.mt.o
 OBJ_CR_impl_entryinfo_MT_R	= $(PROJ_OBJ_DIR)/impl.entryinfo.mt.o
 OBJ_CR_impl_fileinfo_MT_R		= $(PROJ_OBJ_DIR)/impl.fileinfo.mt.o
@@ -908,6 +911,7 @@ OBJ_CORE_MT_R=\
  $(OBJ_CR_api_crdir_MT_R)\
  $(OBJ_CR_api_rmdir_MT_R)\
  $(OBJ_CR_api_search_MT_R)\
+ $(OBJ_CR_impl_apisrch_MT_R)\
  $(OBJ_CR_impl_debug_MT_R)\
  $(OBJ_CR_impl_entryinfo_MT_R)\
  $(OBJ_CR_impl_fileinfo_MT_R)\
@@ -932,6 +936,7 @@ OBJ_CR_api_stat_ST_D			= $(PROJ_OBJ_DIR)/api.stat.debug.o
 OBJ_CR_api_crdir_ST_D			= $(PROJ_OBJ_DIR)/api.crdir.debug.o
 OBJ_CR_api_rmdir_ST_D			= $(PROJ_OBJ_DIR)/api.rmdir.debug.o
 OBJ_CR_api_search_ST_D		= $(PROJ_OBJ_DIR)/api.search.debug.o
+OBJ_CR_impl_apisrch_ST_D		= $(PROJ_OBJ_DIR)/impl.api.search.debug.o
 OBJ_CR_impl_debug_ST_D		= $(PROJ_OBJ_DIR)/impl.trace.debug.o
 OBJ_CR_impl_entryinfo_ST_D	= $(PROJ_OBJ_DIR)/impl.entryinfo.debug.o
 OBJ_CR_impl_fileinfo_ST_D		= $(PROJ_OBJ_DIR)/impl.fileinfo.debug.o
@@ -958,6 +963,7 @@ OBJ_CORE_ST_D=\
  $(OBJ_CR_api_crdir_ST_D)\
  $(OBJ_CR_api_rmdir_ST_D)\
  $(OBJ_CR_api_search_ST_D)\
+ $(OBJ_CR_impl_apisrch_ST_D)\
  $(OBJ_CR_impl_debug_ST_D)\
  $(OBJ_CR_impl_entryinfo_ST_D)\
  $(OBJ_CR_impl_fileinfo_ST_D)\
@@ -982,6 +988,7 @@ OBJ_CR_api_stat_ST_R			= $(PROJ_OBJ_DIR)/api.stat.o
 OBJ_CR_api_crdir_ST_R			= $(PROJ_OBJ_DIR)/api.crdir.o
 OBJ_CR_api_rmdir_ST_R			= $(PROJ_OBJ_DIR)/api.rmdir.o
 OBJ_CR_api_search_ST_R		= $(PROJ_OBJ_DIR)/api.search.o
+OBJ_CR_impl_apisrch_ST_R		= $(PROJ_OBJ_DIR)/impl.api.search.o
 OBJ_CR_impl_debug_ST_R		= $(PROJ_OBJ_DIR)/impl.trace.o
 OBJ_CR_impl_entryinfo_ST_R	= $(PROJ_OBJ_DIR)/impl.entryinfo.o
 OBJ_CR_impl_fileinfo_ST_R		= $(PROJ_OBJ_DIR)/impl.fileinfo.o
@@ -1008,6 +1015,7 @@ OBJ_CORE_ST_R=\
  $(OBJ_CR_api_crdir_ST_R)\
  $(OBJ_CR_api_rmdir_ST_R)\
  $(OBJ_CR_api_search_ST_R)\
+ $(OBJ_CR_impl_apisrch_ST_R)\
  $(OBJ_CR_impl_debug_ST_R)\
  $(OBJ_CR_impl_entryinfo_ST_R)\
  $(OBJ_CR_impl_fileinfo_ST_R)\
@@ -1701,6 +1709,7 @@ clean.libs.core:
 	@-$(RM) $(OBJ_CR_api_crdir_MT_D)
 	@-$(RM) $(OBJ_CR_api_rmdir_MT_D)
 	@-$(RM) $(OBJ_CR_api_search_MT_D)
+	@-$(RM) $(OBJ_CR_impl_apisrch_MT_D)
 	@-$(RM) $(OBJ_CR_impl_debug_MT_D)
 	@-$(RM) $(OBJ_CR_impl_entryinfo_MT_D)
 	@-$(RM) $(OBJ_CR_impl_fileinfo_MT_D)
@@ -1723,6 +1732,7 @@ clean.libs.core:
 	@-$(RM) $(OBJ_CR_api_crdir_MT_R)
 	@-$(RM) $(OBJ_CR_api_rmdir_MT_R)
 	@-$(RM) $(OBJ_CR_api_search_MT_R)
+	@-$(RM) $(OBJ_CR_impl_apisrch_MT_R)
 	@-$(RM) $(OBJ_CR_impl_debug_MT_R)
 	@-$(RM) $(OBJ_CR_impl_entryinfo_MT_R)
 	@-$(RM) $(OBJ_CR_impl_fileinfo_MT_R)
@@ -1745,6 +1755,7 @@ clean.libs.core:
 	@-$(RM) $(OBJ_CR_api_crdir_ST_D)
 	@-$(RM) $(OBJ_CR_api_rmdir_ST_D)
 	@-$(RM) $(OBJ_CR_api_search_ST_D)
+	@-$(RM) $(OBJ_CR_impl_apisrch_ST_D)
 	@-$(RM) $(OBJ_CR_impl_debug_ST_D)
 	@-$(RM) $(OBJ_CR_impl_entryinfo_ST_D)
 	@-$(RM) $(OBJ_CR_impl_fileinfo_ST_D)
@@ -1767,6 +1778,7 @@ clean.libs.core:
 	@-$(RM) $(OBJ_CR_api_crdir_ST_R)
 	@-$(RM) $(OBJ_CR_api_rmdir_ST_R)
 	@-$(RM) $(OBJ_CR_api_search_ST_R)
+	@-$(RM) $(OBJ_CR_impl_apisrch_ST_R)
 	@-$(RM) $(OBJ_CR_impl_debug_ST_R)
 	@-$(RM) $(OBJ_CR_impl_entryinfo_ST_R)
 	@-$(RM) $(OBJ_CR_impl_fileinfo_ST_R)
@@ -2042,6 +2054,8 @@ $(OBJ_CR_api_rmdir_MT_D): $(PROJ_SRC_DIR)/api.util.remove_directory.cpp $(CORE_H
 	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)/api.util.remove_directory.cpp
 $(OBJ_CR_api_search_MT_D): $(PROJ_SRC_DIR)/api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)/api.search.cpp
+$(OBJ_CR_impl_apisrch_MT_D): $(PROJ_SRC_DIR)/impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)/impl.api.search.cpp
 $(OBJ_CR_impl_debug_MT_D): $(PROJ_SRC_DIR)/impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)/impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_D): $(PROJ_SRC_DIR)/impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -2092,6 +2106,8 @@ $(OBJ_CR_api_rmdir_MT_R): $(PROJ_SRC_DIR)/api.util.remove_directory.cpp $(CORE_H
 	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)/api.util.remove_directory.cpp
 $(OBJ_CR_api_search_MT_R): $(PROJ_SRC_DIR)/api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)/api.search.cpp
+$(OBJ_CR_impl_apisrch_MT_R): $(PROJ_SRC_DIR)/impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)/impl.api.search.cpp
 $(OBJ_CR_impl_debug_MT_R): $(PROJ_SRC_DIR)/impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)/impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_MT_R): $(PROJ_SRC_DIR)/impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -2142,6 +2158,8 @@ $(OBJ_CR_api_rmdir_ST_D): $(PROJ_SRC_DIR)/api.util.remove_directory.cpp $(CORE_H
 	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)/api.util.remove_directory.cpp
 $(OBJ_CR_api_search_ST_D): $(PROJ_SRC_DIR)/api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)/api.search.cpp
+$(OBJ_CR_impl_apisrch_ST_D): $(PROJ_SRC_DIR)/impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)/impl.api.search.cpp
 $(OBJ_CR_impl_debug_ST_D): $(PROJ_SRC_DIR)/impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)/impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_ST_D): $(PROJ_SRC_DIR)/impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -2192,6 +2210,8 @@ $(OBJ_CR_api_rmdir_ST_R): $(PROJ_SRC_DIR)/api.util.remove_directory.cpp $(CORE_H
 	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)/api.util.remove_directory.cpp
 $(OBJ_CR_api_search_ST_R): $(PROJ_SRC_DIR)/api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)/api.search.cpp
+$(OBJ_CR_impl_apisrch_ST_R): $(PROJ_SRC_DIR)/impl.api.search.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)/impl.api.search.cpp
 $(OBJ_CR_impl_debug_ST_R): $(PROJ_SRC_DIR)/impl.trace.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)/impl.trace.cpp
 $(OBJ_CR_impl_entryinfo_ST_R): $(PROJ_SRC_DIR)/impl.entryinfo.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
