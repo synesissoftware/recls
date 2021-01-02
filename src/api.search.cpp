@@ -4,7 +4,7 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     1st January 2021
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *

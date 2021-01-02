@@ -616,8 +616,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         }
         else
         {
-            recls_debug2_trace_printf_("Next directory in %s", static_cast<char const*>(m_searchDir.data()));
-            recls_debug2_trace_printf_("*m_directoriesBegin: %s", static_cast<char const*>(stlsoft::c_str_ptr(*m_directoriesBegin)));
+//          recls_debug2_trace_printf_("Next directory in %s", static_cast<char const*>(m_searchDir.data()));
+//          recls_debug2_trace_printf_("*m_directoriesBegin: %s", static_cast<char const*>(stlsoft::c_str_ptr(*m_directoriesBegin)));
 
             do
             {
