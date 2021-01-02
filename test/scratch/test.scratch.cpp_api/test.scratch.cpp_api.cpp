@@ -62,7 +62,7 @@ static int main_(int /* argc */, char** argv)
         std::cout << "\n" << "Roots:" << std::endl;
         { for (root_sequence::const_iterator i = roots.begin(), e = roots.end(); i != e; ++i)
         {
-            std::cout << "    " << *i << std::endl;
+            std::cout << "\n" << "    " << *i << std::endl;
         }}
     }
 
@@ -71,7 +71,7 @@ static int main_(int /* argc */, char** argv)
         std::cout << "\n" << "stat:" << std::endl;
 
         {
-            std::cout << "  " << "stat(\".\"):" << std::endl;
+            std::cout << "\n" << "  stat(\".\"):" << std::endl;
 
             recls::cpp::entry e = recls::cpp::stat(".");
 
@@ -79,7 +79,7 @@ static int main_(int /* argc */, char** argv)
         }
 
         {
-            std::cout << "  " << "stat(argv[0]):" << std::endl;
+            std::cout << "\n" << "  stat(argv[0]):" << std::endl;
 
             recls::cpp::entry e = recls::cpp::stat(argv[0], recls::DIRECTORY_PARTS);
 
@@ -87,7 +87,7 @@ static int main_(int /* argc */, char** argv)
         }
 
         {
-            std::cout << "  " << "stat(\"~\"):" << std::endl;
+            std::cout << "\n" << "  stat(\"~\"):" << std::endl;
 
             recls::cpp::entry e = recls::cpp::stat("~");
 
@@ -95,7 +95,7 @@ static int main_(int /* argc */, char** argv)
         }
 
         {
-            std::cout << "  " << "stat(\"/\"):" << std::endl;
+            std::cout << "\n" << "  stat(\"/\"):" << std::endl;
 
             recls::cpp::entry e = recls::cpp::stat("/");
 
@@ -105,7 +105,7 @@ static int main_(int /* argc */, char** argv)
 
     { // search_sequence
 
-        std::cout << "\n" << "search (from '..' for all files):" << std::endl;
+        std::cout << "\n" << "files under \"..\":" << std::endl;
 
         recls::cpp::search_sequence files("..", Recls_GetWildcardsAll(), recls::FILES | recls::RECURSIVE | recls::DIRECTORY_PARTS);
 
@@ -191,7 +191,7 @@ static void display_entry(recls::entry const& e)
     std::cout << std::setw(width) << "FileName:" << "    " << std::setw(e.get_directory_path().length()) << "" << e.FileName << std::endl;
     std::cout << std::setw(width) << "FileExtension:" << "    " << std::setw(e.get_directory_path().length() + e.get_file_name().length()) << "" << e.FileExtension << std::endl;
 #else /* ? RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    std::cout << std::setw(width) << "search_relative_path:" << "    " << e.get_search_relative_path() << std::endl;
+    std::cout << std::setw(width) << "search-relative path:" << "    " << e.get_search_relative_path() << std::endl;
     std::cout << std::setw(width) << "path:" << "    " << e.get_path() << std::endl;
     std::cout << std::setw(width) << "directory_path:" << "    " << e.get_directory_path() << std::endl;
     std::cout << std::setw(width) << "drive:" << "    " << e.get_drive() << std::endl;
@@ -211,11 +211,11 @@ static void display_entry(recls::entry const& e)
     size_t numParts = parts.end() - parts.begin();
     STLSOFT_ASSERT(parts.size() == numParts);
 #if 0
-    std::cout << "num parts:" << numParts << std::endl;
-    std::cout << "num parts:" << parts.size() << std::endl;
+    std::cout << "\n" << "num parts:" << numParts << std::endl;
+    std::cout << "\n" << "num parts:" << parts.size() << std::endl;
 
-    std::cout << "part begin:" << &*parts.begin() << std::endl;
-    std::cout << "part end:" << &*parts.end() << std::endl;
+    std::cout << "\n" << "part begin:" << &*parts.begin() << std::endl;
+    std::cout << "\n" << "part end:" << &*parts.end() << std::endl;
 #endif /* 0 */
 
     if (numParts > 3)
