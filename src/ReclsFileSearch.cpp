@@ -107,6 +107,7 @@ inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t c
 }
 
 #ifdef RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE
+
 inline void ReclsFileSearch::operator delete(void* pv, size_t /* cDirParts */, size_t /* cbRootDir */)
 {
     function_scope_trace("ReclsFileSearch::operator delete");
@@ -336,18 +337,6 @@ ReclsFileSearch::ReclsFileSearch(
 ReclsFileSearch::~ReclsFileSearch() STLSOFT_NOEXCEPT
 {
     function_scope_trace("ReclsFileSearch::~ReclsFileSearch");
-}
-
-/* static */ recls_rc_t
-ReclsFileSearch::Stat(
-    recls_char_t const* path
-,   recls_uint32_t      flags
-,   recls_entry_t*      phEntry
-)
-{
-    function_scope_trace("ReclsFileSearch::Stat");
-
-    return ReclsFileSearchDirectoryNode::Stat(path, flags, phEntry);
 }
 
 /* /////////////////////////////////////////////////////////////////////////

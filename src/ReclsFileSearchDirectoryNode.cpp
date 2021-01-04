@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created:     31st May 2004
- * Updated:     1st January 2021
+ * Updated:     2nd January 2021
  *
  * Home:        http://recls.org/
  *
@@ -346,6 +346,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     RECLS_ASSERT(ss_nullptr_k != searchDir);
     RECLS_ASSERT(rootDirLen <= types::traits_type::str_len(searchDir));
 
+    RECLS_MESSAGE_ASSERT("patternLen is an advisory, and we still require pattern to not be null", ss_nullptr_k != pattern);
     RECLS_ASSERT(patternLen == types::traits_type::str_len(pattern));
     RECLS_ASSERT(ss_nullptr_k != prc);
 
@@ -419,6 +420,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 /* static */ recls_rc_t
 ReclsFileSearchDirectoryNode::Stat(
     recls_char_t const* path
+,   size_t              pathLen
 ,   recls_uint32_t      flags
 ,   recls_entry_t*      phEntry
 )
@@ -434,52 +436,52 @@ ReclsFileSearchDirectoryNode::Stat(
         return RECLS_RC_INVALID_NAME;
     }
 
-    recls_debug1_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(path=%s, flags=0x%08x, ...)"), path, flags);
+    recls_debug1_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(path=%s, pathLen=%lud flags=0x%08x, ...)"), path, static_cast<unsigned long>(pathLen), flags);
 
-    //
-    // 1.b Must not be > max_path()
-    size_t const pathLen = types::traits_type::str_len(path);
-
-    if (pathLen > types::traits_type::path_max())
-    {
-        recls_log_printf_(RECLS_SEVIX_WARN, RECLS_LITERAL("path limit exceeded: limit=%u; len=%u"), unsigned(types::traits_type::path_max()), unsigned(pathLen));
-
-        return RECLS_RC_PATH_LIMIT_EXCEEDED;
-    }
-
-    recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 3"));
-
-    // 1. c Ensure that is has the correct slashes
-    types::path_buffer_type     path_(path, pathLen);
-
-    path = path_.c_str();
-
-    recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 4"));
+    RECLS_ASSERT(types::traits_type::str_len(path) == pathLen);
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+    RECLS_ASSERT(types::traits_type::is_path_UNC(path) || (ss_nullptr_k == types::traits_type::str_pbrk(path, RECLS_LITERAL("\\"))));
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+    RECLS_ASSERT(ss_nullptr_k == types::traits_type::str_pbrk(path, RECLS_LITERAL("/")));
+# endif /* Windows && EMULATE_UNIX_ON_WINDOWS */
 
     // stat() of root is now supported!
-    if (types::traits_type::is_root_designator(path))
+    if (types::traits_type::is_root_designator(path, pathLen))
     {
         *phEntry = create_drive_entryinfo(path, pathLen, flags, ss_nullptr_k);
 
         return (ss_nullptr_k == *phEntry) ? RECLS_RC_OUT_OF_MEMORY : RECLS_RC_OK;
     }
 
-    recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 6"));
-
-#if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
-    // emulated UNIX
-    if (!types::traits_type::is_path_UNC(path))
-    {
-        std::replace(&path_[0], &path_[0] + path_.size(), RECLS_LITERAL('\\'), RECLS_LITERAL('/'));
-    }
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
-    std::replace(&path_[0], &path_[0] + path_.size(), RECLS_LITERAL('/'), RECLS_LITERAL('\\'));
-# endif /* Windows && EMULATE_UNIX_ON_WINDOWS */
-
-    recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 8"));
+    types::buffer_type     path_(1);
 
     // Now need to remove the directory end, if any
-    types::traits_type::remove_dir_end(path_);
+    if (types::traits_type::has_dir_end(path, pathLen))
+    {
+        if (!path_.resize(1 + pathLen))
+        {
+            return RECLS_RC_OUT_OF_MEMORY;
+        }
+
+        types::traits_type::char_copy(&path_[0], path, pathLen + 1);
+        RECLS_ASSERT('\0' == path_[path_.size() - 1]);
+
+#if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+        // emulated UNIX
+        if (!types::traits_type::is_path_UNC(path))
+        {
+            std::replace(&path_[0], &path_[0] + path_.size(), RECLS_LITERAL('\\'), RECLS_LITERAL('/'));
+        }
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+        std::replace(&path_[0], &path_[0] + path_.size(), RECLS_LITERAL('/'), RECLS_LITERAL('\\'));
+# endif /* Windows && EMULATE_UNIX_ON_WINDOWS */
+
+        types::traits_type::remove_dir_end(path_);
+
+        path = path_.data();
+        --pathLen;
+    }
 
     types::traits_type::stat_data_type  st;
     types::traits_type::stat_data_type* pst = &st;

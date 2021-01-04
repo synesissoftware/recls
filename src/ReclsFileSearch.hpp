@@ -123,17 +123,10 @@ public:
     ,   recls_process_fn_param_t    param
     ,   class_type**                ppsi
     );
-
-    static
-    recls_rc_t
-    Stat(
-        recls_char_t const* path
-    ,   recls_uint32_t      flags
-    ,   recls_entry_t*      phEntry
-    );
 private:
     ReclsFileSearch(class_type const &);    // copy-construction proscribed
     void operator =(class_type const &);    // copy-assignment proscribed
+public:
 
 private: // implementation
     recls_char_t const*

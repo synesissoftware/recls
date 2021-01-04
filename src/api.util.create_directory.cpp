@@ -146,8 +146,11 @@ namespace
     )
     {
         RECLS_ASSERT(ss_nullptr_k != path);
+        RECLS_ASSERT(0 != pathLen);
         RECLS_ASSERT('\0' != 0[path]);
-        RECLS_ASSERT(types::traits_type::is_path_absolute(path));
+        RECLS_ASSERT(types::traits_type::str_len(path) == pathLen);
+        RECLS_ASSERT(types::traits_type::is_path_absolute(path, pathLen));
+
         RECLS_ASSERT(ss_nullptr_k != results);
 
         recls_debug1_trace_printf_(
@@ -230,7 +233,10 @@ namespace
     )
     {
         RECLS_ASSERT(ss_nullptr_k != path);
+        RECLS_ASSERT(0 != pathLen);
         RECLS_ASSERT('\0' != 0[path]);
+        RECLS_ASSERT(types::traits_type::str_len(path) == pathLen);
+
         RECLS_ASSERT(ss_nullptr_k != results);
 
         recls_debug1_trace_printf_(RECLS_LITERAL("Recls_CreateDirectory_(%s, ...)"), path);
@@ -245,7 +251,7 @@ namespace
 
             fullPath.canonicalise();
 
-            return Recls_CreateDirectory_(fullPath.data(), fullPath.size(), results);
+            return Recls_CreateDirectory_(fullPath.c_str(), fullPath.size(), results);
         }
         else
         {

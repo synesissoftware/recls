@@ -162,10 +162,17 @@ public:
     ,   recls_rc_t*                 prc
     );
 
+    //
+    //
+    // \pre nullptr != path
+    // \pre strlen(path) == pathLen
+    // \pre path has correct slashes
+    // \pre path does not have a trailing slash
     static
     recls_rc_t
     Stat(
         recls_char_t const* path
+    ,   size_t              pathLen
     ,   recls_uint32_t      flags
     ,   recls_entry_t*      phEntry
     );

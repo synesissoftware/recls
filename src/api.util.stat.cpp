@@ -51,8 +51,7 @@
 #include "impl.types.hpp"
 #include "impl.util.h"
 
-#include "ReclsSearch.hpp"
-#include "ReclsFileSearch.hpp"
+#include "ReclsFileSearchDirectoryNode.hpp"
 
 #include "impl.trace.h"
 
@@ -64,7 +63,7 @@
 namespace recls
 {
 
-using ::recls::impl::ReclsFileSearch;
+using ::recls::impl::ReclsFileSearchDirectoryNode;
 using ::recls::impl::types;
 
 using ::recls::impl::recls_is_home_start_;
@@ -180,13 +179,6 @@ recls_rc_t Recls_Stat_X_(
         return RECLS_RC_INVALID_NAME;
     }
 
-    if (pathLen > types::path_type::max_size())
-    {
-        recls_error_trace_printf_(RECLS_LITERAL("path too long: %s"), path);
-
-        return RECLS_RC_INVALID_NAME;
-    }
-
     types::path_type   path_(path, pathLen);
 
     if (!path_.exists() &&
@@ -228,7 +220,11 @@ recls_rc_t Recls_Stat_X_(
         path_.canonicalise(false);
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 
-        return ReclsFileSearch::Stat(path_.c_str(), flags, phEntry);
+        return ReclsFileSearchDirectoryNode::Stat(
+            path_.c_str(), path_.size()
+        ,   flags
+        ,   phEntry
+        );
     }
 }
 
