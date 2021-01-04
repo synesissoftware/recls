@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - root_sequence class.
  *
  * Created:     25th March 2004
- * Updated:     23rd December 2020
+ * Updated:     5th January 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MINOR    1
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 5
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     28
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 6
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     29
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/root_sequence.hpp
@@ -98,8 +98,15 @@ namespace root_sequence_impl
 {
 
     struct make_root_string
+#if __cplusplus < 201703L
         : std::unary_function<recls_root_t, string_t>
+#endif
     {
+#if __cplusplus >= 201703L
+        typedef recls_root_t                                argument_type;
+        typedef string_t                                    result_type;
+#endif
+
         string_t operator ()(recls_root_t const& root) const
         {
             return string_t(root.name);
