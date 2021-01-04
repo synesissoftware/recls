@@ -4,11 +4,11 @@
  * Purpose:     Implicit linking for the recls API
  *
  * Created:     20th September 2005
- * Updated:     22nd December 2020
+ * Updated:     5th January 2021
  *
- * Home:        http://fastformat.org/
+ * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_MAJOR      1
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_MINOR      5
-# define RECLS_VER_RECLS_H_IMPLICIT_LINK_REVISION   1
-# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       16
+# define RECLS_VER_RECLS_H_IMPLICIT_LINK_REVISION   2
+# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       17
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -186,6 +186,15 @@
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "vc12"
 #   elif _MSC_VER == 1900
 #    define RECLS_IMPL_LINK_COMPILER_NAME           "vc14"
+#   elif _MSC_VER >= 1910
+#    if 0
+#    elif _MSC_VER < 1920
+#     define RECLS_IMPL_LINK_COMPILER_NAME          "vc15"
+#    elif _MSC_VER <= 1928
+#     define RECLS_IMPL_LINK_COMPILER_NAME          "vc16"
+#    else
+#     error Visual C++ version that is >= vc16 is not recognised
+#    endif
 #   else /* ? _MSC_VER */
 #    error Visual C++ version not supported
 #   endif /* _MSC_VER */
