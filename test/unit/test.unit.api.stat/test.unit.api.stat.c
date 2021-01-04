@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.api.stat project.
  *
  * Created:     13th December 2008
- * Updated:     1st January 2021
+ * Updated:     3rd January 2021
  *
  * Status:      Wizard-generated
  *
@@ -41,9 +41,20 @@
 # include <unistd.h>
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <direct.h>
+# include <tchar.h>
 # include <windows.h>
 #else
 # error platform not discriminated
+#endif
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER >= 1200
+
+# pragma warning(disable : 4996)
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,6 +75,12 @@
 # error recls not discriminating correctly
 #endif
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
+static recls_char_t const s_nonexistent_file[] = RECLS_LITERAL("20101D98-B455-4e9d-AD7D-2C23FD2D63B1-60B3B24B-2AB6-4b44-B34D-A9FFDEBED982");
+static recls_char_t const s_nonexistent_path[] = RECLS_LITERAL("9B810A5F-F664-4f93-BC7D-893304CD2F84-8584D8E5-1565-4aad-88F7-235FDD1E6330/20101D98-B455-4e9d-AD7D-2C23FD2D63B1-60B3B24B-2AB6-4b44-B34D-A9FFDEBED982");
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -90,6 +107,17 @@ static void test_1_17(void);
 static void test_1_18(void);
 static void test_1_19(void);
 
+static void test_2_0(void);
+static void test_2_1(void);
+static void test_2_2(void);
+static void test_2_3(void);
+static void test_2_4(void);
+static void test_2_5(void);
+static void test_2_6(void);
+static void test_2_7(void);
+static void test_2_8(void);
+static void test_2_9(void);
+
 /* /////////////////////////////////////////////////////////////////////////
  * main
  */
@@ -98,21 +126,18 @@ recls_char_t*   s_cwd;
 recls_char_t*   s_home;
 size_t          path_max;
 
-static void finish_off_directory(recls_char_t* s)
-{
-    size_t n = strlen(s);
-
-    if (n > 0)
-    {
-    }
-}
-
 int main(int argc, char **argv)
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER >= 1500
+# pragma warning(push)
+# pragma warning(disable : 4996)
+#endif
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
     (   defined(PLATFORMSTL_OS_IS_UNIX) && \
@@ -137,18 +162,25 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    getcwd(s_cwd, 1 + path_max);
+    _tgetcwd(s_cwd, ((int)(1 + path_max)));
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
     (   defined(PLATFORMSTL_OS_IS_UNIX) && \
         defined(_WIN32))
-    strcpy(s_home, getenv("HOMEDRIVE"));
-    strcat(s_home, getenv("HOMEPATH"));
+
+    _tcscpy(s_home, _tgetenv(RECLS_LITERAL("HOMEDRIVE")));
+    _tcscat(s_home, _tgetenv(RECLS_LITERAL("HOMEPATH")));
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
     strcpy(s_home, getenv("HOME"));
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 #else
 # error platform not discriminated
 #endif
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER >= 1500
+# pragma warning(pop)
+#endif
+
 
 #if defined(PLATFORMSTL_OS_IS_UNIX) && \
     defined(_WIN32)
@@ -192,6 +224,17 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_18);
         XTESTS_RUN_CASE(test_1_19);
 
+        XTESTS_RUN_CASE(test_2_0);
+        XTESTS_RUN_CASE(test_2_1);
+        XTESTS_RUN_CASE(test_2_2);
+        XTESTS_RUN_CASE(test_2_3);
+        XTESTS_RUN_CASE(test_2_4);
+        XTESTS_RUN_CASE(test_2_5);
+        XTESTS_RUN_CASE(test_2_6);
+        XTESTS_RUN_CASE(test_2_7);
+        XTESTS_RUN_CASE(test_2_8);
+        XTESTS_RUN_CASE(test_2_9);
+
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -210,7 +253,8 @@ int main(int argc, char **argv)
 static void test_1_0()
 {
     recls_info_t    entry;
-    recls_rc_t      rc = Recls_Stat("", 0, &entry);
+    unsigned        flags   =   0;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL(""), flags, &entry);
 
     XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
 }
@@ -218,7 +262,8 @@ static void test_1_0()
 static void test_1_1()
 {
     recls_info_t    entry;
-    recls_rc_t      rc = Recls_Stat(".", 0, &entry);
+    unsigned        flags   =   0;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("."), flags, &entry);
 
     if (RECLS_RC_OK == rc)
     {
@@ -249,7 +294,40 @@ static void test_1_1()
 static void test_1_2()
 {
     recls_info_t    entry;
-    recls_rc_t      rc = Recls_Stat("~", 0, &entry);
+    unsigned        flags   =   0;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("./"), flags, &entry);
+
+    if (RECLS_RC_OK == rc)
+    {
+        XTESTS_TEST_PASSED();
+
+        /* Verify that it's the home directory */
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
+        defined(_WIN32))
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_cwd, entry->path.begin);
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        XTESTS_TEST_RECLS_STRING_EQUAL(s_cwd, entry->path.begin);
+#else
+# error platform not discriminated
+#endif
+
+        Recls_CloseDetails(entry);
+    }
+    else
+    {
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+    }
+}
+
+static void test_1_3()
+{
+    recls_info_t    entry;
+    unsigned        flags   =   0;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("~"), flags, &entry);
 
     if (RECLS_RC_OK == rc)
     {
@@ -277,10 +355,11 @@ static void test_1_2()
     }
 }
 
-static void test_1_3()
+static void test_1_4()
 {
     recls_info_t    entry;
-    recls_rc_t      rc = Recls_Stat("~", RECLS_F_MARK_DIRS, &entry);
+    unsigned        flags   =   0;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("~/"), flags, &entry);
 
     if (RECLS_RC_OK == rc)
     {
@@ -291,7 +370,39 @@ static void test_1_3()
     (   defined(PLATFORMSTL_OS_IS_UNIX) && \
         defined(_WIN32))
 
-        XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, strlen(s_home));
+        XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_home, entry->path.begin);
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        XTESTS_TEST_RECLS_STRING_EQUAL(s_home, entry->path.begin);
+#else
+# error platform not discriminated
+#endif
+
+        Recls_CloseDetails(entry);
+    }
+    else
+    {
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+    }
+}
+
+static void test_1_5()
+{
+    recls_info_t    entry;
+    unsigned        flags   =   RECLS_F_MARK_DIRS;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("~"), flags, &entry);
+
+    if (RECLS_RC_OK == rc)
+    {
+        XTESTS_TEST_PASSED();
+
+        /* Verify that it's the home directory */
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
+        defined(_WIN32))
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
@@ -308,16 +419,36 @@ static void test_1_3()
     }
 }
 
-static void test_1_4()
-{
-}
-
-static void test_1_5()
-{
-}
-
 static void test_1_6()
 {
+    recls_info_t    entry;
+    unsigned        flags   =   RECLS_F_MARK_DIRS;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("~/"), flags, &entry);
+
+    if (RECLS_RC_OK == rc)
+    {
+        XTESTS_TEST_PASSED();
+
+        /* Verify that it's the home directory */
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
+        defined(_WIN32))
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_N(s_home, entry->path.begin, strlen(s_home));
+#else
+# error platform not discriminated
+#endif
+
+        Recls_CloseDetails(entry);
+    }
+    else
+    {
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+    }
 }
 
 static void test_1_7()
@@ -338,18 +469,82 @@ static void test_1_10()
 
 static void test_1_11()
 {
+    recls_info_t    entry;
+    unsigned        flags   =   0;
+    recls_rc_t      rc      =   Recls_Stat(s_nonexistent_file, flags, &entry);
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_NO_MORE_DATA, rc));
 }
 
 static void test_1_12()
 {
+    recls_info_t    entry;
+    unsigned        flags   =   0
+                            |   RECLS_F_DETAILS_LATER
+                            ;
+    recls_rc_t      rc      =   Recls_Stat(s_nonexistent_file, flags, &entry);
+
+    if (RECLS_RC_OK == rc)
+    {
+        /* Verify that it's the home directory */
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
+        defined(_WIN32))
+
+        recls_char_t    expected[1001];
+
+        _tcscpy(expected, s_cwd);
+# if 0
+# elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        strcat(expected, "/");
+# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+        _tcscat(expected, RECLS_LITERAL("\\"));
+# else
+#  error
+# endif
+        _tcscat(expected, s_nonexistent_file);
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(expected, entry->path.begin);
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_N(s_home, entry->path.begin, strlen(s_home));
+#else
+# error platform not discriminated
+#endif
+
+        Recls_CloseDetails(entry);
+    }
+    else
+    {
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+    }
 }
 
 static void test_1_13()
 {
+    recls_info_t    entry;
+    unsigned        flags   =   0
+                            |   RECLS_F_DETAILS_LATER
+                            |   RECLS_F_FILES
+                            ;
+    recls_rc_t      rc      =   Recls_Stat(s_nonexistent_file, flags, &entry);
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_NO_MORE_DATA, rc));
 }
 
 static void test_1_14()
 {
+    recls_info_t    entry;
+    unsigned        flags   =   0
+                            |   RECLS_F_DETAILS_LATER
+                            |   RECLS_F_FILES
+                            ;
+    recls_rc_t      rc      =   Recls_Stat(s_nonexistent_path, flags, &entry);
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_DIRECTORY_NOT_FOUND, rc));
 }
 
 static void test_1_15()
@@ -371,6 +566,221 @@ static void test_1_18()
 static void test_1_19()
 {
 }
+
+
+static void test_2_0()
+{
+    recls_info_t    entry;
+    unsigned        flags   =   RECLS_F_DETAILS_LATER;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL(""), flags, &entry);
+
+    XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
+}
+
+static void test_2_1()
+{
+    recls_info_t    entry;
+    unsigned        flags   =   RECLS_F_DETAILS_LATER;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("."), flags, &entry);
+
+    if (RECLS_RC_OK == rc)
+    {
+        XTESTS_TEST_PASSED();
+
+        /* Verify that it's the home directory */
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
+        defined(_WIN32))
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_cwd, entry->path.begin);
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        XTESTS_TEST_RECLS_STRING_EQUAL(s_cwd, entry->path.begin);
+#else
+# error platform not discriminated
+#endif
+
+        Recls_CloseDetails(entry);
+    }
+    else
+    {
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+    }
+}
+
+static void test_2_2()
+{
+    recls_info_t    entry;
+    unsigned        flags   =   RECLS_F_DETAILS_LATER;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("./"), flags, &entry);
+
+    if (RECLS_RC_OK == rc)
+    {
+        XTESTS_TEST_PASSED();
+
+        /* Verify that it's the home directory */
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
+        defined(_WIN32))
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_cwd, entry->path.begin);
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        XTESTS_TEST_RECLS_STRING_EQUAL(s_cwd, entry->path.begin);
+#else
+# error platform not discriminated
+#endif
+
+        Recls_CloseDetails(entry);
+    }
+    else
+    {
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+    }
+}
+
+static void test_2_3()
+{
+    recls_info_t    entry;
+    unsigned        flags   =   RECLS_F_DETAILS_LATER;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("~"), flags, &entry);
+
+    if (RECLS_RC_OK == rc)
+    {
+        XTESTS_TEST_PASSED();
+
+        /* Verify that it's the home directory */
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
+        defined(_WIN32))
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_home, entry->path.begin);
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        XTESTS_TEST_RECLS_STRING_EQUAL(s_home, entry->path.begin);
+#else
+# error platform not discriminated
+#endif
+
+        Recls_CloseDetails(entry);
+    }
+    else
+    {
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+    }
+}
+
+static void test_2_4()
+{
+    recls_info_t    entry;
+    unsigned        flags   =   RECLS_F_DETAILS_LATER;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("~/"), flags, &entry);
+
+    if (RECLS_RC_OK == rc)
+    {
+        XTESTS_TEST_PASSED();
+
+        /* Verify that it's the home directory */
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
+        defined(_WIN32))
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_home, entry->path.begin);
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        XTESTS_TEST_RECLS_STRING_EQUAL(s_home, entry->path.begin);
+#else
+# error platform not discriminated
+#endif
+
+        Recls_CloseDetails(entry);
+    }
+    else
+    {
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+    }
+}
+
+static void test_2_5()
+{
+    recls_info_t    entry;
+    unsigned        flags   =   RECLS_F_DETAILS_LATER | RECLS_F_MARK_DIRS;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("~"), flags, &entry);
+
+    if (RECLS_RC_OK == rc)
+    {
+        XTESTS_TEST_PASSED();
+
+        /* Verify that it's the home directory */
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
+        defined(_WIN32))
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_N(s_home, entry->path.begin, strlen(s_home));
+#else
+# error platform not discriminated
+#endif
+
+        Recls_CloseDetails(entry);
+    }
+    else
+    {
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+    }
+}
+
+static void test_2_6()
+{
+    recls_info_t    entry;
+    unsigned        flags   =   RECLS_F_DETAILS_LATER | RECLS_F_MARK_DIRS;
+    recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL("~/"), flags, &entry);
+
+    if (RECLS_RC_OK == rc)
+    {
+        XTESTS_TEST_PASSED();
+
+        /* Verify that it's the home directory */
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
+        defined(_WIN32))
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        XTESTS_TEST_RECLS_STRING_EQUAL_N(s_home, entry->path.begin, strlen(s_home));
+#else
+# error platform not discriminated
+#endif
+
+        Recls_CloseDetails(entry);
+    }
+    else
+    {
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+    }
+}
+
+static void test_2_7()
+{
+}
+
+static void test_2_8()
+{
+}
+
+static void test_2_9()
+{
+}
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

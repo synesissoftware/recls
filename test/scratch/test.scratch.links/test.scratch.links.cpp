@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.links project.
  *
  * Created:     23rd February 2011
- * Updated:     1st January 2021
+ * Updated:     3rd January 2021
  *
  * Status:      Wizard-generated
  *
@@ -27,63 +27,153 @@
 
 /* STLSoft header files */
 #include <platformstl/platformstl.h>
+#include <platformstl/filesystem/path_functions.h>
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+# include <winstl/conversion/char_conversions.hpp>
+# include <winstl/conversion/int_to_string.hpp>
+# include <winstl/diagnostics/output_debug_line.hpp>
+#endif
 
 /* Standard C++ header files */
 #include <exception>
 #include <iostream>
-#if 0
-#include <algorithm>
-#include <iterator>
-#include <list>
-#include <map>
-#include <numeric>
-#include <set>
-#include <string>
-#include <vector>
-#endif /* 0 */
 
 /* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * globals
+ * helpers
  */
 
+static
+int
+show_usage(
+    FILE*       out
+,   char const* arg0
+,   int         xc
+)
+{
+    stlsoft::string_slice_m_t const xname = platformstl::get_executable_name_from_path(arg0);
 
-/* /////////////////////////////////////////////////////////////////////////
- * typedefs
- */
+    fprintf(
+        out
+    ,   "USAGE: %.*s  [ { --help | <search-root-dir> } ]\n"
+    ,   int(xname.len), xname.ptr
+    );
 
-#if 0
-typedef char                        char_t;
-typedef std::basic_string<char_t>   string_t;
-#endif /* 0 */
-
-/* /////////////////////////////////////////////////////////////////////////
- * forward declarations
- */
+    return xc;
+}
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
  */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
-    recls::search_sequence files(NULL, NULL, recls::RECURSIVE | recls::LINK_COUNT);
+    char const* searchRoot = NULL;
+
+    switch (argc)
+    {
+    case 1:
+
+        break;
+    case 2:
+
+        if (0 == ::strcmp("--help", argv[1]))
+        {
+            return show_usage(stdout, argv[0], EXIT_SUCCESS);
+        }
+        else
+        {
+            searchRoot = argv[1];
+        }
+        break;
+    default:
+
+        return show_usage(stderr, argv[0], EXIT_FAILURE);
+    }
+
+    std::cout << "listing all files under the current directory that have a link count > 1:" << std::endl;
+
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    typedef std::basic_string<
+        char
+    >                                   string_r_t;
+
+    string_r_t                          longest_dir;
+
+    struct callback
+    {
+        static int function(
+            /* [in] */ recls::char_t const*         dir
+        ,   /* [in] */ size_t                       dirLen
+        ,   /* [in] */ recls::process_fn_param_t    param
+        ,   /* [in] */ void*                     /* reserved0 */
+        ,   /* [in] */ recls::uint32_t           /* reserved1 */
+        )
+        {
+            WINSTL_ASSERT(ss_nullptr_k != param);
+
+            winstl::diagnostics::output_debug_line("searching '", winstl::t2a(dir), "'");
+
+            string_r_t& ldir = *static_cast<string_r_t*>(param);
+
+            if (dirLen > ldir.size())
+            {
+                ldir.assign(winstl::t2a(dir), dirLen);
+            }
+
+            return 1;
+        }
+    };
+#endif
+
+    recls::search_sequence files(
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+        winstl::a2t(searchRoot)
+#else
+        searchRoot
+#endif
+    ,   NULL
+    ,   recls::RECURSIVE | recls::LINK_COUNT
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    ,   &callback::function
+    ,   &longest_dir
+#endif
+    );
 
     { for (recls::search_sequence::const_iterator it = files.begin(); files.end() != it; ++it)
     {
-        std::cout
-            << (*it).get_path()
-            << ": "
-            << unsigned((*it).get_file_size())
-            << " bytes"
-            << "; "
-            << unsigned((*it).num_links())
-            << " links"
-            << std::endl;
+        recls::entry const      e       =   *it;
+        recls::uint32_t const   nlinks  =   static_cast<recls::uint32_t>(e.num_links());
+        recls::uint64_t const   fsize   =   e.get_file_size();
+
+        if (nlinks > 1)
+        {
+            std::cout
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+                << winstl::t2a(e.get_path())
+#else
+                << e.get_path()
+#endif
+                << ": "
+                << fsize
+                << " bytes"
+                << "; "
+                << nlinks
+                << " links"
+                << std::endl
+                ;
+        }
     }}
+
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    winstl::diagnostics::output_debug_line("longest directory searched: '", longest_dir.c_str(), "' (", winstl::int_to_string<char>(longest_dir.size()), ")");
+#endif
 
     return EXIT_SUCCESS;
 }
@@ -120,3 +210,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
