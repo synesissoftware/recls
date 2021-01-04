@@ -49,6 +49,8 @@ int main(int argc, char *argv[])
     ((void)argc);
     ((void)argv);
 
+    fwprintf(stderr, L"this test not implemented to do anything in wide encoding\n");
+
 #else /* ? RECLS_CHAR_TYPE_IS_WCHAR */
 # ifdef _DEBUG
     Recls_SetApiLogFunction(logfn, 0, NULL);
