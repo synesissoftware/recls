@@ -3,7 +3,7 @@ recls - Changes
 ---------------
 
 ; Created:  28th May 2006
-; Updated:  29th January 2017
+; Updated:  4th January 2021
 
 ============================================================================
 
@@ -15,6 +15,392 @@ recls - Changes
     *  -  means removal of something (mapping / file / functionality) *
     *                                                                 *
     *******************************************************************
+
+
+recls 1.10.1 (alpha 1) released - 4th January 2021
+==================================================
+
+Summary:
+--------
+
+ * improved flexibility in treatment of search-directory and patterns
+ * significant refactoring, simplification, removal of dead code
+ * improved flexibility to recls::cpp::search_sequence, allowing for specification of progress function+param
+ * various C++11+ improvements to C++ API
+ * added Visual C++ 10 solution and project files, and props files for easy addition of support for all subsequent versions
+ * added makefiles for Visual C++ 14, 15, and 16
+ * added makefiles for several Borland versions
+ * added makefiles for several GCC versions
+ * removed support for Visual C++ versions 9 and earlier
+ * removed xCover from recls 1.10
+ * adjusted all makefiles so can specify shwild and xTests directories (so bundling no longer needed)
+ * removed all use of STLSoft's (basic_|)file_path_buffer, which is deprecated in STLSoft 1.10
+ * numerous improvements to automated and scratch tests
+
+Details:
+--------
+
+General / C-API:
+
+ ~ include/recls/recls.h:
+    + added debug-3 log severity level
+
+ ~ include/recls/implicit_link.h:
+    - removed support for Visual C++ prior to v9 (Visual Studio 2008)
+
+ ~ include/recls/internal/platform.h:
+    ~ FTP compatibility (Windows-only)
+
+ ~ include/recls/internal/retcodes.h:
+    + added RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS, RECLS_RC_ROOTED_PATHS_IN_PATTERNS
+
+C++ API:
+
+ ~ include/recls/cpp/classfwd.hpp:
+ ~ include/recls/cpp/directory_parts.hpp:
+ ~ include/recls/cpp/traits.hpp:
+ ~ include/recls/recls.hpp:
+    ~ directory parts always enabled
+
+ ~ include/recls/cpp/common.hpp:
+    ~ STLSoft version compatibility
+
+ ~ include/recls/cpp/entry.hpp:
+    + applying noexcept
+    ~ directory parts always enabled
+    + added recls::entry::get_entry() method
+
+ ~ include/recls/cpp/ftp_search_sequence.hpp:
+    + applying noexcept
+    - removed all use of STLSoft's file_path_buffer from recls C++ API
+    ~ refactoring search-sequence common functionality into sequence_helper class
+
+ ~ include/recls/cpp/search_sequence.hpp:
+    recls::cpp::search_sequence : + now takes 4th and 5th parameters describing the progress function/param to obtain searched directory feedback
+    + applying noexcept
+    - removed all use of STLSoft's file_path_buffer from recls C++ API
+    ~ refactoring search-sequence common functionality into sequence_helper class
+
+ ~ include/recls/cpp/internal/sequence_helper.hpp:
+    + applying noexcept
+    - removed all use of STLSoft's file_path_buffer from recls C++ API
+    ~ preparatory refactoring
+    ~ refactoring search-sequence common functionality into sequence_helper class
+
+ ~ include/recls/cpp/root_sequence.hpp:
+ ~ include/recls/cpp/windows.hpp:
+    + applying noexcept
+
+ + include/recls/cpp/unix.hpp
+    + added recls::cpp::result_code_to_unix_error_code()
+
+Core:
+
+ ~ src/ReclsFileSearch.cpp:
+ ~ src/ReclsFileSearch.hpp:
+    ~ improved tracing
+    - removed ReclsFileSearch::Stat()
+    - removed all use of STLSoft's (basic_|)file_path_buffer
+    - removed recls_get_home_
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/ReclsFileSearchDirectoryNode.cpp:
+ ~ src/ReclsFileSearchDirectoryNode.hpp:
+    - removed all use of STLSoft's (basic_|)file_path_buffer
+    - removed recls_get_home_
+    - removed dead-code
+    ~ NULL => ss_nullptr_k
+    ~ ReclsFileSearchDirectoryNode::m_searchDir now a (basic_|)path_buffer, and no remaining dependency on (basic_|file_path_buffer
+    - removed xCover from recls 1.10
+
+ ~ src/ReclsFtpSearchDirectoryNode_windows.cpp:
+ ~ src/ReclsFtpSearch_windows.cpp:
+ ~ src/ReclsSearch.cpp:
+ ~ src/api.extended.cpp:
+ ~ src/api.ftp.windows.cpp:
+ ~ src/api.retcodes.windows.cpp:
+ ~ src/api.unix.cpp:
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/api.entryinfo.cpp:
+    + added debug-3 log severity level
+    - removed xCover from recls 1.10
+
+ ~ src/api.error.cpp:
+    + added debug-3 log severity level
+    + added RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS, RECLS_RC_ROOTED_PATHS_IN_PATTERNS
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/api.search.cpp:
+    ~ significant refactoring of Recls_Search() (etc.), centralising all the parameter processing logic in Recls_SearchFeedback_() in impl.api.search.cpp
+    ~ improved tracing
+    ~ GCC compatibility
+    - removed dead-code
+    ~ NULL => ss_nullptr_k
+    ~ STLSoft 1.10's (basic_|)path::get_file() changed semantics
+    - removed xCover from recls 1.10
+
+ ~ src/api.util.combine_paths.cpp:
+    ~ improved tracing
+    - remove unused symbols
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/api.util.create_directory.cpp:
+    + added debug-3 log severity level
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/api.util.derive_relative_path.cpp:
+    ~ improved tracing
+    - remove unused symbols
+    - removed xCover from recls 1.10
+
+ ~ src/api.util.get_file_sizes.cpp:
+    - removed xCover from recls 1.10
+
+ ~ src/api.util.remove_directory.cpp:
+    ~ improved tracing
+    - remove unused symbols
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/api.util.squeeze_path.cpp:
+    + added debug-3 log severity level
+    - remove unused symbols
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/api.util.stat.cpp:
+    ~ improved tracing
+    - remove unused symbols
+    - removed ReclsFileSearch::Stat()
+    ~ prospective compatibility
+    - removed all use of STLSoft's (basic_|)file_path_buffer
+    - removed recls_get_home_
+    ~ NULL => ss_nullptr_k
+    ~ STLSoft 1.10's (basic_|)path::get_file() changed semantics
+    - removed xCover from recls 1.10
+
+ ~ src/api.windows.cpp:
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ + src/impl.api.search.cpp:
+    ~ significant refactoring of Recls_Search() (etc.), centralising all the parameter processing logic in Recls_SearchFeedback_() in impl.api.search.cpp
+    ~ improved tracing
+    ~ fix
+    ~ prospective compatibility
+    - removed all use of STLSoft's (basic_|)file_path_buffer
+    - removed recls_get_home_
+    ~ significant refactoring of Recls_Search() (etc.), centralising all the parameter processing logic in Recls_SearchFeedback_() in impl.api.search.cpp
+    - removed dead-code
+    ~ NULL => ss_nullptr_k
+    ~ STLSoft 1.10's (basic_|)path::get_file() changed semantics
+    - removed xCover from recls 1.10
+
+ ~ src/impl.atomic.h:
+    ~ compatibility
+
+ ~ src/impl.constants.hpp:
+    ~ GCC compatibility
+    - removed xCover from recls 1.10
+
+ ~ src/impl.entryinfo.cpp:
+    ~ fixed serious memory allocation size calculation defect (evinced in wide encodings)
+    ~ improved tracing
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/impl.fileinfo.cpp:
+ ~ src/impl.fileinfo.unix.cpp:
+ ~ src/impl.fileinfo.windows.cpp:
+ ~ src/impl.snprintf.cpp:
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/impl.trace.cpp:
+    + added debug-3 log severity level
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/impl.trace.h:
+    + added debug-3 log severity level
+
+ ~ src/impl.types.ftp.hpp:
+    - removed dead code
+    - removed all use of STLSoft's (basic_|)file_path_buffer
+    - removed recls_get_home_
+    ~ compatibility
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/impl.types.hpp:
+    - removed dead code
+    - removed all use of STLSoft's (basic_|)file_path_buffer
+    - removed recls_get_home_
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/impl.util.cpp:
+    - removed dead code
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/impl.util.h:
+    - removed dead code
+    - removed all use of STLSoft's (basic_|)file_path_buffer
+    - removed recls_get_home_
+
+ ~ src/impl.util.unix.cpp:
+    - removed all use of STLSoft's (basic_|)file_path_buffer
+    - removed recls_get_home_
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/impl.util.windows.cpp:
+    - removed all use of STLSoft's (basic_|)file_path_buffer
+    - removed recls_get_home_
+    ~ NULL => ss_nullptr_k
+    - removed xCover from recls 1.10
+
+ ~ src/incl.inetstl.h:
+ ~ src/incl.platformstl.h:
+ ~ src/incl.stlsoft.h:
+ ~ src/incl.unixstl.h:
+ ~ src/incl.winstl.h:
+    ~ STLSoft compatibility
+
+Makefiles / Project-files:
+
+ ~ build/ar/makefile:
+ ~ build/bc56/makefile:
+ + build/bc564/makefile:
+ ~ build/bc582/makefile:
+ + build/bc59x/makefile:
+ + build/bc61x/makefile:
+ + build/bc62x/makefile:
+ ~ build/cw8.unix/makefile:
+ ~ build/cw8.win32/makefile:
+ ~ build/dm/makefile:
+ ~ build/gcc34.unix/makefile:
+ ~ build/gcc34.win32/makefile:
+ ~ build/gcc40.unix/makefile:
+ ~ build/gcc41.unix/makefile:
+ ~ build/gcc42.unix/makefile:
+ ~ build/gcc43.unix/makefile:
+ ~ build/gcc44.unix/makefile:
+ ~ build/gcc45.unix/makefile:
+ ~ build/gcc46.unix/makefile:
+ ~ build/gcc47.mingw/makefile:
+ + build/gcc47.unix/makefile:
+ + build/gcc47.win32/makefile:
+ + build/gcc81.mingw/makefile:
+ + build/gcc81.unix/makefile:
+ + build/gcc81.win32/makefile:
+ + build/gcc92.mingw/makefile:
+ + build/gcc92.win32/makefile:
+ ~ build/icl10.win32/makefile:
+ ~ build/icl11.win32/makefile:
+ ~ build/icl8.win32/makefile:
+ ~ build/icl9.win32/makefile:
+ ~ build/vc10.unixem/makefile:
+ ~ build/vc10.x64/makefile:
+ ~ build/vc10/makefile:
+ + build/vc11.unixem/makefile:
+ ~ build/vc11.x64/makefile:
+ ~ build/vc11/makefile:
+ + build/vc12.unixem/makefile:
+ ~ build/vc12.x64/makefile:
+ ~ build/vc12/makefile:
+ + build/vc14.unixem/makefile:
+ + build/vc14.x64/makefile:
+ + build/vc14/makefile:
+ + build/vc15.unixem/makefile:
+ + build/vc15.x64/makefile:
+ + build/vc15/makefile:
+ + build/vc16.unixem/makefile:
+ + build/vc16.x64/makefile:
+ + build/vc16/makefile:
+ ~ build/vc9.unixem/makefile:
+ ~ build/vc9.x64/makefile:
+ ~ build/vc9/makefile:
+    + added Borland makefiles
+    + GCC makefiles
+    ~ dependency libraries lists refactored
+    + now have 3 scratch-tests
+    + impl.api.search.cpp
+    - removed xCover from recls 1.10
+    ~ TCP compatibility (Windows-only) 
+    + Visual C++ 14 makefiles
+    + Visual C++ 15 makefiles
+    + Visual C++ 16 makefiles
+
+ + recls.vc10.sln:
+    + added full-set of VC++ projects
+
+ + projects/core/_dev_pragmatics_/warnings.msvc.10+.h:
+    + added project headers
+
+ + projects/core/pch.hpp:
+    + added project headers
+
+ ~ projects/core/vc10/recls.core.vcxproj:
+    ~ fixed targets
+    ~ tidying
+    ~ significant refactoring of Recls_Search() (etc.), centralising all the parameter processing logic in Recls_SearchFeedback_() in impl.api.search.cpp
+    + added PreBuildEvent to ensure that bin and lib directories exist
+    ~ project file fixes
+    ~ thorough update of VC++10 core project file
+    - removed xCover from recls 1.10
+
+ ~ projects/core/vc10/recls.core.vcxproj.filters:
+    ~ tidying
+    ~ significant refactoring of Recls_Search() (etc.), centralising all the parameter processing logic in Recls_SearchFeedback_() in impl.api.search.cpp
+    ~ project file fixes
+    ~ thorough update of VC++10 core project file
+    - removed xCover from recls 1.10
+
+ + projects/vcprops/recls.common.props:
+ + projects/vcprops/recls.example.props:
+ + projects/vcprops/recls.no-PCH.props:
+ + projects/vcprops/recls.test.Catch.props:
+ + projects/vcprops/recls.test.common.props:
+ + projects/vcprops/recls.test.component.props:
+ + projects/vcprops/recls.test.scratch.props:
+ + projects/vcprops/recls.test.xTests.props:
+    + added props files
+
+Examples:
+
+Test.Unit:
+
+ ~ test/unit/test.unit.api.createdirectory/test.unit.api.createdirectory.c:
+ ~ test/unit/test.unit.api.stat/test.unit.api.stat.c:
+    ~ multibyte / wide compatibility
+    + more tests
+
+Test.Component:
+
+Test.Scratch:
+
+ ~ test/scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp:
+    ~ multibyte / wide compatibility
+    ~ UNIX on Windows compatibility
+    ~ warning fix
+
+ ~ test/scratch/test.scratch.links/test.scratch.links.cpp:
+ ~ test/scratch/test.scratch.search.1/test.scratch.search.1.c:
+    ~ multibyte / wide compatibility
+
+Depends on:
+
+ * STLSoft 1.10.1 beta-26 or later
+   (http://github.com/synesissoftware/STLSoft-1.10/)
+
 
 
 recls 1.9.6 released - 29th January 2017

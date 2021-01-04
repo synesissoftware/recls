@@ -4,7 +4,7 @@
  * Purpose:     Main header file for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     3rd January 2021
+ * Updated:     4th January 2021
  *
  * Home:        http://recls.org/
  *
@@ -54,7 +54,7 @@
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      21
 # define RECLS_VER_RECLS_H_RECLS_REVISION   12
-# define RECLS_VER_RECLS_H_RECLS_EDIT       132
+# define RECLS_VER_RECLS_H_RECLS_EDIT       133
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
