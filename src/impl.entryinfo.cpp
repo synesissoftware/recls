@@ -116,6 +116,15 @@ create_entryinfo(
 {
     function_scope_trace("create_entryinfo");
 
+    recls_debug2_trace_printf_(
+        RECLS_LITERAL("create_entryinfo(%lu, %.*s, %.*s, %.*s, 0x%08x, ...)")
+    ,   static_cast<unsigned long>(rootDirLen)
+    ,   int(searchDirLen), stlsoft::c_str_ptr(searchDir)
+    ,   int(entryPathLen), stlsoft::c_str_ptr(entryPath)
+    ,   int(entryFileLen), stlsoft::c_str_ptr(entryFile)
+    ,   flags
+    );
+
     bool const bSearchDirOverlap = 0 == types::traits_type::str_n_compare(searchDir, entryPath, searchDirLen);
 
     STLSOFT_SUPPRESS_UNUSED(searchDir);
@@ -219,7 +228,10 @@ create_entryinfo(
         if (0 != ((RECLS_F_LINK_COUNT|RECLS_F_NODE_INDEX) & flags) &&
             ss_nullptr_k != st)
         {
-            recls_log_printf_(RECLS_SEVIX_DBG1, RECLS_LITERAL("looking up additional attributes; flags=0x%08x"), flags);
+            recls_debug3_trace_printf_(
+                RECLS_LITERAL("looking up additional attributes for entry %.*s")
+            ,   int(entryPathLen), stlsoft::c_str_ptr(entryPath)
+            );
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
@@ -466,6 +478,14 @@ create_drive_entryinfo(
 ,   types::stat_data_type const*    st
 )
 {
+    function_scope_trace("create_drive_entryinfo");
+
+    recls_debug2_trace_printf_(
+        RECLS_LITERAL("create_drive_entryinfo(%.*s, 0x%08x, ...)")
+    ,   int(entryPathLen), stlsoft::c_str_ptr(entryPath)
+    ,   flags
+    );
+
     /* const */ size_t    cDirParts   =   0; // This is declared non-const to placate Borland C/C++
     size_t const    cbPath      =   recls_align_up_size_(sizeof(recls_char_t) * (1 + entryPathLen));
     size_t const    cb          =   offsetof(struct recls_entryinfo_t, data)

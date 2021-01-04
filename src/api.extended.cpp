@@ -63,13 +63,7 @@ namespace recls
 
 using ::recls::impl::types;
 
-using ::recls::impl::recls_fatal_trace_printf_;
-using ::recls::impl::recls_error_trace_printf_;
-using ::recls::impl::recls_warning_trace_printf_;
-using ::recls::impl::recls_info_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
-using ::recls::impl::recls_debug1_trace_printf_;
-using ::recls::impl::recls_debug2_trace_printf_;
 
 #endif /* !RECLS_NO_NAMESPACE */
 

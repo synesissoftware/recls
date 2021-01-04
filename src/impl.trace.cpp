@@ -63,19 +63,21 @@ namespace
     using recls::impl::recls_vsnprintf;
 #endif /* !RECLS_NO_NAMESPACE */
 
-    int const fatalSeverity_DEFAULT         = 0;
-    int const errorSeverity_DEFAULT         = 3;
-    int const warningSeverity_DEFAULT       = 4;
-    int const informationalSeverity_DEFAULT = 6;
-    int const debug0Severity_DEFAULT        = 7;
-    int const debug1Severity_DEFAULT        = 7;
+    int const fatalSeverity_DEFAULT         = 1;
+    int const errorSeverity_DEFAULT         = 4;
+    int const warningSeverity_DEFAULT       = 5;
+    int const informationalSeverity_DEFAULT = 7;
+    int const debug0Severity_DEFAULT        = 8;
+    int const debug1Severity_DEFAULT        = 9;
     int const debug2Severity_DEFAULT        = -1;
+    int const debug3Severity_DEFAULT        = -1;
 
 
 #if defined(RECLS_DEBUG) && \
     (   defined(RECLS_PLATFORM_IS_WINDOWS) || \
         (   defined(RECLS_PLATFORM_IS_UNIX) && \
             defined(_WIN32)))
+
     void RECLS_CALLCONV_DEFAULT default_debug_log_fn_(
         int                 severity
     ,   recls_char_t const* fmt
@@ -131,15 +133,20 @@ namespace
 #else /* ? OS */
     static recls_log_pfn_t  s_loggingFunction   =   ss_nullptr_k;
 #endif /* OS */
-    static int              s_severities[7]     =
+    static int              s_severities[12]     =
     {
-        fatalSeverity_DEFAULT
+        -1
+    ,   fatalSeverity_DEFAULT
+    ,   -1
+    ,   -1
     ,   errorSeverity_DEFAULT
     ,   warningSeverity_DEFAULT
+    ,   -1
     ,   informationalSeverity_DEFAULT
     ,   debug0Severity_DEFAULT
     ,   debug1Severity_DEFAULT
     ,   debug2Severity_DEFAULT
+    ,   debug3Severity_DEFAULT
     };
     static int              s_flags             =   0;
 
@@ -171,6 +178,7 @@ RECLS_FNDECL(void) Recls_LogSeverities_Init(
 ,   int                             debug0Severity
 ,   int                             debug1Severity
 ,   int                             debug2Severity
+,   int                             debug3Severity
 )
 {
     RECLS_ASSERT(ss_nullptr_k != severities);
@@ -182,6 +190,7 @@ RECLS_FNDECL(void) Recls_LogSeverities_Init(
     severities->severities[4] = debug0Severity;
     severities->severities[5] = debug1Severity;
     severities->severities[6] = debug2Severity;
+    severities->severities[7] = debug3Severity;
 }
 
 RECLS_FNDECL(void) Recls_SetApiLogFunction(
@@ -203,6 +212,7 @@ RECLS_FNDECL(void) Recls_SetApiLogFunction(
         s_severities[4]     =   debug0Severity_DEFAULT;
         s_severities[5]     =   debug1Severity_DEFAULT;
         s_severities[6]     =   debug2Severity_DEFAULT;
+        s_severities[7]     =   debug3Severity_DEFAULT;
     }
     else
     {
@@ -213,6 +223,7 @@ RECLS_FNDECL(void) Recls_SetApiLogFunction(
         s_severities[4]     =   severities->severities[4];
         s_severities[5]     =   severities->severities[5];
         s_severities[6]     =   severities->severities[6];
+        s_severities[7]     =   severities->severities[7];
     }
 }
 
@@ -347,6 +358,17 @@ void recls_debug2_trace_printf_(recls_char_t const* fmt, ...)
     va_start(args, fmt);
 
     recls_log_vprintf_(RECLS_SEVIX_DBG2, fmt, args);
+
+    va_end(args);
+}
+
+void recls_debug3_trace_printf_(recls_char_t const* fmt, ...)
+{
+    va_list args;
+
+    va_start(args, fmt);
+
+    recls_log_vprintf_(RECLS_SEVIX_DBG3, fmt, args);
 
     va_end(args);
 }

@@ -104,7 +104,12 @@ RECLS_API Recls_Search(
 {
     function_scope_trace("Recls_Search");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_Search(%s, %s, %08x, ...)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags);
+    recls_debug0_trace_printf_(
+        RECLS_LITERAL("Recls_Search(%s, %s, %08x, ...)")
+    ,   stlsoft::c_str_ptr(searchRoot)
+    ,   stlsoft::c_str_ptr(pattern)
+    ,   flags
+    );
 
     return Recls_SearchFeedback_(
         "Recls_Search"
@@ -128,7 +133,13 @@ RECLS_API Recls_SearchFeedback(
 {
     function_scope_trace("Recls_SearchFeedback");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SearchFeedback(%s, %s, 0x%04x, ..., %p, ...)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags, param);
+    recls_debug0_trace_printf_(
+        RECLS_LITERAL("Recls_SearchFeedback(%s, %s, 0x%04x, ..., %p, ...)")
+    ,   stlsoft::c_str_ptr(searchRoot)
+    ,   stlsoft::c_str_ptr(pattern)
+    ,   flags
+    ,   param
+    );
 
     return Recls_SearchFeedback_(
         "Recls_SearchFeedback"
@@ -171,7 +182,14 @@ RECLS_API Recls_SearchProcessFeedback(
 {
     function_scope_trace("Recls_SearchProcessFeedback");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SearchProcessFeedback(%s, %s, 0x%04x, ..., %p, ..., %p)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags, param, paramProgress);
+    recls_debug0_trace_printf_(
+        RECLS_LITERAL("Recls_SearchProcessFeedback(%s, %s, 0x%04x, ..., %p, ..., %p)")
+    ,   stlsoft::c_str_ptr(searchRoot)
+    ,   stlsoft::c_str_ptr(pattern)
+    ,   flags
+    ,   param
+    ,   paramProgress
+    );
 
     return Recls_SearchProcessFeedback_(
         "Recls_SearchProcessFeedback"
@@ -195,7 +213,13 @@ RECLS_API Recls_SearchProcess(
 {
     function_scope_trace("Recls_SearchProcess");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SearchProcess(%s, %s, 0x%04x, ..., %p)"), stlsoft::c_str_ptr(searchRoot), stlsoft::c_str_ptr(pattern), flags, param);
+    recls_debug0_trace_printf_(
+        RECLS_LITERAL("Recls_SearchProcess(%s, %s, 0x%04x, ..., %p)")
+    ,   stlsoft::c_str_ptr(searchRoot)
+    ,   stlsoft::c_str_ptr(pattern)
+    ,   flags
+    ,   param
+    );
 
     return Recls_SearchProcessFeedback_(
         "Recls_SearchProcess"

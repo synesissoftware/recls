@@ -64,10 +64,7 @@ namespace recls
 using ::recls::impl::types;
 
 using ::recls::impl::recls_log_printf_;
-using ::recls::impl::recls_fatal_trace_printf_;
 using ::recls::impl::recls_error_trace_printf_;
-using ::recls::impl::recls_warning_trace_printf_;
-using ::recls::impl::recls_info_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_debug2_trace_printf_;
@@ -128,7 +125,12 @@ Recls_CombinePaths_X_(
 {
     function_scope_trace("Recls_CombinePaths");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_CombinePaths(%s, %s, ..., %u)"), stlsoft::c_str_ptr(path1), stlsoft::c_str_ptr(path2), unsigned(cchResult));
+    recls_debug0_trace_printf_(
+        RECLS_LITERAL("Recls_CombinePaths(%s, %s, ..., %u)")
+    ,   stlsoft::c_str_ptr(path1)
+    ,   stlsoft::c_str_ptr(path2)
+    ,   unsigned(cchResult)
+    );
 
     RECLS_ASSERT(ss_nullptr_k != path1 || ss_nullptr_k != path2);
 
@@ -140,13 +142,14 @@ Recls_CombinePaths_X_(
         path /= path2;
     }
 
-    size_t  n = path.copy(result, cchResult);
+    size_t const n = path.copy(result, cchResult);
 
-    recls_debug2_trace_printf_(RECLS_LITERAL("Recls_CombinePaths(): result: %u, %.*s")
-                    ,   unsigned(n)
-                    ,   int(path.size())
-                    ,   path.data()
-                    );
+    recls_debug2_trace_printf_(
+        RECLS_LITERAL("Recls_CombinePaths(): result: %u, %.*s")
+    ,   unsigned(n)
+    ,   int(path.size())
+    ,   path.data()
+    );
 
     return n;
 }

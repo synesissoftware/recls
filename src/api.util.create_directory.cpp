@@ -82,14 +82,10 @@ namespace recls
 {
 
 using ::recls::impl::types;
-using ::recls::impl::recls_log_printf_;
 using ::recls::impl::recls_fatal_trace_printf_;
 using ::recls::impl::recls_error_trace_printf_;
-using ::recls::impl::recls_warning_trace_printf_;
-using ::recls::impl::recls_info_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
-using ::recls::impl::recls_debug2_trace_printf_;
 
 #endif /* !RECLS_NO_NAMESPACE */
 
@@ -154,7 +150,11 @@ namespace
         RECLS_ASSERT(types::traits_type::is_path_absolute(path));
         RECLS_ASSERT(ss_nullptr_k != results);
 
-        recls_debug1_trace_printf_(RECLS_LITERAL("Recls_CreateDirectory3_(%.*s, ...)"), int(pathLen), stlsoft::c_str_ptr(path));
+        recls_debug1_trace_printf_(
+            RECLS_LITERAL("Recls_CreateDirectory3_(%.*s, ...)")
+        ,   int(pathLen)
+        ,   stlsoft::c_str_ptr(path)
+        );
 
         types::traits_type::stat_data_type stat_data;
 
@@ -204,7 +204,12 @@ namespace
             // Now try and create the directory
             if (!platformstl::create_directory_recurse(path))
             {
-//                fprintf(stderr, "create_directory_recurse(): %d %s\n", types::traits_type::get_last_error(), strerror(types::traits_type::get_last_error()));
+                recls_error_trace_printf_(
+                    RECLS_LITERAL("platformstl::create_directory_recurse(%.*s) failed: %ld")
+                ,   int(pathLen)
+                ,   stlsoft::c_str_ptr(path)
+                ,   types::traits_type::get_last_error()
+                );
 
                 return RECLS_RC_FAIL;
             }

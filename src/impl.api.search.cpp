@@ -618,6 +618,17 @@ Recls_SearchProcessFeedback_(
 {
     RECLS_ASSERT(ss_nullptr_k != pfn);
 
+    recls_debug0_trace_printf_(
+        RECLS_LITERAL("Recls_SearchProcessFeedback_(??, %s, %s, 0x%08x, %p, %p, %p, %p)")
+    ,   stlsoft::c_str_ptr(searchRoot)
+    ,   stlsoft::c_str_ptr(pattern)
+    ,   flags
+    ,   pfn
+    ,   param
+    ,   pfnProgress
+    ,   paramProgress
+    );
+
     hrecls_t    hSrch;
     recls_rc_t  rc  =   Recls_SearchFeedback_(
                             function

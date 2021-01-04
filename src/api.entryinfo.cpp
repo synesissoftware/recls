@@ -4,7 +4,7 @@
  * Purpose:     recls API functions pertaining to entry info.
  *
  * Created:     16th August 2003
- * Updated:     2nd January 2021
+ * Updated:     3rd January 2021
  *
  * Home:        http://recls.org/
  *
@@ -105,7 +105,7 @@ always_false_()
 
 RECLS_FNDECL(size_t) Recls_GetPathProperty(
     recls_entry_t   fileInfo
-,   recls_char_t*   buffer
+,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
 )
 {
@@ -118,7 +118,7 @@ RECLS_FNDECL(size_t) Recls_GetPathProperty(
 
 RECLS_FNDECL(size_t) Recls_GetSearchRelativePathProperty(
     recls_entry_t   fileInfo
-,   recls_char_t*   buffer
+,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
 )
 {
@@ -144,7 +144,7 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryProperty(
 
 RECLS_FNDECL(size_t) Recls_GetDirectoryPathProperty(
     recls_entry_t   fileInfo
-,   recls_char_t*   buffer
+,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
 )
 {
@@ -163,7 +163,7 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryPathProperty(
 
 RECLS_FNDECL(size_t) Recls_GetSearchDirectoryProperty(
     recls_entry_t   fileInfo
-,   recls_char_t*   buffer
+,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
 )
 {
@@ -176,7 +176,7 @@ RECLS_FNDECL(size_t) Recls_GetSearchDirectoryProperty(
 
 RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
     recls_entry_t   fileInfo
-,   recls_char_t*   buffer
+,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
 )
 {
@@ -200,7 +200,7 @@ RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
 
 RECLS_FNDECL(size_t) Recls_GetFileProperty(
     recls_entry_t   fileInfo
-,   recls_char_t*   buffer
+,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
 )
 {
@@ -219,7 +219,7 @@ RECLS_FNDECL(size_t) Recls_GetFileProperty(
 
 RECLS_FNDECL(size_t) Recls_GetFileNameProperty(
     recls_entry_t   fileInfo
-,   recls_char_t*   buffer
+,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
 )
 {
@@ -232,7 +232,7 @@ RECLS_FNDECL(size_t) Recls_GetFileNameProperty(
 
 RECLS_FNDECL(size_t) Recls_GetFileExtProperty(
     recls_entry_t   fileInfo
-,   recls_char_t*   buffer
+,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
 )
 {
@@ -246,7 +246,7 @@ RECLS_FNDECL(size_t) Recls_GetFileExtProperty(
 RECLS_FNDECL(size_t) Recls_GetDirectoryPartProperty(
     recls_entry_t   fileInfo
 ,   int             part
-,   recls_char_t*   buffer
+,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
 )
 {

@@ -4,7 +4,7 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     1st January 2021
+ * Updated:     3rd January 2021
  *
  * Home:        http://recls.org/
  *
@@ -231,9 +231,12 @@ RECLS_API Recls_GetLastError(hrecls_t hSrch)
     return si->GetLastError();
 }
 
-RECLS_FNDECL(size_t) Recls_GetErrorString(  recls_rc_t      rc
-                                        ,   recls_char_t*   buffer
-                                        ,   size_t          cchBuffer)
+RECLS_FNDECL(size_t)
+Recls_GetErrorString(
+    recls_rc_t      rc
+,   recls_char_t    buffer[]
+,   size_t          cchBuffer
+)
 {
     function_scope_trace("Recls_GetErrorString");
 
@@ -250,9 +253,12 @@ RECLS_FNDECL(size_t) Recls_GetErrorString(  recls_rc_t      rc
     }
 }
 
-RECLS_FNDECL(size_t) Recls_GetLastErrorString(  hrecls_t        hSrch
-                                            ,   recls_char_t*   buffer
-                                            ,   size_t          cchBuffer)
+RECLS_FNDECL(size_t)
+Recls_GetLastErrorString(
+    hrecls_t        hSrch
+,   recls_char_t    buffer[]
+,   size_t          cchBuffer
+)
 {
     function_scope_trace("Recls_GetLastErrorString");
 

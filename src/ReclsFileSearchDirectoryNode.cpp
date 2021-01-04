@@ -495,19 +495,13 @@ ReclsFileSearchDirectoryNode::Stat(
         pst = ss_nullptr_k;
     }
 
-    recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 10"));
-
     if (ss_nullptr_k == pst &&
         RECLS_F_DETAILS_LATER != (flags & (RECLS_F_DETAILS_LATER | RECLS_F_TYPEMASK))) // To allow non-existant things to be stat'd
     {
-        recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 11"));
-
         return RECLS_RC_NO_MORE_DATA;
     }
     else
     {
-        recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 12"));
-
         size_t const        pathLen2        =   types::traits_type::str_len(path);
         recls_char_t const* entryFile       =   types::traits_type::str_rchr(path, types::traits_type::path_name_separator()) + 1;
         RECLS_ASSERT(ss_nullptr_k != (entryFile - 1));
@@ -515,29 +509,7 @@ ReclsFileSearchDirectoryNode::Stat(
         size_t const        entryFileLen    =   pathLen2 - entryDirLen;
         RECLS_ASSERT(entryFileLen == types::traits_type::str_len(entryFile));
 
-        recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 13"));
-
-        recls_debug2_trace_printf_(RECLS_LITERAL("path=%s"), path);
-
-        recls_debug2_trace_printf_(RECLS_LITERAL("%d %d %d %d %d %d"),
-            int(entryDirLen), int(entryDirLen)
-        ,   int(pathLen2), int(pathLen2)
-        ,   int(entryFileLen), int(entryFileLen)
-        );
-
-        recls_debug2_trace_printf_(
-            RECLS_LITERAL("[create_entryinfo(%.*s [%d], %.*s [%d], %.*s [%d], 0x%08x]")
-        ,   int(entryDirLen), path, int(entryDirLen)
-        ,   int(pathLen2), path, int(pathLen2)
-        ,   int(entryFileLen), entryFile, int(entryFileLen)
-        ,   static_cast<unsigned int>(flags)
-        );
-
-        recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 14"));
-
         *phEntry = create_entryinfo(pathLen2, path, entryDirLen, path, pathLen2, entryFile, entryFileLen, flags, pst);
-
-        recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 15"));
 
         return (ss_nullptr_k == *phEntry) ? RECLS_RC_OUT_OF_MEMORY : RECLS_RC_OK;
     }

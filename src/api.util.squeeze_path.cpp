@@ -65,10 +65,7 @@ namespace recls
 
 using ::recls::impl::types;
 
-using ::recls::impl::recls_fatal_trace_printf_;
 using ::recls::impl::recls_error_trace_printf_;
-using ::recls::impl::recls_warning_trace_printf_;
-using ::recls::impl::recls_info_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_debug2_trace_printf_;
@@ -84,7 +81,7 @@ static
 size_t
 Recls_SqueezePath_X_(
     recls_char_t const* path
-,   recls_char_t*       result
+,   recls_char_t        result[]
 ,   size_t              cchResult
 );
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
@@ -93,7 +90,7 @@ Recls_SqueezePath_X_(
 RECLS_FNDECL(size_t)
 Recls_SqueezePath(
     recls_char_t const* path
-,   recls_char_t*       result
+,   recls_char_t        result[]
 ,   size_t              cchResult
 )
 #ifdef RECLS_EXCEPTION_SUPPORT_
@@ -114,14 +111,18 @@ static
 size_t
 Recls_SqueezePath_X_(
     recls_char_t const* path
-,   recls_char_t*       result
+,   recls_char_t        result[]
 ,   size_t              cchResult
 )
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 {
     function_scope_trace("Recls_SqueezePath");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SqueezePath(%s, ..., %u)"), stlsoft::c_str_ptr(path), unsigned(cchResult));
+    recls_debug0_trace_printf_(
+        RECLS_LITERAL("Recls_SqueezePath(%s, ..., cchResult=%lu)")
+    ,   stlsoft::c_str_ptr(path)
+    ,   static_cast<unsigned long>(cchResult)
+    );
 
     if (ss_nullptr_k == result)
     {

@@ -84,11 +84,7 @@ using ::recls::impl::types;
 using ::recls::impl::recls_log_printf_;
 using ::recls::impl::recls_fatal_trace_printf_;
 using ::recls::impl::recls_error_trace_printf_;
-using ::recls::impl::recls_warning_trace_printf_;
-using ::recls::impl::recls_info_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
-using ::recls::impl::recls_debug1_trace_printf_;
-using ::recls::impl::recls_debug2_trace_printf_;
 
 #endif /* !RECLS_NO_NAMESPACE */
 
@@ -470,7 +466,11 @@ Recls_RemoveDirectory_X_(
 {
     function_scope_trace("Recls_RemoveDirectory");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_RemoveDirectory(%s, ...)"), stlsoft::c_str_ptr(path));
+    recls_debug0_trace_printf_(
+        RECLS_LITERAL("Recls_RemoveDirectory(%s, flags=0x%08x, ...)")
+    ,   stlsoft::c_str_ptr(path)
+    ,   flags
+    );
 
     RECLS_ASSERT(ss_nullptr_k != path);
 

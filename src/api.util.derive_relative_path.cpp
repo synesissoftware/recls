@@ -64,10 +64,6 @@ namespace recls
 using ::recls::impl::types;
 
 using ::recls::impl::recls_log_printf_;
-using ::recls::impl::recls_fatal_trace_printf_;
-using ::recls::impl::recls_error_trace_printf_;
-using ::recls::impl::recls_warning_trace_printf_;
-using ::recls::impl::recls_info_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_debug2_trace_printf_;
@@ -87,7 +83,12 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 {
     function_scope_trace("Recls_DeriveRelativePath");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_DeriveRelativePath(%s, %s, ..., %u)"), stlsoft::c_str_ptr(origin), stlsoft::c_str_ptr(target), unsigned(cchResult));
+    recls_debug0_trace_printf_(
+        RECLS_LITERAL("Recls_DeriveRelativePath(%s, %s, ..., %u)")
+    ,   stlsoft::c_str_ptr(origin)
+    ,   stlsoft::c_str_ptr(target)
+    ,   unsigned(cchResult)
+    );
 
     typedef platformstl::basic_path<recls_char_t>           path_t;
     typedef platformstl::filesystem_traits<recls_char_t>    traits_t;
@@ -107,6 +108,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(EMULATE_UNIX_ON_WINDOWS)
+
     if (traits_t::is_path_UNC(originPath.c_str()) ||
         traits_t::is_path_UNC(targetPath.c_str()))
     {

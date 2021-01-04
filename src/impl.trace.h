@@ -48,13 +48,15 @@ namespace impl
 
 enum recls_sev_index_t_
 {
-        RECLS_SEVIX_FATAL =   0
-    ,   RECLS_SEVIX_ERROR =   1
-    ,   RECLS_SEVIX_WARN  =   2
-    ,   RECLS_SEVIX_INFO  =   3
-    ,   RECLS_SEVIX_DBG0  =   4
-    ,   RECLS_SEVIX_DBG1  =   5
-    ,   RECLS_SEVIX_DBG2  =   6
+        RECLS_SEVIX_UNKNOWN     =   0
+    ,   RECLS_SEVIX_FATAL       =   1
+    ,   RECLS_SEVIX_ERROR       =   4
+    ,   RECLS_SEVIX_WARN        =   5
+    ,   RECLS_SEVIX_INFO        =   7
+    ,   RECLS_SEVIX_DBG0        =   8
+    ,   RECLS_SEVIX_DBG1        =   9
+    ,   RECLS_SEVIX_DBG2        =   10
+    ,   RECLS_SEVIX_DBG3        =   11
 };
 #if !defined(RECLS_NO_NAMESPACE)
 # define RECLS_SEVIX_FATAL                                  ::recls::impl::RECLS_SEVIX_FATAL
@@ -64,6 +66,7 @@ enum recls_sev_index_t_
 # define RECLS_SEVIX_DBG0                                   ::recls::impl::RECLS_SEVIX_DBG0
 # define RECLS_SEVIX_DBG1                                   ::recls::impl::RECLS_SEVIX_DBG1
 # define RECLS_SEVIX_DBG2                                   ::recls::impl::RECLS_SEVIX_DBG2
+# define RECLS_SEVIX_DBG3                                   ::recls::impl::RECLS_SEVIX_DBG3
 #endif /* !RECLS_NO_NAMESPACE */
 
 #ifndef __cplusplus
@@ -79,6 +82,7 @@ void recls_info_trace_printf_(recls_char_t const* fmt, ...);
 void recls_debug0_trace_printf_(recls_char_t const* fmt, ...);
 void recls_debug1_trace_printf_(recls_char_t const* fmt, ...);
 void recls_debug2_trace_printf_(recls_char_t const* fmt, ...);
+void recls_debug3_trace_printf_(recls_char_t const* fmt, ...);
 
 
 #ifdef __cplusplus

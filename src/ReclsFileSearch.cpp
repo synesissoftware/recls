@@ -150,7 +150,14 @@ ReclsFileSearch::FindAndCreate(
     RECLS_ASSERT(ss_nullptr_k != ppsi);
 
 
-    recls_debug1_trace_printf_(RECLS_LITERAL("ReclsFileSearch::FindAndCreate(%s, %s, 0x%08x)"), searchDir, pattern, flags);
+    recls_debug1_trace_printf_(
+        RECLS_LITERAL("ReclsFileSearch::FindAndCreate(%.*s, %.*s, 0x%08x, %p, %p, ...)")
+    ,   int(searchDirLen), searchDir
+    ,   int(patternLen), pattern
+    ,   flags
+    ,   pfn
+    ,   param
+    );
 
     return FindAndCreate_(searchDir, searchDirLen, pattern, patternLen, flags, pfn, param, ppsi);
 }

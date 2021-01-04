@@ -69,10 +69,7 @@ using ::recls::impl::types;
 
 using ::recls::impl::recls_is_home_start_;
 using ::recls::impl::recls_log_printf_;
-using ::recls::impl::recls_fatal_trace_printf_;
 using ::recls::impl::recls_error_trace_printf_;
-using ::recls::impl::recls_warning_trace_printf_;
-using ::recls::impl::recls_info_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_debug2_trace_printf_;
@@ -125,7 +122,11 @@ recls_rc_t Recls_Stat_X_(
 {
     function_scope_trace("Recls_Stat");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_Stat(%s, %08x, ...)"), path, flags);
+    recls_debug0_trace_printf_(
+        RECLS_LITERAL("Recls_Stat(%s, %08x, ...)")
+    ,   stlsoft::c_str_ptr(path)
+    ,   int(flags)
+    );
 
     RECLS_ASSERT(ss_nullptr_k != path);
     RECLS_ASSERT(ss_nullptr_k != phEntry);
