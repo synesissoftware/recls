@@ -116,7 +116,7 @@ create_entryinfo(
 {
     function_scope_trace("create_entryinfo");
 
-    int const       bSearchDirOverlap   =   0 == types::traits_type::str_n_compare(searchDir, entryPath, searchDirLen);
+    bool const bSearchDirOverlap = 0 == types::traits_type::str_n_compare(searchDir, entryPath, searchDirLen);
 
     STLSOFT_SUPPRESS_UNUSED(searchDir);
     STLSOFT_SUPPRESS_UNUSED(entryFile);
@@ -166,7 +166,7 @@ create_entryinfo(
                                 +   cbPath
                                 +   cbAlt
                                 +   1 // In case we need to expand for MARK_DIRS
-                                +   (bSearchDirOverlap ? 0 : (1 + searchDirLen + 1))
+                                +   (bSearchDirOverlap ? 0 : (sizeof(recls_char_t) * (1 + searchDirLen + 1)))
                                 ;
 
     struct recls_entryinfo_t* info = const_cast<struct recls_entryinfo_t*>(Entry_Allocate(cb));
