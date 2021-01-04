@@ -1133,22 +1133,30 @@ TARG_TEST_COMP_api_rmdir_WS_MT_REL	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.comp
 ##############################
 # scratch tests
 
+TARG_TEST_SCRT_cppapi_DLL_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_SCRT_srch1_DLL_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).dll.debug.exe
-TARG_TEST_SCRT_srch2_DLL_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_SCRT_links_DLL_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_SCRT_cppapi_DLL_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_SCRT_srch1_DLL_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).dll.exe
-TARG_TEST_SCRT_srch2_DLL_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_SCRT_links_DLL_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_SCRT_cppapi_MT_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_SCRT_srch1_MT_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_SCRT_srch2_MT_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_SCRT_links_MT_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_SCRT_cppapi_MT_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_SCRT_srch1_MT_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_SCRT_srch2_MT_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_SCRT_links_MT_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_SCRT_cppapi_WS_DLL_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_SCRT_srch1_WS_DLL_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
-TARG_TEST_SCRT_srch2_WS_DLL_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_SCRT_links_WS_DLL_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_SCRT_cppapi_WS_DLL_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_SCRT_srch1_WS_DLL_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).widestring.dll.exe
-TARG_TEST_SCRT_srch2_WS_DLL_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_SCRT_links_WS_DLL_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_SCRT_cppapi_WS_MT_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_SCRT_srch1_WS_MT_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
-TARG_TEST_SCRT_srch2_WS_MT_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_SCRT_links_WS_MT_DBG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_SCRT_cppapi_WS_MT_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_SCRT_srch1_WS_MT_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).widestring.mt.exe
-TARG_TEST_SCRT_srch2_WS_MT_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_SCRT_links_WS_MT_REL    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 
 ##############################
 # unit tests
@@ -2017,22 +2025,30 @@ OBJ_TEST_COMP_api_rmdir_WS_MT_REL =   $(PROJ_OBJ_DIR)\test.component.util.cpp.re
 ##############################
 # scratch tests
 
+OBJ_TEST_SCRT_cppapi_DLL_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.cpp_api.dll.debug.obj
 OBJ_TEST_SCRT_srch1_DLL_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.search.1.dll.debug.obj
-OBJ_TEST_SCRT_srch2_DLL_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.search.2.dll.debug.obj
+OBJ_TEST_SCRT_links_DLL_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.links.dll.debug.obj
+OBJ_TEST_SCRT_cppapi_DLL_REL   =   $(PROJ_OBJ_DIR)\test.scratch.cpp_api.dll.obj
 OBJ_TEST_SCRT_srch1_DLL_REL   =   $(PROJ_OBJ_DIR)\test.scratch.search.1.dll.obj
-OBJ_TEST_SCRT_srch2_DLL_REL   =   $(PROJ_OBJ_DIR)\test.scratch.search.2.dll.obj
+OBJ_TEST_SCRT_links_DLL_REL   =   $(PROJ_OBJ_DIR)\test.scratch.links.dll.obj
+OBJ_TEST_SCRT_cppapi_MT_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.cpp_api.mt.debug.obj
 OBJ_TEST_SCRT_srch1_MT_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.search.1.mt.debug.obj
-OBJ_TEST_SCRT_srch2_MT_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.search.2.mt.debug.obj
+OBJ_TEST_SCRT_links_MT_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.links.mt.debug.obj
+OBJ_TEST_SCRT_cppapi_MT_REL   =   $(PROJ_OBJ_DIR)\test.scratch.cpp_api.mt.obj
 OBJ_TEST_SCRT_srch1_MT_REL   =   $(PROJ_OBJ_DIR)\test.scratch.search.1.mt.obj
-OBJ_TEST_SCRT_srch2_MT_REL   =   $(PROJ_OBJ_DIR)\test.scratch.search.2.mt.obj
+OBJ_TEST_SCRT_links_MT_REL   =   $(PROJ_OBJ_DIR)\test.scratch.links.mt.obj
+OBJ_TEST_SCRT_cppapi_WS_DLL_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.cpp_api.widestring.dll.debug.obj
 OBJ_TEST_SCRT_srch1_WS_DLL_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.search.1.widestring.dll.debug.obj
-OBJ_TEST_SCRT_srch2_WS_DLL_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.search.2.widestring.dll.debug.obj
+OBJ_TEST_SCRT_links_WS_DLL_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.links.widestring.dll.debug.obj
+OBJ_TEST_SCRT_cppapi_WS_DLL_REL   =   $(PROJ_OBJ_DIR)\test.scratch.cpp_api.widestring.dll.obj
 OBJ_TEST_SCRT_srch1_WS_DLL_REL   =   $(PROJ_OBJ_DIR)\test.scratch.search.1.widestring.dll.obj
-OBJ_TEST_SCRT_srch2_WS_DLL_REL   =   $(PROJ_OBJ_DIR)\test.scratch.search.2.widestring.dll.obj
+OBJ_TEST_SCRT_links_WS_DLL_REL   =   $(PROJ_OBJ_DIR)\test.scratch.links.widestring.dll.obj
+OBJ_TEST_SCRT_cppapi_WS_MT_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.cpp_api.widestring.mt.debug.obj
 OBJ_TEST_SCRT_srch1_WS_MT_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.search.1.widestring.mt.debug.obj
-OBJ_TEST_SCRT_srch2_WS_MT_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.search.2.widestring.mt.debug.obj
+OBJ_TEST_SCRT_links_WS_MT_DBG   =   $(PROJ_OBJ_DIR)\test.scratch.links.widestring.mt.debug.obj
+OBJ_TEST_SCRT_cppapi_WS_MT_REL   =   $(PROJ_OBJ_DIR)\test.scratch.cpp_api.widestring.mt.obj
 OBJ_TEST_SCRT_srch1_WS_MT_REL   =   $(PROJ_OBJ_DIR)\test.scratch.search.1.widestring.mt.obj
-OBJ_TEST_SCRT_srch2_WS_MT_REL   =   $(PROJ_OBJ_DIR)\test.scratch.search.2.widestring.mt.obj
+OBJ_TEST_SCRT_links_WS_MT_REL   =   $(PROJ_OBJ_DIR)\test.scratch.links.widestring.mt.obj
 
 ##############################
 # unit tests
@@ -2258,18 +2274,31 @@ OBJS_TEST_COMPONENT=\
 
 # Scratch Tests
 OBJS_TEST_SCRATCH=\
+ $(OBJ_TEST_SCRT_cppapi_DLL_DBG)\
  $(OBJ_TEST_SCRT_srch1_DLL_DBG)\
+ $(OBJ_TEST_SCRT_links_DLL_DBG)\
+ $(OBJ_TEST_SCRT_cppapi_DLL_REL)\
  $(OBJ_TEST_SCRT_srch1_DLL_REL)\
+ $(OBJ_TEST_SCRT_links_DLL_REL)\
+ $(OBJ_TEST_SCRT_cppapi_MT_DBG)\
  $(OBJ_TEST_SCRT_srch1_MT_DBG)\
+ $(OBJ_TEST_SCRT_links_MT_DBG)\
+ $(OBJ_TEST_SCRT_cppapi_MT_REL)\
  $(OBJ_TEST_SCRT_srch1_MT_REL)\
+ $(OBJ_TEST_SCRT_links_MT_REL)\
+ $(OBJ_TEST_SCRT_cppapi_WS_DLL_DBG)\
  $(OBJ_TEST_SCRT_srch1_WS_DLL_DBG)\
+ $(OBJ_TEST_SCRT_links_WS_DLL_DBG)\
+ $(OBJ_TEST_SCRT_cppapi_WS_DLL_REL)\
  $(OBJ_TEST_SCRT_srch1_WS_DLL_REL)\
+ $(OBJ_TEST_SCRT_links_WS_DLL_REL)\
+ $(OBJ_TEST_SCRT_cppapi_WS_MT_DBG)\
  $(OBJ_TEST_SCRT_srch1_WS_MT_DBG)\
+ $(OBJ_TEST_SCRT_links_WS_MT_DBG)\
+ $(OBJ_TEST_SCRT_cppapi_WS_MT_REL)\
  $(OBJ_TEST_SCRT_srch1_WS_MT_REL)\
+ $(OBJ_TEST_SCRT_links_WS_MT_REL)\
  \
-
-# TODO: Add this project
-# $(OBJ_TEST_SCRT_srch1 [ ` [ MakeSymbolTag ] ` ] ) \
 
 
 # Unit Tests
@@ -2496,19 +2525,31 @@ TARGETS_TEST_COMPONENT=\
  \
 
 TARGETS_TEST_SCRATCH=\
+ $(TARG_TEST_SCRT_cppapi_DLL_DBG)\
  $(TARG_TEST_SCRT_srch1_DLL_DBG)\
+ $(TARG_TEST_SCRT_links_DLL_DBG)\
+ $(TARG_TEST_SCRT_cppapi_DLL_REL)\
  $(TARG_TEST_SCRT_srch1_DLL_REL)\
+ $(TARG_TEST_SCRT_links_DLL_REL)\
+ $(TARG_TEST_SCRT_cppapi_MT_DBG)\
  $(TARG_TEST_SCRT_srch1_MT_DBG)\
+ $(TARG_TEST_SCRT_links_MT_DBG)\
+ $(TARG_TEST_SCRT_cppapi_MT_REL)\
  $(TARG_TEST_SCRT_srch1_MT_REL)\
+ $(TARG_TEST_SCRT_links_MT_REL)\
+ $(TARG_TEST_SCRT_cppapi_WS_DLL_DBG)\
  $(TARG_TEST_SCRT_srch1_WS_DLL_DBG)\
+ $(TARG_TEST_SCRT_links_WS_DLL_DBG)\
+ $(TARG_TEST_SCRT_cppapi_WS_DLL_REL)\
  $(TARG_TEST_SCRT_srch1_WS_DLL_REL)\
+ $(TARG_TEST_SCRT_links_WS_DLL_REL)\
+ $(TARG_TEST_SCRT_cppapi_WS_MT_DBG)\
  $(TARG_TEST_SCRT_srch1_WS_MT_DBG)\
+ $(TARG_TEST_SCRT_links_WS_MT_DBG)\
+ $(TARG_TEST_SCRT_cppapi_WS_MT_REL)\
  $(TARG_TEST_SCRT_srch1_WS_MT_REL)\
+ $(TARG_TEST_SCRT_links_WS_MT_REL)\
  \
-
-# TODO: Add this project
-# $(TARG_TEST_SCRT_srch1 [ ` [ MakeSymbolTag ] ` ] ) \
-
 
 TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_api_cmbpaths_DLL_DBG)\
@@ -2678,18 +2719,31 @@ test.component_:
 
 test.scratch_:
 	@echo Running Test:Scratch programs ...
+	$(TARG_TEST_SCRT_cppapi_DLL_DBG)
 	$(TARG_TEST_SCRT_srch1_DLL_DBG)
+	$(TARG_TEST_SCRT_links_DLL_DBG)
+	$(TARG_TEST_SCRT_cppapi_DLL_REL)
 	$(TARG_TEST_SCRT_srch1_DLL_REL)
+	$(TARG_TEST_SCRT_links_DLL_REL)
+	$(TARG_TEST_SCRT_cppapi_MT_DBG)
 	$(TARG_TEST_SCRT_srch1_MT_DBG)
+	$(TARG_TEST_SCRT_links_MT_DBG)
+	$(TARG_TEST_SCRT_cppapi_MT_REL)
 	$(TARG_TEST_SCRT_srch1_MT_REL)
+	$(TARG_TEST_SCRT_links_MT_REL)
+	$(TARG_TEST_SCRT_cppapi_WS_DLL_DBG)
 	$(TARG_TEST_SCRT_srch1_WS_DLL_DBG)
+	$(TARG_TEST_SCRT_links_WS_DLL_DBG)
+	$(TARG_TEST_SCRT_cppapi_WS_DLL_REL)
 	$(TARG_TEST_SCRT_srch1_WS_DLL_REL)
+	$(TARG_TEST_SCRT_links_WS_DLL_REL)
+	$(TARG_TEST_SCRT_cppapi_WS_MT_DBG)
 	$(TARG_TEST_SCRT_srch1_WS_MT_DBG)
+	$(TARG_TEST_SCRT_links_WS_MT_DBG)
+	$(TARG_TEST_SCRT_cppapi_WS_MT_REL)
 	$(TARG_TEST_SCRT_srch1_WS_MT_REL)
+	$(TARG_TEST_SCRT_links_WS_MT_REL)
 
-
-# TODO: Add this project
-#	$(TARG_TEST_SCRT_srch1 [ ` [ MakeSymbolTag ] ` ] ) 
 
 test.unit_:
 	@echo Running Test:Unit programs ...
@@ -3349,49 +3403,65 @@ clean.test.component:
 	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.*.manifest $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.*.manifest
 
 clean.test.scratch:
+	@-if exist $(TARG_TEST_SCRT_cppapi_DLL_DBG) $(RM) $(TARG_TEST_SCRT_cppapi_DLL_DBG)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_DLL_DBG) $(RM) $(OBJ_TEST_SCRT_cppapi_DLL_DBG)
 	@-if exist $(TARG_TEST_SCRT_srch1_DLL_DBG) $(RM) $(TARG_TEST_SCRT_srch1_DLL_DBG)
 	@-if exist $(OBJ_TEST_SCRT_srch1_DLL_DBG) $(RM) $(OBJ_TEST_SCRT_srch1_DLL_DBG)
-	@-if exist $(TARG_TEST_SCRT_srch2_DLL_DBG) $(RM) $(TARG_TEST_SCRT_srch2_DLL_DBG)
-	@-if exist $(OBJ_TEST_SCRT_srch2_DLL_DBG) $(RM) $(OBJ_TEST_SCRT_srch2_DLL_DBG)
+	@-if exist $(TARG_TEST_SCRT_links_DLL_DBG) $(RM) $(TARG_TEST_SCRT_links_DLL_DBG)
+	@-if exist $(OBJ_TEST_SCRT_links_DLL_DBG) $(RM) $(OBJ_TEST_SCRT_links_DLL_DBG)
 	@-if exist $(PROJ_OBJ_DIR)\test.scratch.*.pdb $(RM) $(PROJ_OBJ_DIR)\test.scratch.*.pdb
 	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest
+	@-if exist $(TARG_TEST_SCRT_cppapi_DLL_REL) $(RM) $(TARG_TEST_SCRT_cppapi_DLL_REL)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_DLL_REL) $(RM) $(OBJ_TEST_SCRT_cppapi_DLL_REL)
 	@-if exist $(TARG_TEST_SCRT_srch1_DLL_REL) $(RM) $(TARG_TEST_SCRT_srch1_DLL_REL)
 	@-if exist $(OBJ_TEST_SCRT_srch1_DLL_REL) $(RM) $(OBJ_TEST_SCRT_srch1_DLL_REL)
-	@-if exist $(TARG_TEST_SCRT_srch2_DLL_REL) $(RM) $(TARG_TEST_SCRT_srch2_DLL_REL)
-	@-if exist $(OBJ_TEST_SCRT_srch2_DLL_REL) $(RM) $(OBJ_TEST_SCRT_srch2_DLL_REL)
+	@-if exist $(TARG_TEST_SCRT_links_DLL_REL) $(RM) $(TARG_TEST_SCRT_links_DLL_REL)
+	@-if exist $(OBJ_TEST_SCRT_links_DLL_REL) $(RM) $(OBJ_TEST_SCRT_links_DLL_REL)
 	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest
+	@-if exist $(TARG_TEST_SCRT_cppapi_MT_DBG) $(RM) $(TARG_TEST_SCRT_cppapi_MT_DBG)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_MT_DBG) $(RM) $(OBJ_TEST_SCRT_cppapi_MT_DBG)
 	@-if exist $(TARG_TEST_SCRT_srch1_MT_DBG) $(RM) $(TARG_TEST_SCRT_srch1_MT_DBG)
 	@-if exist $(OBJ_TEST_SCRT_srch1_MT_DBG) $(RM) $(OBJ_TEST_SCRT_srch1_MT_DBG)
-	@-if exist $(TARG_TEST_SCRT_srch2_MT_DBG) $(RM) $(TARG_TEST_SCRT_srch2_MT_DBG)
-	@-if exist $(OBJ_TEST_SCRT_srch2_MT_DBG) $(RM) $(OBJ_TEST_SCRT_srch2_MT_DBG)
+	@-if exist $(TARG_TEST_SCRT_links_MT_DBG) $(RM) $(TARG_TEST_SCRT_links_MT_DBG)
+	@-if exist $(OBJ_TEST_SCRT_links_MT_DBG) $(RM) $(OBJ_TEST_SCRT_links_MT_DBG)
 	@-if exist $(PROJ_OBJ_DIR)\test.scratch.*.pdb $(RM) $(PROJ_OBJ_DIR)\test.scratch.*.pdb
 	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest
+	@-if exist $(TARG_TEST_SCRT_cppapi_MT_REL) $(RM) $(TARG_TEST_SCRT_cppapi_MT_REL)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_MT_REL) $(RM) $(OBJ_TEST_SCRT_cppapi_MT_REL)
 	@-if exist $(TARG_TEST_SCRT_srch1_MT_REL) $(RM) $(TARG_TEST_SCRT_srch1_MT_REL)
 	@-if exist $(OBJ_TEST_SCRT_srch1_MT_REL) $(RM) $(OBJ_TEST_SCRT_srch1_MT_REL)
-	@-if exist $(TARG_TEST_SCRT_srch2_MT_REL) $(RM) $(TARG_TEST_SCRT_srch2_MT_REL)
-	@-if exist $(OBJ_TEST_SCRT_srch2_MT_REL) $(RM) $(OBJ_TEST_SCRT_srch2_MT_REL)
+	@-if exist $(TARG_TEST_SCRT_links_MT_REL) $(RM) $(TARG_TEST_SCRT_links_MT_REL)
+	@-if exist $(OBJ_TEST_SCRT_links_MT_REL) $(RM) $(OBJ_TEST_SCRT_links_MT_REL)
 	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest
+	@-if exist $(TARG_TEST_SCRT_cppapi_WS_DLL_DBG) $(RM) $(TARG_TEST_SCRT_cppapi_WS_DLL_DBG)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_WS_DLL_DBG) $(RM) $(OBJ_TEST_SCRT_cppapi_WS_DLL_DBG)
 	@-if exist $(TARG_TEST_SCRT_srch1_WS_DLL_DBG) $(RM) $(TARG_TEST_SCRT_srch1_WS_DLL_DBG)
 	@-if exist $(OBJ_TEST_SCRT_srch1_WS_DLL_DBG) $(RM) $(OBJ_TEST_SCRT_srch1_WS_DLL_DBG)
-	@-if exist $(TARG_TEST_SCRT_srch2_WS_DLL_DBG) $(RM) $(TARG_TEST_SCRT_srch2_WS_DLL_DBG)
-	@-if exist $(OBJ_TEST_SCRT_srch2_WS_DLL_DBG) $(RM) $(OBJ_TEST_SCRT_srch2_WS_DLL_DBG)
+	@-if exist $(TARG_TEST_SCRT_links_WS_DLL_DBG) $(RM) $(TARG_TEST_SCRT_links_WS_DLL_DBG)
+	@-if exist $(OBJ_TEST_SCRT_links_WS_DLL_DBG) $(RM) $(OBJ_TEST_SCRT_links_WS_DLL_DBG)
 	@-if exist $(PROJ_OBJ_DIR)\test.scratch.*.pdb $(RM) $(PROJ_OBJ_DIR)\test.scratch.*.pdb
 	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest
+	@-if exist $(TARG_TEST_SCRT_cppapi_WS_DLL_REL) $(RM) $(TARG_TEST_SCRT_cppapi_WS_DLL_REL)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_WS_DLL_REL) $(RM) $(OBJ_TEST_SCRT_cppapi_WS_DLL_REL)
 	@-if exist $(TARG_TEST_SCRT_srch1_WS_DLL_REL) $(RM) $(TARG_TEST_SCRT_srch1_WS_DLL_REL)
 	@-if exist $(OBJ_TEST_SCRT_srch1_WS_DLL_REL) $(RM) $(OBJ_TEST_SCRT_srch1_WS_DLL_REL)
-	@-if exist $(TARG_TEST_SCRT_srch2_WS_DLL_REL) $(RM) $(TARG_TEST_SCRT_srch2_WS_DLL_REL)
-	@-if exist $(OBJ_TEST_SCRT_srch2_WS_DLL_REL) $(RM) $(OBJ_TEST_SCRT_srch2_WS_DLL_REL)
+	@-if exist $(TARG_TEST_SCRT_links_WS_DLL_REL) $(RM) $(TARG_TEST_SCRT_links_WS_DLL_REL)
+	@-if exist $(OBJ_TEST_SCRT_links_WS_DLL_REL) $(RM) $(OBJ_TEST_SCRT_links_WS_DLL_REL)
 	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest
+	@-if exist $(TARG_TEST_SCRT_cppapi_WS_MT_DBG) $(RM) $(TARG_TEST_SCRT_cppapi_WS_MT_DBG)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_WS_MT_DBG) $(RM) $(OBJ_TEST_SCRT_cppapi_WS_MT_DBG)
 	@-if exist $(TARG_TEST_SCRT_srch1_WS_MT_DBG) $(RM) $(TARG_TEST_SCRT_srch1_WS_MT_DBG)
 	@-if exist $(OBJ_TEST_SCRT_srch1_WS_MT_DBG) $(RM) $(OBJ_TEST_SCRT_srch1_WS_MT_DBG)
-	@-if exist $(TARG_TEST_SCRT_srch2_WS_MT_DBG) $(RM) $(TARG_TEST_SCRT_srch2_WS_MT_DBG)
-	@-if exist $(OBJ_TEST_SCRT_srch2_WS_MT_DBG) $(RM) $(OBJ_TEST_SCRT_srch2_WS_MT_DBG)
+	@-if exist $(TARG_TEST_SCRT_links_WS_MT_DBG) $(RM) $(TARG_TEST_SCRT_links_WS_MT_DBG)
+	@-if exist $(OBJ_TEST_SCRT_links_WS_MT_DBG) $(RM) $(OBJ_TEST_SCRT_links_WS_MT_DBG)
 	@-if exist $(PROJ_OBJ_DIR)\test.scratch.*.pdb $(RM) $(PROJ_OBJ_DIR)\test.scratch.*.pdb
 	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest
+	@-if exist $(TARG_TEST_SCRT_cppapi_WS_MT_REL) $(RM) $(TARG_TEST_SCRT_cppapi_WS_MT_REL)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_WS_MT_REL) $(RM) $(OBJ_TEST_SCRT_cppapi_WS_MT_REL)
 	@-if exist $(TARG_TEST_SCRT_srch1_WS_MT_REL) $(RM) $(TARG_TEST_SCRT_srch1_WS_MT_REL)
 	@-if exist $(OBJ_TEST_SCRT_srch1_WS_MT_REL) $(RM) $(OBJ_TEST_SCRT_srch1_WS_MT_REL)
-	@-if exist $(TARG_TEST_SCRT_srch2_WS_MT_REL) $(RM) $(TARG_TEST_SCRT_srch2_WS_MT_REL)
-	@-if exist $(OBJ_TEST_SCRT_srch2_WS_MT_REL) $(RM) $(OBJ_TEST_SCRT_srch2_WS_MT_REL)
+	@-if exist $(TARG_TEST_SCRT_links_WS_MT_REL) $(RM) $(TARG_TEST_SCRT_links_WS_MT_REL)
+	@-if exist $(OBJ_TEST_SCRT_links_WS_MT_REL) $(RM) $(OBJ_TEST_SCRT_links_WS_MT_REL)
 	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.*.manifest
 
 clean.test.unit:
@@ -5691,6 +5761,142 @@ $(OBJ_TEST_COMP_api_rmdir_WS_MT_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.
 ##############################
 # scratch tests
 
+$(TARG_TEST_SCRT_cppapi_DLL_DBG):    \
+		$(OBJ_TEST_SCRT_cppapi_DLL_DBG)\
+		$(LIB_CORE_DLL_DBG)\
+		$(LIB_SHWILD_DLL_DBG)\
+		$(LIB_XTESTS_DLL_DBG)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_DBG) -out:$@ \
+		$(OBJ_TEST_SCRT_cppapi_DLL_DBG)\
+		$(LIB_CORE_DLL_DBG)\
+		$(LIB_SHWILD_DLL_DBG)\
+		$(LIB_XTESTS_DLL_DBG)\
+		$(TARGET_LIB_DLL_DBG)
+
+$(OBJ_TEST_SCRT_cppapi_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+
+
+$(TARG_TEST_SCRT_cppapi_DLL_REL):    \
+		$(OBJ_TEST_SCRT_cppapi_DLL_REL)\
+		$(LIB_CORE_DLL_REL)\
+		$(LIB_SHWILD_DLL_REL)\
+		$(LIB_XTESTS_DLL_REL)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_REL) -out:$@ \
+		$(OBJ_TEST_SCRT_cppapi_DLL_REL)\
+		$(LIB_CORE_DLL_REL)\
+		$(LIB_SHWILD_DLL_REL)\
+		$(LIB_XTESTS_DLL_REL)\
+		$(TARGET_LIB_DLL_REL)
+
+$(OBJ_TEST_SCRT_cppapi_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+
+
+$(TARG_TEST_SCRT_cppapi_MT_DBG):    \
+		$(OBJ_TEST_SCRT_cppapi_MT_DBG)\
+		$(LIB_CORE_MT_DBG)\
+		$(LIB_SHWILD_MT_DBG)\
+		$(LIB_XTESTS_MT_DBG)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_DBG) -out:$@ \
+		$(OBJ_TEST_SCRT_cppapi_MT_DBG)\
+		$(LIB_CORE_MT_DBG)\
+		$(LIB_SHWILD_MT_DBG)\
+		$(LIB_XTESTS_MT_DBG)\
+		$(TARGET_LIB_MT_DBG)
+
+$(OBJ_TEST_SCRT_cppapi_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+
+
+$(TARG_TEST_SCRT_cppapi_MT_REL):    \
+		$(OBJ_TEST_SCRT_cppapi_MT_REL)\
+		$(LIB_CORE_MT_REL)\
+		$(LIB_SHWILD_MT_REL)\
+		$(LIB_XTESTS_MT_REL)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_REL) -out:$@ \
+		$(OBJ_TEST_SCRT_cppapi_MT_REL)\
+		$(LIB_CORE_MT_REL)\
+		$(LIB_SHWILD_MT_REL)\
+		$(LIB_XTESTS_MT_REL)\
+		$(TARGET_LIB_MT_REL)
+
+$(OBJ_TEST_SCRT_cppapi_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+
+
+$(TARG_TEST_SCRT_cppapi_WS_DLL_DBG):    \
+		$(OBJ_TEST_SCRT_cppapi_WS_DLL_DBG)\
+		$(LIB_CORE_WS_DLL_DBG)\
+		$(LIB_SHWILD_WS_DLL_DBG)\
+		$(LIB_XTESTS_WS_DLL_DBG)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_WS_DLL_DBG) -out:$@ \
+		$(OBJ_TEST_SCRT_cppapi_WS_DLL_DBG)\
+		$(LIB_CORE_WS_DLL_DBG)\
+		$(LIB_SHWILD_WS_DLL_DBG)\
+		$(LIB_XTESTS_WS_DLL_DBG)\
+		$(TARGET_LIB_WS_DLL_DBG)
+
+$(OBJ_TEST_SCRT_cppapi_WS_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+
+
+$(TARG_TEST_SCRT_cppapi_WS_DLL_REL):    \
+		$(OBJ_TEST_SCRT_cppapi_WS_DLL_REL)\
+		$(LIB_CORE_WS_DLL_REL)\
+		$(LIB_SHWILD_WS_DLL_REL)\
+		$(LIB_XTESTS_WS_DLL_REL)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_WS_DLL_REL) -out:$@ \
+		$(OBJ_TEST_SCRT_cppapi_WS_DLL_REL)\
+		$(LIB_CORE_WS_DLL_REL)\
+		$(LIB_SHWILD_WS_DLL_REL)\
+		$(LIB_XTESTS_WS_DLL_REL)\
+		$(TARGET_LIB_WS_DLL_REL)
+
+$(OBJ_TEST_SCRT_cppapi_WS_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+
+
+$(TARG_TEST_SCRT_cppapi_WS_MT_DBG):    \
+		$(OBJ_TEST_SCRT_cppapi_WS_MT_DBG)\
+		$(LIB_CORE_WS_MT_DBG)\
+		$(LIB_SHWILD_WS_MT_DBG)\
+		$(LIB_XTESTS_WS_MT_DBG)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_WS_MT_DBG) -out:$@ \
+		$(OBJ_TEST_SCRT_cppapi_WS_MT_DBG)\
+		$(LIB_CORE_WS_MT_DBG)\
+		$(LIB_SHWILD_WS_MT_DBG)\
+		$(LIB_XTESTS_WS_MT_DBG)\
+		$(TARGET_LIB_WS_MT_DBG)
+
+$(OBJ_TEST_SCRT_cppapi_WS_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+
+
+$(TARG_TEST_SCRT_cppapi_WS_MT_REL):    \
+		$(OBJ_TEST_SCRT_cppapi_WS_MT_REL)\
+		$(LIB_CORE_WS_MT_REL)\
+		$(LIB_SHWILD_WS_MT_REL)\
+		$(LIB_XTESTS_WS_MT_REL)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_WS_MT_REL) -out:$@ \
+		$(OBJ_TEST_SCRT_cppapi_WS_MT_REL)\
+		$(LIB_CORE_WS_MT_REL)\
+		$(LIB_SHWILD_WS_MT_REL)\
+		$(LIB_XTESTS_WS_MT_REL)\
+		$(TARGET_LIB_WS_MT_REL)
+
+$(OBJ_TEST_SCRT_cppapi_WS_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+
+
 $(TARG_TEST_SCRT_srch1_DLL_DBG):    \
 		$(OBJ_TEST_SCRT_srch1_DLL_DBG)\
 		$(LIB_CORE_DLL_DBG)\
@@ -5827,140 +6033,140 @@ $(OBJ_TEST_SCRT_srch1_WS_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1
 	$(CC) $(CC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c
 
 
-$(TARG_TEST_SCRT_srch2_DLL_DBG):    \
-		$(OBJ_TEST_SCRT_srch2_DLL_DBG)\
+$(TARG_TEST_SCRT_links_DLL_DBG):    \
+		$(OBJ_TEST_SCRT_links_DLL_DBG)\
 		$(LIB_CORE_DLL_DBG)\
 		$(LIB_SHWILD_DLL_DBG)\
 		$(LIB_XTESTS_DLL_DBG)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_DBG) -out:$@ \
-		$(OBJ_TEST_SCRT_srch2_DLL_DBG)\
+		$(OBJ_TEST_SCRT_links_DLL_DBG)\
 		$(LIB_CORE_DLL_DBG)\
 		$(LIB_SHWILD_DLL_DBG)\
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_SCRT_srch2_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp
 
 
-$(TARG_TEST_SCRT_srch2_DLL_REL):    \
-		$(OBJ_TEST_SCRT_srch2_DLL_REL)\
+$(TARG_TEST_SCRT_links_DLL_REL):    \
+		$(OBJ_TEST_SCRT_links_DLL_REL)\
 		$(LIB_CORE_DLL_REL)\
 		$(LIB_SHWILD_DLL_REL)\
 		$(LIB_XTESTS_DLL_REL)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_REL) -out:$@ \
-		$(OBJ_TEST_SCRT_srch2_DLL_REL)\
+		$(OBJ_TEST_SCRT_links_DLL_REL)\
 		$(LIB_CORE_DLL_REL)\
 		$(LIB_SHWILD_DLL_REL)\
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_SCRT_srch2_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp
 
 
-$(TARG_TEST_SCRT_srch2_MT_DBG):    \
-		$(OBJ_TEST_SCRT_srch2_MT_DBG)\
+$(TARG_TEST_SCRT_links_MT_DBG):    \
+		$(OBJ_TEST_SCRT_links_MT_DBG)\
 		$(LIB_CORE_MT_DBG)\
 		$(LIB_SHWILD_MT_DBG)\
 		$(LIB_XTESTS_MT_DBG)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_DBG) -out:$@ \
-		$(OBJ_TEST_SCRT_srch2_MT_DBG)\
+		$(OBJ_TEST_SCRT_links_MT_DBG)\
 		$(LIB_CORE_MT_DBG)\
 		$(LIB_SHWILD_MT_DBG)\
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_SCRT_srch2_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp
 
 
-$(TARG_TEST_SCRT_srch2_MT_REL):    \
-		$(OBJ_TEST_SCRT_srch2_MT_REL)\
+$(TARG_TEST_SCRT_links_MT_REL):    \
+		$(OBJ_TEST_SCRT_links_MT_REL)\
 		$(LIB_CORE_MT_REL)\
 		$(LIB_SHWILD_MT_REL)\
 		$(LIB_XTESTS_MT_REL)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_REL) -out:$@ \
-		$(OBJ_TEST_SCRT_srch2_MT_REL)\
+		$(OBJ_TEST_SCRT_links_MT_REL)\
 		$(LIB_CORE_MT_REL)\
 		$(LIB_SHWILD_MT_REL)\
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_SCRT_srch2_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp
 
 
-$(TARG_TEST_SCRT_srch2_WS_DLL_DBG):    \
-		$(OBJ_TEST_SCRT_srch2_WS_DLL_DBG)\
+$(TARG_TEST_SCRT_links_WS_DLL_DBG):    \
+		$(OBJ_TEST_SCRT_links_WS_DLL_DBG)\
 		$(LIB_CORE_WS_DLL_DBG)\
 		$(LIB_SHWILD_WS_DLL_DBG)\
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_WS_DLL_DBG) -out:$@ \
-		$(OBJ_TEST_SCRT_srch2_WS_DLL_DBG)\
+		$(OBJ_TEST_SCRT_links_WS_DLL_DBG)\
 		$(LIB_CORE_WS_DLL_DBG)\
 		$(LIB_SHWILD_WS_DLL_DBG)\
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_SCRT_srch2_WS_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_WS_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp
 
 
-$(TARG_TEST_SCRT_srch2_WS_DLL_REL):    \
-		$(OBJ_TEST_SCRT_srch2_WS_DLL_REL)\
+$(TARG_TEST_SCRT_links_WS_DLL_REL):    \
+		$(OBJ_TEST_SCRT_links_WS_DLL_REL)\
 		$(LIB_CORE_WS_DLL_REL)\
 		$(LIB_SHWILD_WS_DLL_REL)\
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_WS_DLL_REL) -out:$@ \
-		$(OBJ_TEST_SCRT_srch2_WS_DLL_REL)\
+		$(OBJ_TEST_SCRT_links_WS_DLL_REL)\
 		$(LIB_CORE_WS_DLL_REL)\
 		$(LIB_SHWILD_WS_DLL_REL)\
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_SCRT_srch2_WS_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_WS_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp
 
 
-$(TARG_TEST_SCRT_srch2_WS_MT_DBG):    \
-		$(OBJ_TEST_SCRT_srch2_WS_MT_DBG)\
+$(TARG_TEST_SCRT_links_WS_MT_DBG):    \
+		$(OBJ_TEST_SCRT_links_WS_MT_DBG)\
 		$(LIB_CORE_WS_MT_DBG)\
 		$(LIB_SHWILD_WS_MT_DBG)\
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_WS_MT_DBG) -out:$@ \
-		$(OBJ_TEST_SCRT_srch2_WS_MT_DBG)\
+		$(OBJ_TEST_SCRT_links_WS_MT_DBG)\
 		$(LIB_CORE_WS_MT_DBG)\
 		$(LIB_SHWILD_WS_MT_DBG)\
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_SCRT_srch2_WS_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_WS_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp
 
 
-$(TARG_TEST_SCRT_srch2_WS_MT_REL):    \
-		$(OBJ_TEST_SCRT_srch2_WS_MT_REL)\
+$(TARG_TEST_SCRT_links_WS_MT_REL):    \
+		$(OBJ_TEST_SCRT_links_WS_MT_REL)\
 		$(LIB_CORE_WS_MT_REL)\
 		$(LIB_SHWILD_WS_MT_REL)\
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_WS_MT_REL) -out:$@ \
-		$(OBJ_TEST_SCRT_srch2_WS_MT_REL)\
+		$(OBJ_TEST_SCRT_links_WS_MT_REL)\
 		$(LIB_CORE_WS_MT_REL)\
 		$(LIB_SHWILD_WS_MT_REL)\
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_SCRT_srch2_WS_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_WS_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp
 
 
 ##############################

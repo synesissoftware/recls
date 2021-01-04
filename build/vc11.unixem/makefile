@@ -601,10 +601,12 @@ TARG_TEST_COMP_api_rmdir_MT_UX	=   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.componen
 ##############################
 # scratch tests
 
+TARG_TEST_SCRT_cppapi_MT_UX_DEBUG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_SCRT_srch1_MT_UX_DEBUG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_SCRT_srch2_MT_UX_DEBUG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_SCRT_links_MT_UX_DEBUG    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_SCRT_cppapi_MT_UX    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_SCRT_srch1_MT_UX    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_SCRT_srch2_MT_UX    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_SCRT_links_MT_UX    =   $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).mt.exe
 
 ##############################
 # unit tests
@@ -833,10 +835,12 @@ OBJ_TEST_COMP_api_rmdir_MT_UX =   $(PROJ_OBJ_DIR)\test.component.util.cpp.remove
 ##############################
 # scratch tests
 
+OBJ_TEST_SCRT_cppapi_MT_UX_DEBUG   =   $(PROJ_OBJ_DIR)\test.scratch.cpp_api.mt.debug.obj
 OBJ_TEST_SCRT_srch1_MT_UX_DEBUG   =   $(PROJ_OBJ_DIR)\test.scratch.search.1.mt.debug.obj
-OBJ_TEST_SCRT_srch2_MT_UX_DEBUG   =   $(PROJ_OBJ_DIR)\test.scratch.search.2.mt.debug.obj
+OBJ_TEST_SCRT_links_MT_UX_DEBUG   =   $(PROJ_OBJ_DIR)\test.scratch.links.mt.debug.obj
+OBJ_TEST_SCRT_cppapi_MT_UX   =   $(PROJ_OBJ_DIR)\test.scratch.cpp_api.mt.obj
 OBJ_TEST_SCRT_srch1_MT_UX   =   $(PROJ_OBJ_DIR)\test.scratch.search.1.mt.obj
-OBJ_TEST_SCRT_srch2_MT_UX   =   $(PROJ_OBJ_DIR)\test.scratch.search.2.mt.obj
+OBJ_TEST_SCRT_links_MT_UX   =   $(PROJ_OBJ_DIR)\test.scratch.links.mt.obj
 
 ##############################
 # unit tests
@@ -918,12 +922,13 @@ OBJS_TEST_COMPONENT=\
 
 # Scratch Tests
 OBJS_TEST_SCRATCH=\
+ $(OBJ_TEST_SCRT_cppapi_MT_UX_DEBUG)\
  $(OBJ_TEST_SCRT_srch1_MT_UX_DEBUG)\
+ $(OBJ_TEST_SCRT_links_MT_UX_DEBUG)\
+ $(OBJ_TEST_SCRT_cppapi_MT_UX)\
  $(OBJ_TEST_SCRT_srch1_MT_UX)\
+ $(OBJ_TEST_SCRT_links_MT_UX)\
  \
-
-# TODO: Add this project
-# $(OBJ_TEST_SCRT_srch1 [ ` [ MakeSymbolTag ] ` ] ) \
 
 
 # Unit Tests
@@ -1012,13 +1017,13 @@ TARGETS_TEST_COMPONENT=\
  \
 
 TARGETS_TEST_SCRATCH=\
+ $(TARG_TEST_SCRT_cppapi_MT_UX_DEBUG)\
  $(TARG_TEST_SCRT_srch1_MT_UX_DEBUG)\
+ $(TARG_TEST_SCRT_links_MT_UX_DEBUG)\
+ $(TARG_TEST_SCRT_cppapi_MT_UX)\
  $(TARG_TEST_SCRT_srch1_MT_UX)\
+ $(TARG_TEST_SCRT_links_MT_UX)\
  \
-
-# TODO: Add this project
-# $(TARG_TEST_SCRT_srch1 [ ` [ MakeSymbolTag ] ` ] ) \
-
 
 TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_api_cmbpaths_MT_UX_DEBUG)\
@@ -1134,12 +1139,13 @@ test.component_:
 
 test.scratch_:
 	@echo Running Test:Scratch programs ...
+	$(TARG_TEST_SCRT_cppapi_MT_UX_DEBUG)
 	$(TARG_TEST_SCRT_srch1_MT_UX_DEBUG)
+	$(TARG_TEST_SCRT_links_MT_UX_DEBUG)
+	$(TARG_TEST_SCRT_cppapi_MT_UX)
 	$(TARG_TEST_SCRT_srch1_MT_UX)
+	$(TARG_TEST_SCRT_links_MT_UX)
 
-
-# TODO: Add this project
-#	$(TARG_TEST_SCRT_srch1 [ ` [ MakeSymbolTag ] ` ] ) 
 
 test.unit_:
 	@echo Running Test:Unit programs ...
@@ -1337,14 +1343,18 @@ clean.test.component:
 	@-$(RM) $(OBJ_TEST_COMP_api_rmdir_MT_UX)
 
 clean.test.scratch:
+	@-$(RM) $(TARG_TEST_SCRT_cppapi_MT_UX_DEBUG)
+	@-$(RM) $(OBJ_TEST_SCRT_cppapi_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_SCRT_srch1_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_SCRT_srch1_MT_UX_DEBUG)
-	@-$(RM) $(TARG_TEST_SCRT_srch2_MT_UX_DEBUG)
-	@-$(RM) $(OBJ_TEST_SCRT_srch2_MT_UX_DEBUG)
+	@-$(RM) $(TARG_TEST_SCRT_links_MT_UX_DEBUG)
+	@-$(RM) $(OBJ_TEST_SCRT_links_MT_UX_DEBUG)
+	@-$(RM) $(TARG_TEST_SCRT_cppapi_MT_UX)
+	@-$(RM) $(OBJ_TEST_SCRT_cppapi_MT_UX)
 	@-$(RM) $(TARG_TEST_SCRT_srch1_MT_UX)
 	@-$(RM) $(OBJ_TEST_SCRT_srch1_MT_UX)
-	@-$(RM) $(TARG_TEST_SCRT_srch2_MT_UX)
-	@-$(RM) $(OBJ_TEST_SCRT_srch2_MT_UX)
+	@-$(RM) $(TARG_TEST_SCRT_links_MT_UX)
+	@-$(RM) $(OBJ_TEST_SCRT_links_MT_UX)
 
 clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_api_cmbpaths_MT_UX_DEBUG)
@@ -1935,6 +1945,40 @@ $(OBJ_TEST_COMP_api_rmdir_MT_UX): $(PROJ_TEST_COMPONENT_DIR)\test.component.util
 ##############################
 # scratch tests
 
+$(TARG_TEST_SCRT_cppapi_MT_UX_DEBUG):    \
+		$(OBJ_TEST_SCRT_cppapi_MT_UX_DEBUG)\
+		$(LIB_CORE_MT_UX_DEBUG)\
+		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
+		$(OBJ_TEST_SCRT_cppapi_MT_UX_DEBUG)\
+		$(LIB_CORE_MT_UX_DEBUG)\
+		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(TARGET_LIB_MT_UX_DEBUG)
+
+$(OBJ_TEST_SCRT_cppapi_MT_UX_DEBUG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+
+
+$(TARG_TEST_SCRT_cppapi_MT_UX):    \
+		$(OBJ_TEST_SCRT_cppapi_MT_UX)\
+		$(LIB_CORE_MT_UX)\
+		$(LIB_SHWILD_MT_UX)\
+		$(LIB_XTESTS_MT_UX)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
+		$(OBJ_TEST_SCRT_cppapi_MT_UX)\
+		$(LIB_CORE_MT_UX)\
+		$(LIB_SHWILD_MT_UX)\
+		$(LIB_XTESTS_MT_UX)\
+		$(TARGET_LIB_MT_UX)
+
+$(OBJ_TEST_SCRT_cppapi_MT_UX): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+
+
 $(TARG_TEST_SCRT_srch1_MT_UX_DEBUG):    \
 		$(OBJ_TEST_SCRT_srch1_MT_UX_DEBUG)\
 		$(LIB_CORE_MT_UX_DEBUG)\
@@ -1969,38 +2013,38 @@ $(OBJ_TEST_SCRT_srch1_MT_UX): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\tes
 	$(CC) $(CC_ARGS_MT_UX) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c
 
 
-$(TARG_TEST_SCRT_srch2_MT_UX_DEBUG):    \
-		$(OBJ_TEST_SCRT_srch2_MT_UX_DEBUG)\
+$(TARG_TEST_SCRT_links_MT_UX_DEBUG):    \
+		$(OBJ_TEST_SCRT_links_MT_UX_DEBUG)\
 		$(LIB_CORE_MT_UX_DEBUG)\
 		$(LIB_SHWILD_MT_UX_DEBUG)\
 		$(LIB_XTESTS_MT_UX_DEBUG)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
-		$(OBJ_TEST_SCRT_srch2_MT_UX_DEBUG)\
+		$(OBJ_TEST_SCRT_links_MT_UX_DEBUG)\
 		$(LIB_CORE_MT_UX_DEBUG)\
 		$(LIB_SHWILD_MT_UX_DEBUG)\
 		$(LIB_XTESTS_MT_UX_DEBUG)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
-$(OBJ_TEST_SCRT_srch2_MT_UX_DEBUG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_MT_UX_DEBUG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_UX_DEBUG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp
 
 
-$(TARG_TEST_SCRT_srch2_MT_UX):    \
-		$(OBJ_TEST_SCRT_srch2_MT_UX)\
+$(TARG_TEST_SCRT_links_MT_UX):    \
+		$(OBJ_TEST_SCRT_links_MT_UX)\
 		$(LIB_CORE_MT_UX)\
 		$(LIB_SHWILD_MT_UX)\
 		$(LIB_XTESTS_MT_UX)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
-		$(OBJ_TEST_SCRT_srch2_MT_UX)\
+		$(OBJ_TEST_SCRT_links_MT_UX)\
 		$(LIB_CORE_MT_UX)\
 		$(LIB_SHWILD_MT_UX)\
 		$(LIB_XTESTS_MT_UX)\
 		$(TARGET_LIB_MT_UX)
 
-$(OBJ_TEST_SCRT_srch2_MT_UX): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_UX) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.2\test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_MT_UX): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_UX) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.links\test.scratch.links.cpp
 
 
 ##############################

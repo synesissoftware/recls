@@ -769,14 +769,18 @@ TARG_TEST_COMP_api_rmdir_ST_R	=   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component
 ##############################
 # scratch tests
 
+TARG_TEST_SCRT_cppapi_MT_D    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_SCRT_srch1_MT_D    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_SCRT_srch2_MT_D    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_SCRT_links_MT_D    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_SCRT_cppapi_MT_R    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_SCRT_srch1_MT_R    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_SCRT_srch2_MT_R    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_SCRT_links_MT_R    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_SCRT_cppapi_ST_D    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_SCRT_srch1_ST_D    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_SCRT_srch2_ST_D    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_SCRT_links_ST_D    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_SCRT_cppapi_ST_R    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.cpp_api.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_SCRT_srch1_ST_R    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.search.1.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_SCRT_srch2_ST_R    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.search.2.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_SCRT_links_ST_R    =   $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.links.$(COMP_ARCH_OS_TAG).exe
 
 ##############################
 # unit tests
@@ -1201,14 +1205,18 @@ OBJ_TEST_COMP_api_rmdir_ST_R =   $(PROJ_OBJ_DIR)/test.component.util.cpp.remove_
 ##############################
 # scratch tests
 
+OBJ_TEST_SCRT_cppapi_MT_D   =   $(PROJ_OBJ_DIR)/test.scratch.cpp_api.mt.debug.obj
 OBJ_TEST_SCRT_srch1_MT_D   =   $(PROJ_OBJ_DIR)/test.scratch.search.1.mt.debug.obj
-OBJ_TEST_SCRT_srch2_MT_D   =   $(PROJ_OBJ_DIR)/test.scratch.search.2.mt.debug.obj
+OBJ_TEST_SCRT_links_MT_D   =   $(PROJ_OBJ_DIR)/test.scratch.links.mt.debug.obj
+OBJ_TEST_SCRT_cppapi_MT_R   =   $(PROJ_OBJ_DIR)/test.scratch.cpp_api.mt.obj
 OBJ_TEST_SCRT_srch1_MT_R   =   $(PROJ_OBJ_DIR)/test.scratch.search.1.mt.obj
-OBJ_TEST_SCRT_srch2_MT_R   =   $(PROJ_OBJ_DIR)/test.scratch.search.2.mt.obj
+OBJ_TEST_SCRT_links_MT_R   =   $(PROJ_OBJ_DIR)/test.scratch.links.mt.obj
+OBJ_TEST_SCRT_cppapi_ST_D   =   $(PROJ_OBJ_DIR)/test.scratch.cpp_api.debug.obj
 OBJ_TEST_SCRT_srch1_ST_D   =   $(PROJ_OBJ_DIR)/test.scratch.search.1.debug.obj
-OBJ_TEST_SCRT_srch2_ST_D   =   $(PROJ_OBJ_DIR)/test.scratch.search.2.debug.obj
+OBJ_TEST_SCRT_links_ST_D   =   $(PROJ_OBJ_DIR)/test.scratch.links.debug.obj
+OBJ_TEST_SCRT_cppapi_ST_R   =   $(PROJ_OBJ_DIR)/test.scratch.cpp_api.obj
 OBJ_TEST_SCRT_srch1_ST_R   =   $(PROJ_OBJ_DIR)/test.scratch.search.1.obj
-OBJ_TEST_SCRT_srch2_ST_R   =   $(PROJ_OBJ_DIR)/test.scratch.search.2.obj
+OBJ_TEST_SCRT_links_ST_R   =   $(PROJ_OBJ_DIR)/test.scratch.links.obj
 
 ##############################
 # unit tests
@@ -1338,14 +1346,19 @@ OBJS_TEST_COMPONENT=\
 
 # Scratch Tests
 OBJS_TEST_SCRATCH=\
+ $(OBJ_TEST_SCRT_cppapi_MT_D)\
  $(OBJ_TEST_SCRT_srch1_MT_D)\
+ $(OBJ_TEST_SCRT_links_MT_D)\
+ $(OBJ_TEST_SCRT_cppapi_MT_R)\
  $(OBJ_TEST_SCRT_srch1_MT_R)\
+ $(OBJ_TEST_SCRT_links_MT_R)\
+ $(OBJ_TEST_SCRT_cppapi_ST_D)\
  $(OBJ_TEST_SCRT_srch1_ST_D)\
+ $(OBJ_TEST_SCRT_links_ST_D)\
+ $(OBJ_TEST_SCRT_cppapi_ST_R)\
  $(OBJ_TEST_SCRT_srch1_ST_R)\
+ $(OBJ_TEST_SCRT_links_ST_R)\
  \
-
-# TODO: Add this project
-# $(OBJ_TEST_SCRT_srch1 [ ` [ MakeSymbolTag ] ` ] ) \
 
 
 # Unit Tests
@@ -1480,15 +1493,19 @@ TARGETS_TEST_COMPONENT=\
  \
 
 TARGETS_TEST_SCRATCH=\
+ $(TARG_TEST_SCRT_cppapi_MT_D)\
  $(TARG_TEST_SCRT_srch1_MT_D)\
+ $(TARG_TEST_SCRT_links_MT_D)\
+ $(TARG_TEST_SCRT_cppapi_MT_R)\
  $(TARG_TEST_SCRT_srch1_MT_R)\
+ $(TARG_TEST_SCRT_links_MT_R)\
+ $(TARG_TEST_SCRT_cppapi_ST_D)\
  $(TARG_TEST_SCRT_srch1_ST_D)\
+ $(TARG_TEST_SCRT_links_ST_D)\
+ $(TARG_TEST_SCRT_cppapi_ST_R)\
  $(TARG_TEST_SCRT_srch1_ST_R)\
+ $(TARG_TEST_SCRT_links_ST_R)\
  \
-
-# TODO: Add this project
-# $(TARG_TEST_SCRT_srch1 [ ` [ MakeSymbolTag ] ` ] ) \
-
 
 TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_api_cmbpaths_MT_D)\
@@ -1622,14 +1639,19 @@ test.component_:
 
 test.scratch_:
 	@echo Running Test:Scratch programs ...
+	$(TARG_TEST_SCRT_cppapi_MT_D)
 	$(TARG_TEST_SCRT_srch1_MT_D)
+	$(TARG_TEST_SCRT_links_MT_D)
+	$(TARG_TEST_SCRT_cppapi_MT_R)
 	$(TARG_TEST_SCRT_srch1_MT_R)
+	$(TARG_TEST_SCRT_links_MT_R)
+	$(TARG_TEST_SCRT_cppapi_ST_D)
 	$(TARG_TEST_SCRT_srch1_ST_D)
+	$(TARG_TEST_SCRT_links_ST_D)
+	$(TARG_TEST_SCRT_cppapi_ST_R)
 	$(TARG_TEST_SCRT_srch1_ST_R)
+	$(TARG_TEST_SCRT_links_ST_R)
 
-
-# TODO: Add this project
-#	$(TARG_TEST_SCRT_srch1 [ ` [ MakeSymbolTag ] ` ] ) 
 
 test.unit_:
 	@echo Running Test:Unit programs ...
@@ -1967,22 +1989,30 @@ clean.test.component:
 	@-if exist $(OBJ_TEST_COMP_api_rmdir_ST_R) $(RM) $(OBJ_TEST_COMP_api_rmdir_ST_R)
 
 clean.test.scratch:
+	@-if exist $(TARG_TEST_SCRT_cppapi_MT_D) $(RM) $(TARG_TEST_SCRT_cppapi_MT_D)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_MT_D) $(RM) $(OBJ_TEST_SCRT_cppapi_MT_D)
 	@-if exist $(TARG_TEST_SCRT_srch1_MT_D) $(RM) $(TARG_TEST_SCRT_srch1_MT_D)
 	@-if exist $(OBJ_TEST_SCRT_srch1_MT_D) $(RM) $(OBJ_TEST_SCRT_srch1_MT_D)
-	@-if exist $(TARG_TEST_SCRT_srch2_MT_D) $(RM) $(TARG_TEST_SCRT_srch2_MT_D)
-	@-if exist $(OBJ_TEST_SCRT_srch2_MT_D) $(RM) $(OBJ_TEST_SCRT_srch2_MT_D)
+	@-if exist $(TARG_TEST_SCRT_links_MT_D) $(RM) $(TARG_TEST_SCRT_links_MT_D)
+	@-if exist $(OBJ_TEST_SCRT_links_MT_D) $(RM) $(OBJ_TEST_SCRT_links_MT_D)
+	@-if exist $(TARG_TEST_SCRT_cppapi_MT_R) $(RM) $(TARG_TEST_SCRT_cppapi_MT_R)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_MT_R) $(RM) $(OBJ_TEST_SCRT_cppapi_MT_R)
 	@-if exist $(TARG_TEST_SCRT_srch1_MT_R) $(RM) $(TARG_TEST_SCRT_srch1_MT_R)
 	@-if exist $(OBJ_TEST_SCRT_srch1_MT_R) $(RM) $(OBJ_TEST_SCRT_srch1_MT_R)
-	@-if exist $(TARG_TEST_SCRT_srch2_MT_R) $(RM) $(TARG_TEST_SCRT_srch2_MT_R)
-	@-if exist $(OBJ_TEST_SCRT_srch2_MT_R) $(RM) $(OBJ_TEST_SCRT_srch2_MT_R)
+	@-if exist $(TARG_TEST_SCRT_links_MT_R) $(RM) $(TARG_TEST_SCRT_links_MT_R)
+	@-if exist $(OBJ_TEST_SCRT_links_MT_R) $(RM) $(OBJ_TEST_SCRT_links_MT_R)
+	@-if exist $(TARG_TEST_SCRT_cppapi_ST_D) $(RM) $(TARG_TEST_SCRT_cppapi_ST_D)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_ST_D) $(RM) $(OBJ_TEST_SCRT_cppapi_ST_D)
 	@-if exist $(TARG_TEST_SCRT_srch1_ST_D) $(RM) $(TARG_TEST_SCRT_srch1_ST_D)
 	@-if exist $(OBJ_TEST_SCRT_srch1_ST_D) $(RM) $(OBJ_TEST_SCRT_srch1_ST_D)
-	@-if exist $(TARG_TEST_SCRT_srch2_ST_D) $(RM) $(TARG_TEST_SCRT_srch2_ST_D)
-	@-if exist $(OBJ_TEST_SCRT_srch2_ST_D) $(RM) $(OBJ_TEST_SCRT_srch2_ST_D)
+	@-if exist $(TARG_TEST_SCRT_links_ST_D) $(RM) $(TARG_TEST_SCRT_links_ST_D)
+	@-if exist $(OBJ_TEST_SCRT_links_ST_D) $(RM) $(OBJ_TEST_SCRT_links_ST_D)
+	@-if exist $(TARG_TEST_SCRT_cppapi_ST_R) $(RM) $(TARG_TEST_SCRT_cppapi_ST_R)
+	@-if exist $(OBJ_TEST_SCRT_cppapi_ST_R) $(RM) $(OBJ_TEST_SCRT_cppapi_ST_R)
 	@-if exist $(TARG_TEST_SCRT_srch1_ST_R) $(RM) $(TARG_TEST_SCRT_srch1_ST_R)
 	@-if exist $(OBJ_TEST_SCRT_srch1_ST_R) $(RM) $(OBJ_TEST_SCRT_srch1_ST_R)
-	@-if exist $(TARG_TEST_SCRT_srch2_ST_R) $(RM) $(TARG_TEST_SCRT_srch2_ST_R)
-	@-if exist $(OBJ_TEST_SCRT_srch2_ST_R) $(RM) $(OBJ_TEST_SCRT_srch2_ST_R)
+	@-if exist $(TARG_TEST_SCRT_links_ST_R) $(RM) $(TARG_TEST_SCRT_links_ST_R)
+	@-if exist $(OBJ_TEST_SCRT_links_ST_R) $(RM) $(OBJ_TEST_SCRT_links_ST_R)
 
 clean.test.unit:
 	@-if exist $(TARG_TEST_UNIT_api_cmbpaths_MT_D) $(RM) $(TARG_TEST_UNIT_api_cmbpaths_MT_D)
@@ -3149,6 +3179,74 @@ $(OBJ_TEST_COMP_api_rmdir_ST_R): $(PROJ_TEST_COMPONENT_DIR)/test.component.util.
 ##############################
 # scratch tests
 
+$(TARG_TEST_SCRT_cppapi_MT_D):    \
+		$(OBJ_TEST_SCRT_cppapi_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_SHWILD_MT_D)\
+		$(LIB_XTESTS_MT_D)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -o $@ \
+		$(OBJ_TEST_SCRT_cppapi_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_SHWILD_MT_D)\
+		$(LIB_XTESTS_MT_D)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_SCRT_cppapi_MT_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp
+
+
+$(TARG_TEST_SCRT_cppapi_MT_R):    \
+		$(OBJ_TEST_SCRT_cppapi_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_SHWILD_MT_R)\
+		$(LIB_XTESTS_MT_R)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -o $@ \
+		$(OBJ_TEST_SCRT_cppapi_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_SHWILD_MT_R)\
+		$(LIB_XTESTS_MT_R)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_SCRT_cppapi_MT_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp
+
+
+$(TARG_TEST_SCRT_cppapi_ST_D):    \
+		$(OBJ_TEST_SCRT_cppapi_ST_D)\
+		$(LIB_CORE_ST_D)\
+		$(LIB_SHWILD_ST_D)\
+		$(LIB_XTESTS_ST_D)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D) -o $@ \
+		$(OBJ_TEST_SCRT_cppapi_ST_D)\
+		$(LIB_CORE_ST_D)\
+		$(LIB_SHWILD_ST_D)\
+		$(LIB_XTESTS_ST_D)\
+		$(TARGET_LIB_ST_D)
+
+$(OBJ_TEST_SCRT_cppapi_ST_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp
+
+
+$(TARG_TEST_SCRT_cppapi_ST_R):    \
+		$(OBJ_TEST_SCRT_cppapi_ST_R)\
+		$(LIB_CORE_ST_R)\
+		$(LIB_SHWILD_ST_R)\
+		$(LIB_XTESTS_ST_R)\
+		$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R) -o $@ \
+		$(OBJ_TEST_SCRT_cppapi_ST_R)\
+		$(LIB_CORE_ST_R)\
+		$(LIB_SHWILD_ST_R)\
+		$(LIB_XTESTS_ST_R)\
+		$(TARGET_LIB_ST_R)
+
+$(OBJ_TEST_SCRT_cppapi_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp
+
+
 $(TARG_TEST_SCRT_srch1_MT_D):    \
 		$(OBJ_TEST_SCRT_srch1_MT_D)\
 		$(LIB_CORE_MT_D)\
@@ -3217,72 +3315,72 @@ $(OBJ_TEST_SCRT_srch1_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.search.1/test
 	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.search.1/test.scratch.search.1.c
 
 
-$(TARG_TEST_SCRT_srch2_MT_D):    \
-		$(OBJ_TEST_SCRT_srch2_MT_D)\
+$(TARG_TEST_SCRT_links_MT_D):    \
+		$(OBJ_TEST_SCRT_links_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_SHWILD_MT_D)\
 		$(LIB_XTESTS_MT_D)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
-		$(OBJ_TEST_SCRT_srch2_MT_D)\
+		$(OBJ_TEST_SCRT_links_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_SHWILD_MT_D)\
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_TEST_SCRT_srch2_MT_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.search.2/test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.search.2/test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_MT_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
-$(TARG_TEST_SCRT_srch2_MT_R):    \
-		$(OBJ_TEST_SCRT_srch2_MT_R)\
+$(TARG_TEST_SCRT_links_MT_R):    \
+		$(OBJ_TEST_SCRT_links_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_SHWILD_MT_R)\
 		$(LIB_XTESTS_MT_R)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
-		$(OBJ_TEST_SCRT_srch2_MT_R)\
+		$(OBJ_TEST_SCRT_links_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_SHWILD_MT_R)\
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_TEST_SCRT_srch2_MT_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.search.2/test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.search.2/test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_MT_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
-$(TARG_TEST_SCRT_srch2_ST_D):    \
-		$(OBJ_TEST_SCRT_srch2_ST_D)\
+$(TARG_TEST_SCRT_links_ST_D):    \
+		$(OBJ_TEST_SCRT_links_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_SHWILD_ST_D)\
 		$(LIB_XTESTS_ST_D)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
-		$(OBJ_TEST_SCRT_srch2_ST_D)\
+		$(OBJ_TEST_SCRT_links_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_SHWILD_ST_D)\
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_TEST_SCRT_srch2_ST_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.search.2/test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.search.2/test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_ST_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
-$(TARG_TEST_SCRT_srch2_ST_R):    \
-		$(OBJ_TEST_SCRT_srch2_ST_R)\
+$(TARG_TEST_SCRT_links_ST_R):    \
+		$(OBJ_TEST_SCRT_links_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_SHWILD_ST_R)\
 		$(LIB_XTESTS_ST_R)\
 		$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
-		$(OBJ_TEST_SCRT_srch2_ST_R)\
+		$(OBJ_TEST_SCRT_links_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_SHWILD_ST_R)\
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_TEST_SCRT_srch2_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.search.2/test.scratch.search.2.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.search.2/test.scratch.search.2.c
+$(OBJ_TEST_SCRT_links_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
 ##############################
