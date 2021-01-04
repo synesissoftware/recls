@@ -73,6 +73,8 @@ vc9/
 /build/bc5*
 /build/como*
 /build/cw*
+/build/gcc3*
+/build/gcc4*
 /build/icl*
 /build/vc5*
 /build/*.zip
