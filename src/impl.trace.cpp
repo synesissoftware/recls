@@ -135,13 +135,13 @@ namespace
 #endif /* OS */
     static int              s_severities[12]     =
     {
-        -1
+        -12345678
     ,   fatalSeverity_DEFAULT
-    ,   -1
-    ,   -1
+    ,   -12345678
+    ,   -12345678
     ,   errorSeverity_DEFAULT
     ,   warningSeverity_DEFAULT
-    ,   -1
+    ,   -12345678
     ,   informationalSeverity_DEFAULT
     ,   debug0Severity_DEFAULT
     ,   debug1Severity_DEFAULT
@@ -183,14 +183,14 @@ RECLS_FNDECL(void) Recls_LogSeverities_Init(
 {
     RECLS_ASSERT(ss_nullptr_k != severities);
 
-    severities->severities[0] = fatalSeverity;
-    severities->severities[1] = errorSeverity;
-    severities->severities[2] = warningSeverity;
-    severities->severities[3] = informationalSeverity;
-    severities->severities[4] = debug0Severity;
-    severities->severities[5] = debug1Severity;
-    severities->severities[6] = debug2Severity;
-    severities->severities[7] = debug3Severity;
+    severities->severities[RECLS_SEVIX_FATAL]   =   fatalSeverity;
+    severities->severities[RECLS_SEVIX_ERROR]   =   errorSeverity;
+    severities->severities[RECLS_SEVIX_WARN]    =   warningSeverity;
+    severities->severities[RECLS_SEVIX_INFO]    =   informationalSeverity;
+    severities->severities[RECLS_SEVIX_DBG0]    =   debug0Severity;
+    severities->severities[RECLS_SEVIX_DBG1]    =   debug1Severity;
+    severities->severities[RECLS_SEVIX_DBG2]    =   debug2Severity;
+    severities->severities[RECLS_SEVIX_DBG3]    =   debug3Severity;
 }
 
 RECLS_FNDECL(void) Recls_SetApiLogFunction(
@@ -205,25 +205,25 @@ RECLS_FNDECL(void) Recls_SetApiLogFunction(
     s_flags             =   flags;
     if (ss_nullptr_k == severities)
     {
-        s_severities[0]     =   fatalSeverity_DEFAULT;
-        s_severities[1]     =   errorSeverity_DEFAULT;
-        s_severities[2]     =   warningSeverity_DEFAULT;
-        s_severities[3]     =   informationalSeverity_DEFAULT;
-        s_severities[4]     =   debug0Severity_DEFAULT;
-        s_severities[5]     =   debug1Severity_DEFAULT;
-        s_severities[6]     =   debug2Severity_DEFAULT;
-        s_severities[7]     =   debug3Severity_DEFAULT;
+        s_severities[RECLS_SEVIX_FATAL]   =   fatalSeverity_DEFAULT;
+        s_severities[RECLS_SEVIX_ERROR]   =   errorSeverity_DEFAULT;
+        s_severities[RECLS_SEVIX_WARN]    =   warningSeverity_DEFAULT;
+        s_severities[RECLS_SEVIX_INFO]    =   informationalSeverity_DEFAULT;
+        s_severities[RECLS_SEVIX_DBG0]    =   debug0Severity_DEFAULT;
+        s_severities[RECLS_SEVIX_DBG1]    =   debug1Severity_DEFAULT;
+        s_severities[RECLS_SEVIX_DBG2]    =   debug2Severity_DEFAULT;
+        s_severities[RECLS_SEVIX_DBG3]    =   debug3Severity_DEFAULT;
     }
     else
     {
-        s_severities[0]     =   severities->severities[0];
-        s_severities[1]     =   severities->severities[1];
-        s_severities[2]     =   severities->severities[2];
-        s_severities[3]     =   severities->severities[3];
-        s_severities[4]     =   severities->severities[4];
-        s_severities[5]     =   severities->severities[5];
-        s_severities[6]     =   severities->severities[6];
-        s_severities[7]     =   severities->severities[7];
+        s_severities[RECLS_SEVIX_FATAL]   =   severities->severities[0];
+        s_severities[RECLS_SEVIX_ERROR]   =   severities->severities[1];
+        s_severities[RECLS_SEVIX_WARN]    =   severities->severities[2];
+        s_severities[RECLS_SEVIX_INFO]    =   severities->severities[3];
+        s_severities[RECLS_SEVIX_DBG0]    =   severities->severities[4];
+        s_severities[RECLS_SEVIX_DBG1]    =   severities->severities[5];
+        s_severities[RECLS_SEVIX_DBG2]    =   severities->severities[6];
+        s_severities[RECLS_SEVIX_DBG3]    =   severities->severities[7];
     }
 }
 
