@@ -467,6 +467,12 @@ create_entryinfo(
         RECLS_ASSERT(info->fileName.end <= info->fileExt.begin);
     }
 
+    recls_debug1_trace_printf_(
+        RECLS_LITERAL("created entry info (%p) for '%.*s'")
+    ,   info
+    ,   int(entryPathLen), stlsoft::c_str_ptr(entryPath)
+    );
+
     return info;
 }
 
@@ -663,6 +669,12 @@ create_drive_entryinfo(
         RECLS_ASSERT(info->fileName.begin == info->fileExt.end);
         RECLS_ASSERT(info->fileName.end == info->fileExt.begin);
     }
+
+    recls_debug1_trace_printf_(
+        RECLS_LITERAL("created drive info (%p) for '%.*s'")
+    ,   info
+    ,   int(entryPathLen), stlsoft::c_str_ptr(entryPath)
+    );
 
     return info;
 }
