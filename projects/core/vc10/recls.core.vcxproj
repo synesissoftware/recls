@@ -127,16 +127,16 @@
     <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.unix.x64.mt</SynSoft_LibTargetStem>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Unicode Debug Multithreaded|Win32'">
-    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.widestring.mt</SynSoft_LibTargetStem>
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.widestring.mt.debug</SynSoft_LibTargetStem>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Unicode Debug Multithreaded|x64'">
-    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.x64.widestring.mt</SynSoft_LibTargetStem>
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.x64.widestring.mt.debug</SynSoft_LibTargetStem>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Unicode Release Multithreaded|Win32'">
-    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.widestring.dll</SynSoft_LibTargetStem>
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.widestring.mt</SynSoft_LibTargetStem>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Unicode Release Multithreaded|x64'">
-    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.x64.widestring.dll</SynSoft_LibTargetStem>
+    <SynSoft_LibTargetStem>$(SynSoft_LibBasename).vc10.x64.widestring.mt</SynSoft_LibTargetStem>
   </PropertyGroup>
   <PropertyGroup>
     <SynSoft_LibTargetDir>$(ProjectDir)..\..\..\lib\</SynSoft_LibTargetDir>
