@@ -4,7 +4,7 @@
  * Purpose:     implementation behind API functions.
  *
  * Created:     16th August 2003
- * Updated:     1st January 2021
+ * Updated:     7th January 2021
  *
  * Home:        http://recls.org/
  *
@@ -89,13 +89,13 @@ namespace impl
 
 enum search_checks_t
 {
-    CheckNone                           =   0,
-    CheckRootEmpty                      =   0x00000001,
-    CheckRootHomeStart                  =   0x00000002,
-    CheckRootAbsolute                   =   0x00000004,
-    CheckRootSlashes                    =   0x00000008,
-    CheckPatternsCanonicalSeparators    =   0x00000010,
-    CheckPatternsSingleAbsolute         =   0x00000020,
+        CheckNone                           =   0
+    ,   CheckRootEmpty                      =   0x00000001
+    ,   CheckRootHomeStart                  =   0x00000002
+    ,   CheckRootAbsolute                   =   0x00000004
+    ,   CheckRootSlashes                    =   0x00000008
+    ,   CheckPatternsCanonicalSeparators    =   0x00000010
+    ,   CheckPatternsSingleAbsolute         =   0x00000020
 };
 
 inline search_checks_t operator |(search_checks_t lhs, search_checks_t rhs)
@@ -125,10 +125,13 @@ recls_char_t const s_path_separators[] =
 {
         '|'
 #if 0
-#elif defined(RECLS_PLATFORMSTL_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
     ,   ':'
-#elif defined(RECLS_PLATFORMSTL_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
     ,   ';'
+#else
+
+# error Operating system is not discriminated
 #endif
 };
 
@@ -519,7 +522,6 @@ Recls_SearchFeedback_x_(
         if (ss_nullptr_k != stlsoft::c_string::strnchr(searchRoot, searchRootLen, '\\'))
 #else
         if (false)
-# error
 #endif
         {
             types::path_type p(searchRoot, searchRootLen);
