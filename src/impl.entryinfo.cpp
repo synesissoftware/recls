@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the create_entryinfo() function.
  *
  * Created:     31st May 2004
- * Updated:     1st January 2021
+ * Updated:     15th January 2021
  *
  * Home:        http://recls.org/
  *
@@ -68,22 +68,18 @@
 #endif /* RECLS_CHAR_TYPE_IS_???? */
 
 #include <stlsoft/shims/conversion/to_uint64.hpp>
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # include <unixstl/shims/conversion/to_uint64/stat.hpp>
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # include <winstl/shims/conversion/to_uint64/WIN32_FIND_DATA.hpp>
 #endif /* OS */
 
-#if (   _STLSOFT_VER >= 0x010a0000 || \
-        (   defined(_STLSOFT_1_10_VER) && \
-            _STLSOFT_1_10_VER >= 0x010a0110)) && \
-    defined(_WIN32)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS) || \
+      defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 # define RECLS_USE_WINSTL_LINK_FUNCTIONS_
 # include <winstl/filesystem/link_functions.h>
-#else /* ? OS */
-# ifdef RECLS_USE_WINSTL_LINK_FUNCTIONS_
-#  undef RECLS_USE_WINSTL_LINK_FUNCTIONS_
-# endif /*RECLS_USE_WINSTL_LINK_FUNCTIONS_*/
 #endif /* OS */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -233,14 +229,11 @@ create_entryinfo(
             ,   int(entryPathLen), stlsoft::c_str_ptr(entryPath)
             );
 
-#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
-    defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
-
             info->numLinks                  =   0;
             info->nodeIndex                 =   0;
             info->deviceId                  =   0;
 
-# ifdef RECLS_USE_WINSTL_LINK_FUNCTIONS_
+#ifdef RECLS_USE_WINSTL_LINK_FUNCTIONS_
 
             DWORD   fileIndexHigh;
             DWORD   fileIndexLow;
@@ -265,32 +258,8 @@ create_entryinfo(
                     info->deviceId          =   deviceId;
                 }
             }
-# else /*? RECLS_USE_WINSTL_LINK_FUNCTIONS_*/
+#else /* ? RECLS_USE_WINSTL_LINK_FUNCTIONS_ */
 
-            HANDLE hFile = ::CreateFile(entryPath, 0, 0, ss_nullptr_k, OPEN_EXISTING, 0, ss_nullptr_k);
-
-            if (INVALID_HANDLE_VALUE != hFile)
-            {
-                BY_HANDLE_FILE_INFORMATION bhfi;
-
-                if (::GetFileInformationByHandle(hFile, &bhfi))
-                {
-                    if (RECLS_F_LINK_COUNT & flags)
-                    {
-                        info->numLinks      =   bhfi.nNumberOfLinks;
-                    }
-                    if (RECLS_F_NODE_INDEX & flags)
-                    {
-                        info->nodeIndex     =   recls_uint64_t(bhfi.nFileIndexHigh) << 32 | bhfi.nFileIndexLow;
-                        info->deviceId      =   bhfi.dwVolumeSerialNumber;
-                    }
-                }
-
-                ::CloseHandle(hFile);
-            }
-# endif /*RECLS_USE_WINSTL_LINK_FUNCTIONS_*/
-
-#else /* ? OS */
             if (RECLS_F_LINK_COUNT & flags)
             {
                 RECLS_ASSERT(ss_nullptr_k != st);
@@ -304,7 +273,7 @@ create_entryinfo(
                 info->nodeIndex             =   st->st_ino;
                 info->deviceId              =   st->st_dev;
             }
-#endif /* OS */
+#endif /* RECLS_USE_WINSTL_LINK_FUNCTIONS_ */
         }
         else
         {
@@ -453,6 +422,8 @@ create_entryinfo(
                 *const_cast<recls_char_t*>(info->path.end)  =   types::traits_type::path_name_separator();
                 ++info->path.end;
                 *const_cast<recls_char_t*>(info->path.end)  =   '\0';
+
+                ++info->searchRelativePath.end;
             }
         }
 

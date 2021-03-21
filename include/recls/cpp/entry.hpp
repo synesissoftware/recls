@@ -54,8 +54,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    11
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 3
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     114
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 4
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     115
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -198,13 +198,7 @@ public: // Ordering
     int
     compare(class_type const& rhs) const STLSOFT_NOEXCEPT
     {
-      // TODO: Update with filesystem_traits<>::str_fs_compare(), when it is released
-
-#ifdef RECLS_PLATFORM_IS_WINDOWS
-      return traits_type_::str_compare_no_case(c_str(), rhs.c_str());
-#else
-      return traits_type_::str_compare(c_str(), rhs.c_str());
-#endif
+        return traits_type_::path_str_compare(c_str(), rhs.c_str());
     }
 
 

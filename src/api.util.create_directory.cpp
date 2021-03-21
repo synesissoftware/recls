@@ -4,7 +4,7 @@
  * Purpose:     more recls API extended functions.
  *
  * Created:     30th January 2009
- * Updated:     1st January 2021
+ * Updated:     13th January 2021
  *
  * Home:        http://recls.org/
  *
@@ -112,13 +112,7 @@ get_exception_status_code(
 #endif /* platform */
 )
 {
-#if _STLSOFT_VER >= 0x010a0181
-
     return x.status_code();
-#else
-
-    return x.get_error_code();
-#endif
 }
 
 } /* anonymous namespace */

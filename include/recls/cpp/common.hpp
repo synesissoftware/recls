@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - common types and feature discrimination.
  *
  * Created:     18th August 2003
- * Updated:     23rd December 2020
+ * Updated:     11th February 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MINOR       0
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    12
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        47
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    14
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        49
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,8 +71,8 @@
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010a019a
-# error The recls C++ mapping now requires version 1.10.1 beta-26 or later of the STLSoft libraries. (www.stlsoft.org/downloads.html)
+    _STLSOFT_VER < 0x010a019b
+# error The recls C++ mapping now requires version 1.10.1 beta-27 or later of the STLSoft libraries. (www.stlsoft.org/downloads.html)
 #endif /* STLSoft version */
 
 #if defined(_STLSOFT_NO_NAMESPACE)
@@ -96,7 +96,7 @@
  /* Do not define RECLS_CPP_METHOD_PROPERTY_SUPPORT */
 # elif defined(STLSOFT_COMPILER_IS_DMC)
 #  if __DMC__ >= 0x0846
-#   define RECLS_CPP_METHOD_PROPERTY_SUPPORT */
+#   define RECLS_CPP_METHOD_PROPERTY_SUPPORT
 #  endif /* __DMC__ */
 # elif defined(STLSOFT_COMPILER_IS_GCC)
  /* Do not define RECLS_CPP_METHOD_PROPERTY_SUPPORT */

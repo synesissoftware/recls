@@ -4,7 +4,7 @@
  * Purpose:     implementation behind API functions.
  *
  * Created:     16th August 2003
- * Updated:     7th January 2021
+ * Updated:     15th January 2021
  *
  * Home:        http://recls.org/
  *
@@ -209,14 +209,14 @@ Recls_SearchFeedback_(
     }
 #  error Implement these changes to STLSoft, including winstl::path_too_long_exception.
 # endif /* 0 */
-# ifdef STLSOFT_CF_NOTHROW_BAD_ALLOC
+# ifdef STLSOFT_CF_THROW_BAD_ALLOC
     catch(std::bad_alloc&)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
         return RECLS_RC_OUT_OF_MEMORY;
     }
-# endif /* STLSOFT_CF_NOTHROW_BAD_ALLOC */
+# endif /* STLSOFT_CF_THROW_BAD_ALLOC */
     catch(std::exception &x)
     {
         recls_error_trace_printf_(RECLS_LITERAL("Exception in Recls_Search(): %s"), x.what());
@@ -274,7 +274,18 @@ Recls_SearchFeedback_x_(
 
     if (0 != searchRootLen)
     {
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX) && \
+      defined(_WIN32)
+
+        recls_char_t const* colon0  =   types::traits_type::str_chr(searchRoot, RECLS_LITERAL(':'));
+        recls_char_t const* colon1  =   (ss_nullptr_k != colon0) ? types::traits_type::str_chr(colon0 + 1, RECLS_LITERAL(':')) : ss_nullptr_k;
+
+        if (ss_nullptr_k != types::traits_type::str_chr(searchRoot, RECLS_LITERAL('|')) ||
+            ss_nullptr_k != colon1)
+#else
         if (ss_nullptr_k != types::traits_type::str_pbrk(searchRoot, s_path_separators))
+#endif
         {
             return RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS;
         }

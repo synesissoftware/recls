@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.api.stat project.
  *
  * Created:     13th December 2008
- * Updated:     3rd January 2021
+ * Updated:     14th January 2021
  *
  * Status:      Wizard-generated
  *
@@ -37,11 +37,16 @@
 
 /* Standard C header files */
 #include <stdlib.h>
-#if defined(PLATFORMSTL_OS_IS_UNIX)
-# include <unistd.h>
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+      defined(_WIN32)
 # include <direct.h>
 # include <tchar.h>
+#endif
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+# include <unistd.h>
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <windows.h>
 #else
 # error platform not discriminated
