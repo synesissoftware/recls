@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.cpp_api project.
  *
  * Created:     4th January 2010
- * Updated:     3rd January 2021
+ * Updated:     26th March 2021
  *
  * Status:      Wizard-generated
  *
@@ -63,7 +63,7 @@
  * forward declarations
  */
 
-static void display_entry(recls::entry const& e);
+static void display_entry(recls::entry const& fe);
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -259,39 +259,39 @@ static int main_(int /* argc */, char** argv)
     return EXIT_SUCCESS;
 }
 
-static void display_entry(recls::entry const& e)
+static void display_entry(recls::entry const& fe)
 {
     using namespace recls;
 
     size_t width = 25;
 
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
-    std::_tcout << std::setw(width) << RECLS_LITERAL("SearchRelativePath:") << RECLS_LITERAL("    ") << e.SearchRelativePath << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("Path:") << RECLS_LITERAL("    ") << e.Path << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("DirectoryPath:") << RECLS_LITERAL("    ") << e.DirectoryPath << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("Drive:") << RECLS_LITERAL("    ") << e.Drive << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("Directory:") << RECLS_LITERAL("    ") << std::setw(e.get_drive().length()) << RECLS_LITERAL("") << e.Directory << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("File:") << RECLS_LITERAL("    ") << std::setw(e.get_directory_path().length()) << RECLS_LITERAL("") << e.File << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("FileName:") << RECLS_LITERAL("    ") << std::setw(e.get_directory_path().length()) << RECLS_LITERAL("") << e.FileName << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("FileExtension:") << RECLS_LITERAL("    ") << std::setw(e.get_directory_path().length() + e.get_file_name().length()) << RECLS_LITERAL("") << e.FileExtension << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("SearchRelativePath:") << RECLS_LITERAL("    ") << fe.SearchRelativePath << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("Path:") << RECLS_LITERAL("    ") << fe.Path << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("DirectoryPath:") << RECLS_LITERAL("    ") << fe.DirectoryPath << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("Drive:") << RECLS_LITERAL("    ") << fe.Drive << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("Directory:") << RECLS_LITERAL("    ") << std::setw(fe.get_drive().length()) << RECLS_LITERAL("") << fe.Directory << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("File:") << RECLS_LITERAL("    ") << std::setw(fe.get_directory_path().length()) << RECLS_LITERAL("") << fe.File << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("FileName:") << RECLS_LITERAL("    ") << std::setw(fe.get_directory_path().length()) << RECLS_LITERAL("") << fe.FileName << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("FileExtension:") << RECLS_LITERAL("    ") << std::setw(fe.get_directory_path().length() + fe.get_file_name().length()) << RECLS_LITERAL("") << fe.FileExtension << std::endl;
 #else /* ? RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    std::_tcout << std::setw(width) << RECLS_LITERAL("search-relative path:") << RECLS_LITERAL("    ") << e.get_search_relative_path() << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("path:") << RECLS_LITERAL("    ") << e.get_path() << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("directory_path:") << RECLS_LITERAL("    ") << e.get_directory_path() << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("drive:") << RECLS_LITERAL("    ") << e.get_drive() << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("directory:") << RECLS_LITERAL("    ") << std::setw(e.get_drive().length()) << RECLS_LITERAL("") << e.get_directory() << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("file:") << RECLS_LITERAL("    ") << std::setw(e.get_directory_path().length()) << RECLS_LITERAL("") << e.get_file() << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("file name:") << RECLS_LITERAL("    ") << std::setw(e.get_directory_path().length()) << RECLS_LITERAL("") << e.get_file_name() << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("file extension:") << RECLS_LITERAL("    ") << std::setw(e.get_directory_path().length() + e.get_file_name().length()) << RECLS_LITERAL("") << e.get_file_extension() << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("search-relative path:") << RECLS_LITERAL("    ") << fe.get_search_relative_path() << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("path:") << RECLS_LITERAL("    ") << fe.get_path() << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("directory_path:") << RECLS_LITERAL("    ") << fe.get_directory_path() << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("drive:") << RECLS_LITERAL("    ") << fe.get_drive() << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("directory:") << RECLS_LITERAL("    ") << std::setw(fe.get_drive().length()) << RECLS_LITERAL("") << fe.get_directory() << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("file:") << RECLS_LITERAL("    ") << std::setw(fe.get_directory_path().length()) << RECLS_LITERAL("") << fe.get_file() << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("file name:") << RECLS_LITERAL("    ") << std::setw(fe.get_directory_path().length()) << RECLS_LITERAL("") << fe.get_file_name() << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("file extension:") << RECLS_LITERAL("    ") << std::setw(fe.get_directory_path().length() + fe.get_file_name().length()) << RECLS_LITERAL("") << fe.get_file_extension() << std::endl;
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
 
     std::_tcout << std::setw(width) << RECLS_LITERAL("directory parts:") << std::endl;
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
-    directory_parts parts = e.DirectoryParts;
+    directory_parts parts = fe.DirectoryParts;
 #else /* ? RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    directory_parts parts = e.get_directory_parts();
+    directory_parts parts = fe.get_directory_parts();
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    size_t partWidth = width + e.get_drive().length();
+    size_t partWidth = width + fe.get_drive().length();
     size_t numParts = parts.end() - parts.begin();
     STLSOFT_ASSERT(parts.size() == numParts);
 #if 0
@@ -322,31 +322,31 @@ static void display_entry(recls::entry const& e)
         << std::setw(8)
         << std::setfill(RECLS_LITERAL('0'))
         << std::setbase(16)
-        << static_cast<unsigned>(e.Attributes)
+        << static_cast<unsigned>(fe.Attributes)
         << std::setfill(RECLS_LITERAL(' '))
         << std::endl
         ;
 
-    std::_tcout << std::setw(width) << RECLS_LITERAL("Size:") << RECLS_LITERAL("    ") << static_cast<unsigned>(e.Size) << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("Size:") << RECLS_LITERAL("    ") << static_cast<unsigned>(fe.Size) << std::endl;
 #else /* ? RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    std::_tcout << std::setw(width) << RECLS_LITERAL("attributes:") << RECLS_LITERAL("    ") << RECLS_LITERAL("0x") << std::setw(8) << std::setfill('0') << std::setbase(16) << static_cast<unsigned>(e.get_attributes()) << std::setfill(' ') << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("attributes:") << RECLS_LITERAL("    ") << RECLS_LITERAL("0x") << std::setw(8) << std::setfill('0') << std::setbase(16) << static_cast<unsigned>(fe.get_attributes()) << std::setfill(' ') << std::endl;
 
-    std::_tcout << std::setw(width) << RECLS_LITERAL("size:") << RECLS_LITERAL("    ") << static_cast<unsigned>(e.get_size()) << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("size:") << RECLS_LITERAL("    ") << static_cast<unsigned>(fe.get_size()) << std::endl;
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
 
-//      std::_tcout << std::setw(width) << RECLS_LITERAL("creation time:") << RECLS_LITERAL("    ") << e.get_creation_time() << std::endl;
-//      std::_tcout << std::setw(width) << RECLS_LITERAL("last access time:") << RECLS_LITERAL("    ") << e.get_creation_time() << std::endl;
-//      std::_tcout << std::setw(width) << RECLS_LITERAL("last status change time:") << RECLS_LITERAL("    ") << e.get_creation_time() << std::endl;
-//      std::_tcout << std::setw(width) << RECLS_LITERAL("modification time:") << RECLS_LITERAL("    ") << e.get_creation_time() << std::endl;
+//      std::_tcout << std::setw(width) << RECLS_LITERAL("creation time:") << RECLS_LITERAL("    ") << fe.get_creation_time() << std::endl;
+//      std::_tcout << std::setw(width) << RECLS_LITERAL("last access time:") << RECLS_LITERAL("    ") << fe.get_creation_time() << std::endl;
+//      std::_tcout << std::setw(width) << RECLS_LITERAL("last status change time:") << RECLS_LITERAL("    ") << fe.get_creation_time() << std::endl;
+//      std::_tcout << std::setw(width) << RECLS_LITERAL("modification time:") << RECLS_LITERAL("    ") << fe.get_creation_time() << std::endl;
 
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
-    std::_tcout << std::setw(width) << RECLS_LITERAL("IsDirectory:") << RECLS_LITERAL("    ") << (e.IsDirectory ? s_true : s_false) << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("IsReadOnly:") << RECLS_LITERAL("    ") << (e.IsReadOnly ? s_true : s_false) << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("IsUnc:") << RECLS_LITERAL("    ") << (e.IsUnc ? s_true : s_false) << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("IsDirectory:") << RECLS_LITERAL("    ") << (fe.IsDirectory ? s_true : s_false) << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("IsReadOnly:") << RECLS_LITERAL("    ") << (fe.IsReadOnly ? s_true : s_false) << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("IsUnc:") << RECLS_LITERAL("    ") << (fe.IsUnc ? s_true : s_false) << std::endl;
 #else /* ? RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    std::_tcout << std::setw(width) << RECLS_LITERAL("is_directory:") << RECLS_LITERAL("    ") << (e.is_directory() ? s_true : s_false) << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("is_readonly:") << RECLS_LITERAL("    ") << (e.is_readonly() ? s_true : s_false) << std::endl;
-    std::_tcout << std::setw(width) << RECLS_LITERAL("is_unc:") << RECLS_LITERAL("    ") << (e.is_unc() ? s_true : s_false) << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("is_directory:") << RECLS_LITERAL("    ") << (fe.is_directory() ? s_true : s_false) << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("is_readonly:") << RECLS_LITERAL("    ") << (fe.is_readonly() ? s_true : s_false) << std::endl;
+    std::_tcout << std::setw(width) << RECLS_LITERAL("is_unc:") << RECLS_LITERAL("    ") << (fe.is_unc() ? s_true : s_false) << std::endl;
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
 
     std::_tcout << std::endl;
