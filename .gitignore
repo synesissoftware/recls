@@ -16,6 +16,7 @@ src/shwild/
 src/xcontract/
 src/xtests/
 
+/_build/
 /_internal/
 
 /bin/
