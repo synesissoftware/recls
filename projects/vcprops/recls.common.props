@@ -92,6 +92,16 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
 
+  <!-- compiler/language customisations -->
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalOptions Condition="$(MSBuildToolsVersion) >= '16.0'">/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessorDefinitions Condition="($(MSBuildToolsVersion) >= '15.0') AND !($(MSBuildToolsVersion) > '16.0')">_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories Condition="'$(JUSTTHREAD_ROOT)' != '' AND exists('$(JUSTTHREAD_ROOT)/include')">$(JUSTTHREAD_ROOT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
