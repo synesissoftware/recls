@@ -4,7 +4,7 @@
  * Purpose:     Implementation root header.
  *
  * Created:     7th March 2005
- * Updated:     2nd January 2021
+ * Updated:     26th March 2021
  *
  * Home:        http://recls.org/
  *
@@ -147,7 +147,13 @@
 # define RECLS_SUPPORTS_MULTIPATTERN_
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_SRC_H_IMPL_ROOT */
 

@@ -4,7 +4,7 @@
  * Purpose:     Tracing.
  *
  * Created:     30th September 2003
- * Updated:     1st January 2021
+ * Updated:     26th March 2021
  *
  * Home:        http://recls.org/
  *
@@ -115,7 +115,13 @@ private: /// Member Variables
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_SRC_H_IMPL_TRACE */
 

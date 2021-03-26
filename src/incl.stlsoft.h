@@ -4,7 +4,7 @@
  * Purpose:     #includes the STLSoft root header and verifies the version.
  *
  * Created:     8th November 2007
- * Updated:     2nd January 2021
+ * Updated:     26th March 2021
  *
  * Home:        http://recls.org/
  *
@@ -71,7 +71,13 @@
 # error recls 1.10+ is not compatible with STLSoft namespace suppression
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_SRC_H_INCL_STLSOFT */
 
