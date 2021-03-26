@@ -4,11 +4,11 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     24th December 2020
+ * Updated:     26th March 2021
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -63,7 +63,6 @@ namespace recls
 
 using ::recls::impl::types;
 
-using ::recls::impl::recls_log_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_debug2_trace_printf_;

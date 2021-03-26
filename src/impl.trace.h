@@ -59,6 +59,7 @@ enum recls_sev_index_t_
     ,   RECLS_SEVIX_DBG3        =   11
 };
 #if !defined(RECLS_NO_NAMESPACE)
+# define RECLS_SEVIX_UNKNOWN                                ::recls::impl::RECLS_SEVIX_UNKNOWN
 # define RECLS_SEVIX_FATAL                                  ::recls::impl::RECLS_SEVIX_FATAL
 # define RECLS_SEVIX_ERROR                                  ::recls::impl::RECLS_SEVIX_ERROR
 # define RECLS_SEVIX_WARN                                   ::recls::impl::RECLS_SEVIX_WARN

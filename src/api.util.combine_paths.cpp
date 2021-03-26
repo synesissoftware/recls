@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     1st January 2021
+ * Updated:     26th March 2021
  *
  * Home:        http://recls.org/
  *
@@ -63,7 +63,6 @@ namespace recls
 
 using ::recls::impl::types;
 
-using ::recls::impl::recls_log_printf_;
 using ::recls::impl::recls_error_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
@@ -107,7 +106,7 @@ Recls_CombinePaths(
     }
     catch(...)
     {
-        recls_log_printf_(RECLS_SEVIX_ERROR, RECLS_LITERAL("unknown exception in Recls_CombinePaths()"));
+        recls_error_trace_printf_(RECLS_LITERAL("unknown exception in Recls_CombinePaths()"));
 
         return 0u;
     }

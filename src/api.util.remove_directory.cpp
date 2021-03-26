@@ -4,7 +4,7 @@
  * Purpose:     more recls API extended functions.
  *
  * Created:     30th January 2009
- * Updated:     13th January 2021
+ * Updated:     26th March 2021
  *
  * Home:        http://recls.org/
  *
@@ -81,7 +81,6 @@ namespace recls
 {
 
 using ::recls::impl::types;
-using ::recls::impl::recls_log_printf_;
 using ::recls::impl::recls_fatal_trace_printf_;
 using ::recls::impl::recls_error_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;

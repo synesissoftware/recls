@@ -151,8 +151,13 @@ namespace
     static int              s_flags             =   0;
 
 #if 0
-    static const char       s_spaces[]          =   "                                                                                                                                ";
-#endif /* 0 */
+#elif defined(__cplusplus) && \
+      (   __cplusplus >= 201103L || \
+          defined(STLSOFT_CF_static_assert_SUPPORT))
+
+    static_assert(RECLS_SEVIX_UNKNOWN >= 0, "cannot be negative");
+    static_assert(RECLS_SEVIX_DBG3 < STLSOFT_NUM_ELEMENTS(s_severities), "constant too large for severities array");
+#endif /* __cplusplus */
 
 } // anonymous namespace
 
@@ -183,14 +188,14 @@ RECLS_FNDECL(void) Recls_LogSeverities_Init(
 {
     RECLS_ASSERT(ss_nullptr_k != severities);
 
-    severities->severities[RECLS_SEVIX_FATAL]   =   fatalSeverity;
-    severities->severities[RECLS_SEVIX_ERROR]   =   errorSeverity;
-    severities->severities[RECLS_SEVIX_WARN]    =   warningSeverity;
-    severities->severities[RECLS_SEVIX_INFO]    =   informationalSeverity;
-    severities->severities[RECLS_SEVIX_DBG0]    =   debug0Severity;
-    severities->severities[RECLS_SEVIX_DBG1]    =   debug1Severity;
-    severities->severities[RECLS_SEVIX_DBG2]    =   debug2Severity;
-    severities->severities[RECLS_SEVIX_DBG3]    =   debug3Severity;
+    severities->severities[0]   =   fatalSeverity;
+    severities->severities[1]   =   errorSeverity;
+    severities->severities[2]   =   warningSeverity;
+    severities->severities[3]   =   informationalSeverity;
+    severities->severities[4]   =   debug0Severity;
+    severities->severities[5]   =   debug1Severity;
+    severities->severities[6]   =   debug2Severity;
+    severities->severities[7]   =   debug3Severity;
 }
 
 RECLS_FNDECL(void) Recls_SetApiLogFunction(
@@ -260,8 +265,8 @@ recls_log_vprintf_(
 
     RECLS_ASSERT(sevIndex >= 0 && sevIndex < int(STLSOFT_NUM_ELEMENTS(s_severities)));
 
-    recls_log_pfn_t loggingFunction =   s_loggingFunction;
-    int             severity        =   s_severities[sevIndex % STLSOFT_NUM_ELEMENTS(s_severities)];
+    recls_log_pfn_t const   loggingFunction =   s_loggingFunction;
+    int const               severity        =   s_severities[sevIndex % STLSOFT_NUM_ELEMENTS(s_severities)];
 
     if (severity >= 0 &&
         ss_nullptr_k != loggingFunction)

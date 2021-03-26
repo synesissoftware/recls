@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     2nd January 2021
+ * Updated:     26th March 2021
  *
  * Home:        http://recls.org/
  *
@@ -67,7 +67,6 @@ using ::recls::impl::ReclsFileSearchDirectoryNode;
 using ::recls::impl::types;
 
 using ::recls::impl::recls_is_home_start_;
-using ::recls::impl::recls_log_printf_;
 using ::recls::impl::recls_error_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
@@ -106,7 +105,7 @@ RECLS_API Recls_Stat(
     }
     catch(...)
     {
-        recls_log_printf_(RECLS_SEVIX_ERROR, RECLS_LITERAL("unknown exception in Recls_Stat()"));
+        recls_error_trace_printf_(RECLS_LITERAL("unknown exception in Recls_Stat()"));
 
         return RECLS_RC_UNEXPECTED;
     }
