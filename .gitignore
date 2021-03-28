@@ -16,6 +16,8 @@ src/shwild/
 src/xcontract/
 src/xtests/
 
+/.vs/
+
 /_build/
 /_internal/
 
