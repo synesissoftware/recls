@@ -4,7 +4,7 @@
  * Purpose:     #includes the STLSoft root header and verifies the version.
  *
  * Created:     8th November 2007
- * Updated:     26th March 2021
+ * Updated:     29th March 2021
  *
  * Home:        http://recls.org/
  *
@@ -41,10 +41,10 @@
 #  define RECLS_STLSOFT_1_12_OR_LATER
 # elif STLSOFT_VER >= 0x010b0000
 #  define RECLS_STLSOFT_1_11_OR_LATER
-# elif STLSOFT_VER >= 0x010a019a
-#  define RECLS_STLSOFT_1_10_B26_OR_LATER
+# elif STLSOFT_VER >= 0x010a019e
+#  define RECLS_STLSOFT_1_10_B30_OR_LATER
 # else
-#  error use of STLSoft 1.10 requires Version 1.10.1 beta 26 or later
+#  error use of STLSoft 1.10 requires Version 1.10.1 beta 30 or later
 # endif
 
 #elif defined(_STLSOFT_VER)
@@ -54,10 +54,10 @@
 #  define RECLS_STLSOFT_1_12_OR_LATER
 # elif _STLSOFT_VER >= 0x010b0000
 #  define RECLS_STLSOFT_1_11_OR_LATER
-# elif _STLSOFT_VER >= 0x010a019a
-#  define RECLS_STLSOFT_1_10_B26_OR_LATER
+# elif _STLSOFT_VER >= 0x010a019e
+#  define RECLS_STLSOFT_1_10_B30_OR_LATER
 # else
-#  error use of STLSoft 1.10 requires Version 1.10.1 beta 26 or later
+#  error use of STLSoft 1.10 requires Version 1.10.1 beta 30 or later
 # endif
 #endif /* STLSoft version */
 
