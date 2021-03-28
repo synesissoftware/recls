@@ -6,7 +6,7 @@
 #           on the Win32 platform
 #
 # Created:  16th October 2019
-# Updated:  2nd January 2021
+# Updated:  28th March 2021
 #
 ############################################################################
 
@@ -219,6 +219,7 @@ CC_FLAGS_ST_R=\
 # CPPC flags
 
 CPPC_F_NOLOGO           =   
+CPPC_F_LANGUAGE         =   -std=c++11
 CPPC_F_COMPILE_ONLY     =   -c
 CPPC_F_WARNING_MAX      =   -Wall -pedantic -Wno-long-long -Wno-non-virtual-dtor -Wno-parentheses -Wno-unused-value
 CPPC_F_WARNING_ERR      =   -Werror
@@ -233,6 +234,7 @@ CPPC_F_MAXIMUM_SPEED	=	-O3
 
 CPPC_FLAGS_BASE=\
  $(CPPC_F_NOLOGO)\
+ $(CPPC_F_LANGUAGE)\
  $(CPPC_F_COMPILE_ONLY)\
  $(CPPC_F_WARNING_MAX)\
  $(CPPC_F_WARNING_ERR)\
