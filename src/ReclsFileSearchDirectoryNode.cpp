@@ -287,13 +287,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     , m_dnode(ss_nullptr_k)
     , m_flags(flags)
     , m_rootDirLen(rootDirLen)
-# ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
-
-    , m_searchDir(std::move(prepare_searchDir_(searchDir)))
-# else /* ? STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
-
     , m_searchDir(prepare_searchDir_(searchDir))
-# endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
     , m_pattern(pattern)
     , m_patternLen(patternLen)
     , m_directories(searchDir
