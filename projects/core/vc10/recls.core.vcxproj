@@ -88,6 +88,8 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup>
     <SynSoft_LibBasename>recls.1</SynSoft_LibBasename>
     <SynSoft_LibCompilerTag>vc10</SynSoft_LibCompilerTag>
   </PropertyGroup>

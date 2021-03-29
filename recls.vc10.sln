@@ -114,6 +114,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist-src", "dist-src", "{E1
 		_internal\dist-src\LICENSE.txt = _internal\dist-src\LICENSE.txt
 		_internal\dist-src\NEWS.txt = _internal\dist-src\NEWS.txt
 		_internal\dist-src\README.txt = _internal\dist-src\README.txt
+		_internal\dist-src\TODO.txt = _internal\dist-src\TODO.txt
 	EndProjectSection
 EndProject
 Global

@@ -3,7 +3,7 @@ recls - Changes
 ---------------
 
 ; Created:  28th May 2006
-; Updated:  4th January 2021
+; Updated:  29th March 2021
 
 ============================================================================
 
@@ -15,6 +15,147 @@ recls - Changes
     *  -  means removal of something (mapping / file / functionality) *
     *                                                                 *
     *******************************************************************
+
+
+recls 1.10.1 (alpha 3) released - 29th March 2021
+=================================================
+
+Summary:
+--------
+
+ * search-relative-path now contains trailing slash for directories when RECLS_F_MARK_DIRS specified
+ * VC++ 15, 16 compatibility
+ * C++11/14/17 compatibility
+ * GCC and Clang compatibility
+ * recls::entry::compare() now implemented in terms of *stl::system_traits<>::path_str_compare()
+ * simplified project and props files, for prospective compatibility
+ * various makefile improvements
+ * various fixes and refactorings
+
+Details:
+--------
+
+General / C-API:
+
+ ~ include/recls/implicit_link.h:
+    + VC++ 15, 16 compatibility
+
+C++ API:
+
+ ~ include/recls/cpp/common.hpp:
+    ~ STLSoft compatibility
+
+ ~ include/recls/cpp/entry.hpp:
+    ~ recls::entry::compare() now implemented in terms of *stl::system_traits<>::path_str_compare()
+
+ ~ include/recls/cpp/root_sequence.hpp:
+    C++17 compatibility
+
+Core:
+
+ ~ src/api.util.create_directory.cpp:
+    ~ STLSoft compatibility
+
+ ~ src/ReclsFileSearchDirectoryNode.cpp:
+    ~ removed unnecessary explicit std::move()
+
+ ~ src/api.util.combine_paths.cpp:
+ ~ src/api.util.derive_relative_path.cpp:
+ ~ src/api.util.stat.cpp:
+ ~ src/impl.root.h:
+ ~ src/impl.trace.h:
+ ~ src/incl.stlsoft.h:
+    ~ fixes in diagnostics
+
+ ~ src/api.util.remove_directory.cpp:
+    ~ fixes in diagnostics
+    ~ STLSoft compatibility
+
+ ~ src/impl.api.search.cpp:
+    ~ bit of slackening of path-correctness for specific case of emulating Unix on Windows
+    ~ defect fix
+    ~ GCC compatibility, and defect fixes
+
+ ~ src/impl.entryinfo.cpp:
+    + search-relative-path now contains trailing slash for directories when RECLS_F_MARK_DIRS specified
+    ~ tidying use of WinSTL hard-link functions for eliciting device id, node index, and #links
+    + added debug-1 level (RECLS_SEVIX_DBG1) for each created entry/drive info
+
+ ~ src/impl.trace.cpp:
+    ~ fixes in diagnostics
+    ~ fix to internal severity-level management (that was broken in 1.10.1 alpha 1)
+
+Makefiles / Project-files:
+
+ ~ build/gcc40.unix/makefile:
+ ~ build/gcc41.unix/makefile:
+ ~ build/gcc42.unix/makefile:
+ ~ build/gcc43.unix/makefile:
+ ~ build/gcc44.unix/makefile:
+ ~ build/gcc45.unix/makefile:
+ ~ build/gcc46.unix/makefile:
+ ~ build/gcc47.mingw/makefile:
+ ~ build/gcc47.unix/makefile:
+ ~ build/gcc47.win32/makefile:
+ ~ build/gcc81.mingw/makefile:
+ ~ build/gcc81.unix/makefile:
+ ~ build/gcc81.win32/makefile:
+ ~ build/gcc92.mingw/makefile:
+ ~ build/gcc92.win32/makefile:
+    + added CPPC_F_LANGUAGE, and specifying '-std=c++11' for GCC (post-4.0)
+
+ + build/gcc93.unix/makefile:
+    + added GCC9.3 makefile
+
+ ~ projects/core/vc10/recls.core.vcxproj:
+    ~ simplified project file, to simplify upgrades to later compilers
+
+ ~ projects/vcprops/recls.common.props:
+    + prospective VC++ compatibility changes to props
+    ~ refactoring props file(s)
+
+Examples:
+
+Test.Unit:
+
+ ~ test/unit/test.unit.api.combine_paths/vc10/test.unit.api.combine_paths.vcxproj:
+ ~ test/unit/test.unit.api.createdirectory/test.unit.api.createdirectory.c:
+ ~ test/unit/test.unit.api.createdirectory/vc10/test.unit.api.createdirectory.vcxproj:
+ ~ test/unit/test.unit.api.squeeze_path/vc10/test.unit.api.squeeze_path.vcxproj:
+ ~ test/unit/test.unit.api.stat/test.unit.api.stat.c:
+ ~ test/unit/test.unit.api.stat/vc10/test.unit.api.stat.vcxproj:
+ ~ test/unit/test.unit.c.retcodes/vc10/test.unit.c.retcodes.vcxproj:
+ ~ test/unit/test.unit.cpp.combine_paths/vc10/test.unit.cpp.combine_paths.vcxproj:
+ ~ test/unit/test.unit.cpp.derive_relative_path/vc10/test.unit.cpp.derive_relative_path.vcxproj:
+ ~ test/unit/test.unit.cpp.retcodes/vc10/test.unit.cpp.retcodes.vcxproj:
+ ~ test/unit/test.unit.cpp.squeeze_path/vc10/test.unit.cpp.squeeze_path.vcxproj:
+    ~ canonicalising projects
+
+Test.Component:
+
+ ~ test/component/test.component.util.cpp.create_directory/vc10/test.component.util.cpp.create_directory.vcxproj:
+ ~ test/component/test.component.util.cpp.remove_directory/vc10/test.component.util.cpp.remove_directory.vcxproj:
+    ~ canonicalising projects
+
+Test.Scratch:
+
+ ~ test/scratch/test.scratch.cpp_api/vc10/test.scratch.cpp_api.vcxproj:
+ ~ test/scratch/test.scratch.links/vc10/test.scratch.links.vcxproj:
+ ~ test/scratch/test.scratch.search.1/vc10/test.scratch.search.1.vcxproj:
+    ~ canonicalising projects
+
+ ~ test/scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp:
+    ~ VC++ 16 warnings
+
+ ~ test/scratch/test.scratch.search.1/implicit_link.cpp:
+    + missing implicit-link
+
+Depends on:
+
+ * STLSoft 1.10.1 beta-30 or later
+   (http://github.com/synesissoftware/STLSoft-1.10/)
+
+
 
 
 recls 1.10.1 (alpha 1) released - 4th January 2021

@@ -76,6 +76,8 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+  </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition=" $(Configuration.ToUpper().Contains('DEBUG'))">
     <UseDebugLibraries>true</UseDebugLibraries>
   </PropertyGroup>
