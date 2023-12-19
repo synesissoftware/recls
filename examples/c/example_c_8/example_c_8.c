@@ -1,27 +1,16 @@
-/* /////////////////////////////////////////////////////////////////////////////
- * File:        example_c_8.c
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    example_c_8.c
  *
- * Purpose:     C example program for the recls core library. Demonstrates:
+ * Purpose: C example program for the recls core library. Demonstrates:
  *
- *                - elicitation of all roots (via Recls_GetRoots()), and
- *                  selected roots (via Recls_GetSelectedRoots()), on host
- *                  system
- *                - determination of total size of all files per root (via
- *                  Recls_CalcDirectorySize())
+ *            - elicitation of all roots (via Recls_GetRoots()), and
+ *              selected roots (via Recls_GetSelectedRoots()), on host
+ *              system
+ *            - determination of total size of all files per root (via
+ *              Recls_CalcDirectorySize())
  *
- * Created:     17th June 2006
- * Updated:     10th January 2017
- *
- * www:         http://www.recls.org/
- *
- * License:     Copyright (c) 2006-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              (Licensed under the Synesis Software Open License)
- *
- *              This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
+ * Created: 17th June 2006
+ * Updated: 19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 

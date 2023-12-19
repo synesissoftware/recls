@@ -1,27 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/example_c_1/example_c_1.c
+ * File:    examples/c/example_c_1/example_c_1.c
  *
- * Purpose:     C example program for the recls core library. Demonstrates:
+ * Purpose: C example program for the recls core library. Demonstrates:
  *
- *                - searching (via Recls_Search()) for files
- *                - recursive operation
- *                - display of full path of each entry
- *                - handling of errors and reporting of error information
- *                - elicitation of entry properties via API function calls
+ *            - searching (via Recls_Search()) for files
+ *            - recursive operation
+ *            - display of full path of each entry
+ *            - handling of errors and reporting of error information
+ *            - elicitation of entry properties via API function calls
  *
- * Created:     29th May 2006
- * Updated:     10th January 2017
- *
- * www:         http://www.recls.org/
- *
- * License:     Copyright (c) 2006-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              (Licensed under the Synesis Software Open License)
- *
- *              This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
+ * Created: 29th May 2006
+ * Updated: 19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
