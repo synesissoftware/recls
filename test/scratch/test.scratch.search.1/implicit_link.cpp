@@ -6,15 +6,6 @@
  * Created:     12th August 2009
  * Updated:     19th December 2023
  *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2009, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
- *
  * ////////////////////////////////////////////////////////////////////// */
 
 
