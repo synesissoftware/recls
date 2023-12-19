@@ -91,16 +91,16 @@ namespace impl
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
 #  define recls_strncpy__(s1, s2, n)    strncpy_s(s1, _TRUNCATE, s2, n)
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-#  define recls_strncpy__               strncpy
+#  define recls_strncpy__                                   strncpy
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-# define recls_strlen__                 strlen
+# define recls_strlen__                                     strlen
 #elif defined(RECLS_CHAR_TYPE_IS_WCHAR)
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
 #  define recls_strncpy__(s1, s2, n)    wcsncpy_s(s1, _TRUNCATE, s2, n)
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-#  define recls_strncpy__               wcsncpy
+#  define recls_strncpy__                                   wcsncpy
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-# define recls_strlen__                 wcslen
+# define recls_strlen__                                     wcslen
 #else /* ? RECLS_CHAR_TYPE_IS_???? */
 # error Unrecognised char type
 #endif /* RECLS_CHAR_TYPE_IS_???? */
@@ -178,7 +178,7 @@ RECLS_LINKAGE_C size_t recls_align_up_size_(
     RECLS_COVER_MARK_LINE();
 
 #ifdef RECLS_COMPILER_IS_BORLAND
-# define cbAlign            sizeof(void*)
+# define cbAlign                                            sizeof(void*)
 #else /* ? compiler */
     const size_t cbAlign =  sizeof(void*);
 #endif /* RECLS_COMPILER_IS_BORLAND */

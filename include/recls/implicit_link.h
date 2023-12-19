@@ -104,7 +104,7 @@
 
   /* library basename */
 
-#  define RECLS_IMPL_LINK_LIBRARY_BASENAME          "recls"
+#  define RECLS_IMPL_LINK_LIBRARY_BASENAME                  "recls"
 
   /* major version */
 
@@ -112,87 +112,87 @@
 
   /* module name */
 
-#  define RECLS_IMPL_LINK_MODULE_NAME               ""
+#  define RECLS_IMPL_LINK_MODULE_NAME                       ""
 
   /* compiler tag */
 
 #  if defined(__BORLANDC__)
 #   if __BORLANDC__ == 0x0550
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "bc55"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "bc55"
 #   elif (__BORLANDC__ == 0x0551)
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "bc551"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "bc551"
 #   elif (__BORLANDC__ == 0x0560)
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "bc56"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "bc56"
 #   elif (__BORLANDC__ == 0x0564)
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "bc564"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "bc564"
 #   elif (__BORLANDC__ == 0x0582)
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "bc582"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "bc582"
 #   elif (0x0590 == (__BORLANDC__ & 0xfff0))
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "bc59x"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "bc59x"
 #   elif (0x0610 == (__BORLANDC__ & 0xfff0))
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "bc61x"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "bc61x"
 #   else /* ? __BORLANDC__ */
 #    error Unrecognised value of __BORLANDC__
 #   endif /* __BORLANDC__ */
 
 /*
 #  elif defined(__DMC__)
-#   define RECLS_IMPL_LINK_COMPILER_NAME            "dm"
+#   define RECLS_IMPL_LINK_COMPILER_NAME                    "dm"
  */
 
 #  elif defined(__INTEL_COMPILER)
 #   if __INTEL_COMPILER == 600
-#    define   RECLS_IMPL_LINK_COMPILER_NAME         "icl6"
+#    define   RECLS_IMPL_LINK_COMPILER_NAME                 "icl6"
 #   elif __INTEL_COMPILER == 700
-#    define   RECLS_IMPL_LINK_COMPILER_NAME         "icl7"
+#    define   RECLS_IMPL_LINK_COMPILER_NAME                 "icl7"
 #   elif __INTEL_COMPILER == 800
-#    define   RECLS_IMPL_LINK_COMPILER_NAME         "icl8"
+#    define   RECLS_IMPL_LINK_COMPILER_NAME                 "icl8"
 #   elif __INTEL_COMPILER == 900
-#    define   RECLS_IMPL_LINK_COMPILER_NAME         "icl9"
+#    define   RECLS_IMPL_LINK_COMPILER_NAME                 "icl9"
 #   elif __INTEL_COMPILER == 1000
-#    define   RECLS_IMPL_LINK_COMPILER_NAME         "icl10"
+#    define   RECLS_IMPL_LINK_COMPILER_NAME                 "icl10"
 #   elif __INTEL_COMPILER == 1100
-#    define   RECLS_IMPL_LINK_COMPILER_NAME         "icl11"
+#    define   RECLS_IMPL_LINK_COMPILER_NAME                 "icl11"
 #   else /* ? __INTEL_COMPILER */
 #    error Intel C/C++ version not supported
 #   endif /* __INTEL_COMPILER */
 
 #  elif defined(__MWERKS__)
 #   if ((__MWERKS__ & 0xFF00) == 0x2400)
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "cw7"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "cw7"
 #   elif ((__MWERKS__ & 0xFF00) == 0x3000)
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "cw8"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "cw8"
 #   elif ((__MWERKS__ & 0xFF00) == 0x3200)
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "cw9"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "cw9"
 #   else /* ? __MWERKS__ */
 #    error CodeWarrior version not supported
 #   endif /* __MWERKS__ */
 
 #  elif defined(_MSC_VER)
 #   if _MSC_VER == 1000
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc4"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc4"
 #   elif _MSC_VER == 1020
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc42"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc42"
 #   elif _MSC_VER == 1100
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc5"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc5"
 #   elif _MSC_VER == 1200
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc6"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc6"
 #   elif _MSC_VER == 1300
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc7"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc7"
 #   elif _MSC_VER == 1310
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc71"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc71"
 #   elif _MSC_VER == 1400
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc8"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc8"
 #   elif _MSC_VER == 1500
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc9"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc9"
 #   elif _MSC_VER == 1600
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc10"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc10"
 #   elif _MSC_VER == 1700
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc11"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc11"
 #   elif _MSC_VER == 1800
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc12"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc12"
 #   elif _MSC_VER == 1900
-#    define RECLS_IMPL_LINK_COMPILER_NAME           "vc14"
+#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc14"
 #   else /* ? _MSC_VER */
 #    error Visual C++ version not supported
 #   endif /* _MSC_VER */
@@ -207,35 +207,35 @@
 #  if defined(_STLSOFT_FORCE_ANY_COMPILER) && \
       defined(RECLS_PLATFORM_IS_UNIX) && \
       defined(_WIN32)
-#   define RECLS_IMPL_LINK_OS_TAG                   ".unix"
+#   define RECLS_IMPL_LINK_OS_TAG                           ".unix"
 #  endif /* pseudo UNIX */
 
 #  if !defined(RECLS_IMPL_LINK_OS_TAG)
-#   define RECLS_IMPL_LINK_OS_TAG                   ""
+#   define RECLS_IMPL_LINK_OS_TAG                           ""
 #  endif /* !RECLS_IMPL_LINK_OS_TAG */
 
 
   /* architecture tag */
 
 #  if defined(RECLS_ARCH_IS_X86)
-#   define RECLS_IMPL_LINK_ARCH_TAG                 ""
+#   define RECLS_IMPL_LINK_ARCH_TAG                         ""
 #  elif defined(RECLS_ARCH_IS_X64)
-#   define RECLS_IMPL_LINK_ARCH_TAG                 ".x64"
+#   define RECLS_IMPL_LINK_ARCH_TAG                         ".x64"
 #  elif defined(RECLS_ARCH_IS_IA64)
-#   define RECLS_IMPL_LINK_ARCH_TAG                 ".ia64"
+#   define RECLS_IMPL_LINK_ARCH_TAG                         ".ia64"
 #  endif /* arch */
 
 #  if !defined(RECLS_IMPL_LINK_ARCH_TAG)
-#   define RECLS_IMPL_LINK_ARCH_TAG                 ""
+#   define RECLS_IMPL_LINK_ARCH_TAG                         ""
 #  endif /* !RECLS_IMPL_LINK_ARCH_TAG */
 
 
   /* encoding tag */
 
 #  if defined(RECLS_CHAR_TYPE_IS_WCHAR)
-#   define RECLS_IMPL_LINK_ENCODING_TAG             ".widestring"
+#   define RECLS_IMPL_LINK_ENCODING_TAG                     ".widestring"
 #  else /* ? RECLS_CHAR_TYPE_IS_WCHAR */
-#   define RECLS_IMPL_LINK_ENCODING_TAG             ""
+#   define RECLS_IMPL_LINK_ENCODING_TAG                     ""
 #  endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
 
@@ -246,12 +246,12 @@
       defined(_MT)
 #   if defined(_DLL) || \
        defined(__DLL)
-#    define RECLS_IMPL_LINK_THREADING_TAG           ".dll"
+#    define RECLS_IMPL_LINK_THREADING_TAG                   ".dll"
 #   else /* ? dll */
-#    define RECLS_IMPL_LINK_THREADING_TAG           ".mt"
+#    define RECLS_IMPL_LINK_THREADING_TAG                   ".mt"
 #   endif /* dll */
 #  else /* ? mt */
-#    define RECLS_IMPL_LINK_THREADING_TAG           ""
+#    define RECLS_IMPL_LINK_THREADING_TAG                   ""
 #  endif /* mt */
 
 
@@ -259,15 +259,15 @@
 
 #  if !defined(NDEBUG) && \
       defined(_DEBUG)
-#   define RECLS_IMPL_LINK_DEBUG_TAG                ".debug"
+#   define RECLS_IMPL_LINK_DEBUG_TAG                        ".debug"
 #  else /* ? debug */
-#   define RECLS_IMPL_LINK_DEBUG_TAG                ""
+#   define RECLS_IMPL_LINK_DEBUG_TAG                        ""
 #  endif /* debug */
 
 
   /* suffix */
 
-#  define RECLS_IMPL_LINK_SUFFIX                    ".lib"
+#  define RECLS_IMPL_LINK_SUFFIX                            ".lib"
 
 
    /* Library name is:
@@ -275,17 +275,18 @@
     * [lib]<library-basename>.<major-version>.<module-name>.<compiler-name>[.<os-arch-tag>][.<char-encoding-tag>][.<threading-tag>][.<nox-tag>][.<debug-tag>].{a|lib}
     */
 
-#  define RECLS_IMPL_LINK_LIBRARY_NAME              RECLS_IMPL_LINK_PREFIX \
-                                                        RECLS_IMPL_LINK_LIBRARY_BASENAME \
-                                                        RECLS_IMPL_LINK_MAJOR_VERSION \
-                                                        RECLS_IMPL_LINK_MODULE_NAME \
-                                                        "." RECLS_IMPL_LINK_COMPILER_NAME \
-                                                        RECLS_IMPL_LINK_OS_TAG \
-                                                        RECLS_IMPL_LINK_ARCH_TAG \
-                                                        RECLS_IMPL_LINK_ENCODING_TAG \
-                                                        RECLS_IMPL_LINK_THREADING_TAG \
-                                                        RECLS_IMPL_LINK_DEBUG_TAG \
-                                                        RECLS_IMPL_LINK_SUFFIX
+#  define RECLS_IMPL_LINK_LIBRARY_NAME  \
+            RECLS_IMPL_LINK_PREFIX \
+            RECLS_IMPL_LINK_LIBRARY_BASENAME \
+            RECLS_IMPL_LINK_MAJOR_VERSION \
+            RECLS_IMPL_LINK_MODULE_NAME \
+            "." RECLS_IMPL_LINK_COMPILER_NAME \
+            RECLS_IMPL_LINK_OS_TAG \
+            RECLS_IMPL_LINK_ARCH_TAG \
+            RECLS_IMPL_LINK_ENCODING_TAG \
+            RECLS_IMPL_LINK_THREADING_TAG \
+            RECLS_IMPL_LINK_DEBUG_TAG \
+            RECLS_IMPL_LINK_SUFFIX
 
 
 #  pragma message("lib: " RECLS_IMPL_LINK_LIBRARY_NAME)

@@ -49,15 +49,15 @@
  */
 
 #ifndef EZERO
-# define EZERO              (0)
+# define EZERO                                              (0)
 #endif
 
 #ifndef EFAIL
-# define EFAIL              (stlsoft_static_cast(int, stlsoft_static_cast(unsigned int, 0x01) << ((sizeof(int) * 8) - 1)))
+# define EFAIL                                              (stlsoft_static_cast(int, stlsoft_static_cast(unsigned int, 0x01) << ((sizeof(int) * 8) - 1)))
 #endif
 
 #ifndef ENOSYS
-# define ENOSYS             (EFAIL)
+# define ENOSYS                                             (EFAIL)
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////

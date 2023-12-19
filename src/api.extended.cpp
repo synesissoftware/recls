@@ -69,13 +69,13 @@ RECLS_MARK_FILE_START()
  */
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
-# define RAPI_PATHNAMESEP           '/'
-# define RAPI_PATHSEP               ':'
-# define RAPI_WILDCARDSALL          '*'
+# define RAPI_PATHNAMESEP                                   '/'
+# define RAPI_PATHSEP                                       ':'
+# define RAPI_WILDCARDSALL                                  '*'
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
-# define RAPI_PATHNAMESEP           '\\'
-# define RAPI_PATHSEP               ';'
-# define RAPI_WILDCARDSALL          '*', '.', '*'
+# define RAPI_PATHNAMESEP                                   '\\'
+# define RAPI_PATHSEP                                       ';'
+# define RAPI_WILDCARDSALL                                  '*', '.', '*'
 #else /* unrecognised platform */
 # error platform is not recognised
 #endif /* platform */

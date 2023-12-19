@@ -78,11 +78,11 @@ RECLS_MARK_FILE_START()
  */
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
-# define GetCreationTime_           modificationTime
-# define GetLastStatusChangeTime_   lastStatusChangeTime
+# define GetCreationTime_                                   modificationTime
+# define GetLastStatusChangeTime_                           lastStatusChangeTime
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
-# define GetCreationTime_           creationTime
-# define GetLastStatusChangeTime_   modificationTime
+# define GetCreationTime_                                   creationTime
+# define GetLastStatusChangeTime_                           modificationTime
 #else /* unrecognised platform */
 # error platform is not recognised
 #endif /* platform */

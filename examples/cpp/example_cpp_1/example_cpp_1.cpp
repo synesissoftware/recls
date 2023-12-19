@@ -30,8 +30,8 @@
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define cout           wcout
-# define cerr           wcerr
+# define cout                                               wcout
+# define cerr                                               wcerr
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
 /* ////////////////////////////////////////////////////////////////////// */

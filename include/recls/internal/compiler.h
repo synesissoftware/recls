@@ -137,15 +137,15 @@
 # define RECLS_CALLCONV_FASTDECL
 # define RECLS_CALLCONV_DEFAULT
 #elif defined(RECLS_PLATFORM_IS_WIN32)
-# define RECLS_CALLCONV_CDECL               __cdecl
-# define RECLS_CALLCONV_STDDECL             __stdcall
-# define RECLS_CALLCONV_FASTDECL            __fastcall
-# define RECLS_CALLCONV_DEFAULT             __cdecl
+# define RECLS_CALLCONV_CDECL                               __cdecl
+# define RECLS_CALLCONV_STDDECL                             __stdcall
+# define RECLS_CALLCONV_FASTDECL                            __fastcall
+# define RECLS_CALLCONV_DEFAULT                             __cdecl
 #elif defined(RECLS_PLATFORM_IS_WIN16)
-# define RECLS_CALLCONV_CDECL               _cdecl
-# define RECLS_CALLCONV_STDDECL             _pascal
-# define RECLS_CALLCONV_FASTDECL            _pascal
-# define RECLS_CALLCONV_DEFAULT             _cdecl
+# define RECLS_CALLCONV_CDECL                               _cdecl
+# define RECLS_CALLCONV_STDDECL                             _pascal
+# define RECLS_CALLCONV_FASTDECL                            _pascal
+# define RECLS_CALLCONV_DEFAULT                             _cdecl
 #elif defined(RECLS_PLATFORM_IS_UNIX)
 # define RECLS_CALLCONV_CDECL
 # define RECLS_CALLCONV_STDDECL

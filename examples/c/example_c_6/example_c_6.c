@@ -28,8 +28,8 @@
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define printf         wprintf
-# define fprintf        fwprintf
+# define printf                                             wprintf
+# define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
 /* ////////////////////////////////////////////////////////////////////// */

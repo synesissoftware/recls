@@ -57,13 +57,13 @@ enum recls_sev_index_t_
     ,   RECLS_SEVIX_DBG2  =   6
 };
 #if !defined(RECLS_NO_NAMESPACE)
-# define RECLS_SEVIX_FATAL    ::recls::impl::RECLS_SEVIX_FATAL
-# define RECLS_SEVIX_ERROR    ::recls::impl::RECLS_SEVIX_ERROR
-# define RECLS_SEVIX_WARN     ::recls::impl::RECLS_SEVIX_WARN
-# define RECLS_SEVIX_INFO     ::recls::impl::RECLS_SEVIX_INFO
-# define RECLS_SEVIX_DBG0     ::recls::impl::RECLS_SEVIX_DBG0
-# define RECLS_SEVIX_DBG1     ::recls::impl::RECLS_SEVIX_DBG1
-# define RECLS_SEVIX_DBG2     ::recls::impl::RECLS_SEVIX_DBG2
+# define RECLS_SEVIX_FATAL                                  ::recls::impl::RECLS_SEVIX_FATAL
+# define RECLS_SEVIX_ERROR                                  ::recls::impl::RECLS_SEVIX_ERROR
+# define RECLS_SEVIX_WARN                                   ::recls::impl::RECLS_SEVIX_WARN
+# define RECLS_SEVIX_INFO                                   ::recls::impl::RECLS_SEVIX_INFO
+# define RECLS_SEVIX_DBG0                                   ::recls::impl::RECLS_SEVIX_DBG0
+# define RECLS_SEVIX_DBG1                                   ::recls::impl::RECLS_SEVIX_DBG1
+# define RECLS_SEVIX_DBG2                                   ::recls::impl::RECLS_SEVIX_DBG2
 #endif /* !RECLS_NO_NAMESPACE */
 
 #ifndef __cplusplus

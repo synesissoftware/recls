@@ -44,10 +44,10 @@
 /** \def RECLS_LINKAGE_C The linkage for <b>recls</b> functions. Is \c extern \c "C" in C++ and \c extern in C. */
 
 #ifdef __cplusplus
-# define RECLS_LINKAGE_C            extern "C"
-# define RECLS_LINKAGE_CPP          extern "C++"
+# define RECLS_LINKAGE_C                                    extern "C"
+# define RECLS_LINKAGE_CPP                                  extern "C++"
 #else
-# define RECLS_LINKAGE_C            extern
+# define RECLS_LINKAGE_C                                    extern
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////

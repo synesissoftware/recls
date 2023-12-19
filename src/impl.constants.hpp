@@ -53,10 +53,10 @@ RECLS_MARK_FILE_START()
  * constants
  */
 
-#define RECLS_S_DEFAULT_SEARCH_ROOT_    RECLS_LITERAL(".")
-#define RECLS_S_HOME_                   RECLS_LITERAL("~")
-#define RECLS_S_LOCAL_DIR_              RECLS_LITERAL(".")
-#define RECLS_S_PARENT_DIR_             RECLS_LITERAL("..")
+#define RECLS_S_DEFAULT_SEARCH_ROOT_                        RECLS_LITERAL(".")
+#define RECLS_S_HOME_                                       RECLS_LITERAL("~")
+#define RECLS_S_LOCAL_DIR_                                  RECLS_LITERAL(".")
+#define RECLS_S_PARENT_DIR_                                 RECLS_LITERAL("..")
 
 struct constants
 {
