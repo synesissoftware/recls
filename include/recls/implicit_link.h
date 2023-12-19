@@ -54,9 +54,9 @@
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_MAJOR      1
-# define RECLS_VER_RECLS_H_IMPLICIT_LINK_MINOR      5
+# define RECLS_VER_RECLS_H_IMPLICIT_LINK_MINOR      6
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_REVISION   1
-# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       13
+# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       14
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -193,6 +193,15 @@
 #    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc12"
 #   elif _MSC_VER == 1900
 #    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc14"
+#   elif _MSC_VER >= 1910
+#    if 0
+#    elif _MSC_VER < 1920
+#     define RECLS_IMPL_LINK_COMPILER_NAME                  "vc15"
+#    elif _MSC_VER <= 1929
+#     define RECLS_IMPL_LINK_COMPILER_NAME                  "vc16"
+#    else
+#     error Visual C++ version that is >= vc16 is not recognised
+#    endif
 #   else /* ? _MSC_VER */
 #    error Visual C++ version not supported
 #   endif /* _MSC_VER */
