@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.cpp_api project.
  *
  * Created:     4th January 2010
- * Updated:     10th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -384,3 +375,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

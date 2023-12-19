@@ -1,30 +1,19 @@
-/* /////////////////////////////////////////////////////////////////////////////
- * File:        example_c_5.c
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    example_c_5.c
  *
- * Purpose:     C example program for the recls core library. Demonstrates:
+ * Purpose: C example program for the recls core library. Demonstrates:
  *
- *                - stat() of home directory (via Recls_Stat())
- *                - en-bloc processing, via Recls_SearchProcess(), of all
- *                  files and directories under the home directory
- *                - recursive operation
- *                - display of path relative to home directory
- *                  (via Recls_DeriveRelativePath())
- *                - elicitation of entry properties via structure members
- *                - handling of errors and reporting of error information
+ *            - stat() of home directory (via Recls_Stat())
+ *            - en-bloc processing, via Recls_SearchProcess(), of all
+ *              files and directories under the home directory
+ *            - recursive operation
+ *            - display of path relative to home directory
+ *              (via Recls_DeriveRelativePath())
+ *            - elicitation of entry properties via structure members
+ *            - handling of errors and reporting of error information
  *
- * Created:     17th June 2006
- * Updated:     10th January 2017
- *
- * www:         http://www.recls.org/
- *
- * License:     Copyright (c) 2006-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              (Licensed under the Synesis Software Open License)
- *
- *              This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
+ * Created: 17th June 2006
+ * Updated: 19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,8 +30,8 @@
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define printf         wprintf
-# define fprintf        fwprintf
+# define printf                                             wprintf
+# define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -83,7 +72,7 @@ int main()
         recls_uint32_t  flags   =   RECLS_F_FILES | RECLS_F_DIRECTORIES | RECLS_F_RECURSIVE;
 
         /* Process all entries under the current directory, passing the home
-         * entry's path pointer. This is valid since the path is always 
+         * entry's path pointer. This is valid since the path is always
          * nul-terminated.
          */
 
@@ -111,3 +100,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

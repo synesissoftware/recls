@@ -4,17 +4,18 @@
  * Purpose:     Implementation header.
  *
  * Created:     13th December 2008
- * Updated:     10th January 2017
+ * Updated:     19th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2008-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted in accordance with the license and warranty
  * information described in recls.h (included in this distribution, or
- * available from http://recls.org/)
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -93,7 +94,7 @@ public: /// Member Types
     typedef ::winstl::basic_path<recls_char_t>              path_type;
 
     // The session type
-    typedef inetstl::basic_session< 
+    typedef inetstl::basic_session<
         recls_char_t
 #ifdef RECLS_STLSOFT_1_12_OR_LATER
     ,   stlsoft::nothrow_exception_policy
@@ -179,3 +180,4 @@ typedef ftp_types   types; // This is required to avoid bad linker behaviour (wh
 #endif /* !RECLS_INCL_SRC_HPP_IMPL_TYPES_FTP */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,16 +4,7 @@
  * Purpose:     Implicit link file for the test.unit.c.retcodes project.
  *
  * Created:     13th December 2008
- * Updated:     10th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,3 +33,4 @@
 #endif
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

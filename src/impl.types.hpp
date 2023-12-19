@@ -4,17 +4,18 @@
  * Purpose:     Implementation header.
  *
  * Created:     12th December 2008
- * Updated:     10th January 2017
+ * Updated:     19th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2008-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted in accordance with the license and warranty
  * information described in recls.h (included in this distribution, or
- * available from http://recls.org/)
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -150,3 +151,4 @@ typedef file_types  types; // This is required to avoid bad linker behaviour (wh
 #endif /* !RECLS_INCL_SRC_HPP_IMPL_TYPES */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

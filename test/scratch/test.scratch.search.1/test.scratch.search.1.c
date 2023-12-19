@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.search.1 project.
  *
  * Created:     12th August 2009
- * Updated:     29th September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2009-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -111,3 +102,4 @@ int main(int argc, char *argv[])
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

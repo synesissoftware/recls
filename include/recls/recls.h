@@ -4,11 +4,12 @@
  * Purpose:     Main header file for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     29th January 2017
+ * Updated:     19th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -20,9 +21,9 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Synesis Software nor the names
- *   of any contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
+ * - Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -77,56 +78,56 @@
 /** @} */
 
 /* recls version */
-#define RECLS_VER_1_0_1             0x01000100
-#define RECLS_VER_1_1_1             0x01010100
-#define RECLS_VER_1_2_1             0x01020100
-#define RECLS_VER_1_3_1             0x01030100
-#define RECLS_VER_1_4_1             0x01040100
-#define RECLS_VER_1_4_2             0x01040200
-#define RECLS_VER_1_5_1             0x01050100
-#define RECLS_VER_1_5_2             0x01050200
-#define RECLS_VER_1_5_3             0x01050300
-#define RECLS_VER_1_6_1             0x01060100
-#define RECLS_VER_1_6_2             0x01060200
-#define RECLS_VER_1_6_3             0x01060300
-#define RECLS_VER_1_6_4             0x01060400
-#define RECLS_VER_1_6_5             0x01060500
-#define RECLS_VER_1_7_1             0x01070100
-#define RECLS_VER_1_7_2             0x01070200
-#define RECLS_VER_1_8_1             0x01080100
-#define RECLS_VER_1_8_2             0x01080200
-#define RECLS_VER_1_8_3             0x01080300
-#define RECLS_VER_1_8_4             0x01080400
-#define RECLS_VER_1_8_5             0x01080500
-#define RECLS_VER_1_8_6             0x01080600
-#define RECLS_VER_1_8_7             0x01080700
-#define RECLS_VER_1_8_8             0x01080800
-#define RECLS_VER_1_8_9             0x01080900
-#define RECLS_VER_1_8_10            0x01080a00
-#define RECLS_VER_1_8_11            0x01080b00
-#define RECLS_VER_1_8_12            0x01080cff
-#define RECLS_VER_1_8_13            0x01080dff
-#define RECLS_VER_1_9_1_ALPHA_1     0x01090101
-#define RECLS_VER_1_9_1_ALPHA_2     0x01090102
-#define RECLS_VER_1_9_1_ALPHA_3     0x01090103
-#define RECLS_VER_1_9_1_ALPHA_4     0x01090104
-#define RECLS_VER_1_9_1_ALPHA_5     0x01090105
-#define RECLS_VER_1_9_1_ALPHA_6     0x01090106
-#define RECLS_VER_1_9_1_ALPHA_7     0x01090107
-#define RECLS_VER_1_9_1_ALPHA_8     0x01090108
-#define RECLS_VER_1_9_1_ALPHA_9     0x01090109
-#define RECLS_VER_1_9_1_ALPHA_10    0x0109010a
-#define RECLS_VER_1_9_1             0x010901ff
-#define RECLS_VER_1_9_2             0x010902ff
-#define RECLS_VER_1_9_3             0x010903ff
-#define RECLS_VER_1_9_4             0x010904ff
-#define RECLS_VER_1_9_5             0x010905ff
-#define RECLS_VER_1_9_6             0x010906ff
+#define RECLS_VER_1_0_1                                     0x01000100
+#define RECLS_VER_1_1_1                                     0x01010100
+#define RECLS_VER_1_2_1                                     0x01020100
+#define RECLS_VER_1_3_1                                     0x01030100
+#define RECLS_VER_1_4_1                                     0x01040100
+#define RECLS_VER_1_4_2                                     0x01040200
+#define RECLS_VER_1_5_1                                     0x01050100
+#define RECLS_VER_1_5_2                                     0x01050200
+#define RECLS_VER_1_5_3                                     0x01050300
+#define RECLS_VER_1_6_1                                     0x01060100
+#define RECLS_VER_1_6_2                                     0x01060200
+#define RECLS_VER_1_6_3                                     0x01060300
+#define RECLS_VER_1_6_4                                     0x01060400
+#define RECLS_VER_1_6_5                                     0x01060500
+#define RECLS_VER_1_7_1                                     0x01070100
+#define RECLS_VER_1_7_2                                     0x01070200
+#define RECLS_VER_1_8_1                                     0x01080100
+#define RECLS_VER_1_8_2                                     0x01080200
+#define RECLS_VER_1_8_3                                     0x01080300
+#define RECLS_VER_1_8_4                                     0x01080400
+#define RECLS_VER_1_8_5                                     0x01080500
+#define RECLS_VER_1_8_6                                     0x01080600
+#define RECLS_VER_1_8_7                                     0x01080700
+#define RECLS_VER_1_8_8                                     0x01080800
+#define RECLS_VER_1_8_9                                     0x01080900
+#define RECLS_VER_1_8_10                                    0x01080a00
+#define RECLS_VER_1_8_11                                    0x01080b00
+#define RECLS_VER_1_8_12                                    0x01080cff
+#define RECLS_VER_1_8_13                                    0x01080dff
+#define RECLS_VER_1_9_1_ALPHA_1                             0x01090101
+#define RECLS_VER_1_9_1_ALPHA_2                             0x01090102
+#define RECLS_VER_1_9_1_ALPHA_3                             0x01090103
+#define RECLS_VER_1_9_1_ALPHA_4                             0x01090104
+#define RECLS_VER_1_9_1_ALPHA_5                             0x01090105
+#define RECLS_VER_1_9_1_ALPHA_6                             0x01090106
+#define RECLS_VER_1_9_1_ALPHA_7                             0x01090107
+#define RECLS_VER_1_9_1_ALPHA_8                             0x01090108
+#define RECLS_VER_1_9_1_ALPHA_9                             0x01090109
+#define RECLS_VER_1_9_1_ALPHA_10                            0x0109010a
+#define RECLS_VER_1_9_1                                     0x010901ff
+#define RECLS_VER_1_9_2                                     0x010902ff
+#define RECLS_VER_1_9_3                                     0x010903ff
+#define RECLS_VER_1_9_4                                     0x010904ff
+#define RECLS_VER_1_9_5                                     0x010905ff
+#define RECLS_VER_1_9_6                                     0x010906ff
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         9
 #define RECLS_VER_REVISION      6
-#define RECLS_VER               RECLS_VER_1_9_6
+#define RECLS_VER                                           RECLS_VER_1_9_6
 
 /* /////////////////////////////////////////////////////////////////////////
  * strictness
@@ -205,11 +206,11 @@ namespace recls
  * \ingroup group__recls
  */
 #if defined(RECLS_DOCUMENTATION_SKIP_SECTION)
-# define RECLS_ROOT_NAME_LEN                (1) or (3)
+# define RECLS_ROOT_NAME_LEN                                (1) or (3)
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
-# define RECLS_ROOT_NAME_LEN                (3)
+# define RECLS_ROOT_NAME_LEN                                (3)
 #elif defined(RECLS_PLATFORM_IS_UNIX)
-# define RECLS_ROOT_NAME_LEN                (1)
+# define RECLS_ROOT_NAME_LEN                                (1)
 #elif defined(RECLS_OVERRIDE_PLATFORM)
   /* Assume that the appropriate inclusions are made */
 #else
@@ -231,7 +232,7 @@ namespace recls
  *
  * \ingroup group__recls
  */
-#define RECLS_API                           RECLS_FNDECL(recls_rc_t)
+#define RECLS_API                                           RECLS_FNDECL(recls_rc_t)
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -242,8 +243,8 @@ namespace recls
 struct recls_rc_t_
 { char recls_rc_t_dummy; };
 # define RECLS_RC_VALUE(x)                  ((RECLS_QUAL(recls_rc_t))(void*)(RECLS_QUAL(recls_uintptr_t))(x))
-# define RECLS_RC_OK_                       RECLS_RC_VALUE(0)
-# define RECLS_RC_FAIL_                     RECLS_RC_VALUE(-1)
+# define RECLS_RC_OK_                                       RECLS_RC_VALUE(0)
+# define RECLS_RC_FAIL_                                     RECLS_RC_VALUE(-1)
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** The type of return codes issued by the API functions.
@@ -296,12 +297,12 @@ inline bool RECLS_SUCCEEDED(recls_rc_t const &rc)
  *
  * \ingroup group__recls
  */
-# define RECLS_RC_OK                        RECLS_RC_OK_
+# define RECLS_RC_OK                                        RECLS_RC_OK_
 /** General failure code.
  *
  * \ingroup group__recls
  */
-# define RECLS_RC_FAIL                      RECLS_RC_FAIL_
+# define RECLS_RC_FAIL                                      RECLS_RC_FAIL_
 
 /** Evaluates to non-zero if the given return code indicates failure.
  *
@@ -585,7 +586,7 @@ typedef enum RECLS_ROOTS_FLAG   RECLS_ROOTS_FLAG;
  */
 
 /* #if defined(RECLS_PLATFORM_IS_WINDOWS)
-# define RECLS_ROOT_NAME_LEN            (3)
+# define RECLS_ROOT_NAME_LEN                                (3)
 #elif defined(RECLS_PLATFORM_IS_UNIX)
  */
 #ifndef RECLS_COMPILER_IS_CH
@@ -2181,3 +2182,4 @@ inline size_t c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 #endif /* !RECLS_INCL_RECLS_H_RECLS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

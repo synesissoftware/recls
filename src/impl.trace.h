@@ -4,17 +4,18 @@
  * Purpose:     Tracing.
  *
  * Created:     30th September 2003
- * Updated:     10th January 2017
+ * Updated:     19th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted in accordance with the license and warranty
  * information described in recls.h (included in this distribution, or
- * available from http://recls.org/)
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -56,13 +57,13 @@ enum recls_sev_index_t_
     ,   RECLS_SEVIX_DBG2  =   6
 };
 #if !defined(RECLS_NO_NAMESPACE)
-# define RECLS_SEVIX_FATAL    ::recls::impl::RECLS_SEVIX_FATAL
-# define RECLS_SEVIX_ERROR    ::recls::impl::RECLS_SEVIX_ERROR
-# define RECLS_SEVIX_WARN     ::recls::impl::RECLS_SEVIX_WARN
-# define RECLS_SEVIX_INFO     ::recls::impl::RECLS_SEVIX_INFO
-# define RECLS_SEVIX_DBG0     ::recls::impl::RECLS_SEVIX_DBG0
-# define RECLS_SEVIX_DBG1     ::recls::impl::RECLS_SEVIX_DBG1
-# define RECLS_SEVIX_DBG2     ::recls::impl::RECLS_SEVIX_DBG2
+# define RECLS_SEVIX_FATAL                                  ::recls::impl::RECLS_SEVIX_FATAL
+# define RECLS_SEVIX_ERROR                                  ::recls::impl::RECLS_SEVIX_ERROR
+# define RECLS_SEVIX_WARN                                   ::recls::impl::RECLS_SEVIX_WARN
+# define RECLS_SEVIX_INFO                                   ::recls::impl::RECLS_SEVIX_INFO
+# define RECLS_SEVIX_DBG0                                   ::recls::impl::RECLS_SEVIX_DBG0
+# define RECLS_SEVIX_DBG1                                   ::recls::impl::RECLS_SEVIX_DBG1
+# define RECLS_SEVIX_DBG2                                   ::recls::impl::RECLS_SEVIX_DBG2
 #endif /* !RECLS_NO_NAMESPACE */
 
 #ifndef __cplusplus
@@ -114,3 +115,4 @@ private: /// Member Variables
 #endif /* !RECLS_INCL_SRC_H_IMPL_TRACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

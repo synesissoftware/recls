@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test_c_1 project.
  *
  * Created:     28th February 2007
- * Updated:     10th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2007-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -175,7 +166,7 @@ static void process_search(hrecls_t hSrch)
 #endif /* platform */
         ,   Recls_GetFileNameProperty
         ,   Recls_GetFileExtProperty
-        ,   
+        ,
     };
 
     recls_rc_t  rc;
@@ -205,7 +196,7 @@ static void process_search(hrecls_t hSrch)
             Recls_IsFileReadOnly(info);
             Recls_IsFileDirectory(info);
             Recls_IsFileLink(info);
-            
+
             Recls_DoesEntryExist(info);
             Recls_IsFileUNC(info);
             Recls_GetSizeProperty(info, &size);
@@ -228,3 +219,4 @@ static void process_search(hrecls_t hSrch)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

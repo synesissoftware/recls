@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.unit.api.squeeze_path project.
  *
  * Created:     13th December 2008
- * Updated:     28th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -48,9 +39,9 @@
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -335,3 +326,4 @@ static void test_1_19()
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

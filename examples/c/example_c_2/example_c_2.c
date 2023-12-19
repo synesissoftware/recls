@@ -1,30 +1,19 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        example_c_2.c
+ * File:    example_c_2.c
  *
- * Purpose:     C example program for the recls core library. Demonstrates:
+ * Purpose: C example program for the recls core library. Demonstrates:
  *
- *                - searching (via Recls_SearchFeedback()) for files
- *                - use of multi-part pattern matching
- *                - recursive operation
- *                - display of full path of each entry
- *                - handling of errors and reporting of error information
- *                - elicitation of entry properties via entry structure
- *                  members
- *                - display of progress (of each directory traversed)
+ *            - searching (via Recls_SearchFeedback()) for files
+ *            - use of multi-part pattern matching
+ *            - recursive operation
+ *            - display of full path of each entry
+ *            - handling of errors and reporting of error information
+ *            - elicitation of entry properties via entry structure
+ *              members
+ *            - display of progress (of each directory traversed)
  *
- * Created:     29th May 2006
- * Updated:     10th January 2017
- *
- * www:         http://www.recls.org/
- *
- * License:     Copyright (c) 2006-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              (Licensed under the Synesis Software Open License)
- *
- *              This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
+ * Created: 29th May 2006
+ * Updated: 19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,11 +36,11 @@
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define printf         wprintf
-# define fprintf        fwprintf
+# define printf                                             wprintf
+# define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-#define MAX_CONSOLE_WIDTH       (76)
+#define MAX_CONSOLE_WIDTH                                   (76)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -243,3 +232,4 @@ static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const* 
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

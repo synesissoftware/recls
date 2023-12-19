@@ -4,37 +4,18 @@
  * Purpose:     Return codes for the  recls API.
  *
  * Created:     15th August 2003
- * Updated:     10th January 2017
+ * Updated:     19th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * - Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Synesis Software nor the names
- *   of any contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * modification, are permitted in accordance with the license and warranty
+ * information described in recls.h (included in this distribution, or
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -91,52 +72,52 @@ namespace recls
 /** @{ */
 
 /** No search is currently active */
-#define RECLS_RC_SEARCH_NO_CURRENT          RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1001))
+#define RECLS_RC_SEARCH_NO_CURRENT                          RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1001))
 /** The directory was invalid, or does not exist */
-#define RECLS_RC_PATH_IS_NOT_DIRECTORY      RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1002))
+#define RECLS_RC_PATH_IS_NOT_DIRECTORY                      RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1002))
 /** No more data is available */
-#define RECLS_RC_NO_MORE_DATA               RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1003))
+#define RECLS_RC_NO_MORE_DATA                               RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1003))
 /** Memory exhaustion */
-#define RECLS_RC_OUT_OF_MEMORY              RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1004))
+#define RECLS_RC_OUT_OF_MEMORY                              RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1004))
 /** Function not implemented */
-#define RECLS_RC_NOT_IMPLEMENTED            RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1005))
+#define RECLS_RC_NOT_IMPLEMENTED                            RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1005))
 /** Invalid search type */
-#define RECLS_RC_INVALID_SEARCH_TYPE        RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1006))
+#define RECLS_RC_INVALID_SEARCH_TYPE                        RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1006))
 /** Invalid search protocol */
-#define RECLS_RC_INVALID_SEARCH_PROTOCOL    RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1007))
+#define RECLS_RC_INVALID_SEARCH_PROTOCOL                    RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1007))
 /** Unexpected internal condition */
-#define RECLS_RC_UNEXPECTED                 RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1008))
+#define RECLS_RC_UNEXPECTED                                 RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1008))
 /** Cannot specify "." pattern in recursive search */
-#define RECLS_RC_DOT_RECURSIVE_SEARCH       RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1009))
+#define RECLS_RC_DOT_RECURSIVE_SEARCH                       RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1009))
 /** Search was cancelled by callback. It did not otherwise fail. */
-#define RECLS_RC_SEARCH_CANCELLED           RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1010))
+#define RECLS_RC_SEARCH_CANCELLED                           RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1010))
 /** FTP infrastructure initialisation failed. */
-#define RECLS_RC_FTP_INIT_FAILED            RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1011))
+#define RECLS_RC_FTP_INIT_FAILED                            RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1011))
 /** FTP connection failed. */
-#define RECLS_RC_FTP_CONNECTION_FAILED      RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1012))
+#define RECLS_RC_FTP_CONNECTION_FAILED                      RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1012))
 /** Cannot call stat() on root */
-#define RECLS_RC_CANNOT_STAT_ROOT           RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1014))
+#define RECLS_RC_CANNOT_STAT_ROOT                           RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1014))
 /** Directory or pattern component exceeds maximum length for host system */
-#define RECLS_RC_PATH_LIMIT_EXCEEDED        RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1015))
+#define RECLS_RC_PATH_LIMIT_EXCEEDED                        RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1015))
 /** User cancelled the search (by a 0 return from the Recls_SearchFeedback() callback function) */
-#define RECLS_RC_USER_CANCELLED_SEARCH      RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1016))
+#define RECLS_RC_USER_CANCELLED_SEARCH                      RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1016))
 /** The user's home directory cannot be determined */
-#define RECLS_RC_NO_HOME                    RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1017))
+#define RECLS_RC_NO_HOME                                    RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1017))
 /** The given file/path name was invalid */
-#define RECLS_RC_INVALID_NAME               RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1018))
+#define RECLS_RC_INVALID_NAME                               RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1018))
 /** Insufficient permissions */
-#define RECLS_RC_ACCESS_DENIED              RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1019))
+#define RECLS_RC_ACCESS_DENIED                              RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1019))
 /** Directory does not exist */
-#define RECLS_RC_DIRECTORY_NOT_FOUND        RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1020))
+#define RECLS_RC_DIRECTORY_NOT_FOUND                        RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1020))
 
 /** Given path was a directory when one was not expected */
-#define RECLS_RC_ENTRY_IS_DIRECTORY         RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1021))
+#define RECLS_RC_ENTRY_IS_DIRECTORY                         RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1021))
 /** Given path was not a directory when one was expected */
-#define RECLS_RC_ENTRY_IS_NOT_DIRECTORY     RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1022))
+#define RECLS_RC_ENTRY_IS_NOT_DIRECTORY                     RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1022))
 
 #ifdef RECLS_PLATFORM_IS_WINDOWS
 /** Short name not available */
-# define RECLS_RC_SHORT_NAME_NOT_AVAILABLE  RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1023))
+# define RECLS_RC_SHORT_NAME_NOT_AVAILABLE                  RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1023))
 #endif
 
 /** @} */
@@ -154,3 +135,4 @@ namespace recls
 #endif /* !RECLS_INCL_RECLS_H_RECLS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

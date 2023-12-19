@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.links project.
  *
  * Created:     23rd February 2011
- * Updated:     10th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2011, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -74,7 +65,7 @@ static int main_(int argc, char** argv)
 
     { for(recls::search_sequence::const_iterator it = files.begin(); files.end() != it; ++it)
     {
-        std::cout 
+        std::cout
             << (*it).get_path()
             << ": "
             << unsigned((*it).get_file_size())
@@ -123,3 +114,4 @@ int main(int argc, char** argv)
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

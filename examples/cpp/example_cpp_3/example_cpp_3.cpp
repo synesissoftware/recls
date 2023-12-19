@@ -1,29 +1,18 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        example_cpp_3.cpp
+ * File:    example_cpp_3.cpp
  *
- * Purpose:     C++ example program for recls/C++. Demonstrates:
+ * Purpose: C++ example program for recls/C++. Demonstrates:
  *
- *                - stat()-ing of current directory
- *                - searching for files, according to multi-part pattern
- *                - recursive operation
- *                - evaluation of relative path of each entry, with respect
- *                  to home directory
- *                - handling exceptions and reporting of error information
- *                - elicitation of entry properties via method calls
+ *            - stat()-ing of current directory
+ *            - searching for files, according to multi-part pattern
+ *            - recursive operation
+ *            - evaluation of relative path of each entry, with respect
+ *              to home directory
+ *            - handling exceptions and reporting of error information
+ *            - elicitation of entry properties via method calls
  *
- * Created:     18th June 2006
- * Updated:     10th January 2017
- *
- * www:         http://www.recls.org/
- *
- * License:     Copyright (c) 2006-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              (Licensed under the Synesis Software Open License)
- *
- *              This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
+ * Created: 18th June 2006
+ * Updated: 19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,11 +32,11 @@
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define cout           wcout
-# define cerr           wcerr
+# define cout                                               wcout
+# define cerr                                               wcerr
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 int main()
 {
@@ -143,3 +132,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

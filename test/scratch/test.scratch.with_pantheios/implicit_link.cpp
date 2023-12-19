@@ -4,16 +4,7 @@
  * Purpose:     Implicit link file for the test.scratch.with_pantheios project.
  *
  * Created:     13th December 2008
- * Updated:     31st July 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,3 +52,4 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
 #endif /* operating system */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
