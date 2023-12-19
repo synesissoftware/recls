@@ -116,3 +116,4 @@ RECLS_FNDECL(int) Recls_ResultCodeToUnixErrorCode(
 #endif /* !RECLS_INCL_RECLS_H_UNIX */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

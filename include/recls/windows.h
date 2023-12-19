@@ -143,3 +143,4 @@ RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
 #endif /* !RECLS_INCL_RECLS_H_WINDOWS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

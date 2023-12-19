@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.cpp.combine_paths project.
  *
  * Created:     7th June 2008
- * Updated:     10th January 2017
+ * Updated:     19th December 2023
  *
  * Status:      Wizard-generated
  *
@@ -388,3 +388,4 @@ static void test_1_39()
 } // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

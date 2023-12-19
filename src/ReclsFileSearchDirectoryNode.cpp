@@ -1012,3 +1012,4 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNextDetails(
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

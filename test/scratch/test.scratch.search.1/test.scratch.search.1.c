@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.search.1 project.
  *
  * Created:     12th August 2009
- * Updated:     29th September 2015
+ * Updated:     19th December 2023
  *
  * Status:      Wizard-generated
  *
@@ -111,3 +111,4 @@ int main(int argc, char *argv[])
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

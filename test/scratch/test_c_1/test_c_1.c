@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test_c_1 project.
  *
  * Created:     28th February 2007
- * Updated:     10th January 2017
+ * Updated:     19th December 2023
  *
  * Status:      Wizard-generated
  *
@@ -228,3 +228,4 @@ static void process_search(hrecls_t hSrch)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

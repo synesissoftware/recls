@@ -169,3 +169,4 @@ namespace recls
 #endif /* !RECLS_INCL_RECLS_H_ASSERT */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

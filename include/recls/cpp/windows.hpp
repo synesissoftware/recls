@@ -117,3 +117,4 @@ inline DWORD result_code_to_windows_error_code(recls_rc_t rc)
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_WINDOWS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -185,3 +185,4 @@ namespace recls
 #endif /* !RECLS_INCL_RECLS_INTERNAL_H_PLATFORM */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

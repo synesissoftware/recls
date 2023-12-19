@@ -176,3 +176,4 @@ RECLS_FNDECL(int) recls_snprintf(
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

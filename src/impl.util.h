@@ -159,3 +159,4 @@ RECLS_FNDECL(size_t) recls_get_home_(
 #endif /* !RECLS_INCL_SRC_H_IMPL_UTIL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

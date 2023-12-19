@@ -322,3 +322,4 @@ inline void remove_directory(S const& path, int flags, recls_directoryResults_t*
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_UTIL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

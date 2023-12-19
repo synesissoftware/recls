@@ -2182,3 +2182,4 @@ inline size_t c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 #endif /* !RECLS_INCL_RECLS_H_RECLS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

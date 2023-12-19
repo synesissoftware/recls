@@ -389,3 +389,4 @@ inline /* static */ ftp_search_sequence::size_type ftp_search_sequence::max_size
 #endif /* RECLS_INCL_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

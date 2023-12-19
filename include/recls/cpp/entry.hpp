@@ -788,3 +788,4 @@ namespace stlsoft
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_ENTRY */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

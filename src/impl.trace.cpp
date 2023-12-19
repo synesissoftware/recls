@@ -419,3 +419,4 @@ function_scope::~function_scope() STLSOFT_NOEXCEPT
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

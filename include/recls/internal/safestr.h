@@ -4,11 +4,11 @@
  * Purpose:     Handles detection of safe string library.
  *
  * Created:     8th June 2008
- * Updated:     10th January 2017
+ * Updated:     19th December 2023
  *
  * Author:      Matthew Wilson
  *
- * Home:        http://www.recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
  * Copyright:   Matthew Wilson and Synesis Software Pty Ltd, 2008.
  *
@@ -52,3 +52,4 @@
 #endif /* RECLS_INCL_RECLS_INTERNAL_H_SAFESTR */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -323,3 +323,4 @@ inline /* static */ root_sequence::const_reference root_sequence::operator [](ro
 #endif /* RECLS_INCL_RECLS_CPP_HPP_ROOT_SEQUENCE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

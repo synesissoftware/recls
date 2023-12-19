@@ -264,3 +264,4 @@ public: // Construction
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_EXCEPTIONS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

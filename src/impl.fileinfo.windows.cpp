@@ -96,3 +96,4 @@ RECLS_FNDECL(rc_atomic_t) RC_ReadValue(rc_atomic_t volatile *p)
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

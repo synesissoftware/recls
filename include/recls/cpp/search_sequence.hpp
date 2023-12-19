@@ -626,3 +626,4 @@ inline bool basic_search_sequence_const_iterator<C, T, V>::operator !=(class_typ
 #endif /* RECLS_INCL_RECLS_CPP_HPP_SEARCH_SEQUENCE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

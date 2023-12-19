@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.util.cpp.create_directory project.
  *
  * Created:     30th January 2010
- * Updated:     28th January 2017
+ * Updated:     19th December 2023
  *
  * Status:      Wizard-generated
  *
@@ -435,3 +435,4 @@ static void test_1_39()
 } // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

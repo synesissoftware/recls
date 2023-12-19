@@ -359,3 +359,4 @@ ReclsFtpSearch::~ReclsFtpSearch()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

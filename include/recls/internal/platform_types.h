@@ -435,3 +435,4 @@ namespace stlsoft
 #endif /* !RECLS_INCL_RECLS_INTERNAL_H_PLATFORM_TYPES */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

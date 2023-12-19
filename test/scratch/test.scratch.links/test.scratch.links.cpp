@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.links project.
  *
  * Created:     23rd February 2011
- * Updated:     10th January 2017
+ * Updated:     19th December 2023
  *
  * Status:      Wizard-generated
  *
@@ -123,3 +123,4 @@ int main(int argc, char** argv)
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

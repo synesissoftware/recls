@@ -4,7 +4,7 @@
  * Purpose:     Implicit link file for the test.scratch.search.1 project.
  *
  * Created:     12th August 2009
- * Updated:     12th August 2009
+ * Updated:     19th December 2023
  *
  * Status:      Wizard-generated
  *
@@ -22,3 +22,4 @@
 #include <recls/implicit_link.h>
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

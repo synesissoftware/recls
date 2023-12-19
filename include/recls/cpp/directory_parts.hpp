@@ -168,3 +168,4 @@ private: // Member Variables
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_DIRECTORY_PARTS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

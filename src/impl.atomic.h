@@ -94,3 +94,4 @@ RECLS_FNDECL(rc_atomic_t)   RC_ReadValue(
 #endif /* !RECLS_INCL_SRC_H_IMPL_ATOMIC */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

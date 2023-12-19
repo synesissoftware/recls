@@ -222,3 +222,4 @@ RECLS_LINKAGE_C size_t recls_get_home_(recls_char_t* buff, size_t cchBuff)
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

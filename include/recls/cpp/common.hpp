@@ -204,3 +204,4 @@ typedef std::basic_string<recls_char_t>             string_t;
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_COMMON */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

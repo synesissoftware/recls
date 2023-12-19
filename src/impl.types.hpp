@@ -151,3 +151,4 @@ typedef file_types  types; // This is required to avoid bad linker behaviour (wh
 #endif /* !RECLS_INCL_SRC_HPP_IMPL_TYPES */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

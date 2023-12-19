@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.cpp_api project.
  *
  * Created:     4th January 2010
- * Updated:     10th January 2017
+ * Updated:     19th December 2023
  *
  * Status:      Wizard-generated
  *
@@ -384,3 +384,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
