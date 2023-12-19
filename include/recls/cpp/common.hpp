@@ -168,7 +168,7 @@
 #if !defined(RECLS_NO_NAMESPACE)
 namespace recls
 {
-/** The namespace within which all the C++ mapping symbols are actually 
+/** The namespace within which all the C++ mapping symbols are actually
  * defined. You need only qualify your use of them with
  * <code>recls::cpp</code> if you individually include the components'
  * headers. If you include recls/recls.hpp all the C++ mapping symbols are

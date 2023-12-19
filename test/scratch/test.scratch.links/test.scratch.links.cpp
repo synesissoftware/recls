@@ -74,7 +74,7 @@ static int main_(int argc, char** argv)
 
     { for(recls::search_sequence::const_iterator it = files.begin(); files.end() != it; ++it)
     {
-        std::cout 
+        std::cout
             << (*it).get_path()
             << ": "
             << unsigned((*it).get_file_size())

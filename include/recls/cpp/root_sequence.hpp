@@ -198,7 +198,7 @@ public:
     /// Returns the maximum number of items in the sequence
     static size_type    max_size();
 
-    /// 
+    /// TBC
     const_reference     operator [](size_type index) const;
 /// @}
 

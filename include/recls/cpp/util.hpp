@@ -127,7 +127,7 @@ struct util_impl
         if(RECLS_FAILED(rc))
         {
             throw recls_exception(rc, "could not create directory", path, NULL, 0);
-        }     
+        }
     }
 
     static void remove_directory(recls_char_t const* path, int flags, recls_directoryResults_t* results)
@@ -142,7 +142,7 @@ struct util_impl
             }
 
             throw recls_exception(rc, "could not remove directory", path, NULL, flags);
-        }     
+        }
     }
 };
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */

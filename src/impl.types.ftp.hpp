@@ -94,7 +94,7 @@ public: /// Member Types
     typedef ::winstl::basic_path<recls_char_t>              path_type;
 
     // The session type
-    typedef inetstl::basic_session< 
+    typedef inetstl::basic_session<
         recls_char_t
 #ifdef RECLS_STLSOFT_1_12_OR_LATER
     ,   stlsoft::nothrow_exception_policy

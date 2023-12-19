@@ -245,7 +245,7 @@ namespace impl
     {
         RECLS_COVER_MARK_LINE();
 
-        // This will cause RECLS_F_OUT_OF_MEMORY. 
+        // This will cause RECLS_F_OUT_OF_MEMORY.
         // TODO: Fix it!
         return NULL;
     }
@@ -443,7 +443,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     RECLS_COVER_MARK_LINE();
 
     // 1. Ensure that the path is valid
-    // 
+    //
     // 1.a Must not be NULL
     if( NULL == path ||
         '\0' == 0[path])
@@ -457,7 +457,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
     RECLS_COVER_MARK_LINE();
 
-    // 
+    //
     // 1.b Must not be > max_path()
     const size_t pathLen = types::traits_type::str_len(path);
 
@@ -544,7 +544,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
         return RECLS_RC_NO_MORE_DATA;
     }
-    else            
+    else
     {
         RECLS_COVER_MARK_LINE();
 
@@ -561,7 +561,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
         recls_debug2_trace_printf_(RECLS_LITERAL("path=%s"), path);
 
-        recls_debug2_trace_printf_(RECLS_LITERAL("%d %d %d %d %d %d"), 
+        recls_debug2_trace_printf_(RECLS_LITERAL("%d %d %d %d %d %d"),
             int(entryDirLen), int(entryDirLen)
         ,   int(pathLen2), int(pathLen2)
         ,   int(entryFileLen), int(entryFileLen)

@@ -156,7 +156,7 @@ private:
     static int dssFlags_from_reclsFlags_(recls_uint32_t flags);
     /// Selects one or the other iterator, depending on the truth of b
     ///
-    /// \note This is necessary because Borland seems not to like the tertiary 
+    /// \note This is necessary because Borland seems not to like the tertiary
     /// operator in the member initialiser list (MIL)
     static directory_sequence_type::const_iterator select_iter_if_( unsigned long                           b
                                                                 ,   directory_sequence_type::const_iterator trueVal

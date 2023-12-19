@@ -222,7 +222,7 @@ recls_rc_t Recls_Stat_X_(
 
     //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{12}: [%s, %s]"), path, path_.c_str());
 
-    if( !path_.exists() && 
+    if( !path_.exists() &&
         RECLS_F_DETAILS_LATER == (flags & RECLS_F_DETAILS_LATER) &&
         0 != (flags & RECLS_F_TYPEMASK)) // To allow non-existant things to be stat'd
     {

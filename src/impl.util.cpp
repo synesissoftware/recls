@@ -313,7 +313,7 @@ RECLS_API recls_is_valid_pattern_(
         {
             RECLS_COVER_MARK_LINE();
 
-            if( '.' == pattern[0] && 
+            if( '.' == pattern[0] &&
                 '.' == pattern[1])
             {
                 RECLS_COVER_MARK_LINE();

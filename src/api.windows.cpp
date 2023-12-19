@@ -207,9 +207,9 @@ RECLS_FNDECL(void) Recls_GetDriveProperty(  recls_entry_t   fileInfo
 
     RECLS_COVER_MARK_LINE();
 
-    // Because, as of version 1.5.1, this function can also be called for 
+    // Because, as of version 1.5.1, this function can also be called for
     // FTP files, which will not have a drive, we need to check for it,
-    // and return a nul char if it's not a 
+    // and return a nul char if it's not a
 
     *pchDrive = (':' == fileInfo->path.begin[1]) ? static_cast<recls_char_t>(toupper(fileInfo->drive)) : '\0';
 }
@@ -281,7 +281,7 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
         RECLS_COVER_MARK_LINE();
 
         // To support the stupidity of .NET, we need to respond to -ve
-        // indexes, hence: 
+        // indexes, hence:
 
         recls_root_t    roots_[26];
         size_t          index   =   static_cast<size_t>(-static_cast<signed_t>(cRoots) - 1);
@@ -325,7 +325,7 @@ RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
         RECLS_COVER_MARK_LINE();
 
         // To support the stupidity of .NET, we need to respond to -ve
-        // indexes, hence: 
+        // indexes, hence:
 
         recls_root_t    roots_[26];
         size_t          index   =   static_cast<size_t>(-static_cast<signed_t>(cRoots) - 1);

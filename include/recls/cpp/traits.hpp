@@ -59,7 +59,7 @@
 /** \file recls/cpp/traits.hpp
  *
  * \brief [C++] Definition of the
- *  \link recls::cpp::reclstl_traits reclstl_traits\endlink 
+ *  \link recls::cpp::reclstl_traits reclstl_traits\endlink
  *  traits class, representing the
  *  \ref group__recls__cpp "recls C++ mapping".
  */
@@ -99,7 +99,7 @@ namespace cpp
 
 /// A traits class to provide character-encoding specific mappings from the \ref group__recls "recls C API" to the \ref group__recls__cpp "recls C++ mapping"
 /// \ingroup group__recls__cpp
-/// 
+///
 template <typename C>
 struct reclstl_traits
 {

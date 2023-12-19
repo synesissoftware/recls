@@ -148,7 +148,7 @@ static recls_entry_t create_entryinfo_from_psrecord(
 #elif defined(RECLS_CHAR_TYPE_IS_WCHAR)
         info->fileName.end                  =   wcsrchr(info->directory.end, L'.');
 #else
-# error 
+# error
 #endif /* RECLS_CHAR_TYPE_IS_???? */
 
         if(NULL != info->fileName.end)

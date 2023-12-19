@@ -54,7 +54,7 @@
 # endif
 #endif
 
-/* Temporarily suppress support with GCC (4.3+), until xCover fully 
+/* Temporarily suppress support with GCC (4.3+), until xCover fully
  * compatible
  */
 

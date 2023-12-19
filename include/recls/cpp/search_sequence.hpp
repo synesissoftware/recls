@@ -435,7 +435,7 @@ private:
 /// This returns a non-zero value if the given sequence is empty.
 /// \param s The sequence whose state is to be tested
 ///
-/// \note This fits the <a href = "http://stlsoft.org/help/main.html">STLSoft</a> shims 
+/// \note This fits the <a href = "http://stlsoft.org/help/main.html">STLSoft</a> shims
 /// concept, described in <a href = "http://synesis.com.au/resources/articles/cpp/shims.pdf">this</a>
 /// Synesis Software White Paper, and featured in the article "<a href = "http://www.cuj.com/documents/s=8681/cuj0308wilson/">Generalised String Manipulation: Access Shims and Type-tunnelling</a>",
 /// in the August 2003 issue of <a href = "http://www.cuj.com">C/C++ User's Journal</a>.

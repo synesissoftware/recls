@@ -326,7 +326,7 @@ static void run_unittests()
     RECLS_ASSERT(RECLS_LITERAL("def") == recls::stl::derive_relative_path(RECLS_LITERAL("."), RECLS_LITERAL("def")));
 
     RECLS_ASSERT(RECLS_LITERAL("..\\..\\lib\\recls") == recls::stl::derive_relative_path(RECLS_LITERAL("/usr/include/recls"), RECLS_LITERAL("/usr/lib/recls")));
-    
+
     RECLS_ASSERT(RECLS_LITERAL("..\\def") == recls::stl::derive_relative_path(RECLS_LITERAL("abc"), RECLS_LITERAL("def")));
 
 
@@ -375,7 +375,7 @@ static void test_1_0()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("def"), recls::derive_relative_path(RECLS_LITERAL("."), RECLS_LITERAL("def")));
 
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("..\\..\\lib\\recls"), recls::derive_relative_path(RECLS_LITERAL("/usr/include/recls"), RECLS_LITERAL("/usr/lib/recls")));
-    
+
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("..\\def"), recls::derive_relative_path(RECLS_LITERAL("abc"), RECLS_LITERAL("def")));
 
 

@@ -5,7 +5,7 @@
  *
  *                - searching (via Recls_Search()) for directories
  *                - non-recursive operation
- *                - filtering of non-empty directories, (via 
+ *                - filtering of non-empty directories, (via
  *                  Recls_IsDirectoryEntryEmpty())
  *                - display of search relative path
  *                - handling of errors and reporting of error information
@@ -77,7 +77,7 @@ int main()
     {
         recls_info_t    entry;
 
-        /* Get the details for the first entry, ... */ 
+        /* Get the details for the first entry, ... */
         Recls_GetDetails(hSrch, &entry);
 
         do

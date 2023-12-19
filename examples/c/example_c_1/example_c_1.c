@@ -73,7 +73,7 @@ int main()
     }
     else
     {
-        /* Get the details for the first entry, ... */ 
+        /* Get the details for the first entry, ... */
 
         recls_info_t    entry;
 

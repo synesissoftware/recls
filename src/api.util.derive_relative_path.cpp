@@ -139,7 +139,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
     }
 #endif /* RECLS_PLATFORM_IS_WINDOWS || EMULATE_UNIX_ON_WINDOWS */
 
-    // now trim the common 
+    // now trim the common
     recls_char_t const* po  =   &originPath[0];
     recls_char_t const* pt  =   &targetPath[0];
 

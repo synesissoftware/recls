@@ -39,7 +39,7 @@
 #if defined(RECLS_MT)
  // If we're multi-threading, then we have two options:
 # if defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
-  // 1. On Linux we can use the kernel's atomic operations, since all we need 
+  // 1. On Linux we can use the kernel's atomic operations, since all we need
   //    is atomic integer operations. Since these kernel operations are not
   //    standard, you must explicitly select them in your build by defining
   //    the symbol RECLS_UNIX_USE_ATOMIC_OPERATIONS

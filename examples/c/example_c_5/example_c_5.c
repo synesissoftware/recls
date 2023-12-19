@@ -83,7 +83,7 @@ int main()
         recls_uint32_t  flags   =   RECLS_F_FILES | RECLS_F_DIRECTORIES | RECLS_F_RECURSIVE;
 
         /* Process all entries under the current directory, passing the home
-         * entry's path pointer. This is valid since the path is always 
+         * entry's path pointer. This is valid since the path is always
          * nul-terminated.
          */
 

@@ -126,7 +126,7 @@ static recls_char_t const* lookup_error_string_(
 #endif
 
 
-    static const StringEntry* entries[] = 
+    static const StringEntry* entries[] =
     {
         RC_STR_ENTRY(RECLS_RC_OK),
         RC_STR_ENTRY(RECLS_RC_FAIL),

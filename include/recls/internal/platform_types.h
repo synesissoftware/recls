@@ -204,7 +204,7 @@ struct recls_entryinfo_t
      * \note This is <b>never</b> nul-terminated.
      */
     struct recls_strptrs_t      searchDirectory;
-    /** The opaque data of the entry; it is not accessible to any 
+    /** The opaque data of the entry; it is not accessible to any
      * client code, and <b>must not be manipulated</b> in any way
      */
     struct recls_strptrs_t      searchRelativePath;

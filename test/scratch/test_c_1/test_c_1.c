@@ -175,7 +175,7 @@ static void process_search(hrecls_t hSrch)
 #endif /* platform */
         ,   Recls_GetFileNameProperty
         ,   Recls_GetFileExtProperty
-        ,   
+        ,
     };
 
     recls_rc_t  rc;
@@ -205,7 +205,7 @@ static void process_search(hrecls_t hSrch)
             Recls_IsFileReadOnly(info);
             Recls_IsFileDirectory(info);
             Recls_IsFileLink(info);
-            
+
             Recls_DoesEntryExist(info);
             Recls_IsFileUNC(info);
             Recls_GetSizeProperty(info, &size);

@@ -146,7 +146,7 @@ void ReclsFtpSearch::operator delete(void* pv)
     recls_rc_t          rc;
     types::session_type session(RECLS_LITERAL("recls-enumerator"), INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
 
-    // The session and connection are done in an exception-free manner just to 
+    // The session and connection are done in an exception-free manner just to
     // avoid CRT linking issues. It's not the best way to write software in
     // general.
 
