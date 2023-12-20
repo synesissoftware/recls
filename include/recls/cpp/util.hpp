@@ -54,7 +54,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_MAJOR     5
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_MINOR     1
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_REVISION  1
-# define RECLS_VER_RECLS_CPP_HPP_UTIL_EDIT      42
+# define RECLS_VER_RECLS_CPP_HPP_UTIL_EDIT      46
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,7 +124,7 @@ struct util_impl
     {
         recls_rc_t rc = Recls_CreateDirectory(path, results);
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             throw recls_exception(rc, "could not create directory", path, NULL, 0);
         }
@@ -132,17 +132,30 @@ struct util_impl
 
     static void remove_directory(recls_char_t const* path, int flags, recls_directoryResults_t* results)
     {
+fprintf(stderr, "%s:%d:%s: path='%s', flags=0x%08x - ENTER\n", __FILE__, __LINE__, __FUNCTION__
+,   path
+,   flags
+);
+
         recls_rc_t rc = Recls_RemoveDirectory(path, flags, results);
 
-        if(RECLS_FAILED(rc))
+fprintf(stderr, "%s:%d:%s: Recls_RemoveDirectory(path='%s', flags=0x%08x) : rc=%ld\n", __FILE__, __LINE__, __FUNCTION__
+,   path
+,   flags
+,   (signed long)rc
+);
+
+        if (RECLS_FAILED(rc))
         {
-            if(RECLS_RC_NO_MORE_DATA == rc)
+            if (RECLS_RC_NO_MORE_DATA == rc)
             {
                 throw NO_MORE_DATA_exception(rc, "directory does not exist", path, NULL, flags);
             }
 
             throw recls_exception(rc, "could not remove directory", path, NULL, flags);
         }
+
+fprintf(stderr, "%s:%d:%s: path='%s' - EXIT\n", __FILE__, __LINE__, __FUNCTION__, path);
     }
 };
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
@@ -168,7 +181,12 @@ struct util_impl
 template<   typename S0
         ,   typename S1
         >
-inline string_t combine_paths(S0 const& path1, S1 const& path2)
+inline
+string_t
+combine_paths(
+    S0 const&   path1
+,   S1 const&   path2
+)
 {
     STLSOFT_NS_USING(c_str_ptr_null);
 
@@ -189,7 +207,12 @@ inline string_t combine_paths(S0 const& path1, S1 const& path2)
 template<   typename S0
         ,   typename S1
         >
-inline string_t derive_relative_path(S0 const& origin, S1 const& target)
+inline
+string_t
+derive_relative_path(
+    S0 const&   origin
+,   S1 const&   target
+)
 {
     STLSOFT_NS_USING(c_str_ptr);
 
@@ -206,7 +229,12 @@ inline string_t derive_relative_path(S0 const& origin, S1 const& target)
  * \return The number of characters required, not including the NUL terminator
  */
 template <typename S>
-inline string_t squeeze_path(S const& path, size_t width)
+inline
+string_t
+squeeze_path(
+    S const&    path
+,   size_t      width
+)
 {
     STLSOFT_NS_USING(c_str_ptr);
 
@@ -220,7 +248,9 @@ inline string_t squeeze_path(S const& path, size_t width)
  *
  * \note On UNIX this is \c "*"; on Windows it is \c "*.*".
  */
-inline char_t const* wildcardsAll()
+inline
+char_t const*
+wildcardsAll()
 {
     return Recls_GetWildcardsAll();
 }
@@ -233,7 +263,11 @@ inline char_t const* wildcardsAll()
  * \param dir The directory to assess
  */
 template <typename S>
-inline recls_filesize_t calculate_directory_size(S const& dir)
+inline
+recls_filesize_t
+calculate_directory_size(
+    S const& dir
+)
 {
     STLSOFT_NS_USING(c_str_ptr);
 
@@ -247,7 +281,11 @@ inline recls_filesize_t calculate_directory_size(S const& dir)
  * \param dir The directory to assess
  */
 template <typename S>
-inline bool is_directory_empty(S const& dir)
+inline
+bool
+is_directory_empty(
+    S const& dir
+)
 {
     STLSOFT_NS_USING(c_str_ptr);
 
@@ -262,7 +300,11 @@ inline bool is_directory_empty(S const& dir)
  * \pre NULL != path
  */
 template <typename S>
-inline void create_directory(S const& path)
+inline
+void
+create_directory(
+    S const& path
+)
 {
     STLSOFT_NS_USING(c_str_ptr);
 
@@ -286,7 +328,12 @@ inline void create_directory(S const& path)
  * \pre NULL != path
  */
 template <typename S>
-inline void create_directory(S const& path, recls_directoryResults_t* results)
+inline
+void
+create_directory(
+    S const&                    path
+,   recls_directoryResults_t*   results
+)
 {
     STLSOFT_NS_USING(c_str_ptr);
 
@@ -294,14 +341,25 @@ inline void create_directory(S const& path, recls_directoryResults_t* results)
 }
 
 template <typename S>
-inline void remove_directory(S const& path)
+inline
+void
+remove_directory(
+    S const& path
+)
 {
     STLSOFT_NS_USING(c_str_ptr);
 
     util_impl::remove_directory(c_str_ptr(path), 0, NULL);
 }
+
 template <typename S>
-inline void remove_directory(S const& path, int flags, recls_directoryResults_t* results)
+inline
+void
+remove_directory(
+    S const&                    path
+,   int                         flags
+,   recls_directoryResults_t*   results
+)
 {
     STLSOFT_NS_USING(c_str_ptr);
 
@@ -316,8 +374,6 @@ inline void remove_directory(S const& path, int flags, recls_directoryResults_t*
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_UTIL */
 

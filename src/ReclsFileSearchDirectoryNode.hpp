@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        ReclsFileSearchDirectoryNode.hpp
+ * File:        src/ReclsFileSearchDirectoryNode.hpp
  *
  * Purpose:     ReclsFileSearchDirectoryNode class.
  *
@@ -79,30 +79,35 @@ class ReclsFileSearchDirectoryNode
     : public ReclsSearchDirectoryNode
 {
 public:
-    typedef ReclsFileSearchDirectoryNode                                        class_type;
-    typedef types::file_path_buffer_type                                        file_path_buffer_type;
-    typedef types::string_type                                                  string_type;
+    typedef ReclsFileSearchDirectoryNode                    class_type;
+    typedef types::path_buffer_type                         path_buffer_type;
+    typedef types::string_type                              string_type;
 private:
 
     /// The file entry search type
 #if defined(RECLS_PLATFORM_IS_UNIX)
-    typedef unixstl::glob_sequence                                              file_find_sequence_type;
+    typedef unixstl::glob_sequence                          file_find_sequence_type;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
-    typedef winstl::basic_findfile_sequence<recls_char_t, types::traits_type>   file_find_sequence_type;
+    typedef winstl::basic_findfile_sequence<
+        recls_char_t
+    ,   types::traits_type
+    >                                                       file_find_sequence_type;
 #endif /* platform */
 
     /// The directory search type
 #if defined(RECLS_PLATFORM_IS_UNIX)
-    typedef unixstl::readdir_sequence                                           directory_sequence_type;
+    typedef unixstl::readdir_sequence                       directory_sequence_type;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
-    typedef file_find_sequence_type                                             directory_sequence_type;
+    typedef file_find_sequence_type                         directory_sequence_type;
 #endif /* platform */
 
     /// The file entry search type
 #ifdef RECLS_USING_STLSOFT_SEARCHSPEC_SEQUENCE_
-    typedef stlsoft::searchspec_sequence<file_find_sequence_type>               entry_sequence_type;
+    typedef stlsoft::searchspec_sequence<
+        file_find_sequence_type
+    >                                                       entry_sequence_type;
 #else /* ? RECLS_USING_STLSOFT_SEARCHSPEC_SEQUENCE_ */
-    typedef file_find_sequence_type                                             entry_sequence_type;
+    typedef file_find_sequence_type                         entry_sequence_type;
 #endif /* RECLS_USING_STLSOFT_SEARCHSPEC_SEQUENCE_ */
 
 // Construction
@@ -118,8 +123,14 @@ protected: // Not private, or GCC whines
     );
 public:
     virtual ~ReclsFileSearchDirectoryNode();
+private:
+    ReclsFileSearchDirectoryNode(class_type const &);   // copy-construction proscribed
+    void operator =(class_type const &);                // copy-assignment proscribed
+public:
 
-    static class_type* FindAndCreate(
+    static
+    class_type*
+    FindAndCreate(
         recls_uint32_t              flags
     ,   recls_char_t const*         rootDir
     ,   size_t                      rootDirLen
@@ -130,8 +141,17 @@ public:
     ,   recls_rc_t*                 prc
     );
 
-    static recls_rc_t Stat(
+    //
+    //
+    // \pre nullptr != path
+    // \pre strlen(path) == pathLen
+    // \pre path has correct slashes
+    // \pre path does not have a trailing slash
+    static
+    recls_rc_t
+    Stat(
         recls_char_t const* path
+    ,   size_t              pathLen
     ,   recls_uint32_t      flags
     ,   recls_entry_t*      phEntry
     );
@@ -151,48 +171,62 @@ private:
 #endif /* RECLS_ENFORCING_CONTRACTS */
 
     /// Translates the recls flags into the entry sequence flags
-    static int essFlags_from_reclsFlags_(recls_uint32_t flags);
+    static
+    int
+    essFlags_from_reclsFlags_(
+        recls_uint32_t flags
+    );
     /// Translates the recls flags into the directory sequence flags
-    static int dssFlags_from_reclsFlags_(recls_uint32_t flags);
+    static
+    int
+    dssFlags_from_reclsFlags_(
+        recls_uint32_t flags
+    );
     /// Selects one or the other iterator, depending on the truth of b
     ///
     /// \note This is necessary because Borland seems not to like the tertiary
     /// operator in the member initialiser list (MIL)
-    static directory_sequence_type::const_iterator select_iter_if_( unsigned long                           b
-                                                                ,   directory_sequence_type::const_iterator trueVal
-                                                                ,   directory_sequence_type::const_iterator falseVal);
+    static
+    directory_sequence_type::const_iterator
+    select_iter_if_(
+        unsigned long                           b
+    ,   directory_sequence_type::const_iterator trueVal
+    ,   directory_sequence_type::const_iterator falseVal
+    );
 
-    /// Copies searchDir to buff, ensuring it has a trailing path name
-    /// separator, and returns the precise length of the resultant string
-    static size_t prepare_searchDir_(file_path_buffer_type &buff, recls_char_t const* searchDir);
+    /// Creates a path-buffer from the given search directory, ensuring that
+    /// it has a trailing path-name separator
+    static
+    path_buffer_type
+    prepare_searchDir_(
+        recls_char_t const*     searchDir
+    );
 
-    static recls_entry_t    CreateEntryInfo(size_t                              rootDirLen
-                                        ,   recls_char_t const                  *searchDir
-                                        ,   size_t                              searchDirLen
-                                        ,   recls_uint32_t                      flags
-                                        ,   entry_sequence_type::const_iterator it);
+    static
+    recls_entry_t
+    CreateEntryInfo(
+        size_t                              rootDirLen
+    ,   recls_char_t const*                 searchDir
+    ,   size_t                              searchDirLen
+    ,   recls_uint32_t                      flags
+    ,   entry_sequence_type::const_iterator it
+    );
 
 // Members
 private:
     recls_entry_t                           m_current;
     class_type*                             m_dnode;
-    const recls_uint32_t                    m_flags;
-    const size_t                            m_rootDirLen;
-    file_path_buffer_type                   m_searchDir;
-    const size_t                            m_searchDirLen;
-    const string_type                       m_pattern;
-    const size_t                            m_patternLen;
+    recls_uint32_t const                    m_flags;
+    size_t const                            m_rootDirLen;
+    path_buffer_type const                  m_searchDir;
+    string_type const                       m_pattern;
+    size_t const                            m_patternLen;
     directory_sequence_type                 m_directories;
     directory_sequence_type::const_iterator m_directoriesBegin;
     entry_sequence_type                     m_entries;
     entry_sequence_type::const_iterator     m_entriesBegin;
-    const hrecls_progress_fn_t              m_pfn;
-    const recls_process_fn_param_t          m_param;
-
-// Not to be implemented
-private:
-    ReclsFileSearchDirectoryNode(class_type const &);
-    class_type &operator =(class_type const &);
+    hrecls_progress_fn_t const              m_pfn;
+    recls_process_fn_param_t const          m_param;
 };
 
 /* /////////////////////////////////////////////////////////////////////////

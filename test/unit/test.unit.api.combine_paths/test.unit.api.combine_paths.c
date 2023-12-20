@@ -14,24 +14,18 @@
  */
 
 #include <recls/recls.h>
-#include <../src/impl.cover.h>
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* xCover Header Files */
-#ifdef RECLS_QUALITY_USE_XCOVER
-# include <xcover/xcover.h>
-#endif /* RECLS_QUALITY_USE_XCOVER */
-
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,41 +67,14 @@ static void test_1_19(void);
  * main
  */
 
-#ifdef XCOVER_VER
-static int main_xc(int argc, char** argv);
-#endif /* XCOVER_VER */
-
 int main(int argc, char** argv)
 {
-#ifdef XCOVER_VER
-    xcover_rc_t const xcrc = xcover_init();
-
-    if(xcrc < 0)
-    {
-        fprintf(stderr, "failed to initialise xCover : %s (%d)\n", xcover_getApiCodeString(xcrc), xcrc);
-
-        return EXIT_FAILURE;
-    }
-    else
-    {
-        int r = main_xc(argc, argv);
-
-        xcover_uninit();
-
-        return r;
-    }
-}
-
-static int main_xc(int argc, char** argv)
-{
-#endif /* XCOVER_VER */
-
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.api.combine_paths", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.api.combine_paths", verbosity))
     {
         XTESTS_RUN_CASE(test_measure_0);
         XTESTS_RUN_CASE(test_measure_1);
@@ -129,10 +96,6 @@ static int main_xc(int argc, char** argv)
         XTESTS_RUN_CASE(test_1_17);
         XTESTS_RUN_CASE(test_1_18);
         XTESTS_RUN_CASE(test_1_19);
-
-#ifdef XCOVER_VER
-        XCOVER_REPORT_GROUP_COVERAGE("recls.util.combine_paths", NULL);
-#endif /* XCOVER_VER */
 
         XTESTS_PRINT_RESULTS();
 
@@ -284,7 +247,6 @@ static void test_1_18()
 static void test_1_19()
 {
 }
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

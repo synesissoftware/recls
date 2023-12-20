@@ -9,16 +9,16 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 #ifdef RECLS_PLATFORM_IS_WINDOWS
 # include <recls/ftp.h>
 #endif /* platform */
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -88,9 +88,9 @@ static int main_(int argc, char** argv)
 # endif /* 0 */
 #endif /* 0 */
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
-        if(RECLS_RC_NO_MORE_DATA != rc)
+        if (RECLS_RC_NO_MORE_DATA != rc)
         {
             process_search(hSrch);
         }
@@ -106,9 +106,9 @@ static int main_(int argc, char** argv)
 #ifdef RECLS_PLATFORM_IS_WINDOWS
     rc = Recls_SearchFtp("ftp.digitalmars.com", "anonymous", "anon@mouse.com", "/", "*.zip", RECLS_F_RECURSIVE, &hSrch);
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
-        if(RECLS_RC_NO_MORE_DATA != rc)
+        if (RECLS_RC_NO_MORE_DATA != rc)
         {
             process_search(hSrch);
         }
@@ -171,7 +171,7 @@ static void process_search(hrecls_t hSrch)
 
     recls_rc_t  rc;
 
-    for(;;)
+    for (;;)
     {
         recls_char_t        buff[256];
         recls_info_t        info;
@@ -179,16 +179,16 @@ static void process_search(hrecls_t hSrch)
 
         rc = Recls_GetDetails(hSrch, &info);
 
-        if(RECLS_SUCCEEDED(rc))
+        if (RECLS_SUCCEEDED(rc))
         {
             printf("\t%.*s\n", info->path.end - info->path.begin, info->path.begin);
 
-            { size_t i; for(i = 0; i < STLSOFT_NUM_ELEMENTS(fns); ++i)
+            { size_t i; for (i = 0; i < STLSOFT_NUM_ELEMENTS(fns); ++i)
             {
                 fns[i](info, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
             }}
 
-            { size_t i; for(i = 0; i < Recls_GetDirectoryPartProperty(info, -1, NULL, 0); ++i)
+            { size_t i; for (i = 0; i < Recls_GetDirectoryPartProperty(info, -1, NULL, 0); ++i)
             {
                 Recls_GetDirectoryPartProperty(info, (int)i, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
             }}
@@ -211,7 +211,7 @@ static void process_search(hrecls_t hSrch)
 
         rc = Recls_GetNext(hSrch);
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             break;
         }

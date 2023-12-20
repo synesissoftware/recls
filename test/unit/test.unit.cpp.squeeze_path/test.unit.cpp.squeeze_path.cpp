@@ -16,7 +16,6 @@
 #if defined(__FUNCTION__) && \
     defined(__COUNTER__)
 # include <recls/recls.h>
-# include <../src/impl.cover.h>
 #endif
 
 #include <recls/recls.hpp>
@@ -25,18 +24,13 @@
  * includes
  */
 
-/* xCover Header Files */
-#ifdef RECLS_QUALITY_USE_XCOVER
-# include <xcover/xcover.h>
-#endif /* RECLS_QUALITY_USE_XCOVER */
-
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,7 +104,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.cpp.squeeze_path", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.cpp.squeeze_path", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -152,10 +146,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_37);
         XTESTS_RUN_CASE(test_1_38);
         XTESTS_RUN_CASE(test_1_39);
-
-#ifdef XCOVER_VER
-        XCOVER_REPORT_GROUP_COVERAGE("recls.util.squeeze_path", NULL);
-#endif /* XCOVER_VER */
 
         XTESTS_PRINT_RESULTS();
 

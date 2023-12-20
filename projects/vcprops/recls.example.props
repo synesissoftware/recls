@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="./recls.common.props" />
+
+  <ItemGroup Label="PropertySheets" />
+
+  <PropertyGroup Label="UserMacros" />
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories Condition="'$(UNIXEM)' != '' AND exists('$(UNIXEM)/include')">$(UNIXEM)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(STLSOFT)' != '' AND exists('$(STLSOFT)/include')">$(STLSOFT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(SHWILD_ROOT)' != '' AND exists('$(SHWILD_ROOT)/include')">$(SHWILD_ROOT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(PANTHEIOS_EXTRAS_XHELPERS_ROOT)' != '' AND exists('$(PANTHEIOS_EXTRAS_XHELPERS_ROOT)/include')">$(PANTHEIOS_EXTRAS_XHELPERS_ROOT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(PANTHEIOS_EXTRAS_MAIN_ROOT)' != '' AND exists('$(PANTHEIOS_EXTRAS_MAIN_ROOT)/include')">$(PANTHEIOS_EXTRAS_MAIN_ROOT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(PANTHEIOS_EXTRAS_DIAGUTIL_ROOT)' != '' AND exists('$(PANTHEIOS_EXTRAS_DIAGUTIL_ROOT)/include')">$(PANTHEIOS_EXTRAS_DIAGUTIL_ROOT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(PANTHEIOS_ROOT)' != '' AND exists('$(PANTHEIOS_ROOT)/include')">$(PANTHEIOS_ROOT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(LIBCLIMATE_ROOT)' != '' AND exists('$(LIBCLIMATE_ROOT)/include')">$(LIBCLIMATE_ROOT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(FASTFORMAT_ROOT)' != '' AND exists('$(FASTFORMAT_ROOT)/include')">$(FASTFORMAT_ROOT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(CSTRING_ROOT)' != '' AND exists('$(CSTRING_ROOT)/include')">$(CSTRING_ROOT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(CLASP_ROOT)' != '' AND exists('$(CLASP_ROOT)/include')">$(CLASP_ROOT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories Condition="'$(UNIXEM)' != '' AND exists('$(UNIXEM)/lib')">$(UNIXEM)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(SHWILD_ROOT)' != '' AND exists('$(SHWILD_ROOT)/lib')">$(SHWILD_ROOT)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(PANTHEIOS_ROOT)' != '' AND exists('$(PANTHEIOS_ROOT)/lib')">$(PANTHEIOS_ROOT)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(LIBCLIMATE_ROOT)' != '' AND exists('$(LIBCLIMATE_ROOT)/lib')">$(LIBCLIMATE_ROOT)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(FASTFORMAT_ROOT)' != '' AND exists('$(FASTFORMAT_ROOT)/lib')">$(FASTFORMAT_ROOT)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(CLASP_ROOT)' != '' AND exists('$(CLASP_ROOT)/lib')">$(CLASP_ROOT)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(CSTRING_ROOT)' != '' AND exists('$(CSTRING_ROOT)/lib')">$(CSTRING_ROOT)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+
+</Project>

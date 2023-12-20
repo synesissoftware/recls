@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        impl.constants.hpp
+ * File:        src/impl.constants.hpp
  *
  * Purpose:     Common constants.
  *
@@ -28,7 +28,7 @@
  */
 
 #include <recls/recls.h>
-#include "impl.cover.h"
+#include "incl.stlsoft.h"
 #include <stlsoft/string/string_view.hpp>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -43,13 +43,6 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
  * constants
  */
 
@@ -60,46 +53,32 @@ RECLS_MARK_FILE_START()
 
 struct constants
 {
-public: /// Member Types
+public: // types
     typedef ::stlsoft::basic_string_view<recls_char_t>  string_type;
 
-public: /// Constants
+public: // constants
     static string_type  default_search_root()
     {
-        RECLS_COVER_MARK_LINE();
-
         return string_type(RECLS_S_DEFAULT_SEARCH_ROOT_, STLSOFT_NUM_ELEMENTS(RECLS_S_DEFAULT_SEARCH_ROOT_) - 1);
     }
     static string_type  home()
     {
-        RECLS_COVER_MARK_LINE();
-
         return string_type(RECLS_S_HOME_, STLSOFT_NUM_ELEMENTS(RECLS_S_HOME_) - 1);
     }
     static string_type  local_directory()
     {
-        RECLS_COVER_MARK_LINE();
-
         return string_type(RECLS_S_LOCAL_DIR_, STLSOFT_NUM_ELEMENTS(RECLS_S_LOCAL_DIR_) - 1);
     }
     static string_type  parent_directory()
     {
-        RECLS_COVER_MARK_LINE();
-
         return string_type(RECLS_S_PARENT_DIR_, STLSOFT_NUM_ELEMENTS(RECLS_S_PARENT_DIR_) - 1);
     }
 
-private: /// Not to be implemented
-    constants();
-    constants(constants const&);
-    constants& operator =(constants const&);
+private: // construction
+    constants();                        // default-construction proscribed
+    constants(constants const&);        // copy-construction proscribed
+    void operator =(constants const&);  // copy-assignment proscribed
 };
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

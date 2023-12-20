@@ -1,27 +1,47 @@
 
 # directories (by name)
 
+/--include
+/--src
+/-include
+/-src
+
 include/b64/
 include/shwild/
 include/xcontract/
-include/xcover/
 include/xtests/
 
 src/b64/
 src/shwild/
 src/xcontract/
-src/xcover/
 src/xtests/
 
-_internal/
+/.vs/
 
-bin/
+/_build/
+/_internal/
 
-doc/
+/bin/
+/examples/bin
+/examples/c/bin
+/examples/cpp/bin
+
+/doc/
 
 ideas/
 
+ipch/
+
+/lib/
+/examples/lib
+/examples/c/lib
+/examples/cpp/lib
+
+projects/util/vc10-generated/
+
 perf_test/
+
+releases/
 
 scripts/internal/
 
@@ -31,6 +51,7 @@ DebugDll/
 DebugDLLUNIX/
 Debug Multithreaded/
 Debug Multithreaded DLL/
+Debug Multithreaded pseudoUnix/
 Unicode Debug/
 Unicode Debug Multithreaded/
 Unicode Debug Multithreaded DLL/
@@ -40,6 +61,7 @@ ReleaseDll/
 ReleaseDLLUNIX/
 Release Multithreaded/
 Release Multithreaded DLL/
+Release Multithreaded pseudoUnix/
 Unicode Release/
 Unicode Release Multithreaded/
 Unicode Release Multithreaded DLL/
@@ -50,15 +72,28 @@ vc9/
 
 # directories (by pattern)
 
+/build/ar*
+/build/bc5*
+/build/como*
+/build/cw*
+/build/gcc3*
+/build/gcc4*
+/build/icl*
+/build/vc5*
+/build/*.zip
+
 # files (by name)
 
 .DS_Store
 .ruby-version
 .update_deps
-update_deps.cmd
+
+sh.exe.stackdump
 
 list_changes.cmd
 prepare.cmd
+tidydir.cmd
+update_deps.cmd
 
 build/makefile.tmpl
 build/makefile.tools.xml
@@ -78,6 +113,7 @@ src/backends/ber/ber.loader.c
 *.a
 *.app
 *.chm
+*.dsp
 *.dll
 *.dylib
 *.exe
@@ -90,6 +126,7 @@ src/backends/ber/ber.loader.c
 *.obj
 *.opensdf
 *.opt
+*.org
 *.out
 *.pch
 *.pdb
@@ -105,5 +142,4 @@ src/backends/ber/ber.loader.c
 *.vc71.sln
 *.vc8.sln
 *.vc9.sln
-
 

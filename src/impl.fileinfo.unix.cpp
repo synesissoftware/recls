@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        impl.fileinfo.unix.cpp
+ * File:        src/impl.fileinfo.unix.cpp
  *
  * Purpose:     UNIX implementation for the file information blocks of the recls API.
  *
@@ -28,7 +28,6 @@
 #include <recls/assert.h>
 #include "impl.root.h"
 #include "incl.unixstl.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -93,8 +92,6 @@ namespace
 
 RECLS_FNDECL(void) RC_Increment(rc_atomic_t volatile* p)
 {
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
     atomic_inc(p);
 #else /* ? RECLS_UNIX_USE_ATOMIC_OPERATIONS */
@@ -106,8 +103,6 @@ RECLS_FNDECL(void) RC_Increment(rc_atomic_t volatile* p)
 
 RECLS_FNDECL(rc_atomic_t) RC_PreDecrement(rc_atomic_t volatile* p)
 {
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
     return 1 + atomic_dec_and_test(p);
 #else /* ? RECLS_UNIX_USE_ATOMIC_OPERATIONS */
@@ -119,8 +114,6 @@ RECLS_FNDECL(rc_atomic_t) RC_PreDecrement(rc_atomic_t volatile* p)
 
 RECLS_FNDECL(rc_atomic_t) RC_ReadValue(rc_atomic_t volatile* p)
 {
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
     return atomic_read(p);
 #else /* ? RECLS_UNIX_USE_ATOMIC_OPERATIONS */

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        incl.unixstl.h
+ * File:        src/incl.unixstl.h
  *
  * Purpose:     #includes the UNIXSTL root header and verifies the version.
  *
@@ -30,10 +30,10 @@
 # error Must not #include unixstl/unixstl.h before this file
 #endif /* UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
-#include <unixstl/unixstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.9.1 or later, as required. */
+#include <unixstl/unixstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.10.1 or later, as required. */
 #if !defined(_UNIXSTL_VER) || \
-    _UNIXSTL_VER < 0x010704ff
-# error Requires UNIXSTL 1.7.4, or later. (www.stlsoft.org/downloads.html)
+    _UNIXSTL_VER < 0x01080183
+# error Requires UNIXSTL 1.8.1 (beta 3), or later. (www.stlsoft.org/downloads.html)
 #endif /* UNIXSTL version */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@
  */
 
 #ifdef _UNIXSTL_NO_NAMESPACE
-# error recls 1.9+ is not compatible with UNIXSTL namespace suppression
+# error recls 1.10+ is not compatible with UNIXSTL namespace suppression
 #endif /* _UNIXSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

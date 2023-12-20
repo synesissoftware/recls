@@ -19,13 +19,13 @@
  * includes
  */
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.cpp.retcodes", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.cpp.retcodes", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -96,10 +96,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_17);
         XTESTS_RUN_CASE(test_1_18);
         XTESTS_RUN_CASE(test_1_19);
-
-#ifdef XCOVER_VER
-        XCOVER_REPORT_GROUP_COVERAGE("recls.util.combine_paths", NULL);
-#endif /* XCOVER_VER */
 
         XTESTS_PRINT_RESULTS();
 
@@ -164,7 +160,7 @@ static void test_1_1()
 
 static void test_1_2()
 {
-    { size_t i; for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_FAILURE_CODES); ++i)
+    { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_FAILURE_CODES); ++i)
     {
         recls_rc_t const rc = s_FAILURE_CODES[i];
 
@@ -175,7 +171,7 @@ static void test_1_2()
 
 static void test_1_3()
 {
-    { size_t i; for(i = 0; i != 10000000; ++i)
+    { size_t i; for (i = 0; i != 10000000; ++i)
     {
         union
         {

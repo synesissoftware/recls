@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MAJOR       5
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MINOR       1
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    2
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        23
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    3
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        28
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/traits.hpp
@@ -108,12 +108,12 @@ public:
     ///
     /// \note In this template, <code>void</code> is a placeholder. <code>recls_char_a_t</code> and <code>recls_char_w_t</code> specialisations
     /// will use their respective character types
-    typedef void            char_type;
+    typedef void                                            char_type;
     /// The entry type
     ///
     /// \note In this template, <code>void*</code> is a placeholder. <code>recls_char_a_t</code> and <code>recls_char_w_t</code> specialisations
     /// will use their respective \c recls_fileinfo_t types
-    typedef void*           entry_type;
+    typedef void*                                           entry_type;
 
 public:
 #if defined(RECLS_API_FTP)
@@ -156,17 +156,15 @@ template <>
 struct reclstl_traits<recls_char_a_t>
 {
 public:
-    typedef reclstl_traits<recls_char_a_t>      traits_type;
-    typedef recls_char_a_t                      char_type;
-    typedef recls_info_t                        entry_type;
-    typedef recls_strptrs_t                     strptrs_type;
-    typedef recls_strptrsptrs_t                 strptrsptrs_type;
+    typedef reclstl_traits<recls_char_a_t>                  traits_type;
+    typedef recls_char_a_t                                  char_type;
+    typedef recls_info_t                                    entry_type;
+    typedef recls_strptrs_t                                 strptrs_type;
+    typedef recls_strptrsptrs_t                             strptrsptrs_type;
 
-#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     /// The directory parts sequence type
-    typedef directory_parts                     directory_parts_type;
+    typedef directory_parts                                 directory_parts_type;
 
-#endif
     /// Constructs a value of type \c string_t from an instance of the pointers structure.
     ///
     /// \note This is required by the STLSoft proxy_sequence template.
@@ -247,15 +245,15 @@ template <>
 struct reclstl_traits<recls_char_w_t>
 {
 public:
-    typedef reclstl_traits<recls_char_w_t>      traits_type;
-    typedef recls_char_w_t                      char_type;
-    typedef recls_info_t                        entry_type;
-    typedef recls_strptrs_t                     strptrs_type;
-    typedef recls_strptrsptrs_t                 strptrsptrs_type;
+    typedef reclstl_traits<recls_char_w_t>                  traits_type;
+    typedef recls_char_w_t                                  char_type;
+    typedef recls_info_t                                    entry_type;
+    typedef recls_strptrs_t                                 strptrs_type;
+    typedef recls_strptrsptrs_t                             strptrsptrs_type;
 
 #ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     /// The directory parts sequence type
-    typedef directory_parts                     directory_parts_type;
+    typedef directory_parts                                 directory_parts_type;
 
 #endif
     /// Constructs a value of type \c string_t from an instance of the pointers structure.
@@ -331,14 +329,10 @@ public:
         return ::wcslen(src);
     }
 };
-
 # else /* character type */
 
 #  error Neither RECLS_CHAR_TYPE_IS_WCHAR nor RECLS_CHAR_TYPE_IS_CHAR are defined
-
 # endif /* character type */
-
-
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -347,8 +341,6 @@ public:
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* RECLS_INCL_RECLS_CPP_HPP_TRAITS */
 

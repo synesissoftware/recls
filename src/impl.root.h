@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        impl.root.h
+ * File:        src/impl.root.h
  *
  * Purpose:     Implementation root header.
  *
@@ -75,7 +75,6 @@
 # define RECLS_DEBUG
 #endif /* RECLS_DOCUMENTATION_SKIP_SECTION */
 
-
 #if defined(NDEBUG)
 # ifdef RECLS_DEBUG
 #  undef RECLS_DEBUG
@@ -141,13 +140,22 @@
  * Multi-part patterns
  */
 
-#if (   !defined(RECLS_COMPILER_IS_MSVC) || \
+#if 1 && \
+    (   !defined(RECLS_COMPILER_IS_MSVC) || \
         _MSC_VER >= 1200) && \
-    !defined(RECLS_COMPILER_IS_WATCOM)
+    !defined(RECLS_COMPILER_IS_WATCOM) && \
+    1
+
 # define RECLS_SUPPORTS_MULTIPATTERN_
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_SRC_H_IMPL_ROOT */
 

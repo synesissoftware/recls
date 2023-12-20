@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        ReclsFtpSearchDirectoryNode_windows.hpp
+ * File:        src/ReclsFtpSearchDirectoryNode_windows.hpp
  *
  * Purpose:     ReclsFtpSearchDirectoryNode class, for Windows.
  *
@@ -64,21 +64,26 @@ class ReclsFtpSearchDirectoryNode
     : public ReclsSearchDirectoryNode
 {
 public:
-    typedef ReclsFtpSearchDirectoryNode                                     class_type;
-    typedef inetstl::filesystem_traits<recls_char_t>                        traits_type;
+    typedef ReclsFtpSearchDirectoryNode                     class_type;
+    typedef inetstl::filesystem_traits<recls_char_t>        traits_type;
 private:
-    typedef RECLS_STRING_TEMPLATE_1(recls_char_t)                           string_type;
-    typedef inetstl::basic_findfile_sequence<recls_char_t, traits_type>     file_find_sequence_type;
+    typedef RECLS_STRING_TEMPLATE_1(recls_char_t)           string_type;
+    typedef inetstl::basic_findfile_sequence<
+        recls_char_t
+    ,   traits_type
+    >                                                       file_find_sequence_type;
 #if defined(RECLS_COMPILER_IS_MSVC) && \
     _MSC_VER >= 1310
-    typedef std::vector<string_type>                                        directory_sequence_type;
+    typedef std::vector<string_type>                        directory_sequence_type;
 #else /* ? compiler */
-    typedef std::list<string_type>                                          directory_sequence_type;
+    typedef std::list<string_type>                          directory_sequence_type;
 #endif /* compiler */
 #ifdef RECLS_USING_INETSTL_SEARCHSPEC_SEQUENCE_
-    typedef inetstl::searchspec_sequence<file_find_sequence_type>           entry_sequence_type;
+    typedef inetstl::searchspec_sequence<
+        file_find_sequence_type
+    >                                                       entry_sequence_type;
 #else /* ? RECLS_USING_INETSTL_SEARCHSPEC_SEQUENCE_ */
-    typedef file_find_sequence_type                                         entry_sequence_type;
+    typedef file_find_sequence_type                         entry_sequence_type;
 #endif /* RECLS_USING_INETSTL_SEARCHSPEC_SEQUENCE_ */
 
 // Construction
@@ -94,7 +99,9 @@ protected: // Not private, or GCC whines
 public:
     virtual ~ReclsFtpSearchDirectoryNode();
 
-    static class_type *FindAndCreate(
+    static
+    class_type*
+    FindAndCreate(
         HINTERNET           connection
     ,   recls_uint32_t      flags
     ,   recls_char_t const* rootDir
@@ -102,6 +109,9 @@ public:
     ,   recls_char_t const* pattern
     ,   size_t              patternLen
     );
+private:
+    ReclsFtpSearchDirectoryNode(class_type const &);    // copy-construction proscribed
+    void operator =(class_type const &);                // copy-assignment proscribed
 
 // ReclsSearchDirectoryNode methods
 public:
@@ -117,16 +127,24 @@ private:
     recls_bool_t    is_valid() const;
 #endif /* RECLS_ENFORCING_CONTRACTS */
 
-    static directory_sequence_type::const_iterator select_iter_if_(
+    static
+    directory_sequence_type::const_iterator
+    select_iter_if_(
         unsigned long                           b
     ,   directory_sequence_type::const_iterator trueVal
     ,   directory_sequence_type::const_iterator falseVal
     );
-    static int essFlags_from_reclsFlags_(recls_uint32_t flags);
+    static
+    int
+    essFlags_from_reclsFlags_(
+        recls_uint32_t flags
+    );
 
 // Implementation
 private:
-    static directory_sequence_type init_directories_(
+    static
+    directory_sequence_type
+    init_directories_(
         HINTERNET           connection
     ,   recls_char_t const* rootDir
     ,   size_t              rootDirLen
@@ -145,11 +163,6 @@ private:
     directory_sequence_type::const_iterator m_directoriesBegin;
     entry_sequence_type                     m_entries;
     entry_sequence_type::const_iterator     m_entriesBegin;
-
-// Not to be implemented
-private:
-    ReclsFtpSearchDirectoryNode(class_type const &);
-    class_type &operator =(class_type const &);
 };
 
 /* /////////////////////////////////////////////////////////////////////////

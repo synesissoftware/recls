@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4B04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;ipp;ixx;inc;</Extensions>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{50992A8A-AF08-4806-902D-B13EB9B47DD1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include\recls">
+      <UniqueIdentifier>{6501b571-fc1b-48fe-a58e-1e4e4fcb355f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include\recls\internal">
+      <UniqueIdentifier>{51ed1ea5-7f57-4d0b-87c7-38e316ebc883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src">
+      <UniqueIdentifier>{BBE0F4DF-D5CD-4f3a-BDCB-4433182B119F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Implementation Files">
+      <UniqueIdentifier>{D235CB96-B7A2-46AC-B7DC-310587E1D366}</UniqueIdentifier>
+      <Extensions>c;cc;cpp;cxx;</Extensions>
+    </Filter>
+    <Filter Include="Implementation Files\src">
+      <UniqueIdentifier>{5C1278A0-2826-4E94-A9DF-B7121DAC2348}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Implementation Files\src\: common">
+      <UniqueIdentifier>{080765e3-dd41-4a61-8d03-dd7616add850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Implementation Files\src\: Unix">
+      <UniqueIdentifier>{2d72fec3-7656-4045-a736-61d3f9c669e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Implementation Files\src\: Windows">
+      <UniqueIdentifier>{3a7a43e0-a1a3-4e11-b61a-f5477db0aa76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module Files">
+      <UniqueIdentifier>{115E6387-3699-414F-89E3-A8DCD7CD1CD3}</UniqueIdentifier>
+      <Extensions>def;hpj;idl;odl;rc;xsd;</Extensions>
+    </Filter>
+    <Filter Include="Module Files\_dev_pragmatics_">
+      <UniqueIdentifier>{F31D58C5-9614-4CD6-A019-C75F99CF755F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\_dev_pragmatics_\warnings.msvc.10+.h">
+      <Filter>Module Files\_dev_pragmatics_</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\pch.cpp">
+      <Filter>Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.ftp.windows.cpp">
+      <Filter>Implementation Files\src\: Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.retcodes.windows.cpp">
+      <Filter>Implementation Files\src\: Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.windows.cpp">
+      <Filter>Implementation Files\src\: Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.fileinfo.windows.cpp">
+      <Filter>Implementation Files\src\: Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.util.windows.cpp">
+      <Filter>Implementation Files\src\: Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ReclsFtpSearch_windows.cpp">
+      <Filter>Implementation Files\src\: Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ReclsFtpSearchDirectoryNode_windows.cpp">
+      <Filter>Implementation Files\src\: Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.unix.cpp">
+      <Filter>Implementation Files\src\: Unix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.fileinfo.unix.cpp">
+      <Filter>Implementation Files\src\: Unix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.util.unix.cpp">
+      <Filter>Implementation Files\src\: Unix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.entryinfo.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ReclsSearch.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.error.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.extended.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.search.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.util.combine_paths.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.util.create_directory.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.util.derive_relative_path.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.util.remove_directory.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.util.squeeze_path.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\api.util.stat.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.api.search.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.entryinfo.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.fileinfo.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.snprintf.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.trace.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\impl.util.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ReclsFileSearch.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ReclsFileSearchDirectoryNode.cpp">
+      <Filter>Implementation Files\src\: common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\recls\ftp.h">
+      <Filter>Header Files\include\recls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\recls\recls.h">
+      <Filter>Header Files\include\recls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\recls\unix.h">
+      <Filter>Header Files\include\recls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\recls\windows.h">
+      <Filter>Header Files\include\recls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.api.search.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.atomic.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.constants.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.entryfunctions.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.entryinfo.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.root.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.string.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.trace.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.types.ftp.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.types.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\impl.util.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\incl.inetstl.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\incl.platformstl.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\incl.stlsoft.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\incl.unixstl.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\incl.winstl.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ReclsFileSearch.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ReclsFileSearchDirectoryNode.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ReclsFtpSearch.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ReclsFtpSearchDirectoryNode_windows.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ReclsSearch.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\recls\internal\compiler_msvc.h">
+      <Filter>Header Files\include\recls\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\recls\internal\compiler.h">
+      <Filter>Header Files\include\recls\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\recls\internal\platform_types.h">
+      <Filter>Header Files\include\recls\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\recls\internal\platform.h">
+      <Filter>Header Files\include\recls\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\recls\internal\language.h">
+      <Filter>Header Files\include\recls\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\recls\internal\retcodes.h">
+      <Filter>Header Files\include\recls\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\recls\internal\recls_time.h">
+      <Filter>Header Files\include\recls\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\recls\internal\recls_filesize.h">
+      <Filter>Header Files\include\recls\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pch.hpp">
+      <Filter>Module Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MINOR       0
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    10
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        43
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    15
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        52
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,14 +69,9 @@
  * version checks
  */
 
-#if !defined(RECLS_VER) || \
-    RECLS_VER < 0x01090101
-# error The recls C++ mapping now requires version 1.9.1 or later of the recls core API
-#endif /* RECLS_VER */
-
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010981ff
-# error The recls C++ mapping now requires version 1.9.129 or later of the STLSoft libraries. (www.stlsoft.org/downloads.html)
+    _STLSOFT_VER < 0x010a0200
+# error The recls C++ mapping now requires version 1.10.2 or later of the STLSoft libraries. (www.stlsoft.org/downloads.html)
 #endif /* STLSoft version */
 
 #if defined(_STLSOFT_NO_NAMESPACE)
@@ -100,7 +95,7 @@
  /* Do not define RECLS_CPP_METHOD_PROPERTY_SUPPORT */
 # elif defined(STLSOFT_COMPILER_IS_DMC)
 #  if __DMC__ >= 0x0846
-#   define RECLS_CPP_METHOD_PROPERTY_SUPPORT */
+#   define RECLS_CPP_METHOD_PROPERTY_SUPPORT
 #  endif /* __DMC__ */
 # elif defined(STLSOFT_COMPILER_IS_GCC)
  /* Do not define RECLS_CPP_METHOD_PROPERTY_SUPPORT */
@@ -136,20 +131,6 @@
 #define RECLS_CPP_USE_STD_STRING
 
 /* /////////////////////////////////////////////////////////////////////////
- * feature support - 3: directory_parts type
- */
-
-#if _STLSOFT_VER >= 0x010a0181 ||\
-    STLSOFT_LEAD_VER >= 0x010a0000
-# define RECLS_CPP_USE_STLSOFT_random_access_transforming_view_base
-#endif
-
-#if defined(RECLS_DOCUMENTATION_SKIP_SECTION) ||\
-    defined(RECLS_CPP_USE_STLSOFT_random_access_transforming_view_base)
-# define RECLS_CPP_SUPPORT_DIRECTORY_PARTS
-#endif
-
-/* /////////////////////////////////////////////////////////////////////////
  * includes - 2
  */
 
@@ -182,12 +163,12 @@ namespace cpp
  * typedefs
  */
 
-typedef recls_char_t                                char_t;
+typedef recls_char_t                                        char_t;
 
 #if defined(RECLS_CPP_USE_STD_STRING)
-typedef std::string                                 string_a_t;
-typedef std::wstring                                string_w_t;
-typedef std::basic_string<recls_char_t>             string_t;
+typedef std::string                                         string_a_t;
+typedef std::wstring                                        string_w_t;
+typedef std::basic_string<recls_char_t>                     string_t;
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -198,8 +179,6 @@ typedef std::basic_string<recls_char_t>             string_t;
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_COMMON */
 

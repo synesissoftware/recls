@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        api.retcodes.windows.cpp
+ * File:        src/api.retcodes.windows.cpp
  *
  * Purpose:     This file contains the Windows versions of the recls API.
  *
@@ -30,7 +30,6 @@
 #include "incl.winstl.h"
 #include "impl.util.h"
 #include "impl.string.hpp"
-#include "impl.cover.h"
 
 #include <stlsoft/conversion/union_cast.hpp>
 #include <winstl/winstl.h>
@@ -49,14 +48,6 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.retcodes")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
 
@@ -65,14 +56,14 @@ RECLS_MARK_FILE_START()
 	defined(STLSOFT_COMPILER_IS_GCC) || \
 	0
 
-# define SWITCH_BEGIN_()        if(0) {}
+# define SWITCH_BEGIN_()        if (0) {}
 # define SWITCH_END_()          return static_cast<DWORD>(E_FAIL);
 
-# define CASE_1_(r)             else if(rc == (r)) {}
-# define CASE_2_(r, wec)        else if(rc == (r)) { return (wec); }
+# define CASE_1_(r)             else if (rc == (r)) {}
+# define CASE_2_(r, wec)        else if (rc == (r)) { return (wec); }
 #else /* ? compiler */
 
-# define SWITCH_BEGIN_()        switch(STLSOFT_REINTERPRET_CAST(recls_uintptr_t, rc)) {
+# define SWITCH_BEGIN_()        switch (STLSOFT_REINTERPRET_CAST(recls_uintptr_t, rc)) {
 # define SWITCH_END_()          } return static_cast<DWORD>(E_FAIL);
 
 # define CASE_1_(r)             case STLSOFT_REINTERPRET_CAST(recls_uintptr_t, r): break;
@@ -93,7 +84,8 @@ RECLS_MARK_FILE_START()
  * error handling
  */
 
-RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
+RECLS_FNDECL(DWORD)
+Recls_ResultCodeToWindowsErrorCode(
     /* [in] */ recls_rc_t rc
 )
 {
@@ -124,12 +116,6 @@ RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
 
     SWITCH_END_()
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

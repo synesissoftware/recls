@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        ReclsFtpSearch.hpp
+ * File:        src/ReclsFtpSearch.hpp
  *
  * Purpose:     Definition of the ReclsFtpSearch class.
  *
@@ -83,7 +83,9 @@ protected:
     );
     ~ReclsFtpSearch();
 public:
-    static recls_rc_t FindAndCreate(
+    static
+    recls_rc_t
+    FindAndCreate(
         recls_char_t const* host
     ,   recls_char_t const* username
     ,   recls_char_t const* password
@@ -94,10 +96,14 @@ public:
     ,   recls_uint32_t      flags
     ,   class_type**        ppsi
     );
+private:
+    ReclsFtpSearch(class_type const &);     // copy-construction proscribed
+    void operator =(class_type const &);    // copy-assignment proscribed
 
 // Implementation
 private:
-    recls_char_t const* calc_rootDir_(
+    recls_char_t const*
+    calc_rootDir_(
         size_t              cDirParts
     ,   recls_char_t const* rootDir
     ,   size_t              rootDirLen
@@ -118,11 +124,6 @@ private:
      *  - root dir
      *
      */
-
-// Not to be implemented
-private:
-    ReclsFtpSearch(class_type const &);
-    class_type &operator =(class_type const &);
 };
 
 /* /////////////////////////////////////////////////////////////////////////

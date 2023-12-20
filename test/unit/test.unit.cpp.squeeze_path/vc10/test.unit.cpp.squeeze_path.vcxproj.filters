@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4B04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;ipp;ixx;inc;</Extensions>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{50992A8A-AF08-4806-902D-B13EB9B47DD1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include\recls">
+      <UniqueIdentifier>{6501b571-fc1b-48fe-a58e-1e4e4fcb355f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include\recls\internal">
+      <UniqueIdentifier>{51ed1ea5-7f57-4d0b-87c7-38e316ebc883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src">
+      <UniqueIdentifier>{BBE0F4DF-D5CD-4f3a-BDCB-4433182B119F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Implementation Files">
+      <UniqueIdentifier>{D235CB96-B7A2-46AC-B7DC-310587E1D366}</UniqueIdentifier>
+      <Extensions>c;cc;cpp;cxx;</Extensions>
+    </Filter>
+    <Filter Include="Module Files">
+      <UniqueIdentifier>{115E6387-3699-414F-89E3-A8DCD7CD1CD3}</UniqueIdentifier>
+      <Extensions>def;hpj;idl;odl;rc;xsd;</Extensions>
+    </Filter>
+    <Filter Include="Module Files\_dev_pragmatics_">
+      <UniqueIdentifier>{F31D58C5-9614-4CD6-A019-C75F99CF755F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\test.unit.cpp.squeeze_path.cpp">
+      <Filter>Implementation Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\implicit_link.cpp">
+      <Filter>Module Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

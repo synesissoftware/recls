@@ -19,22 +19,38 @@
  * includes
  */
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #include <platformstl/platformstl.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+      defined(_WIN32)
+# include <direct.h>
+# include <tchar.h>
+#endif
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 # include <unistd.h>
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-# include <direct.h>
 # include <windows.h>
 #else
 # error platform not discriminated
+#endif
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER >= 1200
+
+# pragma warning(disable : 4996)
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -90,15 +106,6 @@ size_t          s_cwdLen;
 recls_char_t*   s_home;
 size_t          path_max;
 
-static void finish_off_directory(recls_char_t* s)
-{
-    size_t n = strlen(s);
-
-    if(n > 0)
-    {
-    }
-}
-
 int main(int argc, char **argv)
 {
     int retCode = EXIT_SUCCESS;
@@ -121,7 +128,7 @@ int main(int argc, char **argv)
     s_cwd   =   (recls_char_t*)malloc(sizeof(recls_char_t) * (1 + path_max));
     s_home  =   (recls_char_t*)malloc(sizeof(recls_char_t) * (1 + path_max));
 
-    if( NULL == s_cwd ||
+    if (NULL == s_cwd ||
         NULL == s_home)
     {
         fprintf(stderr, "Cannot allocate enough memory to run tests!\n");
@@ -129,12 +136,12 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    getcwd(s_cwd, 1 + path_max);
+    _tgetcwd(s_cwd, (int)(1 + path_max));
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
     (   defined(PLATFORMSTL_OS_IS_UNIX) && \
         defined(_WIN32))
-    strcpy(s_home, getenv("HOMEDRIVE"));
-    strcat(s_home, getenv("HOMEPATH"));
+    _tcscpy(s_home, _tgetenv(RECLS_LITERAL("HOMEDRIVE")));
+    _tcscat(s_home, _tgetenv(RECLS_LITERAL("HOMEPATH")));
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
     strcpy(s_home, getenv("HOME"));
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -144,25 +151,31 @@ int main(int argc, char **argv)
 
 #if defined(PLATFORMSTL_OS_IS_UNIX) && \
     defined(_WIN32)
-    { char* s; for(s = s_cwd; *s; ++s)
+    { char* s; for (s = s_cwd; *s; ++s)
     {
-        if('\\' == *s)
+        if ('\\' == *s)
         {
             *s = '/';
         }
     }}
-    { char* s; for(s = s_home; *s; ++s)
+    { char* s; for (s = s_home; *s; ++s)
     {
-        if('\\' == *s)
+        if ('\\' == *s)
         {
             *s = '/';
         }
     }}
 #endif
 
-    s_cwdLen = strlen(s_cwd);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
 
-    if(XTESTS_START_RUNNER("test.unit.api.createdirectory", verbosity))
+    s_cwdLen = _tcslen(s_cwd);
+#else
+
+    s_cwdLen = strlen(s_cwd);
+#endif
+
+    if (XTESTS_START_RUNNER("test.unit.api.createdirectory", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -200,7 +213,7 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-#define RECLS_TEST_DIR_ROOT                                 "/recls_test_dir_root_D01441CA_A1CD_4916_B095_B2D65B15E517"
+#define RECLS_TEST_DIR_ROOT                                 RECLS_LITERAL("/recls_test_dir_root_D01441CA_A1CD_4916_B095_B2D65B15E517")
 #define RECLS_TEST_DIR_ROOT_LEN_                            ((STLSOFT_NUM_ELEMENTS(RECLS_TEST_DIR_ROOT) - 1))
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 # define RECLS_TEST_DIR_ROOT_LEN                            (2u + RECLS_TEST_DIR_ROOT_LEN_)
@@ -213,15 +226,15 @@ static void test_1_0()
 {
     {
         recls_directoryResults_t    results;
-        recls_rc_t                  rc = Recls_CreateDirectory("", &results);
+        recls_rc_t                  rc = Recls_CreateDirectory(RECLS_LITERAL(""), &results);
 
-        XTESTS_TEST_ENUM_EQUAL(RECLS_RC_INVALID_NAME, rc);
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
     }
 
     {
-        recls_rc_t  rc = Recls_CreateDirectory("", NULL);
+        recls_rc_t  rc = Recls_CreateDirectory(RECLS_LITERAL(""), NULL);
 
-        XTESTS_TEST_ENUM_EQUAL(RECLS_RC_INVALID_NAME, rc);
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
     }
 }
 
@@ -229,16 +242,17 @@ static void test_1_1()
 {
     {
         recls_directoryResults_t    results;
-        recls_rc_t                  rc = Recls_CreateDirectory(".", &results);
+        recls_rc_t                  rc = Recls_CreateDirectory(RECLS_LITERAL("."), &results);
 
-        XTESTS_TEST_ENUM_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
         XTESTS_TEST_INTEGER_EQUAL(s_cwdLen, results.resultingLength);
+        XTESTS_TEST_INTEGER_EQUAL(results.numExistingElements, results.numResultingElements);
     }
 
     {
-        recls_rc_t  rc = Recls_CreateDirectory(".", NULL);
+        recls_rc_t  rc = Recls_CreateDirectory(RECLS_LITERAL("."), NULL);
 
-        XTESTS_TEST_ENUM_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -248,14 +262,22 @@ static void test_1_2()
         recls_directoryResults_t    results;
         recls_rc_t                  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT, &results);
 
-        XTESTS_TEST_ENUM_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    defined(_WIN32)
+
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_TEST_DIR_ROOT_LEN + 2, results.resultingLength);
+#else
+
         XTESTS_TEST_INTEGER_EQUAL(RECLS_TEST_DIR_ROOT_LEN, results.resultingLength);
+#endif
     }
 
     {
         recls_rc_t  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT, NULL);
 
-        XTESTS_TEST_ENUM_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
     }
 
     Recls_RemoveDirectory(RECLS_TEST_DIR_ROOT, RECLS_REMDIR_F_REMOVE_FILES, NULL);
@@ -263,21 +285,29 @@ static void test_1_2()
 
 static void test_1_3()
 {
-#define TEST_1_3_SUBDIR                                     "/abc/def/ghi/jkl/mno"
+#define TEST_1_3_SUBDIR                                     RECLS_LITERAL("/abc/def/ghi/jkl/mno")
 #define TEST_1_3_SUBDIR_LEN                                 (STLSOFT_NUM_ELEMENTS(TEST_1_3_SUBDIR) - 1)
 
     {
         recls_directoryResults_t    results;
         recls_rc_t                  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT TEST_1_3_SUBDIR, &results);
 
-        XTESTS_TEST_ENUM_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    defined(_WIN32)
+
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_TEST_DIR_ROOT_LEN + TEST_1_3_SUBDIR_LEN + 2, results.resultingLength);
+#else
+
         XTESTS_TEST_INTEGER_EQUAL(RECLS_TEST_DIR_ROOT_LEN + TEST_1_3_SUBDIR_LEN, results.resultingLength);
+#endif
     }
 
     {
         recls_rc_t  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT TEST_1_3_SUBDIR, NULL);
 
-        XTESTS_TEST_ENUM_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
     }
 
     Recls_RemoveDirectory(RECLS_TEST_DIR_ROOT, RECLS_REMDIR_F_REMOVE_FILES | RECLS_REMDIR_F_REMOVE_READONLY, NULL);

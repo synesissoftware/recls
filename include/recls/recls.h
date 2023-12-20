@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      21
-# define RECLS_VER_RECLS_H_RECLS_REVISION   8
-# define RECLS_VER_RECLS_H_RECLS_EDIT       127
+# define RECLS_VER_RECLS_H_RECLS_REVISION   14
+# define RECLS_VER_RECLS_H_RECLS_EDIT       135
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -123,11 +123,16 @@
 #define RECLS_VER_1_9_4                                     0x010904ff
 #define RECLS_VER_1_9_5                                     0x010905ff
 #define RECLS_VER_1_9_6                                     0x010906ff
+#define RECLS_VER_1_9_7                                     0x010907ff
+#define RECLS_VER_1_9_8                                     0x010908ff
+#define RECLS_VER_1_10_0_ALPHA_1                            0x010a0001
+#define RECLS_VER_1_10_0_ALPHA_2                            0x010a0002
+#define RECLS_VER_1_10_0_ALPHA_3                            0x010a0003
 
 #define RECLS_VER_MAJOR         1
-#define RECLS_VER_MINOR         9
-#define RECLS_VER_REVISION      6
-#define RECLS_VER                                           RECLS_VER_1_9_6
+#define RECLS_VER_MINOR         10
+#define RECLS_VER_REVISION      0
+#define RECLS_VER               RECLS_VER_1_10_0_ALPHA_3
 
 /* /////////////////////////////////////////////////////////////////////////
  * strictness
@@ -730,7 +735,7 @@ typedef recls_process_fn_param_t    process_fn_param_t;
   size_t        cRoots  = Recls_GetRoots(&roots[0], 26);
   size_t        i;
 
-  for(i = 0; i < cRoots; ++i)
+  for (i = 0; i < cRoots; ++i)
   {
     puts(roots[i].name);
   }
@@ -923,20 +928,6 @@ RECLS_API Recls_SearchProcessFeedback(
 ,   /* [in] */ hrecls_progress_fn_t         pfnProgress
 ,   /* [out] */ recls_process_fn_param_t    paramProgress
 );
-
-#if 0
-/* New Recls1 API. */
-RECLS_API Recls1_FileSystem_StartSearch(
-    /* [in] */ recls_char_t const*          searchRoot
-,   /* [in] */ recls_char_t const*          pattern
-,   /* [in] */ recls_uint32_t               flags
-,   /* [in] */ Recls1_progress_fn_t         pfnProgress
-,   /* [in] */ Recls1_process_fn_param_t    paramProgress
-,   /* [in] */ Recls1_filter_fn_t           pfnFilter
-,   /* [in] */ Recls1_filter_fn_param_t     paramFilter
-,   /* [out] */ hrecls_t*                   phSrch
-);
-#endif /* 0 */
 
 /** Searches a given directory for matching files of the given pattern, and processes them according to the given process function
  *
@@ -1160,7 +1151,7 @@ RECLS_API Recls_GetLastError(
 RECLS_FNDECL(size_t)
 Recls_GetErrorString(
     /* [in] */ recls_rc_t       rc
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1177,7 +1168,7 @@ Recls_GetErrorString(
 RECLS_FNDECL(size_t)
 Recls_GetLastErrorString(
     /* [in] */ hrecls_t         hSrch
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1239,7 +1230,7 @@ Recls_GetErrno(
 RECLS_FNDECL(size_t)
 Recls_GetPathProperty(
     /* [in] */ recls_entry_t    hEntry
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1256,7 +1247,7 @@ Recls_GetPathProperty(
 RECLS_FNDECL(size_t)
 Recls_GetSearchRelativePathProperty(
     /* [in] */ recls_entry_t    hEntry
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1273,7 +1264,7 @@ Recls_GetSearchRelativePathProperty(
 RECLS_FNDECL(size_t)
 Recls_GetDirectoryProperty(
     /* [in] */ recls_entry_t    hEntry
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1292,7 +1283,7 @@ Recls_GetDirectoryProperty(
 RECLS_FNDECL(size_t)
 Recls_GetDirectoryPathProperty(
     /* [in] */ recls_entry_t    hEntry
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1309,7 +1300,7 @@ Recls_GetDirectoryPathProperty(
 RECLS_FNDECL(size_t)
 Recls_GetSearchDirectoryProperty(
     /* [in] */ recls_entry_t    hEntry
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1328,7 +1319,7 @@ Recls_GetSearchDirectoryProperty(
 RECLS_FNDECL(size_t)
 Recls_GetUNCDriveProperty(
     /* [in] */ recls_entry_t    hEntry
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1345,7 +1336,7 @@ Recls_GetUNCDriveProperty(
 RECLS_FNDECL(size_t)
 Recls_GetFileProperty(
     /* [in] */ recls_entry_t    hEntry
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1364,7 +1355,7 @@ Recls_GetFileProperty(
 RECLS_FNDECL(size_t)
 Recls_GetShortFileProperty(
     /* [in] */ recls_entry_t    hEntry
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1381,7 +1372,7 @@ Recls_GetShortFileProperty(
 RECLS_FNDECL(size_t)
 Recls_GetFileNameProperty(
     /* [in] */ recls_entry_t    hEntry
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1398,7 +1389,7 @@ Recls_GetFileNameProperty(
 RECLS_FNDECL(size_t)
 Recls_GetFileExtProperty(
     /* [in] */ recls_entry_t    hEntry
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1419,7 +1410,7 @@ RECLS_FNDECL(size_t)
 Recls_GetDirectoryPartProperty(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [in] */ int              part
-,   /* [in] */ recls_char_t*    buffer
+,   /* [in] */ recls_char_t     buffer[]
 ,   /* [in] */ size_t           cchBuffer
 );
 
@@ -1590,6 +1581,13 @@ Recls_GetChecksum(
 /** @{ */
 
 /** logging function pointer
+ *
+ * \param severity The severity parameter, which is one of the values
+ *   specified in the <code>recls_log_severities_t::severities</code>
+ *   array, and is not interpreted by the <strong>recls</strong>
+ *   library
+ * \param fmt A sprintf()-like format
+ * \param args An arguments vector matching the \c fmt
  */
 
 typedef void (RECLS_CALLCONV_DEFAULT* recls_log_pfn_t)(
@@ -1622,6 +1620,7 @@ typedef struct recls_log_severities_t   recls_log_severities_t;
  * \param debug0Severity The severity for debug (level 0) conditions. Specify -1 to suppress.
  * \param debug1Severity The severity for debug (level 1) conditions. Specify -1 to suppress.
  * \param debug2Severity The severity for debug (level 2) conditions. Specify -1 to suppress.
+ * \param debug3Severity The severity for debug (level 3) conditions. Specify -1 to suppress.
  *
  * \pre (NULL != severities)
  */
@@ -1635,7 +1634,24 @@ Recls_LogSeverities_Init(
 ,   int                             debug0Severity
 ,   int                             debug1Severity
 ,   int                             debug2Severity
+,   int                             debug3Severity
 );
+
+/** \def Recls_LogSeverities_Init8(s, f, e, w, i, d0, d1, d2, d3)
+ *
+ * Initialises an instance of recls_log_severities_t with seven severity levels.
+ *
+ * \see Recls_LogSeverities_Init
+ */
+#define Recls_LogSeverities_Init8(s, f, e, w, i, d0, d1, d2, d3)    Recls_LogSeverities_Init((s), (f), (e), (w), (i), (d0), (d1), (d2), (d3))
+
+/** \def Recls_LogSeverities_Init7(s, f, e, w, i, d0, d1, d2)
+ *
+ * Initialises an instance of recls_log_severities_t with seven severity levels.
+ *
+ * \see Recls_LogSeverities_Init
+ */
+#define Recls_LogSeverities_Init7(s, f, e, w, i, d0, d1, d2)        Recls_LogSeverities_Init7((s), (f), (e), (w), (i), (d0), (d1), (d2), -1)
 
 /** \def Recls_LogSeverities_Init6(s, f, e, w, i, d0, d1)
  *
@@ -1643,7 +1659,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init6(s, f, e, w, i, d0, d1)    Recls_LogSeverities_Init((s), (f), (e), (w), (i), (d0), (d1), -1)
+#define Recls_LogSeverities_Init6(s, f, e, w, i, d0, d1)            Recls_LogSeverities_Init6((s), (f), (e), (w), (i), (d0), (d1), -1)
 
 /** \def Recls_LogSeverities_Init5(s, f, e, w, i, d0)
  *
@@ -1651,7 +1667,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init5(s, f, e, w, i, d0)        Recls_LogSeverities_Init((s), (f), (e), (w), (i), (d0), -1, -1)
+#define Recls_LogSeverities_Init5(s, f, e, w, i, d0)                Recls_LogSeverities_Init5((s), (f), (e), (w), (i), (d0), -1)
 
 /** \def Recls_LogSeverities_Init4(s, f, e, w, i)
  *
@@ -1659,7 +1675,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init4(s, f, e, w, i)            Recls_LogSeverities_Init((s), (f), (e), (w), (i), -1, -1, -1)
+#define Recls_LogSeverities_Init4(s, f, e, w, i)                    Recls_LogSeverities_Init4((s), (f), (e), (w), (i), -1)
 
 /** \def Recls_LogSeverities_Init3(s, f, e, w)
  *
@@ -1667,7 +1683,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init3(s, f, e, w)               Recls_LogSeverities_Init((s), (f), (e), (w), -1, -1, -1, -1)
+#define Recls_LogSeverities_Init3(s, f, e, w)                       Recls_LogSeverities_Init4((s), (f), (e), (w), -11)
 
 /** \def Recls_LogSeverities_Init2(s, f, e)
  *
@@ -1675,7 +1691,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init2(s, f, e)                  Recls_LogSeverities_Init((s), (f), (e), -1, -1, -1, -1, -1)
+#define Recls_LogSeverities_Init2(s, f, e)                          Recls_LogSeverities_Init3((s), (f), (e), -1)
 
 
 
@@ -1698,40 +1714,55 @@ struct recls_log_severities_t
      * - [4] - Debug0 condition
      * - [5] - Debug1 condition
      * - [6] - Debug2 condition
+     * - [7] - Debug3 condition
      *
      * Specifying an element with a value <0 disables logging for that
      * severity.
      */
-    int   severities[7];
+    int   severities[8];
 
 #ifdef __cplusplus
 public:
+    recls_log_severities_t(int fatalSeverity, int errorSeverity, int warningSeverity, int informationalSeverity, int debug0Severity, int debug1Severity, int debug2Severity, int debug3Severity)
+    {
+        init_(fatalSeverity, errorSeverity, warningSeverity, informationalSeverity, debug0Severity, debug1Severity, debug2Severity, debug3Severity);
+    }
     recls_log_severities_t(int fatalSeverity, int errorSeverity, int warningSeverity, int informationalSeverity, int debug0Severity, int debug1Severity, int debug2Severity)
     {
-        init_(fatalSeverity, errorSeverity, warningSeverity, informationalSeverity, debug0Severity, debug1Severity, debug2Severity);
+        init_(fatalSeverity, errorSeverity, warningSeverity, informationalSeverity, debug0Severity, debug1Severity, debug2Severity, -1);
     }
     recls_log_severities_t(int fatalSeverity, int errorSeverity, int warningSeverity, int informationalSeverity, int debug0Severity, int debug1Severity)
     {
-        init_(fatalSeverity, errorSeverity, warningSeverity, informationalSeverity, debug0Severity, debug1Severity, -1);
+        init_(fatalSeverity, errorSeverity, warningSeverity, informationalSeverity, debug0Severity, debug1Severity, -1, -1);
     }
     recls_log_severities_t(int fatalSeverity, int errorSeverity, int warningSeverity, int informationalSeverity, int debug0Severity)
     {
-        init_(fatalSeverity, errorSeverity, warningSeverity, informationalSeverity, debug0Severity, -1, -1);
+        init_(fatalSeverity, errorSeverity, warningSeverity, informationalSeverity, debug0Severity, -1, -1, -1);
     }
     recls_log_severities_t(int fatalSeverity, int errorSeverity, int warningSeverity, int informationalSeverity)
     {
-        init_(fatalSeverity, errorSeverity, warningSeverity, informationalSeverity, -1, -1, -1);
+        init_(fatalSeverity, errorSeverity, warningSeverity, informationalSeverity, -1, -1, -1, -1);
     }
     recls_log_severities_t(int fatalSeverity, int errorSeverity, int warningSeverity)
     {
-        init_(fatalSeverity, errorSeverity, warningSeverity, -1, -1, -1, -1);
+        init_(fatalSeverity, errorSeverity, warningSeverity, -1, -1, -1, -1, -1);
     }
     recls_log_severities_t(int fatalSeverity, int errorSeverity)
     {
-        init_(fatalSeverity, errorSeverity, -1, -1, -1, -1, -1);
+        init_(fatalSeverity, errorSeverity, -1, -1, -1, -1, -1, -1);
     }
 private:
-    void init_(int fatalSeverity, int errorSeverity, int warningSeverity, int informationalSeverity, int debug0Severity, int debug1Severity, int debug2Severity)
+    void
+    init_(
+        int fatalSeverity
+    ,   int errorSeverity
+    ,   int warningSeverity
+    ,   int informationalSeverity
+    ,   int debug0Severity
+    ,   int debug1Severity
+    ,   int debug2Severity
+    ,   int debug3Severity
+    )
     {
         severities[0] = fatalSeverity;
         severities[1] = errorSeverity;
@@ -1740,6 +1771,7 @@ private:
         severities[4] = debug0Severity;
         severities[5] = debug1Severity;
         severities[6] = debug2Severity;
+        severities[7] = debug3Severity;
     }
 #endif /* __cplusplus */
 };
@@ -1914,7 +1946,7 @@ RECLS_FNDECL(size_t)
 Recls_CombinePaths(
     /* [in] */ recls_char_t const*  path1
 ,   /* [in] */ recls_char_t const*  path2
-,   /* [in] */ recls_char_t*        result
+,   /* [in] */ recls_char_t         result[]
 ,   /* [in] */ size_t               cchResult
 );
 
@@ -1935,7 +1967,7 @@ RECLS_FNDECL(size_t)
 Recls_DeriveRelativePath(
     /* [in] */ recls_char_t const*  origin
 ,   /* [in] */ recls_char_t const*  target
-,   /* [in] */ recls_char_t*        result
+,   /* [in] */ recls_char_t         result[]
 ,   /* [in] */ size_t               cchResult
 );
 
@@ -1954,7 +1986,7 @@ Recls_DeriveRelativePath(
 RECLS_FNDECL(size_t)
 Recls_SqueezePath(
     /* [in] */ recls_char_t const*  path
-,   /* [in] */ recls_char_t*        result
+,   /* [in] */ recls_char_t         result[]
 ,   /* [in] */ size_t               cchResult
 );
 
@@ -2162,14 +2194,6 @@ inline size_t c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 #endif /* !RECLS_PURE_API */
 
 /* /////////////////////////////////////////////////////////////////////////
- * inclusion
- */
-
-#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
-# pragma once
-#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
-
-/* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
 
@@ -2177,7 +2201,13 @@ inline size_t c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 # include <recls/internal/doc/includes.h>
 #endif /* RECLS_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_RECLS_H_RECLS */
 

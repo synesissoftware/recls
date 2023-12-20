@@ -16,7 +16,7 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 
 /* Standard C Library Files */
@@ -44,13 +44,13 @@ int main()
     recls_uint32_t  flags   =   RECLS_F_DIRECTORIES;
     recls_rc_t      rc      =   Recls_Search(NULL, RECLS_LITERAL("*"), flags, &hSrch);
 
-    if(RECLS_RC_NO_MORE_DATA == rc)
+    if (RECLS_RC_NO_MORE_DATA == rc)
     {
         printf(RECLS_LITERAL("  no matches found\n"));
 
         return EXIT_SUCCESS;
     }
-    else if(RECLS_FAILED(rc))
+    else if (RECLS_FAILED(rc))
     {
         /* The search failed. Display the error string. */
         recls_char_t    err[1001];
@@ -72,7 +72,7 @@ int main()
         do
         {
             /* ... test whether it's non-empty, ... */
-            if(!Recls_IsDirectoryEntryEmpty(entry))
+            if (!Recls_IsDirectoryEntryEmpty(entry))
             {
                 /* ... display the search relative path, ... */
                 printf(RECLS_LITERAL("%.*s\n"), (int)(entry->searchRelativePath.end - entry->searchRelativePath.begin), entry->searchRelativePath.begin);
@@ -82,7 +82,7 @@ int main()
             Recls_CloseDetails(entry);
 
         } /* ... and get the next entry. */
-        while(RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
+        while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
 
         /* Close the search handle. */
         Recls_SearchClose(hSrch);

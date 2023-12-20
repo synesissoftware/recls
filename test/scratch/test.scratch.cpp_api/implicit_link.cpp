@@ -9,21 +9,15 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/implicit_link.h>
 
-/* UNIXem Header Files */
+/* UNIXem header files */
 #include <platformstl/platformstl.h>
 #if defined(PLATFORMSTL_OS_IS_UNIX) && \
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif /* operating system */
-
-/* xCover Header Files */
-#if defined(__FUNCTION__) && \
-    defined(__COUNTER__)
-# include <xcover/implicit_link.h>
-#endif
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

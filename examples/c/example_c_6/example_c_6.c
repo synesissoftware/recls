@@ -15,7 +15,7 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 
 /* Standard C Library Files */
@@ -40,7 +40,7 @@ int main()
     recls_info_t    current;
     recls_rc_t      rc  =   Recls_Stat(RECLS_LITERAL("."), RECLS_F_DIRECTORIES | RECLS_F_DIRECTORY_PARTS, &current);
 
-    if(RECLS_FAILED(rc))
+    if (RECLS_FAILED(rc))
     {
         /* The search failed. Display the error string. */
         recls_char_t    err[1001];
@@ -86,7 +86,7 @@ int main()
 
         /* directory parts */
         printf(RECLS_LITERAL("  directory parts:\n"));
-        for(part_ptr = current->directoryParts.begin; part_ptr != current->directoryParts.end; ++part_ptr)
+        for (part_ptr = current->directoryParts.begin; part_ptr != current->directoryParts.end; ++part_ptr)
         {
             printf(RECLS_LITERAL("    part:     %.*s\n"), (int)(part_ptr->end - part_ptr->begin), part_ptr->begin);
         }

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        impl.types.ftp.hpp
+ * File:        src/impl.types.ftp.hpp
  *
  * Purpose:     Implementation header.
  *
@@ -34,8 +34,8 @@
 #include <recls/recls.h>
 
 #include "incl.inetstl.h"
+#include "incl.platformstl.h"
 #include "impl.string.hpp"
-#include "impl.cover.h"
 
 #include <stlsoft/memory/auto_buffer.hpp>
 
@@ -43,8 +43,8 @@
 #include <inetstl/network/connection.hpp>
 #include <inetstl/network/session.hpp>
 
-#include <winstl/filesystem/file_path_buffer.hpp>
-#include <winstl/filesystem/path.hpp>
+#include <platformstl/filesystem/path.hpp>
+#include <platformstl/filesystem/path_buffer.hpp>
 
 #ifdef RECLS_STLSOFT_1_12_OR_LATER
 # include <stlsoft/exception/policy/nothrow_exception_policy.hpp>
@@ -67,6 +67,23 @@ namespace impl
  * types
  */
 
+template<
+    typename T_character
+>
+struct ftp_types_base;
+
+template<>
+struct ftp_types_base<recls_char_a_t>
+{
+    typedef platformstl::path_buffer_a                          path_buffer_type;
+};
+
+template<>
+struct ftp_types_base<recls_char_w_t>
+{
+    typedef platformstl::path_buffer_w                          path_buffer_type;
+};
+
 struct ftp_types
 {
 public: /// Member Types
@@ -87,11 +104,13 @@ public: /// Member Types
     /// The find data type
     typedef traits_type::find_data_type                     find_data_type;
 
-    /// The file-path buffer type
-    typedef ::winstl::basic_file_path_buffer<recls_char_t>  file_path_buffer_type;
+    /// The path buffer type
+    typedef ftp_types_base<
+        recls_char_t
+    >                                                       path_buffer_type;
 
     /// The path type
-    typedef ::winstl::basic_path<recls_char_t>              path_type;
+    typedef ::platformstl::basic_path<recls_char_t>         path_type;
 
     // The session type
     typedef inetstl::basic_session<
@@ -113,55 +132,26 @@ public: /// Member Types
 #endif /* RECLS_STLSOFT_1_12_OR_LATER */
     >                                                       connection_type;
 
-public: /// Operations
+private: // construction
+    ftp_types();                        // default-construction proscribed
+    ftp_types(ftp_types const&);        // copy-construction proscribed
+    void operator =(ftp_types const&);  // copy-assignment proscribed
 
-    // TODO: Factor out this with impl.types.hpp, via CRTP
+public: // operations
 
-    static size_t count_char_instances(
-        recls_char_t const* begin
-    ,   recls_char_t const* end
-    ,   recls_char_t const  ch
-    )
-    {
-        RECLS_ASSERT(NULL != begin);
-        RECLS_ASSERT(NULL != end);
-
-        RECLS_COVER_MARK_LINE();
-
-        size_t cDirParts = 0;
-
-        for(; begin != end; ++begin)
-        {
-            RECLS_COVER_MARK_LINE();
-
-            if(*begin == ch)
-            {
-                RECLS_COVER_MARK_LINE();
-
-                ++cDirParts;
-            }
-        }
-
-        return cDirParts;
-    }
     ///
     /// \note Assumes that the directory has a trailing path separator
-    static size_t count_dir_parts(
+    static
+    size_t
+    count_dir_parts(
         recls_char_t const* begin
     ,   recls_char_t const* end
     )
     {
-        RECLS_COVER_MARK_LINE();
-
         // Need this seemingly superflous cast (to size_t) in order to
         // placate CodeWarrior
         return size_t(std::count_if(begin, end, traits_type::is_path_name_separator));
     }
-
-private: /// Not to be implemented
-    ftp_types();
-    ftp_types(ftp_types const&);
-    ftp_types& operator =(ftp_types const&);
 };
 
 typedef ftp_types   types; // This is required to avoid bad linker behaviour (which makes sense!)

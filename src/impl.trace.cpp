@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        impl.trace.cpp
+ * File:        src/impl.trace.cpp
  *
  * Purpose:     Tracing.
  *
@@ -24,15 +24,14 @@
  * includes
  */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 #include <recls/assert.h>
 #include "incl.platformstl.h"
 #include "impl.trace.h"
 #include "impl.util.h"
-#include "impl.cover.h"
 
-/* STLSoft / platform-specific Header Files */
+/* STLSoft / platform-specific header files */
 #include <stlsoft/internal/safestr.h>
 #if defined(RECLS_PLATFORM_IS_UNIX)
 # include <stlsoft/error/errno_scope.hpp>
@@ -46,7 +45,7 @@
 # error Unrecognised platform
 #endif /* platform */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
@@ -64,36 +63,34 @@ namespace
     using recls::impl::recls_vsnprintf;
 #endif /* !RECLS_NO_NAMESPACE */
 
-    int const fatalSeverity_DEFAULT         = 0;
-    int const errorSeverity_DEFAULT         = 3;
-    int const warningSeverity_DEFAULT       = 4;
-    int const informationalSeverity_DEFAULT = 6;
-    int const debug0Severity_DEFAULT        = 7;
-    int const debug1Severity_DEFAULT        = 7;
+    int const fatalSeverity_DEFAULT         = 1;
+    int const errorSeverity_DEFAULT         = 4;
+    int const warningSeverity_DEFAULT       = 5;
+    int const informationalSeverity_DEFAULT = 7;
+    int const debug0Severity_DEFAULT        = 8;
+    int const debug1Severity_DEFAULT        = 9;
     int const debug2Severity_DEFAULT        = -1;
+    int const debug3Severity_DEFAULT        = -1;
 
 
 #if defined(RECLS_DEBUG) && \
     (   defined(RECLS_PLATFORM_IS_WINDOWS) || \
         (   defined(RECLS_PLATFORM_IS_UNIX) && \
             defined(_WIN32)))
+
     void RECLS_CALLCONV_DEFAULT default_debug_log_fn_(
         int                 severity
     ,   recls_char_t const* fmt
     ,   va_list             args
     )
     {
-        RECLS_COVER_MARK_LINE();
-
         recls_char_t    message[1001];
         int             n1;
         int             n2;
         int             n;
 
-        if(0 == (severity & 0x0f))
+        if (0 == (severity & 0x0f))
         {
-            RECLS_COVER_MARK_LINE();
-
             // treat it as a number
 
             n1 = recls_snprintf(&message[0]
@@ -102,8 +99,6 @@ namespace
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             // treat it as a set of flags
 
             n1 = recls_snprintf(&message[0]
@@ -115,10 +110,8 @@ namespace
                         ,   STLSOFT_NUM_ELEMENTS(message) - 2 - n1
                         ,   fmt, args);
 
-        if(n2 < 0)
+        if (n2 < 0)
         {
-            RECLS_COVER_MARK_LINE();
-
             n2 = static_cast<int>(STLSOFT_NUM_ELEMENTS(message)) - 2 - n1;
         }
 
@@ -138,23 +131,33 @@ namespace
 
     static recls_log_pfn_t  s_loggingFunction   =   default_debug_log_fn_;
 #else /* ? OS */
-    static recls_log_pfn_t  s_loggingFunction   =   NULL;
+    static recls_log_pfn_t  s_loggingFunction   =   ss_nullptr_k;
 #endif /* OS */
-    static int              s_severities[7]     =
+    static int              s_severities[12]     =
     {
-        fatalSeverity_DEFAULT
+        -12345678
+    ,   fatalSeverity_DEFAULT
+    ,   -12345678
+    ,   -12345678
     ,   errorSeverity_DEFAULT
     ,   warningSeverity_DEFAULT
+    ,   -12345678
     ,   informationalSeverity_DEFAULT
     ,   debug0Severity_DEFAULT
     ,   debug1Severity_DEFAULT
     ,   debug2Severity_DEFAULT
+    ,   debug3Severity_DEFAULT
     };
     static int              s_flags             =   0;
 
 #if 0
-    static const char       s_spaces[]          =   "                                                                                                                                ";
-#endif /* 0 */
+#elif defined(__cplusplus) && \
+      (   __cplusplus >= 201103L || \
+          defined(STLSOFT_CF_static_assert_SUPPORT))
+
+    static_assert(RECLS_SEVIX_UNKNOWN >= 0, "cannot be negative");
+    static_assert(RECLS_SEVIX_DBG3 < STLSOFT_NUM_ELEMENTS(s_severities), "constant too large for severities array");
+#endif /* __cplusplus */
 
 } // anonymous namespace
 
@@ -180,17 +183,19 @@ RECLS_FNDECL(void) Recls_LogSeverities_Init(
 ,   int                             debug0Severity
 ,   int                             debug1Severity
 ,   int                             debug2Severity
+,   int                             debug3Severity
 )
 {
-    RECLS_ASSERT(NULL != severities);
+    RECLS_ASSERT(ss_nullptr_k != severities);
 
-    severities->severities[0] = fatalSeverity;
-    severities->severities[1] = errorSeverity;
-    severities->severities[2] = warningSeverity;
-    severities->severities[3] = informationalSeverity;
-    severities->severities[4] = debug0Severity;
-    severities->severities[5] = debug1Severity;
-    severities->severities[6] = debug2Severity;
+    severities->severities[0]   =   fatalSeverity;
+    severities->severities[1]   =   errorSeverity;
+    severities->severities[2]   =   warningSeverity;
+    severities->severities[3]   =   informationalSeverity;
+    severities->severities[4]   =   debug0Severity;
+    severities->severities[5]   =   debug1Severity;
+    severities->severities[6]   =   debug2Severity;
+    severities->severities[7]   =   debug3Severity;
 }
 
 RECLS_FNDECL(void) Recls_SetApiLogFunction(
@@ -199,35 +204,31 @@ RECLS_FNDECL(void) Recls_SetApiLogFunction(
 ,   recls_log_severities_t const* severities
 )
 {
-    RECLS_ASSERT((NULL == severities) || (NULL != pfn));
-
-    RECLS_COVER_MARK_LINE();
+    RECLS_ASSERT((ss_nullptr_k == severities) || (ss_nullptr_k != pfn));
 
     s_loggingFunction   =   pfn;
     s_flags             =   flags;
-    if(NULL == severities)
+    if (ss_nullptr_k == severities)
     {
-        RECLS_COVER_MARK_LINE();
-
-        s_severities[0]     =   fatalSeverity_DEFAULT;
-        s_severities[1]     =   errorSeverity_DEFAULT;
-        s_severities[2]     =   warningSeverity_DEFAULT;
-        s_severities[3]     =   informationalSeverity_DEFAULT;
-        s_severities[4]     =   debug0Severity_DEFAULT;
-        s_severities[5]     =   debug1Severity_DEFAULT;
-        s_severities[6]     =   debug2Severity_DEFAULT;
+        s_severities[RECLS_SEVIX_FATAL]   =   fatalSeverity_DEFAULT;
+        s_severities[RECLS_SEVIX_ERROR]   =   errorSeverity_DEFAULT;
+        s_severities[RECLS_SEVIX_WARN]    =   warningSeverity_DEFAULT;
+        s_severities[RECLS_SEVIX_INFO]    =   informationalSeverity_DEFAULT;
+        s_severities[RECLS_SEVIX_DBG0]    =   debug0Severity_DEFAULT;
+        s_severities[RECLS_SEVIX_DBG1]    =   debug1Severity_DEFAULT;
+        s_severities[RECLS_SEVIX_DBG2]    =   debug2Severity_DEFAULT;
+        s_severities[RECLS_SEVIX_DBG3]    =   debug3Severity_DEFAULT;
     }
     else
     {
-        RECLS_COVER_MARK_LINE();
-
-        s_severities[0]     =   severities->severities[0];
-        s_severities[1]     =   severities->severities[1];
-        s_severities[2]     =   severities->severities[2];
-        s_severities[3]     =   severities->severities[3];
-        s_severities[4]     =   severities->severities[4];
-        s_severities[5]     =   severities->severities[5];
-        s_severities[6]     =   severities->severities[6];
+        s_severities[RECLS_SEVIX_FATAL]   =   severities->severities[0];
+        s_severities[RECLS_SEVIX_ERROR]   =   severities->severities[1];
+        s_severities[RECLS_SEVIX_WARN]    =   severities->severities[2];
+        s_severities[RECLS_SEVIX_INFO]    =   severities->severities[3];
+        s_severities[RECLS_SEVIX_DBG0]    =   severities->severities[4];
+        s_severities[RECLS_SEVIX_DBG1]    =   severities->severities[5];
+        s_severities[RECLS_SEVIX_DBG2]    =   severities->severities[6];
+        s_severities[RECLS_SEVIX_DBG3]    =   severities->severities[7];
     }
 }
 
@@ -252,26 +253,24 @@ typedef winstl::last_error_scope            error_scope_t;
  * recls_????_printf_
  */
 
-static void recls_log_vprintf_(
+static
+void
+recls_log_vprintf_(
     int                 sevIndex
 ,   recls_char_t const* fmt
 ,   va_list             args
 )
 {
-    RECLS_ASSERT(NULL != fmt);
-
-    RECLS_COVER_MARK_LINE();
+    RECLS_ASSERT(ss_nullptr_k != fmt);
 
     RECLS_ASSERT(sevIndex >= 0 && sevIndex < int(STLSOFT_NUM_ELEMENTS(s_severities)));
 
-    recls_log_pfn_t loggingFunction =   s_loggingFunction;
-    int             severity        =   s_severities[sevIndex % STLSOFT_NUM_ELEMENTS(s_severities)];
+    recls_log_pfn_t const   loggingFunction =   s_loggingFunction;
+    int const               severity        =   s_severities[sevIndex % STLSOFT_NUM_ELEMENTS(s_severities)];
 
-    if( severity >= 0 &&
-        NULL != loggingFunction)
+    if (severity >= 0 &&
+        ss_nullptr_k != loggingFunction)
     {
-        RECLS_COVER_MARK_LINE();
-
         (*loggingFunction)(severity, fmt, args);
     }
 }
@@ -282,8 +281,6 @@ void recls_log_printf_(
 ,   ...
 )
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -295,8 +292,6 @@ void recls_log_printf_(
 
 void recls_fatal_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -308,8 +303,6 @@ void recls_fatal_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_error_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -321,8 +314,6 @@ void recls_error_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_warning_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -334,8 +325,6 @@ void recls_warning_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_info_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -347,8 +336,6 @@ void recls_info_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_debug0_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -360,8 +347,6 @@ void recls_debug0_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_debug1_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
@@ -373,13 +358,22 @@ void recls_debug1_trace_printf_(recls_char_t const* fmt, ...)
 
 void recls_debug2_trace_printf_(recls_char_t const* fmt, ...)
 {
-    RECLS_COVER_MARK_LINE();
-
     va_list args;
 
     va_start(args, fmt);
 
     recls_log_vprintf_(RECLS_SEVIX_DBG2, fmt, args);
+
+    va_end(args);
+}
+
+void recls_debug3_trace_printf_(recls_char_t const* fmt, ...)
+{
+    va_list args;
+
+    va_start(args, fmt);
+
+    recls_log_vprintf_(RECLS_SEVIX_DBG3, fmt, args);
 
     va_end(args);
 }
@@ -393,8 +387,6 @@ function_scope::function_scope(
 )
     : m_fn(fn)
 {
-    RECLS_COVER_MARK_LINE();
-
     error_scope_t    error_scope;
 
     recls_debug2_trace_printf_(RECLS_LITERAL(">> %s()"), m_fn);
@@ -402,8 +394,6 @@ function_scope::function_scope(
 
 function_scope::~function_scope() STLSOFT_NOEXCEPT
 {
-    RECLS_COVER_MARK_LINE();
-
     error_scope_t    error_scope;
 
     recls_debug2_trace_printf_(RECLS_LITERAL("<< %s()"), m_fn);

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        api.util.get_file_sizes.cpp
+ * File:        src/api.util.get_file_sizes.cpp
  *
  * Purpose:     recls API utility functions.
  *
@@ -29,7 +29,6 @@
 #include "impl.root.h"
 #include "impl.types.hpp"
 #include "impl.util.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -43,48 +42,23 @@ namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util")
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.util.get_file_sizes")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
- * constants
- */
-
-/* /////////////////////////////////////////////////////////////////////////
  * extended API functions
  */
 
 RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeGigaBytes(recls_filesize_t size)
 {
-    RECLS_COVER_MARK_LINE();
-
     return size / (1024 * 1024 * 1024);
 }
 
 RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeMegaBytes(recls_filesize_t size)
 {
-    RECLS_COVER_MARK_LINE();
-
     return size / (1024 * 1024);
 }
 
 RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeKiloBytes(recls_filesize_t size)
 {
-    RECLS_COVER_MARK_LINE();
-
     return size / (1024);
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

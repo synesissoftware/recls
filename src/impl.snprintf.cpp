@@ -31,7 +31,6 @@
 #include "impl.types.hpp"
 #include "impl.util.h"
 #include "impl.constants.hpp"
-#include "impl.cover.h"
 
 /* STLSoft header files */
 
@@ -99,8 +98,6 @@ RECLS_FNDECL(int) recls_vsnprintf_a(
 ,   va_list     args
 )
 {
-    RECLS_COVER_MARK_LINE();
-
     return recls_vsnprintf_a_(dest, cchDest, fmt, args);
 }
 
@@ -114,15 +111,11 @@ RECLS_FNDECL(int) recls_snprintf_a(
     va_list args;
     int     ret;
 
-    RECLS_COVER_MARK_LINE();
-
     va_start(args, fmt);
 
     ret = recls_vsnprintf_a(dest, cchDest, fmt, args);
 
     va_end(args);
-
-    RECLS_COVER_MARK_LINE();
 
     return ret;
 }
@@ -138,8 +131,6 @@ RECLS_FNDECL(int) recls_vsnprintf(
 ,   va_list             args
 )
 {
-    RECLS_COVER_MARK_LINE();
-
     return recls_vsnprintf_(dest, cchDest, fmt, args);
 }
 
@@ -153,15 +144,11 @@ RECLS_FNDECL(int) recls_snprintf(
     va_list args;
     int     ret;
 
-    RECLS_COVER_MARK_LINE();
-
     va_start(args, fmt);
 
     ret = recls_vsnprintf(dest, cchDest, fmt, args);
 
     va_end(args);
-
-    RECLS_COVER_MARK_LINE();
 
     return ret;
 }

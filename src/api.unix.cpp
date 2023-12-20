@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        api.unix.cpp
+ * File:        src/api.unix.cpp
  *
  * Purpose:     Windows implementation file for the recls API.
  *
@@ -30,7 +30,6 @@
 #include "incl.unixstl.h"
 #include "impl.string.hpp"
 #include "impl.util.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -49,27 +48,15 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
  * roots
  */
 
 RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
                                     ,   size_t          cRoots)
 {
-    RECLS_COVER_MARK_LINE();
-
-    if(0 < cRoots)
+    if (0 < cRoots)
     {
-        RECLS_ASSERT(NULL != roots);
-
-        RECLS_COVER_MARK_LINE();
+        RECLS_ASSERT(ss_nullptr_k != roots);
 
         roots[0].name[0] = '/';
         roots[0].name[1] = '\0';
@@ -82,16 +69,8 @@ RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
                                             ,   size_t          cRoots
                                             ,   recls_uint32_t  /* flags */)
 {
-    RECLS_COVER_MARK_LINE();
-
     return recls::Recls_GetRoots(roots, cRoots);
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        impl.string.hpp
+ * File:        src/impl.string.hpp
  *
  * Purpose:     Implementation header.
  *
@@ -29,8 +29,6 @@
 
 #include <recls/recls.h>
 
-//#define RECLS_NO_USE_SIMPLE_STRING
-
 #ifndef RECLS_NO_USE_SIMPLE_STRING
 
 # include <stlsoft/string/simple_string.hpp>
@@ -38,13 +36,11 @@
 # define    RECLS_STRING_TEMPLATE_1(T)  stlsoft::basic_simple_string<T>
 
 # define    STLSOFT_STRING_ACCESS_NO_STD_STRING /* We don't care about std::string in recls */
-
 #else /* ? RECLS_NO_USE_SIMPLE_STRING */
 
 # include <string>
 
 # define    RECLS_STRING_TEMPLATE_1(T)  std::basic_string<T>
-
 #endif /* !RECLS_NO_USE_SIMPLE_STRING */
 
 #include <stlsoft/shims/access/string.hpp>

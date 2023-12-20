@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        api.error.cpp
+ * File:        src/api.error.cpp
  *
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
@@ -28,7 +28,6 @@
 #include <recls/assert.h>
 #include "impl.root.h"
 #include "impl.util.h"
-#include "impl.cover.h"
 
 #include "ReclsSearch.hpp"
 
@@ -71,7 +70,9 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
-static recls_char_t const* lookup_error_string_(
+static
+recls_char_t const*
+lookup_error_string_(
     recls_rc_t  rc
 ,   int*        e
 ,   size_t*     len
@@ -124,6 +125,8 @@ static recls_char_t const* lookup_error_string_(
 #ifdef RECLS_PLATFORM_IS_WINDOWS
     RC_STR_DECL(RECLS_RC_SHORT_NAME_NOT_AVAILABLE,  EFAIL,          "could not obtain short name");
 #endif
+    RC_STR_DECL(RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS,   EINVAL,         "the search-directory parameter cannot contain path separator or wildcard characters");
+    RC_STR_DECL(RECLS_RC_ROOTED_PATHS_IN_PATTERNS,              EINVAL,         "a rooted pattern must not be specified with other patterns");
 
 
     static const StringEntry* entries[] =
@@ -155,37 +158,29 @@ static recls_char_t const* lookup_error_string_(
 #ifdef RECLS_PLATFORM_IS_WINDOWS
         RC_STR_ENTRY(RECLS_RC_SHORT_NAME_NOT_AVAILABLE),
 #endif
+        RC_STR_ENTRY(RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS),
+        RC_STR_ENTRY(RECLS_RC_ROOTED_PATHS_IN_PATTERNS),
     };
     int                         e_;     // Null object pattern
     size_t                      len_;   // Null object pattern
 
-    if(NULL == e)
+    if (ss_nullptr_k == e)
     {
-        RECLS_COVER_MARK_LINE();
-
         e = &e_;
     }
 
-    if(NULL == len)
+    if (ss_nullptr_k == len)
     {
-        RECLS_COVER_MARK_LINE();
-
         len = &len_;
     }
 
-    for(size_t i = 0; i < stlsoft_num_elements_(entries); ++i)
+    for (size_t i = 0; i < stlsoft_num_elements_(entries); ++i)
     {
-        RECLS_COVER_MARK_LINE();
-
-        if(entries[i]->rc == rc)
+        if (entries[i]->rc == rc)
         {
-            RECLS_COVER_MARK_LINE();
-
             return (*len = entries[i]->len, *e = entries[i]->e, entries[i]->str);
         }
     }
-
-    RECLS_COVER_MARK_LINE();
 
     return (*len = 0, *e = EFAIL, RECLS_LITERAL(""));
 }
@@ -196,15 +191,9 @@ static recls_char_t const* lookup_error_string_(
 
 #if !defined(RECLS_NO_NAMESPACE)
 } /* namespace impl */
+
+using ::recls::impl::ReclsSearch;
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.error")
-RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
  * error handling
@@ -214,47 +203,43 @@ RECLS_API Recls_GetLastError(hrecls_t hSrch)
 {
     function_scope_trace("Recls_GetLastError");
 
-    ::recls::impl::ReclsSearch* si = ::recls::impl::ReclsSearch::FromHandle(hSrch);
+    ReclsSearch* const si = ReclsSearch::FromHandle(hSrch);
 
-    RECLS_MESSAGE_ASSERT("Search handle is null!", NULL != si);
-
-    RECLS_COVER_MARK_LINE();
+    RECLS_MESSAGE_ASSERT("Search handle is null!", ss_nullptr_k != si);
 
     return si->GetLastError();
 }
 
-RECLS_FNDECL(size_t) Recls_GetErrorString(  recls_rc_t      rc
-                                        ,   recls_char_t*   buffer
-                                        ,   size_t          cchBuffer)
+RECLS_FNDECL(size_t)
+Recls_GetErrorString(
+    recls_rc_t      rc
+,   recls_char_t    buffer[]
+,   size_t          cchBuffer
+)
 {
     function_scope_trace("Recls_GetErrorString");
 
-    RECLS_COVER_MARK_LINE();
-
     size_t              cchError;
-    recls_char_t const* s = ::recls::impl::lookup_error_string_(rc, NULL, &cchError);
+    recls_char_t const* s = ::recls::impl::lookup_error_string_(rc, ss_nullptr_k, &cchError);
 
-    if(NULL == buffer)
+    if (ss_nullptr_k == buffer)
     {
-        RECLS_COVER_MARK_LINE();
-
         return cchError;
     }
     else
     {
-        RECLS_COVER_MARK_LINE();
-
         return ::recls::impl::recls_strncpy_(buffer, cchBuffer, s, cchError);
     }
 }
 
-RECLS_FNDECL(size_t) Recls_GetLastErrorString(  hrecls_t        hSrch
-                                            ,   recls_char_t*   buffer
-                                            ,   size_t          cchBuffer)
+RECLS_FNDECL(size_t)
+Recls_GetLastErrorString(
+    hrecls_t        hSrch
+,   recls_char_t    buffer[]
+,   size_t          cchBuffer
+)
 {
     function_scope_trace("Recls_GetLastErrorString");
-
-    RECLS_COVER_MARK_LINE();
 
     return Recls_GetErrorString(Recls_GetLastError(hSrch), buffer, cchBuffer);
 }
@@ -263,20 +248,16 @@ RECLS_FNDECL(recls_char_t const*) Recls_GetSearchCodeString(recls_rc_t rc)
 {
     function_scope_trace("Recls_GetLastErrorString");
 
-    RECLS_COVER_MARK_LINE();
-
-    return impl::lookup_error_string_(rc, NULL, NULL);
+    return impl::lookup_error_string_(rc, ss_nullptr_k, ss_nullptr_k);
 }
 
 RECLS_FNDECL(size_t) Recls_GetSearchCodeStringLength(recls_rc_t rc)
 {
     function_scope_trace("Recls_GetLastErrorString");
 
-    RECLS_COVER_MARK_LINE();
-
     size_t len;
 
-    return (impl::lookup_error_string_(rc, NULL, &len), len);
+    return (impl::lookup_error_string_(rc, ss_nullptr_k, &len), len);
 }
 
 RECLS_FNDECL(int) Recls_GetErrno(
@@ -285,18 +266,10 @@ RECLS_FNDECL(int) Recls_GetErrno(
 {
     function_scope_trace("Recls_GetErrno");
 
-    RECLS_COVER_MARK_LINE();
-
     int e = 0;
 
-    return (impl::lookup_error_string_(rc, &e, NULL), e);
+    return (impl::lookup_error_string_(rc, &e, ss_nullptr_k), e);
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

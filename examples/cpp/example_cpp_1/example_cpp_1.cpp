@@ -15,14 +15,14 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.hpp>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <iostream>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -43,7 +43,7 @@ int main()
         int                     flags   =   recls::RECLS_F_FILES | recls::RECLS_F_RECURSIVE;
         recls::search_sequence  files(RECLS_LITERAL("."), recls::Recls_GetWildcardsAll(), flags);
 
-        { for(recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
+        { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
         {
             recls::entry entry = *i;
 

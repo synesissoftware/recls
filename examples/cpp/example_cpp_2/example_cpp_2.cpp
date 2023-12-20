@@ -17,14 +17,14 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.hpp>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <iostream>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -45,26 +45,16 @@ int main()
         /* stat() the home directory */
         recls::entry            home    =   recls::stat(RECLS_LITERAL("~"));
 
-        /* Enumerate all under the current directory, matching *.??? or makefile*.*. */
+        /* Enumerate all under the home directory, matching *.??? or makefile*.*. */
         int                     flags   =   recls::RECLS_F_FILES | recls::RECLS_F_RECURSIVE;
 
-#if defined(STLSOFT_COMPILER_IS_GCC) && \
-    __GNUC__ < 4
+        recls::search_sequence  files(home, RECLS_LITERAL("*.???|makefile|makefile.*|"), flags);
 
-        /* This is only for old GCC, and ... */
-        recls::search_sequence  files(RECLS_LITERAL(""), RECLS_LITERAL("*.???|makefile|makefile.*|"), flags);
-
-#else
-
-        /* ... this is the way you can (and should) do it in everything else. */
-        recls::search_sequence  files(NULL, RECLS_LITERAL("*.???|makefile|makefile.*|"), flags);
-
-#endif
-
-        { for(recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
+        /* and display each entry's search-relative path */
+        { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
         {
-            recls::entry        entry                   = *i;
-            recls::string_t relativePath  = recls::derive_relative_path(home.get_path(), entry.get_path());
+            recls::entry        entry           =   *i;
+            recls::string_t     relativePath    =   entry.get_search_relative_path();
 
             std::cout << relativePath << std::endl;
         }}

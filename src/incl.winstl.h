@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        incl.winstl.h
+ * File:        src/incl.winstl.h
  *
  * Purpose:     #includes the WinSTL root header and verifies the version.
  *
@@ -30,10 +30,10 @@
 # error Must not #include winstl/winstl.h before this file
 #endif /* WINSTL_INCL_WINSTL_H_WINSTL */
 
-#include <winstl/winstl.h>      /* If the compiler cannot find this, you are not using STLSoft 1.9.1 or later, as required. */
+#include <winstl/winstl.h>      /* If the compiler cannot find this, you are not using STLSoft 1.10.1 or later, as required. */
 #if !defined(_WINSTL_VER) || \
-    _WINSTL_VER < 0x010b07ff
-# error Requires WinSTL 1.11.7, or later. (www.stlsoft.org/downloads.html)
+    _WINSTL_VER < 0x010c0185
+# error Requires WinSTL 1.12.1 beta 5, or later. (www.stlsoft.org/downloads.html)
 #endif /* WINSTL version */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@
  */
 
 #ifdef _WINSTL_NO_NAMESPACE
-# error recls 1.9+ is not compatible with WinSTL namespace suppression
+# error recls 1.10+ is not compatible with WinSTL namespace suppression
 #endif /* _WINSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

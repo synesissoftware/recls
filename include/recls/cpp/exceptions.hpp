@@ -54,7 +54,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       2
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    1
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        44
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        48
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,25 +84,28 @@ namespace cpp
  * classes
  */
 
-/// The exception type thrown by the recls - STL mapping
+/// The exception type thrown by the recls C++ mapping
 class recls_exception
     : public std::runtime_error
 {
 /// \name Types
 /// @{
 public:
-    typedef std::runtime_error  parent_class_type;
-    typedef recls_exception     class_type;
+    typedef std::runtime_error                              parent_class_type;
+    typedef recls_exception                                 class_type;
 private:
-    typedef string_t            string_type;
-    typedef string_a_t          message_string_type;
+    typedef string_t                                        string_type;
+    typedef string_a_t                                      message_string_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
     /// Constructs an exception from the given error code
-    explicit recls_exception(recls_rc_t rc)
+    explicit
+    recls_exception(
+        recls_rc_t rc
+    )
         : parent_class_type(create_message_(rc))
         , m_rc(rc)
         , m_context()
@@ -118,7 +121,13 @@ public:
     /// \param path The path to be associated with the exception.
     /// \param patterns The patterns to be associated with the exception.
     /// \param flags The flags to be associated with the exception.
-    recls_exception(recls_rc_t rc, char const* context, recls_char_t const* path, recls_char_t const* patterns, int flags)
+    recls_exception(
+        recls_rc_t          rc
+    ,   char const*         context
+    ,   recls_char_t const* path
+    ,   recls_char_t const* patterns
+    ,   int                 flags
+    )
         : parent_class_type(create_message_(rc, context, path, flags))
         , m_rc(rc)
         , m_context(stlsoft::c_str_ptr(context))
@@ -134,7 +143,7 @@ public:
     {}
 #endif /* compiler */
 private:
-    class_type& operator =(class_type const& );
+    class_type& operator =(class_type const&);
 /// @}
 
 /// \name Accessors
@@ -170,11 +179,17 @@ public:
 /// \name Implementation
 /// @{
 private:
-    static message_string_type create_message_(recls_rc_t rc)
+    static
+    message_string_type
+    create_message_(
+        recls_rc_t rc
+    )
     {
         return create_message_(rc, NULL, NULL, 0);
     }
-    static message_string_type create_message_(
+    static
+    message_string_type
+    create_message_(
         recls_rc_t          rc
     ,   char const*         /* context */
     ,   recls_char_t const* /* path */
@@ -196,12 +211,12 @@ private:
 # ifdef RECLS_USING_SAFE_STR_FUNCTIONS
         int     err = ::wcstombs_s(&numConverted, &buffer[0], buffer.size(), codeString, codeStringLength);
 
-        if(0 != err)
+        if (0 != err)
 # else /* ? RECLS_USING_SAFE_STR_FUNCTIONS */
 
         numConverted = ::wcstombs(buffer.data(), codeString, buffer.size());
 
-        if(~size_t(0) == numConverted)
+        if (~size_t(0) == numConverted)
 # endif /* RECLS_USING_SAFE_STR_FUNCTIONS */
         {
             numConverted = 0;
@@ -235,7 +250,10 @@ public: // Types
     typedef NO_MORE_DATA_exception                          class_type;
 
 public: // Construction
-    explicit NO_MORE_DATA_exception(recls_rc_t rc)
+    explicit
+    NO_MORE_DATA_exception(
+        recls_rc_t rc
+    )
         : parent_class_type(rc)
     {}
 
@@ -258,8 +276,6 @@ public: // Construction
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_EXCEPTIONS */
 

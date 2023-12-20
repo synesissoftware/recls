@@ -11,23 +11,23 @@
 
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/inserters/args.hpp>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* UNIXem Header Files */
+/* UNIXem header files */
 #if defined(_WIN32) || \
     defined(_WIN64)
 # include <unixem/unixem.h>
 #endif /* Win32 || Win64 */
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #if 0
 #include <algorithm>
@@ -48,7 +48,7 @@ namespace std
 }
 #endif /* __WATCOMC__ */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -101,11 +101,11 @@ static int main_(int /* argc */, char** /*argv*/)
     hrecls_t    hSrch;
     recls_rc_t  rc = Recls_Search(".", Recls_GetWildcardsAll(), RECLS_F_RECURSIVE, &hSrch);
 
-    if(RECLS_RC_NO_MORE_DATA == rc)
+    if (RECLS_RC_NO_MORE_DATA == rc)
     {
         puts("no matches");
     }
-    else if(RECLS_FAILED(rc))
+    else if (RECLS_FAILED(rc))
     {
     }
     else
@@ -114,7 +114,7 @@ static int main_(int /* argc */, char** /*argv*/)
 
         rc = Recls_GetDetails(hSrch, &info);
 
-        if(RECLS_SUCCEEDED(rc))
+        if (RECLS_SUCCEEDED(rc))
         {
             ;
         }
@@ -140,7 +140,7 @@ int main(int argc, char** argv)
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        api.ftp.windows.cpp
+ * File:        src/api.ftp.windows.cpp
  *
  * Purpose:     This file contains the Windows versions of the FTP part of
  *              the recls API.
@@ -34,14 +34,6 @@
 #include "impl.string.hpp"
 #include "impl.entryfunctions.h"
 #include "impl.types.ftp.hpp"
-#include "impl.cover.h"
-
-#if defined(RECLS_DELAY_LOAD_WININET)
-# ifdef INETSTL_INCL_H_INETSTL
-#  error INETSTL_INCL_H_INETSTL
-# endif /* INETSTL_INCL_H_INETSTL */
-# include "recls_wininet_dl.h"
-#endif /* RECLS_DELAY_LOAD_WININET */
 
 #include "ReclsSearch.hpp"
 #include "ReclsFtpSearch.hpp"
@@ -69,18 +61,11 @@ using ::recls::impl::recls_is_valid_pattern_;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search.ftp")
-RECLS_MARK_FILE_START()
-
-/* /////////////////////////////////////////////////////////////////////////
  * search control
  */
 
-RECLS_API Recls_SearchFtp(
+RECLS_API
+Recls_SearchFtp(
     recls_char_t const* host
 ,   recls_char_t const* username
 ,   recls_char_t const* password
@@ -92,9 +77,7 @@ RECLS_API Recls_SearchFtp(
 {
     function_scope_trace("Recls_SearchFtp");
 
-    RECLS_ASSERT(NULL != phSrch);
-
-    RECLS_COVER_MARK_LINE();
+    RECLS_ASSERT(ss_nullptr_k != phSrch);
 
     *phSrch = static_cast<hrecls_t>(0);
 
@@ -103,47 +86,47 @@ RECLS_API Recls_SearchFtp(
     // Default the input parameters
 
     // Default the search root
-    if( NULL == searchRoot ||
+    if (ss_nullptr_k == searchRoot ||
         0 == *searchRoot)
     {
-        RECLS_COVER_MARK_LINE();
-
         searchRoot = RECLS_LITERAL("/"); // FTP always rooted at ./.
     }
 
     // Default the pattern
-    if(NULL == pattern)
+    if (ss_nullptr_k == pattern)
     {
-        RECLS_COVER_MARK_LINE();
-
         pattern = RECLS_LITERAL("*"); // FTP always uses '*' as wildcard
     }
 
     // Default the flags
-    if(0 == (flags & RECLS_F_TYPEMASK))
+    if (0 == (flags & RECLS_F_TYPEMASK))
     {
-        RECLS_COVER_MARK_LINE();
-
         flags |= RECLS_F_FILES;
     }
 
     // Validate the pattern
-    rc = recls_is_valid_pattern_(pattern, flags, _MAX_PATH);
+    rc = recls_is_valid_pattern_(pattern, stlsoft::c_str_len(pattern), flags, _MAX_PATH);
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
-        RECLS_COVER_MARK_LINE();
-
         ReclsFtpSearch* si;
         size_t          rootDirLen = types::traits_type::str_len(searchRoot);
         size_t          patternLen = types::traits_type::str_len(pattern);
 
-        rc = ReclsFtpSearch::FindAndCreate(host, username, password, searchRoot, rootDirLen, pattern, patternLen, flags, &si);
+        rc = ReclsFtpSearch::FindAndCreate(
+            host
+        ,   username
+        ,   password
+        ,   searchRoot
+        ,   rootDirLen
+        ,   pattern
+        ,   patternLen
+        ,   flags
+        ,   &si
+        );
 
-        if(RECLS_SUCCEEDED(rc))
+        if (RECLS_SUCCEEDED(rc))
         {
-            RECLS_COVER_MARK_LINE();
-
             *phSrch = ReclsSearch::ToHandle(si);
 
             rc = RECLS_RC_OK;
@@ -152,12 +135,6 @@ RECLS_API Recls_SearchFtp(
 
     return rc;
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

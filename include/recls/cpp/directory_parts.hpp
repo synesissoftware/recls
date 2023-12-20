@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_MINOR    0
-# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_REVISION 3
-# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_EDIT     53
+# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_REVISION 4
+# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_EDIT     57
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,26 +63,7 @@
 
 #include <recls/cpp/common.hpp>
 
-#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
-/* If this header cannot be found, you may not be using STLSoft 1.10 (or later),
- * or STLSoft 1.9 with STLSoft 1.10 alpha 13 (or later)
- *
- * Note: At the time of release of recls 1.9, STLSoft 1.10 has not been
- *  released, and exists only in alpha form. You must download both
- *  STLSoft 1.9 (which is a complete distribution) and STLSoft 1.10 alpha
- *  (which is a delta distribution). Then, it is recommended that you create
- *  two environment variables, STLSOFT and STLSOFT_1_10 respectively, and
- *  specify them both on your include paths, in *reverse* order, in order
- *  that the components defined in STLSoft 1.10 take precendence. For
- *  example, if you're compiling from the shell on UNIX, you would specify
- *  your include paths along the following lines:
- *
- *     . . . -I $(RECLS_ROOT)/include -I $(STLSOFT_1_10)/include -I $(STLSOFT)/include . . .
- */
-# include <stlsoft/view/transforming/random_access_transforming_view_base.hpp>
-#else
-# error This file not supported with your version of STLSoft
-#endif
+#include <stlsoft/view/transforming/random_access_transforming_view_base.hpp>
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -110,10 +91,10 @@ class directory_parts
 public: // Member Types
     /// The parent class type
     typedef stlsoft::random_access_transforming_view_base<
-                directory_parts
-            ,   string_t
-            ,   recls_strptrs_t const*
-            >                                               parent_class_type;
+        directory_parts
+    ,   string_t
+    ,   recls_strptrs_t const*
+    >                                                       parent_class_type;
     typedef parent_class_type::value_type                   value_type;
     typedef parent_class_type::const_iterator               const_iterator;
     /// This type
@@ -121,7 +102,8 @@ public: // Member Types
 
 public: // Construction
     /// Conversion constructor
-    explicit directory_parts(recls_entry_t entry)
+    explicit
+    directory_parts(recls_entry_t entry)
         : parent_class_type(entry->directoryParts.begin, entry->directoryParts.end)
         , m_parts(entry->directoryParts)
     {
@@ -140,11 +122,15 @@ public: // Construction
         Recls_CloseDetails(m_entry);
     }
 private:
-    class_type& operator =(class_type const&rhs);
+    void operator =(class_type const&rhs); // copy-assignment proscribed
 
 public:
     // Required by base class template
-    static value_type create_value(recls_strptrs_t const& ptrs)
+    static
+    value_type
+    create_value(
+        recls_strptrs_t const& ptrs
+    )
     {
         return value_type(ptrs.begin, ptrs.end);
     }
@@ -162,8 +148,6 @@ private: // Member Variables
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_DIRECTORY_PARTS */
 

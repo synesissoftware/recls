@@ -17,7 +17,7 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 
 /* Standard C Library Files */
@@ -55,7 +55,7 @@ int main()
     recls_info_t    home;
     recls_rc_t      rc  =   Recls_Stat(RECLS_LITERAL("~"), RECLS_F_DIRECTORIES, &home);
 
-    if(RECLS_FAILED(rc))
+    if (RECLS_FAILED(rc))
     {
         /* The search failed. Display the error string. */
         recls_char_t    err[1001];
@@ -82,7 +82,7 @@ int main()
 
         Recls_CloseDetails(home);
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             /* The search failed. Display the error string. */
             recls_char_t    err[1001];

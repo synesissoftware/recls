@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        impl.fileinfo.cpp
+ * File:        src/impl.fileinfo.cpp
  *
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
@@ -28,7 +28,6 @@
 #include <recls/assert.h>
 #include "impl.atomic.h"
 #include "impl.entryfunctions.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -42,14 +41,6 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_ASSOCIATE_FILE_WITH_CORE_GROUP()
-RECLS_ASSOCIATE_FILE_WITH_GROUP("recls.core.search")
-RECLS_MARK_FILE_START()
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -84,9 +75,7 @@ volatile rc_atomic_t s_sharedInfoBlocks  =   rc_atomic_init(0);
 
 inline struct counted_recls_info_t* counted_info_from_info(recls_entry_t i)
 {
-    RECLS_ASSERT(i != NULL);
-
-    RECLS_COVER_MARK_LINE();
+    RECLS_ASSERT(i != ss_nullptr_k);
 
     struct recls_entryinfo_t*   i2  =   const_cast<struct recls_entryinfo_t*>(i);
     recls_byte_t*               i3  =   reinterpret_cast<recls_byte_t*>(i2);
@@ -97,9 +86,7 @@ inline struct counted_recls_info_t* counted_info_from_info(recls_entry_t i)
 
 inline recls_entry_t info_from_counted_info(struct counted_recls_info_t* ci)
 {
-    RECLS_ASSERT(ci != NULL);
-
-    RECLS_COVER_MARK_LINE();
+    RECLS_ASSERT(ci != ss_nullptr_k);
 
     return &ci->info;
 }
@@ -110,22 +97,16 @@ inline recls_entry_t info_from_counted_info(struct counted_recls_info_t* ci)
 
 RECLS_FNDECL(recls_entry_t) Entry_Allocate(size_t cb)
 {
-    RECLS_COVER_MARK_LINE();
-
     // Simply allocate a lock-count prior to the main memory (but do it on an 8-byte block)
     counted_recls_info_t*   ci  =   static_cast<counted_recls_info_t*>(malloc(cb - sizeof(struct recls_entryinfo_t) + sizeof(struct counted_recls_info_t)));
     recls_entry_t           info;
 
-    if(NULL == ci)
+    if (ss_nullptr_k == ci)
     {
-        RECLS_COVER_MARK_LINE();
-
-        info = NULL;
+        info = ss_nullptr_k;
     }
     else
     {
-        RECLS_COVER_MARK_LINE();
-
         rc_atomic_t initial = rc_atomic_init(1);
 
         ci->rc  =   initial; // One initial reference
@@ -139,26 +120,18 @@ RECLS_FNDECL(recls_entry_t) Entry_Allocate(size_t cb)
 
 RECLS_FNDECL(void) Entry_Release(recls_entry_t fileInfo)
 {
-    RECLS_COVER_MARK_LINE();
-
-    if(NULL != fileInfo)
+    if (ss_nullptr_k != fileInfo)
     {
-        RECLS_COVER_MARK_LINE();
-
         counted_recls_info_t* pci = counted_info_from_info(fileInfo);
 
-        if(0 == RC_PreDecrement(&pci->rc))
+        if (0 == RC_PreDecrement(&pci->rc))
         {
-            RECLS_COVER_MARK_LINE();
-
             free(pci);
 
             RC_PreDecrement(&s_createdInfoBlocks);
         }
         else
         {
-            RECLS_COVER_MARK_LINE();
-
             RC_PreDecrement(&s_sharedInfoBlocks);
         }
     }
@@ -169,14 +142,10 @@ RECLS_API Entry_Copy(
 ,   recls_entry_t*  pinfo
 )
 {
-    RECLS_ASSERT(NULL != pinfo);
+    RECLS_ASSERT(ss_nullptr_k != pinfo);
 
-    RECLS_COVER_MARK_LINE();
-
-    if(NULL != fileInfo)
+    if (ss_nullptr_k != fileInfo)
     {
-        RECLS_COVER_MARK_LINE();
-
         counted_recls_info_t* pci = counted_info_from_info(fileInfo);
 
 #if 0
@@ -197,20 +166,12 @@ RECLS_FNDECL(void) Entry_BlockCount(
 ,   rc_atomic_t* pcShared
 )
 {
-    RECLS_ASSERT(NULL != pcCreated);
-    RECLS_ASSERT(NULL != pcShared);
-
-    RECLS_COVER_MARK_LINE();
+    RECLS_ASSERT(ss_nullptr_k != pcCreated);
+    RECLS_ASSERT(ss_nullptr_k != pcShared);
 
     *pcCreated  =   RC_ReadValue(&s_createdInfoBlocks);
     *pcShared   =   RC_ReadValue(&s_sharedInfoBlocks);
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * coverage
- */
-
-RECLS_MARK_FILE_END()
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

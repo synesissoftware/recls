@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        incl.inetstl.h
+ * File:        src/incl.inetstl.h
  *
  * Purpose:     #includes the InetSTL root header and verifies the version.
  *
@@ -30,10 +30,10 @@
 # error Must not #include inetstl/inetstl.h before this file
 #endif /* INETSTL_INCL_INETSTL_H_INETSTL */
 
-#include <inetstl/inetstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.9.1 or later, as required. */
+#include <inetstl/inetstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.10.1 or later, as required. */
 #if !defined(_INETSTL_VER) || \
-    _INETSTL_VER < 0x010305ff
-# error Requires InetSTL 1.3.5, or later. (www.stlsoft.org/downloads.html)
+    _INETSTL_VER < 0x01040183
+# error Requires InetSTL 1.4.1 beta 3, or later. (www.stlsoft.org/downloads.html)
 #endif /* INETSTL version */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@
  */
 
 #ifdef _INETSTL_NO_NAMESPACE
-# error recls 1.9+ is not compatible with InetSTL namespace suppression
+# error recls 1.10+ is not compatible with InetSTL namespace suppression
 #endif /* _INETSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

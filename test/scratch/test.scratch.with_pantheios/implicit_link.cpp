@@ -9,7 +9,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <platformstl/platformstl.h>
 #include <pantheios/implicit_link/core.h>
 #include <pantheios/implicit_link/fe.simple.h>
@@ -21,21 +21,15 @@
 # include <pantheios/implicit_link/bec.WindowsSysLog.h>
 #endif /* operating system */
 
-/* UNIXem Header Files */
+/* UNIXem header files */
 #include <platformstl/platformstl.h>
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <unixem/implicit_link.h>
 #endif /* operating system */
 
-/* xCover Header Files */
-#if defined(__FUNCTION__) && \
-    defined(__COUNTER__)
-# include <xcover/implicit_link.h>
-#endif
-
 /* ////////////////////////////////////////////////////////////////////// */
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # include <pantheios/backends/be.N.h>

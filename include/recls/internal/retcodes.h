@@ -28,9 +28,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MAJOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MINOR      6
+# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MINOR      7
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       36
+# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       38
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/retcodes.h
@@ -119,6 +119,12 @@ namespace recls
 /** Short name not available */
 # define RECLS_RC_SHORT_NAME_NOT_AVAILABLE                  RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1023))
 #endif
+
+/** Invalid-characters in search directory : the search-directory parameter cannot contain path separator or wildcard characters */
+#define RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS        RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1024))
+
+/** A rooted pattern must not be specified with other patterns */
+#define RECLS_RC_ROOTED_PATHS_IN_PATTERNS                   RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1025))
 
 /** @} */
 

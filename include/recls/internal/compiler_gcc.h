@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        recls/internal/compiler_gcc.h
  *
- * Purpose:     Digital Mars specific types and includes for the recls API.
+ * Purpose:     GCC specific types and includes for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     19th December 2023
+ * Updated:     20th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -33,8 +33,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_MINOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_EDIT       15
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_REVISION   2
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_EDIT       16
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_gcc.h
@@ -48,6 +48,7 @@
  */
 
 #include <stddef.h>
+#include <stdint.h>
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -82,30 +83,26 @@ namespace recls
 /** \def recls_sint64_t The 64-bit signed integer type for the \ref group__recls  API */
 /** \def recls_uint64_t The 64-bit unsigned integer type for the \ref group__recls  API */
 
-typedef unsigned char       recls_byte_t;
+typedef uint8_t                                             recls_byte_t;
 
-typedef signed char         recls_sint8_t;
-typedef unsigned char       recls_uint8_t;
+typedef int8_t                                              recls_sint8_t;
+typedef uint8_t                                             recls_uint8_t;
 
-typedef signed short        recls_sint16_t;
-typedef unsigned short      recls_uint16_t;
+typedef int16_t                                             recls_sint16_t;
+typedef uint16_t                                            recls_uint16_t;
 
-typedef signed long         recls_sint32_t;
-typedef unsigned long       recls_uint32_t;
+typedef int32_t                                             recls_sint32_t;
+typedef uint32_t                                            recls_uint32_t;
 
-typedef signed long long    recls_sint64_t;
-typedef unsigned long long  recls_uint64_t;
+typedef int64_t                                             recls_sint64_t;
+typedef uint64_t                                            recls_uint64_t;
 
-#if defined(_WIN64)
-typedef recls_uint64_t      recls_uintptr_t;
-#else /* ? _WIN64 */
-typedef recls_uint32_t      recls_uintptr_t;
-#endif /* _WIN64 */
+typedef uintptr_t                                           recls_uintptr_t;
 
 /** \def recls_char_a_t The ANSI character type for the \ref group__recls  API */
 /** \def recls_char_w_t The Unicode character type for the \ref group__recls  API */
-typedef char                recls_char_a_t;
-typedef wchar_t             recls_char_w_t;
+typedef char                                                recls_char_a_t;
+typedef wchar_t                                             recls_char_w_t;
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

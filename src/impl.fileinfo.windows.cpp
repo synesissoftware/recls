@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        impl.fileinfo.windows.cpp
+ * File:        src/impl.fileinfo.windows.cpp
  *
  * Purpose:     Windows implementation for the file information blocks of
  *              the recls API.
@@ -30,7 +30,6 @@
 #include "impl.root.h"
 #include "incl.winstl.h"
 #include "impl.atomic.h"
-#include "impl.cover.h"
 
 #include "impl.trace.h"
 
@@ -55,8 +54,6 @@ namespace impl
 
 RECLS_FNDECL(void) RC_Increment(rc_atomic_t volatile *p)
 {
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_MT)
     winstl::atomic_increment(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
 #else /* ? RECLS_MT */
@@ -66,8 +63,6 @@ RECLS_FNDECL(void) RC_Increment(rc_atomic_t volatile *p)
 
 RECLS_FNDECL(rc_atomic_t) RC_PreDecrement(rc_atomic_t volatile *p)
 {
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_MT)
     return winstl::atomic_predecrement(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
 #else /* ? RECLS_MT */
@@ -77,8 +72,6 @@ RECLS_FNDECL(rc_atomic_t) RC_PreDecrement(rc_atomic_t volatile *p)
 
 RECLS_FNDECL(rc_atomic_t) RC_ReadValue(rc_atomic_t volatile *p)
 {
-    RECLS_COVER_MARK_LINE();
-
 #if defined(RECLS_MT)
     return winstl::atomic_read(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
 #else /* ? RECLS_MT */

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        impl.atomic.h
+ * File:        src/impl.atomic.h
  *
  * Purpose:     Implementation header.
  *
@@ -27,9 +27,10 @@
  * includes
  */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 #include "impl.root.h"
+#include "incl.platformstl.h"
 
 #include <platformstl/synch/util/features.h>
 #ifdef PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS
@@ -54,12 +55,15 @@ namespace impl
 #if defined(RECLS_PLATFORM_IS_UNIX) && \
     defined(RECLS_MT) && \
     defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
+
 typedef atomic_t                            rc_atomic_t;
 # define rc_atomic_init(x)                  ATOMIC_INIT(x)
 #elif defined(PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS)
+
 typedef platformstl_ns_qual(atomic_int_t)   rc_atomic_t;
 # define rc_atomic_init(x)                  x
 #else /* ? RECLS_MT && RECLS_UNIX_USE_ATOMIC_OPERATIONS */
+
 typedef int                                 rc_atomic_t;
 # define rc_atomic_init(x)                  x
 #endif /* RECLS_MT && RECLS_UNIX_USE_ATOMIC_OPERATIONS */

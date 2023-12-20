@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        impl.trace.h
+ * File:        src/impl.trace.h
  *
  * Purpose:     Tracing.
  *
@@ -27,7 +27,7 @@
  * includes
  */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 #include "impl.root.h"
 
@@ -48,15 +48,18 @@ namespace impl
 
 enum recls_sev_index_t_
 {
-        RECLS_SEVIX_FATAL =   0
-    ,   RECLS_SEVIX_ERROR =   1
-    ,   RECLS_SEVIX_WARN  =   2
-    ,   RECLS_SEVIX_INFO  =   3
-    ,   RECLS_SEVIX_DBG0  =   4
-    ,   RECLS_SEVIX_DBG1  =   5
-    ,   RECLS_SEVIX_DBG2  =   6
+        RECLS_SEVIX_UNKNOWN     =   0
+    ,   RECLS_SEVIX_FATAL       =   1
+    ,   RECLS_SEVIX_ERROR       =   4
+    ,   RECLS_SEVIX_WARN        =   5
+    ,   RECLS_SEVIX_INFO        =   7
+    ,   RECLS_SEVIX_DBG0        =   8
+    ,   RECLS_SEVIX_DBG1        =   9
+    ,   RECLS_SEVIX_DBG2        =   10
+    ,   RECLS_SEVIX_DBG3        =   11
 };
 #if !defined(RECLS_NO_NAMESPACE)
+# define RECLS_SEVIX_UNKNOWN                                ::recls::impl::RECLS_SEVIX_UNKNOWN
 # define RECLS_SEVIX_FATAL                                  ::recls::impl::RECLS_SEVIX_FATAL
 # define RECLS_SEVIX_ERROR                                  ::recls::impl::RECLS_SEVIX_ERROR
 # define RECLS_SEVIX_WARN                                   ::recls::impl::RECLS_SEVIX_WARN
@@ -64,6 +67,7 @@ enum recls_sev_index_t_
 # define RECLS_SEVIX_DBG0                                   ::recls::impl::RECLS_SEVIX_DBG0
 # define RECLS_SEVIX_DBG1                                   ::recls::impl::RECLS_SEVIX_DBG1
 # define RECLS_SEVIX_DBG2                                   ::recls::impl::RECLS_SEVIX_DBG2
+# define RECLS_SEVIX_DBG3                                   ::recls::impl::RECLS_SEVIX_DBG3
 #endif /* !RECLS_NO_NAMESPACE */
 
 #ifndef __cplusplus
@@ -79,6 +83,7 @@ void recls_info_trace_printf_(recls_char_t const* fmt, ...);
 void recls_debug0_trace_printf_(recls_char_t const* fmt, ...);
 void recls_debug1_trace_printf_(recls_char_t const* fmt, ...);
 void recls_debug2_trace_printf_(recls_char_t const* fmt, ...);
+void recls_debug3_trace_printf_(recls_char_t const* fmt, ...);
 
 
 #ifdef __cplusplus
@@ -88,11 +93,12 @@ public:
     typedef function_scope  class_type;
 
 public: /// Construction
-    explicit function_scope(recls_char_t const* fn);
+    explicit
+    function_scope(recls_char_t const* fn);
     ~function_scope() STLSOFT_NOEXCEPT;
 private:
-    function_scope(class_type const &);
-    class_type &operator =(class_type const &);
+    function_scope(class_type const &);     // copy-construction proscribed
+    void operator =(class_type const &);    // copy-assignment proscribed
 
 private: /// Member Variables
     recls_char_t const* m_fn;
@@ -110,7 +116,13 @@ private: /// Member Variables
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_SRC_H_IMPL_TRACE */
 

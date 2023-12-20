@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        impl.entryinfo.hpp
+ * File:        src/impl.entryinfo.hpp
  *
  * Purpose:     Definition of the create_entryinfo() function.
  *
@@ -48,22 +48,24 @@ namespace impl
 extern "C"
 {
 
-recls_entry_t create_entryinfo(
-    size_t                              rootDirLen
-,   recls_char_t const*                 searchDir
-,   size_t                              searchDirLen
-,   recls_char_t const*                 entryPath
-,   size_t                              entryPathLen
-,   recls_char_t const*                 entryFile
-,   size_t                              entryFileLen
-,   recls_uint32_t                      flags
+recls_entry_t
+create_entryinfo(
+    size_t                          rootDirLen
+,   recls_char_t const*             searchDir
+,   size_t                          searchDirLen
+,   recls_char_t const*             entryPath
+,   size_t                          entryPathLen
+,   recls_char_t const*             entryFile
+,   size_t                          entryFileLen
+,   recls_uint32_t                  flags
 ,   types::stat_data_type const*    st
 );
 
-recls_entry_t create_drive_entryinfo(
-    recls_char_t const*                 entryPath
-,   size_t                              entryPathLen
-,   recls_uint32_t                      flags
+recls_entry_t
+create_drive_entryinfo(
+    recls_char_t const*             entryPath
+,   size_t                          entryPathLen
+,   recls_uint32_t                  flags
 ,   types::stat_data_type const*    st
 );
 

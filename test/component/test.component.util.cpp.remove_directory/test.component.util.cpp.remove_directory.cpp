@@ -16,7 +16,6 @@
 #if defined(__FUNCTION__) && \
     defined(__COUNTER__)
 # include <recls/recls.h>
-# include <../src/impl.cover.h>
 #endif
 
 #include <xtests/test/util/compiler_warnings_suppression.first_include.h>
@@ -30,11 +29,6 @@
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
-
-/* xCover header files */
-#ifdef RECLS_QUALITY_USE_XCOVER
-# include <xcover/xcover.h>
-#endif /* RECLS_QUALITY_USE_XCOVER */
 
 /* xTests header files */
 #include <xtests/xtests.h>
@@ -147,7 +141,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.util.cpp.remove_directory", verbosity, setup, teardown, NULL))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.util.cpp.remove_directory", verbosity, setup, teardown, NULL))
     {
         XTESTS_RUN_CASE(test_1_0);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -192,10 +186,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_38);
         XTESTS_RUN_CASE(test_1_39);
 
-#ifdef XCOVER_VER
-        XCOVER_REPORT_GROUP_COVERAGE("recls.util.remove_directory", NULL);
-#endif /* XCOVER_VER */
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -225,7 +215,7 @@ static int setup(void*)
 
 static int teardown(void*)
 {
-    if(!platformstl::filesystem_traits<recls_char_t>::remove_directory(temp_dir.c_str()))
+    if (!platformstl::filesystem_traits<recls_char_t>::remove_directory(temp_dir.c_str()))
     {
         platformstl::remove_directory_recurse(temp_dir);
     }
@@ -278,7 +268,10 @@ static void test_1_3()
 
     path.push(RECLS_LITERAL("def"));
 
-    platformstl::create_directory_recurse(path);
+    if (!platformstl::create_directory_recurse(path))
+    {
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to create directory", path);
+    }
 
     recls::directoryResults_t   results;
 
@@ -312,6 +305,26 @@ static void test_1_4()
 
 static void test_1_5()
 {
+    path_t path(temp_dir);
+
+    path.push(RECLS_LITERAL("abc"));
+
+    path_t path2remove(path);
+
+    path.push(RECLS_LITERAL("def"));
+    path.push(RECLS_LITERAL("ghi"));
+    path.push(RECLS_LITERAL("jkl"));
+    path.push(RECLS_LITERAL("mno"));
+    path.push(RECLS_LITERAL("pqr"));
+
+    platformstl::create_directory_recurse(path);
+
+    recls::directoryResults_t   results;
+
+    recls::remove_directory(path2remove, 0, &results);
+
+    XTESTS_TEST_INTEGER_EQUAL(results.numExistingElements - 6u, results.numResultingElements);
+    XTESTS_TEST_INTEGER_EQUAL(results.existingLength - 24u, results.resultingLength);
 }
 
 static void test_1_6()

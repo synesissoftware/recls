@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        ReclsSearch.hpp
+ * File:        src/ReclsSearch.hpp
  *
  * Purpose:     Definition of the ReclsSearch and ReclsSearchDirectoryNode classes.
  *

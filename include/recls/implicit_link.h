@@ -6,7 +6,7 @@
  * Created:     20th September 2005
  * Updated:     19th December 2023
  *
- * Home:        http://fastformat.org/
+ * Home:        http://recls.org/
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_MAJOR      1
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_MINOR      6
 # define RECLS_VER_RECLS_H_IMPLICIT_LINK_REVISION   1
-# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       14
+# define RECLS_VER_RECLS_H_IMPLICIT_LINK_EDIT       18
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,7 +117,8 @@
   /* compiler tag */
 
 #  if defined(__BORLANDC__)
-#   if __BORLANDC__ == 0x0550
+#   if 0
+#   elif __BORLANDC__ == 0x0550
 #    define RECLS_IMPL_LINK_COMPILER_NAME                   "bc55"
 #   elif (__BORLANDC__ == 0x0551)
 #    define RECLS_IMPL_LINK_COMPILER_NAME                   "bc551"
@@ -141,7 +142,8 @@
  */
 
 #  elif defined(__INTEL_COMPILER)
-#   if __INTEL_COMPILER == 600
+#   if 0
+#   elif __INTEL_COMPILER == 600
 #    define   RECLS_IMPL_LINK_COMPILER_NAME                 "icl6"
 #   elif __INTEL_COMPILER == 700
 #    define   RECLS_IMPL_LINK_COMPILER_NAME                 "icl7"
@@ -158,7 +160,8 @@
 #   endif /* __INTEL_COMPILER */
 
 #  elif defined(__MWERKS__)
-#   if ((__MWERKS__ & 0xFF00) == 0x2400)
+#   if 0
+#   elif ((__MWERKS__ & 0xFF00) == 0x2400)
 #    define RECLS_IMPL_LINK_COMPILER_NAME                   "cw7"
 #   elif ((__MWERKS__ & 0xFF00) == 0x3000)
 #    define RECLS_IMPL_LINK_COMPILER_NAME                   "cw8"
@@ -169,20 +172,9 @@
 #   endif /* __MWERKS__ */
 
 #  elif defined(_MSC_VER)
-#   if _MSC_VER == 1000
-#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc4"
-#   elif _MSC_VER == 1020
-#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc42"
-#   elif _MSC_VER == 1100
-#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc5"
-#   elif _MSC_VER == 1200
-#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc6"
-#   elif _MSC_VER == 1300
-#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc7"
-#   elif _MSC_VER == 1310
-#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc71"
-#   elif _MSC_VER == 1400
-#    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc8"
+#   if 0
+#   elif _MSC_VER < 1500
+#    error recls 1.10 is not supported for Visual C++ compilers prior to version 9 (Visual Studio 2008)
 #   elif _MSC_VER == 1500
 #    define RECLS_IMPL_LINK_COMPILER_NAME                   "vc9"
 #   elif _MSC_VER == 1600
@@ -253,7 +245,8 @@
 #  if defined(__MT__) || \
       defined(_REENTRANT) || \
       defined(_MT)
-#   if defined(_DLL) || \
+#   if 0
+#   elif defined(_DLL) || \
        defined(__DLL)
 #    define RECLS_IMPL_LINK_THREADING_TAG                   ".dll"
 #   else /* ? dll */

@@ -16,7 +16,6 @@
 #if defined(__FUNCTION__) && \
     defined(__COUNTER__)
 # include <recls/recls.h>
-# include <../src/impl.cover.h>
 #endif
 
 #include <xtests/test/util/compiler_warnings_suppression.first_include.h>
@@ -30,11 +29,6 @@
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
-
-/* xCover header files */
-#ifdef RECLS_QUALITY_USE_XCOVER
-# include <xcover/xcover.h>
-#endif /* RECLS_QUALITY_USE_XCOVER */
 
 /* xTests header files */
 #include <xtests/xtests.h>
@@ -147,7 +141,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.util.cpp.create_directory", verbosity, setup, teardown, NULL))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.util.cpp.create_directory", verbosity, setup, teardown, NULL))
     {
         XTESTS_RUN_CASE(test_1_0);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -191,10 +185,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_37);
         XTESTS_RUN_CASE(test_1_38);
         XTESTS_RUN_CASE(test_1_39);
-
-#ifdef XCOVER_VER
-        XCOVER_REPORT_GROUP_COVERAGE("recls.util.create_directory", NULL);
-#endif /* XCOVER_VER */
 
         XTESTS_PRINT_RESULTS();
 

@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_WINDOWS_MAJOR    1
 # define RECLS_VER_RECLS_CPP_HPP_WINDOWS_MINOR    0
-# define RECLS_VER_RECLS_CPP_HPP_WINDOWS_REVISION 1
-# define RECLS_VER_RECLS_CPP_HPP_WINDOWS_EDIT     2
+# define RECLS_VER_RECLS_CPP_HPP_WINDOWS_REVISION 2
+# define RECLS_VER_RECLS_CPP_HPP_WINDOWS_EDIT     6
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,11 @@ struct windows_impl
  *
  * \param rc
  */
-inline DWORD result_code_to_windows_error_code(recls_rc_t rc)
+inline
+DWORD
+result_code_to_windows_error_code(
+    recls_rc_t rc
+) STLSOFT_NOEXCEPT
 {
     return Recls_ResultCodeToWindowsErrorCode(rc);
 }
@@ -111,8 +115,6 @@ inline DWORD result_code_to_windows_error_code(recls_rc_t rc)
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_WINDOWS */
 

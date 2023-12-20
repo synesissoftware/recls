@@ -26,9 +26,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      2
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       27
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       29
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -150,14 +150,11 @@
  */
 
 #if defined(RECLS_API_FTP)
-# undef RECLS_API_FTP
+# if !defined(WIN32) && \
+     !defined(WIN64)
+#  undef RECLS_API_FTP
+# endif
 #endif /* RECLS_API_FTP */
-
-#if !defined(RECLS_NO_API_FTP)
-# ifdef RECLS_PLATFORM_IS_WINDOWS
-#  define RECLS_API_FTP
-# endif /* RECLS_PLATFORM_IS_WINDOWS */
-#endif /* !RECLS_NO_API_FTP */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

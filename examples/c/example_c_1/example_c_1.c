@@ -14,7 +14,7 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.h>
 
 /* Standard C Library Files */
@@ -42,13 +42,13 @@ int main()
     recls_uint32_t  flags   =   RECLS_F_FILES | RECLS_F_RECURSIVE;
     recls_rc_t      rc      =   Recls_Search(RECLS_LITERAL("."), Recls_GetWildcardsAll(), flags, &hSrch);
 
-    if(RECLS_RC_NO_MORE_DATA == rc)
+    if (RECLS_RC_NO_MORE_DATA == rc)
     {
         printf(RECLS_LITERAL("  no matches found\n"));
 
         return EXIT_SUCCESS;
     }
-    else if(RECLS_FAILED(rc))
+    else if (RECLS_FAILED(rc))
     {
         /* The search failed. Display the error string. */
         recls_char_t    err[1001];
@@ -82,7 +82,7 @@ int main()
             Recls_CloseDetails(entry);
 
         } /* ... and get the next entry. */
-        while(RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
+        while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
 
         /* Close the search handle. */
         Recls_SearchClose(hSrch);

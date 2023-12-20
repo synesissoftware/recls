@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_MAJOR     1
 # define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_MINOR     1
-# define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_REVISION  2
-# define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_EDIT      4
+# define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_REVISION  3
+# define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_EDIT      7
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,10 +78,8 @@ namespace cpp
  * classes
  */
 
-#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
 /* recls/cpp/directory_parts.hpp : */
 class directory_parts;
-#endif
 
 /* recls/cpp/entry.hpp : */
 class entry;
@@ -122,9 +120,7 @@ struct reclstl_traits<recls_char_w_t>;
 #if !defined(RECLS_NO_NAMESPACE)
 } /* namespace cpp */
 
-#ifdef RECLS_CPP_SUPPORT_DIRECTORY_PARTS
     using ::recls::cpp::directory_parts;
-#endif
     using ::recls::cpp::entry;
 #ifdef RECLS_API_FTP
     using ::recls::cpp::ftp_search_sequence;
@@ -136,8 +132,6 @@ struct reclstl_traits<recls_char_w_t>;
 
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_CLASSFWD */
 

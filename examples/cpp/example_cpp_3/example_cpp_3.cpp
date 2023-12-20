@@ -17,14 +17,14 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* recls Header Files */
+/* recls header files */
 #include <recls/recls.hpp>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <iostream>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,7 +77,7 @@ int main()
         std::cout << RECLS_LITERAL("file extension: ") << home.get_file_extension() << std::endl;
 
         // 10. Type
-        if(home.is_directory())
+        if (home.is_directory())
         {
             std::cout << RECLS_LITERAL(" <directory>") << std::endl;
         }
@@ -85,22 +85,22 @@ int main()
         {
             std::cout << RECLS_LITERAL(" <file>") << std::endl;
         }
-        if(home.is_link())
+        if (home.is_link())
         {
             std::cout << RECLS_LITERAL(" <link>") << std::endl;
         }
-        if(home.is_readonly())
+        if (home.is_readonly())
         {
             std::cout << RECLS_LITERAL(" <read-only>") << std::endl;
         }
 
         // 11. Size
-                //
-                // We cast because some standard libraries cannot handle 64-bit
-                // integers. If the file size exceeds that representable in 32-bits
-                // then this will yield an invalid value; don't copy this into your
-                // own code unless you are *totally* sure you'll never work with
-                // files larger than 4GB in size.
+        //
+        // We cast because some standard libraries cannot handle 64-bit
+        // integers. If the file size exceeds that representable in 32-bits
+        // then this will yield an invalid value; don't copy this into your
+        // own code unless you are *totally* sure you'll never work with
+        // files larger than 4GB in size.
         std::cout << static_cast<unsigned long>(home.get_size()) << RECLS_LITERAL(" bytes") << std::endl;
     }
     catch(recls::recls_exception& x)

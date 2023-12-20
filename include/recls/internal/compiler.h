@@ -4,7 +4,7 @@
  * Purpose:     Compiler discrimination for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     19th December 2023
+ * Updated:     20th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -28,7 +28,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_MAJOR      4
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_MINOR      1
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_EDIT       21
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_EDIT       22
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler.h
@@ -40,7 +40,8 @@
  * compiler detection
  */
 
-#if defined(__COMO__)
+#if 0
+#elif defined(__COMO__)
 # define RECLS_COMPILER_IS_COMO
 #elif defined(__BORLANDC__)
 # define RECLS_COMPILER_IS_BORLAND
@@ -68,7 +69,8 @@
  * includes
  */
 
-#if defined(RECLS_COMPILER_IS_BORLAND)
+#if 0
+#elif defined(RECLS_COMPILER_IS_BORLAND)
 # include <recls/internal/compiler_borland.h>
 #elif defined(RECLS_COMPILER_IS_CH)
 # include <recls/internal/compiler_ch.h>
