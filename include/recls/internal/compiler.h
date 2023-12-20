@@ -27,8 +27,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_MAJOR      4
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_MINOR      1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_EDIT       22
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_REVISION   2
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_EDIT       23
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler.h
@@ -40,7 +40,18 @@
  * compiler detection
  */
 
+#if defined(RECLS_FORCE_COMPILER_GCC)
+# if !defined(__GNUC__)
+#  error Cannot force compiler GCC because it is not detected
+# endif
+#endif
+
 #if 0
+#elif 1 &&\
+      defined(__clang__) && \
+      !defined(RECLS_FORCE_COMPILER_GCC) &&\
+      1
+# define RECLS_COMPILER_IS_CLANG
 #elif defined(__COMO__)
 # define RECLS_COMPILER_IS_COMO
 #elif defined(__BORLANDC__)
@@ -74,6 +85,8 @@
 # include <recls/internal/compiler_borland.h>
 #elif defined(RECLS_COMPILER_IS_CH)
 # include <recls/internal/compiler_ch.h>
+#elif defined(RECLS_COMPILER_IS_CLANG)
+# include <recls/internal/compiler_clang.h>
 #elif defined(RECLS_COMPILER_IS_COMO)
 # include <recls/internal/compiler_como.h>
 #elif defined(RECLS_COMPILER_IS_DMC)
@@ -171,26 +184,26 @@ namespace recls
  */
 
 /** \def recls_bool_t The boolean type of the \c recls API */
-typedef unsigned int        recls_bool_t;
+typedef unsigned int                                        recls_bool_t;
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace typedefs
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-typedef recls_sint8_t       sint8_t;
-typedef recls_uint8_t       uint8_t;
+typedef recls_sint8_t                                       sint8_t;
+typedef recls_uint8_t                                       uint8_t;
 
-typedef recls_sint16_t      sint16_t;
-typedef recls_uint16_t      uint16_t;
+typedef recls_sint16_t                                      sint16_t;
+typedef recls_uint16_t                                      uint16_t;
 
-typedef recls_sint32_t      sint32_t;
-typedef recls_uint32_t      uint32_t;
+typedef recls_sint32_t                                      sint32_t;
+typedef recls_uint32_t                                      uint32_t;
 
-typedef recls_sint64_t      sint64_t;
-typedef recls_uint64_t      uint64_t;
+typedef recls_sint64_t                                      sint64_t;
+typedef recls_uint64_t                                      uint64_t;
 
-typedef recls_bool_t        bool_t;
+typedef recls_bool_t                                        bool_t;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////

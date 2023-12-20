@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - search_sequence class.
  *
  * Created:     10th September 2003
- * Updated:     19th December 2023
+ * Updated:     20th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MINOR      1
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   12
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       102
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   13
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       103
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -281,9 +281,13 @@ public:
     /// Destructor
     ~search_sequence() STLSOFT_NOEXCEPT
     {
-#if !defined(RECLS_COMPILER_IS_COMO) && \
+#if 1 && \
+    !defined(RECLS_COMPILER_IS_COMO) && \
+    !defined(RECLS_COMPILER_IS_CLANG) && \
     !defined(RECLS_COMPILER_IS_GCC) && \
-    !defined(RECLS_COMPILER_IS_INTEL)
+    !defined(RECLS_COMPILER_IS_INTEL) && \
+    1
+
         STLSOFT_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_directory_) < STLSOFT_RAW_OFFSETOF(class_type, m_directory));
         STLSOFT_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_pattern_) < STLSOFT_RAW_OFFSETOF(class_type, m_pattern));
 #endif /* compiler */
