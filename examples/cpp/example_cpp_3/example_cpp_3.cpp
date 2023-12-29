@@ -12,18 +12,7 @@
  *                - elicitation of entry properties via method calls
  *
  * Created:     18th June 2006
- * Updated:     1st January 2021
- *
- * www:         http://www.recls.org/
- *
- * License:     Copyright (c) 2006-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              (Licensed under the Synesis Software Open License)
- *
- *              This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
+ * Updated:     29th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,7 +36,7 @@
 # define cerr           wcerr
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 int main()
 {
@@ -143,3 +132,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

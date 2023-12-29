@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - ftp_search_sequence class.
  *
  * Created:     10th September 2003
- * Updated:     23rd December 2020
+ * Updated:     29th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_MINOR      0
 # define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_REVISION   7
-# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_EDIT       93
+# define RECLS_VER_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE_EDIT       94
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/ftp_search_sequence.hpp
@@ -229,8 +229,8 @@ private:
 /// @}
 };
 
-///////////////////////////////////////////////////////////////////////////////
-// Shims
+////////////////////////////////////////////////////////////////////////////
+// shims
 
 /// is_empty shim
 /// \ingroup group__recls__cpp
@@ -251,8 +251,8 @@ is_empty(
     return s.empty();
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// Implementation
+////////////////////////////////////////////////////////////////////////////
+// implementation
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 

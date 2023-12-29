@@ -1,4 +1,4 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        example_c_5.c
  *
  * Purpose:     C example program for the recls core library. Demonstrates:
@@ -13,20 +13,10 @@
  *                - handling of errors and reporting of error information
  *
  * Created:     17th June 2006
- * Updated:     1st January 2021
- *
- * www:         http://www.recls.org/
- *
- * License:     Copyright (c) 2006-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              (Licensed under the Synesis Software Open License)
- *
- *              This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
+ * Updated:     29th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 /* recls header files */
 #include <recls/recls.h>
@@ -111,3 +101,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

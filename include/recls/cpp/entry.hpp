@@ -4,11 +4,11 @@
  * Purpose:     recls C++ mapping - entry class.
  *
  * Created:     18th August 2003
- * Updated:     23rd December 2020
+ * Updated:     29th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    11
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 4
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     115
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     116
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -593,7 +593,7 @@ stat(
     return entry::stat_impl::create(path, flags);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * comparison
  */
 
@@ -657,7 +657,7 @@ operator !=(
     return lhs.compare(rhs) != 0;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * shims
  */
 
@@ -789,7 +789,7 @@ c_str_len_w(
 # endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 #endif /* !RECLS_PURE_API */
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // IOStream compatibility
 
 template <typename S>

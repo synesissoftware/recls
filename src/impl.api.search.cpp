@@ -431,7 +431,7 @@ Recls_SearchFeedback_x_(
 
     // 4. search-root begins with '~' -> expand
 
-    if (recls_is_home_start_(searchRoot, searchRootLen) && 
+    if (recls_is_home_start_(searchRoot, searchRootLen) &&
         !has_checked(checks, CheckRootHomeStart))
     {
         // expand the search-root for home ('~') (or for empty if USE_TILDE_ON_NO_SEARCHROOT specified) and use that
