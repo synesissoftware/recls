@@ -4,11 +4,11 @@
  * Purpose:     implementation behind API functions.
  *
  * Created:     16th August 2003
- * Updated:     15th January 2021
+ * Updated:     29th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
