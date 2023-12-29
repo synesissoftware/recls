@@ -4,7 +4,7 @@
  * Purpose:     recls::internal::sequence_helper struct.
  *
  * Created:     10th September 2003
- * Updated:     23rd December 2020
+ * Updated:     29th December 2020
  *
  * Home:        http://recls.org/
  *
@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_MAJOR     5
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_MINOR     0
-# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_REVISION  4
-# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_EDIT      101
+# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_REVISION  5
+# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_EDIT      102
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -218,6 +218,11 @@ public:
     ,   char_type const*        src
     )
     {
+        if (ss_nullptr_k == src)
+        {
+            return ss_nullptr_k;
+        }
+
         return copy_or_null_len_(dest, src, traits_type::str_len(src));
     }
 
