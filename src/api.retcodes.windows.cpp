@@ -4,11 +4,11 @@
  * Purpose:     This file contains the Windows versions of the recls API.
  *
  * Created:     13th November 2010
- * Updated:     22nd December 2020
+ * Updated:     29th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -73,9 +73,9 @@ namespace impl
  */
 
 #if 0 || \
-	defined(STLSOFT_COMPILER_IS_CLANG) || \
-	defined(STLSOFT_COMPILER_IS_GCC) || \
-	0
+    defined(STLSOFT_COMPILER_IS_CLANG) || \
+    defined(STLSOFT_COMPILER_IS_GCC) || \
+    0
 
 # define SWITCH_BEGIN_()        if (0) {}
 # define SWITCH_END_()          return static_cast<DWORD>(E_FAIL);

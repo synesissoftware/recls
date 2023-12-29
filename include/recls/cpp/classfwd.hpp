@@ -4,11 +4,11 @@
  * Purpose:     Forward declarations of classes in the recls C++ mapping.
  *
  * Created:     23rd November 2011
- * Updated:     23rd December 2020
+ * Updated:     29th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -99,7 +99,7 @@ class root_sequence;
 
 /* recls/cpp/search_sequence.hpp : */
 template<
-	typename C
+    typename C
 ,   typename T
 ,   typename V
 >

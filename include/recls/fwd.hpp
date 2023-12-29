@@ -4,11 +4,11 @@
  * Purpose:     Forward declarations of classes in recls.
  *
  * Created:     23rd November 2011
- * Updated:     31st December 2020
+ * Updated:     29th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,10 +52,10 @@
 
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
-# define RECLS_VER_RECLS_HPP_FWD_MAJOR     	1
-# define RECLS_VER_RECLS_HPP_FWD_MINOR     	0
-# define RECLS_VER_RECLS_HPP_FWD_REVISION  	2
-# define RECLS_VER_RECLS_HPP_FWD_EDIT      	4
+# define RECLS_VER_RECLS_HPP_FWD_MAJOR      1
+# define RECLS_VER_RECLS_HPP_FWD_MINOR      0
+# define RECLS_VER_RECLS_HPP_FWD_REVISION   2
+# define RECLS_VER_RECLS_HPP_FWD_EDIT       4
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
