@@ -98,7 +98,7 @@ class root_sequence;
 
 /* recls/cpp/search_sequence.hpp : */
 template<
-	typename C
+    typename C
 ,   typename T
 ,   typename V
 >

@@ -52,9 +52,9 @@ namespace impl
  */
 
 #if 0 || \
-	defined(STLSOFT_COMPILER_IS_CLANG) || \
-	defined(STLSOFT_COMPILER_IS_GCC) || \
-	0
+    defined(STLSOFT_COMPILER_IS_CLANG) || \
+    defined(STLSOFT_COMPILER_IS_GCC) || \
+    0
 
 # define SWITCH_BEGIN_()        if (0) {}
 # define SWITCH_END_()          return static_cast<DWORD>(E_FAIL);

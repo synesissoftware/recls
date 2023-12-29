@@ -51,10 +51,10 @@
 
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
-# define RECLS_VER_RECLS_HPP_FWD_MAJOR     	1
-# define RECLS_VER_RECLS_HPP_FWD_MINOR     	0
-# define RECLS_VER_RECLS_HPP_FWD_REVISION  	2
-# define RECLS_VER_RECLS_HPP_FWD_EDIT      	4
+# define RECLS_VER_RECLS_HPP_FWD_MAJOR      1
+# define RECLS_VER_RECLS_HPP_FWD_MINOR      0
+# define RECLS_VER_RECLS_HPP_FWD_REVISION   2
+# define RECLS_VER_RECLS_HPP_FWD_EDIT       4
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

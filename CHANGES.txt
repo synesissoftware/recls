@@ -1378,10 +1378,10 @@ Summary:
 --------
 
  * added comparison operators for recls::cpp::entry
-	* added subscript operator to recls::cpp::root_sequence
-	* changed recls_rc_t to be an opaque type, in order to avoid problems with string access shims matching any integers
+ * added subscript operator to recls::cpp::root_sequence
+ * changed recls_rc_t to be an opaque type, in order to avoid problems with string access shims matching any integers
  * failure to stat is not reported as an error
-	* various minor fixes
+ * various minor fixes
  * NOTE: bundles shwild 0.9.19
  * NOTE: bundles xTests 0.15.1
  * NOTE: depends on STLSoft 1.9.98
@@ -2087,7 +2087,7 @@ Core:
   ~ Mac-OS-X bug in definition of rc_atomic_t
   ~ fix to src/recls_atomic.h, to prevent inclusion of
     platformstl/synch/atomic_functions.h on platformst that do not
-	support atomic integer operations
+    support atomic integer operations
 
 Makefiles:
 ----------

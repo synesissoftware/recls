@@ -24,100 +24,100 @@ endif # !STLSOFT
 ########################################
 # project & compiler version
 
-COMP_TAG            =   gcc42
-ARCH_TAG            =   
-OS_TAG              =   
-PROJ_TAG            =   recls
-PROJ_VER_MAJOR      =   1
-PROJ_TAG_VER        =   $(PROJ_TAG).$(PROJ_VER_MAJOR)
-COMP_ARCH_OS_TAG    =   $(COMP_TAG)$(OS_TAG)$(ARCH_TAG)
+COMP_TAG                    =   gcc42
+ARCH_TAG                    =
+OS_TAG                      =
+PROJ_TAG                    =   recls
+PROJ_VER_MAJOR              =   1
+PROJ_TAG_VER                =   $(PROJ_TAG).$(PROJ_VER_MAJOR)
+COMP_ARCH_OS_TAG            =   $(COMP_TAG)$(OS_TAG)$(ARCH_TAG)
 
-SHWILD_VER_MAJOR    =   0
-SHWILD_TAG_VER      =   shwild.$(SHWILD_VER_MAJOR)
+SHWILD_VER_MAJOR            =   0
+SHWILD_TAG_VER              =   shwild.$(SHWILD_VER_MAJOR)
 
-XTESTS_VER_MAJOR    =   0
-XTESTS_TAG_VER      =   xtests.$(XTESTS_VER_MAJOR)
+XTESTS_VER_MAJOR            =   0
+XTESTS_TAG_VER              =   xtests.$(XTESTS_VER_MAJOR)
 
-UNIXEM_VER_MAJOR    =   1
-UNIXEM_TAG_VER      =   unixem.$(UNIXEM_VER_MAJOR)
+UNIXEM_VER_MAJOR            =   1
+UNIXEM_TAG_VER              =   unixem.$(UNIXEM_VER_MAJOR)
 
-PROJ_MAKEFILE_NAME  =   makefile
+PROJ_MAKEFILE_NAME          =   makefile
 
 ########################################
 # testing verbosity
 
 ifndef TEST_VERBOSITY
-TEST_VERBOSITY      =   2
+TEST_VERBOSITY              =   2
 endif # !TEST_VERBOSITY
 
 ########################################
 # directories
 
-PROJ_BASE_DIR           =   ../..
-PROJ_BIN_DIR            =   $(PROJ_BASE_DIR)/bin
-PROJ_INCLUDE_DIR        =   $(PROJ_BASE_DIR)/include
-PROJ_LIB_DIR            =   $(PROJ_BASE_DIR)/lib
-PROJ_OBJ_DIR            =   .
-PROJ_SRC_DIR            =   $(PROJ_BASE_DIR)/src
-PROJ_EXAMPLES_DIR       =   $(PROJ_BASE_DIR)/examples
-PROJ_SAMPLES_DIR        =   $(PROJ_BASE_DIR)/samples
-PROJ_TEST_ROOT_DIR      =   $(PROJ_BASE_DIR)/test
-PROJ_TEST_COMPONENT_DIR =   $(PROJ_TEST_ROOT_DIR)/component
-PROJ_TEST_PERFORMANCE_DIR	=	$(PROJ_TEST_ROOT_DIR)/performance
-PROJ_TEST_SCRATCH_DIR   =   $(PROJ_TEST_ROOT_DIR)/scratch
-PROJ_TEST_UNIT_DIR      =   $(PROJ_TEST_ROOT_DIR)/unit
+PROJ_BASE_DIR               =   ../..
+PROJ_BIN_DIR                =   $(PROJ_BASE_DIR)/bin
+PROJ_INCLUDE_DIR            =   $(PROJ_BASE_DIR)/include
+PROJ_LIB_DIR                =   $(PROJ_BASE_DIR)/lib
+PROJ_OBJ_DIR                =   .
+PROJ_SRC_DIR                =   $(PROJ_BASE_DIR)/src
+PROJ_EXAMPLES_DIR           =   $(PROJ_BASE_DIR)/examples
+PROJ_SAMPLES_DIR            =   $(PROJ_BASE_DIR)/samples
+PROJ_TEST_ROOT_DIR          =   $(PROJ_BASE_DIR)/test
+PROJ_TEST_COMPONENT_DIR     =   $(PROJ_TEST_ROOT_DIR)/component
+PROJ_TEST_PERFORMANCE_DIR   =   $(PROJ_TEST_ROOT_DIR)/performance
+PROJ_TEST_SCRATCH_DIR       =   $(PROJ_TEST_ROOT_DIR)/scratch
+PROJ_TEST_UNIT_DIR          =   $(PROJ_TEST_ROOT_DIR)/unit
 
-SHWILD_PROJ_INCLUDE		=	
+SHWILD_PROJ_INCLUDE         =
 ifdef RECLS_SHWILD_BASE_DIR
-SHWILD_INCLUDE_DIR		=   $(RECLS_SHWILD_BASE_DIR)/include
-SHWILD_SRC_DIR			=   $(RECLS_SHWILD_BASE_DIR)/src
-SHWILD_PROJ_INCLUDE		=	-I$(SHWILD_INCLUDE_DIR)
+SHWILD_INCLUDE_DIR          =   $(RECLS_SHWILD_BASE_DIR)/include
+SHWILD_SRC_DIR              =   $(RECLS_SHWILD_BASE_DIR)/src
+SHWILD_PROJ_INCLUDE         =   -I$(SHWILD_INCLUDE_DIR)
 else
-SHWILD_INCLUDE_DIR		=   $(PROJ_BASE_DIR)/include
-SHWILD_SRC_DIR			=   $(PROJ_SRC_DIR)/shwild
+SHWILD_INCLUDE_DIR          =   $(PROJ_BASE_DIR)/include
+SHWILD_SRC_DIR              =   $(PROJ_SRC_DIR)/shwild
 endif # !RECLS_SHWILD_BASE_DIR
 
-XCONTRACT_PROJ_INCLUDE	=	
+XCONTRACT_PROJ_INCLUDE      =
 
-XTESTS_PROJ_INCLUDE		=	
+XTESTS_PROJ_INCLUDE         =
 ifdef RECLS_XTESTS_BASE_DIR
-XTESTS_INCLUDE_DIR		=   $(RECLS_XTESTS_BASE_DIR)/include
-XTESTS_SRC_DIR			=   $(RECLS_XTESTS_BASE_DIR)/src
-XTESTS_PROJ_INCLUDE		=	-I$(XTESTS_INCLUDE_DIR)
+XTESTS_INCLUDE_DIR          =   $(RECLS_XTESTS_BASE_DIR)/include
+XTESTS_SRC_DIR              =   $(RECLS_XTESTS_BASE_DIR)/src
+XTESTS_PROJ_INCLUDE         =   -I$(XTESTS_INCLUDE_DIR)
 else
-XTESTS_INCLUDE_DIR		=   $(PROJ_BASE_DIR)/include
-XTESTS_SRC_DIR			=   $(PROJ_SRC_DIR)/xtests
+XTESTS_INCLUDE_DIR          =   $(PROJ_BASE_DIR)/include
+XTESTS_SRC_DIR              =   $(PROJ_SRC_DIR)/xtests
 endif # !RECLS_XTESTS_BASE_DIR
 
 ifdef STLSOFT_1_10
-STLSOFT_1_10_INCLUDE	=	-I$(STLSOFT_1_10)/include
+STLSOFT_1_10_INCLUDE        =   -I$(STLSOFT_1_10)/include
 else # ? STLSOFT_1_10
-STLSOFT_1_10_INCLUDE	=
+STLSOFT_1_10_INCLUDE        =
 endif # !STLSOFT_1_10
 
 
-STLSOFT_PROJ_INCLUDE	=	-I$(STLSOFT)/include
+STLSOFT_PROJ_INCLUDE        =   -I$(STLSOFT)/include
 
 ########################################
 # tools
 
-CC                      =   gcc
-CPPC                    =   g++
-AR                      =   ar
-LD                      =   g++
-RM                      =   rm -f
-CP                      =   cp
-RC                      =   
+CC                          =   gcc
+CPPC                        =   g++
+AR                          =   ar
+LD                          =   g++
+RM                          =   rm -f
+CP                          =   cp
+RC                          =
 
 # includes
 
-INCLUDES_LEADER         =   
+INCLUDES_LEADER             =
 
-PROJ_INCLUDE            =   -I$(PROJ_INCLUDE_DIR)
+PROJ_INCLUDE                =   -I$(PROJ_INCLUDE_DIR)
 
-ENV_INCLUDES            =
+ENV_INCLUDES                =
 
-COMMON_INCLUDES         =
+COMMON_INCLUDES             =
 
 
 
@@ -125,12 +125,12 @@ COMMON_INCLUDES         =
 
 # lib
 
-LIBS_LEADER             =   
+LIBS_LEADER                 =
 
 # lib paths
 
-ENV_LIBPATHS        =
-COMMON_LIBPATHS         =
+ENV_LIBPATHS                =
+COMMON_LIBPATHS             =
 
 
 LIBPATHS=\
@@ -161,9 +161,9 @@ TARGET_LIB_ST_R=\
 
 # #defines
 
-OS_DEFS				=	-Dunix
+OS_DEFS                     =   -Dunix
 
-COMMON_DEFS_		= \
+COMMON_DEFS_                = \
  -DB64_NO_USE_XCONTRACT\
  -DB64_NO_USE_XCOVER\
  -DRECLS_NO_IMPLICIT_LINK\
@@ -171,21 +171,21 @@ COMMON_DEFS_		= \
  -DSHWILD_QUALITY_NO_USE_XCOVER\
  \
 
-COMMON_DEFS			= \
+COMMON_DEFS                 = \
  $(COMMON_DEFS_)\
  \
 
-CUSTOM_DEFS			=   -DRECLS_FORCE_COMPILER_GCC
+CUSTOM_DEFS                 =   -DRECLS_FORCE_COMPILER_GCC
 
-CC_CUSTOM_DEFS		=	$(CUSTOM_DEFS)
+CC_CUSTOM_DEFS              =   $(CUSTOM_DEFS)
 
-CPPC_CUSTOM_DEFS	=	$(CUSTOM_DEFS)
+CPPC_CUSTOM_DEFS            =   $(CUSTOM_DEFS)
 
 
 
 # CC flags
 
-CC_F_NOLOGO           =   
+CC_F_NOLOGO           =
 CC_F_COMPILE_ONLY     =   -c
 CC_F_WARNING_MAX      =   -Wall -pedantic -Wno-long-long -Wno-unused-value -Wundef -Wshadow
 CC_F_WARNING_ERR      =   -Werror
@@ -218,19 +218,19 @@ CC_FLAGS_ST_R=\
 
 # CPPC flags
 
-CPPC_F_NOLOGO           =   
+CPPC_F_NOLOGO           =
 CPPC_F_LANGUAGE         =   -std=c++11
 CPPC_F_COMPILE_ONLY     =   -c
 CPPC_F_WARNING_MAX      =   -Wall -pedantic -Wno-long-long -Wno-non-virtual-dtor -Wno-unused-value
 CPPC_F_WARNING_ERR      =   -Werror
-CPPC_F_EXCEPTIONS_ON    =   
-CPPC_F_EXCEPTIONS_OFF   =   
-CPPC_F_EXCEPTIONS		=	$(CPPC_F_EXCEPTIONS_ON)
-CPPC_F_RTTI_ON          =   
-CPPC_F_RTTI_OFF         =   
+CPPC_F_EXCEPTIONS_ON    =
+CPPC_F_EXCEPTIONS_OFF   =
+CPPC_F_EXCEPTIONS       =   $(CPPC_F_EXCEPTIONS_ON)
+CPPC_F_RTTI_ON          =
+CPPC_F_RTTI_OFF         =
 CPPC_F_RTTI             =   $(CPPC_F_RTTI_ON)
 CPPC_F_MINIMUM_SIZE     =   -O1
-CPPC_F_MAXIMUM_SPEED	=	-O3
+CPPC_F_MAXIMUM_SPEED    =   -O3
 
 CPPC_FLAGS_BASE=\
  $(CPPC_F_NOLOGO)\
@@ -544,12 +544,12 @@ CPPC_ARGS_core_ST_R=\
 
 # AR Args
 
-AR_ARGS             =   
+AR_ARGS                     =
 
 
 # LD flags
 
-LD_F_NOLOGO				=   
+LD_F_NOLOGO                 =
 
 LD_FLAGS_BASE=\
  $(LD_F_NOLOGO)\
@@ -610,19 +610,19 @@ LD_ARGS_ST_R= $(LD_FLAGS_ST_R)  $(LD_INCLUDES_ST_R)
  \
 
 
-3PTY_LIBS_MT_D	=\
+3PTY_LIBS_MT_D=\
  $(3PTY_LIBS_BASE)\
  \
 
-3PTY_LIBS_MT_R	=\
+3PTY_LIBS_MT_R=\
  $(3PTY_LIBS_BASE)\
  \
 
-3PTY_LIBS_ST_D	=\
+3PTY_LIBS_ST_D=\
  $(3PTY_LIBS_BASE)\
  \
 
-3PTY_LIBS_ST_R	=\
+3PTY_LIBS_ST_R=\
  $(3PTY_LIBS_BASE)\
  \
 
