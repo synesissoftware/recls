@@ -4,11 +4,12 @@
  * Purpose:     CodePlay Vector C specific types and includes for the recls API.
  *
  * Created:     23rd May 2004
- * Updated:     10th January 2017
+ * Updated:     30th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,7 +58,7 @@
 # define RECLS_VER_H_RECLS_COMPILER_VECTORC_MAJOR       3
 # define RECLS_VER_H_RECLS_COMPILER_VECTORC_MINOR       3
 # define RECLS_VER_H_RECLS_COMPILER_VECTORC_REVISION    1
-# define RECLS_VER_H_RECLS_COMPILER_VECTORC_EDIT        12
+# define RECLS_VER_H_RECLS_COMPILER_VECTORC_EDIT        13
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_vectorc.h
@@ -147,3 +148,4 @@ typedef wchar_t             recls_char_w_t;
 #endif /* RECLS_INCL_RECLS_INTERNAL_H_COMPILER */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

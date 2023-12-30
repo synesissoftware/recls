@@ -4,11 +4,11 @@
  * Purpose:     #includes the InetSTL root header and verifies the version.
  *
  * Created:     8th November 2007
- * Updated:     2nd January 2021
+ * Updated:     30th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,3 +49,4 @@
 #endif /* !RECLS_INCL_SRC_H_INCL_INETSTL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

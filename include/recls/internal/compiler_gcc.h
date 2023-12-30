@@ -4,11 +4,12 @@
  * Purpose:     Digital Mars specific types and includes for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     10th January 2017
+ * Updated:     30th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +54,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_MINOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_EDIT       15
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_EDIT       16
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_gcc.h
@@ -139,3 +140,4 @@ typedef wchar_t             recls_char_w_t;
 #endif /* RECLS_INCL_RECLS_INTERNAL_H_COMPILER */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

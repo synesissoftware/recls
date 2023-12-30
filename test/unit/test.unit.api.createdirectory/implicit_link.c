@@ -4,16 +4,7 @@
  * Purpose:     Implicit link file for the test.unit.api.createdirectory project.
  *
  * Created:     29th January 2009
- * Updated:     1st January 2021
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2009-2021, Synesis Software / Synesis Information Systems
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 

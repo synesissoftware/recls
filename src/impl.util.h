@@ -4,11 +4,11 @@
  * Purpose:     Implementation header.
  *
  * Created:     17th August 2003
- * Updated:     2nd January 2021
+ * Updated:     30th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -146,3 +146,4 @@ recls_is_home_start_(
 #endif /* !RECLS_INCL_SRC_H_IMPL_UTIL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

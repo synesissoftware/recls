@@ -4,7 +4,7 @@
  * Purpose:     Handles detection of safe string library.
  *
  * Created:     8th June 2008
- * Updated:     10th January 2017
+ * Updated:     30th December 2023
  *
  * Author:      Matthew Wilson
  *
@@ -72,3 +72,4 @@
 #endif /* RECLS_INCL_RECLS_INTERNAL_H_SAFESTR */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

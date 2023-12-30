@@ -4,11 +4,12 @@
  * Purpose:     Partially platform-independent time type for recls.
  *
  * Created:     18th August 2003
- * Updated:     10th January 2017
+ * Updated:     30th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +48,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_FILESIZE_MAJOR    1
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_FILESIZE_MINOR    0
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_FILESIZE_REVISION 4
-# define RECLS_VER_RECLS_INTERNAL_H_RECLS_FILESIZE_EDIT     5
+# define RECLS_VER_RECLS_INTERNAL_H_RECLS_FILESIZE_EDIT     6
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/recls_filesize.h
@@ -100,3 +101,4 @@ typedef recls_filesize_t            filesize_t;
 #endif /* !RECLS_INCL_RECLS_INTERNAL_H_RECLS_FILESIZE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

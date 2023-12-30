@@ -4,11 +4,11 @@
  * Purpose:     Definition of the ReclsSearch and ReclsSearchDirectoryNode classes.
  *
  * Created:     15th August 2003
- * Updated:     22nd December 2020
+ * Updated:     30th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -159,3 +159,4 @@ protected:
 #endif /* !RECLS_INCL_HPP_RECLS_SEARCH */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

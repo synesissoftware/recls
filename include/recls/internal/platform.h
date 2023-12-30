@@ -4,11 +4,11 @@
  * Purpose:     Platform discrimination for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     21st December 2020
+ * Updated:     30th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,7 +49,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       28
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       29
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -203,3 +203,4 @@ namespace recls
 #endif /* !RECLS_INCL_RECLS_INTERNAL_H_PLATFORM */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

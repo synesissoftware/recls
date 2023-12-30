@@ -4,11 +4,12 @@
  * Purpose:     Compiler discrimination for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     10th January 2017
+ * Updated:     30th December 2023
  *
  * Home:        http://recls.org/
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +48,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_MAJOR      4
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_MINOR      1
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_EDIT       21
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_EDIT       22
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler.h
@@ -227,3 +228,4 @@ typedef recls_bool_t        bool_t;
 #endif /* !RECLS_INCL_RECLS_INTERNAL_H_COMPILER */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
