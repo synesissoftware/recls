@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the ReclsFileSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -97,7 +97,7 @@ recls_rc_t ReclsSearch::GetNext()
 
     m_lastError = m_dnode->GetNext();
 
-    if(RECLS_RC_NO_MORE_DATA == m_lastError)
+    if (RECLS_RC_NO_MORE_DATA == m_lastError)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -130,7 +130,7 @@ recls_rc_t ReclsSearch::GetNextDetails(recls_entry_t* pinfo)
 
     m_lastError = m_dnode->GetNextDetails(pinfo);
 
-    if(RECLS_RC_NO_MORE_DATA == m_lastError)
+    if (RECLS_RC_NO_MORE_DATA == m_lastError)
     {
         RECLS_COVER_MARK_LINE();
 

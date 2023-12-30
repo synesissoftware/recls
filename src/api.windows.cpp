@@ -4,7 +4,7 @@
  * Purpose:     This file contains the Windows versions of the recls API.
  *
  * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -82,11 +82,11 @@ static size_t check_drives(char (*drives)[26], recls_uint32_t flags)
 
         const char letter = static_cast<char>('A' + i);
 
-        if(0 == flags)
+        if (0 == flags)
         {
             RECLS_COVER_MARK_LINE();
 
-            if(!trait_t::drive_exists(letter))
+            if (!trait_t::drive_exists(letter))
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -99,7 +99,7 @@ static size_t check_drives(char (*drives)[26], recls_uint32_t flags)
 
             const DWORD type = trait_t::get_drive_type(letter);
 
-            switch(type)
+            switch (type)
             {
                 case    DRIVE_UNKNOWN:
                     RECLS_COVER_MARK_LINE();
@@ -109,35 +109,35 @@ static size_t check_drives(char (*drives)[26], recls_uint32_t flags)
                     continue;
                 case    DRIVE_REMOVABLE:
                     RECLS_COVER_MARK_LINE();
-                    if(0 == (flags & RECLS_F_REMOVABLE_DRIVES))
+                    if (0 == (flags & RECLS_F_REMOVABLE_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_FIXED:
                     RECLS_COVER_MARK_LINE();
-                    if(0 == (flags & RECLS_F_FIXED_DRIVES))
+                    if (0 == (flags & RECLS_F_FIXED_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_REMOTE:
                     RECLS_COVER_MARK_LINE();
-                    if(0 == (flags & RECLS_F_NETWORK_DRIVES))
+                    if (0 == (flags & RECLS_F_NETWORK_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_CDROM:
                     RECLS_COVER_MARK_LINE();
-                    if(0 == (flags & RECLS_F_CDROM_DRIVES))
+                    if (0 == (flags & RECLS_F_CDROM_DRIVES))
                     {
                         continue;
                     }
                     break;
                 case    DRIVE_RAMDISK:
                     RECLS_COVER_MARK_LINE();
-                    if(0 == (flags & RECLS_F_RAM_DRIVES))
+                    if (0 == (flags & RECLS_F_RAM_DRIVES))
                     {
                         continue;
                     }
@@ -233,11 +233,11 @@ static size_t Recls_GetRoots_(  recls_root_t*   roots
     size_t  n   =   check_drives(&drives, flags);
 #endif /* compiler */
 
-    if(NULL != roots)
+    if (NULL != roots)
     {
         RECLS_COVER_MARK_LINE();
 
-        if(n < cRoots)
+        if (n < cRoots)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -276,7 +276,7 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
     // never have to go anywhere near it again.
     typedef stlsoft::sign_traits<size_t>::signed_type   signed_t;
 
-    if(static_cast<signed_t>(cRoots) < 0)
+    if (static_cast<signed_t>(cRoots) < 0)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -289,7 +289,7 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
 
         recls_debug1_trace_printf_(RECLS_LITERAL("Recls_GetRoots() [.NET hack]: index=%u"), index);
 
-        if(index < cch)
+        if (index < cch)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -320,7 +320,7 @@ RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
     // designed and shockingly documented facilities in .NET
     typedef stlsoft::sign_traits<size_t>::signed_type   signed_t;
 
-    if(static_cast<signed_t>(cRoots) < 0)
+    if (static_cast<signed_t>(cRoots) < 0)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -331,7 +331,7 @@ RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
         size_t          index   =   static_cast<size_t>(-static_cast<signed_t>(cRoots) - 1);
         size_t          cch     =   Recls_GetRoots_(&roots_[0], STLSOFT_NUM_ELEMENTS(roots_), flags);
 
-        if(index < cch)
+        if (index < cch)
         {
             RECLS_COVER_MARK_LINE();
 

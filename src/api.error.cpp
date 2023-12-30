@@ -4,7 +4,7 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -159,14 +159,14 @@ static recls_char_t const* lookup_error_string_(
     int                         e_;     // Null object pattern
     size_t                      len_;   // Null object pattern
 
-    if(NULL == e)
+    if (NULL == e)
     {
         RECLS_COVER_MARK_LINE();
 
         e = &e_;
     }
 
-    if(NULL == len)
+    if (NULL == len)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -177,7 +177,7 @@ static recls_char_t const* lookup_error_string_(
     {
         RECLS_COVER_MARK_LINE();
 
-        if(entries[i]->rc == rc)
+        if (entries[i]->rc == rc)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -234,7 +234,7 @@ RECLS_FNDECL(size_t) Recls_GetErrorString(  recls_rc_t      rc
     size_t              cchError;
     recls_char_t const* s = ::recls::impl::lookup_error_string_(rc, NULL, &cchError);
 
-    if(NULL == buffer)
+    if (NULL == buffer)
     {
         RECLS_COVER_MARK_LINE();
 

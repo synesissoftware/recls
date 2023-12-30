@@ -133,7 +133,7 @@ recls_rc_t Recls_Stat_X_(
     types::file_path_buffer_type    home;
     size_t                          pathLen = types::traits_type::str_len(path);
 
-    if( NULL != path &&
+    if (NULL != path &&
         recls_is_home_start_(path))
     {
         RECLS_COVER_MARK_LINE();
@@ -142,7 +142,7 @@ recls_rc_t Recls_Stat_X_(
 
         size_t n = recls_get_home_(&home[0], home.size());
 
-        if(0 == n)
+        if (0 == n)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -161,7 +161,7 @@ recls_rc_t Recls_Stat_X_(
 
             //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{4}: %s"), path);
 
-            if(pathLen + n > home.size())
+            if (pathLen + n > home.size())
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -200,7 +200,7 @@ recls_rc_t Recls_Stat_X_(
 
     //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{9}: %s"), path);
 
-    if(0 == pathLen)
+    if (0 == pathLen)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -211,7 +211,7 @@ recls_rc_t Recls_Stat_X_(
 
     //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{11}: %s"), path);
 
-    if(pathLen > types::path_type::max_size())
+    if (pathLen > types::path_type::max_size())
     {
         recls_error_trace_printf_(RECLS_LITERAL("path too long: %s"), path);
 
@@ -222,7 +222,7 @@ recls_rc_t Recls_Stat_X_(
 
     //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{12}: [%s, %s]"), path, path_.c_str());
 
-    if( !path_.exists() &&
+    if (!path_.exists() &&
         RECLS_F_DETAILS_LATER == (flags & RECLS_F_DETAILS_LATER) &&
         0 != (flags & RECLS_F_TYPEMASK)) // To allow non-existant things to be stat'd
     {
@@ -243,7 +243,7 @@ recls_rc_t Recls_Stat_X_(
 
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{15}: [%s, %s]"), path, path_.c_str());
 
-        if(!path2_.exists())
+        if (!path2_.exists())
         {
             RECLS_COVER_MARK_LINE();
 
@@ -260,11 +260,11 @@ recls_rc_t Recls_Stat_X_(
 
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{17}: [%s, %s]"), path, path_.c_str());
 
-        if(types::traits_type::is_directory(path_.c_str()))
+        if (types::traits_type::is_directory(path_.c_str()))
         {
             RECLS_COVER_MARK_LINE();
 
-            if(RECLS_F_FILES == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
+            if (RECLS_F_FILES == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -275,7 +275,7 @@ recls_rc_t Recls_Stat_X_(
         {
             RECLS_COVER_MARK_LINE();
 
-            if(RECLS_F_DIRECTORIES == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
+            if (RECLS_F_DIRECTORIES == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
             {
                 RECLS_COVER_MARK_LINE();
 

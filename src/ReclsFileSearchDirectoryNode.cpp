@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created:     31st May 2004
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -86,20 +86,20 @@ namespace impl
 
     int ssFlags = 0;
 
-    if(0 != (flags & RECLS_F_FILES))
+    if (0 != (flags & RECLS_F_FILES))
     {
         RECLS_COVER_MARK_LINE();
 
         ssFlags |= sequence_t::files;
     }
-    if(0 != (flags & RECLS_F_DIRECTORIES))
+    if (0 != (flags & RECLS_F_DIRECTORIES))
     {
         RECLS_COVER_MARK_LINE();
 
         ssFlags |= sequence_t::directories;
     }
 
-    if(0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+    if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
     {
 #if defined(_WINSTL_VER) && \
     _WINSTL_VER >= 0x010a05ff
@@ -134,7 +134,7 @@ namespace impl
     ssFlags |= sequence_t::fullPath;
 #endif /* platform */
 
-    if(0 == (flags & RECLS_F_ALLOW_REPARSE_DIRS))
+    if (0 == (flags & RECLS_F_ALLOW_REPARSE_DIRS))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -143,7 +143,7 @@ namespace impl
 #endif /* platform */
     }
 
-    if(0 != (flags & RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS))
+    if (0 != (flags & RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -155,7 +155,7 @@ namespace impl
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
     }
 
-    if(0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+    if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
     {
 #if defined(_WINSTL_VER) && \
     _WINSTL_VER >= 0x010a05ff
@@ -175,7 +175,7 @@ namespace impl
     RECLS_COVER_MARK_LINE();
 
     // I can't explain it, but Borland does not like the tertiary operator and the copy-ctors of the iterators
-    if(b)
+    if (b)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -205,7 +205,7 @@ namespace impl
 
     RECLS_MESSAGE_ASSERT("I _think_ this should never happen. Please report if it does.", 0 != len);
 
-    if( 0 != len &&
+    if (0 != len &&
         !types::traits_type::has_dir_end(&buff[0] + (len - 1)))
     {
         RECLS_COVER_MARK_LINE();
@@ -241,7 +241,7 @@ namespace impl
     struct stat         st;
     recls_char_t const* entryPath = *it;
 
-    if(0 != (*pfn)(entryPath, &st))
+    if (0 != (*pfn)(entryPath, &st))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -408,14 +408,14 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 # endif
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-    if(NULL != node)
+    if (NULL != node)
     {
         RECLS_COVER_MARK_LINE();
 
         // Ensure that it, or one of its sub-nodes, has matching entries.
         recls_rc_t rc = node->Initialise();
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -445,7 +445,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     // 1. Ensure that the path is valid
     //
     // 1.a Must not be NULL
-    if( NULL == path ||
+    if (NULL == path ||
         '\0' == 0[path])
     {
         RECLS_COVER_MARK_LINE();
@@ -461,7 +461,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     // 1.b Must not be > max_path()
     const size_t pathLen = types::traits_type::str_len(path);
 
-    if(pathLen > types::traits_type::path_max())
+    if (pathLen > types::traits_type::path_max())
     {
         RECLS_COVER_MARK_LINE();
 
@@ -483,7 +483,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 4"));
 
     // stat() of root is now supported!
-    if(types::traits_type::is_root_designator(path))
+    if (types::traits_type::is_root_designator(path))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -502,7 +502,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
 #if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
     // emulated UNIX
-    if(!types::traits_type::is_path_UNC(path))
+    if (!types::traits_type::is_path_UNC(path))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -520,7 +520,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     types::traits_type::stat_data_type  st;
     types::traits_type::stat_data_type* pst = &st;
 
-    if(!types::traits_type::stat(path, &st))
+    if (!types::traits_type::stat(path, &st))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -535,7 +535,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
     recls_debug2_trace_printf_(RECLS_LITERAL("ReclsFileSearchDirectoryNode::Stat(): 10"));
 
-    if( NULL == pst &&
+    if (NULL == pst &&
         RECLS_F_DETAILS_LATER != (flags & (RECLS_F_DETAILS_LATER | RECLS_F_TYPEMASK))) // To allow non-existant things to be stat'd
     {
         RECLS_COVER_MARK_LINE();
@@ -615,12 +615,12 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
     RECLS_COVER_MARK_LINE();
 
-    if(NULL != m_pfn)
+    if (NULL != m_pfn)
     {
         RECLS_COVER_MARK_LINE();
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
-        if(m_flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
+        if (m_flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -639,7 +639,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         {
             RECLS_COVER_MARK_LINE();
 
-            if(0 == (*m_pfn)(m_searchDir.c_str(), m_searchDirLen, m_param, NULL, 0))
+            if (0 == (*m_pfn)(m_searchDir.c_str(), m_searchDirLen, m_param, NULL, 0))
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -650,7 +650,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
     RECLS_COVER_MARK_LINE();
 
-    if(m_entriesBegin != m_entries.end())
+    if (m_entriesBegin != m_entries.end())
     {
         RECLS_COVER_MARK_LINE();
 
@@ -659,7 +659,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         // (i) Try getting a file first,
         m_current = CreateEntryInfo(m_rootDirLen, stlsoft::c_str_ptr(m_searchDir), m_searchDirLen, m_flags, m_entriesBegin);
 
-        if(NULL == m_current)
+        if (NULL == m_current)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -676,7 +676,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
     {
         RECLS_COVER_MARK_LINE();
 
-        if(m_directoriesBegin == m_directories.end())
+        if (m_directoriesBegin == m_directories.end())
         {
             RECLS_COVER_MARK_LINE();
 
@@ -715,16 +715,16 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
                                                                     ,   &rc
                                                                     );
 
-            } while(NULL == m_dnode && ++m_directoriesBegin != m_directories.end());
+            } while (NULL == m_dnode && ++m_directoriesBegin != m_directories.end());
 
-            if(RECLS_SUCCEEDED(rc))
+            if (RECLS_SUCCEEDED(rc))
             {
                 rc = (NULL == m_dnode) ? RECLS_RC_NO_MORE_DATA : RECLS_RC_OK;
             }
         }
     }
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -748,7 +748,7 @@ recls_bool_t ReclsFileSearchDirectoryNode::is_valid() const
 #if defined(RECLS_PRAGMA_MESSAGE_SUPPORT) && \
     !defined(RECLS_PRAGMA_MESSAGE_IS_INTRUSIVE)
 # pragma message("Flesh these out")
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -796,7 +796,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
 
     recls_rc_t rc = RECLS_RC_NO_MORE_DATA;
 
-    if(NULL != m_current)
+    if (NULL != m_current)
     {
         // Currently enumerating through the files
         RECLS_ASSERT(m_entriesBegin != m_entries.end());
@@ -808,7 +808,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
         ++m_entriesBegin;
 
         Entry_Release(m_current);
-        if(m_entriesBegin != m_entries.end())
+        if (m_entriesBegin != m_entries.end())
         {
             RECLS_COVER_MARK_LINE();
 
@@ -828,19 +828,19 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
         }
     }
 
-    if(NULL == m_current)
+    if (NULL == m_current)
     {
         RECLS_COVER_MARK_LINE();
 
         // Now we are either enumerating the directories, or we've already done so
-        if(NULL != m_dnode)
+        if (NULL != m_dnode)
         {
             RECLS_COVER_MARK_LINE();
 
             // Currently enumerating the directories
             rc = m_dnode->GetNext();
 
-            if(RECLS_RC_NO_MORE_DATA == rc)
+            if (RECLS_RC_NO_MORE_DATA == rc)
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -852,7 +852,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
             }
         }
 
-        if(m_directoriesBegin == m_directories.end())
+        if (m_directoriesBegin == m_directories.end())
         {
             RECLS_COVER_MARK_LINE();
 
@@ -863,7 +863,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
         {
             RECLS_COVER_MARK_LINE();
 
-            if(NULL == m_dnode)
+            if (NULL == m_dnode)
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -889,7 +889,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
                                                                         ,   &rc
                                                                         );
 
-                    if(NULL != m_dnode)
+                    if (NULL != m_dnode)
                     {
                         RECLS_COVER_MARK_LINE();
 
@@ -902,7 +902,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNext()
                         ++m_directoriesBegin;
                     }
 
-                } while(NULL == m_dnode && m_directoriesBegin != m_directories.end());
+                } while (NULL == m_dnode && m_directoriesBegin != m_directories.end());
             }
         }
     }
@@ -929,7 +929,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetDetails(
     RECLS_ASSERT(NULL != pinfo);
     RECLS_ASSERT(NULL == m_current || NULL == m_dnode);
 
-    if(NULL != m_current)
+    if (NULL != m_current)
     {
         // Currently searching for files from the current directory
 
@@ -955,7 +955,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetDetails(
         }
 #endif /* RECLS_TRACE_LEVEL >= 2 */
     }
-    else if(NULL != m_dnode)
+    else if (NULL != m_dnode)
     {
         RECLS_ASSERT(NULL == m_current);
 
@@ -990,7 +990,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::GetNextDetails(
 
     recls_rc_t  rc  =   GetNext();
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
         RECLS_COVER_MARK_LINE();
 

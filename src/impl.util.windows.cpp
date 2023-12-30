@@ -4,7 +4,7 @@
  * Purpose:     Windows utility functions for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -52,13 +52,13 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
 {
     RECLS_COVER_MARK_LINE();
 
-    if(':' == path[1])
+    if (':' == path[1])
     {
         RECLS_COVER_MARK_LINE();
 
         // It's a drive-prefixed absolute path, so ...
 #if RECLS_TRACE_LEVEL > 0
-        if(!isalpha(path[0]))
+        if (!isalpha(path[0]))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -69,7 +69,7 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
         // ... we just skip the drive
         return &path[2];
     }
-    else if('\\' == path[0] &&
+    else if ('\\' == path[0] &&
             '\\' == path[1])
     {
         RECLS_COVER_MARK_LINE();
@@ -78,7 +78,7 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
         // and then the next slash or backslash
         recls_char_t const* share = types::traits_type::str_chr(path + 2, '\\');
 
-        if(NULL == share)
+        if (NULL == share)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -91,7 +91,7 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
             recls_char_t const* slash   =   types::traits_type::str_chr(share + 1, '\\');
             recls_char_t const* slash_a =   types::traits_type::str_chr(share + 1, '/');
 
-            if( NULL == slash ||
+            if (NULL == slash ||
                 (   NULL != slash_a &&
                     slash_a < slash))
             {
@@ -100,7 +100,7 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
                 slash = slash_a;
             }
 
-            if(NULL == slash)
+            if (NULL == slash)
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -148,14 +148,14 @@ RECLS_LINKAGE_C size_t recls_get_home_(recls_char_t* buff, size_t cchBuff)
                                                                         ,   &homeDir[0]
                                                                         ,   RECLS_NUM_ELEMENTS(homeDir));
 
-    if( 0 == cchHomeDrive ||
+    if (0 == cchHomeDrive ||
         RECLS_NUM_ELEMENTS(homeDrive) == cchHomeDrive)
     {
         RECLS_COVER_MARK_LINE();
 
         return 0;
     }
-    if( 0 == cchHomeDir ||
+    if (0 == cchHomeDir ||
         RECLS_NUM_ELEMENTS(homeDir) == cchHomeDir)
     {
         RECLS_COVER_MARK_LINE();
@@ -163,7 +163,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(recls_char_t* buff, size_t cchBuff)
         return 0;
     }
 
-    if(!types::traits_type::has_dir_end(homeDir))
+    if (!types::traits_type::has_dir_end(homeDir))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -171,7 +171,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(recls_char_t* buff, size_t cchBuff)
         ++cchHomeDir;
     }
 
-    if(NULL == buff)
+    if (NULL == buff)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -181,7 +181,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(recls_char_t* buff, size_t cchBuff)
     {
         RECLS_COVER_MARK_LINE();
 
-        if(cchBuff <= cchHomeDrive)
+        if (cchBuff <= cchHomeDrive)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -189,7 +189,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(recls_char_t* buff, size_t cchBuff)
 
             return cchHomeDrive;
         }
-        else if(cchBuff <= cchHomeDrive + cchHomeDir)
+        else if (cchBuff <= cchHomeDrive + cchHomeDir)
         {
             RECLS_COVER_MARK_LINE();
 

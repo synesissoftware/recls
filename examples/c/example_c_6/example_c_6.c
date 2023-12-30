@@ -11,7 +11,7 @@
  *            - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 19th December 2023
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,7 +40,7 @@ int main()
     recls_info_t    current;
     recls_rc_t      rc  =   Recls_Stat(RECLS_LITERAL("."), RECLS_F_DIRECTORIES | RECLS_F_DIRECTORY_PARTS, &current);
 
-    if(RECLS_FAILED(rc))
+    if (RECLS_FAILED(rc))
     {
         /* The search failed. Display the error string. */
         recls_char_t    err[1001];

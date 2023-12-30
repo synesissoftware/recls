@@ -4,7 +4,7 @@
  * Purpose:     This file contains the Windows versions of the recls API.
  *
  * Created:     13th November 2010
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -65,14 +65,14 @@ RECLS_MARK_FILE_START()
 	defined(STLSOFT_COMPILER_IS_GCC) || \
 	0
 
-# define SWITCH_BEGIN_()        if(0) {}
+# define SWITCH_BEGIN_()        if (0) {}
 # define SWITCH_END_()          return static_cast<DWORD>(E_FAIL);
 
-# define CASE_1_(r)             else if(rc == (r)) {}
-# define CASE_2_(r, wec)        else if(rc == (r)) { return (wec); }
+# define CASE_1_(r)             else if (rc == (r)) {}
+# define CASE_2_(r, wec)        else if (rc == (r)) { return (wec); }
 #else /* ? compiler */
 
-# define SWITCH_BEGIN_()        switch(STLSOFT_REINTERPRET_CAST(recls_uintptr_t, rc)) {
+# define SWITCH_BEGIN_()        switch (STLSOFT_REINTERPRET_CAST(recls_uintptr_t, rc)) {
 # define SWITCH_END_()          } return static_cast<DWORD>(E_FAIL);
 
 # define CASE_1_(r)             case STLSOFT_REINTERPRET_CAST(recls_uintptr_t, r): break;

@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -130,7 +130,7 @@ static size_t Recls_CombinePaths_X_(
 
     platformstl::basic_path<recls_char_t>   path((NULL != path1) ? path1 : path2);
 
-    if( NULL != path1 &&
+    if (NULL != path1 &&
         NULL != path2)
     {
         RECLS_COVER_MARK_LINE();

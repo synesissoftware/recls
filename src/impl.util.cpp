@@ -4,7 +4,7 @@
  * Purpose:     Platform-independent utility functions for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -133,7 +133,7 @@ size_t recls_strncpy_(
 
     size_t  cchWritten;
 
-    if(cchDest < cchSrc)
+    if (cchDest < cchSrc)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -148,7 +148,7 @@ size_t recls_strncpy_(
 
         recls_strncpy__(dest, src, cchSrc);
 
-        if(cchSrc < cchDest)
+        if (cchSrc < cchDest)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -204,7 +204,7 @@ RECLS_LINKAGE_C size_t count_char_instances(
     {
         RECLS_COVER_MARK_LINE();
 
-        if(*begin == ch)
+        if (*begin == ch)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -238,7 +238,7 @@ RECLS_FNDECL(size_t) recls_get_string_property_(
 
     size_t  cch =   static_cast<size_t>(ptrs->end - ptrs->begin);
 
-    if(NULL != buffer)
+    if (NULL != buffer)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -273,7 +273,7 @@ RECLS_API recls_is_valid_pattern_(
 
     RECLS_COVER_MARK_LINE();
 
-    if('\0' == *pattern)
+    if ('\0' == *pattern)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -297,11 +297,11 @@ RECLS_API recls_is_valid_pattern_(
         const size_t                len =   recls_strlen_(pattern);
         recls_char_t const* const   end =   pattern + len;
 
-        if(1 == len)
+        if (1 == len)
         {
             RECLS_COVER_MARK_LINE();
 
-            if( 0 != (flags & RECLS_F_RECURSIVE) &&
+            if (0 != (flags & RECLS_F_RECURSIVE) &&
                 '.' == pattern[0])
             {
                 RECLS_COVER_MARK_LINE();
@@ -309,11 +309,11 @@ RECLS_API recls_is_valid_pattern_(
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
         }
-        else if(2 == len)
+        else if (2 == len)
         {
             RECLS_COVER_MARK_LINE();
 
-            if( '.' == pattern[0] &&
+            if ('.' == pattern[0] &&
                 '.' == pattern[1])
             {
                 RECLS_COVER_MARK_LINE();
@@ -322,7 +322,7 @@ RECLS_API recls_is_valid_pattern_(
             }
         }
 
-        if(len > 0)
+        if (len > 0)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -331,7 +331,7 @@ RECLS_API recls_is_valid_pattern_(
 
             dotPattern[0] = dotPattern[2] = dotdotPattern[0] = dotdotPattern[3] = sep;
 
-            if( (   0 != (flags & RECLS_F_RECURSIVE) &&
+            if ((   0 != (flags & RECLS_F_RECURSIVE) &&
                     0 == strncmp(pattern, &dotPattern[1], 2)) ||
                 0 == strncmp(pattern, &dotdotPattern[1], 3))
             {
@@ -340,7 +340,7 @@ RECLS_API recls_is_valid_pattern_(
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
 
-            if( (   0 != (flags & RECLS_F_RECURSIVE) &&
+            if ((   0 != (flags & RECLS_F_RECURSIVE) &&
                     0 == strncmp(end - 2, dotPattern, 2)) ||
                 0 == strncmp(end - 3, dotdotPattern, 3))
             {
@@ -349,7 +349,7 @@ RECLS_API recls_is_valid_pattern_(
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
 
-            if( (   0 != (flags & RECLS_F_RECURSIVE) &&
+            if ((   0 != (flags & RECLS_F_RECURSIVE) &&
                     NULL != strstr(pattern, dotPattern)) ||
                 NULL != strstr(pattern, dotdotPattern))
             {
@@ -385,7 +385,7 @@ RECLS_API recls_is_valid_pattern_(
         tokeniser_t     tokens(pattern, Recls_GetPathSeparator());
 # endif /* compiler */
 
-        if( tokens.end() != std::find(tokens.begin(), tokens.end(), constants::parent_directory()) ||
+        if (tokens.end() != std::find(tokens.begin(), tokens.end(), constants::parent_directory()) ||
             (   0 != (flags & RECLS_F_RECURSIVE) &&
                 tokens.end() != std::find(tokens.begin(), tokens.end(), constants::local_directory())))
         {
@@ -396,13 +396,13 @@ RECLS_API recls_is_valid_pattern_(
 
         RECLS_COVER_MARK_LINE();
 
-        if(!tokens.empty())
+        if (!tokens.empty())
         {
             RECLS_COVER_MARK_LINE();
 
             tokeniser_t::const_iterator it = std::max_element(tokens.begin(), tokens.end(), cmp_str_len());
 
-            if(stlsoft::c_str_len(*it) > maxPathCompLen)
+            if (stlsoft::c_str_len(*it) > maxPathCompLen)
             {
                 return RECLS_RC_PATH_LIMIT_EXCEEDED;
             }
@@ -425,7 +425,7 @@ RECLS_LINKAGE_C recls_bool_t recls_is_home_start_(
 
     RECLS_COVER_MARK_LINE();
 
-    if( '~' == path[0] &&
+    if ('~' == path[0] &&
         (   '\0' == path[1] ||
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)

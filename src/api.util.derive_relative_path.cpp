@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -91,7 +91,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
     originPath.make_absolute().canonicalise().pop_sep();
     targetPath.make_absolute().canonicalise().pop_sep();
 
-    if(originPath.empty())
+    if (originPath.empty())
     {
         RECLS_COVER_MARK_LINE();
 
@@ -100,7 +100,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(EMULATE_UNIX_ON_WINDOWS)
-    if( traits_t::is_path_UNC(originPath.c_str()) ||
+    if (traits_t::is_path_UNC(originPath.c_str()) ||
         traits_t::is_path_UNC(targetPath.c_str()))
     {
         RECLS_ASSERT('\\' == originPath[0] && '\\' == originPath[1]);
@@ -111,7 +111,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
         recls_char_t const* originShare    =   traits_t::str_chr(&originPath[2], '\\');
         recls_char_t const* targetShare    =   traits_t::str_chr(&targetPath[2], '\\');
 
-        if( (originShare - &originPath[2]) != (targetShare - &targetPath[2]) ||
+        if ((originShare - &originPath[2]) != (targetShare - &targetPath[2]) ||
             0 != traits_t::str_n_compare(&originPath[2], &targetPath[2], static_cast<size_t>(originShare - &originPath[2])))
         {
             RECLS_COVER_MARK_LINE();
@@ -128,7 +128,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
         RECLS_COVER_MARK_LINE();
 
-        if(toupper(originPath[0]) != toupper(targetPath[0]))
+        if (toupper(originPath[0]) != toupper(targetPath[0]))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -149,9 +149,9 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(EMULATE_UNIX_ON_WINDOWS)
-        if(toupper(*po) != toupper(*pt))
+        if (toupper(*po) != toupper(*pt))
 #else /* ? RECLS_PLATFORM_IS_WINDOWS || EMULATE_UNIX_ON_WINDOWS */
-        if(*po != *pt)
+        if (*po != *pt)
 #endif /* RECLS_PLATFORM_IS_WINDOWS || EMULATE_UNIX_ON_WINDOWS */
         {
             RECLS_COVER_MARK_LINE();
@@ -162,13 +162,13 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
         ++po;
         ++pt;
 
-        if('\0' == *po)
+        if ('\0' == *po)
         {
             RECLS_COVER_MARK_LINE();
 
             break;
         }
-        if('\0' == *pt)
+        if ('\0' == *pt)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -179,7 +179,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
     // We may need to rewind, since "h:\abc\def" and "H:\abc\defghi" would yield
     // ghi
 
-    if( po != &originPath[0] &&
+    if (po != &originPath[0] &&
         (   '\0' != *po ||
             '\0' != *pt))
     {
@@ -187,7 +187,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
         // There is some commonality
 
-        if(traits_t::is_path_name_separator(*(po - 1)))
+        if (traits_t::is_path_name_separator(*(po - 1)))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -199,7 +199,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
             // Previous was not a separator
 
-            if( (   '\0' == *po &&
+            if ((   '\0' == *po &&
                     traits_t::is_path_name_separator(*pt)) ||
                 (   '\0' == *pt &&
                     traits_t::is_path_name_separator(*po)))
@@ -223,22 +223,22 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
             }
         }
 
-        if('\0' == *po)
+        if ('\0' == *po)
         {
             RECLS_COVER_MARK_LINE();
 
-            if(traits_t::is_path_name_separator(*pt))
+            if (traits_t::is_path_name_separator(*pt))
             {
                 RECLS_COVER_MARK_LINE();
 
                 ++pt;
             }
         }
-        else if('\0' == *pt)
+        else if ('\0' == *pt)
         {
             RECLS_COVER_MARK_LINE();
 
-            if(traits_t::is_path_name_separator(*po))
+            if (traits_t::is_path_name_separator(*po))
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -263,7 +263,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
     targetFinal /= pt;
 
-    if(bTargetHasSeparator)
+    if (bTargetHasSeparator)
     {
         RECLS_COVER_MARK_LINE();
 

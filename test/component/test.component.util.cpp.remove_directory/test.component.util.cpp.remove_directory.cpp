@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.util.cpp.remove_directory project.
  *
  * Created:     30th January 2010
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -147,7 +147,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.util.cpp.remove_directory", verbosity, setup, teardown, NULL))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.util.cpp.remove_directory", verbosity, setup, teardown, NULL))
     {
         XTESTS_RUN_CASE(test_1_0);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -225,7 +225,7 @@ static int setup(void*)
 
 static int teardown(void*)
 {
-    if(!platformstl::filesystem_traits<recls_char_t>::remove_directory(temp_dir.c_str()))
+    if (!platformstl::filesystem_traits<recls_char_t>::remove_directory(temp_dir.c_str()))
     {
         platformstl::remove_directory_recurse(temp_dir);
     }

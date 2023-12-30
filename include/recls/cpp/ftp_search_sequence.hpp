@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - ftp_search_sequence class.
  *
  * Created:     10th September 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -264,7 +264,7 @@ private:
     // This one is implemented in-class as it allows sequence to be used by VC++ 5
     static char_type const* copy_or_null_(file_path_buffer& dest, char_type const* src)
     {
-        if(NULL == src)
+        if (NULL == src)
         {
             return static_cast<char_type const*>(NULL);
         }
@@ -349,7 +349,7 @@ inline ftp_search_sequence::const_iterator ftp_search_sequence::begin() const
     recls_rc_t  rc = traits_type::SearchFtp(m_host.c_str(), m_username.c_str(), m_password.c_str(), m_directory, m_pattern, m_flags, &hSrch);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if( RECLS_FAILED(rc) &&
+    if (RECLS_FAILED(rc) &&
         RECLS_RC_NO_MORE_DATA != rc)
     {
         throw recls_exception(rc, "failed to search FTP directory", m_directory, m_pattern, m_flags);

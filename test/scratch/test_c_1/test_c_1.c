@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test_c_1 project.
  *
  * Created:     28th February 2007
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -88,9 +88,9 @@ static int main_(int argc, char** argv)
 # endif /* 0 */
 #endif /* 0 */
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
-        if(RECLS_RC_NO_MORE_DATA != rc)
+        if (RECLS_RC_NO_MORE_DATA != rc)
         {
             process_search(hSrch);
         }
@@ -106,9 +106,9 @@ static int main_(int argc, char** argv)
 #ifdef RECLS_PLATFORM_IS_WINDOWS
     rc = Recls_SearchFtp("ftp.digitalmars.com", "anonymous", "anon@mouse.com", "/", "*.zip", RECLS_F_RECURSIVE, &hSrch);
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
-        if(RECLS_RC_NO_MORE_DATA != rc)
+        if (RECLS_RC_NO_MORE_DATA != rc)
         {
             process_search(hSrch);
         }
@@ -179,7 +179,7 @@ static void process_search(hrecls_t hSrch)
 
         rc = Recls_GetDetails(hSrch, &info);
 
-        if(RECLS_SUCCEEDED(rc))
+        if (RECLS_SUCCEEDED(rc))
         {
             printf("\t%.*s\n", info->path.end - info->path.begin, info->path.begin);
 
@@ -211,7 +211,7 @@ static void process_search(hrecls_t hSrch)
 
         rc = Recls_GetNext(hSrch);
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             break;
         }

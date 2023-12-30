@@ -4,7 +4,7 @@
  * Purpose:     recls API functions pertaining to entry info.
  *
  * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -190,7 +190,7 @@ RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
         ,   fileInfo->directory.begin   /* ... to start of directory. */
     };
 
-    if(!Recls_IsFileUNC(fileInfo))
+    if (!Recls_IsFileUNC(fileInfo))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -266,7 +266,7 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryPartProperty(
 
     size_t  cParts = static_cast<size_t>(fileInfo->directoryParts.end - fileInfo->directoryParts.begin);
 
-    if(part < 0)
+    if (part < 0)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -290,7 +290,7 @@ RECLS_FNDECL(recls_bool_t) Recls_EntryExists(recls_entry_t fileInfo)
 
     RECLS_COVER_MARK_LINE();
 
-    if( 0 != fileInfo->size ||
+    if (0 != fileInfo->size ||
         0 != fileInfo->attributes ||
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
         0 != fileInfo->GetCreationTime_.dwLowDateTime ||
@@ -394,7 +394,7 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileUNC(recls_entry_t fileInfo)
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
-    if( '\\' == fileInfo->path.begin[0] &&
+    if ('\\' == fileInfo->path.begin[0] &&
         '\\' == fileInfo->path.begin[1])
     {
         RECLS_COVER_MARK_LINE();

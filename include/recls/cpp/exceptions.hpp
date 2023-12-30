@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - exception classes.
  *
  * Created:     10th September 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -196,12 +196,12 @@ private:
 # ifdef RECLS_USING_SAFE_STR_FUNCTIONS
         int     err = ::wcstombs_s(&numConverted, &buffer[0], buffer.size(), codeString, codeStringLength);
 
-        if(0 != err)
+        if (0 != err)
 # else /* ? RECLS_USING_SAFE_STR_FUNCTIONS */
 
         numConverted = ::wcstombs(buffer.data(), codeString, buffer.size());
 
-        if(~size_t(0) == numConverted)
+        if (~size_t(0) == numConverted)
 # endif /* RECLS_USING_SAFE_STR_FUNCTIONS */
         {
             numConverted = 0;

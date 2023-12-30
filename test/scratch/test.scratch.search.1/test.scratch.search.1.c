@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.search.1 project.
  *
  * Created:     12th August 2009
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     Recls_SetApiLogFunction(logfn, 0, NULL);
 # endif /* _DEBUG */
 
-    if(argc < 3)
+    if (argc < 3)
     {
         char* args[] =
         {
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 
         rc = Recls_Search(directory, patterns, flags, &hSrch);
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             fprintf(stderr, "search of '%s' directory, with '%s' pattern(s), failed: %s\n", directory, patterns, Recls_GetSearchCodeString(rc));
 
@@ -86,12 +86,12 @@ int main(int argc, char *argv[])
             {
                 recls_entry_t entry;
 
-                if(RECLS_SUCCEEDED(Recls_GetDetails(hSrch, &entry)))
+                if (RECLS_SUCCEEDED(Recls_GetDetails(hSrch, &entry)))
                 {
                     fprintf(stderr, "%s\n", entry->path.begin);
                 }
 
-            } while(RECLS_SUCCEEDED(rc = Recls_GetNext(hSrch)));
+            } while (RECLS_SUCCEEDED(rc = Recls_GetNext(hSrch)));
 
             Recls_SearchClose(hSrch);
 
