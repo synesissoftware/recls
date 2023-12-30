@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -114,13 +114,13 @@ static size_t Recls_SqueezePath_X_(
 
     RECLS_COVER_MARK_LINE();
 
-    if(NULL == result)
+    if (NULL == result)
     {
         RECLS_COVER_MARK_LINE();
 
         size_t n = platformstl::path_squeeze(path, result, cchResult);
 
-        if(0 != n)
+        if (0 != n)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -136,7 +136,7 @@ static size_t Recls_SqueezePath_X_(
         stlsoft::auto_buffer<recls_char_t, 512> buffer(1 + cchResult);
         size_t                                  n = platformstl::path_squeeze(path, &buffer[0], buffer.size());
 
-        if(0 != n)
+        if (0 != n)
         {
             RECLS_ASSERT(n <= cchResult + 1);
 

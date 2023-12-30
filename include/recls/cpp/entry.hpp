@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - entry class.
  *
  * Created:     18th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -147,9 +147,9 @@ public:
             recls_entry_t   e;
             recls_rc_t      rc = Recls_Stat(path, flags, &e);
 
-            if(RECLS_FAILED(rc))
+            if (RECLS_FAILED(rc))
             {
-                if(RECLS_RC_NO_MORE_DATA == rc)
+                if (RECLS_RC_NO_MORE_DATA == rc)
                 {
                     throw NO_MORE_DATA_exception(rc, "path does not exist", path, NULL, flags);
                 }
@@ -340,7 +340,7 @@ public:
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
-        if(m_entry->fileExt.begin == m_entry->fileExt.end)
+        if (m_entry->fileExt.begin == m_entry->fileExt.end)
         {
             return string_type();
         }
@@ -402,7 +402,7 @@ public:
 
         DWORD const dw = ::GetShortPathName(m_entry->path.begin, NULL, 0);
 
-        if(0 == dw)
+        if (0 == dw)
         {
             throw recls_exception(RECLS_RC_SHORT_NAME_NOT_AVAILABLE);
         }
@@ -734,8 +734,8 @@ inline S& operator <<(S &s, ::recls::cpp::entry const &v)
 } /* namespace cpp */
 } /* namespace recls */
 
-# if (  defined(STLSOFT_COMPILER_IS_MSVC) || \
-        defined(STLSOFT_COMPILER_IS_UNKNOWN)) && \
+# if ( defined(STLSOFT_COMPILER_IS_MSVC) || \
+       defined(STLSOFT_COMPILER_IS_UNKNOWN)) && \
      defined(_MSC_VER) && \
      _MSC_VER < 1310
 

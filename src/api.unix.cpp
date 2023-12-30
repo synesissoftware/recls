@@ -4,7 +4,7 @@
  * Purpose:     Windows implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -65,7 +65,7 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
 {
     RECLS_COVER_MARK_LINE();
 
-    if(0 < cRoots)
+    if (0 < cRoots)
     {
         RECLS_ASSERT(NULL != roots);
 

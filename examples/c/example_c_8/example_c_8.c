@@ -10,7 +10,7 @@
  *              Recls_CalcDirectorySize())
  *
  * Created: 17th June 2006
- * Updated: 19th December 2023
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -65,15 +65,15 @@ int main()
         {
             recls_filesize_t size = Recls_CalcDirectorySize(roots[i].name);
 
-            if(0 != Recls_GetFileSizeGigaBytes(size))
+            if (0 != Recls_GetFileSizeGigaBytes(size))
             {
                 printf(RECLS_LITERAL("  %s : %lu GB\n"), roots[i].name, (unsigned long)Recls_GetFileSizeGigaBytes(size));
             }
-            else if(0 != Recls_GetFileSizeMegaBytes(size))
+            else if (0 != Recls_GetFileSizeMegaBytes(size))
             {
                 printf(RECLS_LITERAL("  %s : %lu MB\n"), roots[i].name, (unsigned long)Recls_GetFileSizeMegaBytes(size));
             }
-            else if(0 != Recls_GetFileSizeKiloBytes(size))
+            else if (0 != Recls_GetFileSizeKiloBytes(size))
             {
                 printf(RECLS_LITERAL("  %s : %lu KB\n"), roots[i].name, (unsigned long)Recls_GetFileSizeKiloBytes(size));
             }

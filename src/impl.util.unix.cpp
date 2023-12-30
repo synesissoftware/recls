@@ -4,7 +4,7 @@
  * Purpose:     Windows utility functions for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -42,9 +42,9 @@
  * compiler warnings
  */
 
-#if (       defined(STLSOFT_COMPILER_IS_MSVC) || \
-                defined(STLSOFT_COMPILER_IS_INTEL)) && \
-      defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) || \
+        defined(STLSOFT_COMPILER_IS_INTEL)) && \
+    defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 # if _MSC_VER >= 1200
 #  pragma warning(push)
 # endif /* compiler */
@@ -69,13 +69,13 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
     RECLS_COVER_MARK_LINE();
 
 #if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
-    if(':' == path[1])
+    if (':' == path[1])
     {
         RECLS_COVER_MARK_LINE();
 
         // It's a drive-prefixed absolute path, so ...
 # if RECLS_TRACE_LEVEL > 0
-        if(!isalpha(path[0]))
+        if (!isalpha(path[0]))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -86,7 +86,7 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
         // ... we just skip the drive
         return &path[2];
     }
-    else if('\\' == path[0] &&
+    else if ('\\' == path[0] &&
             '\\' == path[1])
     {
         RECLS_COVER_MARK_LINE();
@@ -95,7 +95,7 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
         // and then the next slash or backslash
         recls_char_t const* share = types::traits_type::str_chr(path + 2, '\\');
 
-        if(NULL == share)
+        if (NULL == share)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -108,7 +108,7 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
             recls_char_t const* slash   =   types::traits_type::str_chr(share + 1, '\\');
             recls_char_t const* slash_a =   types::traits_type::str_chr(share + 1, '/');
 
-            if( NULL == slash ||
+            if (NULL == slash ||
                 (   NULL != slash_a &&
                     slash_a < slash))
             {
@@ -117,7 +117,7 @@ RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* 
                 slash = slash_a;
             }
 
-            if(NULL == slash)
+            if (NULL == slash)
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -151,7 +151,7 @@ bad_path_given:
     return path + types::traits_type::str_len(path);
 #else /* ? Windows */
 # if RECLS_TRACE_LEVEL > 0
-    if('/' != path[0])
+    if ('/' != path[0])
     {
         RECLS_COVER_MARK_LINE();
 
@@ -171,7 +171,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(
     RECLS_COVER_MARK_LINE();
 
 #ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
-    if(NULL == ::getenv("HOME"))
+    if (NULL == ::getenv("HOME"))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -191,7 +191,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(
                                                                                 ,   &homeDir[0]
                                                                                 ,   homeDir.size());
 
-    if( 0 == cchHomeDir ||
+    if (0 == cchHomeDir ||
         homeDir.size() == cchHomeDir)
     {
         RECLS_COVER_MARK_LINE();
@@ -205,7 +205,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(
     std::replace(homeDir.data(), homeDir.data() + cchHomeDir, '\\', types::traits_type::path_name_separator());
 #endif /* RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
 
-    if(!types::traits_type::has_dir_end(homeDir.c_str()))
+    if (!types::traits_type::has_dir_end(homeDir.c_str()))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -213,7 +213,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(
         ++cchHomeDir;
     }
 
-    if(NULL == buff)
+    if (NULL == buff)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -223,7 +223,7 @@ RECLS_LINKAGE_C size_t recls_get_home_(
     {
         RECLS_COVER_MARK_LINE();
 
-        if(cchBuff <= cchHomeDir)
+        if (cchBuff <= cchHomeDir)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -256,9 +256,9 @@ RECLS_LINKAGE_C size_t recls_get_home_(
  * compiler warnings
  */
 
-#if (       defined(STLSOFT_COMPILER_IS_MSVC) || \
-                defined(STLSOFT_COMPILER_IS_INTEL)) && \
-      defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) || \
+        defined(STLSOFT_COMPILER_IS_INTEL)) && \
+    defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 # if _MSC_VER >= 1200
 #  pragma warning(pop)
 # else /* ? compiler */

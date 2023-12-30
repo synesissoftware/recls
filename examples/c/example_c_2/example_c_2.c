@@ -13,7 +13,7 @@
  *            - display of progress (of each directory traversed)
  *
  * Created: 29th May 2006
- * Updated: 19th December 2023
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -72,7 +72,7 @@ int main()
     recls_uint32_t      flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
     recls_rc_t          rc          =   Recls_SearchFeedback(NULL, SEARCH_PATTERN, flags, example_c_2_progress_fn, &feedback, &hSrch);
 
-    if(RECLS_RC_OK != rc)
+    if (RECLS_RC_OK != rc)
     {
         recls_char_t    err[1001];
         size_t  n   =   Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
@@ -93,7 +93,7 @@ int main()
         {
             size_t n = (size_t)(entry->path.end - entry->path.begin);
 
-            if(n > MAX_CONSOLE_WIDTH - 1)
+            if (n > MAX_CONSOLE_WIDTH - 1)
             {
                 n = MAX_CONSOLE_WIDTH - 1;
             }
@@ -105,7 +105,7 @@ int main()
 
             Recls_CloseDetails(entry);
         }
-        while(RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
+        while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
 
         return EXIT_SUCCESS;
     }
@@ -175,7 +175,7 @@ static size_t get_console_width(void)
 {
     size_t w = get_console_width_();
 
-    if(w > MAX_CONSOLE_WIDTH)
+    if (w > MAX_CONSOLE_WIDTH)
     {
         w = MAX_CONSOLE_WIDTH;
     }
@@ -194,7 +194,7 @@ static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const* 
     size_t              cch;
     size_t              consoleWidth    =   get_console_width() - 1;
 
-    if(consoleWidth < dirLen)
+    if (consoleWidth < dirLen)
     {
         recls_char_t squeezedForm[MAX_CONSOLE_WIDTH];
 
@@ -215,7 +215,7 @@ static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const* 
 
     newLen = (size_t)fprintf(stdout, RECLS_LITERAL("%.*s"), (int)cch, dir);
 
-    if(newLen < feedback->lastLen)
+    if (newLen < feedback->lastLen)
     {
         size_t  spare   =   feedback->lastLen - newLen;
 

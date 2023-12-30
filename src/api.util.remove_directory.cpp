@@ -4,7 +4,7 @@
  * Purpose:     more recls API extended functions.
  *
  * Created:     30th January 2009
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -156,15 +156,15 @@ namespace
         file_removal_info_t_&               info    =   *static_cast<file_removal_info_t_*>(param);
         recls_char_t const* const           path    =   hEntry->path.begin;
 
-        if(RECLS_REMDIR_F_REMOVE_READONLY & info.flags)
+        if (RECLS_REMDIR_F_REMOVE_READONLY & info.flags)
         {
             RECLS_COVER_MARK_LINE();
 
-            if(types::traits_type::stat(path, &stat_data))
+            if (types::traits_type::stat(path, &stat_data))
             {
                 RECLS_COVER_MARK_LINE();
 
-                if(types::traits_type::is_readonly(&stat_data))
+                if (types::traits_type::is_readonly(&stat_data))
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -183,7 +183,7 @@ namespace
             }
         }
 
-        if(!types::traits_type::delete_file(path))
+        if (!types::traits_type::delete_file(path))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -236,7 +236,7 @@ namespace
 
         info.directories.push_back(path);
 
-        if(info.maxParts < numParts)
+        if (info.maxParts < numParts)
         {
             info.maxParts = numParts;
         }
@@ -269,13 +269,13 @@ namespace
 
         types::traits_type::stat_data_type stat_data;
 
-        if(!types::traits_type::stat(path, &stat_data)) // Not lstat!
+        if (!types::traits_type::stat(path, &stat_data)) // Not lstat!
         {
             RECLS_COVER_MARK_LINE();
 
             return RECLS_RC_DIRECTORY_NOT_FOUND;
         }
-        else if(!types::traits_type::is_directory(&stat_data))
+        else if (!types::traits_type::is_directory(&stat_data))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -285,7 +285,7 @@ namespace
         {
             RECLS_COVER_MARK_LINE();
 
-            if(RECLS_REMDIR_F_REMOVE_FILES & flags)
+            if (RECLS_REMDIR_F_REMOVE_FILES & flags)
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -301,7 +301,7 @@ namespace
                                         ,   &info
                                         );
 
-                if(RECLS_FAILED(rc))
+                if (RECLS_FAILED(rc))
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -313,7 +313,7 @@ namespace
                 results->numDeletedFiles    =   info.numDeleted;
             }
 
-            if(0 == (RECLS_REMDIR_F_NO_REMOVE_SUBDIRS & flags))
+            if (0 == (RECLS_REMDIR_F_NO_REMOVE_SUBDIRS & flags))
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -330,7 +330,7 @@ namespace
                                         ,   &info
                                         );
 
-                if(RECLS_FAILED(rc))
+                if (RECLS_FAILED(rc))
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -345,7 +345,7 @@ namespace
 
                     directory_t directory = *b;
 
-                    if(!types::traits_type::remove_directory(directory.c_str()))
+                    if (!types::traits_type::remove_directory(directory.c_str()))
                     {
                         RECLS_COVER_MARK_LINE();
 
@@ -353,7 +353,7 @@ namespace
                     }
                     else
                     {
-                        if(results->existingLength < directory.size())
+                        if (results->existingLength < directory.size())
                         {
                             results->existingLength = directory.size();
                         }
@@ -365,7 +365,7 @@ namespace
 
             RECLS_COVER_MARK_LINE();
 
-            if(!types::traits_type::remove_directory(path))
+            if (!types::traits_type::remove_directory(path))
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -375,7 +375,7 @@ namespace
             {
                 types::path_type resultingPath(path);
 
-                if(0 == results->existingLength)
+                if (0 == results->existingLength)
                 {
                     results->existingLength = resultingPath.size();
                 }
@@ -386,7 +386,7 @@ namespace
                 resultingPath.pop_sep();
                 results->resultingLength = resultingPath.size();
 
-                if(0 == results->numExistingElements)
+                if (0 == results->numExistingElements)
                 {
                     results->numExistingElements = 1u + results->numResultingElements;
                 }
@@ -413,7 +413,7 @@ namespace
 
         // 1. Make path absolute
 
-        if(!types::traits_type::is_path_absolute(path))
+        if (!types::traits_type::is_path_absolute(path))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -483,9 +483,9 @@ RECLS_API Recls_RemoveDirectory(
 
         // TODO: write a system_error_code_2_recls_rc() translator
 # if defined(PLATFORMSTL_OS_IS_UNIX)
-        if(ENOENT == get_exception_status_code(x))
+        if (ENOENT == get_exception_status_code(x))
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-        if(ERROR_INVALID_NAME == get_exception_status_code(x))
+        if (ERROR_INVALID_NAME == get_exception_status_code(x))
 # else /* ? OS */
 #  error Platform not discriminated
 # endif /* OS */
@@ -528,7 +528,7 @@ static recls_rc_t Recls_RemoveDirectory_X_(
 
     recls_directoryResults_t results_;
 
-    if(NULL == results)
+    if (NULL == results)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -542,7 +542,7 @@ static recls_rc_t Recls_RemoveDirectory_X_(
     results->numExistingFiles       =   0;
     results->numDeletedFiles        =   0;
 
-    if('\0' == *path)
+    if ('\0' == *path)
     {
         RECLS_COVER_MARK_LINE();
 

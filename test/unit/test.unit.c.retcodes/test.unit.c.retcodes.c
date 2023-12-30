@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.c.retcodes project.
  *
  * Created:     13th December 2008
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -66,7 +66,7 @@ int main(int argc, char** argv)
 #ifdef XCOVER_VER
     xcover_rc_t const xcrc = xcover_init();
 
-    if(xcrc < 0)
+    if (xcrc < 0)
     {
         fprintf(stderr, "failed to initialise xCover : %s (%d)\n", xcover_getApiCodeString(xcrc), xcrc);
 
@@ -91,7 +91,7 @@ static int main_xc(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.c.retcodes", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.c.retcodes", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);

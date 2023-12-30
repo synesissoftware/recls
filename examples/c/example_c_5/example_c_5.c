@@ -13,7 +13,7 @@
  *            - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 19th December 2023
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -55,7 +55,7 @@ int main()
     recls_info_t    home;
     recls_rc_t      rc  =   Recls_Stat(RECLS_LITERAL("~"), RECLS_F_DIRECTORIES, &home);
 
-    if(RECLS_FAILED(rc))
+    if (RECLS_FAILED(rc))
     {
         /* The search failed. Display the error string. */
         recls_char_t    err[1001];
@@ -82,7 +82,7 @@ int main()
 
         Recls_CloseDetails(home);
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             /* The search failed. Display the error string. */
             recls_char_t    err[1001];

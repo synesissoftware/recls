@@ -4,7 +4,7 @@
  * Purpose:     Implementation header.
  *
  * Created:     12th December 2008
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -106,7 +106,7 @@ public: /// Operations
         {
             RECLS_COVER_MARK_LINE();
 
-            if(*begin == ch)
+            if (*begin == ch)
             {
                 RECLS_COVER_MARK_LINE();
 

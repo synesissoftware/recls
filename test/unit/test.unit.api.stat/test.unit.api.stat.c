@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.api.stat project.
  *
  * Created:     13th December 2008
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -93,7 +93,7 @@ static void finish_off_directory(recls_char_t* s)
 {
     size_t n = strlen(s);
 
-    if(n > 0)
+    if (n > 0)
     {
     }
 }
@@ -120,7 +120,7 @@ int main(int argc, char **argv)
     s_cwd   =   (recls_char_t*)malloc(sizeof(recls_char_t) * (1 + path_max));
     s_home  =   (recls_char_t*)malloc(sizeof(recls_char_t) * (1 + path_max));
 
-    if( NULL == s_cwd ||
+    if (NULL == s_cwd ||
         NULL == s_home)
     {
         fprintf(stderr, "Cannot allocate enough memory to run tests!\n");
@@ -145,14 +145,14 @@ int main(int argc, char **argv)
     defined(_WIN32)
     { char* s; for(s = s_cwd; *s; ++s)
     {
-        if('\\' == *s)
+        if ('\\' == *s)
         {
             *s = '/';
         }
     }}
     { char* s; for(s = s_home; *s; ++s)
     {
-        if('\\' == *s)
+        if ('\\' == *s)
         {
             *s = '/';
         }
@@ -160,7 +160,7 @@ int main(int argc, char **argv)
 #endif
 
 
-    if(XTESTS_START_RUNNER("test.unit.api.stat", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.api.stat", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -211,7 +211,7 @@ static void test_1_1()
     recls_info_t    entry;
     recls_rc_t      rc = Recls_Stat(".", 0, &entry);
 
-    if(RECLS_RC_OK == rc)
+    if (RECLS_RC_OK == rc)
     {
         XTESTS_TEST_PASSED();
 
@@ -242,7 +242,7 @@ static void test_1_2()
     recls_info_t    entry;
     recls_rc_t      rc = Recls_Stat("~", 0, &entry);
 
-    if(RECLS_RC_OK == rc)
+    if (RECLS_RC_OK == rc)
     {
         XTESTS_TEST_PASSED();
 
@@ -273,7 +273,7 @@ static void test_1_3()
     recls_info_t    entry;
     recls_rc_t      rc = Recls_Stat("~", RECLS_F_MARK_DIRS, &entry);
 
-    if(RECLS_RC_OK == rc)
+    if (RECLS_RC_OK == rc)
     {
         XTESTS_TEST_PASSED();
 

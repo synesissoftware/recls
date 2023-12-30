@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - utility functions.
  *
  * Created:     18th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -124,7 +124,7 @@ struct util_impl
     {
         recls_rc_t rc = Recls_CreateDirectory(path, results);
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             throw recls_exception(rc, "could not create directory", path, NULL, 0);
         }
@@ -134,9 +134,9 @@ struct util_impl
     {
         recls_rc_t rc = Recls_RemoveDirectory(path, flags, results);
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
-            if(RECLS_RC_NO_MORE_DATA == rc)
+            if (RECLS_RC_NO_MORE_DATA == rc)
             {
                 throw NO_MORE_DATA_exception(rc, "directory does not exist", path, NULL, flags);
             }

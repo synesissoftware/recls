@@ -5,7 +5,7 @@
  *              the recls API.
  *
  * Created:     15th August 2004
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -103,7 +103,7 @@ RECLS_API Recls_SearchFtp(
     // Default the input parameters
 
     // Default the search root
-    if( NULL == searchRoot ||
+    if (NULL == searchRoot ||
         0 == *searchRoot)
     {
         RECLS_COVER_MARK_LINE();
@@ -112,7 +112,7 @@ RECLS_API Recls_SearchFtp(
     }
 
     // Default the pattern
-    if(NULL == pattern)
+    if (NULL == pattern)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -120,7 +120,7 @@ RECLS_API Recls_SearchFtp(
     }
 
     // Default the flags
-    if(0 == (flags & RECLS_F_TYPEMASK))
+    if (0 == (flags & RECLS_F_TYPEMASK))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -130,7 +130,7 @@ RECLS_API Recls_SearchFtp(
     // Validate the pattern
     rc = recls_is_valid_pattern_(pattern, flags, _MAX_PATH);
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -140,7 +140,7 @@ RECLS_API Recls_SearchFtp(
 
         rc = ReclsFtpSearch::FindAndCreate(host, username, password, searchRoot, rootDirLen, pattern, patternLen, flags, &si);
 
-        if(RECLS_SUCCEEDED(rc))
+        if (RECLS_SUCCEEDED(rc))
         {
             RECLS_COVER_MARK_LINE();
 
