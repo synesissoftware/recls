@@ -4,7 +4,7 @@
  * Purpose:     Main header file for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     19th December 2023
+ * Updated:     20th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      21
-# define RECLS_VER_RECLS_H_RECLS_REVISION   14
-# define RECLS_VER_RECLS_H_RECLS_EDIT       135
+# define RECLS_VER_RECLS_H_RECLS_REVISION   15
+# define RECLS_VER_RECLS_H_RECLS_EDIT       136
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -128,11 +128,12 @@
 #define RECLS_VER_1_10_0_ALPHA_1                            0x010a0001
 #define RECLS_VER_1_10_0_ALPHA_2                            0x010a0002
 #define RECLS_VER_1_10_0_ALPHA_3                            0x010a0003
+#define RECLS_VER_1_10_0_ALPHA_4                            0x010a0004
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_ALPHA_3
+#define RECLS_VER               RECLS_VER_1_10_0_ALPHA_4
 
 /* /////////////////////////////////////////////////////////////////////////
  * strictness
@@ -154,9 +155,9 @@
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-# define RECLS_QUAL(x)                  ::recls::x
+# define RECLS_QUAL(x)                                      ::recls::x
 #else
-# define RECLS_QUAL(x)                  x
+# define RECLS_QUAL(x)                                      x
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -195,9 +196,9 @@ namespace recls
  */
 
 #if defined(STLSOFT_NUM_ELEMENTS)
-# define RECLS_NUM_ELEMENTS(x)              STLSOFT_NUM_ELEMENTS(x)
+# define RECLS_NUM_ELEMENTS(x)                              STLSOFT_NUM_ELEMENTS(x)
 #else /* ? STLSOFT_NUM_ELEMENTS */
-# define RECLS_NUM_ELEMENTS(x)              (sizeof(x) / sizeof((x)[0]))
+# define RECLS_NUM_ELEMENTS(x)                              (sizeof(x) / sizeof((x)[0]))
 #endif /* STLSOFT_NUM_ELEMENTS */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -230,7 +231,7 @@ namespace recls
  *
  * \ingroup group__recls
  */
-#define RECLS_FNDECL(rt)                    RECLS_LINKAGE_C rt RECLS_CALLCONV_DEFAULT
+#define RECLS_FNDECL(rt)                                    RECLS_LINKAGE_C rt RECLS_CALLCONV_DEFAULT
 
 /** Defines the recls linkage, calling convention with the standard return
  * type of \c recls_rc_t.
@@ -247,7 +248,7 @@ namespace recls
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 struct recls_rc_t_
 { char recls_rc_t_dummy; };
-# define RECLS_RC_VALUE(x)                  ((RECLS_QUAL(recls_rc_t))(void*)(RECLS_QUAL(recls_uintptr_t))(x))
+# define RECLS_RC_VALUE(x)                                  ((RECLS_QUAL(recls_rc_t))(void*)(RECLS_QUAL(recls_uintptr_t))(x))
 # define RECLS_RC_OK_                                       RECLS_RC_VALUE(0)
 # define RECLS_RC_FAIL_                                     RECLS_RC_VALUE(-1)
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
@@ -256,7 +257,7 @@ struct recls_rc_t_
  *
  * \ingroup group__recls
  */
-typedef struct recls_rc_t_ const*           recls_rc_t;
+typedef struct recls_rc_t_ const*                           recls_rc_t;
 
 #ifdef __cplusplus
 
@@ -264,12 +265,12 @@ typedef struct recls_rc_t_ const*           recls_rc_t;
  *
  * \ingroup group__recls
  */
-const recls_rc_t                            RECLS_RC_OK = RECLS_RC_OK_;
+const recls_rc_t RECLS_RC_OK = RECLS_RC_OK_;
 /** General failure code.
  *
  * \ingroup group__recls
  */
-const recls_rc_t                            RECLS_RC_FAIL = RECLS_RC_FAIL_;
+const recls_rc_t RECLS_RC_FAIL = RECLS_RC_FAIL_;
 
 /** Returns non-zero if the given return code indicates failure.
  *
@@ -313,13 +314,13 @@ inline bool RECLS_SUCCEEDED(recls_rc_t const &rc)
  *
  * \ingroup group__recls
  */
-# define RECLS_FAILED(rc)                   (0 != (((recls_uintptr_t)(0x01) << (sizeof(recls_uintptr_t) * 8 - 1)) & ((recls_uintptr_t)(void*)(recls_rc_t)(rc))))
+# define RECLS_FAILED(rc)                                   (0 != (((recls_uintptr_t)(0x01) << (sizeof(recls_uintptr_t) * 8 - 1)) & ((recls_uintptr_t)(void*)(recls_rc_t)(rc))))
 
 /** Evaluates to non-zero if the given return code indicates success.
  *
  * \ingroup group__recls
  */
-# define RECLS_SUCCEEDED(rc)                (!RECLS_FAILED(rc))
+# define RECLS_SUCCEEDED(rc)                                (!RECLS_FAILED(rc))
 
 #endif /* __cplusplus */
 
@@ -339,7 +340,7 @@ struct hrecls_t_;
  *
  * \ingroup group__recls
  */
-typedef struct hrecls_t_ const*             hrecls_t;
+typedef struct hrecls_t_ const*                             hrecls_t;
 
 /* /////////////////////////////////////////////////////////////////////////
  * trying to get Borland to get over itself
@@ -612,9 +613,9 @@ struct recls_root_t
 };
 
 # ifndef RECLS_NO_NAMESPACE
-typedef recls_root_t                    root_t;
+typedef recls_root_t                                        root_t;
 # elif !defined(__cplusplus)
-typedef struct recls_root_t             recls_root_t;
+typedef struct recls_root_t                                 recls_root_t;
 # endif /* __cplusplus */
 
 /** Structure used to return statistics about the modifications performed by
@@ -632,9 +633,9 @@ struct recls_directoryResults_t
 };
 
 # ifndef RECLS_NO_NAMESPACE
-typedef recls_directoryResults_t        directoryResults_t;
+typedef recls_directoryResults_t                            directoryResults_t;
 # elif !defined(__cplusplus)
-typedef struct recls_directoryResults_t recls_directoryResults_t;
+typedef struct recls_directoryResults_t                     recls_directoryResults_t;
 # endif /* __cplusplus */
 
 #endif /* !RECLS_COMPILER_IS_CH */
@@ -647,20 +648,20 @@ struct recls_entryinfo_t;
  *
  * \ingroup group__recls
  */
-typedef struct recls_entryinfo_t const* recls_entry_t;
+typedef struct recls_entryinfo_t const*                     recls_entry_t;
 #if !defined(RECLS_NO_NAMESPACE)
-typedef recls_entry_t                   entry_t;
+typedef recls_entry_t                                       entry_t;
 #endif /* !RECLS_NO_NAMESPACE */
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
-typedef recls_entry_t                   recls_info_t;
+typedef recls_entry_t                                       recls_info_t;
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** Opaque type representing a user-defined parameter to the process function.
  *
  * \ingroup group__recls
  */
-typedef void*                           recls_process_fn_param_t;
+typedef void*                                               recls_process_fn_param_t;
 
 /** User-supplied process function, used by Recls_SearchProcess()
  *
@@ -704,8 +705,8 @@ typedef int (RECLS_CALLCONV_DEFAULT *hrecls_progress_fn_t)(
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-typedef recls_entry_t               info_t;
-typedef recls_process_fn_param_t    process_fn_param_t;
+typedef recls_entry_t                                       info_t;
+typedef recls_process_fn_param_t                            process_fn_param_t;
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1659,7 +1660,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init6(s, f, e, w, i, d0, d1)            Recls_LogSeverities_Init6((s), (f), (e), (w), (i), (d0), (d1), -1)
+#define Recls_LogSeverities_Init6(s, f, e, w, i, d0, d1)    Recls_LogSeverities_Init6((s), (f), (e), (w), (i), (d0), (d1), -1)
 
 /** \def Recls_LogSeverities_Init5(s, f, e, w, i, d0)
  *
@@ -1667,7 +1668,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init5(s, f, e, w, i, d0)                Recls_LogSeverities_Init5((s), (f), (e), (w), (i), (d0), -1)
+#define Recls_LogSeverities_Init5(s, f, e, w, i, d0)        Recls_LogSeverities_Init5((s), (f), (e), (w), (i), (d0), -1)
 
 /** \def Recls_LogSeverities_Init4(s, f, e, w, i)
  *
@@ -1675,7 +1676,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init4(s, f, e, w, i)                    Recls_LogSeverities_Init4((s), (f), (e), (w), (i), -1)
+#define Recls_LogSeverities_Init4(s, f, e, w, i)            Recls_LogSeverities_Init4((s), (f), (e), (w), (i), -1)
 
 /** \def Recls_LogSeverities_Init3(s, f, e, w)
  *
@@ -1683,7 +1684,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init3(s, f, e, w)                       Recls_LogSeverities_Init4((s), (f), (e), (w), -11)
+#define Recls_LogSeverities_Init3(s, f, e, w)               Recls_LogSeverities_Init4((s), (f), (e), (w), -11)
 
 /** \def Recls_LogSeverities_Init2(s, f, e)
  *
@@ -1691,7 +1692,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init2(s, f, e)                          Recls_LogSeverities_Init3((s), (f), (e), -1)
+#define Recls_LogSeverities_Init2(s, f, e)                  Recls_LogSeverities_Init3((s), (f), (e), -1)
 
 
 
