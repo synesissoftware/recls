@@ -4,7 +4,7 @@
  * Purpose:     Forward declarations of classes in the recls C++ mapping.
  *
  * Created:     23rd November 2011
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

@@ -4,7 +4,7 @@
  * Purpose:     Visual C++ specific types and includes for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

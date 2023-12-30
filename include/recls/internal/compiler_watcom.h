@@ -4,7 +4,7 @@
  * Purpose:     Watcom C++ specific types and includes for the recls API.
  *
  * Created:     23rd September 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

@@ -4,7 +4,7 @@
  * Purpose:     Partially platform-independent time type for recls.
  *
  * Created:     18th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

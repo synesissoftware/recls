@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - utility functions.
  *
  * Created:     18th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -132,18 +132,7 @@ struct util_impl
 
     static void remove_directory(recls_char_t const* path, int flags, recls_directoryResults_t* results)
     {
-fprintf(stderr, "%s:%d:%s: path='%s', flags=0x%08x - ENTER\n", __FILE__, __LINE__, __FUNCTION__
-,   path
-,   flags
-);
-
         recls_rc_t rc = Recls_RemoveDirectory(path, flags, results);
-
-fprintf(stderr, "%s:%d:%s: Recls_RemoveDirectory(path='%s', flags=0x%08x) : rc=%ld\n", __FILE__, __LINE__, __FUNCTION__
-,   path
-,   flags
-,   (signed long)rc
-);
 
         if (RECLS_FAILED(rc))
         {
@@ -154,8 +143,6 @@ fprintf(stderr, "%s:%d:%s: Recls_RemoveDirectory(path='%s', flags=0x%08x) : rc=%
 
             throw recls_exception(rc, "could not remove directory", path, NULL, flags);
         }
-
-fprintf(stderr, "%s:%d:%s: path='%s' - EXIT\n", __FILE__, __LINE__, __FUNCTION__, path);
     }
 };
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */

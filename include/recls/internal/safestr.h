@@ -4,7 +4,7 @@
  * Purpose:     Handles detection of safe string library.
  *
  * Created:     8th June 2008
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Author:      Matthew Wilson
  *

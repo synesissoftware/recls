@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - Windows-specific functions.
  *
  * Created:     13th November 2010
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

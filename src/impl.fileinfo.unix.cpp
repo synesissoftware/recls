@@ -4,7 +4,7 @@
  * Purpose:     UNIX implementation for the file information blocks of the recls API.
  *
  * Created:     2nd November 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

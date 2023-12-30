@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - search_sequence class.
  *
  * Created:     10th September 2003
- * Updated:     20th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

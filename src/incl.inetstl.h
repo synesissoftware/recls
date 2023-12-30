@@ -4,7 +4,7 @@
  * Purpose:     #includes the InetSTL root header and verifies the version.
  *
  * Created:     8th November 2007
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

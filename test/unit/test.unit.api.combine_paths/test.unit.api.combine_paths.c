@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.api.combine_paths project.
  *
  * Created:     13th December 2008
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 

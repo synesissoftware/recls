@@ -4,7 +4,7 @@
  * Purpose:     CodePlay Vector C specific types and includes for the recls API.
  *
  * Created:     23rd May 2004
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

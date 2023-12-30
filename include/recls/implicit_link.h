@@ -4,7 +4,7 @@
  * Purpose:     Implicit linking for the recls API
  *
  * Created:     20th September 2005
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        http://recls.org/
  *

@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - root_sequence class.
  *
  * Created:     25th March 2004
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

@@ -4,7 +4,7 @@
  * Purpose:     Implementation header.
  *
  * Created:     11th March 2005
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

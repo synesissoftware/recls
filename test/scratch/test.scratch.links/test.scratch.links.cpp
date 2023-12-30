@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.links project.
  *
  * Created:     23rd February 2011
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -49,7 +49,7 @@ show_usage(
 
     fprintf(
         out
-    ,   "USAGE: %.*s  [ { <search-root-dir> | --help | } ]\n"
+    ,   "USAGE: %.*s  [ { --help | <search-root-dir> } ]\n"
     ,   int(xname.len), xname.ptr
     );
 

@@ -4,7 +4,7 @@
  * Purpose:     Common constants.
  *
  * Created:     28th February 2007
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

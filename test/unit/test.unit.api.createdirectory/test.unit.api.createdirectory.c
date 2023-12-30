@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.api.createdirectory project.
  *
  * Created:     29th January 2009
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 

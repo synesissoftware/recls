@@ -4,7 +4,7 @@
  * Purpose:     recls API utility functions.
  *
  * Created:     10th February 2010
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *

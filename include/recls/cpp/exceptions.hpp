@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - exception classes.
  *
  * Created:     10th September 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
