@@ -6,7 +6,7 @@
 #           on the Win32 platform
 #
 # Created:  16th October 2019
-# Updated:  28th March 2021
+# Updated:  30th December 2023
 #
 ############################################################################
 
@@ -636,12 +636,10 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)/recls/assert.h\
  $(PROJ_INCLUDE_DIR)/recls/ftp.h\
  $(PROJ_INCLUDE_DIR)/recls/implicit_link.h\
- $(PROJ_INCLUDE_DIR)/recls/recls.h\
- $(PROJ_INCLUDE_DIR)/recls/unix.h\
- $(PROJ_INCLUDE_DIR)/recls/windows.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_borland.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_ch.h\
+ $(PROJ_INCLUDE_DIR)/recls/internal/compiler_clang.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_como.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_dmc.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_gcc.h\
@@ -654,19 +652,23 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)/recls/internal/platform.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/platform_types.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/retcodes.h\
+ $(PROJ_INCLUDE_DIR)/recls/recls.h\
+ $(PROJ_INCLUDE_DIR)/recls/unix.h\
+ $(PROJ_INCLUDE_DIR)/recls/windows.h\
  \
 
 CPP_API_HEADERS=\
- $(PROJ_INCLUDE_DIR)/recls/recls.hpp\
  $(PROJ_INCLUDE_DIR)/recls/cpp/common.hpp\
  $(PROJ_INCLUDE_DIR)/recls/cpp/directory_parts.hpp\
  $(PROJ_INCLUDE_DIR)/recls/cpp/entry.hpp\
  $(PROJ_INCLUDE_DIR)/recls/cpp/exceptions.hpp\
  $(PROJ_INCLUDE_DIR)/recls/cpp/ftp_search_sequence.hpp\
+ $(PROJ_INCLUDE_DIR)/recls/cpp/internal/sequence_helper.hpp\
  $(PROJ_INCLUDE_DIR)/recls/cpp/root_sequence.hpp\
  $(PROJ_INCLUDE_DIR)/recls/cpp/search_sequence.hpp\
  $(PROJ_INCLUDE_DIR)/recls/cpp/traits.hpp\
  $(PROJ_INCLUDE_DIR)/recls/cpp/util.hpp\
+ $(PROJ_INCLUDE_DIR)/recls/recls.hpp\
  \
 
 
@@ -3194,7 +3196,7 @@ $(TARG_TEST_SCRT_cppapi_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_TEST_SCRT_cppapi_MT_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_cppapi_MT_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp
 
 
@@ -3211,7 +3213,7 @@ $(TARG_TEST_SCRT_cppapi_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_TEST_SCRT_cppapi_MT_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_cppapi_MT_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp
 
 
@@ -3228,7 +3230,7 @@ $(TARG_TEST_SCRT_cppapi_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_TEST_SCRT_cppapi_ST_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_cppapi_ST_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp
 
 
@@ -3245,7 +3247,7 @@ $(TARG_TEST_SCRT_cppapi_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_TEST_SCRT_cppapi_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_cppapi_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/test.scratch.cpp_api.cpp
 
 
@@ -3330,7 +3332,7 @@ $(TARG_TEST_SCRT_links_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_TEST_SCRT_links_MT_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_links_MT_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
@@ -3347,7 +3349,7 @@ $(TARG_TEST_SCRT_links_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_TEST_SCRT_links_MT_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_links_MT_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
@@ -3364,7 +3366,7 @@ $(TARG_TEST_SCRT_links_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_TEST_SCRT_links_ST_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_links_ST_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
@@ -3381,7 +3383,7 @@ $(TARG_TEST_SCRT_links_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_TEST_SCRT_links_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_links_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
