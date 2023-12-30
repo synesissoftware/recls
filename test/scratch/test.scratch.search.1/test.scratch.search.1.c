@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.search.1 project.
  *
  * Created:     12th August 2009
- * Updated:     29th September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2009-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -54,7 +45,7 @@ int main(int argc, char *argv[])
     Recls_SetApiLogFunction(logfn, 0, NULL);
 # endif /* _DEBUG */
 
-    if(argc < 3)
+    if (argc < 3)
     {
         char* args[] =
         {
@@ -83,7 +74,7 @@ int main(int argc, char *argv[])
 
         rc = Recls_Search(directory, patterns, flags, &hSrch);
 
-        if(RECLS_FAILED(rc))
+        if (RECLS_FAILED(rc))
         {
             fprintf(stderr, "search of '%s' directory, with '%s' pattern(s), failed: %s\n", directory, patterns, Recls_GetSearchCodeString(rc));
 
@@ -95,12 +86,12 @@ int main(int argc, char *argv[])
             {
                 recls_entry_t entry;
 
-                if(RECLS_SUCCEEDED(Recls_GetDetails(hSrch, &entry)))
+                if (RECLS_SUCCEEDED(Recls_GetDetails(hSrch, &entry)))
                 {
                     fprintf(stderr, "%s\n", entry->path.begin);
                 }
 
-            } while(RECLS_SUCCEEDED(rc = Recls_GetNext(hSrch)));
+            } while (RECLS_SUCCEEDED(rc = Recls_GetNext(hSrch)));
 
             Recls_SearchClose(hSrch);
 
@@ -111,3 +102,4 @@ int main(int argc, char *argv[])
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

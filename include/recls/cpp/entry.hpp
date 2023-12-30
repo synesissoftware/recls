@@ -4,11 +4,12 @@
  * Purpose:     recls C++ mapping - entry class.
  *
  * Created:     18th August 2003
- * Updated:     19th January 2017
+ * Updated:     30th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -20,9 +21,9 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -146,9 +147,9 @@ public:
             recls_entry_t   e;
             recls_rc_t      rc = Recls_Stat(path, flags, &e);
 
-            if(RECLS_FAILED(rc))
+            if (RECLS_FAILED(rc))
             {
-                if(RECLS_RC_NO_MORE_DATA == rc)
+                if (RECLS_RC_NO_MORE_DATA == rc)
                 {
                     throw NO_MORE_DATA_exception(rc, "path does not exist", path, NULL, flags);
                 }
@@ -339,7 +340,7 @@ public:
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
-        if(m_entry->fileExt.begin == m_entry->fileExt.end)
+        if (m_entry->fileExt.begin == m_entry->fileExt.end)
         {
             return string_type();
         }
@@ -401,7 +402,7 @@ public:
 
         DWORD const dw = ::GetShortPathName(m_entry->path.begin, NULL, 0);
 
-        if(0 == dw)
+        if (0 == dw)
         {
             throw recls_exception(RECLS_RC_SHORT_NAME_NOT_AVAILABLE);
         }
@@ -580,7 +581,7 @@ inline entry stat(S const& path, int flags = 0)
     return entry::stat_impl::create(path, flags);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * comparison
  */
 
@@ -632,7 +633,7 @@ inline bool operator !=(
     return lhs.compare(rhs) != 0;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * shims
  */
 
@@ -714,7 +715,7 @@ inline size_t c_str_len_w(entry const &fe)
 
 #endif /* !RECLS_PURE_API */
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // IOStream compatibility
 
 template <typename S>
@@ -733,8 +734,8 @@ inline S& operator <<(S &s, ::recls::cpp::entry const &v)
 } /* namespace cpp */
 } /* namespace recls */
 
-# if (  defined(STLSOFT_COMPILER_IS_MSVC) || \
-        defined(STLSOFT_COMPILER_IS_UNKNOWN)) && \
+# if ( defined(STLSOFT_COMPILER_IS_MSVC) || \
+       defined(STLSOFT_COMPILER_IS_UNKNOWN)) && \
      defined(_MSC_VER) && \
      _MSC_VER < 1310
 
@@ -787,3 +788,4 @@ namespace stlsoft
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_ENTRY */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

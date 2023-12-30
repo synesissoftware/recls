@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.unit.api.createdirectory project.
  *
  * Created:     29th January 2009
- * Updated:     10th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2009, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,15 +42,15 @@
  */
 
 #if defined(RECLS_CHAR_TYPE_IS_WCHAR)
-# define XTESTS_TEST_RECLS_STRING_EQUAL             XTESTS_TEST_WIDE_STRING_EQUAL
-# define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX      XTESTS_TEST_WIDE_STRING_EQUAL_APPROX
-# define XTESTS_TEST_RECLS_STRING_EQUAL_N           XTESTS_TEST_WIDE_STRING_EQUAL_N
-# define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX    XTESTS_TEST_WIDE_STRING_EQUAL_N_APPROX
+# define XTESTS_TEST_RECLS_STRING_EQUAL                     XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX              XTESTS_TEST_WIDE_STRING_EQUAL_APPROX
+# define XTESTS_TEST_RECLS_STRING_EQUAL_N                   XTESTS_TEST_WIDE_STRING_EQUAL_N
+# define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX            XTESTS_TEST_WIDE_STRING_EQUAL_N_APPROX
 #elif defined(RECLS_CHAR_TYPE_IS_CHAR)
-# define XTESTS_TEST_RECLS_STRING_EQUAL             XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-# define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX      XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX
-# define XTESTS_TEST_RECLS_STRING_EQUAL_N           XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N
-# define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N_APPROX
+# define XTESTS_TEST_RECLS_STRING_EQUAL                     XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX              XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX
+# define XTESTS_TEST_RECLS_STRING_EQUAL_N                   XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N
+# define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N_APPROX
 #else
 # error recls not discriminating correctly
 #endif
@@ -103,7 +94,7 @@ static void finish_off_directory(recls_char_t* s)
 {
     size_t n = strlen(s);
 
-    if(n > 0)
+    if (n > 0)
     {
     }
 }
@@ -121,7 +112,7 @@ int main(int argc, char **argv)
     path_max = _MAX_PATH;
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 # ifndef PATH_MAX
-#  define PATH_MAX  (1u + pathconf("/", _PC_PATH_MAX))
+#  define PATH_MAX                                          (1u + pathconf("/", _PC_PATH_MAX))
 # endif /* PATH_MAX */
     path_max = PATH_MAX;
 #else
@@ -130,7 +121,7 @@ int main(int argc, char **argv)
     s_cwd   =   (recls_char_t*)malloc(sizeof(recls_char_t) * (1 + path_max));
     s_home  =   (recls_char_t*)malloc(sizeof(recls_char_t) * (1 + path_max));
 
-    if( NULL == s_cwd ||
+    if (NULL == s_cwd ||
         NULL == s_home)
     {
         fprintf(stderr, "Cannot allocate enough memory to run tests!\n");
@@ -155,14 +146,14 @@ int main(int argc, char **argv)
     defined(_WIN32)
     { char* s; for(s = s_cwd; *s; ++s)
     {
-        if('\\' == *s)
+        if ('\\' == *s)
         {
             *s = '/';
         }
     }}
     { char* s; for(s = s_home; *s; ++s)
     {
-        if('\\' == *s)
+        if ('\\' == *s)
         {
             *s = '/';
         }
@@ -171,7 +162,7 @@ int main(int argc, char **argv)
 
     s_cwdLen = strlen(s_cwd);
 
-    if(XTESTS_START_RUNNER("test.unit.api.createdirectory", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.api.createdirectory", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -209,12 +200,12 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-#define RECLS_TEST_DIR_ROOT         "/recls_test_dir_root_D01441CA_A1CD_4916_B095_B2D65B15E517"
-#define RECLS_TEST_DIR_ROOT_LEN_    ((STLSOFT_NUM_ELEMENTS(RECLS_TEST_DIR_ROOT) - 1))
+#define RECLS_TEST_DIR_ROOT                                 "/recls_test_dir_root_D01441CA_A1CD_4916_B095_B2D65B15E517"
+#define RECLS_TEST_DIR_ROOT_LEN_                            ((STLSOFT_NUM_ELEMENTS(RECLS_TEST_DIR_ROOT) - 1))
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-# define RECLS_TEST_DIR_ROOT_LEN    (2u + RECLS_TEST_DIR_ROOT_LEN_)
+# define RECLS_TEST_DIR_ROOT_LEN                            (2u + RECLS_TEST_DIR_ROOT_LEN_)
 #else
-# define RECLS_TEST_DIR_ROOT_LEN    RECLS_TEST_DIR_ROOT_LEN_
+# define RECLS_TEST_DIR_ROOT_LEN                            RECLS_TEST_DIR_ROOT_LEN_
 #endif
 
 
@@ -272,8 +263,8 @@ static void test_1_2()
 
 static void test_1_3()
 {
-#define TEST_1_3_SUBDIR     "/abc/def/ghi/jkl/mno"
-#define TEST_1_3_SUBDIR_LEN (STLSOFT_NUM_ELEMENTS(TEST_1_3_SUBDIR) - 1)
+#define TEST_1_3_SUBDIR                                     "/abc/def/ghi/jkl/mno"
+#define TEST_1_3_SUBDIR_LEN                                 (STLSOFT_NUM_ELEMENTS(TEST_1_3_SUBDIR) - 1)
 
     {
         recls_directoryResults_t    results;
@@ -358,3 +349,4 @@ static void test_1_19()
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

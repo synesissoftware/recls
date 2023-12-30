@@ -4,37 +4,18 @@
  * Purpose:     Implementation of the ReclsFileSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     29th January 2017
+ * Updated:     30th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * - Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted in accordance with the license and warranty
+ * information described in recls.h (included in this distribution, or
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -96,7 +77,7 @@ inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t c
     void* pv = malloc(cb);
 
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
-    if(NULL == pv)
+    if (NULL == pv)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -154,7 +135,7 @@ inline void ReclsFileSearch::operator delete(void* pv)
     size_t                          cchFullPath;
 
     cchFullPath = types::traits_type::get_full_path_name(rootDir, fullPath.size(), &fullPath[0]);
-    if(0 == cchFullPath)
+    if (0 == cchFullPath)
     {
         recls_debug0_trace_printf_(RECLS_LITERAL("could not retrieve full path of given search directory '%s'"), rootDir);
 
@@ -166,7 +147,7 @@ inline void ReclsFileSearch::operator delete(void* pv)
     {
         recls_debug2_trace_printf_(RECLS_LITERAL("retrieved full path of given search directory '%s' => '%s'"), rootDir, fullPath.c_str());
     }
-    if('"' == fullPath[0])
+    if ('"' == fullPath[0])
     {
         RECLS_ASSERT('"' == fullPath[cchFullPath - 1]);
 
@@ -178,7 +159,7 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
     RECLS_COVER_MARK_LINE();
 
-    if(types::traits_type::has_dir_end(&fullPath[0]))
+    if (types::traits_type::has_dir_end(&fullPath[0]))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -252,13 +233,13 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
     recls_rc_t rc = RECLS_RC_OK;
 
-    if(!types::traits_type::file_exists(rootDir))
+    if (!types::traits_type::file_exists(rootDir))
     {
         RECLS_COVER_MARK_LINE();
 
         rc = RECLS_RC_DIRECTORY_NOT_FOUND;
     }
-    else if(!types::traits_type::is_directory(rootDir))
+    else if (!types::traits_type::is_directory(rootDir))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -272,7 +253,7 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
         types::file_path_buffer_type    fullPath_;
 
-        if(!types::traits_type::has_dir_end(rootDir))
+        if (!types::traits_type::has_dir_end(rootDir))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -312,7 +293,7 @@ inline void ReclsFileSearch::operator delete(void* pv)
         }
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
 
-        if(NULL == si)
+        if (NULL == si)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -324,13 +305,13 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
             // This is a nasty hack. It's tantamount to ctor & create function, so
             // should be made more elegant soon.
-            if(NULL == si->m_dnode)
+            if (NULL == si->m_dnode)
             {
                 RECLS_COVER_MARK_LINE();
 
                 delete si;
 
-                if(RECLS_SUCCEEDED(rc))
+                if (RECLS_SUCCEEDED(rc))
                 {
                     rc = RECLS_RC_NO_MORE_DATA;
                 }
@@ -441,3 +422,4 @@ ReclsFileSearch::~ReclsFileSearch()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

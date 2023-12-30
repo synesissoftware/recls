@@ -4,37 +4,18 @@
  * Purpose:     Implementation of the ReclsFtpSearch class for Windows.
  *
  * Created:     16th August 2003
- * Updated:     29th January 2017
+ * Updated:     30th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * - Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted in accordance with the license and warranty
+ * information described in recls.h (included in this distribution, or
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -100,7 +81,7 @@ inline void* ReclsFtpSearch::operator new(size_t cb, size_t cDirParts, size_t cb
     void    *pv =   malloc(cb);
 
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
-    if(NULL == pv)
+    if (NULL == pv)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -165,11 +146,11 @@ void ReclsFtpSearch::operator delete(void* pv)
     recls_rc_t          rc;
     types::session_type session(RECLS_LITERAL("recls-enumerator"), INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
 
-    // The session and connection are done in an exception-free manner just to 
+    // The session and connection are done in an exception-free manner just to
     // avoid CRT linking issues. It's not the best way to write software in
     // general.
 
-    if(!session)
+    if (!session)
     {
         recls_debug2_trace_printf_(RECLS_LITERAL("Failed to create sessions: %lu"), ::GetLastError());
 
@@ -183,7 +164,7 @@ void ReclsFtpSearch::operator delete(void* pv)
 
         DWORD   dwFlags =   0;
 
-        if(flags & RECLS_F_PASSIVE_FTP)
+        if (flags & RECLS_F_PASSIVE_FTP)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -192,7 +173,7 @@ void ReclsFtpSearch::operator delete(void* pv)
 
         types::connection_type connection(session, host, INTERNET_DEFAULT_FTP_PORT, username, password, INTERNET_SERVICE_FTP, dwFlags);
 
-        if(!connection)
+        if (!connection)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -210,7 +191,7 @@ void ReclsFtpSearch::operator delete(void* pv)
             size_t              cchFullPath = types::traits_type::get_full_path_name(connection, rootDir, 0, NULL);
             types::buffer_type  fullPath(1 + cchFullPath + 1); // +1 (nul) +1 (dir-end)
 
-            if(0 == cchFullPath)
+            if (0 == cchFullPath)
             {
                 recls_debug2_trace_printf_(RECLS_LITERAL("Invalid directory"));
 
@@ -257,7 +238,7 @@ void ReclsFtpSearch::operator delete(void* pv)
                 }
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
 
-                if(NULL == si)
+                if (NULL == si)
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -272,7 +253,7 @@ void ReclsFtpSearch::operator delete(void* pv)
 
                     // This is a nasty hack. It's tantamount to ctor & create function, so
                     // should be made more elegant soon.
-                    if(NULL == si->m_dnode)
+                    if (NULL == si->m_dnode)
                     {
                         RECLS_COVER_MARK_LINE();
 
@@ -354,13 +335,13 @@ ReclsFtpSearch::~ReclsFtpSearch()
 {
     RECLS_COVER_MARK_LINE();
 
-    if(NULL != m_connection)
+    if (NULL != m_connection)
     {
         RECLS_COVER_MARK_LINE();
 
         ::InternetCloseHandle(m_connection);
     }
-    if(NULL != m_session)
+    if (NULL != m_session)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -378,3 +359,4 @@ ReclsFtpSearch::~ReclsFtpSearch()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

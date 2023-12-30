@@ -4,37 +4,18 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     30th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * - Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted in accordance with the license and warranty
+ * information described in recls.h (included in this distribution, or
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -226,7 +207,7 @@ RECLS_API Recls_SearchFeedback(
 #if defined(RECLS_PLATFORM_IS_WINDOWSx)
     cdecl_progress_fn_translator    translator(pfn, param);
 
-    if( NULL != pfn &&
+    if (NULL != pfn &&
         (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS))
     {
         RECLS_COVER_MARK_LINE();
@@ -252,13 +233,13 @@ RECLS_API Recls_SearchFeedback(
         types::file_path_buffer_type   home;
 
         // Default the pattern?
-        if(NULL == pattern)
+        if (NULL == pattern)
         {
             RECLS_COVER_MARK_LINE();
 
             // Pre-1.8.6, this always defaulted to '*.*' (or '*')
 
-            if( NULL != searchRoot &&
+            if (NULL != searchRoot &&
                 (   NULL != types::traits_type::str_pbrk(searchRoot, RECLS_LITERAL("*?")) ||
                     types::traits_type::is_file(searchRoot)))
             {
@@ -276,12 +257,12 @@ RECLS_API Recls_SearchFeedback(
         }
 
         // Default the search root?
-        if( NULL == searchRoot ||
+        if (NULL == searchRoot ||
             0 == *searchRoot)
         {
             RECLS_COVER_MARK_LINE();
 
-            if(USE_TILDE_ON_NO_SEARCHROOT & flags)
+            if (USE_TILDE_ON_NO_SEARCHROOT & flags)
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -302,7 +283,7 @@ RECLS_API Recls_SearchFeedback(
 
                 STLSOFT_SUPPRESS_UNUSED(wc);
 
-                if( NULL == sep &&
+                if (NULL == sep &&
                     types::traits_type::is_path_rooted(pattern) &&
                     NULL != (wc = types::traits_type::str_pbrk(pattern, RECLS_LITERAL("*?"))))
                 {
@@ -318,7 +299,7 @@ RECLS_API Recls_SearchFeedback(
                     recls_char_t*   file    =   (NULL == file0) ? file1 : (NULL == file1) ? file0 : (file0 < file1) ? file1 : file0;
 
                     // Not valid if wildcard comes before file, or pattern too long
-                    if( wc < file ||
+                    if (wc < file ||
                         static_cast<size_t>(file - pattern) > home.size() - 1)
                     {
                         RECLS_COVER_MARK_LINE();
@@ -347,14 +328,14 @@ RECLS_API Recls_SearchFeedback(
         }
         else
         // Handle tilde
-        if(recls_is_home_start_(searchRoot))
+        if (recls_is_home_start_(searchRoot))
         {
             RECLS_COVER_MARK_LINE();
 
             size_t  n       =   recls_get_home_(&home[0], home.size());
             size_t  rootLen =   types::traits_type::str_len(searchRoot);
 
-            if(0 == n)
+            if (0 == n)
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -367,7 +348,7 @@ RECLS_API Recls_SearchFeedback(
                 // recls_get_home_() always has a trailing path-name separator
                 RECLS_ASSERT(types::traits_type::has_dir_end(&home[0]));
 
-                if(rootLen + n > home.size())
+                if (rootLen + n > home.size())
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -395,7 +376,7 @@ RECLS_API Recls_SearchFeedback(
         types::buffer_type  pattern_(1 + patternLen);
 
 #ifndef RECLS_EXCEPTION_SUPPORT_
-        if(0 == pattern_.size())
+        if (0 == pattern_.size())
         {
             RECLS_COVER_MARK_LINE();
 
@@ -408,7 +389,7 @@ RECLS_API Recls_SearchFeedback(
 
             types::path_type path;
 
-            if( NULL != types::traits_type::str_chr(pattern, types::traits_type::path_separator()) ||
+            if (NULL != types::traits_type::str_chr(pattern, types::traits_type::path_separator()) ||
                 NULL != types::traits_type::str_chr(pattern, RECLS_LITERAL('|')))
             {
                 RECLS_COVER_MARK_LINE();
@@ -441,7 +422,7 @@ RECLS_API Recls_SearchFeedback(
 
                 // Cater for the situation whereby the pattern is a file
 
-                if(types::traits_type::str_len(pattern) > types::traits_type::path_max())
+                if (types::traits_type::str_len(pattern) > types::traits_type::path_max())
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -457,7 +438,7 @@ RECLS_API Recls_SearchFeedback(
 
                     path = pattern;
 
-                    if(path.exists())
+                    if (path.exists())
                     {
                         RECLS_COVER_MARK_LINE();
 
@@ -466,7 +447,11 @@ RECLS_API Recls_SearchFeedback(
                         path.canonicalise(true);
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 
+#ifdef RECLS_STLSOFT_1_10_B01_OR_LATER
+                        recls_char_t const* file    =   path.get_file().ptr;
+#else /* ? RECLS_STLSOFT_1_10_B01_OR_LATER */
                         recls_char_t const* file    =   path.get_file();
+#endif /* RECLS_STLSOFT_1_10_B01_OR_LATER */
                         const size_t        cch     =   static_cast<size_t>(file - path.c_str());
 
                         types::traits_type::char_copy(&searchRoot_[0], path.c_str(), cch);
@@ -475,11 +460,11 @@ RECLS_API Recls_SearchFeedback(
 
                         pattern = file;
 
-                        if(0 == (flags & RECLS_F_TYPEMASK))
+                        if (0 == (flags & RECLS_F_TYPEMASK))
                         {
                             RECLS_COVER_MARK_LINE();
 
-                            if(types::traits_type::is_directory(path.c_str()))
+                            if (types::traits_type::is_directory(path.c_str()))
                             {
                                 RECLS_COVER_MARK_LINE();
 
@@ -496,19 +481,19 @@ RECLS_API Recls_SearchFeedback(
                 }
             }
 
-            if(RECLS_SUCCEEDED(rc))
+            if (RECLS_SUCCEEDED(rc))
             {
                 RECLS_COVER_MARK_LINE();
 
                 // Default the flags
-                if(0 == (flags & RECLS_F_TYPEMASK))
+                if (0 == (flags & RECLS_F_TYPEMASK))
                 {
                     RECLS_COVER_MARK_LINE();
 
                     flags |= RECLS_F_FILES;
                 }
 
-                if(0 == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
+                if (0 == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -523,7 +508,7 @@ RECLS_API Recls_SearchFeedback(
                 }
             }
 
-            if(RECLS_SUCCEEDED(rc))
+            if (RECLS_SUCCEEDED(rc))
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -536,7 +521,7 @@ RECLS_API Recls_SearchFeedback(
 
                 rc = ReclsFileSearch::FindAndCreate(searchRoot, rootDirLen, pattern, patternLen2, flags, pfn, param, &si);
 
-                if(RECLS_SUCCEEDED(rc))
+                if (RECLS_SUCCEEDED(rc))
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -625,7 +610,7 @@ RECLS_API Recls_SearchProcessFeedback(
 #if defined(RECLS_PLATFORM_IS_WINDOWSx)
     cdecl_process_fn_translator translator(pfn, param);
 
-    if( NULL != pfn &&
+    if (NULL != pfn &&
         (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS))
     {
         RECLS_COVER_MARK_LINE();
@@ -638,7 +623,7 @@ RECLS_API Recls_SearchProcessFeedback(
     hrecls_t    hSrch;
     recls_rc_t  rc  =   Recls_SearchFeedback(searchRoot, pattern, flags, pfnProgress, paramProgress, &hSrch);
 
-    if(RECLS_SUCCEEDED(rc))
+    if (RECLS_SUCCEEDED(rc))
     {
         RECLS_COVER_MARK_LINE();
 
@@ -650,7 +635,7 @@ RECLS_API Recls_SearchProcessFeedback(
 
             rc = Recls_GetDetails(hSrch, &info);
 
-            if(RECLS_FAILED(rc))
+            if (RECLS_FAILED(rc))
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -663,7 +648,7 @@ RECLS_API Recls_SearchProcessFeedback(
                 int res;
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
-                if(flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
+                if (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -692,7 +677,7 @@ RECLS_API Recls_SearchProcessFeedback(
 
                 Recls_CloseDetails(info);
 
-                if(0 == res)
+                if (0 == res)
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -702,12 +687,12 @@ RECLS_API Recls_SearchProcessFeedback(
                 }
             }
         }
-        while(RECLS_SUCCEEDED(rc = Recls_GetNext(hSrch)));
+        while (RECLS_SUCCEEDED(rc = Recls_GetNext(hSrch)));
 
         Recls_SearchClose(hSrch);
     }
 
-    if(RECLS_RC_NO_MORE_DATA == rc)
+    if (RECLS_RC_NO_MORE_DATA == rc)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -826,3 +811,4 @@ RECLS_MARK_FILE_END()
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

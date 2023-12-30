@@ -4,16 +4,7 @@
  * Purpose:     Implicit link file for the test.scratch.links project.
  *
  * Created:     23rd February 2011
- * Updated:     23rd February 2011
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2011, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     19th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -29,3 +20,4 @@
 #endif /* operating system */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

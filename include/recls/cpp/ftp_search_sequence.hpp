@@ -4,11 +4,12 @@
  * Purpose:     recls C++ mapping - ftp_search_sequence class.
  *
  * Created:     10th September 2003
- * Updated:     10th January 2017
+ * Updated:     30th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -20,9 +21,9 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -263,7 +264,7 @@ private:
     // This one is implemented in-class as it allows sequence to be used by VC++ 5
     static char_type const* copy_or_null_(file_path_buffer& dest, char_type const* src)
     {
-        if(NULL == src)
+        if (NULL == src)
         {
             return static_cast<char_type const*>(NULL);
         }
@@ -304,7 +305,7 @@ private:
     ftp_search_sequence const& operator =(class_type const& );
 };
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Shims
 
 /// is_empty shim
@@ -322,7 +323,7 @@ inline recls_bool_t is_empty(ftp_search_sequence const& s)
     return s.empty();
 }
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Implementation
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
@@ -348,7 +349,7 @@ inline ftp_search_sequence::const_iterator ftp_search_sequence::begin() const
     recls_rc_t  rc = traits_type::SearchFtp(m_host.c_str(), m_username.c_str(), m_password.c_str(), m_directory, m_pattern, m_flags, &hSrch);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if( RECLS_FAILED(rc) &&
+    if (RECLS_FAILED(rc) &&
         RECLS_RC_NO_MORE_DATA != rc)
     {
         throw recls_exception(rc, "failed to search FTP directory", m_directory, m_pattern, m_flags);
@@ -388,3 +389,4 @@ inline /* static */ ftp_search_sequence::size_type ftp_search_sequence::max_size
 #endif /* RECLS_INCL_RECLS_CPP_HPP_FTP_SEARCH_SEQUENCE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.component.util.cpp.create_directory project.
  *
  * Created:     30th January 2010
- * Updated:     28th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -156,7 +147,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.util.cpp.create_directory", verbosity, setup, teardown, NULL))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.util.cpp.create_directory", verbosity, setup, teardown, NULL))
     {
         XTESTS_RUN_CASE(test_1_0);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -435,3 +426,4 @@ static void test_1_39()
 } // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

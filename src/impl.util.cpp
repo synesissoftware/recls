@@ -4,37 +4,18 @@
  * Purpose:     Platform-independent utility functions for the recls API.
  *
  * Created:     17th August 2003
- * Updated:     10th January 2017
+ * Updated:     30th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * - Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted in accordance with the license and warranty
+ * information described in recls.h (included in this distribution, or
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -110,16 +91,16 @@ namespace impl
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
 #  define recls_strncpy__(s1, s2, n)    strncpy_s(s1, _TRUNCATE, s2, n)
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-#  define recls_strncpy__               strncpy
+#  define recls_strncpy__                                   strncpy
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-# define recls_strlen__                 strlen
+# define recls_strlen__                                     strlen
 #elif defined(RECLS_CHAR_TYPE_IS_WCHAR)
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
 #  define recls_strncpy__(s1, s2, n)    wcsncpy_s(s1, _TRUNCATE, s2, n)
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-#  define recls_strncpy__               wcsncpy
+#  define recls_strncpy__                                   wcsncpy
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-# define recls_strlen__                 wcslen
+# define recls_strlen__                                     wcslen
 #else /* ? RECLS_CHAR_TYPE_IS_???? */
 # error Unrecognised char type
 #endif /* RECLS_CHAR_TYPE_IS_???? */
@@ -152,7 +133,7 @@ size_t recls_strncpy_(
 
     size_t  cchWritten;
 
-    if(cchDest < cchSrc)
+    if (cchDest < cchSrc)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -167,7 +148,7 @@ size_t recls_strncpy_(
 
         recls_strncpy__(dest, src, cchSrc);
 
-        if(cchSrc < cchDest)
+        if (cchSrc < cchDest)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -197,7 +178,7 @@ RECLS_LINKAGE_C size_t recls_align_up_size_(
     RECLS_COVER_MARK_LINE();
 
 #ifdef RECLS_COMPILER_IS_BORLAND
-# define cbAlign            sizeof(void*)
+# define cbAlign                                            sizeof(void*)
 #else /* ? compiler */
     const size_t cbAlign =  sizeof(void*);
 #endif /* RECLS_COMPILER_IS_BORLAND */
@@ -223,7 +204,7 @@ RECLS_LINKAGE_C size_t count_char_instances(
     {
         RECLS_COVER_MARK_LINE();
 
-        if(*begin == ch)
+        if (*begin == ch)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -257,7 +238,7 @@ RECLS_FNDECL(size_t) recls_get_string_property_(
 
     size_t  cch =   static_cast<size_t>(ptrs->end - ptrs->begin);
 
-    if(NULL != buffer)
+    if (NULL != buffer)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -292,7 +273,7 @@ RECLS_API recls_is_valid_pattern_(
 
     RECLS_COVER_MARK_LINE();
 
-    if('\0' == *pattern)
+    if ('\0' == *pattern)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -316,11 +297,11 @@ RECLS_API recls_is_valid_pattern_(
         const size_t                len =   recls_strlen_(pattern);
         recls_char_t const* const   end =   pattern + len;
 
-        if(1 == len)
+        if (1 == len)
         {
             RECLS_COVER_MARK_LINE();
 
-            if( 0 != (flags & RECLS_F_RECURSIVE) &&
+            if (0 != (flags & RECLS_F_RECURSIVE) &&
                 '.' == pattern[0])
             {
                 RECLS_COVER_MARK_LINE();
@@ -328,11 +309,11 @@ RECLS_API recls_is_valid_pattern_(
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
         }
-        else if(2 == len)
+        else if (2 == len)
         {
             RECLS_COVER_MARK_LINE();
 
-            if( '.' == pattern[0] && 
+            if ('.' == pattern[0] &&
                 '.' == pattern[1])
             {
                 RECLS_COVER_MARK_LINE();
@@ -341,7 +322,7 @@ RECLS_API recls_is_valid_pattern_(
             }
         }
 
-        if(len > 0)
+        if (len > 0)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -350,7 +331,7 @@ RECLS_API recls_is_valid_pattern_(
 
             dotPattern[0] = dotPattern[2] = dotdotPattern[0] = dotdotPattern[3] = sep;
 
-            if( (   0 != (flags & RECLS_F_RECURSIVE) &&
+            if ((   0 != (flags & RECLS_F_RECURSIVE) &&
                     0 == strncmp(pattern, &dotPattern[1], 2)) ||
                 0 == strncmp(pattern, &dotdotPattern[1], 3))
             {
@@ -359,7 +340,7 @@ RECLS_API recls_is_valid_pattern_(
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
 
-            if( (   0 != (flags & RECLS_F_RECURSIVE) &&
+            if ((   0 != (flags & RECLS_F_RECURSIVE) &&
                     0 == strncmp(end - 2, dotPattern, 2)) ||
                 0 == strncmp(end - 3, dotdotPattern, 3))
             {
@@ -368,7 +349,7 @@ RECLS_API recls_is_valid_pattern_(
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
 
-            if( (   0 != (flags & RECLS_F_RECURSIVE) &&
+            if ((   0 != (flags & RECLS_F_RECURSIVE) &&
                     NULL != strstr(pattern, dotPattern)) ||
                 NULL != strstr(pattern, dotdotPattern))
             {
@@ -404,7 +385,7 @@ RECLS_API recls_is_valid_pattern_(
         tokeniser_t     tokens(pattern, Recls_GetPathSeparator());
 # endif /* compiler */
 
-        if( tokens.end() != std::find(tokens.begin(), tokens.end(), constants::parent_directory()) ||
+        if (tokens.end() != std::find(tokens.begin(), tokens.end(), constants::parent_directory()) ||
             (   0 != (flags & RECLS_F_RECURSIVE) &&
                 tokens.end() != std::find(tokens.begin(), tokens.end(), constants::local_directory())))
         {
@@ -415,13 +396,13 @@ RECLS_API recls_is_valid_pattern_(
 
         RECLS_COVER_MARK_LINE();
 
-        if(!tokens.empty())
+        if (!tokens.empty())
         {
             RECLS_COVER_MARK_LINE();
 
             tokeniser_t::const_iterator it = std::max_element(tokens.begin(), tokens.end(), cmp_str_len());
 
-            if(stlsoft::c_str_len(*it) > maxPathCompLen)
+            if (stlsoft::c_str_len(*it) > maxPathCompLen)
             {
                 return RECLS_RC_PATH_LIMIT_EXCEEDED;
             }
@@ -444,7 +425,7 @@ RECLS_LINKAGE_C recls_bool_t recls_is_home_start_(
 
     RECLS_COVER_MARK_LINE();
 
-    if( '~' == path[0] &&
+    if ('~' == path[0] &&
         (   '\0' == path[1] ||
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
@@ -472,3 +453,4 @@ RECLS_LINKAGE_C recls_bool_t recls_is_home_start_(
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

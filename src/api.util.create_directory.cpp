@@ -4,37 +4,18 @@
  * Purpose:     more recls API extended functions.
  *
  * Created:     30th January 2009
- * Updated:     24th January 2017
+ * Updated:     30th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2009-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * - Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted in accordance with the license and warranty
+ * information described in recls.h (included in this distribution, or
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -172,11 +153,11 @@ namespace
 
         types::traits_type::stat_data_type stat_data;
 
-        if(types::traits_type::stat(path, &stat_data)) // Not lstat!
+        if (types::traits_type::stat(path, &stat_data)) // Not lstat!
         {
             RECLS_COVER_MARK_LINE();
 
-            if(types::traits_type::is_directory(&stat_data))
+            if (types::traits_type::is_directory(&stat_data))
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -202,11 +183,11 @@ namespace
 
             path_0.pop();
 
-            if(0 == path_0.size())
+            if (0 == path_0.size())
             {
                 RECLS_COVER_MARK_LINE();
 
-                if(types::traits_type::is_path_UNC(path))
+                if (types::traits_type::is_path_UNC(path))
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -219,13 +200,13 @@ namespace
                     return RECLS_RC_UNEXPECTED;
                 }
             }
-            else if(path_0.size() != pathLen)
+            else if (path_0.size() != pathLen)
             {
                 RECLS_COVER_MARK_LINE();
 
                 recls_rc_t rc = Recls_CreateDirectory3_(path_0.c_str(), path_0.size(), results);
 
-                if(RECLS_FAILED(rc))
+                if (RECLS_FAILED(rc))
                 {
                     RECLS_COVER_MARK_LINE();
 
@@ -234,7 +215,7 @@ namespace
             }
 
             // Now try and create the directory
-            if(!platformstl::create_directory_recurse(path))
+            if (!platformstl::create_directory_recurse(path))
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -270,7 +251,7 @@ namespace
 
         // 1. Make path absolute
 
-        if(!types::traits_type::is_path_absolute(path))
+        if (!types::traits_type::is_path_absolute(path))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -345,9 +326,9 @@ RECLS_API Recls_CreateDirectory(
 
         // TODO: write a system_error_code_2_recls_rc() translator
 # if defined(PLATFORMSTL_OS_IS_UNIX)
-        if(ENOENT == get_exception_status_code(x))
+        if (ENOENT == get_exception_status_code(x))
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-        if(ERROR_INVALID_NAME == get_exception_status_code(x))
+        if (ERROR_INVALID_NAME == get_exception_status_code(x))
 # else /* ? OS */
 #  error Platform not discriminated
 # endif /* OS */
@@ -389,7 +370,7 @@ static recls_rc_t Recls_CreateDirectory_X_(
 
     recls_directoryResults_t results_;
 
-    if(NULL == results)
+    if (NULL == results)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -403,7 +384,7 @@ static recls_rc_t Recls_CreateDirectory_X_(
     results->numExistingFiles       =   0;
     results->numDeletedFiles        =   0;
 
-    if('\0' == *path)
+    if ('\0' == *path)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -435,3 +416,4 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

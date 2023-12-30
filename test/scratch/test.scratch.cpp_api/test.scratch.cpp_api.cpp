@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.cpp_api project.
  *
  * Created:     4th January 2010
- * Updated:     10th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -88,7 +79,7 @@ namespace impl
             {}
             ~Ref()
             {
-                if(NULL != m_ph)
+                if (NULL != m_ph)
                 {
                     m_ph->Release();
                 }
@@ -96,21 +87,21 @@ namespace impl
             Ref(Ref const &rhs)
                 : m_ph(rhs.m_ph)
             {
-                if(NULL != m_ph)
+                if (NULL != m_ph)
                 {
                     m_ph->AddRef();
                 }
             }
             Ref &operator =(Ref const &rhs)
             {
-                if(NULL != m_ph)
+                if (NULL != m_ph)
                 {
                     m_ph->Release();
                 }
 
                 m_ph = rhs.m_ph;
 
-                if(NULL != m_ph)
+                if (NULL != m_ph)
                 {
                     m_ph->AddRef();
                 }
@@ -157,7 +148,7 @@ namespace impl
 
         void Release()
         {
-            if(0 == --cRefs)
+            if (0 == --cRefs)
             {
                 Destroy(h);
 
@@ -296,7 +287,7 @@ static void display_entry(recls::entry const& e)
     std::cout << "part end:" << &*parts.end() << std::endl;
 #endif /* 0 */
 
-    if(numParts > 3)
+    if (numParts > 3)
     {
         (parts.begin() + 3) - 3;
         parts.begin()[3];
@@ -384,3 +375,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

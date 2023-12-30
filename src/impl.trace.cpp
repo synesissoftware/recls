@@ -4,17 +4,18 @@
  * Purpose:     Tracing.
  *
  * Created:     30th September 2003
- * Updated:     10th January 2017
+ * Updated:     30th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted in accordance with the license and warranty
  * information described in recls.h (included in this distribution, or
- * available from http://recls.org/)
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -89,7 +90,7 @@ namespace
         int             n2;
         int             n;
 
-        if(0 == (severity & 0x0f))
+        if (0 == (severity & 0x0f))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -114,7 +115,7 @@ namespace
                         ,   STLSOFT_NUM_ELEMENTS(message) - 2 - n1
                         ,   fmt, args);
 
-        if(n2 < 0)
+        if (n2 < 0)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -204,7 +205,7 @@ RECLS_FNDECL(void) Recls_SetApiLogFunction(
 
     s_loggingFunction   =   pfn;
     s_flags             =   flags;
-    if(NULL == severities)
+    if (NULL == severities)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -266,7 +267,7 @@ static void recls_log_vprintf_(
     recls_log_pfn_t loggingFunction =   s_loggingFunction;
     int             severity        =   s_severities[sevIndex % STLSOFT_NUM_ELEMENTS(s_severities)];
 
-    if( severity >= 0 &&
+    if (severity >= 0 &&
         NULL != loggingFunction)
     {
         RECLS_COVER_MARK_LINE();
@@ -418,3 +419,4 @@ function_scope::~function_scope() STLSOFT_NOEXCEPT
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

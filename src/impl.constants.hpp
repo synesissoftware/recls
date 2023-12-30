@@ -4,17 +4,18 @@
  * Purpose:     Common constants.
  *
  * Created:     28th February 2007
- * Updated:     10th January 2017
+ * Updated:     19th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2007-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted in accordance with the license and warranty
  * information described in recls.h (included in this distribution, or
- * available from http://recls.org/)
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -52,10 +53,10 @@ RECLS_MARK_FILE_START()
  * constants
  */
 
-#define RECLS_S_DEFAULT_SEARCH_ROOT_    RECLS_LITERAL(".")
-#define RECLS_S_HOME_                   RECLS_LITERAL("~")
-#define RECLS_S_LOCAL_DIR_              RECLS_LITERAL(".")
-#define RECLS_S_PARENT_DIR_             RECLS_LITERAL("..")
+#define RECLS_S_DEFAULT_SEARCH_ROOT_                        RECLS_LITERAL(".")
+#define RECLS_S_HOME_                                       RECLS_LITERAL("~")
+#define RECLS_S_LOCAL_DIR_                                  RECLS_LITERAL(".")
+#define RECLS_S_PARENT_DIR_                                 RECLS_LITERAL("..")
 
 struct constants
 {
@@ -114,3 +115,4 @@ RECLS_MARK_FILE_END()
 #endif /* !RECLS_INCL_SRC_HPP_IMPL_CONSTANTS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

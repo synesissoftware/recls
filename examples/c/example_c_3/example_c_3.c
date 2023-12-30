@@ -1,32 +1,21 @@
-/* /////////////////////////////////////////////////////////////////////////////
- * File:        example_c_3.c
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    example_c_3.c
  *
- * Purpose:     C example program for the recls core library. Demonstrates:
+ * Purpose: C example program for the recls core library. Demonstrates:
  *
- *                - stat() of current directory (via Recls_Stat())
- *                - searching (via Recls_Search()) for files and directories
- *                - recursive operation
- *                - display of full path of each entry, squeezed to constant
- *                  width (via Recls_SqueezePath())
- *                - display of file size for file entries
- *                - display of directory contents size for directory
- *                  entries, (determined via Recls_CalcDirectoryEntrySize())
- *                - handling of errors and reporting of error information
- *                - elicitation of entry properties via API function calls
+ *            - stat() of current directory (via Recls_Stat())
+ *            - searching (via Recls_Search()) for files and directories
+ *            - recursive operation
+ *            - display of full path of each entry, squeezed to constant
+ *              width (via Recls_SqueezePath())
+ *            - display of file size for file entries
+ *            - display of directory contents size for directory
+ *              entries, (determined via Recls_CalcDirectoryEntrySize())
+ *            - handling of errors and reporting of error information
+ *            - elicitation of entry properties via API function calls
  *
- * Created:     29th May 2006
- * Updated:     10th January 2017
- *
- * www:         http://www.recls.org/
- *
- * License:     Copyright (c) 2006-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              (Licensed under the Synesis Software Open License)
- *
- *              This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
+ * Created: 29th May 2006
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,8 +32,8 @@
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define printf         wprintf
-# define fprintf        fwprintf
+# define printf                                             wprintf
+# define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -55,7 +44,7 @@ int main()
     recls_info_t    current;
     recls_rc_t      rc  =   Recls_Stat(RECLS_LITERAL("."), RECLS_F_DIRECTORIES | RECLS_F_DIRECTORY_PARTS, &current);
 
-    if(RECLS_FAILED(rc))
+    if (RECLS_FAILED(rc))
     {
         /* The search failed. Display the error string. */
         recls_char_t    err[1001];
@@ -77,13 +66,13 @@ int main()
         /* ... close the entry handle, ... */
         Recls_CloseDetails(current);
 
-        if(RECLS_RC_NO_MORE_DATA == rc)
+        if (RECLS_RC_NO_MORE_DATA == rc)
         {
             printf(RECLS_LITERAL("  no matches found\n"));
 
             return EXIT_SUCCESS;
         }
-        else if(RECLS_FAILED(rc))
+        else if (RECLS_FAILED(rc))
         {
             /* The search failed. Display the error string. */
             recls_char_t    err[1001];
@@ -97,7 +86,7 @@ int main()
         }
         else
         {
-            /* Get the details for the first entry, ... */ 
+            /* Get the details for the first entry, ... */
 
             recls_info_t    entry;
 
@@ -120,7 +109,7 @@ int main()
                 /* ... determine type, ... */
                 isDirectory = Recls_IsFileDirectory(entry);
 
-                if(isDirectory)
+                if (isDirectory)
                 {
                     /* ... calculate size, or ... */
                     size = Recls_CalcDirectoryEntrySize(entry);
@@ -132,7 +121,7 @@ int main()
                     size = Recls_GetSizeProperty(entry);
                 }
 
-                if(0 != Recls_GetFileSizeGigaBytes(size))
+                if (0 != Recls_GetFileSizeGigaBytes(size))
                 {
                     printf( RECLS_LITERAL("%.*s: %s; %lu MB\n")
                         ,   (int)cch
@@ -141,7 +130,7 @@ int main()
                         ,   (unsigned long)Recls_GetFileSizeMegaBytes(size)
                         );
                 }
-                else if(0 != Recls_GetFileSizeMegaBytes(size))
+                else if (0 != Recls_GetFileSizeMegaBytes(size))
                 {
                     printf( RECLS_LITERAL("%.*s: %s; %lu MB\n")
                         ,   (int)cch
@@ -150,7 +139,7 @@ int main()
                         ,   (unsigned long)Recls_GetFileSizeMegaBytes(size)
                         );
                 }
-                else if(0 != Recls_GetFileSizeKiloBytes(size))
+                else if (0 != Recls_GetFileSizeKiloBytes(size))
                 {
                     printf( RECLS_LITERAL("%.*s: %s; %lu KB\n")
                         ,   (int)cch
@@ -173,7 +162,7 @@ int main()
                 Recls_CloseDetails(entry);
 
             } /* ... and get the next entry. */
-            while(RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
+            while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
 
             /* Close the search handle. */
             Recls_SearchClose(hSrch);
@@ -184,3 +173,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

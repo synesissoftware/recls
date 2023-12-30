@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.unit.cpp.derive_relative_path project.
  *
  * Created:     7th June 2008
- * Updated:     10th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,9 +33,9 @@
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,7 +99,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.cpp.derive_relative_path", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.cpp.derive_relative_path", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -326,7 +317,7 @@ static void run_unittests()
     RECLS_ASSERT(RECLS_LITERAL("def") == recls::stl::derive_relative_path(RECLS_LITERAL("."), RECLS_LITERAL("def")));
 
     RECLS_ASSERT(RECLS_LITERAL("..\\..\\lib\\recls") == recls::stl::derive_relative_path(RECLS_LITERAL("/usr/include/recls"), RECLS_LITERAL("/usr/lib/recls")));
-    
+
     RECLS_ASSERT(RECLS_LITERAL("..\\def") == recls::stl::derive_relative_path(RECLS_LITERAL("abc"), RECLS_LITERAL("def")));
 
 
@@ -375,7 +366,7 @@ static void test_1_0()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("def"), recls::derive_relative_path(RECLS_LITERAL("."), RECLS_LITERAL("def")));
 
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("..\\..\\lib\\recls"), recls::derive_relative_path(RECLS_LITERAL("/usr/include/recls"), RECLS_LITERAL("/usr/lib/recls")));
-    
+
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("..\\def"), recls::derive_relative_path(RECLS_LITERAL("abc"), RECLS_LITERAL("def")));
 
 
@@ -553,3 +544,4 @@ static void test_1_39()
 } // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

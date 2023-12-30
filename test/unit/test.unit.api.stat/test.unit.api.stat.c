@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.unit.api.stat project.
  *
  * Created:     13th December 2008
- * Updated:     10th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,15 +42,15 @@
  */
 
 #if defined(RECLS_CHAR_TYPE_IS_WCHAR)
-# define XTESTS_TEST_RECLS_STRING_EQUAL             XTESTS_TEST_WIDE_STRING_EQUAL
-# define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX      XTESTS_TEST_WIDE_STRING_EQUAL_APPROX
-# define XTESTS_TEST_RECLS_STRING_EQUAL_N           XTESTS_TEST_WIDE_STRING_EQUAL_N
-# define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX    XTESTS_TEST_WIDE_STRING_EQUAL_N_APPROX
+# define XTESTS_TEST_RECLS_STRING_EQUAL                     XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX              XTESTS_TEST_WIDE_STRING_EQUAL_APPROX
+# define XTESTS_TEST_RECLS_STRING_EQUAL_N                   XTESTS_TEST_WIDE_STRING_EQUAL_N
+# define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX            XTESTS_TEST_WIDE_STRING_EQUAL_N_APPROX
 #elif defined(RECLS_CHAR_TYPE_IS_CHAR)
-# define XTESTS_TEST_RECLS_STRING_EQUAL             XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-# define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX      XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX
-# define XTESTS_TEST_RECLS_STRING_EQUAL_N           XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N
-# define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N_APPROX
+# define XTESTS_TEST_RECLS_STRING_EQUAL                     XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX              XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX
+# define XTESTS_TEST_RECLS_STRING_EQUAL_N                   XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N
+# define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N_APPROX
 #else
 # error recls not discriminating correctly
 #endif
@@ -102,7 +93,7 @@ static void finish_off_directory(recls_char_t* s)
 {
     size_t n = strlen(s);
 
-    if(n > 0)
+    if (n > 0)
     {
     }
 }
@@ -120,7 +111,7 @@ int main(int argc, char **argv)
     path_max = _MAX_PATH;
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 # ifndef PATH_MAX
-#  define PATH_MAX  (1u + pathconf("/", _PC_PATH_MAX))
+#  define PATH_MAX                                          (1u + pathconf("/", _PC_PATH_MAX))
 # endif /* PATH_MAX */
     path_max = PATH_MAX;
 #else
@@ -129,7 +120,7 @@ int main(int argc, char **argv)
     s_cwd   =   (recls_char_t*)malloc(sizeof(recls_char_t) * (1 + path_max));
     s_home  =   (recls_char_t*)malloc(sizeof(recls_char_t) * (1 + path_max));
 
-    if( NULL == s_cwd ||
+    if (NULL == s_cwd ||
         NULL == s_home)
     {
         fprintf(stderr, "Cannot allocate enough memory to run tests!\n");
@@ -154,14 +145,14 @@ int main(int argc, char **argv)
     defined(_WIN32)
     { char* s; for(s = s_cwd; *s; ++s)
     {
-        if('\\' == *s)
+        if ('\\' == *s)
         {
             *s = '/';
         }
     }}
     { char* s; for(s = s_home; *s; ++s)
     {
-        if('\\' == *s)
+        if ('\\' == *s)
         {
             *s = '/';
         }
@@ -169,7 +160,7 @@ int main(int argc, char **argv)
 #endif
 
 
-    if(XTESTS_START_RUNNER("test.unit.api.stat", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.api.stat", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -220,7 +211,7 @@ static void test_1_1()
     recls_info_t    entry;
     recls_rc_t      rc = Recls_Stat(".", 0, &entry);
 
-    if(RECLS_RC_OK == rc)
+    if (RECLS_RC_OK == rc)
     {
         XTESTS_TEST_PASSED();
 
@@ -251,7 +242,7 @@ static void test_1_2()
     recls_info_t    entry;
     recls_rc_t      rc = Recls_Stat("~", 0, &entry);
 
-    if(RECLS_RC_OK == rc)
+    if (RECLS_RC_OK == rc)
     {
         XTESTS_TEST_PASSED();
 
@@ -282,7 +273,7 @@ static void test_1_3()
     recls_info_t    entry;
     recls_rc_t      rc = Recls_Stat("~", RECLS_F_MARK_DIRS, &entry);
 
-    if(RECLS_RC_OK == rc)
+    if (RECLS_RC_OK == rc)
     {
         XTESTS_TEST_PASSED();
 
@@ -374,3 +365,4 @@ static void test_1_19()
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

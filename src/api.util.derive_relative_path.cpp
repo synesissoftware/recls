@@ -4,37 +4,18 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     10th January 2017
+ * Updated:     30th December 2023
  *
- * Home:        http://recls.org/
+ * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2003-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * - Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted in accordance with the license and warranty
+ * information described in recls.h (included in this distribution, or
+ * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -110,7 +91,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
     originPath.make_absolute().canonicalise().pop_sep();
     targetPath.make_absolute().canonicalise().pop_sep();
 
-    if(originPath.empty())
+    if (originPath.empty())
     {
         RECLS_COVER_MARK_LINE();
 
@@ -119,7 +100,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(EMULATE_UNIX_ON_WINDOWS)
-    if( traits_t::is_path_UNC(originPath.c_str()) ||
+    if (traits_t::is_path_UNC(originPath.c_str()) ||
         traits_t::is_path_UNC(targetPath.c_str()))
     {
         RECLS_ASSERT('\\' == originPath[0] && '\\' == originPath[1]);
@@ -130,7 +111,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
         recls_char_t const* originShare    =   traits_t::str_chr(&originPath[2], '\\');
         recls_char_t const* targetShare    =   traits_t::str_chr(&targetPath[2], '\\');
 
-        if( (originShare - &originPath[2]) != (targetShare - &targetPath[2]) ||
+        if ((originShare - &originPath[2]) != (targetShare - &targetPath[2]) ||
             0 != traits_t::str_n_compare(&originPath[2], &targetPath[2], static_cast<size_t>(originShare - &originPath[2])))
         {
             RECLS_COVER_MARK_LINE();
@@ -147,7 +128,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
         RECLS_COVER_MARK_LINE();
 
-        if(toupper(originPath[0]) != toupper(targetPath[0]))
+        if (toupper(originPath[0]) != toupper(targetPath[0]))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -158,7 +139,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
     }
 #endif /* RECLS_PLATFORM_IS_WINDOWS || EMULATE_UNIX_ON_WINDOWS */
 
-    // now trim the common 
+    // now trim the common
     recls_char_t const* po  =   &originPath[0];
     recls_char_t const* pt  =   &targetPath[0];
 
@@ -168,9 +149,9 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(EMULATE_UNIX_ON_WINDOWS)
-        if(toupper(*po) != toupper(*pt))
+        if (toupper(*po) != toupper(*pt))
 #else /* ? RECLS_PLATFORM_IS_WINDOWS || EMULATE_UNIX_ON_WINDOWS */
-        if(*po != *pt)
+        if (*po != *pt)
 #endif /* RECLS_PLATFORM_IS_WINDOWS || EMULATE_UNIX_ON_WINDOWS */
         {
             RECLS_COVER_MARK_LINE();
@@ -181,13 +162,13 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
         ++po;
         ++pt;
 
-        if('\0' == *po)
+        if ('\0' == *po)
         {
             RECLS_COVER_MARK_LINE();
 
             break;
         }
-        if('\0' == *pt)
+        if ('\0' == *pt)
         {
             RECLS_COVER_MARK_LINE();
 
@@ -198,7 +179,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
     // We may need to rewind, since "h:\abc\def" and "H:\abc\defghi" would yield
     // ghi
 
-    if( po != &originPath[0] &&
+    if (po != &originPath[0] &&
         (   '\0' != *po ||
             '\0' != *pt))
     {
@@ -206,7 +187,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
         // There is some commonality
 
-        if(traits_t::is_path_name_separator(*(po - 1)))
+        if (traits_t::is_path_name_separator(*(po - 1)))
         {
             RECLS_COVER_MARK_LINE();
 
@@ -218,7 +199,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
             // Previous was not a separator
 
-            if( (   '\0' == *po &&
+            if ((   '\0' == *po &&
                     traits_t::is_path_name_separator(*pt)) ||
                 (   '\0' == *pt &&
                     traits_t::is_path_name_separator(*po)))
@@ -242,22 +223,22 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
             }
         }
 
-        if('\0' == *po)
+        if ('\0' == *po)
         {
             RECLS_COVER_MARK_LINE();
 
-            if(traits_t::is_path_name_separator(*pt))
+            if (traits_t::is_path_name_separator(*pt))
             {
                 RECLS_COVER_MARK_LINE();
 
                 ++pt;
             }
         }
-        else if('\0' == *pt)
+        else if ('\0' == *pt)
         {
             RECLS_COVER_MARK_LINE();
 
-            if(traits_t::is_path_name_separator(*po))
+            if (traits_t::is_path_name_separator(*po))
             {
                 RECLS_COVER_MARK_LINE();
 
@@ -282,7 +263,7 @@ RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
 
     targetFinal /= pt;
 
-    if(bTargetHasSeparator)
+    if (bTargetHasSeparator)
     {
         RECLS_COVER_MARK_LINE();
 
@@ -310,3 +291,4 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

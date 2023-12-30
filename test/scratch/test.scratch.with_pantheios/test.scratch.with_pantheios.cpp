@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.with_pantheios project.
  *
  * Created:     13th December 2008
- * Updated:     10th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -110,11 +101,11 @@ static int main_(int /* argc */, char** /*argv*/)
     hrecls_t    hSrch;
     recls_rc_t  rc = Recls_Search(".", Recls_GetWildcardsAll(), RECLS_F_RECURSIVE, &hSrch);
 
-    if(RECLS_RC_NO_MORE_DATA == rc)
+    if (RECLS_RC_NO_MORE_DATA == rc)
     {
         puts("no matches");
     }
-    else if(RECLS_FAILED(rc))
+    else if (RECLS_FAILED(rc))
     {
     }
     else
@@ -123,7 +114,7 @@ static int main_(int /* argc */, char** /*argv*/)
 
         rc = Recls_GetDetails(hSrch, &info);
 
-        if(RECLS_SUCCEEDED(rc))
+        if (RECLS_SUCCEEDED(rc))
         {
             ;
         }
@@ -183,3 +174,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
