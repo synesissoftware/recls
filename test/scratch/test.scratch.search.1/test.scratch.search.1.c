@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.search.1 project.
  *
  * Created:     12th August 2009
- * Updated:     20th December 2023
+ * Updated:     30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
