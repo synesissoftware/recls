@@ -4,7 +4,7 @@
  * Purpose:     Main (platform-independent) implementation file for the recls API.
  *
  * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -447,7 +447,11 @@ RECLS_API Recls_SearchFeedback(
                         path.canonicalise(true);
 #endif /* RECLS_EXCEPTION_SUPPORT_ */
 
+#ifdef RECLS_STLSOFT_1_10_B01_OR_LATER
+                        recls_char_t const* file    =   path.get_file().ptr;
+#else /* ? RECLS_STLSOFT_1_10_B01_OR_LATER */
                         recls_char_t const* file    =   path.get_file();
+#endif /* RECLS_STLSOFT_1_10_B01_OR_LATER */
                         const size_t        cch     =   static_cast<size_t>(file - path.c_str());
 
                         types::traits_type::char_copy(&searchRoot_[0], path.c_str(), cch);

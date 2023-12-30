@@ -4,7 +4,7 @@
  * Purpose:     recls API extended functions.
  *
  * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Updated:     30th December 2023
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -234,7 +234,11 @@ recls_rc_t Recls_Stat_X_(
 
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{14}: [%s, %s]"), path, path_.c_str());
 
+#ifdef RECLS_STLSOFT_1_10_B01_OR_LATER
+        recls_char_t const* file = path_.get_file().ptr;
+#else /* ? RECLS_STLSOFT_1_10_B01_OR_LATER */
         recls_char_t const* file = path_.get_file();
+#endif /* RECLS_STLSOFT_1_10_B01_OR_LATER */
         types::path_type    path2_(path_.c_str(), static_cast<size_t>(file - path_.c_str()));
 
         //recls_debug2_trace_printf_(RECLS_LITERAL("Recls_Stat{15}: [%s, %s]"), path, path_.c_str());
