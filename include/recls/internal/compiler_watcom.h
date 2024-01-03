@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/internal/compiler_watcom.h
+ * File:    recls/internal/compiler_watcom.h
  *
- * Purpose:     Watcom C++ specific types and includes for the recls API.
+ * Purpose: Watcom C++ specific types and includes for recls API.
  *
- * Created:     23rd September 2003
- * Updated:     19th December 2023
+ * Created: 23rd September 2003
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -34,7 +34,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_WATCOM_MAJOR       2
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_WATCOM_MINOR       3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_WATCOM_REVISION    1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_WATCOM_EDIT        14
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_WATCOM_EDIT        15
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_watcom.h

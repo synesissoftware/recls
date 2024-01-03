@@ -24,100 +24,100 @@ endif # !STLSOFT
 ########################################
 # project & compiler version
 
-COMP_TAG            =   gcc47
-ARCH_TAG            =   
-OS_TAG              =   
-PROJ_TAG            =   recls
-PROJ_VER_MAJOR      =   1
-PROJ_TAG_VER        =   $(PROJ_TAG).$(PROJ_VER_MAJOR)
-COMP_ARCH_OS_TAG    =   $(COMP_TAG)$(OS_TAG)$(ARCH_TAG)
+COMP_TAG                    =   gcc47
+ARCH_TAG                    =
+OS_TAG                      =
+PROJ_TAG                    =   recls
+PROJ_VER_MAJOR              =   1
+PROJ_TAG_VER                =   $(PROJ_TAG).$(PROJ_VER_MAJOR)
+COMP_ARCH_OS_TAG            =   $(COMP_TAG)$(OS_TAG)$(ARCH_TAG)
 
-SHWILD_VER_MAJOR    =   0
-SHWILD_TAG_VER      =   shwild.$(SHWILD_VER_MAJOR)
+SHWILD_VER_MAJOR            =   0
+SHWILD_TAG_VER              =   shwild.$(SHWILD_VER_MAJOR)
 
-XTESTS_VER_MAJOR    =   0
-XTESTS_TAG_VER      =   xtests.$(XTESTS_VER_MAJOR)
+XTESTS_VER_MAJOR            =   0
+XTESTS_TAG_VER              =   xtests.$(XTESTS_VER_MAJOR)
 
-UNIXEM_VER_MAJOR    =   1
-UNIXEM_TAG_VER      =   unixem.$(UNIXEM_VER_MAJOR)
+UNIXEM_VER_MAJOR            =   1
+UNIXEM_TAG_VER              =   unixem.$(UNIXEM_VER_MAJOR)
 
-PROJ_MAKEFILE_NAME  =   makefile
+PROJ_MAKEFILE_NAME          =   makefile
 
 ########################################
 # testing verbosity
 
 ifndef TEST_VERBOSITY
-TEST_VERBOSITY      =   2
+TEST_VERBOSITY              =   2
 endif # !TEST_VERBOSITY
 
 ########################################
 # directories
 
-PROJ_BASE_DIR           =   ../..
-PROJ_BIN_DIR            =   $(PROJ_BASE_DIR)/bin
-PROJ_INCLUDE_DIR        =   $(PROJ_BASE_DIR)/include
-PROJ_LIB_DIR            =   $(PROJ_BASE_DIR)/lib
-PROJ_OBJ_DIR            =   .
-PROJ_SRC_DIR            =   $(PROJ_BASE_DIR)/src
-PROJ_EXAMPLES_DIR       =   $(PROJ_BASE_DIR)/examples
-PROJ_SAMPLES_DIR        =   $(PROJ_BASE_DIR)/samples
-PROJ_TEST_ROOT_DIR      =   $(PROJ_BASE_DIR)/test
-PROJ_TEST_COMPONENT_DIR =   $(PROJ_TEST_ROOT_DIR)/component
-PROJ_TEST_PERFORMANCE_DIR	=	$(PROJ_TEST_ROOT_DIR)/performance
-PROJ_TEST_SCRATCH_DIR   =   $(PROJ_TEST_ROOT_DIR)/scratch
-PROJ_TEST_UNIT_DIR      =   $(PROJ_TEST_ROOT_DIR)/unit
+PROJ_BASE_DIR               =   ../..
+PROJ_BIN_DIR                =   $(PROJ_BASE_DIR)/bin
+PROJ_INCLUDE_DIR            =   $(PROJ_BASE_DIR)/include
+PROJ_LIB_DIR                =   $(PROJ_BASE_DIR)/lib
+PROJ_OBJ_DIR                =   .
+PROJ_SRC_DIR                =   $(PROJ_BASE_DIR)/src
+PROJ_EXAMPLES_DIR           =   $(PROJ_BASE_DIR)/examples
+PROJ_SAMPLES_DIR            =   $(PROJ_BASE_DIR)/samples
+PROJ_TEST_ROOT_DIR          =   $(PROJ_BASE_DIR)/test
+PROJ_TEST_COMPONENT_DIR     =   $(PROJ_TEST_ROOT_DIR)/component
+PROJ_TEST_PERFORMANCE_DIR   =   $(PROJ_TEST_ROOT_DIR)/performance
+PROJ_TEST_SCRATCH_DIR       =   $(PROJ_TEST_ROOT_DIR)/scratch
+PROJ_TEST_UNIT_DIR          =   $(PROJ_TEST_ROOT_DIR)/unit
 
-SHWILD_PROJ_INCLUDE		=	
+SHWILD_PROJ_INCLUDE         =
 ifdef RECLS_SHWILD_BASE_DIR
-SHWILD_INCLUDE_DIR		=   $(RECLS_SHWILD_BASE_DIR)/include
-SHWILD_SRC_DIR			=   $(RECLS_SHWILD_BASE_DIR)/src
-SHWILD_PROJ_INCLUDE		=	-I$(SHWILD_INCLUDE_DIR)
+SHWILD_INCLUDE_DIR          =   $(RECLS_SHWILD_BASE_DIR)/include
+SHWILD_SRC_DIR              =   $(RECLS_SHWILD_BASE_DIR)/src
+SHWILD_PROJ_INCLUDE         =   -I$(SHWILD_INCLUDE_DIR)
 else
-SHWILD_INCLUDE_DIR		=   $(PROJ_BASE_DIR)/include
-SHWILD_SRC_DIR			=   $(PROJ_SRC_DIR)/shwild
+SHWILD_INCLUDE_DIR          =   $(PROJ_BASE_DIR)/include
+SHWILD_SRC_DIR              =   $(PROJ_SRC_DIR)/shwild
 endif # !RECLS_SHWILD_BASE_DIR
 
-XCONTRACT_PROJ_INCLUDE	=	
+XCONTRACT_PROJ_INCLUDE      =
 
-XTESTS_PROJ_INCLUDE		=	
+XTESTS_PROJ_INCLUDE         =
 ifdef RECLS_XTESTS_BASE_DIR
-XTESTS_INCLUDE_DIR		=   $(RECLS_XTESTS_BASE_DIR)/include
-XTESTS_SRC_DIR			=   $(RECLS_XTESTS_BASE_DIR)/src
-XTESTS_PROJ_INCLUDE		=	-I$(XTESTS_INCLUDE_DIR)
+XTESTS_INCLUDE_DIR          =   $(RECLS_XTESTS_BASE_DIR)/include
+XTESTS_SRC_DIR              =   $(RECLS_XTESTS_BASE_DIR)/src
+XTESTS_PROJ_INCLUDE         =   -I$(XTESTS_INCLUDE_DIR)
 else
-XTESTS_INCLUDE_DIR		=   $(PROJ_BASE_DIR)/include
-XTESTS_SRC_DIR			=   $(PROJ_SRC_DIR)/xtests
+XTESTS_INCLUDE_DIR          =   $(PROJ_BASE_DIR)/include
+XTESTS_SRC_DIR              =   $(PROJ_SRC_DIR)/xtests
 endif # !RECLS_XTESTS_BASE_DIR
 
 ifdef STLSOFT_1_10
-STLSOFT_1_10_INCLUDE	=	-I$(STLSOFT_1_10)/include
+STLSOFT_1_10_INCLUDE        =   -I$(STLSOFT_1_10)/include
 else # ? STLSOFT_1_10
-STLSOFT_1_10_INCLUDE	=
+STLSOFT_1_10_INCLUDE        =
 endif # !STLSOFT_1_10
 
 
-STLSOFT_PROJ_INCLUDE	=	-I$(STLSOFT)/include
+STLSOFT_PROJ_INCLUDE        =   -I$(STLSOFT)/include
 
 ########################################
 # tools
 
-CC                      =   gcc
-CPPC                    =   g++
-AR                      =   ar
-LD                      =   g++
-RM                      =   rm -f
-CP                      =   cp
-RC                      =   rc
+CC                          =   gcc
+CPPC                        =   g++
+AR                          =   ar
+LD                          =   g++
+RM                          =   rm -f
+CP                          =   cp
+RC                          =   rc
 
 # includes
 
-INCLUDES_LEADER         =   
+INCLUDES_LEADER             =
 
-PROJ_INCLUDE            =   -I$(PROJ_INCLUDE_DIR)
+PROJ_INCLUDE                =   -I$(PROJ_INCLUDE_DIR)
 
-ENV_INCLUDES            =
+ENV_INCLUDES                =
 
-COMMON_INCLUDES         =
+COMMON_INCLUDES             =
 
 
 
@@ -125,12 +125,12 @@ COMMON_INCLUDES         =
 
 # lib
 
-LIBS_LEADER             =   
+LIBS_LEADER                 =
 
 # lib paths
 
-ENV_LIBPATHS        =
-COMMON_LIBPATHS         =
+ENV_LIBPATHS                =
+COMMON_LIBPATHS             =
 
 
 LIBPATHS=\
@@ -161,9 +161,9 @@ TARGET_LIB_ST_R=\
 
 # #defines
 
-OS_DEFS				=	-DWIN32
+OS_DEFS                     =   -DWIN32
 
-COMMON_DEFS_		= \
+COMMON_DEFS_ = \
  -DB64_NO_USE_XCONTRACT\
  -DB64_NO_USE_XCOVER\
  -DRECLS_NO_IMPLICIT_LINK\
@@ -171,26 +171,26 @@ COMMON_DEFS_		= \
  -DSHWILD_QUALITY_NO_USE_XCOVER\
  \
 
-COMMON_DEFS			= \
+COMMON_DEFS                 = \
  $(COMMON_DEFS_)\
  \
 
-CUSTOM_DEFS			=
+CUSTOM_DEFS                 =
 
-CC_CUSTOM_DEFS		=	$(CUSTOM_DEFS)
+CC_CUSTOM_DEFS              =   $(CUSTOM_DEFS)
 
-CPPC_CUSTOM_DEFS	=	$(CUSTOM_DEFS)
+CPPC_CUSTOM_DEFS            =   $(CUSTOM_DEFS)
 
 
 
 # CC flags
 
-CC_F_NOLOGO           =   
-CC_F_COMPILE_ONLY     =   -c
-CC_F_WARNING_MAX      =   -Wall -pedantic -Wno-long-long -Wno-unused-value -Wundef -Wshadow
-CC_F_WARNING_ERR      =   -Werror
-CC_F_MINIMUM_SIZE     =   -O1
-CC_F_MAXIMUM_SPEED    =   -O3
+CC_F_NOLOGO                 =
+CC_F_COMPILE_ONLY           =   -c
+CC_F_WARNING_MAX            =   -Wall -pedantic -Wno-long-long -Wno-unused-value -Wundef -Wshadow
+CC_F_WARNING_ERR            =   -Werror
+CC_F_MINIMUM_SIZE           =   -O1
+CC_F_MAXIMUM_SPEED          =   -O3
 
 CC_FLAGS_BASE=\
  $(CC_F_NOLOGO)\
@@ -218,19 +218,19 @@ CC_FLAGS_ST_R=\
 
 # CPPC flags
 
-CPPC_F_NOLOGO           =   
-CPPC_F_LANGUAGE         =   -std=c++11
-CPPC_F_COMPILE_ONLY     =   -c
-CPPC_F_WARNING_MAX      =   -Wall -pedantic -Wno-long-long -Wno-non-virtual-dtor -Wno-parentheses -Wno-unused-value
-CPPC_F_WARNING_ERR      =   -Werror
-CPPC_F_EXCEPTIONS_ON    =   
-CPPC_F_EXCEPTIONS_OFF   =   
-CPPC_F_EXCEPTIONS		=	$(CPPC_F_EXCEPTIONS_ON)
-CPPC_F_RTTI_ON          =   
-CPPC_F_RTTI_OFF         =   
-CPPC_F_RTTI             =   $(CPPC_F_RTTI_ON)
-CPPC_F_MINIMUM_SIZE     =   -O1
-CPPC_F_MAXIMUM_SPEED	=	-O3
+CPPC_F_NOLOGO               =
+CPPC_F_LANGUAGE             =   -std=c++11
+CPPC_F_COMPILE_ONLY         =   -c
+CPPC_F_WARNING_MAX          =   -Wall -pedantic -Wno-long-long -Wno-non-virtual-dtor -Wno-parentheses -Wno-unused-value
+CPPC_F_WARNING_ERR          =   -Werror
+CPPC_F_EXCEPTIONS_ON        =
+CPPC_F_EXCEPTIONS_OFF       =
+CPPC_F_EXCEPTIONS           =   $(CPPC_F_EXCEPTIONS_ON)
+CPPC_F_RTTI_ON              =
+CPPC_F_RTTI_OFF             =
+CPPC_F_RTTI                 =   $(CPPC_F_RTTI_ON)
+CPPC_F_MINIMUM_SIZE         =   -O1
+CPPC_F_MAXIMUM_SPEED        =   -O3
 
 CPPC_FLAGS_BASE=\
  $(CPPC_F_NOLOGO)\
@@ -544,12 +544,12 @@ CPPC_ARGS_core_ST_R=\
 
 # AR Args
 
-AR_ARGS             =   
+AR_ARGS                     =
 
 
 # LD flags
 
-LD_F_NOLOGO				=   
+LD_F_NOLOGO                 =
 
 LD_FLAGS_BASE=\
  $(LD_F_NOLOGO)\
@@ -612,19 +612,19 @@ LD_ARGS_ST_R= $(LD_FLAGS_ST_R)  $(LD_INCLUDES_ST_R)
  \
 
 
-3PTY_LIBS_MT_D	=\
+3PTY_LIBS_MT_D =\
  $(3PTY_LIBS_BASE)\
  \
 
-3PTY_LIBS_MT_R	=\
+3PTY_LIBS_MT_R =\
  $(3PTY_LIBS_BASE)\
  \
 
-3PTY_LIBS_ST_D	=\
+3PTY_LIBS_ST_D =\
  $(3PTY_LIBS_BASE)\
  \
 
-3PTY_LIBS_ST_R	=\
+3PTY_LIBS_ST_R =\
  $(3PTY_LIBS_BASE)\
  \
 
@@ -642,6 +642,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_borland.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_ch.h\
+ $(PROJ_INCLUDE_DIR)/recls/internal/compiler_clang.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_como.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_dmc.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_gcc.h\
@@ -1189,6 +1190,7 @@ OBJ_EX_ex_cpp_1_ST_R =   $(PROJ_OBJ_DIR)/ex.cpp.example_cpp_1.obj
 OBJ_EX_ex_cpp_2_ST_R =   $(PROJ_OBJ_DIR)/ex.cpp.example_cpp_2.obj
 OBJ_EX_ex_cpp_3_ST_R =   $(PROJ_OBJ_DIR)/ex.cpp.example_cpp_3.obj
 
+
 ########################################
 # tests
 
@@ -1219,6 +1221,7 @@ OBJ_TEST_SCRT_links_ST_D   =   $(PROJ_OBJ_DIR)/test.scratch.links.debug.obj
 OBJ_TEST_SCRT_cppapi_ST_R   =   $(PROJ_OBJ_DIR)/test.scratch.cpp_api.obj
 OBJ_TEST_SCRT_srch1_ST_R   =   $(PROJ_OBJ_DIR)/test.scratch.search.1.obj
 OBJ_TEST_SCRT_links_ST_R   =   $(PROJ_OBJ_DIR)/test.scratch.links.obj
+
 
 ##############################
 # unit tests
@@ -1256,6 +1259,7 @@ OBJ_TEST_UNIT_cpp_sqzpath_ST_R	=   $(PROJ_OBJ_DIR)/test.unit.cpp.squeeze_path.ob
 OBJ_TEST_UNIT_cpp_retcodes_ST_R	=   $(PROJ_OBJ_DIR)/test.unit.cpp.retcodes.obj
 OBJ_TEST_UNIT_c_retcodes_ST_R		=   $(PROJ_OBJ_DIR)/test.unit.c.retcodes.obj
 
+
 ##################################################
 # target groups
 
@@ -1286,7 +1290,7 @@ OBJS_XTESTS=\
  $(OBJ_XTESTS_ST_R)\
  \
 
-# Examples 
+# Examples
 OBJS_EXAMPLE=\
  $(OBJ_EX_ex_c_1_MT_D)\
  $(OBJ_EX_ex_c_2_MT_D)\
@@ -1727,6 +1731,18 @@ test.ex.c_:
 
 test.ex.cpp_:
 	@echo C++ Example programs ...
+	-$(TARG_EX_ex_cpp_1_MT_D)
+	-$(TARG_EX_ex_cpp_2_MT_D)
+	-$(TARG_EX_ex_cpp_3_MT_D)
+	-$(TARG_EX_ex_cpp_1_MT_R)
+	-$(TARG_EX_ex_cpp_2_MT_R)
+	-$(TARG_EX_ex_cpp_3_MT_R)
+	-$(TARG_EX_ex_cpp_1_ST_D)
+	-$(TARG_EX_ex_cpp_2_ST_D)
+	-$(TARG_EX_ex_cpp_3_ST_D)
+	-$(TARG_EX_ex_cpp_1_ST_R)
+	-$(TARG_EX_ex_cpp_2_ST_R)
+	-$(TARG_EX_ex_cpp_3_ST_R)
 
 
 test.component:             build.test.component test.component_
@@ -1735,9 +1751,9 @@ test.scratch:               build.test.scratch test.scratch_
 
 test.unit:                  build.test.unit test.unit_
 
-test.ex.c:					build.ex.c test.ex.c_
+test.ex.c:                  build.ex.c test.ex.c_
 
-test.ex.cpp:				build.ex.cpp test.ex.cpp_
+test.ex.cpp:                build.ex.c++ test.ex.cpp_
 
 test.examples:              test.ex.c test.ex.cpp
 
@@ -2336,7 +2352,6 @@ $(OBJ_CR_FtpSchDirNode_win_ST_R): $(PROJ_SRC_DIR)/ReclsFtpSearchDirectoryNode_wi
 	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)/ReclsFtpSearchDirectoryNode_windows.cpp
 $(OBJ_CR_FtpSrch_windows_ST_R): $(PROJ_SRC_DIR)/ReclsFtpSearch_windows.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)/ReclsFtpSearch_windows.cpp
-
 
 
 ########################################

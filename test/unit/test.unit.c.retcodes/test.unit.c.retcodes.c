@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.unit.c.retcodes.c
+ * File:    test.unit.c.retcodes.c
  *
- * Purpose:     Implementation file for the test.unit.c.retcodes project.
+ * Purpose: Implementation file for the test.unit.c.retcodes project.
  *
- * Created:     13th December 2008
- * Updated:     19th December 2023
+ * Created: 13th December 2008
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <recls/recls.h>

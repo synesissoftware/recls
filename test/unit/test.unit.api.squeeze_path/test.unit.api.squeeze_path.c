@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.unit.api.squeeze_path.c
+ * File:    test.unit.api.squeeze_path.c
  *
- * Purpose:     Implementation file for the test.unit.api.squeeze_path project.
+ * Purpose: Implementation file for the test.unit.api.squeeze_path project.
  *
- * Created:     13th December 2008
- * Updated:     19th December 2023
+ * Created: 13th December 2008
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <recls/recls.h>

@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp
+ * File:    test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp
  *
- * Purpose:     Implementation file for the test.unit.cpp.squeeze_path project.
+ * Purpose: Implementation file for the test.unit.cpp.squeeze_path project.
  *
- * Created:     7th June 2008
- * Updated:     19th December 2023
+ * Created: 7th June 2008
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #if defined(__FUNCTION__) && \

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/recls.h
+ * File:    recls/recls.h
  *
- * Purpose:     Main header file for the recls API.
+ * Purpose: Main header file for the recls API.
  *
- * Created:     15th August 2003
- * Updated:     20th December 2023
+ * Created: 15th August 2003
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -129,11 +129,12 @@
 #define RECLS_VER_1_10_0_ALPHA_2                            0x010a0002
 #define RECLS_VER_1_10_0_ALPHA_3                            0x010a0003
 #define RECLS_VER_1_10_0_ALPHA_4                            0x010a0004
+#define RECLS_VER_1_10_0_ALPHA_5                            0x010a0005
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_ALPHA_4
+#define RECLS_VER               RECLS_VER_1_10_0_ALPHA_5
 
 /* /////////////////////////////////////////////////////////////////////////
  * strictness

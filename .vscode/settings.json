@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "bitset": "cpp",
+        "memory": "cpp",
+        "string_view": "cpp",
+        "__string": "cpp",
+        "utility": "cpp",
+        "__config": "cpp",
+        "implicit_link.h": "c"
+    }
+}

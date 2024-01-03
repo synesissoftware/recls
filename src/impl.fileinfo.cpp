@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/impl.fileinfo.cpp
+ * File:    src/impl.fileinfo.cpp
  *
- * Purpose:     Main (platform-independent) implementation file for the recls API.
+ * Purpose: Main (platform-independent) implementation file for recls API.
  *
- * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Created: 16th August 2003
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software

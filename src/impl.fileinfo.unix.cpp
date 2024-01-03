@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/impl.fileinfo.unix.cpp
+ * File:    src/impl.fileinfo.unix.cpp
  *
- * Purpose:     UNIX implementation for the file information blocks of the recls API.
+ * Purpose: UNIX implementation for the file information blocks of recls API.
  *
- * Created:     2nd November 2003
- * Updated:     19th December 2023
+ * Created: 2nd November 2003
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/cpp/util.hpp
+ * File:    recls/cpp/util.hpp
  *
- * Purpose:     recls C++ mapping - utility functions.
+ * Purpose: recls C++ mapping - utility functions.
  *
- * Created:     18th August 2003
- * Updated:     19th December 2023
+ * Created: 18th August 2003
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -139,12 +139,6 @@ fprintf(stderr, "%s:%d:%s: path='%s', flags=0x%08x - ENTER\n", __FILE__, __LINE_
 
         recls_rc_t rc = Recls_RemoveDirectory(path, flags, results);
 
-fprintf(stderr, "%s:%d:%s: Recls_RemoveDirectory(path='%s', flags=0x%08x) : rc=%ld\n", __FILE__, __LINE__, __FUNCTION__
-,   path
-,   flags
-,   (signed long)rc
-);
-
         if (RECLS_FAILED(rc))
         {
             if (RECLS_RC_NO_MORE_DATA == rc)
@@ -154,8 +148,6 @@ fprintf(stderr, "%s:%d:%s: Recls_RemoveDirectory(path='%s', flags=0x%08x) : rc=%
 
             throw recls_exception(rc, "could not remove directory", path, NULL, flags);
         }
-
-fprintf(stderr, "%s:%d:%s: path='%s' - EXIT\n", __FILE__, __LINE__, __FUNCTION__, path);
     }
 };
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */

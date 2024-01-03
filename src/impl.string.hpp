@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/impl.string.hpp
+ * File:    src/impl.string.hpp
  *
- * Purpose:     Implementation header.
+ * Purpose: Implementation header.
  *
- * Created:     12th March 2005
- * Updated:     19th December 2023
+ * Created: 12th March 2005
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software

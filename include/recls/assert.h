@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/assert.h
+ * File:    recls/assert.h
  *
- * Purpose:     Assertion macros for the recls API.
+ * Purpose: Assertion macros for the recls API.
  *
- * Created:     15th August 2003
- * Updated:     19th December 2023
+ * Created: 15th August 2003
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -48,7 +48,7 @@
 # define RECLS_VER_RECLS_H_ASSERT_MAJOR     3
 # define RECLS_VER_RECLS_H_ASSERT_MINOR     1
 # define RECLS_VER_RECLS_H_ASSERT_REVISION  2
-# define RECLS_VER_RECLS_H_ASSERT_EDIT      28
+# define RECLS_VER_RECLS_H_ASSERT_EDIT      29
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/assert.h

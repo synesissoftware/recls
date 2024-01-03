@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/internal/compiler_vectorc.h
+ * File:    recls/internal/compiler_vectorc.h
  *
- * Purpose:     CodePlay Vector C specific types and includes for the recls API.
+ * Purpose: CodePlay Vector C specific types and includes for recls API.
  *
- * Created:     23rd May 2004
- * Updated:     19th December 2023
+ * Created: 23rd May 2004
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -38,7 +38,7 @@
 # define RECLS_VER_H_RECLS_COMPILER_VECTORC_MAJOR       3
 # define RECLS_VER_H_RECLS_COMPILER_VECTORC_MINOR       3
 # define RECLS_VER_H_RECLS_COMPILER_VECTORC_REVISION    1
-# define RECLS_VER_H_RECLS_COMPILER_VECTORC_EDIT        12
+# define RECLS_VER_H_RECLS_COMPILER_VECTORC_EDIT        13
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_vectorc.h

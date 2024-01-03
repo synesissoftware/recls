@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/api.ftp.windows.cpp
+ * File:    src/api.ftp.windows.cpp
  *
- * Purpose:     This file contains the Windows versions of the FTP part of
- *              the recls API.
+ * Purpose: This file contains the Windows versions of the FTP part of the
+ *          recls API.
  *
- * Created:     15th August 2004
- * Updated:     19th December 2023
+ * Created: 15th August 2004
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software

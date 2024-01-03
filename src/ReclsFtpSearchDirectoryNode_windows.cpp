@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/ReclsFtpSearchDirectoryNode_windows.cpp
+ * File:    src/ReclsFtpSearchDirectoryNode_windows.cpp
  *
- * Purpose:     Implementation of the ReclsFtpSearchDirectoryNode class for
- *              Windows.
+ * Purpose: Implementation of the ReclsFtpSearchDirectoryNode class for
+ *          Windows.
  *
- * Created:     1st June 2004
- * Updated:     19th December 2023
+ * Created: 1st June 2004
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software

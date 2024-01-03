@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/impl.fileinfo.windows.cpp
+ * File:    src/impl.fileinfo.windows.cpp
  *
- * Purpose:     Windows implementation for the file information blocks of
- *              the recls API.
+ * Purpose: Windows implementation for the file information blocks of
+ *          recls API.
  *
- * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Created: 16th August 2003
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software

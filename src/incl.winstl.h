@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/incl.winstl.h
+ * File:    src/incl.winstl.h
  *
- * Purpose:     #includes the WinSTL root header and verifies the version.
+ * Purpose: #includes the WinSTL root header and verifies the version.
  *
- * Created:     8th November 2007
- * Updated:     19th December 2023
+ * Created: 8th November 2007
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software

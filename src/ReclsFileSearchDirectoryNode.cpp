@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/ReclsFileSearchDirectoryNode.cpp
+ * File:    src/ReclsFileSearchDirectoryNode.cpp
  *
- * Purpose:     Implementation of the ReclsFileSearchDirectoryNode class.
+ * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
- * Created:     31st May 2004
- * Updated:     20th December 2023
+ * Created: 31st May 2004
+ * Updated: 20th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software

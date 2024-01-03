@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/internal/compiler_msvc.h
+ * File:    recls/internal/compiler_msvc.h
  *
- * Purpose:     Visual C++ specific types and includes for the recls API.
+ * Purpose: Visual C++ specific types and includes for recls API.
  *
- * Created:     15th August 2003
- * Updated:     19th December 2023
+ * Created: 15th August 2003
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -38,7 +38,7 @@
 # define RECLS_VER_H_RECLS_COMPILER_MSVC_MAJOR      3
 # define RECLS_VER_H_RECLS_COMPILER_MSVC_MINOR      3
 # define RECLS_VER_H_RECLS_COMPILER_MSVC_REVISION   1
-# define RECLS_VER_H_RECLS_COMPILER_MSVC_EDIT       18
+# define RECLS_VER_H_RECLS_COMPILER_MSVC_EDIT       19
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_msvc.h

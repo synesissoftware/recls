@@ -1,17 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.api.createdirectory/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.unit.api.createdirectory project.
- *
- * Created:     29th January 2009
- * Updated:     19th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * includes
- */
 
 /* recls header files */
 #include <recls/implicit_link.h>

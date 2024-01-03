@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/api.util.create_directory.cpp
+ * File:    src/api.util.create_directory.cpp
  *
- * Purpose:     more recls API extended functions.
+ * Purpose: more recls API extended functions.
  *
- * Created:     30th January 2009
- * Updated:     20th December 2023
+ * Created: 30th January 2009
+ * Updated: 20th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
@@ -85,9 +85,23 @@ DWORD
 get_exception_status_code(
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
-    unixstl::unixstl_exception&    x
+
+# if _STLSOFT_VER >= 0x010a0200
+
+    unixstl::unixstl_exception& x
+# else /* ? 1.10.2+ */
+
+    unixstl::unix_exception&    x
+# endif /* 1.10.2+ */
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
-    winstl::winstl_exception&  x
+
+# if _STLSOFT_VER >= 0x010a0200
+
+    winstl::winstl_exception&   x
+# else /* ? 1.10.2+ */
+
+    winstl::windows_exception&  x
+# endif /* 1.10.2+ */
 #endif /* platform */
 )
 {

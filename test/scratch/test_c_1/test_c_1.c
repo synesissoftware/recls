@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test_c_1.c
+ * File:    test_c_1.c
  *
- * Purpose:     Implementation file for the test_c_1 project.
+ * Purpose: Implementation file for the test_c_1 project.
  *
- * Created:     28th February 2007
- * Updated:     19th December 2023
+ * Created: 28th February 2007
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 

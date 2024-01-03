@@ -1,17 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.unit.cpp.derive_relative_path project.
- *
- * Created:     7th June 2008
- * Updated:     19th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * includes
- */
 
 /* recls header files */
 #include <recls/implicit_link.h>

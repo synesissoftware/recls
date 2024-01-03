@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/cpp/windows.hpp
+ * File:    recls/cpp/windows.hpp
  *
- * Purpose:     recls C++ mapping - Windows-specific functions.
+ * Purpose: recls C++ mapping - Windows-specific functions.
  *
- * Created:     13th November 2010
- * Updated:     19th December 2023
+ * Created: 13th November 2010
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software

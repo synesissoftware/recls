@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/internal/compiler_gcc.h
+ * File:    recls/internal/compiler_gcc.h
  *
- * Purpose:     GCC specific types and includes for the recls API.
+ * Purpose: GCC specific types and includes for recls API.
  *
- * Created:     17th August 2003
- * Updated:     20th December 2023
+ * Created: 17th August 2003
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software

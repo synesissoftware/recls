@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/implicit_link.h
+ * File:    recls/implicit_link.h
  *
- * Purpose:     Implicit linking for the recls API
+ * Purpose: Implicit linking for the recls API
  *
- * Created:     20th September 2005
- * Updated:     19th December 2023
+ * Created: 20th September 2005
+ * Updated: 29th December 2023
  *
- * Home:        http://recls.org/
+ * Home:    http://recls.org/
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/impl.root.h
+ * File:    src/impl.root.h
  *
- * Purpose:     Implementation root header.
+ * Purpose: Implementation root header.
  *
- * Created:     7th March 2005
- * Updated:     19th December 2023
+ * Created: 7th March 2005
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software

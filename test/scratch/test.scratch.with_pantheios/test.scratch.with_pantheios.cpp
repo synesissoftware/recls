@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.scratch.with_pantheios.cpp
+ * File:    test.scratch.with_pantheios.cpp
  *
- * Purpose:     Implementation file for the test.scratch.with_pantheios project.
+ * Purpose: Implementation file for the test.scratch.with_pantheios project.
  *
- * Created:     13th December 2008
- * Updated:     19th December 2023
+ * Created: 13th December 2008
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 

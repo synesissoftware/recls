@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.component.util.cpp.create_directory/test.component.util.cpp.create_directory.cpp
+ * File:    test/unit/test.component.util.cpp.create_directory/test.component.util.cpp.create_directory.cpp
  *
- * Purpose:     Implementation file for the test.component.util.cpp.create_directory project.
+ * Purpose: Implementation file for the test.component.util.cpp.create_directory project.
  *
- * Created:     30th January 2010
- * Updated:     19th December 2023
+ * Created: 30th January 2010
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #if defined(__FUNCTION__) && \

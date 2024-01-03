@@ -1,17 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.api.stat/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.unit.api.stat project.
- *
- * Created:     13th December 2008
- * Updated:     19th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * includes
- */
 
 /* recls header files */
 #include <recls/implicit_link.h>

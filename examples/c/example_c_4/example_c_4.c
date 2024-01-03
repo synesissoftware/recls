@@ -12,7 +12,7 @@
  *            - elicitation of entry properties structure members
  *
  * Created: 29th May 2006
- * Updated: 19th December 2023
+ * Updated: 29th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 

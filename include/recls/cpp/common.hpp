@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/cpp/common.hpp
+ * File:    recls/cpp/common.hpp
  *
- * Purpose:     recls C++ mapping - common types and feature discrimination.
+ * Purpose: recls C++ mapping - common types and feature discrimination.
  *
- * Created:     18th August 2003
- * Updated:     19th December 2023
+ * Created: 18th August 2003
+ * Updated: 29th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
