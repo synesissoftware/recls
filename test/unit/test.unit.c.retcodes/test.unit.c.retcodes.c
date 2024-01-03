@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.unit.c.retcodes.c
+ * File:    test.unit.c.retcodes.c
  *
- * Purpose:     Implementation file for the test.unit.c.retcodes project.
+ * Purpose: Unit-test of recls status codes via C++ API.
  *
- * Created:     13th December 2008
- * Updated:     19th December 2023
+ * Created: 13th December 2008
+ * Updated: 3rd January 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <recls/recls.h>

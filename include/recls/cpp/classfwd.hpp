@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/cpp/classfwd.hpp
+ * File:    recls/cpp/classfwd.hpp
  *
- * Purpose:     Forward declarations of classes in the recls C++ mapping.
+ * Purpose: Forward declarations of classes in the recls C++ mapping.
  *
- * Created:     23rd November 2011
- * Updated:     19th December 2023
+ * Created: 23rd November 2011
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
@@ -98,7 +98,7 @@ class root_sequence;
 
 /* recls/cpp/search_sequence.hpp : */
 template<
-	typename C
+    typename C
 ,   typename T
 ,   typename V
 >

@@ -10,9 +10,10 @@
  *              Recls_CalcDirectorySize())
  *
  * Created: 17th June 2006
- * Updated: 19th December 2023
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 /* recls header files */
 #include <recls/recls.h>

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/internal/compiler_dmc.h
+ * File:    recls/internal/compiler_dmc.h
  *
- * Purpose:     Digital Mars specific types and includes for the recls API.
+ * Purpose: Digital Mars specific types and includes for recls API.
  *
- * Created:     17th August 2003
- * Updated:     19th December 2023
+ * Created: 17th August 2003
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -34,7 +34,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_DMC_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_DMC_MINOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_DMC_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_DMC_EDIT       15
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_DMC_EDIT       16
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_dmc.h

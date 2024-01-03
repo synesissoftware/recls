@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/impl.api.search.h
+ * File:    src/impl.api.search.h
  *
- * Purpose:     Implementation header.
+ * Purpose: Implementation header.
  *
- * Created:     1st January 2021
- * Updated:     2nd January 2021
+ * Created: 1st January 2021
+ * Updated: 30th December 2023
  *
- * Home:        http://recls.org/
+ * Home:    http://recls.org/
  *
- * Copyright (c) 2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2021-2023, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

@@ -1,16 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp
+ * File:    test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp
  *
- * Purpose:     Implementation file for the test.unit.cpp.squeeze_path project.
+ * Purpose: Test path-squeezing (via recls C++ API function
+ *          `recls::squeeze_path()`).
  *
- * Created:     7th June 2008
- * Updated:     19th December 2023
+ * Created: 7th June 2008
+ * Updated: 3rd January 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #if defined(__FUNCTION__) && \

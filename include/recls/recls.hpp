@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/recls.hpp
+ * File:    recls/recls.hpp
  *
- * Purpose:     recls C++ mapping.
+ * Purpose: recls C++ mapping.
  *
- * Created:     5th January 2010
- * Updated:     19th December 2023
+ * Created: 5th January 2010
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software

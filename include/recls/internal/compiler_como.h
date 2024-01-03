@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/internal/compiler_como.h
+ * File:    recls/internal/compiler_como.h
  *
- * Purpose:     Como specific types and includes for the recls API.
+ * Purpose: Como specific types and includes for recls API.
  *
- * Created:     8th June 2004
- * Updated:     19th December 2023
+ * Created: 8th June 2004
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -38,7 +38,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_COMO_MAJOR     3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_COMO_MINOR     2
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_COMO_REVISION  1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_COMO_EDIT      11
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_COMO_EDIT      12
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_como.h

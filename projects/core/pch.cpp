@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pch.cpp
+ * File:    pch.cpp
  *
- * Purpose:     Pre-compiled header base file.
+ * Purpose: Pre-compiled header base file.
  *
- * Created:     10th December 2005
- * Updated:     22nd December 2020
+ * Created: 10th December 2005
+ * Updated: 22nd December 2020
  *
- * Home:        http://recls.org/
+ * Home:    http://recls.org/
  *
  * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/cpp/ftp_search_sequence.hpp
+ * File:    recls/cpp/ftp_search_sequence.hpp
  *
- * Purpose:     recls C++ mapping - ftp_search_sequence class.
+ * Purpose: recls C++ mapping - ftp_search_sequence class.
  *
- * Created:     10th September 2003
- * Updated:     19th December 2023
+ * Created: 10th September 2003
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -229,7 +229,7 @@ private:
 };
 
 ////////////////////////////////////////////////////////////////////////////
-// Shims
+// shims
 
 /// is_empty shim
 /// \ingroup group__recls__cpp
@@ -251,7 +251,7 @@ is_empty(
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// Implementation
+// implementation
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 

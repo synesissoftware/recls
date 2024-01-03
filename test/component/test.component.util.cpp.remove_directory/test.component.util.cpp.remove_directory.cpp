@@ -1,16 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.component.util.cpp.remove_directory/test.component.util.cpp.remove_directory.cpp
+ * File:    test/unit/test.component.util.cpp.remove_directory/test.component.util.cpp.remove_directory.cpp
  *
- * Purpose:     Implementation file for the test.component.util.cpp.remove_directory project.
+ * Purpose: Test removal of directories (via recls C++ API function
+ *          `recls::remove_directory()`).
  *
- * Created:     30th January 2010
- * Updated:     19th December 2023
+ * Created: 30th January 2010
+ * Updated: 3rd January 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #if defined(__FUNCTION__) && \

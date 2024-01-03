@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/internal/compiler_clang.h
+ * File:    recls/internal/compiler_clang.h
  *
- * Purpose:     Clang specific types and includes for the recls API.
+ * Purpose: Clang specific types and includes for recls API.
  *
- * Created:     20th December 2023
- * Updated:     20th December 2023
+ * Created: 20th December 2023
+ * Updated: 20th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2023, Matthew Wilson and Synesis Information Systems
  * All rights reserved.

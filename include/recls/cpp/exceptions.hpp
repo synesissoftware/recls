@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/cpp/exceptions.hpp
+ * File:    recls/cpp/exceptions.hpp
  *
- * Purpose:     recls C++ mapping - exception classes.
+ * Purpose: recls C++ mapping - exception classes.
  *
- * Created:     10th September 2003
- * Updated:     19th December 2023
+ * Created: 10th September 2003
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software

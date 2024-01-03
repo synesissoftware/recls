@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/api.util.stat.cpp
+ * File:    src/api.util.stat.cpp
  *
- * Purpose:     recls API extended functions.
+ * Purpose: recls API extended functions.
  *
- * Created:     16th August 2003
- * Updated:     19th December 2023
+ * Created: 16th August 2003
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software

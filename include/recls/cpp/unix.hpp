@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/cpp/unix.hpp
+ * File:    recls/cpp/unix.hpp
  *
- * Purpose:     recls C++ mapping - Unix-specific functions.
+ * Purpose: recls C++ mapping - Unix-specific functions.
  *
- * Created:     6th November 2011
- * Updated:     23rd December 2020
+ * Created: 6th November 2011
+ * Updated: 23rd December 2020
  *
- * Home:        http://recls.org/
+ * Home:    http://recls.org/
  *
  * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software

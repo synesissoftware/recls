@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.unit.api.stat.c
+ * File:    test.unit.api.stat.c
  *
- * Purpose:     Implementation file for the test.unit.api.stat project.
+ * Purpose: Test stat functionality of recls C API function `Recls_Stat()`.
  *
- * Created:     13th December 2008
- * Updated:     19th December 2023
+ * Created: 13th December 2008
+ * Updated: 3rd January 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <recls/recls.h>

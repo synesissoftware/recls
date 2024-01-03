@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.scratch.search.1.c
+ * File:    test.scratch.search.1.c
  *
- * Purpose:     Implementation file for the test.scratch.search.1 project.
+ * Purpose: Demonstrates use of recls C API for searching.
  *
- * Created:     12th August 2009
- * Updated:     20th December 2023
+ * Created: 12th August 2009
+ * Updated: 3rd January 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

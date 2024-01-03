@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/internal/compiler_intel.h
+ * File:    recls/internal/compiler_intel.h
  *
- * Purpose:     Intel specific types and includes for the recls API.
+ * Purpose: Intel specific types and includes for recls API.
  *
- * Created:     15th August 2003
- * Updated:     19th December 2023
+ * Created: 15th August 2003
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -34,7 +34,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_INTEL_MAJOR    3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_INTEL_MINOR    3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_INTEL_REVISION 1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_INTEL_EDIT     17
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_INTEL_EDIT     18
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_intel.h

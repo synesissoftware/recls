@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.scratch.with_pantheios.cpp
+ * File:    test.scratch.with_pantheios.cpp
  *
- * Purpose:     Implementation file for the test.scratch.with_pantheios project.
+ * Purpose: Demonstrates using Pantheios for recls API logging.
  *
- * Created:     13th December 2008
- * Updated:     19th December 2023
+ * Created: 13th December 2008
+ * Updated: 3rd January 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/api.retcodes.windows.cpp
+ * File:    src/api.retcodes.windows.cpp
  *
- * Purpose:     This file contains the Windows versions of the recls API.
+ * Purpose: This file contains the Windows versions of recls API.
  *
- * Created:     13th November 2010
- * Updated:     19th December 2023
+ * Created: 13th November 2010
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -52,9 +52,9 @@ namespace impl
  */
 
 #if 0 || \
-	defined(STLSOFT_COMPILER_IS_CLANG) || \
-	defined(STLSOFT_COMPILER_IS_GCC) || \
-	0
+    defined(STLSOFT_COMPILER_IS_CLANG) || \
+    defined(STLSOFT_COMPILER_IS_GCC) || \
+    0
 
 # define SWITCH_BEGIN_()        if (0) {}
 # define SWITCH_END_()          return static_cast<DWORD>(E_FAIL);

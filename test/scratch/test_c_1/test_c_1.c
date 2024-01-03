@@ -1,10 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test_c_1.c
+ * File:    test_c_1.c
  *
- * Purpose:     Implementation file for the test_c_1 project.
+ * Purpose: Demonstrates use of recls C API functions for accessing entry
+ *          attributes.
  *
- * Created:     28th February 2007
- * Updated:     19th December 2023
+ * Created: 28th February 2007
+ * Updated: 3rd January 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

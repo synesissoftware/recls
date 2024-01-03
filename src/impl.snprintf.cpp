@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/impl.snprintf.cpp (was $PANTHEIOS_ROOT/src/util/snprintf.c)
+ * File:    src/impl.snprintf.cpp (was $PANTHEIOS_ROOT/src/util/snprintf.c)
  *
- * Purpose:     Implementation file for snprintf() utility functions for
- *              the recls API. (Was borrowed from Pantheios.)
+ * Purpose: Implementation file for snprintf() utility functions for recls
+ *          API. (Was borrowed from Pantheios.)
  *
- * Created:     21st June 2005
- * Updated:     19th December 2023
+ * Created: 21st June 2005
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software

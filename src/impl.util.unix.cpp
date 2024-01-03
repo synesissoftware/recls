@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/impl.util.unix.cpp
+ * File:    src/impl.util.unix.cpp
  *
- * Purpose:     Windows utility functions for the recls API.
+ * Purpose: Windows utility functions for recls API.
  *
- * Created:     17th August 2003
- * Updated:     19th December 2023
+ * Created: 17th August 2003
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software

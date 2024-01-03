@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        recls/cpp/traits.hpp
+ * File:    recls/cpp/traits.hpp
  *
- * Purpose:     Traits for recls C++ mapping.
+ * Purpose: Traits for recls C++ mapping.
  *
- * Created:     25th March 2004
- * Updated:     19th December 2023
+ * Created: 25th March 2004
+ * Updated: 30th December 2023
  *
- * Home:        https://github.com/synesissoftware/recls
+ * Home:    https://github.com/synesissoftware/recls
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software

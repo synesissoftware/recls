@@ -1,16 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.unit.api.createdirectory.c
+ * File:    test.unit.api.createdirectory.c
  *
- * Purpose:     Implementation file for the test.unit.api.createdirectory project.
+ * Purpose: Test creation of directories (via recls C API function
+ *          `Recls_CreateDirectory()`).
  *
- * Created:     29th January 2009
- * Updated:     19th December 2023
+ * Created: 29th January 2009
+ * Updated: 3rd January 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <recls/recls.h>

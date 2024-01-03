@@ -12,7 +12,7 @@
  *            - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 19th December 2023
+ * Updated: 30th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
