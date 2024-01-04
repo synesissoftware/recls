@@ -17,6 +17,20 @@ recls - Changes
     *******************************************************************
 
 
+recls 1.10.1 (alpha 5) released - 4th January 2024
+==================================================
+
+Summary:
+--------
+
+ * CMake support
+
+Details:
+--------
+
+ T.B.C.
+
+
 recls 1.10.1 (alpha 3) released - 29th March 2021
 =================================================
 
@@ -475,7 +489,7 @@ Makefiles / Project-files:
     + now have 3 scratch-tests
     + impl.api.search.cpp
     - removed xCover from recls 1.10
-    ~ TCP compatibility (Windows-only) 
+    ~ TCP compatibility (Windows-only)
     + Visual C++ 14 makefiles
     + Visual C++ 15 makefiles
     + Visual C++ 16 makefiles
@@ -2164,7 +2178,7 @@ recls 1.8.9 released - 19th May 2007
 
 General:
 --------
-  ~ distribution is now rooted at recls-1.8.9. In other words, the file 
+  ~ distribution is now rooted at recls-1.8.9. In other words, the file
     include/recls/recls.h will now be at recls-1.8.9/include/recls/recls.h
 
 recls/Ruby:
@@ -2237,7 +2251,7 @@ recls/STL:
 
 Dependencies:
 -------------
-  * now relies on STLSoft 1.9.1 beta 47 (or later), available from 
+  * now relies on STLSoft 1.9.1 beta 47 (or later), available from
     http://stlsoft.org/downloads.html
 
 
@@ -2367,7 +2381,7 @@ recls/D:
   + getSelectedRoots() method
   + combinePaths() method
   + deriveRelativePath() method
-  + squeezePath() method 
+  + squeezePath() method
 
 recls/Java:
 -----------
@@ -2422,7 +2436,7 @@ recls/STL:
   + recls::stl::combine_paths()
   + recls::stl::derive_relative_path()
   + recls::stl::squeeze_path()
-  ~ recls::stl::root_sequence now has a constructor that takes 
+  ~ recls::stl::root_sequence now has a constructor that takes
     RECLS_ROOTS_FLAG flags.
 
 
@@ -2499,7 +2513,7 @@ recls/STL:
     Imperfect C++, http://imperfectcplusplus.com), which means that the
     following syntax is available for those compilers that support it:
 
-    FileEntry  fe = . . . 
+    FileEntry  fe = . . .
 
     std::cout << "path=" << fe.Path << endl; // Rather than fe.GetPath()
     std::cout << "size=" << fe.Size << endl; // Rather than fe.GetSize()
@@ -2524,7 +2538,7 @@ recls 1.6.3 released - 28th June 2005
 Test:
 -----
   ~ minor changes to test files sources, for maximum compatibility with
-    compilers, including GCC 3.3 and 4.0 on Mac OS-X 
+    compilers, including GCC 3.3 and 4.0 on Mac OS-X
   ~ addition of three more test programs - C_minimal, Cpp_minimal and
     STL_minimal - that demonstrate minimal and easy use of the C++ and
     STL mappings.

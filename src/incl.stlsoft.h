@@ -4,11 +4,11 @@
  * Purpose: #includes the STLSoft root header and verifies the version.
  *
  * Created: 8th November 2007
- * Updated: 30th December 2023
+ * Updated: 4th January 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -41,10 +41,10 @@
 #  define RECLS_STLSOFT_1_12_OR_LATER
 # elif STLSOFT_VER >= 0x010b0000
 #  define RECLS_STLSOFT_1_11_OR_LATER
-# elif STLSOFT_VER >= 0x010a01ff
+# elif STLSOFT_VER >= 0x010a02ff
 #  define RECLS_STLSOFT_1_10_1_OR_LATER
 # else
-#  error use of STLSoft 1.10 requires Version 1.10.1 beta 30 or later
+#  error use of STLSoft 1.10 requires Version 1.10.2 or later
 # endif
 
 #elif defined(_STLSOFT_VER)
@@ -54,10 +54,10 @@
 #  define RECLS_STLSOFT_1_12_OR_LATER
 # elif _STLSOFT_VER >= 0x010b0000
 #  define RECLS_STLSOFT_1_11_OR_LATER
-# elif _STLSOFT_VER >= 0x010a01ff
+# elif _STLSOFT_VER >= 0x010a02ff
 #  define RECLS_STLSOFT_1_10_1_OR_LATER
 # else
-#  error use of STLSoft 1.10 requires Version 1.10.1 beta 30 or later
+#  error use of STLSoft 1.10 requires Version 1.10.2 or later
 # endif
 #endif /* STLSoft version */
 

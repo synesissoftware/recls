@@ -6,7 +6,7 @@
 #           on the UNIX platform
 #
 # Created:  20th December 2023
-# Updated:  30th December 2023
+# Updated:  4th January 2024
 #
 ############################################################################
 
@@ -216,7 +216,7 @@ CC_FLAGS_ST_R=\
 
 # CPPC flags
 
-CPPC_F_NOLOGO           =   
+CPPC_F_NOLOGO           =
 CPPC_F_LANGUAGE         =   -std=c++11
 CPPC_F_COMPILE_ONLY     =   -c
 CPPC_F_WARNING_MAX      =   -Wall -pedantic -Wno-long-long -Wno-non-virtual-dtor -Wno-parentheses -Wno-unused-value
