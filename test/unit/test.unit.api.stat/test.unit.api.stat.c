@@ -53,6 +53,10 @@
 # pragma warning(disable : 4996)
 #endif
 
+#ifdef PLATFORMSTL_OS_IS_UNIX
+# define _tgetcwd                                           getcwd
+#endif
+
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */

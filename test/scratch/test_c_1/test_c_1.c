@@ -200,7 +200,7 @@ static void process_search(hrecls_t hSrch)
 
             Recls_DoesEntryExist(info);
             Recls_IsFileUNC(info);
-            Recls_GetSizeProperty(info, &size);
+            size = Recls_GetSizeProperty(info);
             Recls_GetCreationTime(info);
             Recls_GetModificationTime(info);
             Recls_GetLastAccessTime(info);

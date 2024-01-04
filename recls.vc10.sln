@@ -62,7 +62,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.api.combine_paths
 		{DEE56C7D-F9C8-4099-8E7E-33EB397CC2FB} = {DEE56C7D-F9C8-4099-8E7E-33EB397CC2FB}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.api.createdirectory", "test\unit\test.unit.api.createdirectory\vc10\test.unit.api.createdirectory.vcxproj", "{56B5C7E1-B828-4A75-9DDD-D91E4B8FA3CA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.api.create_directory", "test\unit\test.unit.api.create_directory\vc10\test.unit.api.create_directory.vcxproj", "{56B5C7E1-B828-4A75-9DDD-D91E4B8FA3CA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DEE56C7D-F9C8-4099-8E7E-33EB397CC2FB} = {DEE56C7D-F9C8-4099-8E7E-33EB397CC2FB}
 	EndProjectSection

@@ -1,0 +1,120 @@
+
+if(APPLE)
+
+    message("-- -- adding '/usr/local/include' to include-directories for 'src'")
+
+    include_directories("/usr/local/include")
+endif(APPLE)
+
+if(UNIX)
+
+    add_definitions(-DUNIX)
+    add_definitions(-Dunix)
+endif(UNIX)
+
+if(WIN32)
+
+    message(FATAL_ERROR "Use of CMake on Windows not currently supported")
+endif(WIN32)
+
+
+set(COMMON_IMPLEMENTATION_FILES
+
+    ReclsFileSearch.cpp
+    ReclsFileSearchDirectoryNode.cpp
+    ReclsSearch.cpp
+
+    api.entryinfo.cpp
+    api.error.cpp
+    api.extended.cpp
+    api.search.cpp
+    api.util.combine_paths.cpp
+    api.util.create_directory.cpp
+    api.util.derive_relative_path.cpp
+    api.util.get_file_sizes.cpp
+    api.util.remove_directory.cpp
+    api.util.squeeze_path.cpp
+    api.util.stat.cpp
+
+    impl.api.search.cpp
+    impl.entryinfo.cpp
+    impl.fileinfo.cpp
+    impl.snprintf.cpp
+    impl.trace.cpp
+    impl.util.cpp
+)
+
+set(UNIX_IMPLEMENTATION_FILES
+
+    api.unix.cpp
+
+    impl.fileinfo.unix.cpp
+    impl.util.unix.cpp
+)
+
+set(WINDOWS_IMPLEMENTATION_FILES
+
+    ReclsFtpSearchDirectoryNode_windows.cpp
+    ReclsFtpSearch_windows.cpp
+
+    api.ftp.windows.cpp
+    api.retcodes.windows.cpp
+    api.windows.cpp
+
+    impl.fileinfo.windows.cpp
+    impl.util.windows.cpp
+)
+
+
+if(UNIX)
+
+    set(COMMON_IMPLEMENTATION_FILES "${COMMON_IMPLEMENTATION_FILES};${UNIX_IMPLEMENTATION_FILES};")
+endif(UNIX)
+
+if(WIN32)
+
+    set(COMMON_IMPLEMENTATION_FILES "${COMMON_IMPLEMENTATION_FILES};${WINDOWS_IMPLEMENTATION_FILES};")
+endif(WIN32)
+
+
+
+add_library(recls
+    ${COMMON_IMPLEMENTATION_FILES}
+)
+
+set(RECLS_PUBLIC_HEADERS
+    "${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h"
+)
+
+set_target_properties(recls PROPERTIES
+    OUTPUT_NAME "recls"
+    PUBLIC_HEADER "${RECLS_PUBLIC_HEADERS}"
+)
+
+
+target_include_directories(recls PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
+
+target_compile_options(recls PRIVATE
+    $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+        -Werror -Wall -Wextra -pedantic
+
+        -Wno-deprecated-copy
+        -Wno-unused-parameter
+    >
+    $<$<CXX_COMPILER_ID:MSVC>:
+        /WX /W4
+    >
+)
+
+
+# ##########################################################
+# install
+
+# T.B.C.
+
+
+# ############################## end of file ############################# #
+
