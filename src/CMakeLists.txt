@@ -82,15 +82,10 @@ add_library(recls
     ${COMMON_IMPLEMENTATION_FILES}
 )
 
-set(RECLS_PUBLIC_HEADERS
-    "${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h"
-)
-
 set_target_properties(recls PROPERTIES
     OUTPUT_NAME "recls"
-    PUBLIC_HEADER "${RECLS_PUBLIC_HEADERS}"
+    # PUBLIC_HEADER "${RECLS_PUBLIC_HEADERS}"
 )
-
 
 target_include_directories(recls PUBLIC
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
@@ -113,7 +108,21 @@ target_compile_options(recls PRIVATE
 # ##########################################################
 # install
 
-# T.B.C.
+install(TARGETS recls
+    EXPORT project-targets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    # PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/recls
+)
+
+# install the include/recls/*/ subdirectories here, as do not (yet) know how to do so via PUBLIC_HEADER property
+install(
+    DIRECTORY ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/
+    DESTINATION include/${PROJECT_NAME_LOWER}
+    FILES_MATCHING
+    PATTERN "*.h*"
+)
 
 
 # ############################## end of file ############################# #
