@@ -1,18 +1,13 @@
-============================================================================
-recls - Authors
----------------
+# recls - Authors
 
-; Created:  28th May 2006
-; Updated:  20th January 2009
+Bug reports, fixes and suggestions (for which we are very grateful):
 
-============================================================================
-
-Authors:
-
-    Matthew Wilson
+  * Garth Lancaster ([garthjl1965](https://github.com/garthjl1965))
+  * Matt Wilson ([mwsis](https://github.com/mwsis))
 
 
 Contributions are welcomed.
 
 
-=============================== End of file ================================
+<!-- ########################### end of file ########################### -->
+
