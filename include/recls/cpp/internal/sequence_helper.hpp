@@ -4,11 +4,11 @@
  * Purpose: recls::internal::sequence_helper struct.
  *
  * Created: 10th September 2003
- * Updated: 30th December 2023
+ * Updated: 13th January 2024
  *
  * Home:    http://recls.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_MAJOR     5
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_MINOR     0
-# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_REVISION  5
-# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_EDIT      103
+# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_REVISION  6
+# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_EDIT      104
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -67,6 +67,8 @@
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
+
+#include <recls/cpp/traits.hpp>
 
 #include <platformstl/filesystem/filesystem_traits.hpp>
 #include <stlsoft/memory/auto_buffer.hpp>
