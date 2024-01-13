@@ -1,10 +1,26 @@
 
 # directories (by name)
 
+/.vs/
+
+/_build/
+/_internal/
+
 /--include
 /--src
 /-include
 /-src
+
+/bin/
+/doc/
+/examples/bin
+/examples/c/bin
+/examples/c/lib
+/examples/cpp/bin
+/examples/cpp/lib
+/examples/lib
+/lib/
+/scratch/
 
 include/b64/
 include/shwild/
@@ -16,26 +32,9 @@ src/shwild/
 src/xcontract/
 src/xtests/
 
-/.vs/
-
-/_build/
-/_internal/
-
-/bin/
-/examples/bin
-/examples/c/bin
-/examples/cpp/bin
-
-/doc/
-
 ideas/
 
 ipch/
-
-/lib/
-/examples/lib
-/examples/c/lib
-/examples/cpp/lib
 
 projects/util/vc10-generated/
 
