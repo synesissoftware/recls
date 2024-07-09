@@ -3,7 +3,7 @@
 ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
-CMakePath=$Dir/_build
+CMakeDir=$Dir/_build
 
 
 CmakeVerboseMakefile=0
@@ -17,26 +17,32 @@ STLSoftDirGiven=
 # command-line handling
 
 while [[ $# -gt 0 ]]; do
-    case $1 in
-        -d|--debug-configuration)
-            Configuration=Debug
-            ;;
-        -m|--run-make)
-            RunMake=1
-            ;;
-        -s|--stlsoft-root-dir)
-            shift
-            STLSoftDirGiven=$1
-            ;;
-        -v|--cmake-verbose-makefile)
-            CmakeVerboseMakefile=1
-            ;;
-        --help)
-            cat << EOF
+
+  case $1 in
+    -d|--debug-configuration)
+
+      Configuration=Debug
+      ;;
+    -m|--run-make)
+
+      RunMake=1
+      ;;
+    -s|--stlsoft-root-dir)
+
+      shift
+      STLSoftDirGiven=$1
+      ;;
+    -v|--cmake-verbose-makefile)
+
+      CmakeVerboseMakefile=1
+      ;;
+    --help)
+
+      cat << EOF
 recls is a platform-independent recursive file-system search library
 Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
-Causes the creation/reinitialisation of the CMake build script(s)
+Creates/reinitialises the CMake build script(s)
 
 $ScriptPath [ ... flags/options ... ]
 
@@ -50,7 +56,7 @@ Flags/options:
 
     -m
     --run-make
-        runs make after a successful running of Cmake
+        runs make after a successful running of CMake
 
     -s <dir>
     --stlsoft-root-dir <dir>
@@ -71,47 +77,57 @@ Flags/options:
 
 EOF
 
-            exit 0
-            ;;
-        *)
-            >&2 echo "$ScriptPath: unrecognised argument '$1'; use --help for usage"
+      exit 0
+      ;;
+    *)
 
-            exit 1
-            ;;
-    esac
+      >&2 echo "$ScriptPath: unrecognised argument '$1'; use --help for usage"
 
-    shift
+      exit 1
+      ;;
+  esac
+
+  shift
 done
 
 
 # ##########################################################
 # main()
 
-mkdir -p $CMakePath || exit 1
+mkdir -p $CMakeDir || exit 1
 
-cd $CMakePath
+cd $CMakeDir
 
 echo "Executing CMake"
 
 if [ $CmakeVerboseMakefile -eq 0 ]; then CmakeVerboseMakefileFlag="OFF" ; else CmakeVerboseMakefileFlag="ON" ; fi
 if [ -z $STLSoftDirGiven ]; then CmakeSTLSoftVariable="" ; else CmakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 
-cmake -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CmakeVerboseMakefileFlag -DCMAKE_BUILD_TYPE=$Configuration $CmakeSTLSoftVariable .. || (cd ->/dev/null ; exit 1)
+cmake \
+  $CmakeSTLSoftVariable \
+  -DCMAKE_BUILD_TYPE=$Configuration \
+  -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CmakeVerboseMakefileFlag \
+  .. || (cd ->/dev/null ; exit 1)
+
+status=0
 
 if [ $RunMake -ne 0 ]; then
 
-    echo "Executing make"
+  echo "Executing make"
 
-    make
+  make
+  status=$?
 fi
 
 cd ->/dev/null
 
 if [ $CmakeVerboseMakefile -ne 0 ]; then
 
-    echo -e "contents of $CMakePath:"
-    ls -al $CMakePath
+  echo -e "contents of $CMakeDir:"
+  ls -al $CMakeDir
 fi
+
+exit $status
 
 
 # ############################## end of file ############################# #

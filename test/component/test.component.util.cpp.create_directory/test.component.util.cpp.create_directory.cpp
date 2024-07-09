@@ -221,7 +221,7 @@ static int teardown(void*)
 }
 
 
-static void test_1_0()
+static void test_1_0(void)
 {
     recls::create_directory(RECLS_LITERAL("."));
 
@@ -229,7 +229,7 @@ static void test_1_0()
 }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-static void test_1_1()
+static void test_1_1(void)
 {
     recls::create_directory(RECLS_LITERAL("|"));
 
@@ -237,7 +237,7 @@ static void test_1_1()
 }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-static void test_1_2()
+static void test_1_2(void)
 {
     path_t path(temp_dir);
 
@@ -252,7 +252,7 @@ static void test_1_2()
     XTESTS_TEST_INTEGER_EQUAL(8u + results.existingLength, results.resultingLength);
 }
 
-static void test_1_3()
+static void test_1_3(void)
 {
     path_t path(temp_dir);
 
@@ -269,107 +269,107 @@ static void test_1_3()
     XTESTS_TEST_INTEGER_EQUAL(16u + results.existingLength, results.resultingLength);
 }
 
-static void test_1_4()
+static void test_1_4(void)
 {
 }
 
-static void test_1_5()
+static void test_1_5(void)
 {
 }
 
-static void test_1_6()
+static void test_1_6(void)
 {
 }
 
-static void test_1_7()
+static void test_1_7(void)
 {
 }
 
-static void test_1_8()
+static void test_1_8(void)
 {
 }
 
-static void test_1_9()
+static void test_1_9(void)
 {
 }
 
-static void test_1_10()
+static void test_1_10(void)
 {
 }
 
-static void test_1_11()
+static void test_1_11(void)
 {
 }
 
-static void test_1_12()
+static void test_1_12(void)
 {
 }
 
-static void test_1_13()
+static void test_1_13(void)
 {
 }
 
-static void test_1_14()
+static void test_1_14(void)
 {
 }
 
-static void test_1_15()
+static void test_1_15(void)
 {
 }
 
-static void test_1_16()
+static void test_1_16(void)
 {
 }
 
-static void test_1_17()
+static void test_1_17(void)
 {
 }
 
-static void test_1_18()
+static void test_1_18(void)
 {
 }
 
-static void test_1_19()
+static void test_1_19(void)
 {
 }
 
-static void test_1_20()
+static void test_1_20(void)
 {
 }
 
-static void test_1_21()
+static void test_1_21(void)
 {
 }
 
-static void test_1_22()
+static void test_1_22(void)
 {
 }
 
-static void test_1_23()
+static void test_1_23(void)
 {
 }
 
-static void test_1_24()
+static void test_1_24(void)
 {
 }
 
-static void test_1_25()
+static void test_1_25(void)
 {
 }
 
-static void test_1_26()
+static void test_1_26(void)
 {
 }
 
-static void test_1_27()
+static void test_1_27(void)
 {
 }
 
-static void test_1_28()
+static void test_1_28(void)
 {
 }
 
-static void test_1_29()
+static void test_1_29(void)
 {
 }
 

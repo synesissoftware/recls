@@ -4,7 +4,7 @@
  * Purpose: Test stat functionality of recls C API function `Recls_Stat()`.
  *
  * Created: 13th December 2008
- * Updated: 3rd January 2024
+ * Updated: 8th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,6 +14,7 @@
  */
 
 #include <recls/recls.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -36,12 +37,16 @@
 #endif
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
+
 # include <unistd.h>
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
 # include <windows.h>
 #else
+
 # error platform not discriminated
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -57,23 +62,28 @@
 # define _tgetcwd                                           getcwd
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
 
 #if defined(RECLS_CHAR_TYPE_IS_WCHAR)
+
 # define XTESTS_TEST_RECLS_STRING_EQUAL                     XTESTS_TEST_WIDE_STRING_EQUAL
 # define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX              XTESTS_TEST_WIDE_STRING_EQUAL_APPROX
 # define XTESTS_TEST_RECLS_STRING_EQUAL_N                   XTESTS_TEST_WIDE_STRING_EQUAL_N
 # define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX            XTESTS_TEST_WIDE_STRING_EQUAL_N_APPROX
 #elif defined(RECLS_CHAR_TYPE_IS_CHAR)
+
 # define XTESTS_TEST_RECLS_STRING_EQUAL                     XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 # define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX              XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX
 # define XTESTS_TEST_RECLS_STRING_EQUAL_N                   XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N
 # define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N_APPROX
 #else
+
 # error recls not discriminating correctly
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -81,6 +91,7 @@
 
 static recls_char_t const s_nonexistent_file[] = RECLS_LITERAL("20101D98-B455-4e9d-AD7D-2C23FD2D63B1-60B3B24B-2AB6-4b44-B34D-A9FFDEBED982");
 static recls_char_t const s_nonexistent_path[] = RECLS_LITERAL("9B810A5F-F664-4f93-BC7D-893304CD2F84-8584D8E5-1565-4aad-88F7-235FDD1E6330/20101D98-B455-4e9d-AD7D-2C23FD2D63B1-60B3B24B-2AB6-4b44-B34D-A9FFDEBED982");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -117,6 +128,7 @@ static void test_2_6(void);
 static void test_2_7(void);
 static void test_2_8(void);
 static void test_2_9(void);
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -246,11 +258,12 @@ int main(int argc, char **argv)
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-static void test_1_0()
+static void test_1_0(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   0;
@@ -259,7 +272,7 @@ static void test_1_0()
     XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
 }
 
-static void test_1_1()
+static void test_1_1(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   0;
@@ -291,7 +304,7 @@ static void test_1_1()
     }
 }
 
-static void test_1_2()
+static void test_1_2(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   0;
@@ -323,7 +336,7 @@ static void test_1_2()
     }
 }
 
-static void test_1_3()
+static void test_1_3(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   0;
@@ -355,7 +368,7 @@ static void test_1_3()
     }
 }
 
-static void test_1_4()
+static void test_1_4(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   0;
@@ -387,7 +400,7 @@ static void test_1_4()
     }
 }
 
-static void test_1_5()
+static void test_1_5(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   RECLS_F_MARK_DIRS;
@@ -419,7 +432,7 @@ static void test_1_5()
     }
 }
 
-static void test_1_6()
+static void test_1_6(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   RECLS_F_MARK_DIRS;
@@ -451,23 +464,23 @@ static void test_1_6()
     }
 }
 
-static void test_1_7()
+static void test_1_7(void)
 {
 }
 
-static void test_1_8()
+static void test_1_8(void)
 {
 }
 
-static void test_1_9()
+static void test_1_9(void)
 {
 }
 
-static void test_1_10()
+static void test_1_10(void)
 {
 }
 
-static void test_1_11()
+static void test_1_11(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   0;
@@ -476,7 +489,7 @@ static void test_1_11()
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_NO_MORE_DATA, rc));
 }
 
-static void test_1_12()
+static void test_1_12(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   0
@@ -523,7 +536,7 @@ static void test_1_12()
     }
 }
 
-static void test_1_13()
+static void test_1_13(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   0
@@ -535,7 +548,7 @@ static void test_1_13()
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_NO_MORE_DATA, rc));
 }
 
-static void test_1_14()
+static void test_1_14(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   0
@@ -547,28 +560,28 @@ static void test_1_14()
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_DIRECTORY_NOT_FOUND, rc));
 }
 
-static void test_1_15()
+static void test_1_15(void)
 {
 }
 
-static void test_1_16()
+static void test_1_16(void)
 {
 }
 
-static void test_1_17()
+static void test_1_17(void)
 {
 }
 
-static void test_1_18()
+static void test_1_18(void)
 {
 }
 
-static void test_1_19()
+static void test_1_19(void)
 {
 }
 
 
-static void test_2_0()
+static void test_2_0(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   RECLS_F_DETAILS_LATER;
@@ -577,7 +590,7 @@ static void test_2_0()
     XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
 }
 
-static void test_2_1()
+static void test_2_1(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   RECLS_F_DETAILS_LATER;
@@ -609,7 +622,7 @@ static void test_2_1()
     }
 }
 
-static void test_2_2()
+static void test_2_2(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   RECLS_F_DETAILS_LATER;
@@ -641,7 +654,7 @@ static void test_2_2()
     }
 }
 
-static void test_2_3()
+static void test_2_3(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   RECLS_F_DETAILS_LATER;
@@ -673,7 +686,7 @@ static void test_2_3()
     }
 }
 
-static void test_2_4()
+static void test_2_4(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   RECLS_F_DETAILS_LATER;
@@ -705,7 +718,7 @@ static void test_2_4()
     }
 }
 
-static void test_2_5()
+static void test_2_5(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   RECLS_F_DETAILS_LATER | RECLS_F_MARK_DIRS;
@@ -737,7 +750,7 @@ static void test_2_5()
     }
 }
 
-static void test_2_6()
+static void test_2_6(void)
 {
     recls_info_t    entry;
     unsigned        flags   =   RECLS_F_DETAILS_LATER | RECLS_F_MARK_DIRS;
@@ -769,15 +782,15 @@ static void test_2_6()
     }
 }
 
-static void test_2_7()
+static void test_2_7(void)
 {
 }
 
-static void test_2_8()
+static void test_2_8(void)
 {
 }
 
-static void test_2_9()
+static void test_2_9(void)
 {
 }
 

@@ -12,7 +12,7 @@
  *            - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 30th December 2023
+ * Updated: 8th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,7 +38,7 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
     try
     {

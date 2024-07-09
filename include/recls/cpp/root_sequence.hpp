@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - root_sequence class.
  *
  * Created: 25th March 2004
- * Updated: 30th December 2023
+ * Updated: 8th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MINOR    1
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 6
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     31
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 7
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     32
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/root_sequence.hpp
@@ -97,11 +97,11 @@ namespace root_sequence_impl
 {
 
     struct make_root_string
-#if __cplusplus < 201703L
+#if __cplusplus < 201402L
         : std::unary_function<recls_root_t, string_t>
 #endif
     {
-#if __cplusplus >= 201703L
+#if __cplusplus >= 201402L
         typedef recls_root_t                                argument_type;
         typedef string_t                                    result_type;
 #endif
@@ -164,7 +164,7 @@ public:
     /// The reference type
     typedef void                                            reference;
     /// The non-mutable (const) reference type
-    typedef value_type const                                const_reference;
+    typedef value_type                                      const_reference;
     /// The size type
     typedef size_t                                          size_type;
 /// @}

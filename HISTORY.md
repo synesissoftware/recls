@@ -1,6 +1,14 @@
 # recls - History
 
 
+9th July 2024 - 1.10.0 alpha6
+-----------------------------
+
+ * Visual C++ 17 (2022) compatibility;
+ * CMake Windows compatibility;
+ * GCC compatibility improvements;
+
+
 4th January 2024 - 1.10.0 alpha5
 --------------------------------
 

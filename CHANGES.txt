@@ -3,7 +3,7 @@ recls - Changes
 ---------------
 
 ; Created:  28th May 2006
-; Updated:  29th March 2021
+; Updated:  9th July 2024
 
 ============================================================================
 
@@ -15,6 +15,31 @@ recls - Changes
     *  -  means removal of something (mapping / file / functionality) *
     *                                                                 *
     *******************************************************************
+
+
+recls 1.10.1 (alpha 6) released - 9th July 2024
+===============================================
+
+Summary:
+--------
+
+ * Visual C++ 17 (2022) compatibility;
+ * CMake Windows compatibility;
+ * GCC compatibility improvements;
+
+
+Details:
+--------
+
+Visual C++ 17 (2022) compatibility:
+ ~ full Windows / VC++ 17 support;
+
+CMake Windows compatibility:
+ ~ Windows 32-bit and 64-bit compatibility;
+
+GCC compatibility improvements:
+ * large number of small fixes, particularly to deal with conformance warnings;
+
 
 
 recls 1.10.1 (alpha 5) released - 4th January 2024

@@ -4,7 +4,7 @@
  * Purpose: Unit-test of recls status codes via C++ API.
  *
  * Created: 13th December 2008
- * Updated: 3rd January 2024
+ * Updated: 8th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,6 +14,7 @@
  */
 
 #include <recls/recls.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -28,6 +29,7 @@
 /* Standard C header files */
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -37,6 +39,7 @@
 #  pragma warning(disable : 4702)
 # endif /* compiler */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -62,6 +65,7 @@ static void test_1_16(void);
 static void test_1_17(void);
 static void test_1_18(void);
 static void test_1_19(void);
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -105,6 +109,7 @@ int main(int argc, char **argv)
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
@@ -146,19 +151,19 @@ static recls_rc_t const s_FAILURE_CODES[] =
 
 
 
-static void test_1_0()
+static void test_1_0(void)
 {
     XTESTS_TEST_BOOLEAN_TRUE(RECLS_SUCCEEDED(RECLS_RC_OK));
     XTESTS_TEST_BOOLEAN_FALSE(RECLS_FAILED(RECLS_RC_OK));
 }
 
-static void test_1_1()
+static void test_1_1(void)
 {
     XTESTS_TEST_BOOLEAN_TRUE(RECLS_FAILED(RECLS_RC_FAIL));
     XTESTS_TEST_BOOLEAN_FALSE(RECLS_SUCCEEDED(RECLS_RC_FAIL));
 }
 
-static void test_1_2()
+static void test_1_2(void)
 {
     { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_FAILURE_CODES); ++i)
     {
@@ -169,7 +174,7 @@ static void test_1_2()
     }}
 }
 
-static void test_1_3()
+static void test_1_3(void)
 {
     { size_t i; for (i = 0; i != 10000000; ++i)
     {
@@ -189,67 +194,67 @@ static void test_1_3()
     }}
 }
 
-static void test_1_4()
+static void test_1_4(void)
 {
 }
 
-static void test_1_5()
+static void test_1_5(void)
 {
 }
 
-static void test_1_6()
+static void test_1_6(void)
 {
 }
 
-static void test_1_7()
+static void test_1_7(void)
 {
 }
 
-static void test_1_8()
+static void test_1_8(void)
 {
 }
 
-static void test_1_9()
+static void test_1_9(void)
 {
 }
 
-static void test_1_10()
+static void test_1_10(void)
 {
 }
 
-static void test_1_11()
+static void test_1_11(void)
 {
 }
 
-static void test_1_12()
+static void test_1_12(void)
 {
 }
 
-static void test_1_13()
+static void test_1_13(void)
 {
 }
 
-static void test_1_14()
+static void test_1_14(void)
 {
 }
 
-static void test_1_15()
+static void test_1_15(void)
 {
 }
 
-static void test_1_16()
+static void test_1_16(void)
 {
 }
 
-static void test_1_17()
+static void test_1_17(void)
 {
 }
 
-static void test_1_18()
+static void test_1_18(void)
 {
 }
 
-static void test_1_19()
+static void test_1_19(void)
 {
 }
 

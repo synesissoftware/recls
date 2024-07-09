@@ -4,11 +4,11 @@
  * Purpose: Platform-independent utility functions for recls API.
  *
  * Created: 17th August 2003
- * Updated: 30th December 2023
+ * Updated: 8th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -358,6 +358,7 @@ recls_is_home_start_(
         }
         else
         {
+            // fall through
     case 1:
             if ('~' == path[0])
             {

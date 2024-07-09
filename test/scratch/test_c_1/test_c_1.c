@@ -2,10 +2,10 @@
  * File:    test_c_1.c
  *
  * Purpose: Demonstrates use of recls C API functions for accessing entry
- *          attributes.
+ *          attributes, searching for files under the home directory.
  *
  * Created: 28th February 2007
- * Updated: 3rd January 2024
+ * Updated: 8th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,6 +28,7 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros and definitions
  */
@@ -46,22 +47,26 @@
 typedef std::string     string_t;
 #endif /* 0 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
 static void process_search(hrecls_t hSrch);
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int argc, char** argv)
 {
     hrecls_t    hSrch;
     recls_rc_t  rc;
 
-    printf("file system:\n");
+    printf("searching for '*.txt|*.cpp' under ~\n");
 
-#if 1
+#if 0
     {
         recls_info_t    hEntry;
 
@@ -182,7 +187,7 @@ static void process_search(hrecls_t hSrch)
 
         if (RECLS_SUCCEEDED(rc))
         {
-            printf("\t%.*s\n", info->path.end - info->path.begin, info->path.begin);
+            printf("\t%.*s\n", (int)(info->path.end - info->path.begin), info->path.begin);
 
             { size_t i; for (i = 0; i < STLSOFT_NUM_ELEMENTS(fns); ++i)
             {
@@ -201,6 +206,7 @@ static void process_search(hrecls_t hSrch)
             Recls_DoesEntryExist(info);
             Recls_IsFileUNC(info);
             size = Recls_GetSizeProperty(info);
+            ((void)&size);
             Recls_GetCreationTime(info);
             Recls_GetModificationTime(info);
             Recls_GetLastAccessTime(info);

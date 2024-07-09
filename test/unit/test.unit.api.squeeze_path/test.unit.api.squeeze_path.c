@@ -5,7 +5,7 @@
  *          `Recls_SqueezePath()`).
  *
  * Created: 13th December 2008
- * Updated: 3rd January 2024
+ * Updated: 8th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -110,7 +110,7 @@ int main(int argc, char** argv)
  * test function implementations
  */
 
-static void test_1_0()
+static void test_1_0(void)
 {
     recls_char_t    result[1];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL(""), NULL, 0);
@@ -121,7 +121,7 @@ static void test_1_0()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL(""), result);
 }
 
-static void test_1_1()
+static void test_1_1(void)
 {
     recls_char_t    result[1];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL(""), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -132,7 +132,7 @@ static void test_1_1()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL(""), result);
 }
 
-static void test_1_2()
+static void test_1_2(void)
 {
     recls_char_t    result[11];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL(""), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -143,7 +143,7 @@ static void test_1_2()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL(""), result);
 }
 
-static void test_1_3()
+static void test_1_3(void)
 {
     recls_char_t    result[12];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -154,7 +154,7 @@ static void test_1_3()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("abc/def/ghi"), result);
 }
 
-static void test_1_4()
+static void test_1_4(void)
 {
     recls_char_t    result[11];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -165,7 +165,7 @@ static void test_1_4()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("abc.../ghi"), result);
 }
 
-static void test_1_5()
+static void test_1_5(void)
 {
     recls_char_t    result[10];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -176,7 +176,7 @@ static void test_1_5()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("ab.../ghi"), result);
 }
 
-static void test_1_6()
+static void test_1_6(void)
 {
     recls_char_t    result[9];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -187,7 +187,7 @@ static void test_1_6()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("a.../ghi"), result);
 }
 
-static void test_1_7()
+static void test_1_7(void)
 {
     recls_char_t    result[8];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -198,7 +198,7 @@ static void test_1_7()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL(".../ghi"), result);
 }
 
-static void test_1_8()
+static void test_1_8(void)
 {
     recls_char_t    result[7];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -209,7 +209,7 @@ static void test_1_8()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("ghi"), result);
 }
 
-static void test_1_9()
+static void test_1_9(void)
 {
     recls_char_t    result[6];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -220,7 +220,7 @@ static void test_1_9()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("ghi"), result);
 }
 
-static void test_1_10()
+static void test_1_10(void)
 {
     recls_char_t    result[5];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -231,7 +231,7 @@ static void test_1_10()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("ghi"), result);
 }
 
-static void test_1_11()
+static void test_1_11(void)
 {
     recls_char_t    result[4];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -242,7 +242,7 @@ static void test_1_11()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("ghi"), result);
 }
 
-static void test_1_12()
+static void test_1_12(void)
 {
     recls_char_t    result[3];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -253,7 +253,7 @@ static void test_1_12()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("gh"), result);
 }
 
-static void test_1_13()
+static void test_1_13(void)
 {
     recls_char_t    result[2];
     size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
@@ -264,27 +264,27 @@ static void test_1_13()
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("g"), result);
 }
 
-static void test_1_14()
+static void test_1_14(void)
 {
 }
 
-static void test_1_15()
+static void test_1_15(void)
 {
 }
 
-static void test_1_16()
+static void test_1_16(void)
 {
 }
 
-static void test_1_17()
+static void test_1_17(void)
 {
 }
 
-static void test_1_18()
+static void test_1_18(void)
 {
 }
 
-static void test_1_19()
+static void test_1_19(void)
 {
 }
 
