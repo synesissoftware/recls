@@ -5,7 +5,7 @@
  *          `Recls_CreateDirectory()`).
  *
  * Created: 29th January 2009
- * Updated: 8th July 2024
+ * Updated: 9th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -27,6 +27,7 @@
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #include <platformstl/filesystem/path_functions.h>
+#include <platformstl/system/directory_functions.h>
 
 /* Standard C header files */
 #include <errno.h>
@@ -104,12 +105,14 @@
 # define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX              XTESTS_TEST_WIDE_STRING_EQUAL_APPROX
 # define XTESTS_TEST_RECLS_STRING_EQUAL_N                   XTESTS_TEST_WIDE_STRING_EQUAL_N
 # define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX            XTESTS_TEST_WIDE_STRING_EQUAL_N_APPROX
+# define platformstl_C_get_home_directory                   platformstl_C_get_home_directory_w
 #elif defined(RECLS_CHAR_TYPE_IS_CHAR)
 
 # define XTESTS_TEST_RECLS_STRING_EQUAL                     XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 # define XTESTS_TEST_RECLS_STRING_EQUAL_APPROX              XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX
 # define XTESTS_TEST_RECLS_STRING_EQUAL_N                   XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N
 # define XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N_APPROX
+# define platformstl_C_get_home_directory                   platformstl_C_get_home_directory_a
 #else
 
 # error recls not discriminating correctly
@@ -220,50 +223,48 @@ int main(int argc, char **argv)
         }
         else
         {
+            size_t const n = platformstl_C_get_home_directory(s_home, 1 + path_max);
 
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
-    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
-        defined(_WIN32))
+            if (0 == n)
+            {
+                int const e = errno;
 
-            _tcscpy(s_home, _tgetenv(RECLS_LITERAL("HOMEDRIVE")));
-            _tcscat(s_home, _tgetenv(RECLS_LITERAL("HOMEPATH")));
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+                fprintf(stderr, "%s: failed to obtain current directory: %d / %s\n", program_name, e, strerror(e));
 
-            strcpy(s_home, getenv("HOME"));
-#else
-
-# error platform not discriminated
-#endif
-
+                r = EXIT_FAILURE;
+            }
+            else
+            {
 #if defined(PLATFORMSTL_OS_IS_UNIX) && \
     defined(_WIN32)
-            { char* s; for (s = s_cwd; *s; ++s)
-            {
-                if ('\\' == *s)
+                { char* s; for (s = s_cwd; *s; ++s)
                 {
-                    *s = '/';
-                }
-            }}
-            { char* s; for (s = s_home; *s; ++s)
-            {
-                if ('\\' == *s)
+                    if ('\\' == *s)
+                    {
+                        *s = '/';
+                    }
+                }}
+                { char* s; for (s = s_home; *s; ++s)
                 {
-                    *s = '/';
-                }
-            }}
+                    if ('\\' == *s)
+                    {
+                        *s = '/';
+                    }
+                }}
 #endif
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 
-            s_cwdLen = _tcslen(s_cwd);
-            s_cwdHome = _tcslen(s_home);
+                s_cwdLen = _tcslen(s_cwd);
 #else
 
-            s_cwdLen = strlen(s_cwd);
-            s_cwdHome = strlen(s_home);
+                s_cwdLen = strlen(s_cwd);
 #endif
 
-            r = main_(argc, argv);
+                s_cwdHome = n;
+
+                r = main_(argc, argv);
+            }
         }
     }
 
