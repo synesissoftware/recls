@@ -6,11 +6,11 @@ Basename=$(basename "$ScriptPath")
 CMakeDir=$Dir/_build
 
 
-CmakeVerboseMakefile=0
+CMakeExamplesDisabled=0
+CMakeTestingDisabled=0
+CMakeVerboseMakefile=0
 Configuration=Release
 RunMake=0
-# STLSoftDirEnvVar=${STLSOFT}
-STLSoftDirGiven=
 
 
 # ##########################################################
@@ -19,22 +19,24 @@ STLSoftDirGiven=
 while [[ $# -gt 0 ]]; do
 
   case $1 in
+    -v|--cmake-verbose-makefile)
+
+      CMakeVerboseMakefile=1
+      ;;
     -d|--debug-configuration)
 
       Configuration=Debug
       ;;
+    -E|--disable-examples)
+      CMakeExamplesDisabled=1
+      ;;
+    -T|--disable-testing)
+
+      CMakeTestingDisabled=1
+      ;;
     -m|--run-make)
 
       RunMake=1
-      ;;
-    -s|--stlsoft-root-dir)
-
-      shift
-      STLSoftDirGiven=$1
-      ;;
-    -v|--cmake-verbose-makefile)
-
-      CmakeVerboseMakefile=1
       ;;
     --help)
 
@@ -50,24 +52,27 @@ Flags/options:
 
     behaviour:
 
+    -v
+    --cmake-verbose-makefile
+        configures CMake to run verbosely (by setting
+        CMAKE_VERBOSE_MAKEFILE=ON)
+
     -d
     --debug-configuration
-        uses Debug configuration. Default is to use Release
+        use Debug configuration (by setting CMAKE_BUILD_TYPE=Debug). Default
+        is to use Release
+
+    -E
+    --disable-examples
+        disables building of examples (by setting BUILD_EXAMPLES=OFF)
+
+    -T
+    --disable-testing
+        disables building of tests (by setting BUILD_TESTING=OFF)
 
     -m
     --run-make
-        runs make after a successful running of CMake
-
-    -s <dir>
-    --stlsoft-root-dir <dir>
-        specifies the STLSoft root-directory, which will be passed to CMake
-        as the variable STLSOFT, and which will override the environment
-        variable STLSOFT (if present)
-
-    -v
-    --cmake-verbose-makefile
-        configures CMake to run verbosely (by setting CMAKE_VERBOSE_MAKEFILE
-        to be ON)
+        executes make after a successful running of CMake
 
 
     standard flags:
@@ -100,13 +105,15 @@ cd $CMakeDir
 
 echo "Executing CMake"
 
-if [ $CmakeVerboseMakefile -eq 0 ]; then CmakeVerboseMakefileFlag="OFF" ; else CmakeVerboseMakefileFlag="ON" ; fi
-if [ -z $STLSoftDirGiven ]; then CmakeSTLSoftVariable="" ; else CmakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
+if [ $CMakeExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $CMakeTestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
+if [ $CMakeVerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
 cmake \
-  $CmakeSTLSoftVariable \
+  -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
+  -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
   -DCMAKE_BUILD_TYPE=$Configuration \
-  -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CmakeVerboseMakefileFlag \
+  -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
   .. || (cd ->/dev/null ; exit 1)
 
 status=0
@@ -121,7 +128,7 @@ fi
 
 cd ->/dev/null
 
-if [ $CmakeVerboseMakefile -ne 0 ]; then
+if [ $CMakeVerboseMakefile -ne 0 ]; then
 
   echo -e "contents of $CMakeDir:"
   ls -al $CMakeDir

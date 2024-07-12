@@ -132,7 +132,7 @@ if(BUILD_TESTING)
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
 
 	add_subdirectory(test)
-endif()
+endif(BUILD_TESTING)
 
 
 # ##########################################################
@@ -141,8 +141,10 @@ endif()
 option(BUILD_EXAMPLES "Build examples" ON)
 if(BUILD_EXAMPLES)
 
+	message("-- enabled building of examples ...")
+
 	add_subdirectory(examples)
-endif()
+endif(BUILD_EXAMPLES)
 
 
 # ##########################################################
