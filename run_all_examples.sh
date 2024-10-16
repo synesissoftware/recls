@@ -8,7 +8,6 @@ MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
 ListOnly=0
 RunMake=1
-Verbosity=3
 
 
 # ##########################################################
@@ -25,18 +24,13 @@ while [[ $# -gt 0 ]]; do
 
       RunMake=0
       ;;
-    --verbosity)
-
-      shift
-      Verbosity=$1
-      ;;
     --help)
 
       cat << EOF
 recls is a platform-independent recursive file-system search library
 Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
-Runs all (matching) component and unit test programs
+Runs all (matching) example programs
 
 $ScriptPath [ ... flags/options ... ]
 
@@ -51,9 +45,6 @@ Flags/options:
     -M
     --no-make
         does not execute CMake and make before running tests
-
-    --verbosity <verbosity>
-        specifies an explicit verbosity for the unit-test(s)
 
 
     standard flags:
@@ -86,7 +77,7 @@ if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
 
-    echo "Executing build (via command \`$MakeCmd\`) and then running all component and unit test programs"
+    echo "Executing build (via command \`$MakeCmd\`) and then running all example programs"
 
     mkdir -p $CMakeDir || exit 1
 
@@ -109,13 +100,13 @@ if [ $status -eq 0 ]; then
 
   if [ $ListOnly -ne 0 ]; then
 
-    echo "Listing all component and unit test programs"
+    echo "Listing all example programs"
   else
 
-    echo "Running all component and unit test programs"
+    echo "Running all example programs"
   fi
 
-  for f in $(find $CMakeDir -type f '(' -name 'test_unit*' -o -name 'test.unit.*' -o -name 'test_component*' -o -name 'test.component.*' ')' -exec test -x {} \; -print)
+  for f in $(find $CMakeDir -type f '(' -name 'example.c.*' -o -name 'example.cpp.*' ')' -exec test -x {} \; -print)
   do
 
     if [ $ListOnly -ne 0 ]; then
@@ -125,24 +116,11 @@ if [ $status -eq 0 ]; then
       continue
     fi
 
-    if [ $Verbosity -ge 3 ]; then
+    echo
+    echo "executing $f:"
 
-      echo
-    fi
-    if [ $Verbosity -ge 2 ]; then
-
-      echo "executing $f:"
-    fi
-
-    if $f --verbosity=$Verbosity; then
-
-      :
-    else
-
-      status=$?
-
-      break 1
-    fi
+    # NOTE: we do not break on fail because these tests are not always intended to succeed
+    $f
   done
 fi
 
