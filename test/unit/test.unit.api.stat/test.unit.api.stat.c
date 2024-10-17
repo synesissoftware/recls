@@ -4,20 +4,23 @@
  * Purpose: Test stat functionality of recls C API function `Recls_Stat()`.
  *
  * Created: 13th December 2008
- * Updated: 9th July 2024
+ * Updated: 17th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* /////////////////////////////////////
  * test component header file include(s)
  */
 
 #include <recls/recls.h>
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * includes
+/* /////////////////////////////////////
+ * general includes
  */
 
 /* xTests header files */
@@ -119,7 +122,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * forward declarations
+ * constants
  */
 
 static recls_char_t const s_nonexistent_file[] = RECLS_LITERAL("20101D98-B455-4e9d-AD7D-2C23FD2D63B1-60B3B24B-2AB6-4b44-B34D-A9FFDEBED982");
@@ -137,19 +140,10 @@ static void test_stat_tilde(void);
 static void test_stat_tilde_slash(void);
 static void test_stat_tilde_MARK_DIRS(void);
 static void test_stat_tilde_slash_MARK_DIRS(void);
-static void test_1_7(void);
-static void test_1_8(void);
-static void test_1_9(void);
-static void test_1_10(void);
 static void test_1_11(void);
 static void test_1_12(void);
 static void test_1_13(void);
 static void test_1_14(void);
-static void test_1_15(void);
-static void test_1_16(void);
-static void test_1_17(void);
-static void test_1_18(void);
-static void test_1_19(void);
 
 static void test_2_0(void);
 static void test_2_1(void);
@@ -158,13 +152,10 @@ static void test_2_3(void);
 static void test_2_4(void);
 static void test_2_5(void);
 static void test_2_6(void);
-static void test_2_7(void);
-static void test_2_8(void);
-static void test_2_9(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 recls_char_t*   s_cwd;
@@ -189,19 +180,10 @@ static int main_(int argc, char **argv)
         XTESTS_RUN_CASE(test_stat_tilde_slash);
         XTESTS_RUN_CASE(test_stat_tilde_MARK_DIRS);
         XTESTS_RUN_CASE(test_stat_tilde_slash_MARK_DIRS);
-        XTESTS_RUN_CASE(test_1_7);
-        XTESTS_RUN_CASE(test_1_8);
-        XTESTS_RUN_CASE(test_1_9);
-        XTESTS_RUN_CASE(test_1_10);
         XTESTS_RUN_CASE(test_1_11);
         XTESTS_RUN_CASE(test_1_12);
         XTESTS_RUN_CASE(test_1_13);
         XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
-        XTESTS_RUN_CASE(test_1_16);
-        XTESTS_RUN_CASE(test_1_17);
-        XTESTS_RUN_CASE(test_1_18);
-        XTESTS_RUN_CASE(test_1_19);
 
         XTESTS_RUN_CASE(test_2_0);
         XTESTS_RUN_CASE(test_2_1);
@@ -210,9 +192,6 @@ static int main_(int argc, char **argv)
         XTESTS_RUN_CASE(test_2_4);
         XTESTS_RUN_CASE(test_2_5);
         XTESTS_RUN_CASE(test_2_6);
-        XTESTS_RUN_CASE(test_2_7);
-        XTESTS_RUN_CASE(test_2_8);
-        XTESTS_RUN_CASE(test_2_9);
 
         XTESTS_PRINT_RESULTS();
 
@@ -515,22 +494,6 @@ static void test_stat_tilde_slash_MARK_DIRS(void)
     }
 }
 
-static void test_1_7(void)
-{
-}
-
-static void test_1_8(void)
-{
-}
-
-static void test_1_9(void)
-{
-}
-
-static void test_1_10(void)
-{
-}
-
 static void test_1_11(void)
 {
     recls_info_t    entry;
@@ -610,27 +573,6 @@ static void test_1_14(void)
 
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_DIRECTORY_NOT_FOUND, rc));
 }
-
-static void test_1_15(void)
-{
-}
-
-static void test_1_16(void)
-{
-}
-
-static void test_1_17(void)
-{
-}
-
-static void test_1_18(void)
-{
-}
-
-static void test_1_19(void)
-{
-}
-
 
 static void test_2_0(void)
 {
@@ -837,18 +779,6 @@ static void test_2_6(void)
     {
         XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
     }
-}
-
-static void test_2_7(void)
-{
-}
-
-static void test_2_8(void)
-{
-}
-
-static void test_2_9(void)
-{
 }
 
 

@@ -5,12 +5,16 @@
  *          `recls::remove_directory()`).
  *
  * Created: 30th January 2010
- * Updated: 3rd January 2024
+ * Updated: 17th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* /////////////////////////////////////
  * test component header file include(s)
  */
 
@@ -27,8 +31,8 @@
 
 #include <recls/recls.hpp>
 
-/* /////////////////////////////////////////////////////////////////////////
- * includes
+/* /////////////////////////////////////
+ * general includes
  */
 
 /* xTests header files */
@@ -53,6 +57,7 @@
 
 #include <xtests/test/util/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -68,45 +73,11 @@ namespace
     static void test_1_3(void);
     static void test_1_4(void);
     static void test_1_5(void);
-    static void test_1_6(void);
-    static void test_1_7(void);
-    static void test_1_8(void);
-    static void test_1_9(void);
-    static void test_1_10(void);
-    static void test_1_11(void);
-    static void test_1_12(void);
-    static void test_1_13(void);
-    static void test_1_14(void);
-    static void test_1_15(void);
-    static void test_1_16(void);
-    static void test_1_17(void);
-    static void test_1_18(void);
-    static void test_1_19(void);
-    static void test_1_20(void);
-    static void test_1_21(void);
-    static void test_1_22(void);
-    static void test_1_23(void);
-    static void test_1_24(void);
-    static void test_1_25(void);
-    static void test_1_26(void);
-    static void test_1_27(void);
-    static void test_1_28(void);
-    static void test_1_29(void);
-    static void test_1_30(void);
-    static void test_1_31(void);
-    static void test_1_32(void);
-    static void test_1_33(void);
-    static void test_1_34(void);
-    static void test_1_35(void);
-    static void test_1_36(void);
-    static void test_1_37(void);
-    static void test_1_38(void);
-    static void test_1_39(void);
 
     static int setup(void*);
     static int teardown(void*);
-
 } // anonymous namespace
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -117,8 +88,8 @@ namespace
 
     using recls::recls_char_t;
     typedef platformstl::basic_path<recls_char_t>   path_t;
-
 } // anonymous namespace
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Non-local static variables
@@ -128,11 +99,11 @@ namespace
 {
 
     path_t   temp_dir;
-
 } // anonymous namespace
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char **argv)
@@ -152,40 +123,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_3);
         XTESTS_RUN_CASE(test_1_4);
         XTESTS_RUN_CASE(test_1_5);
-        XTESTS_RUN_CASE(test_1_6);
-        XTESTS_RUN_CASE(test_1_7);
-        XTESTS_RUN_CASE(test_1_8);
-        XTESTS_RUN_CASE(test_1_9);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
-        XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
-        XTESTS_RUN_CASE(test_1_16);
-        XTESTS_RUN_CASE(test_1_17);
-        XTESTS_RUN_CASE(test_1_18);
-        XTESTS_RUN_CASE(test_1_19);
-        XTESTS_RUN_CASE(test_1_20);
-        XTESTS_RUN_CASE(test_1_21);
-        XTESTS_RUN_CASE(test_1_22);
-        XTESTS_RUN_CASE(test_1_23);
-        XTESTS_RUN_CASE(test_1_24);
-        XTESTS_RUN_CASE(test_1_25);
-        XTESTS_RUN_CASE(test_1_26);
-        XTESTS_RUN_CASE(test_1_27);
-        XTESTS_RUN_CASE(test_1_28);
-        XTESTS_RUN_CASE(test_1_29);
-        XTESTS_RUN_CASE(test_1_30);
-        XTESTS_RUN_CASE(test_1_31);
-        XTESTS_RUN_CASE(test_1_32);
-        XTESTS_RUN_CASE(test_1_33);
-        XTESTS_RUN_CASE(test_1_34);
-        XTESTS_RUN_CASE(test_1_35);
-        XTESTS_RUN_CASE(test_1_36);
-        XTESTS_RUN_CASE(test_1_37);
-        XTESTS_RUN_CASE(test_1_38);
-        XTESTS_RUN_CASE(test_1_39);
 
         XTESTS_PRINT_RESULTS();
 
@@ -194,6 +131,7 @@ int main(int argc, char **argv)
 
     return retCode;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
@@ -328,144 +266,8 @@ static void test_1_5(void)
     XTESTS_TEST_INTEGER_EQUAL(results.existingLength - 24u, results.resultingLength);
 }
 
-static void test_1_6(void)
-{
-}
-
-static void test_1_7(void)
-{
-}
-
-static void test_1_8(void)
-{
-}
-
-static void test_1_9(void)
-{
-}
-
-static void test_1_10(void)
-{
-}
-
-static void test_1_11(void)
-{
-}
-
-static void test_1_12(void)
-{
-}
-
-static void test_1_13(void)
-{
-}
-
-static void test_1_14(void)
-{
-}
-
-static void test_1_15(void)
-{
-}
-
-static void test_1_16(void)
-{
-}
-
-static void test_1_17(void)
-{
-}
-
-static void test_1_18(void)
-{
-}
-
-static void test_1_19(void)
-{
-}
-
-static void test_1_20(void)
-{
-}
-
-static void test_1_21(void)
-{
-}
-
-static void test_1_22(void)
-{
-}
-
-static void test_1_23(void)
-{
-}
-
-static void test_1_24(void)
-{
-}
-
-static void test_1_25(void)
-{
-}
-
-static void test_1_26(void)
-{
-}
-
-static void test_1_27(void)
-{
-}
-
-static void test_1_28(void)
-{
-}
-
-static void test_1_29(void)
-{
-}
-
-static void test_1_30()
-{
-}
-
-static void test_1_31()
-{
-}
-
-static void test_1_32()
-{
-}
-
-static void test_1_33()
-{
-}
-
-static void test_1_34()
-{
-}
-
-static void test_1_35()
-{
-}
-
-static void test_1_36()
-{
-}
-
-static void test_1_37()
-{
-}
-
-static void test_1_38()
-{
-}
-
-static void test_1_39()
-{
-}
-
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

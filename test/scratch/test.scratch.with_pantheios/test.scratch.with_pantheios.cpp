@@ -4,7 +4,7 @@
  * Purpose: Demonstrates using Pantheios for recls API logging.
  *
  * Created: 13th December 2008
- * Updated: 9th July 2024
+ * Updated: 17th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -57,10 +57,6 @@ namespace std
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
-/* /////////////////////////////////////////////////////////////////////////
- * macros and definitions
- */
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -68,19 +64,10 @@ namespace std
 
 extern "C" const char PANTHEIOS_FE_PROCESS_IDENTITY[]    =   "test.scratch.with_pantheios";
 
-/* /////////////////////////////////////////////////////////////////////////
- * typedefs
- */
-
-#if 0
-typedef std::string     string_t;
-#endif /* 0 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * forward declarations
+ * main()
  */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 static int main_(int /* argc */, char** /*argv*/)
 {
@@ -125,7 +112,7 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 
@@ -172,6 +159,7 @@ int main(int argc, char** argv)
 
     return res;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
