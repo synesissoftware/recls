@@ -4,7 +4,7 @@
  * Purpose: Implementation root header.
  *
  * Created: 7th March 2005
- * Updated: 9th July 2024
+ * Updated: 17th October 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -54,9 +54,12 @@
  */
 
 #ifdef __cplusplus
+
 # if defined(STLSOFT_CF_EXCEPTION_SUPPORT)
+
 #  define RECLS_EXCEPTION_SUPPORT_
 #  ifdef STLSOFT_CF_THROW_BAD_ALLOC
+
 #   define RECLS_COMPILER_THROWS_ON_NEW_FAIL
 #  endif /* STLSOFT_CF_THROW_BAD_ALLOC */
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -64,7 +67,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Debugging?
+ * debugging?
  */
 
 /** \def RECLS_DEBUG
@@ -79,28 +82,35 @@
 # define RECLS_DEBUG
 #endif /* RECLS_DOCUMENTATION_SKIP_SECTION */
 
-#if defined(NDEBUG)
+#if 0
+#elif defined(NDEBUG)
+
 # ifdef RECLS_DEBUG
 #  undef RECLS_DEBUG
 # endif /* RECLS_DEBUG */
 #elif defined(DEBUG) || \
       defined(_DEBUG)
+
 # ifndef RECLS_DEBUG
 #  define RECLS_DEBUG
 # endif /* !RECLS_DEBUG */
 #else /* ? */
+
  /* Neither NDEBUG nor DEBUG (/_DEBUG) are defined */
 # if defined(RECLS_PLATFORM_IS_UNIX)
+
   /* On UNIX, we define RECLS_DEBUG */
 #  ifndef RECLS_DEBUG
 #   define RECLS_DEBUG
 #  endif /* !RECLS_DEBUG */
 # elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
   /* On Windows, we do not define RECLS_DEBUG */
 #  ifndef RECLS_DEBUG
 #   define RECLS_DEBUG
 #  endif /* !RECLS_DEBUG */
 # else /* ? platform */
+
 #  error Platform not discriminated
 # endif /* platform */
 #endif /* debug */
@@ -125,17 +135,21 @@
 /** \def RECLS_MT If defined, it indicates a multithreaded build */
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
+
 # if defined(_REENTRANT)
+
 #  define RECLS_MT
 # elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS) && \
        (    defined(_MT) || \
             defined(__MT__))
+
 #  define RECLS_MT
 #  ifndef _REENTRANT
 #   define _REENTRANT
 #  endif /* !_REENTRANT */
 # endif /* threads? */
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
 # if defined(_MT) || \
      defined(__MT__)
 #  define RECLS_MT
@@ -144,7 +158,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Multi-part patterns
+ * multi-part patterns
  */
 
 #if 1 && \

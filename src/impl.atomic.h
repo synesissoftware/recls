@@ -4,11 +4,11 @@
  * Purpose: Implementation header.
  *
  * Created: 11th March 2005
- * Updated: 30th December 2023
+ * Updated: 16th October 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -37,6 +37,7 @@
 # include <platformstl/synch/atomic_functions.h>
 #endif /* PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -48,41 +49,49 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
-#if defined(RECLS_PLATFORM_IS_UNIX) && \
+#if 1 &&\
+    defined(RECLS_PLATFORM_IS_UNIX) &&\
     defined(RECLS_MT) && \
-    defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
+    defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS) &&\
+    1
 
-typedef atomic_t                            rc_atomic_t;
-# define rc_atomic_init(x)                  ATOMIC_INIT(x)
+typedef atomic_t                                            rc_atomic_t;
+# define rc_atomic_init(x)                                  ATOMIC_INIT(x)
 #elif defined(PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS)
 
-typedef platformstl_ns_qual(atomic_int_t)   rc_atomic_t;
-# define rc_atomic_init(x)                  x
+typedef platformstl_ns_qual(atomic_int_t)                   rc_atomic_t;
+# define rc_atomic_init(x)                                  x
 #else /* ? RECLS_MT && RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 
-typedef int                                 rc_atomic_t;
-# define rc_atomic_init(x)                  x
+typedef int                                                 rc_atomic_t;
+# define rc_atomic_init(x)                                  x
 #endif /* RECLS_MT && RECLS_UNIX_USE_ATOMIC_OPERATIONS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
  */
 
-RECLS_FNDECL(void)          RC_Increment(
+RECLS_FNDECL(void)
+RC_Increment(
     rc_atomic_t volatile* p
 );
 
-RECLS_FNDECL(rc_atomic_t)   RC_PreDecrement(
+RECLS_FNDECL(rc_atomic_t)
+RC_PreDecrement(
     rc_atomic_t volatile* p
 );
 
-RECLS_FNDECL(rc_atomic_t)   RC_ReadValue(
+RECLS_FNDECL(rc_atomic_t)
+RC_ReadValue(
     rc_atomic_t volatile* p
 );
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -92,8 +101,6 @@ RECLS_FNDECL(rc_atomic_t)   RC_ReadValue(
 } /* namespace impl */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_SRC_H_IMPL_ATOMIC */
 
