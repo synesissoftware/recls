@@ -4,11 +4,11 @@
  * Purpose: Windows-specific header file for recls API.
  *
  * Created: 18th August 2003
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,6 +56,7 @@
  * \brief [C, C++; Windows-only] Windows-specific parts of the \ref group__recls API.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -68,6 +69,7 @@
 # error recls/windows.h is to be included in Windows compilations only
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -76,6 +78,7 @@
 namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -98,10 +101,11 @@ namespace recls
  * \param hEntry The info entry structure.
  * \param pchDrive Pointer to a character to receive the drive character. Cannot be NULL. The character will be in uppercase.
  */
-RECLS_FNDECL(void) Recls_GetDriveProperty(  recls_entry_t   hEntry
-                                        ,   recls_char_t    *pchDrive);
-
-
+RECLS_FNDECL(void)
+Recls_GetDriveProperty(
+    recls_entry_t   hEntry
+,   recls_char_t    *pchDrive
+);
 /** @} */
 
 /***************************************
@@ -122,6 +126,7 @@ RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
 
 /** @} */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -130,6 +135,7 @@ RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion
  */
@@ -137,8 +143,6 @@ RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_RECLS_H_WINDOWS */
 

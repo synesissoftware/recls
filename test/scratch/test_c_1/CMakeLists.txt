@@ -1,20 +1,2 @@
-
-add_executable(test_c_1
-    test_c_1.c
-)
-
-target_link_libraries(test_c_1
-    recls
-)
-
-target_compile_options(test_c_1 PRIVATE
-    $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-        -Werror -Wall -Wextra -pedantic
-
-        -Wno-format
-    >
-    $<$<CXX_COMPILER_ID:MSVC>:
-        /WX /W4
-    >
-)
-
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+define_example_program(test_c_1 test_c_1.c)

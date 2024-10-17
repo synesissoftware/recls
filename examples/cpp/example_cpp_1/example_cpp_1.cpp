@@ -10,7 +10,7 @@
  *            - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,7 +36,7 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
     try
     {
@@ -50,25 +50,25 @@ int main()
             std::cout << entry.get_path() << std::endl;
         }}
     }
-    catch(recls::recls_exception& x)
+    catch (recls::recls_exception& x)
     {
         std::cerr << RECLS_LITERAL("Recls error: ") << x.get_rc() << RECLS_LITERAL(", ") << x.what() << std::endl;
 
         return EXIT_FAILURE;
     }
-    catch(std::bad_alloc &)
+    catch (std::bad_alloc &)
     {
         std::cerr << RECLS_LITERAL("Out of memory") << std::endl;
 
         return EXIT_FAILURE;
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         std::cerr << RECLS_LITERAL("Unhandled error: ") << x.what() << std::endl;
 
         return EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         std::cerr << RECLS_LITERAL("Unhandled unknown error") << std::endl;
 

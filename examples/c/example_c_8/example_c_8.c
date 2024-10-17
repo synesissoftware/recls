@@ -10,7 +10,7 @@
  *              Recls_CalcDirectorySize())
  *
  * Created: 17th June 2006
- * Updated: 30th December 2023
+ * Updated: 8th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,8 +34,11 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(int argc, char* argv[])
 {
+    ((void)&argc);
+    ((void)&argv);
+
     /* Display all the roots on the host system. */
     {
         recls_root_t    roots[26];

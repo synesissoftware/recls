@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  2nd January 2024
+# Updated:  17th October 2024
 #
 # ######################################################################## #
 
@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
 file(TO_CMAKE_PATH "${CMAKE_CURRENT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
 if(EXISTS "${LOC_PATH}")
 
-    message(FATAL_ERROR "You cannot build in a source directory (or any directory with a CMakeLists.txt file). Please make a build subdirectory. Feel free to remove CMakeCache.txt and CMakeFiles.")
+	message(FATAL_ERROR "You cannot build in a source directory (or any directory with a CMakeLists.txt file). Please make a build subdirectory. Feel free to remove CMakeCache.txt and CMakeFiles.")
 endif()
 
 # directory for CMake specific extensions and source files.
@@ -30,9 +30,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 # project
 
 project(recls
-    DESCRIPTION "recls is a platform-independent recursive file-system search library implemented in C++ and providing C and C++ APIs."
-    HOMEPAGE_URL "https://github.com/synesissoftware/recls"
-    LANGUAGES C CXX
+	DESCRIPTION "recls is a platform-independent recursive file-system search library implemented in C++ and providing C and C++ APIs."
+	HOMEPAGE_URL "https://github.com/synesissoftware/recls"
+	LANGUAGES C CXX
 )
 
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
@@ -55,28 +55,56 @@ set(PROJECT_VERSION_MINOR ${_VERSION_MINOR})
 set(PROJECT_VERSION_PATCH ${_VERSION_PATCH})
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
-message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}.")
-
 
 # adhere strictly to C and C++ standards plus extensions. These are actually
 # useless since we do not compile anything; they merely state our intention.
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON) # GNU extensions and POSIX standard
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
+if(MSVC)
+
+	if(MSVC_VERSION LESS 1930)
+
+		set(CMAKE_C_STANDARD 90)
+		set(CMAKE_CXX_STANDARD 98)
+	endif()
+endif(MSVC)
+
 
 # ##########################################################
-# install
+# dependencies, includes, options
 
-# provides install directory variables as defined by the GNU Coding Standards.
-include(GNUInstallDirs)
+# ################################################
+# includes - 1
+
+include(BuildType)
+include(LanguageFullVersion)
+include(TargetMacros)
 
 
-# ##########################################################
-# STLSoft
+# ################################################
+# dependencies and options
+
+option(BUILD_EXAMPLES "Build examples" ON)
+
+# ######################################
+# dependencies
+#
+# required:
+#
+# optional:
+# - STLSoft - required unless NO_B64_CPP_API is specified, and by xTests
+#    (for testing);
+# - shwild - ...
+# - xTests - required for testing
+
+
+# ######################################
+# STLSoft (required)
 #
 # We provide flexibility here, as in:
 # 1. if a CMake variable STLSOFT is provided then it is used; otherwise
@@ -86,63 +114,100 @@ include(GNUInstallDirs)
 
 if(NOT DEFINED STLSOFT AND NOT DEFINED ENV{STLSOFT})
 
-    set(STLSoft_REQUIRED_VERSION_ 1.10.2)
+	set(STLSoft_REQUIRED_VERSION_ 1.11)
 
-    find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
+	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
 
-    message("-- CMake package STLSoft found (version ${STLSoft_VERSION}; ${STLSoft_REQUIRED_VERSION_} requested)")
+	message("-- CMake package STLSoft found (version ${STLSoft_VERSION}; ${STLSoft_REQUIRED_VERSION_} requested)")
 else()
 
-    if(DEFINED STLSOFT)
+	if(DEFINED STLSOFT)
 
-        message("-- STLSOFT provided as CMake variable with value ${STLSOFT}")
+		message("-- STLSOFT provided as CMake variable with value '${STLSOFT}'")
 
-        set(STLSOFT_INCLUDE_DIR ${STLSOFT}/include)
-    else()
+		set(STLSOFT_INCLUDE_DIR ${STLSOFT}/include)
+	else()
 
-        message("-- STLSOFT provided as environment variable with value $ENV{STLSOFT}")
+		message("-- STLSOFT provided as environment variable with value '$ENV{STLSOFT}'")
 
-        set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
-    endif()
+		set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
+	endif()
 
-    include_directories(${STLSOFT_INCLUDE_DIR})
+	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
+
+# ############################
+# shwild
+
+if(BUILD_TESTING)
+
+	find_package(shwild QUIET)
+
+	if(shwild_FOUND)
+
+		message("-- CMake package shwild found (version ${shwild_VERSION})")
+	endif(shwild_FOUND)
+endif(BUILD_TESTING)
+
+# ############################
+# xTests
+
+if(BUILD_TESTING)
+
+	set(xTests_REQUIRED_VERSION_ 0.22)
+
+	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
+
+	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+endif(BUILD_TESTING)
+
+
+# ################################################
+# includes - 2
+
+include(CMakePackageConfigHelpers)
+if(BUILD_TESTING)
+
+	include(CTest)
+endif(BUILD_TESTING)
+include(GNUInstallDirs)
 
 
 # ##########################################################
-# build
+# targets
 
-# load/default `CMAKE_BUILD_TYPE`
-include(BuildType)
+# ################################################
+# main library
 
 add_subdirectory(src)
 
 
-# ##########################################################
-# test
+# ################################################
+# examples
 
-include(CTest)
+if(BUILD_EXAMPLES)
+
+	message("-- enabled building of examples ...")
+
+	add_subdirectory(examples)
+else(BUILD_EXAMPLES)
+
+	message("-- disabled building of examples - define BUILD_EXAMPLES to enable")
+endif(BUILD_EXAMPLES)
+
+
+# ################################################
+# tests
 
 if(BUILD_TESTING)
 
-    set(xTests_REQUIRED_VERSION_ 0.20.4)
+	message("-- enabled building of tests ...")
 
-    find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
+	add_subdirectory(test)
+else(BUILD_TESTING)
 
-    message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
-
-    add_subdirectory(test)
-endif()
-
-
-# ##########################################################
-# examples
-
-option(BUILD_EXAMPLES "Build examples" ON)
-if(BUILD_EXAMPLES)
-
-    add_subdirectory(examples)
-endif()
+	message("-- disabled building of tests - define BUILD_TESTING to enable")
+endif(BUILD_TESTING)
 
 
 # ##########################################################
@@ -152,38 +217,42 @@ endif()
 # ##########################################################
 # export
 
-include(CMakePackageConfigHelpers)
-
-string(TOLOWER ${PROJECT_NAME} EXPORT_NAME)
+set(EXPORT_NAME ${PROJECT_NAME_LOWER})
 
 configure_package_config_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/${EXPORT_NAME}-config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake
-    INSTALL_DESTINATION ${LIB_INSTALL_DIR}/${EXPORT_NAME}/cmake
+	${CMAKE_CURRENT_SOURCE_DIR}/cmake/${EXPORT_NAME}-config.cmake.in
+	${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake
+	INSTALL_DESTINATION ${LIB_INSTALL_DIR}/${EXPORT_NAME}/cmake
 )
 
 write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake
-    VERSION ${PROJECT_VERSION}
-    COMPATIBILITY AnyNewerVersion
+	${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake
+	VERSION ${PROJECT_VERSION}
+	COMPATIBILITY AnyNewerVersion
 )
 
 export(EXPORT project-targets
-    FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-targets.cmake"
-    NAMESPACE "${PROJECT_NAME}::"
+	FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-targets.cmake"
+	NAMESPACE "${PROJECT_NAME}::"
 )
 
 install(EXPORT project-targets
-    NAMESPACE "${PROJECT_NAME}::"
-    FILE "${EXPORT_NAME}-targets.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
+	NAMESPACE "${PROJECT_NAME}::"
+	FILE "${EXPORT_NAME}-targets.cmake"
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
 
 install( FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake"
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
+
+
+# ##########################################################
+# completion
+
+message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}, for C${CMAKE_C_STANDARD} C++${CMAKE_CXX_STANDARD}")
 
 
 # ############################## end of file ############################# #

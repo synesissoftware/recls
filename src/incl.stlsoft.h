@@ -4,7 +4,7 @@
  * Purpose: #includes the STLSoft root header and verifies the version.
  *
  * Created: 8th November 2007
- * Updated: 4th January 2024
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -18,6 +18,7 @@
  * available from https://github.com/synesissoftware/recls).
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 #ifndef RECLS_INCL_SRC_H_INCL_STLSOFT
 #define RECLS_INCL_SRC_H_INCL_STLSOFT
@@ -61,6 +62,7 @@
 # endif
 #endif /* STLSoft version */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -70,6 +72,7 @@
 
 # error recls 1.10+ is not compatible with STLSoft namespace suppression
 #endif /* _STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

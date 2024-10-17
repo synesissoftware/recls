@@ -4,11 +4,11 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -78,7 +78,7 @@ Recls_SqueezePath(
     {
         return Recls_SqueezePath_X_(path, result, cchResult);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         recls_error_trace_printf_(RECLS_LITERAL("Exception in Recls_SqueezePath(%s, ..., ...): %s"), path, x.what());
 

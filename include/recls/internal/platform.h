@@ -4,11 +4,11 @@
  * Purpose: Platform discrimination for recls API.
  *
  * Created: 15th August 2003
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -133,7 +133,8 @@
  * includes
  */
 
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # if !defined(RECLS_PURE_API)
 #  include <windows.h>
 # endif /* !RECLS_PURE_API */

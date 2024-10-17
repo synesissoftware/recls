@@ -4,11 +4,11 @@
  * Purpose: Tracing.
  *
  * Created: 30th September 2003
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,6 +49,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Statics & globals
@@ -161,6 +162,7 @@ namespace
 
 } // anonymous namespace
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -169,6 +171,7 @@ namespace
 namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -232,6 +235,7 @@ RECLS_FNDECL(void) Recls_SetApiLogFunction(
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -242,12 +246,16 @@ namespace impl
 #endif /* !RECLS_NO_NAMESPACE */
 
 #if defined(RECLS_PLATFORM_IS_UNIX)
+
 typedef stlsoft::errno_scope                error_scope_t;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
 typedef winstl::last_error_scope            error_scope_t;
 #else /* ? platform */
+
 # error Unrecognised platform
 #endif /* platform */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * recls_????_printf_
@@ -378,6 +386,7 @@ void recls_debug3_trace_printf_(recls_char_t const* fmt, ...)
     va_end(args);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * function_scope
  */
@@ -398,6 +407,7 @@ function_scope::~function_scope() STLSOFT_NOEXCEPT
 
     recls_debug2_trace_printf_(RECLS_LITERAL("<< %s()"), m_fn);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

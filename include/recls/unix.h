@@ -4,11 +4,11 @@
  * Purpose: UNIX-specific header file for recls API.
  *
  * Created: 18th August 2003
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,6 +56,7 @@
  * \brief [C, C++; UNIX-only] UNIX-specific parts of the \ref group__recls API.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -66,6 +67,7 @@
 # error recls/unix.h is to be included in UNIX compilations only
 #endif /* RECLS_PLATFORM_IS_UNIX */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -74,6 +76,7 @@
 namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -95,6 +98,7 @@ RECLS_FNDECL(int) Recls_ResultCodeToUnixErrorCode(
 
 /** @} */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -103,6 +107,7 @@ RECLS_FNDECL(int) Recls_ResultCodeToUnixErrorCode(
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion
  */
@@ -110,8 +115,6 @@ RECLS_FNDECL(int) Recls_ResultCodeToUnixErrorCode(
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_RECLS_H_UNIX */
 

@@ -4,11 +4,11 @@
  * Purpose: Definition of the ReclsFileSearch class.
  *
  * Created: 31st May 2004
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -27,6 +27,7 @@
 #include <recls/recls.h>
 #include "ReclsSearch.hpp"
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -38,11 +39,13 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
 class ReclsFileSearchDirectoryNode;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -55,12 +58,12 @@ class ReclsFileSearchDirectoryNode;
 class ReclsFileSearch
     : public ReclsSearch
 {
-public:
-    typedef ReclsFileSearch class_type;
+public: // types
+    typedef ReclsFileSearch                                 class_type;
 
 // Allocation
 private:
-    void *operator new(size_t cb, size_t cDirParts, size_t cbRootDir);
+    void* operator new(size_t cb, size_t cDirParts, size_t cbRootDir);
 #ifdef RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE
     void operator delete(void* pv, size_t cDirParts, size_t cbRootDir);
 #endif /* RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE */
@@ -153,6 +156,7 @@ private: // fields
      *
      */
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

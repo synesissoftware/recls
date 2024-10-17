@@ -4,11 +4,11 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    http://recls.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -204,21 +204,21 @@ Recls_SearchFeedback_(
 #ifdef RECLS_EXCEPTION_SUPPORT_
     }
 # if _STLSOFT_VER >= 0x010d0000
-    catch(platformstl::filesystem_exception& x)
+    catch (platformstl::filesystem_exception& x)
     {
         return RECLS_RC_?;
     }
 #  error Implement these changes to STLSoft, including winstl::path_too_long_exception.
 # endif /* 0 */
 # ifdef STLSOFT_CF_THROW_BAD_ALLOC
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
         return RECLS_RC_OUT_OF_MEMORY;
     }
 # endif /* STLSOFT_CF_THROW_BAD_ALLOC */
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         recls_error_trace_printf_(RECLS_LITERAL("Exception in Recls_Search(): %s"), x.what());
 
@@ -358,6 +358,8 @@ Recls_SearchFeedback_x_(
                 }
             }
 
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             if (!pb.empty())
             {
                 flags &= ~(RECLS_F_RECURSIVE);
@@ -398,7 +400,7 @@ Recls_SearchFeedback_x_(
 
             if (0 == cwdLen)
             {
-#ifdef RECLS_STLSOFT_1_11_OR_LATER
+#ifdef RECLS_STLSOFT_1_12_OR_LATER
                 types::traits_type::error_type const e = types::traits_type::get_last_error();
 
                 if (!types::traits_type::is_memory_error_code(e))
@@ -441,7 +443,7 @@ Recls_SearchFeedback_x_(
 
         if (0 == homeLen)
         {
-#ifdef RECLS_STLSOFT_1_11_OR_LATER
+#ifdef RECLS_STLSOFT_1_12_OR_LATER
             types::traits_type::error_type const e = types::traits_type::get_last_error();
 
             if (types::traits_type::is_memory_error_code(e))

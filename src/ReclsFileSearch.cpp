@@ -4,11 +4,11 @@
  * Purpose: Implementation of the ReclsFileSearch class for Windows.
  *
  * Created: 16th August 2003
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -38,6 +38,7 @@
 
 #include <ctype.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -49,9 +50,11 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * utility functions
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * ReclsFileSearch
@@ -212,7 +215,7 @@ ReclsFileSearch::FindAndCreate_(
             si = new(cDirParts, sizeof(recls_char_t) * (1 + searchDirLen)) ReclsFileSearch(cDirParts, searchDir, searchDirLen, pattern, patternLen, pfn, param, flags, &rc);
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
         }
-        catch(std::bad_alloc&)
+        catch (std::bad_alloc&)
         {
             recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
@@ -298,7 +301,8 @@ ReclsFileSearch::ReclsFileSearch(
 
     RECLS_ASSERT(ss_nullptr_k != prc);
 
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
     RECLS_MESSAGE_ASSERT("Root directory has improper format",  (isalpha(searchDir[0]) && searchDir[1] == ':') || (searchDir[0] == '\\' && searchDir[1] == '\\'));
 #elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
     RECLS_MESSAGE_ASSERT("Root directory has improper format",  searchDir[0] == '/' || (isalpha(searchDir[0]) && searchDir[1] == ':') || (searchDir[0] == '\\' && searchDir[1] == '\\'));
@@ -317,6 +321,7 @@ ReclsFileSearch::~ReclsFileSearch() STLSOFT_NOEXCEPT
 {
     function_scope_trace("ReclsFileSearch::~ReclsFileSearch");
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

@@ -4,11 +4,11 @@
  * Purpose: Tracing.
  *
  * Created: 30th September 2003
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -23,6 +23,7 @@
 #ifndef RECLS_INCL_SRC_H_IMPL_TRACE
 #define RECLS_INCL_SRC_H_IMPL_TRACE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -30,6 +31,7 @@
 /* recls header files */
 #include <recls/recls.h>
 #include "impl.root.h"
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -41,6 +43,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * recls_trace_printf_
@@ -107,6 +110,7 @@ private: /// Member Variables
 # define function_scope_trace(f)        recls::impl::function_scope  recls_function_scope_ ## __LINE__(RECLS_LITERAL(f))
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -115,6 +119,7 @@ private: /// Member Variables
 } /* namespace impl */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

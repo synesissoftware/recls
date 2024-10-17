@@ -4,11 +4,11 @@
  * Purpose: Assertion macros for recls API.
  *
  * Created: 15th August 2003
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,6 +56,7 @@
  * \brief [C, C++] Assertions for the \ref group__recls API.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -98,6 +99,7 @@
  */
 #define recls_assert(expr)                  RECLS_ASSERT(expr)
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -139,6 +141,7 @@
  */
 #define recls_message_assert(msg, expr)     RECLS_MESSAGE_ASSERT(msg, expr)
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -148,6 +151,7 @@ namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -156,6 +160,7 @@ namespace recls
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion
  */
@@ -163,8 +168,6 @@ namespace recls
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_RECLS_H_ASSERT */
 

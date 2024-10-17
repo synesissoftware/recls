@@ -5,11 +5,11 @@
  *          Windows.
  *
  * Created: 1st June 2004
- * Updated: 30th December 2023
+ * Updated: 17th October 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -332,7 +332,7 @@ ReclsFtpSearchDirectoryNode::ReclsFtpSearchDirectoryNode(
 
         size_t          cch = types::traits_type::get_full_path_name(m_connection, stlsoft::c_str_ptr(temp), 0, ss_nullptr_k);
         string_type     temp2(cch, ' ');
-        recls_char_t*   file;
+        recls_char_t*   file = ss_nullptr_k; // GCC requires this be initialised
 
         types::traits_type::get_full_path_name(m_connection, stlsoft::c_str_ptr(temp), 1 + temp2.length(), &temp2[0], &file);
 
@@ -380,7 +380,7 @@ ReclsFtpSearchDirectoryNode::FindAndCreate(
         node = new ReclsFtpSearchDirectoryNode(connection, flags, rootDir, rootDirLen, pattern, patternLen);
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 

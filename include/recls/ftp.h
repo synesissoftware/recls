@@ -4,11 +4,11 @@
  * Purpose: FTP-specific header file for recls API.
  *
  * Created: 18th August 2003
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,6 +56,7 @@
  * \brief [C, C++] FTP-specific parts of the \ref group__recls API.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -66,6 +67,7 @@
 # error FTP not supported on the current platform
 #endif /* !RECLS_API_FTP */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -74,6 +76,7 @@
 namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -106,15 +109,18 @@ namespace recls
  *
  * \note This function is currently only available on Windows.
  */
-RECLS_FNDECL(recls_rc_t) Recls_SearchFtp(   recls_char_t const* host
-                                        ,   recls_char_t const* username
-                                        ,   recls_char_t const* password
-                                        ,   recls_char_t const* searchRoot
-                                        ,   recls_char_t const* pattern
-                                        ,   recls_uint32_t      flags
-                                        ,   hrecls_t*           phSrch);
-
+RECLS_FNDECL(recls_rc_t)
+Recls_SearchFtp(
+    recls_char_t const* host
+,   recls_char_t const* username
+,   recls_char_t const* password
+,   recls_char_t const* searchRoot
+,   recls_char_t const* pattern
+,   recls_uint32_t      flags
+,   hrecls_t*           phSrch
+);
 /** @} */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -124,6 +130,7 @@ RECLS_FNDECL(recls_rc_t) Recls_SearchFtp(   recls_char_t const* host
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion
  */
@@ -131,8 +138,6 @@ RECLS_FNDECL(recls_rc_t) Recls_SearchFtp(   recls_char_t const* host
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_RECLS_H_FTP */
 

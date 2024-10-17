@@ -62,7 +62,7 @@ public:
 
 // Allocation
 private:
-    void *operator new(size_t cb, size_t cDirParts, size_t cbRootDir);
+    void* operator new(size_t cb, size_t cDirParts, size_t cbRootDir);
 #ifdef RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE
     void operator delete(void* pv, size_t cDirParts, size_t cbRootDir);
 #endif /* RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE */

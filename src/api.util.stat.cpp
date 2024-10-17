@@ -4,11 +4,11 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -76,13 +76,13 @@ RECLS_API Recls_Stat(
     {
         return Recls_Stat_X_(path, flags, phEntry);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         recls_error_trace_printf_(RECLS_LITERAL("exception in Recls_Stat(): %s"), x.what());
 
         return RECLS_RC_FAIL;
     }
-    catch(...)
+    catch (...)
     {
         recls_error_trace_printf_(RECLS_LITERAL("unknown exception in Recls_Stat()"));
 
@@ -119,7 +119,7 @@ recls_rc_t Recls_Stat_X_(
 
         if (0 == homeLen)
         {
-#ifdef RECLS_STLSOFT_1_11_OR_LATER
+#ifdef RECLS_STLSOFT_1_12_OR_LATER
             types::traits_type::error_type const e = types::traits_type::get_last_error();
 
             if (types::traits_type::is_memory_error_code(e))

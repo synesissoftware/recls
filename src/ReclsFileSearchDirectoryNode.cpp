@@ -4,11 +4,11 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 20th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -339,7 +339,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     }
 # if _STLSOFT_VER >= 0x01097bff
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
-    catch(unixstl::readdir_sequence_exception& x)
+    catch (unixstl::readdir_sequence_exception& x)
     {
         recls_error_trace_printf_(RECLS_LITERAL("could not enumerate contents of directory '%s'"), x.Directory.c_str());
 
@@ -349,7 +349,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     }
 #  endif /* OS */
 # endif /* _STLSOFT_VER */
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
@@ -359,7 +359,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     }
 # if defined(_WINSTL_VER) && \
      _WINSTL_VER >= 0x010a05ff
-    catch(winstl_ns_qual(access_exception)& x)
+    catch (winstl_ns_qual(access_exception)& x)
     {
 #  if defined(RECLS_CHAR_TYPE_IS_WCHAR)
         recls_error_trace_printf_(winstl::a2t(x.what()).c_str());

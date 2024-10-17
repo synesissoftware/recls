@@ -4,11 +4,11 @@
  * Purpose: Implementation root header.
  *
  * Created: 7th March 2005
- * Updated: 30th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -22,6 +22,7 @@
 
 #ifndef RECLS_INCL_SRC_H_IMPL_ROOT
 #define RECLS_INCL_SRC_H_IMPL_ROOT
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -37,6 +38,7 @@
 # include <windows.h>
 #endif /* RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ stuff
  */
@@ -45,6 +47,7 @@
 # include "incl.stlsoft.h"
 # include <stlsoft/conversion/sap_cast.hpp>
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * exceptions
@@ -58,6 +61,7 @@
 #  endif /* STLSOFT_CF_THROW_BAD_ALLOC */
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Debugging?
@@ -101,6 +105,7 @@
 # endif /* platform */
 #endif /* debug */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * contract enforcement
  */
@@ -111,6 +116,7 @@
     defined(RECLS_ENFORCE_CONTRACTS)
 # define RECLS_ENFORCING_CONTRACTS
 #endif /* RECLS_DEBUG || RECLS_ENFORCE_CONTRACTS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * multithreading
@@ -136,6 +142,7 @@
 # endif /* threads? */
 #endif /* platform */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Multi-part patterns
  */
@@ -148,6 +155,7 @@
 
 # define RECLS_SUPPORTS_MULTIPATTERN_
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -19,6 +19,7 @@
 /examples/cpp/bin
 /examples/cpp/lib
 /examples/lib
+/ideas/
 /lib/
 /scratch/
 
@@ -31,8 +32,6 @@ src/b64/
 src/shwild/
 src/xcontract/
 src/xtests/
-
-ideas/
 
 ipch/
 
@@ -69,6 +68,7 @@ vc71/
 vc8/
 vc9/
 
+
 # directories (by pattern)
 
 /build/ar*
@@ -80,6 +80,7 @@ vc9/
 /build/icl*
 /build/vc5*
 /build/*.zip
+
 
 # files (by name)
 
@@ -105,6 +106,7 @@ src/backends/be/be.loader.c
 src/backends/bec.loader.cpp
 src/backends/bel/bel.loader.c
 src/backends/ber/ber.loader.c
+
 
 # files (by pattern)
 

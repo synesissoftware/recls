@@ -13,7 +13,7 @@
  *            - display of progress (of each directory traversed)
  *
  * Created: 29th May 2006
- * Updated: 30th December 2023
+ * Updated: 8th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -64,7 +64,7 @@ struct feedback_t
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(int argc, char* argv[])
 {
     const recls_char_t  SEARCH_PATTERN[]    =   RECLS_LITERAL("*.h|*.hpp|*.c|*.cpp|*.cs|*.d|*.java|*.pl|*.py|*.rb");
 
@@ -72,6 +72,9 @@ int main()
     hrecls_t            hSrch;
     recls_uint32_t      flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
     recls_rc_t          rc          =   Recls_SearchFeedback(NULL, SEARCH_PATTERN, flags, example_c_2_progress_fn, &feedback, &hSrch);
+
+    ((void)&argc);
+    ((void)&argv);
 
     if (RECLS_RC_OK != rc)
     {

@@ -4,11 +4,11 @@
  * Purpose: more recls API extended functions.
  *
  * Created: 30th January 2009
- * Updated: 20th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -61,10 +61,12 @@ namespace recls
 {
 
 using ::recls::impl::types;
-using ::recls::impl::recls_fatal_trace_printf_;
-using ::recls::impl::recls_error_trace_printf_;
+
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
+using ::recls::impl::recls_error_trace_printf_;
+using ::recls::impl::recls_fatal_trace_printf_;
+using ::recls::impl::recls_is_home_start_;
 
 #endif /* !RECLS_NO_NAMESPACE */
 
@@ -226,9 +228,51 @@ namespace
 
         RECLS_ASSERT(ss_nullptr_k != results);
 
+
         recls_debug1_trace_printf_(RECLS_LITERAL("Recls_CreateDirectory_(%s, ...)"), path);
 
         // 1. Make path absolute
+
+        if (recls_is_home_start_(path, pathLen))
+        {
+            types::buffer_type  home(1);
+
+            size_t const homeLen = types::traits_type::get_home_directory(home);
+
+            if (0 == homeLen)
+            {
+#ifdef RECLS_STLSOFT_1_12_OR_LATER
+                types::traits_type::error_type const e = types::traits_type::get_last_error();
+
+                if (types::traits_type::is_memory_error_code(e))
+                {
+                    return RECLS_RC_OUT_OF_MEMORY;
+                }
+                else
+#endif
+                {
+                    return RECLS_RC_NO_HOME;
+                }
+            }
+            else
+            {
+                size_t const lenRequired = homeLen + (pathLen - 1);
+
+                if (!home.resize(lenRequired + 1))
+                {
+                    return RECLS_RC_OUT_OF_MEMORY;
+                }
+                else
+                {
+                    types::traits_type::char_copy(home.data() + homeLen, path + 1, (pathLen - 1) + 1);
+
+                    path    =   home.data();
+                    pathLen =   lenRequired;
+
+                    return Recls_CreateDirectory_(path, pathLen, results);
+                }
+            }
+        }
 
         if (!types::traits_type::is_path_absolute(path))
         {
@@ -282,13 +326,13 @@ Recls_CreateDirectory(
     {
         return Recls_CreateDirectory_X_(path, results);
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
         return RECLS_RC_OUT_OF_MEMORY;
     }
-    catch(platformstl::platform_exception& x)
+    catch (platformstl::platform_exception& x)
     {
         recls_fatal_trace_printf_(RECLS_LITERAL("Exception in Recls_CreateDirectory(): %s"), x.what());
 
@@ -306,7 +350,7 @@ Recls_CreateDirectory(
 
         return RECLS_RC_UNEXPECTED;
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         recls_error_trace_printf_(RECLS_LITERAL("Exception in Recls_CreateDirectory(): %s"), x.what());
 

@@ -4,11 +4,11 @@
  * Purpose: more recls API extended functions.
  *
  * Created: 30th January 2009
- * Updated: 20th December 2023
+ * Updated: 9th July 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -409,13 +409,13 @@ Recls_RemoveDirectory(
     {
         return Recls_RemoveDirectory_X_(path, flags, results);
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
 
         return RECLS_RC_OUT_OF_MEMORY;
     }
-    catch(platformstl::platform_exception& x)
+    catch (platformstl::platform_exception& x)
     {
         recls_fatal_trace_printf_(RECLS_LITERAL("Exception in Recls_RemoveDirectory(): %s"), x.what());
 
@@ -433,7 +433,7 @@ Recls_RemoveDirectory(
 
         return RECLS_RC_UNEXPECTED;
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         recls_error_trace_printf_(RECLS_LITERAL("Exception in Recls_RemoveDirectory(): %s"), x.what());
 
