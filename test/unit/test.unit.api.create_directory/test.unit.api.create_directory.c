@@ -36,8 +36,13 @@
 #include <errno.h>
 #include <stdlib.h>
 #if 0
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      defined(_WIN32)
+#elif 1 &&\
+      defined(_WIN32) &&\
+      ( 0 ||\
+        defined(STLSOFT_COMPILER_IS_GCC) ||\
+        defined(STLSOFT_COMPILER_IS_MSVC) ||\
+        0) &&\
+      1
 
 # include <direct.h>
 # include <tchar.h>

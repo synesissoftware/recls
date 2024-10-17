@@ -5,7 +5,7 @@
  *          Windows.
  *
  * Created: 1st June 2004
- * Updated: 9th July 2024
+ * Updated: 17th October 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -332,7 +332,7 @@ ReclsFtpSearchDirectoryNode::ReclsFtpSearchDirectoryNode(
 
         size_t          cch = types::traits_type::get_full_path_name(m_connection, stlsoft::c_str_ptr(temp), 0, ss_nullptr_k);
         string_type     temp2(cch, ' ');
-        recls_char_t*   file;
+        recls_char_t*   file = ss_nullptr_k; // GCC requires this be initialised
 
         types::traits_type::get_full_path_name(m_connection, stlsoft::c_str_ptr(temp), 1 + temp2.length(), &temp2[0], &file);
 
