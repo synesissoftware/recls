@@ -30,7 +30,7 @@ while [[ $# -gt 0 ]]; do
 recls is a platform-independent recursive file-system search library
 Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
-Runs all (matching) scratch test programs
+Runs all (matching) example programs
 
 $ScriptPath [ ... flags/options ... ]
 
@@ -77,7 +77,7 @@ if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
 
-    echo "Executing build (via command \`$MakeCmd\`) and then running all scratch (and performance) test programs"
+    echo "Executing build (via command \`$MakeCmd\`) and then running all example programs"
 
     mkdir -p $CMakeDir || exit 1
 
@@ -100,13 +100,13 @@ if [ $status -eq 0 ]; then
 
   if [ $ListOnly -ne 0 ]; then
 
-    echo "Listing all scratch (and performance) test programs"
+    echo "Listing all example programs"
   else
 
-    echo "Running all scratch (and performance) test programs"
+    echo "Running all example programs"
   fi
 
-  for f in $(find $CMakeDir -type f '(' -name 'test_scratch*' -o -name 'test.scratch.*' -o -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print)
+  for f in $(find $CMakeDir -type f '(' -name 'example?c*' -o -name 'example?cpp*' ')' -exec test -x {} \; -print)
   do
 
     if [ $ListOnly -ne 0 ]; then
@@ -119,13 +119,8 @@ if [ $status -eq 0 ]; then
     echo
     echo "executing $f:"
 
-    if $f; then
-
-      :
-    else
-
-      status=$?
-    fi
+    # NOTE: we do not break on fail because these tests are not always intended to succeed
+    $f
   done
 fi
 

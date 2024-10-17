@@ -4,7 +4,7 @@
  * Purpose: Finds and lists multiply-linked files.
  *
  * Created: 23rd February 2011
- * Updated: 9th July 2024
+ * Updated: 17th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,6 +33,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
  */
@@ -55,6 +56,7 @@ show_usage(
 
     return xc;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -178,7 +180,7 @@ static int main_(int argc, char* argv[])
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     char const* const program_name = platformstl::get_executable_name_from_path(argv[0]).ptr;
 
@@ -210,6 +212,7 @@ int main(int argc, char** argv)
 
     return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

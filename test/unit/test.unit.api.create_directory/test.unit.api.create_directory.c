@@ -5,20 +5,23 @@
  *          `Recls_CreateDirectory()`).
  *
  * Created: 29th January 2009
- * Updated: 9th July 2024
+ * Updated: 17th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* /////////////////////////////////////
  * test component header file include(s)
  */
 
 #include <recls/recls.h>
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * includes
+/* /////////////////////////////////////
+ * general includes
  */
 
 /* xTests header files */
@@ -33,8 +36,13 @@
 #include <errno.h>
 #include <stdlib.h>
 #if 0
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      defined(_WIN32)
+#elif 1 &&\
+      defined(_WIN32) &&\
+      ( 0 ||\
+        defined(STLSOFT_COMPILER_IS_GCC) ||\
+        defined(STLSOFT_COMPILER_IS_MSVC) ||\
+        0) &&\
+      1
 
 # include <direct.h>
 # include <tchar.h>
@@ -127,26 +135,10 @@ static void test_create_directory_invalid_name(void);
 static void test_create_directory_pwd(void);
 static void test_create_directory_under_home(void);
 static void test_create_subdirectory_under_home(void);
-static void test_1_4(void);
-static void test_1_5(void);
-static void test_1_6(void);
-static void test_1_7(void);
-static void test_1_8(void);
-static void test_1_9(void);
-static void test_1_10(void);
-static void test_1_11(void);
-static void test_1_12(void);
-static void test_1_13(void);
-static void test_1_14(void);
-static void test_1_15(void);
-static void test_1_16(void);
-static void test_1_17(void);
-static void test_1_18(void);
-static void test_1_19(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 recls_char_t*   s_cwd;
@@ -168,22 +160,6 @@ static int main_(int argc, char **argv)
         XTESTS_RUN_CASE(test_create_directory_pwd);
         XTESTS_RUN_CASE(test_create_directory_under_home);
         XTESTS_RUN_CASE(test_create_subdirectory_under_home);
-        XTESTS_RUN_CASE(test_1_4);
-        XTESTS_RUN_CASE(test_1_5);
-        XTESTS_RUN_CASE(test_1_6);
-        XTESTS_RUN_CASE(test_1_7);
-        XTESTS_RUN_CASE(test_1_8);
-        XTESTS_RUN_CASE(test_1_9);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
-        XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
-        XTESTS_RUN_CASE(test_1_16);
-        XTESTS_RUN_CASE(test_1_17);
-        XTESTS_RUN_CASE(test_1_18);
-        XTESTS_RUN_CASE(test_1_19);
 
         XTESTS_PRINT_RESULTS();
 
@@ -289,13 +265,13 @@ static void test_create_directory_invalid_name(void)
         recls_directoryResults_t    results;
         recls_rc_t                  rc = Recls_CreateDirectory(RECLS_LITERAL(""), &results);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_INVALID_NAME, rc);
     }
 
     {
         recls_rc_t  rc = Recls_CreateDirectory(RECLS_LITERAL(""), NULL);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_INVALID_NAME, rc);
     }
 }
 
@@ -308,7 +284,7 @@ static void test_create_directory_pwd(void)
         // because it's the current directory, it will succeed, and the
         // path length and number of elements will remain unchanged
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
         XTESTS_TEST_INTEGER_EQUAL(s_cwdLen, results.resultingLength);
         XTESTS_TEST_INTEGER_EQUAL(results.numExistingElements, results.numResultingElements);
     }
@@ -316,7 +292,7 @@ static void test_create_directory_pwd(void)
     {
         recls_rc_t  rc = Recls_CreateDirectory(RECLS_LITERAL("."), NULL);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -326,7 +302,7 @@ static void test_create_directory_under_home(void)
         recls_directoryResults_t    results;
         recls_rc_t                  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT, &results);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
 
         XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(results.existingLength, results.resultingLength);
 
@@ -337,7 +313,7 @@ static void test_create_directory_under_home(void)
     {
         recls_rc_t  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT, NULL);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 
     Recls_RemoveDirectory(RECLS_TEST_DIR_ROOT, RECLS_REMDIR_F_REMOVE_FILES, NULL);
@@ -352,7 +328,7 @@ static void test_create_subdirectory_under_home(void)
         recls_directoryResults_t    results;
         recls_rc_t                  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT TEST_1_3_SUBDIR, &results);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
 
         XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(results.existingLength, results.resultingLength);
 
@@ -363,74 +339,10 @@ static void test_create_subdirectory_under_home(void)
     {
         recls_rc_t  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT TEST_1_3_SUBDIR, NULL);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 
     Recls_RemoveDirectory(RECLS_TEST_DIR_ROOT, RECLS_REMDIR_F_REMOVE_FILES | RECLS_REMDIR_F_REMOVE_READONLY, NULL);
-}
-
-static void test_1_4(void)
-{
-}
-
-static void test_1_5(void)
-{
-}
-
-static void test_1_6(void)
-{
-}
-
-static void test_1_7(void)
-{
-}
-
-static void test_1_8(void)
-{
-}
-
-static void test_1_9(void)
-{
-}
-
-static void test_1_10(void)
-{
-}
-
-static void test_1_11(void)
-{
-}
-
-static void test_1_12(void)
-{
-}
-
-static void test_1_13(void)
-{
-}
-
-static void test_1_14(void)
-{
-}
-
-static void test_1_15(void)
-{
-}
-
-static void test_1_16(void)
-{
-}
-
-static void test_1_17(void)
-{
-}
-
-static void test_1_18(void)
-{
-}
-
-static void test_1_19(void)
-{
 }
 
 

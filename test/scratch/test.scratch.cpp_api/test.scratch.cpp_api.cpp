@@ -4,7 +4,7 @@
  * Purpose: Scratch-test exercising various parts of recls C++ API.
  *
  * Created: 4th January 2010
- * Updated: 9th July 2024
+ * Updated: 17th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,11 +50,13 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
 static void display_entry(recls::entry const& fe);
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -77,14 +79,14 @@ namespace {
 # define _tcerr                                             cerr
 # define _tcout                                             cout
 #endif
-
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
  */
 
-static int main_(int /* argc */, char** argv)
+static int main_(int /* argc */, char* argv[])
 {
     using namespace recls;
 
@@ -250,6 +252,63 @@ static int main_(int /* argc */, char** argv)
     return EXIT_SUCCESS;
 }
 
+int main(int argc, char* argv[])
+{
+    int             res;
+
+#if defined(_MSC_VER) && \
+    defined(_DEBUG)
+
+    _CrtMemState    memState;
+#endif /* _MSC_VER && _MSC_VER */
+
+#if defined(_MSC_VER) && \
+    defined(_DEBUG)
+
+    _CrtMemCheckpoint(&memState);
+#endif /* _MSC_VER && _MSC_VER */
+
+#if 0
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
+#endif /* 0 */
+
+    try
+    {
+#if defined(_DEBUG) || \
+    defined(__SYNSOFT_DBS_DEBUG)
+
+        puts("test.scratch.cpp_api: " __STLSOFT_COMPILER_LABEL_STRING);
+#endif /* debug */
+
+        res = main_(argc, argv);
+    }
+    catch (std::exception& x)
+    {
+        fprintf(stderr, "Unhandled error: %s\n", x.what());
+
+        res = EXIT_FAILURE;
+    }
+    catch (...)
+    {
+        fprintf(stderr, "Unhandled unknown error\n");
+
+        res = EXIT_FAILURE;
+    }
+
+#if defined(_MSC_VER) && \
+    defined(_DEBUG)
+
+    _CrtMemDumpAllObjectsSince(&memState);
+#endif /* _MSC_VER) && _DEBUG */
+
+    return res;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * function implementations
+ */
+
 static void display_entry(recls::entry const& fe)
 {
     using namespace recls;
@@ -343,59 +402,6 @@ static void display_entry(recls::entry const& fe)
     std::_tcout << std::endl;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-int main(int argc, char** argv)
-{
-    int             res;
-
-#if defined(_MSC_VER) && \
-    defined(_DEBUG)
-
-    _CrtMemState    memState;
-#endif /* _MSC_VER && _MSC_VER */
-
-#if defined(_MSC_VER) && \
-    defined(_DEBUG)
-
-    _CrtMemCheckpoint(&memState);
-#endif /* _MSC_VER && _MSC_VER */
-
-#if 0
-    { for (size_t i = 0; i < 0xffffffff; ++i){} }
-#endif /* 0 */
-
-    try
-    {
-#if defined(_DEBUG) || \
-    defined(__SYNSOFT_DBS_DEBUG)
-
-        puts("test.scratch.cpp_api: " __STLSOFT_COMPILER_LABEL_STRING);
-#endif /* debug */
-
-        res = main_(argc, argv);
-    }
-    catch (std::exception& x)
-    {
-        fprintf(stderr, "Unhandled error: %s\n", x.what());
-
-        res = EXIT_FAILURE;
-    }
-    catch (...)
-    {
-        fprintf(stderr, "Unhandled unknown error\n");
-
-        res = EXIT_FAILURE;
-    }
-
-#if defined(_MSC_VER) && \
-    defined(_DEBUG)
-
-    _CrtMemDumpAllObjectsSince(&memState);
-#endif /* _MSC_VER) && _DEBUG */
-
-    return res;
-}
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

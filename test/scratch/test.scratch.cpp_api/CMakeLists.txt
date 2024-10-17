@@ -5,7 +5,7 @@ add_executable(test_scratch_cpp_api
 
 target_link_libraries(test_scratch_cpp_api
 	PRIVATE
-		recls
+		core
 		$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 )
 

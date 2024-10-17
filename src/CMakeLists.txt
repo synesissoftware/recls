@@ -1,11 +1,4 @@
 
-if(APPLE)
-
-	message("-- -- adding '/usr/local/include' to include-directories for 'src'")
-
-	include_directories("/usr/local/include")
-endif(APPLE)
-
 if(UNIX)
 
 	add_definitions(-DUNIX)
@@ -90,26 +83,26 @@ endif(WIN32)
 
 
 
-add_library(recls
+add_library(core
 	${COMMON_IMPLEMENTATION_FILES}
 )
 
-set_target_properties(recls PROPERTIES
+set_target_properties(core PROPERTIES
 	OUTPUT_NAME "recls"
 	# PUBLIC_HEADER "${RECLS_PUBLIC_HEADERS}"
 )
 
-target_include_directories(recls PUBLIC
+target_include_directories(core PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
 	$<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(recls
+target_link_libraries(core
 	PRIVATE
 		$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 )
 
-target_compile_options(recls PRIVATE
+target_compile_options(core PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic
 
@@ -125,7 +118,7 @@ target_compile_options(recls PRIVATE
 # ##########################################################
 # install
 
-install(TARGETS recls
+install(TARGETS core
 	EXPORT project-targets
 	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

@@ -5,7 +5,7 @@
  *          attributes, searching for files under the home directory.
  *
  * Created: 28th February 2007
- * Updated: 8th July 2024
+ * Updated: 17th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -30,25 +30,6 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * macros and definitions
- */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * globals
- */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * typedefs
- */
-
-#if 0
-typedef std::string     string_t;
-#endif /* 0 */
-
-
-/* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
@@ -59,7 +40,7 @@ static void process_search(hrecls_t hSrch);
  * main()
  */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
     hrecls_t    hSrch;
     recls_rc_t  rc;
@@ -154,7 +135,10 @@ int main(int argc, char *argv[])
     return res;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * function implementations
+ */
 
 static void process_search(hrecls_t hSrch)
 {
