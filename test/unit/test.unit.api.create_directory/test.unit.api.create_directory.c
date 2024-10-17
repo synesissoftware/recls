@@ -260,13 +260,13 @@ static void test_create_directory_invalid_name(void)
         recls_directoryResults_t    results;
         recls_rc_t                  rc = Recls_CreateDirectory(RECLS_LITERAL(""), &results);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_INVALID_NAME, rc);
     }
 
     {
         recls_rc_t  rc = Recls_CreateDirectory(RECLS_LITERAL(""), NULL);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_INVALID_NAME, rc);
     }
 }
 
@@ -279,7 +279,7 @@ static void test_create_directory_pwd(void)
         // because it's the current directory, it will succeed, and the
         // path length and number of elements will remain unchanged
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
         XTESTS_TEST_INTEGER_EQUAL(s_cwdLen, results.resultingLength);
         XTESTS_TEST_INTEGER_EQUAL(results.numExistingElements, results.numResultingElements);
     }
@@ -287,7 +287,7 @@ static void test_create_directory_pwd(void)
     {
         recls_rc_t  rc = Recls_CreateDirectory(RECLS_LITERAL("."), NULL);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -297,7 +297,7 @@ static void test_create_directory_under_home(void)
         recls_directoryResults_t    results;
         recls_rc_t                  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT, &results);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
 
         XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(results.existingLength, results.resultingLength);
 
@@ -308,7 +308,7 @@ static void test_create_directory_under_home(void)
     {
         recls_rc_t  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT, NULL);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 
     Recls_RemoveDirectory(RECLS_TEST_DIR_ROOT, RECLS_REMDIR_F_REMOVE_FILES, NULL);
@@ -323,7 +323,7 @@ static void test_create_subdirectory_under_home(void)
         recls_directoryResults_t    results;
         recls_rc_t                  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT TEST_1_3_SUBDIR, &results);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
 
         XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(results.existingLength, results.resultingLength);
 
@@ -334,7 +334,7 @@ static void test_create_subdirectory_under_home(void)
     {
         recls_rc_t  rc = Recls_CreateDirectory(RECLS_TEST_DIR_ROOT TEST_1_3_SUBDIR, NULL);
 
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 
     Recls_RemoveDirectory(RECLS_TEST_DIR_ROOT, RECLS_REMDIR_F_REMOVE_FILES | RECLS_REMDIR_F_REMOVE_READONLY, NULL);

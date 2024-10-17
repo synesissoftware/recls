@@ -293,7 +293,7 @@ static void test_1_0(void)
     unsigned        flags   =   0;
     recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL(""), flags, &entry);
 
-    XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
+    XTESTS_TEST_POINTER_EQUAL(RECLS_RC_INVALID_NAME, rc);
 }
 
 static void test_stat_dot(void)
@@ -325,7 +325,7 @@ static void test_stat_dot(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -358,7 +358,7 @@ static void test_stat_dot_slash(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -391,7 +391,7 @@ static void test_stat_tilde(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -424,7 +424,7 @@ static void test_stat_tilde_slash(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -457,7 +457,7 @@ static void test_stat_tilde_MARK_DIRS(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -490,7 +490,7 @@ static void test_stat_tilde_slash_MARK_DIRS(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -500,7 +500,7 @@ static void test_1_11(void)
     unsigned        flags   =   0;
     recls_rc_t      rc      =   Recls_Stat(s_nonexistent_file, flags, &entry);
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_NO_MORE_DATA, rc));
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_EQUAL(RECLS_RC_NO_MORE_DATA, rc));
 }
 
 static void test_1_12(void)
@@ -546,7 +546,7 @@ static void test_1_12(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -559,7 +559,7 @@ static void test_1_13(void)
                             ;
     recls_rc_t      rc      =   Recls_Stat(s_nonexistent_file, flags, &entry);
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_NO_MORE_DATA, rc));
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_EQUAL(RECLS_RC_NO_MORE_DATA, rc));
 }
 
 static void test_1_14(void)
@@ -571,7 +571,7 @@ static void test_1_14(void)
                             ;
     recls_rc_t      rc      =   Recls_Stat(s_nonexistent_path, flags, &entry);
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_DIRECTORY_NOT_FOUND, rc));
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_EQUAL(RECLS_RC_DIRECTORY_NOT_FOUND, rc));
 }
 
 static void test_2_0(void)
@@ -580,7 +580,7 @@ static void test_2_0(void)
     unsigned        flags   =   RECLS_F_DETAILS_LATER;
     recls_rc_t      rc      =   Recls_Stat(RECLS_LITERAL(""), flags, &entry);
 
-    XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
+    XTESTS_TEST_POINTER_EQUAL(RECLS_RC_INVALID_NAME, rc);
 }
 
 static void test_2_1(void)
@@ -612,7 +612,7 @@ static void test_2_1(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -645,7 +645,7 @@ static void test_2_2(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -678,7 +678,7 @@ static void test_2_3(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -711,7 +711,7 @@ static void test_2_4(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -744,7 +744,7 @@ static void test_2_5(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
@@ -777,7 +777,7 @@ static void test_2_6(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
