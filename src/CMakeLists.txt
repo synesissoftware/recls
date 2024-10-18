@@ -1,4 +1,15 @@
 
+# ######################################################################## #
+# File:     /src/CMakeLists.txt
+#
+# Purpose:  CMake lists file for recls core library
+#
+# Created:  ...
+# Updated:  18th October 2024
+#
+# ######################################################################## #
+
+
 if(UNIX)
 
 	add_definitions(-DUNIX)
@@ -21,6 +32,16 @@ if(WIN32)
 
 	add_definitions(-DRECLS_API_FTP)
 endif(WIN32)
+
+if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+
+	target_compile_definitions(core
+		PRIVATE
+			"/Zc:__cplusplus"
+	)
+
+	add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
+endif()
 
 
 set(COMMON_IMPLEMENTATION_FILES
@@ -92,9 +113,10 @@ set_target_properties(core PROPERTIES
 	# PUBLIC_HEADER "${RECLS_PUBLIC_HEADERS}"
 )
 
-target_include_directories(core PUBLIC
-	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
-	$<INSTALL_INTERFACE:include>
+target_include_directories(core
+	PUBLIC
+		$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+		$<INSTALL_INTERFACE:include>
 )
 
 target_link_libraries(core
@@ -102,16 +124,17 @@ target_link_libraries(core
 		$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 )
 
-target_compile_options(core PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
+target_compile_options(core
+	PRIVATE
+		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			-Werror -Wall -Wextra -pedantic
 
-		-Wno-deprecated-copy
-		-Wno-unused-parameter
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
+			-Wno-deprecated-copy
+			-Wno-unused-parameter
+		>
+		$<$<CXX_COMPILER_ID:MSVC>:
+			/WX /W4
+		>
 )
 
 
@@ -123,7 +146,7 @@ install(TARGETS core
 	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-	# PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/recls
+	# PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME_LOWER}
 )
 
 # install the include/recls/*/ subdirectories here, as do not (yet) know how to do so via PUBLIC_HEADER property

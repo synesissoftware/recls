@@ -63,16 +63,10 @@ function(define_example_program program_name entry_point_source_name)
 		${entry_point_source_name}
 	)
 
-	if(NO_B64_CPP_API)
-		set(_b64_WANT_STLSOFT 0)
-	else(NO_B64_CPP_API)
-		set(_b64_WANT_STLSOFT 1)
-	endif(NO_B64_CPP_API)
-
 	target_link_libraries(${program_name}
 		PRIVATE
 			core
-			$<IF:${_b64_WANT_STLSOFT},$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>,>
+			$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 	)
 
 	if(WIN32)

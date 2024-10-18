@@ -24,6 +24,13 @@ if(WIN32)
 	add_definitions(-DRECLS_API_FTP)
 endif(WIN32)
 
+if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+
+	add_compile_options("/Zc:__cplusplus")
+
+	add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
+endif()
+
 
 add_subdirectory(component)
 add_subdirectory(scratch)

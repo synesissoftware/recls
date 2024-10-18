@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  17th October 2024
+# Updated:  18th October 2024
 #
 # ######################################################################## #
 
@@ -99,42 +99,60 @@ option(BUILD_EXAMPLES "Build examples" ON)
 # optional:
 # - STLSoft - required unless NO_B64_CPP_API is specified, and by xTests
 #    (for testing);
+# - Pantheios - ...
 # - shwild - ...
 # - xTests - required for testing
 
 
-# ######################################
-# STLSoft (required)
+# ##############################
+# STLSoft
 #
 # We provide flexibility here, as in:
 # 1. if a CMake variable STLSOFT is provided then it is used; otherwise
-# 2. if an environment variable STLSOFT is provided then it then it is used; otherwise
-# 3. if the package STLSoft (via find_package()) is found then it is used; otherwise
+# 2. if an environment variable STLSOFT is provided then it then it is used;
+#    otherwise
+# 3. if the package STLSoft (via find_package()) is found then it is used;
+#    otherwise
 # 4. we abort
 
-if(NOT DEFINED STLSOFT AND NOT DEFINED ENV{STLSOFT})
+if(DEFINED STLSOFT)
+
+	message("-- STLSOFT provided as CMake variable with value '${STLSOFT}'")
+
+	set(STLSOFT_INCLUDE_DIR ${STLSOFT}/include)
+elseif(DEFINED ENV{STLSOFT})
+
+	message("-- STLSOFT provided as environment variable with value '$ENV{STLSOFT}'")
+
+	set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
+else()
 
 	set(STLSoft_REQUIRED_VERSION_ 1.11)
 
 	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
 
 	message("-- CMake package STLSoft found (version ${STLSoft_VERSION}; ${STLSoft_REQUIRED_VERSION_} requested)")
-else()
+endif()
 
-	if(DEFINED STLSOFT)
-
-		message("-- STLSOFT provided as CMake variable with value '${STLSOFT}'")
-
-		set(STLSOFT_INCLUDE_DIR ${STLSOFT}/include)
-	else()
-
-		message("-- STLSOFT provided as environment variable with value '$ENV{STLSOFT}'")
-
-		set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
-	endif()
+if(DEFINED STLSOFT_INCLUDE_DIR)
 
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
+
+
+# ############################
+# Pantheios
+
+if(BUILD_TESTING)
+
+	find_package(Pantheios QUIET)
+
+	if(Pantheios_FOUND)
+
+		message("-- CMake package Pantheios found (version ${Pantheios_VERSION})")
+	endif(Pantheios_FOUND)
+endif(BUILD_TESTING)
+
 
 # ############################
 # shwild
@@ -149,12 +167,13 @@ if(BUILD_TESTING)
 	endif(shwild_FOUND)
 endif(BUILD_TESTING)
 
+
 # ############################
 # xTests
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.22)
+	set(xTests_REQUIRED_VERSION_ 0.24)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
