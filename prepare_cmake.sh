@@ -6,13 +6,13 @@ Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
-ExamplesDisabled=0
-TestingDisabled=0
-VerboseMakefile=0
 Configuration=Release
+ExamplesDisabled=0
 MinGW=0
 RunMake=0
 STLSoftDirGiven=
+TestingDisabled=0
+VerboseMakefile=0
 
 
 # ##########################################################
@@ -28,6 +28,7 @@ while [[ $# -gt 0 ]]; do
     -d|--debug-configuration)
 
       Configuration=Debug
+
       ;;
     -E|--disable-examples)
       ExamplesDisabled=1
@@ -126,9 +127,9 @@ cd $CMakeDir
 echo "Executing CMake (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
-if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 
 if [ $MinGW -ne 0 ]; then
 
