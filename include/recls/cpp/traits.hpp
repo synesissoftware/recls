@@ -4,11 +4,11 @@
  * Purpose: Traits for recls C++ mapping.
  *
  * Created: 25th March 2004
- * Updated: 30th December 2023
+ * Updated: 13th January 2024
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MAJOR       5
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MINOR       1
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    3
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        28
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    4
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        29
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/traits.hpp
@@ -69,6 +69,7 @@
  */
 
 #include <recls/cpp/common.hpp>
+#include <recls/cpp/directory_parts.hpp>
 
 #if defined(RECLS_API_FTP)
 # include <recls/ftp.h>

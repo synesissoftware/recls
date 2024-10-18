@@ -17,6 +17,31 @@ recls - Changes
     *******************************************************************
 
 
+recls 1.10.1 (alpha 7) released - 17th October 2024
+===================================================
+
+Summary:
+--------
+
+ * MinGW compatibility;
+ * CMake build scripts enhancements;
+ * Tidying of component / scratch / unit test programs;
+ * ensuring all **recls/cpp/\*.hpp** files are self-sufficient;
+
+
+Details:
+--------
+
+CMake build scripts enhancements:
+ * Significant enhancement and refactoring around use of CMake:
+ * Compatibility with legacy versions of Visual C++;
+ * Significant refactoring of ./CMakeLists.txt;
+ * added **cmake/LanguageFullVersion.cmake** file, which defines CMake variable `X_CMAKE_CXX_FULLSTANDARD`;
+ * added **cmake/TargetMacros.cmake** file, which defines CMake functions `define_automated_test_program()` and `define_example_program()`, and applied them throughout examples and test programs;
+ * renamed CMake project for core library from **recls::recls** to **recls::core**;
+
+
+
 recls 1.10.1 (alpha 6) released - 10th July 2024
 ================================================
 
@@ -39,7 +64,6 @@ CMake Windows compatibility:
 
 GCC compatibility improvements:
  * large number of small fixes, particularly to deal with conformance warnings;
-
 
 
 recls 1.10.1 (alpha 5) released - 4th January 2024
