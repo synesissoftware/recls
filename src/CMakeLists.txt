@@ -110,7 +110,7 @@ add_library(core
 
 set_target_properties(core PROPERTIES
 	OUTPUT_NAME "recls"
-	# PUBLIC_HEADER "${RECLS_PUBLIC_HEADERS}"
+	# PUBLIC_HEADER "${CORE_PUBLIC_HEADERS}"
 )
 
 target_include_directories(core
