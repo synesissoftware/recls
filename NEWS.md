@@ -4,6 +4,7 @@
 
 | Date                  | News Item                                                 |
 | --------------------- | --------------------------------------------------------- |
+| 23rd October 2024     |   recls 1.10.1 (alpha 9) released                         |
 | 18th October 2024     |   recls 1.10.1 (alpha 8) released                         |
 | 17th October 2024     |   recls 1.10.1 (alpha 7) released                         |
 | 10th July 2024        |   recls 1.10.1 (alpha 6) released                         |

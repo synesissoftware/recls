@@ -3,7 +3,7 @@ recls - Changes
 ---------------
 
 ; Created:  28th May 2006
-; Updated:  18th October 2024
+; Updated:  23rd October 2024
 
 ============================================================================
 
@@ -15,6 +15,26 @@ recls - Changes
     *  -  means removal of something (mapping / file / functionality) *
     *                                                                 *
     *******************************************************************
+
+
+recls 1.10.1 (alpha 9) released - 23rd October 2024
+===================================================
+
+Summary:
+--------
+
+ * Project boilerplate improvements;
+ * Updated dependency requirements;
+
+
+Details:
+--------
+
+Project boilerplate improvements:
+ * fleshed out **INSTALL.md**;
+
+Updated dependency requirements:
+ * now depends on 0.25+ of **xTests**;
 
 
 recls 1.10.1 (alpha 8) released - 18th October 2024

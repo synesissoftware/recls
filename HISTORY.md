@@ -1,6 +1,13 @@
 # recls - History
 
 
+23rd October 2024 - 1.10.0 alpha9
+---------------------------------
+
+ * Project boilerplate improvements;
+ * Updated dependency requirements;
+
+
 18th October 2024 - 1.10.0 alpha8
 ---------------------------------
 
