@@ -1,2 +1,3 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-define_example_program(test_scratch_links test.scratch.links.cpp)
+define_example_program(test.scratch.links test.scratch.links.cpp)
+
