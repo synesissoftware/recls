@@ -4,7 +4,7 @@
  * Purpose: Demonstrates using Pantheios for recls API logging.
  *
  * Created: 13th December 2008
- * Updated: 17th October 2024
+ * Updated: 10th January 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -71,19 +71,20 @@ extern "C" const char PANTHEIOS_FE_PROCESS_IDENTITY[]    =   "test.scratch.with_
 
 static int main_(int /* argc */, char** /*argv*/)
 {
-    using recls::hrecls_log_fn_t;
-    using recls::hrecls_t;
-    using recls::recls_rc_t;
-    using recls::recls_info_t;
-    using recls::RECLS_F_RECURSIVE;
     using recls::RECLS_FAILED;
+    using recls::RECLS_F_RECURSIVE;
     using recls::RECLS_SUCCEEDED;
-    using recls::Recls_SetApiLogFunction;
+    using recls::Recls_GetDetails;
+    using recls::Recls_GetWildcardsAll;
     using recls::Recls_Search;
     using recls::Recls_SearchClose;
-    using recls::Recls_GetDetails;
+    using recls::Recls_SetApiLogFunction;
+    using recls::hrecls_t;
+    using recls::recls_info_t;
+    using recls::recls_log_pfn_t;
+    using recls::recls_rc_t;
 
-    Recls_SetApiLogFunction((hrecls_log_fn_t)pantheios::pantheios_logvprintf, PANTHEIOS_SEV_DEBUG, 0);
+    Recls_SetApiLogFunction((recls_log_pfn_t)pantheios::pantheios_logvprintf, PANTHEIOS_SEV_DEBUG, 0);
 
     hrecls_t    hSrch;
     recls_rc_t  rc = Recls_Search(".", Recls_GetWildcardsAll(), RECLS_F_RECURSIVE, &hSrch);

@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  23rd October 2024
+# Updated:  10th January 2025
 #
 # ######################################################################## #
 
@@ -97,6 +97,7 @@ option(BUILD_EXAMPLES "Build examples" ON)
 # required:
 #
 # optional:
+# - b64 - may be needed by Pantheios;
 # - STLSoft - required unless NO_B64_CPP_API is specified, and by xTests
 #    (for testing);
 # - Pantheios - ...
@@ -138,6 +139,20 @@ if(DEFINED STLSOFT_INCLUDE_DIR)
 
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
+
+
+# ############################
+# b64
+
+if(BUILD_TESTING)
+
+	find_package(b64 QUIET)
+
+	if(b64_FOUND)
+
+		message("-- CMake package b64 found (version ${b64_VERSION})")
+	endif(b64_FOUND)
+endif(BUILD_TESTING)
 
 
 # ############################

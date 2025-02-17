@@ -1,2 +1,11 @@
-# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-define_example_program(test_scratch_with_pantheios test.scratch.with_pantheios.cpp)
+
+define_example_program(test.scratch.with_pantheios test.scratch.with_pantheios.cpp)
+
+target_link_libraries(test.scratch.with_pantheios
+	PRIVATE
+		Pantheios::Pantheios.core
+		Pantheios::Pantheios.fe.all
+		Pantheios::Pantheios.be.fprintf
+		Pantheios::Pantheios.bec.fprintf
+		Pantheios::Pantheios.util
+)
