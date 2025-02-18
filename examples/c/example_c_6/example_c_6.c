@@ -11,7 +11,7 @@
  *            - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 8th July 2024
+ * Updated: 18th February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,10 +39,7 @@ int main(int argc, char* argv[])
 {
     /* stat() the current directory */
     recls_info_t    current;
-    recls_rc_t      rc  =   Recls_Stat(RECLS_LITERAL("."), RECLS_F_DIRECTORIES | RECLS_F_DIRECTORY_PARTS, &current);
-
-    ((void)&argc);
-    ((void)&argv);
+    recls_rc_t      rc  =   Recls_Stat((1 != argc) ? argv[1] : RECLS_LITERAL("."), RECLS_F_DIRECTORIES | RECLS_F_DIRECTORY_PARTS, &current);
 
     if (RECLS_FAILED(rc))
     {

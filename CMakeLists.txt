@@ -165,6 +165,9 @@ if(BUILD_TESTING)
 	if(Pantheios_FOUND)
 
 		message("-- CMake package Pantheios found (version ${Pantheios_VERSION})")
+
+		add_definitions(-DHAS_Pantheios)
+		add_definitions(-DHAS_PANTHEIOS)
 	endif(Pantheios_FOUND)
 endif(BUILD_TESTING)
 

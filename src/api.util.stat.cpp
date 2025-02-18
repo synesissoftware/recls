@@ -170,6 +170,8 @@ recls_rc_t Recls_Stat_X_(
 
         if (!path2_.exists())
         {
+            recls_error_trace_printf_(RECLS_LITERAL("could not obtain stat data for '%s'"), path);
+
             return RECLS_RC_DIRECTORY_NOT_FOUND;
         }
 

@@ -191,6 +191,8 @@ ReclsFileSearch::FindAndCreate_(
 
     if (!types::traits_type::file_exists(searchDir))
     {
+        recls_error_trace_printf_(RECLS_LITERAL("could not obtain stat data for '%s'"), searchDir);
+
         rc = RECLS_RC_DIRECTORY_NOT_FOUND;
     }
     else if (!types::traits_type::is_directory(searchDir))

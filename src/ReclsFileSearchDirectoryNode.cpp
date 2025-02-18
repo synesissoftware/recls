@@ -334,6 +334,8 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     try
     {
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        recls_info_trace_printf_(RECLS_LITERAL("creating search node for directory '%s'"), searchDir);
+
         node = new ReclsFileSearchDirectoryNode(flags, searchDir, rootDirLen, pattern, patternLen, pfn, param);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }

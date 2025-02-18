@@ -10,7 +10,7 @@
  *            - elicitation of entry properties via API function calls
  *
  * Created: 29th May 2006
- * Updated: 8th July 2024
+ * Updated: 18th February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,10 +41,7 @@ int main(int argc, char* argv[])
      */
     hrecls_t        hSrch;
     recls_uint32_t  flags   =   RECLS_F_FILES | RECLS_F_RECURSIVE;
-    recls_rc_t      rc      =   Recls_Search(RECLS_LITERAL("."), Recls_GetWildcardsAll(), flags, &hSrch);
-
-    ((void)&argc);
-    ((void)&argv);
+    recls_rc_t      rc      =   Recls_Search((1 != argc) ? argv[1] : RECLS_LITERAL("."), Recls_GetWildcardsAll(), flags, &hSrch);
 
     if (RECLS_RC_NO_MORE_DATA == rc)
     {

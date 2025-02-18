@@ -15,7 +15,7 @@
  *            - elicitation of entry properties via API function calls
  *
  * Created: 29th May 2006
- * Updated: 8th July 2024
+ * Updated: 18th February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -23,10 +23,26 @@
 /* recls header files */
 #include <recls/recls.h>
 
+#ifdef HAS_Pantheios
+
+# include <pantheios/pantheios.h>
+#endif
+
 /* Standard C Library Files */
 #include <stdio.h>      /* for printf() / fprintf()         */
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 #include <string.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
+
+#ifdef HAS_Pantheios
+
+const char PANTHEIOS_FE_PROCESS_IDENTITY[]    =   "example_c_3";
+#endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros and definitions
@@ -37,16 +53,51 @@
 # define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+#ifdef HAS_Pantheios
+
+static
+int main_(int argc, char* argv[]);
 
 int main(int argc, char* argv[])
 {
+    int const r = pantheios_init();
+
+    if (0 != r)
+    {
+        fprintf(stderr, "%s: failed to initialise Pantheios: %d\n", argv[0], r);
+
+        return EXIT_FAILURE;
+    }
+    else
+    {
+        int const r2 = main_(argc, argv);
+
+        pantheios_uninit();
+
+        return r2;
+    }
+}
+
+int main_(int argc, char* argv[])
+#else
+
+int main(int argc, char* argv[])
+#endif
+{
     /* stat() the current directory */
     recls_info_t    current;
-    recls_rc_t      rc  =   Recls_Stat(RECLS_LITERAL("."), RECLS_F_DIRECTORIES | RECLS_F_DIRECTORY_PARTS, &current);
+    recls_rc_t      rc  =   Recls_Stat((1 != argc) ? argv[1] : RECLS_LITERAL("."), RECLS_F_DIRECTORIES | RECLS_F_DIRECTORY_PARTS, &current);
 
-    ((void)&argc);
-    ((void)&argv);
+#ifdef HAS_Pantheios
+
+    Recls_SetApiLogFunction((recls_log_pfn_t)pantheios_logvprintf, PANTHEIOS_SEV_DEBUG, 0);
+#endif
+
 
     if (RECLS_FAILED(rc))
     {
@@ -92,11 +143,11 @@ int main(int argc, char* argv[])
         {
             /* Get the details for the first entry, ... */
 
-            recls_info_t    entry;
+            recls_info_t entry;
 
             Recls_GetDetails(hSrch, &entry);
 
-            do
+            for (;;)
             {
                 /* ... get the full path, ... */
                 recls_filesize_t    size;
@@ -165,8 +216,26 @@ int main(int argc, char* argv[])
                 /* ... close the entry handle, ... */
                 Recls_CloseDetails(entry);
 
-            } /* ... and get the next entry. */
-            while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
+                /* ... and get the next entry. */
+                rc = Recls_GetNextDetails(hSrch, &entry);
+
+                if (RECLS_FAILED(rc))
+                {
+                    if (RECLS_RC_NO_MORE_DATA != rc)
+                    {
+                        recls_char_t    err[1001];
+                        size_t const    n = Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
+
+                        fprintf(stderr, "%s: failed to obtain next entry: %.*s (%lld)\n"
+                        ,   argv[0]
+                        ,   (int)n, err
+                        ,   (signed long long)rc
+                        );
+                    }
+
+                    break;
+                }
+            }
 
             /* Close the search handle. */
             Recls_SearchClose(hSrch);
@@ -175,6 +244,7 @@ int main(int argc, char* argv[])
         }
     }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

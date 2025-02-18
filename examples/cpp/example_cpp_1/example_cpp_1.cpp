@@ -10,7 +10,7 @@
  *            - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 9th July 2024
+ * Updated: 18th February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,12 +36,12 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int /* argc */, char* /* argv */[])
+int main(int argc, char* argv[])
 {
     try
     {
         int                     flags   =   recls::RECLS_F_FILES | recls::RECLS_F_RECURSIVE;
-        recls::search_sequence  files(RECLS_LITERAL("."), recls::Recls_GetWildcardsAll(), flags);
+        recls::search_sequence  files((1 != argc) ? argv[1] : RECLS_LITERAL("."), recls::Recls_GetWildcardsAll(), flags);
 
         { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
         {

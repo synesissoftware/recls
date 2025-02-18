@@ -69,6 +69,18 @@ function(define_example_program program_name entry_point_source_name)
 			$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 	)
 
+	if(Pantheios_FOUND)
+
+		target_link_libraries(${program_name}
+			PRIVATE
+				Pantheios::Pantheios.core
+				Pantheios::Pantheios.be.AnsiConsole
+				Pantheios::Pantheios.bec.AnsiConsole
+				Pantheios::Pantheios.fe.all
+				Pantheios::Pantheios.util
+		)
+	endif(Pantheios_FOUND)
+
 	if(WIN32)
 
 		target_link_libraries(${program_name}

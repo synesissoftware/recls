@@ -242,6 +242,8 @@ namespace
 
         if (!types::traits_type::stat(path, &stat_data)) // Not lstat!
         {
+            recls_error_trace_printf_(RECLS_LITERAL("could not obtain stat data for '%s'"), path);
+
             return RECLS_RC_DIRECTORY_NOT_FOUND;
         }
         else if (!types::traits_type::is_directory(&stat_data))
