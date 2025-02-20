@@ -4,11 +4,11 @@
  * Purpose: Windows-specific header file for recls API.
  *
  * Created: 18th August 2003
- * Updated: 9th July 2024
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,7 +48,7 @@
 # define RECLS_VER_RECLS_H_WINDOWS_MAJOR    4
 # define RECLS_VER_RECLS_H_WINDOWS_MINOR    2
 # define RECLS_VER_RECLS_H_WINDOWS_REVISION 1
-# define RECLS_VER_RECLS_H_WINDOWS_EDIT     27
+# define RECLS_VER_RECLS_H_WINDOWS_EDIT     28
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/windows.h
@@ -120,7 +120,8 @@ Recls_GetDriveProperty(
 
 /** Translates a recls result code into a Windows result code
  */
-RECLS_FNDECL(DWORD) Recls_ResultCodeToWindowsErrorCode(
+RECLS_FNDECL(DWORD)
+Recls_ResultCodeToWindowsErrorCode(
     /* [in] */ recls_rc_t rc
 );
 

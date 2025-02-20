@@ -4,11 +4,11 @@
  * Purpose: UNIX-specific header file for recls API.
  *
  * Created: 18th August 2003
- * Updated: 9th July 2024
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,7 +48,7 @@
 # define RECLS_VER_RECLS_H_UNIX_MAJOR       3
 # define RECLS_VER_RECLS_H_UNIX_MINOR       2
 # define RECLS_VER_RECLS_H_UNIX_REVISION    1
-# define RECLS_VER_RECLS_H_UNIX_EDIT        18
+# define RECLS_VER_RECLS_H_UNIX_EDIT        19
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/unix.h
@@ -92,7 +92,8 @@ namespace recls
  */
 /** @{ */
 
-RECLS_FNDECL(int) Recls_ResultCodeToUnixErrorCode(
+RECLS_FNDECL(int)
+Recls_ResultCodeToUnixErrorCode(
     /* [in] */ recls_rc_t rc
 );
 

@@ -4,11 +4,11 @@
  * Purpose: Tracing.
  *
  * Created: 30th September 2003
- * Updated: 9th July 2024
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -177,7 +177,8 @@ namespace recls
  * API
  */
 
-RECLS_FNDECL(void) Recls_LogSeverities_Init(
+RECLS_FNDECL(void)
+Recls_LogSeverities_Init(
     recls_log_severities_t*         severities
 ,   int                             fatalSeverity
 ,   int                             errorSeverity
@@ -201,7 +202,8 @@ RECLS_FNDECL(void) Recls_LogSeverities_Init(
     severities->severities[7]   =   debug3Severity;
 }
 
-RECLS_FNDECL(void) Recls_SetApiLogFunction(
+RECLS_FNDECL(void)
+Recls_SetApiLogFunction(
     recls_log_pfn_t               pfn
 ,   int                           flags
 ,   recls_log_severities_t const* severities

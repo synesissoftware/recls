@@ -4,11 +4,11 @@
  * Purpose: Main (platform-independent) implementation file for the recls API.
  *
  * Created: 16th August 2003
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -148,7 +148,8 @@ RECLS_API Recls_SearchFeedback(
 }
 
 /** Closes the given search */
-RECLS_FNDECL(void) Recls_SearchClose(hrecls_t hSrch)
+RECLS_FNDECL(void)
+Recls_SearchClose(hrecls_t hSrch)
 {
     function_scope_trace("Recls_SearchClose");
 
@@ -272,7 +273,8 @@ RECLS_API Recls_GetNextDetails(
  * File entry info structure
  */
 
-RECLS_FNDECL(void) Recls_CloseDetails(recls_entry_t fileInfo)
+RECLS_FNDECL(void)
+Recls_CloseDetails(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_CloseDetails");
 

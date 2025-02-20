@@ -4,11 +4,11 @@
  * Purpose: Main (platform-independent) implementation file for recls API.
  *
  * Created: 16th August 2003
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -95,7 +95,8 @@ inline recls_entry_t info_from_counted_info(struct counted_recls_info_t* ci)
  * file info functions
  */
 
-RECLS_FNDECL(recls_entry_t) Entry_Allocate(size_t cb)
+RECLS_FNDECL(recls_entry_t)
+Entry_Allocate(size_t cb)
 {
     // Simply allocate a lock-count prior to the main memory (but do it on an 8-byte block)
     counted_recls_info_t*   ci  =   static_cast<counted_recls_info_t*>(malloc(cb - sizeof(struct recls_entryinfo_t) + sizeof(struct counted_recls_info_t)));
@@ -118,7 +119,8 @@ RECLS_FNDECL(recls_entry_t) Entry_Allocate(size_t cb)
     return info;
 }
 
-RECLS_FNDECL(void) Entry_Release(recls_entry_t fileInfo)
+RECLS_FNDECL(void)
+Entry_Release(recls_entry_t fileInfo)
 {
     if (ss_nullptr_k != fileInfo)
     {
@@ -161,7 +163,8 @@ RECLS_API Entry_Copy(
     return RECLS_RC_OK;
 }
 
-RECLS_FNDECL(void) Entry_BlockCount(
+RECLS_FNDECL(void)
+Entry_BlockCount(
     rc_atomic_t* pcCreated
 ,   rc_atomic_t* pcShared
 )
@@ -172,6 +175,7 @@ RECLS_FNDECL(void) Entry_BlockCount(
     *pcCreated  =   RC_ReadValue(&s_createdInfoBlocks);
     *pcShared   =   RC_ReadValue(&s_sharedInfoBlocks);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

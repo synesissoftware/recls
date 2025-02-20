@@ -4,11 +4,11 @@
  * Purpose: Implementation header.
  *
  * Created: 17th August 2003
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -66,7 +66,8 @@ recls_strncpy_(
 ,   size_t              cchSrc
 );
 
-RECLS_FNDECL(size_t) recls_strlen_(
+RECLS_FNDECL(size_t)
+recls_strlen_(
     recls_char_t const* dest
 );
 
