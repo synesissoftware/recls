@@ -52,9 +52,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    11
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 5
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     117
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    12
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 1
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     118
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -380,7 +380,14 @@ public:
 
         return 0 != Recls_IsEntryReadOnly(m_entry);
     }
-    /// Indicates if the entry is on a UNC drive
+    /// Indicates if the entry is a socket.
+    bool is_socket() const STLSOFT_NOEXCEPT
+    {
+        STLSOFT_ASSERT(NULL != m_entry);
+
+        return 0 != Recls_IsEntrySocket(m_entry);
+    }
+    /// Indicates if the entry is on a UNC drive.
     bool is_unc() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);

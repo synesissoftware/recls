@@ -410,6 +410,27 @@ Recls_IsEntryUNC(recls_entry_t fileInfo)
 }
 
 RECLS_FNDECL(recls_bool_t)
+Recls_IsEntrySocket(
+    /* [in] */ recls_entry_t hEntry
+)
+{
+    function_scope_trace("Recls_IsEntrySocket");
+
+    RECLS_ASSERT(ss_nullptr_k != hEntry);
+
+#if defined(RECLS_PLATFORM_IS_UNIX) && \
+    !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+
+    return (hEntry->attributes & S_IFMT) == S_IFSOCK;
+#else /* unrecognised platform */
+
+    STLSOFT_SUPPRESS_UNUSED(hEntry);
+
+    return false;
+#endif /* platform */
+}
+
+RECLS_FNDECL(recls_bool_t)
 Recls_IsFileUNC(
     /* [in] */ recls_entry_t hEntry
 )
