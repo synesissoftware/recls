@@ -15,7 +15,7 @@
  *            - elicitation of entry properties via API function calls
  *
  * Created: 29th May 2006
- * Updated: 8th July 2024
+ * Updated: 20th February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -111,7 +111,7 @@ int main(int argc, char* argv[])
                 cch = Recls_SqueezePath(path, &squeezedPath[0], RECLS_NUM_ELEMENTS(squeezedPath));
 
                 /* ... determine type, ... */
-                isDirectory = Recls_IsFileDirectory(entry);
+                isDirectory = Recls_IsEntryDirectory(entry);
 
                 if (isDirectory)
                 {

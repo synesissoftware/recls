@@ -1445,45 +1445,72 @@ Recls_EntryExists(
     /* [in] */ recls_entry_t hEntry
 );
 
-/** Returns non-zero if the file entry is read-only.
+/** Returns non-zero if the entry is read-only.
  *
  * \ingroup group__recls
  *
- * \param hEntry The file entry info structure to test. May not be NULL
- * \retval true file entry is read-only
- * \retval false file entry is not read-only
+ * \param hEntry The entry info structure to test. May not be NULL
+ * \retval true entry is read-only
+ * \retval false entry is not read-only
  *
  * \note There is no error return
+ */
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryReadOnly(
+    /* [in] */ recls_entry_t hEntry
+);
+
+/** [DEPRECATED]
+ *
+ * \deprecated Use instead Recls_IsEntryReadOnly;
  */
 RECLS_FNDECL(recls_bool_t)
 Recls_IsFileReadOnly(
     /* [in] */ recls_entry_t hEntry
 );
 
-/** Returns non-zero if the file entry represents a directory.
+/** Returns non-zero if the entry represents a directory.
  *
  * \ingroup group__recls
  *
- * \param hEntry The file entry info structure to test. May not be NULL
- * \retval true file entry is a directory
- * \retval false file entry is not directory
+ * \param hEntry The entry info structure to test. May not be NULL
+ * \retval true entry is a directory
+ * \retval false entry is not directory
  *
  * \note There is no error return
+ */
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryDirectory(
+    /* [in] */ recls_entry_t hEntry
+);
+
+/** [DEPRECATED]
+ *
+ * \deprecated Use instead Recls_IsEntryDirectory;
  */
 RECLS_FNDECL(recls_bool_t)
 Recls_IsFileDirectory(
     /* [in] */ recls_entry_t hEntry
 );
 
-/** Returns non-zero if the file entry represents a link.
+/** Returns non-zero if the entry represents a link.
  *
  * \ingroup group__recls
  *
- * \param hEntry The file entry info structure to test. May not be NULL
- * \retval true file entry is a link
- * \retval false file entry is not link
+ * \param hEntry The entry info structure to test. May not be NULL
+ * \retval true entry is a link
+ * \retval false entry is not link
  *
  * \note There is no error return
+ */
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryLink(
+    /* [in] */ recls_entry_t hEntry
+);
+
+/** [DEPRECATED]
+ *
+ * \deprecated Use instead Recls_IsEntryLink;
  */
 RECLS_FNDECL(recls_bool_t)
 Recls_IsFileLink(
@@ -1505,15 +1532,24 @@ Recls_DoesEntryExist(
     /* [in] */ recls_entry_t hEntry
 );
 
-/** Returns non-zero if the file entry's path is UNC.
+/** Returns non-zero if the entry's path is UNC.
  *
  * \ingroup group__recls
  *
- * \param hEntry The file entry info structure to test. May not be NULL
- * \retval true file entry's path is UNC
- * \retval false file entry's path is UNC
+ * \param hEntry The entry info structure to test. May not be NULL
+ * \retval true entry's path is UNC
+ * \retval false entry's path is UNC
  *
  * \note There is no error return
+ */
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryUNC(
+    /* [in] */ recls_entry_t hEntry
+);
+
+/** [DEPRECATED]
+ *
+ * \deprecated Use instead Recls_IsEntryUNC;
  */
 RECLS_FNDECL(recls_bool_t)
 Recls_IsFileUNC(

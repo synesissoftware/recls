@@ -127,7 +127,7 @@ Recls_IsDirectoryEntryEmpty(recls_entry_t hEntry)
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_IsDirectoryEntryEmpty(%p)"), hEntry);
 
     RECLS_ASSERT(ss_nullptr_k != hEntry);
-    RECLS_ASSERT(Recls_IsFileDirectory(hEntry));
+    RECLS_ASSERT(Recls_IsEntryDirectory(hEntry));
 
     return Recls_IsDirectoryEmpty(hEntry->path.begin);
 }
@@ -170,7 +170,7 @@ Recls_CalcDirectoryEntrySize(recls_entry_t hEntry)
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_CalcDirectoryEntrySize(%p)"), hEntry);
 
     RECLS_ASSERT(ss_nullptr_k != hEntry);
-    RECLS_ASSERT(Recls_IsFileDirectory(hEntry));
+    RECLS_ASSERT(Recls_IsEntryDirectory(hEntry));
 
     return Recls_CalcDirectorySize(hEntry->path.begin);
 }

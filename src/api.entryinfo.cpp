@@ -177,7 +177,7 @@ Recls_GetUNCDriveProperty(
         ,   fileInfo->directory.begin   /* ... to start of directory. */
     };
 
-    if (!Recls_IsFileUNC(fileInfo))
+    if (!Recls_IsEntryUNC(fileInfo))
     {
         uncDrive.end = uncDrive.begin;
     }
@@ -289,9 +289,9 @@ Recls_EntryExists(recls_entry_t fileInfo)
 }
 
 RECLS_FNDECL(recls_bool_t)
-Recls_IsFileReadOnly(recls_entry_t fileInfo)
+Recls_IsEntryReadOnly(recls_entry_t fileInfo)
 {
-    function_scope_trace("Recls_IsFileReadOnly");
+    function_scope_trace("Recls_IsEntryReadOnly");
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
@@ -308,9 +308,20 @@ Recls_IsFileReadOnly(recls_entry_t fileInfo)
 }
 
 RECLS_FNDECL(recls_bool_t)
-Recls_IsFileDirectory(recls_entry_t fileInfo)
+Recls_IsFileReadOnly(
+    /* [in] */ recls_entry_t hEntry
+)
 {
-    function_scope_trace("Recls_IsFileDirectory");
+    function_scope_trace("Recls_IsFileReadOnly");
+
+    return Recls_IsEntryReadOnly(hEntry);
+}
+
+
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryDirectory(recls_entry_t fileInfo)
+{
+    function_scope_trace("Recls_IsEntryDirectory");
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
@@ -327,9 +338,19 @@ Recls_IsFileDirectory(recls_entry_t fileInfo)
 }
 
 RECLS_FNDECL(recls_bool_t)
-Recls_IsFileLink(recls_entry_t fileInfo)
+Recls_IsFileDirectory(
+    /* [in] */ recls_entry_t hEntry
+)
 {
-    function_scope_trace("Recls_IsFileLink");
+    function_scope_trace("Recls_IsFileDirectory");
+
+    return Recls_IsEntryDirectory(hEntry);
+}
+
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryLink(recls_entry_t fileInfo)
+{
+    function_scope_trace("Recls_IsEntryLink");
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
@@ -346,6 +367,16 @@ Recls_IsFileLink(recls_entry_t fileInfo)
 }
 
 RECLS_FNDECL(recls_bool_t)
+Recls_IsFileLink(
+    /* [in] */ recls_entry_t hEntry
+)
+{
+    function_scope_trace("Recls_IsFileLink");
+
+    return Recls_IsEntryLink(hEntry);
+}
+
+RECLS_FNDECL(recls_bool_t)
 Recls_DoesEntryExist(recls_entry_t hEntry)
 {
     function_scope_trace("Recls_DoesEntryExist");
@@ -356,9 +387,9 @@ Recls_DoesEntryExist(recls_entry_t hEntry)
 }
 
 RECLS_FNDECL(recls_bool_t)
-Recls_IsFileUNC(recls_entry_t fileInfo)
+Recls_IsEntryUNC(recls_entry_t fileInfo)
 {
-    function_scope_trace("Recls_IsFileUNC");
+    function_scope_trace("Recls_IsEntryUNC");
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
@@ -376,6 +407,16 @@ Recls_IsFileUNC(recls_entry_t fileInfo)
 #endif /* platform */
 
     return false;
+}
+
+RECLS_FNDECL(recls_bool_t)
+Recls_IsFileUNC(
+    /* [in] */ recls_entry_t hEntry
+)
+{
+    function_scope_trace("Recls_IsFileUNC");
+
+    return Recls_IsEntryUNC(hEntry);
 }
 
 RECLS_FNDECL(recls_time_t)

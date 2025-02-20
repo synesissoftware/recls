@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - entry class.
  *
  * Created: 18th August 2003
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    11
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 4
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     116
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 5
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     117
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -364,28 +364,28 @@ public:
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
-        return 0 != Recls_IsFileDirectory(m_entry);
+        return 0 != Recls_IsEntryDirectory(m_entry);
     }
     /// Indicates if the entry is a link.
     bool is_link() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
-        return 0 != Recls_IsFileLink(m_entry);
+        return 0 != Recls_IsEntryLink(m_entry);
     }
     /// Indicates if the entry is read-only.
     bool is_readonly() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
-        return 0 != Recls_IsFileReadOnly(m_entry);
+        return 0 != Recls_IsEntryReadOnly(m_entry);
     }
     /// Indicates if the entry is on a UNC drive
     bool is_unc() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(NULL != m_entry);
 
-        return 0 != Recls_IsFileUNC(m_entry);
+        return 0 != Recls_IsEntryUNC(m_entry);
     }
 
     /// The full path of the entry

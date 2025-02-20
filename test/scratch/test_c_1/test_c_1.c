@@ -5,7 +5,7 @@
  *          attributes, searching for files under the home directory.
  *
  * Created: 28th February 2007
- * Updated: 17th October 2024
+ * Updated: 20th February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -183,12 +183,12 @@ static void process_search(hrecls_t hSrch)
                 Recls_GetDirectoryPartProperty(info, (int)i, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
             }}
 
-            Recls_IsFileReadOnly(info);
-            Recls_IsFileDirectory(info);
-            Recls_IsFileLink(info);
+            Recls_IsEntryReadOnly(info);
+            Recls_IsEntryDirectory(info);
+            Recls_IsEntryLink(info);
 
             Recls_DoesEntryExist(info);
-            Recls_IsFileUNC(info);
+            Recls_IsEntryUNC(info);
             size = Recls_GetSizeProperty(info);
             ((void)&size);
             Recls_GetCreationTime(info);
