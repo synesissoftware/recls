@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - root_sequence class.
  *
  * Created: 25th March 2004
- * Updated: 8th July 2024
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MINOR    1
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 7
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     32
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 8
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     33
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/root_sequence.hpp
@@ -348,6 +348,15 @@ root_sequence::operator [](
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* RECLS_INCL_RECLS_CPP_HPP_ROOT_SEQUENCE */
 

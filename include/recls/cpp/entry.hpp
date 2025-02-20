@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - entry class.
  *
  * Created: 18th August 2003
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,9 +53,10 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    11
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 4
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     116
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 5
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     117
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +71,7 @@
 #include <stlsoft/shims/access/string.hpp>
 #include <platformstl/filesystem/filesystem_traits.hpp>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -80,6 +82,7 @@ namespace recls
 namespace cpp
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -592,6 +595,7 @@ stat(
     return entry::stat_impl::create(path, flags);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * comparison
  */
@@ -655,6 +659,7 @@ operator !=(
 {
     return lhs.compare(rhs) != 0;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -788,6 +793,7 @@ c_str_len_w(
 # endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 #endif /* !RECLS_PURE_API */
 
+
 ////////////////////////////////////////////////////////////////////////////
 // IOStream compatibility
 
@@ -803,6 +809,7 @@ operator <<(
 
     return s;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -867,6 +874,16 @@ namespace stlsoft
     using ::recls::cpp::c_str_len;
 }
 #endif /* !RECLS_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
+
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_ENTRY */
 
 /* ///////////////////////////// end of file //////////////////////////// */

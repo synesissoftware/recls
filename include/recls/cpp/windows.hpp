@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - Windows-specific functions.
  *
  * Created: 13th November 2010
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_WINDOWS_MAJOR    1
 # define RECLS_VER_RECLS_CPP_HPP_WINDOWS_MINOR    0
-# define RECLS_VER_RECLS_CPP_HPP_WINDOWS_REVISION 2
-# define RECLS_VER_RECLS_CPP_HPP_WINDOWS_EDIT     6
+# define RECLS_VER_RECLS_CPP_HPP_WINDOWS_REVISION 3
+# define RECLS_VER_RECLS_CPP_HPP_WINDOWS_EDIT     7
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,6 +115,15 @@ result_code_to_windows_error_code(
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_WINDOWS */
 

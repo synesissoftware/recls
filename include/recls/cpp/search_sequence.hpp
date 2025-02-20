@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - search_sequence class.
  *
  * Created: 10th September 2003
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MINOR      1
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   13
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       103
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   14
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       104
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -696,6 +696,15 @@ basic_search_sequence_const_iterator<C, T, V>::operator !=(
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* RECLS_INCL_RECLS_CPP_HPP_SEARCH_SEQUENCE */
 

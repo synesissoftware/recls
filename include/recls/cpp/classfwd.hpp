@@ -4,11 +4,11 @@
  * Purpose: Forward declarations of classes in the recls C++ mapping.
  *
  * Created: 23rd November 2011
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_MAJOR     1
 # define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_MINOR     1
-# define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_REVISION  3
-# define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_EDIT      7
+# define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_REVISION  4
+# define RECLS_VER_RECLS_CPP_HPP_CLASSFWD_EDIT      8
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,6 +132,15 @@ struct reclstl_traits<recls_char_w_t>;
 
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_CLASSFWD */
 

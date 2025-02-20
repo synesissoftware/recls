@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - utility functions.
  *
  * Created: 18th August 2003
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_MAJOR     5
 # define RECLS_VER_RECLS_CPP_HPP_UTIL_MINOR     1
-# define RECLS_VER_RECLS_CPP_HPP_UTIL_REVISION  1
-# define RECLS_VER_RECLS_CPP_HPP_UTIL_EDIT      46
+# define RECLS_VER_RECLS_CPP_HPP_UTIL_REVISION  2
+# define RECLS_VER_RECLS_CPP_HPP_UTIL_EDIT      47
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -361,6 +361,15 @@ remove_directory(
 } /* namespace cpp */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_UTIL */
 
