@@ -4,11 +4,11 @@
  * Purpose: Main (platform-independent) implementation file for recls API.
  *
  * Created: 16th August 2003
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -244,14 +244,16 @@ Recls_GetLastErrorString(
     return Recls_GetErrorString(Recls_GetLastError(hSrch), buffer, cchBuffer);
 }
 
-RECLS_FNDECL(recls_char_t const*) Recls_GetSearchCodeString(recls_rc_t rc)
+RECLS_FNDECL(recls_char_t const*)
+Recls_GetSearchCodeString(recls_rc_t rc)
 {
     function_scope_trace("Recls_GetLastErrorString");
 
     return impl::lookup_error_string_(rc, ss_nullptr_k, ss_nullptr_k);
 }
 
-RECLS_FNDECL(size_t) Recls_GetSearchCodeStringLength(recls_rc_t rc)
+RECLS_FNDECL(size_t)
+Recls_GetSearchCodeStringLength(recls_rc_t rc)
 {
     function_scope_trace("Recls_GetLastErrorString");
 
@@ -260,9 +262,8 @@ RECLS_FNDECL(size_t) Recls_GetSearchCodeStringLength(recls_rc_t rc)
     return (impl::lookup_error_string_(rc, ss_nullptr_k, &len), len);
 }
 
-RECLS_FNDECL(int) Recls_GetErrno(
-    /* [in] */ recls_rc_t rc
-)
+RECLS_FNDECL(int)
+Recls_GetErrno(recls_rc_t rc)
 {
     function_scope_trace("Recls_GetErrno");
 

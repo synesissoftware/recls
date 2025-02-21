@@ -5,11 +5,11 @@
  *          API. (Was borrowed from Pantheios.)
  *
  * Created: 21st June 2005
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -87,11 +87,13 @@ namespace impl
 # define recls_vsnprintf_(d, n, f, a)       recls_vsnprintf_a_(d, n, f, a)
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * private API
  */
 
-RECLS_FNDECL(int) recls_vsnprintf_a(
+RECLS_FNDECL(int)
+recls_vsnprintf_a(
     char*       dest
 ,   size_t      cchDest
 ,   char const* fmt
@@ -101,7 +103,8 @@ RECLS_FNDECL(int) recls_vsnprintf_a(
     return recls_vsnprintf_a_(dest, cchDest, fmt, args);
 }
 
-RECLS_FNDECL(int) recls_snprintf_a(
+RECLS_FNDECL(int)
+recls_snprintf_a(
     char*       dest
 ,   size_t      cchDest
 ,   const char* fmt
@@ -120,11 +123,13 @@ RECLS_FNDECL(int) recls_snprintf_a(
     return ret;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
 
-RECLS_FNDECL(int) recls_vsnprintf(
+RECLS_FNDECL(int)
+recls_vsnprintf(
     recls_char_t*       dest
 ,   size_t              cchDest
 ,   recls_char_t const* fmt
@@ -134,7 +139,8 @@ RECLS_FNDECL(int) recls_vsnprintf(
     return recls_vsnprintf_(dest, cchDest, fmt, args);
 }
 
-RECLS_FNDECL(int) recls_snprintf(
+RECLS_FNDECL(int)
+recls_snprintf(
     recls_char_t*       dest
 ,   size_t              cchDest
 ,   const recls_char_t* fmt
@@ -152,6 +158,7 @@ RECLS_FNDECL(int) recls_snprintf(
 
     return ret;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

@@ -4,11 +4,11 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -107,7 +107,8 @@ RECLS_CALLCONV_DEFAULT IsDirectoryEmpty_proc(
     return 0; // Cancel on any entry
 }
 
-RECLS_FNDECL(recls_bool_t) Recls_IsDirectoryEmpty(recls_char_t const* dir)
+RECLS_FNDECL(recls_bool_t)
+Recls_IsDirectoryEmpty(recls_char_t const* dir)
 {
     function_scope_trace("Recls_IsDirectoryEmpty");
 
@@ -118,14 +119,15 @@ RECLS_FNDECL(recls_bool_t) Recls_IsDirectoryEmpty(recls_char_t const* dir)
     return RECLS_RC_SEARCH_CANCELLED != rc;
 }
 
-RECLS_FNDECL(recls_bool_t) Recls_IsDirectoryEntryEmpty(recls_entry_t hEntry)
+RECLS_FNDECL(recls_bool_t)
+Recls_IsDirectoryEntryEmpty(recls_entry_t hEntry)
 {
     function_scope_trace("Recls_IsDirectoryEntryEmpty");
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_IsDirectoryEntryEmpty(%p)"), hEntry);
 
     RECLS_ASSERT(ss_nullptr_k != hEntry);
-    RECLS_ASSERT(Recls_IsFileDirectory(hEntry));
+    RECLS_ASSERT(Recls_IsEntryDirectory(hEntry));
 
     return Recls_IsDirectoryEmpty(hEntry->path.begin);
 }
@@ -145,7 +147,8 @@ RECLS_CALLCONV_DEFAULT CalcDirectorySize_proc(
     return 1; // Never cancel
 }
 
-RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySize(recls_char_t const* dir)
+RECLS_FNDECL(recls_filesize_t)
+Recls_CalcDirectorySize(recls_char_t const* dir)
 {
     function_scope_trace("Recls_CalcDirectorySize");
 
@@ -159,19 +162,21 @@ RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySize(recls_char_t const* dir)
     return total;
 }
 
-RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectoryEntrySize(recls_entry_t hEntry)
+RECLS_FNDECL(recls_filesize_t)
+Recls_CalcDirectoryEntrySize(recls_entry_t hEntry)
 {
     function_scope_trace("Recls_CalcDirectoryEntrySize");
 
     recls_debug0_trace_printf_(RECLS_LITERAL("Recls_CalcDirectoryEntrySize(%p)"), hEntry);
 
     RECLS_ASSERT(ss_nullptr_k != hEntry);
-    RECLS_ASSERT(Recls_IsFileDirectory(hEntry));
+    RECLS_ASSERT(Recls_IsEntryDirectory(hEntry));
 
     return Recls_CalcDirectorySize(hEntry->path.begin);
 }
 
-RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySizeFeedback(
+RECLS_FNDECL(recls_filesize_t)
+Recls_CalcDirectorySizeFeedback(
     recls_char_t const*         dir
 ,   recls_uint32_t              flags
 ,   hrecls_progress_fn_t        pfn
@@ -193,6 +198,7 @@ RECLS_FNDECL(recls_filesize_t) Recls_CalcDirectorySizeFeedback(
 
     return total;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

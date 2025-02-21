@@ -4,11 +4,11 @@
  * Purpose: recls API functions pertaining to entry info.
  *
  * Created: 16th August 2003
- * Updated: 9th July 2024
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -36,6 +36,7 @@
 # include <sys/stat.h>
 #endif /* UNIX */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -61,8 +62,8 @@ always_false_()
     return 0;
 }
 #endif
-
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -78,11 +79,13 @@ always_false_()
 # error platform is not recognised
 #endif /* platform */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * file entry info structure
  */
 
-RECLS_FNDECL(size_t) Recls_GetPathProperty(
+RECLS_FNDECL(size_t)
+Recls_GetPathProperty(
     recls_entry_t   fileInfo
 ,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
@@ -95,7 +98,8 @@ RECLS_FNDECL(size_t) Recls_GetPathProperty(
     return recls_get_string_property_(&fileInfo->path, buffer, cchBuffer);
 }
 
-RECLS_FNDECL(size_t) Recls_GetSearchRelativePathProperty(
+RECLS_FNDECL(size_t)
+Recls_GetSearchRelativePathProperty(
     recls_entry_t   fileInfo
 ,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
@@ -108,7 +112,8 @@ RECLS_FNDECL(size_t) Recls_GetSearchRelativePathProperty(
     return recls_get_string_property_(&fileInfo->searchRelativePath, buffer, cchBuffer);
 }
 
-RECLS_FNDECL(size_t) Recls_GetDirectoryProperty(
+RECLS_FNDECL(size_t)
+Recls_GetDirectoryProperty(
     recls_entry_t   fileInfo
 ,   recls_char_t*   buffer
 ,   size_t          cchBuffer
@@ -121,7 +126,8 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryProperty(
     return recls_get_string_property_(&fileInfo->directory, buffer, cchBuffer);
 }
 
-RECLS_FNDECL(size_t) Recls_GetDirectoryPathProperty(
+RECLS_FNDECL(size_t)
+Recls_GetDirectoryPathProperty(
     recls_entry_t   fileInfo
 ,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
@@ -140,7 +146,8 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryPathProperty(
     return recls_get_string_property_(&directoryPath, buffer, cchBuffer);
 }
 
-RECLS_FNDECL(size_t) Recls_GetSearchDirectoryProperty(
+RECLS_FNDECL(size_t)
+Recls_GetSearchDirectoryProperty(
     recls_entry_t   fileInfo
 ,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
@@ -153,7 +160,8 @@ RECLS_FNDECL(size_t) Recls_GetSearchDirectoryProperty(
     return recls_get_string_property_(&fileInfo->searchDirectory, buffer, cchBuffer);
 }
 
-RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
+RECLS_FNDECL(size_t)
+Recls_GetUNCDriveProperty(
     recls_entry_t   fileInfo
 ,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
@@ -169,7 +177,7 @@ RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
         ,   fileInfo->directory.begin   /* ... to start of directory. */
     };
 
-    if (!Recls_IsFileUNC(fileInfo))
+    if (!Recls_IsEntryUNC(fileInfo))
     {
         uncDrive.end = uncDrive.begin;
     }
@@ -177,7 +185,8 @@ RECLS_FNDECL(size_t) Recls_GetUNCDriveProperty(
     return recls_get_string_property_(&uncDrive, buffer, cchBuffer);
 }
 
-RECLS_FNDECL(size_t) Recls_GetFileProperty(
+RECLS_FNDECL(size_t)
+Recls_GetFileProperty(
     recls_entry_t   fileInfo
 ,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
@@ -196,7 +205,8 @@ RECLS_FNDECL(size_t) Recls_GetFileProperty(
     return recls_get_string_property_(&file, buffer, cchBuffer);
 }
 
-RECLS_FNDECL(size_t) Recls_GetFileNameProperty(
+RECLS_FNDECL(size_t)
+Recls_GetFileNameProperty(
     recls_entry_t   fileInfo
 ,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
@@ -209,7 +219,8 @@ RECLS_FNDECL(size_t) Recls_GetFileNameProperty(
     return recls_get_string_property_(&fileInfo->fileName, buffer, cchBuffer);
 }
 
-RECLS_FNDECL(size_t) Recls_GetFileExtProperty(
+RECLS_FNDECL(size_t)
+Recls_GetFileExtProperty(
     recls_entry_t   fileInfo
 ,   recls_char_t    buffer[]
 ,   size_t          cchBuffer
@@ -222,7 +233,8 @@ RECLS_FNDECL(size_t) Recls_GetFileExtProperty(
     return recls_get_string_property_(&fileInfo->fileExt, buffer, cchBuffer);
 }
 
-RECLS_FNDECL(size_t) Recls_GetDirectoryPartProperty(
+RECLS_FNDECL(size_t)
+Recls_GetDirectoryPartProperty(
     recls_entry_t   fileInfo
 ,   int             part
 ,   recls_char_t    buffer[]
@@ -247,7 +259,8 @@ RECLS_FNDECL(size_t) Recls_GetDirectoryPartProperty(
     }
 }
 
-RECLS_FNDECL(recls_bool_t) Recls_EntryExists(recls_entry_t fileInfo)
+RECLS_FNDECL(recls_bool_t)
+Recls_EntryExists(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_EntryExists");
 
@@ -275,9 +288,10 @@ RECLS_FNDECL(recls_bool_t) Recls_EntryExists(recls_entry_t fileInfo)
     return false;
 }
 
-RECLS_FNDECL(recls_bool_t) Recls_IsFileReadOnly(recls_entry_t fileInfo)
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryReadOnly(recls_entry_t fileInfo)
 {
-    function_scope_trace("Recls_IsFileReadOnly");
+    function_scope_trace("Recls_IsEntryReadOnly");
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
@@ -293,9 +307,21 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileReadOnly(recls_entry_t fileInfo)
 #endif /* platform */
 }
 
-RECLS_FNDECL(recls_bool_t) Recls_IsFileDirectory(recls_entry_t fileInfo)
+RECLS_FNDECL(recls_bool_t)
+Recls_IsFileReadOnly(
+    /* [in] */ recls_entry_t hEntry
+)
 {
-    function_scope_trace("Recls_IsFileDirectory");
+    function_scope_trace("Recls_IsFileReadOnly");
+
+    return Recls_IsEntryReadOnly(hEntry);
+}
+
+
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryDirectory(recls_entry_t fileInfo)
+{
+    function_scope_trace("Recls_IsEntryDirectory");
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
@@ -311,9 +337,20 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileDirectory(recls_entry_t fileInfo)
 #endif /* platform */
 }
 
-RECLS_FNDECL(recls_bool_t) Recls_IsFileLink(recls_entry_t fileInfo)
+RECLS_FNDECL(recls_bool_t)
+Recls_IsFileDirectory(
+    /* [in] */ recls_entry_t hEntry
+)
 {
-    function_scope_trace("Recls_IsFileLink");
+    function_scope_trace("Recls_IsFileDirectory");
+
+    return Recls_IsEntryDirectory(hEntry);
+}
+
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryLink(recls_entry_t fileInfo)
+{
+    function_scope_trace("Recls_IsEntryLink");
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
@@ -329,7 +366,18 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileLink(recls_entry_t fileInfo)
 #endif /* platform */
 }
 
-RECLS_FNDECL(recls_bool_t) Recls_DoesEntryExist(recls_entry_t hEntry)
+RECLS_FNDECL(recls_bool_t)
+Recls_IsFileLink(
+    /* [in] */ recls_entry_t hEntry
+)
+{
+    function_scope_trace("Recls_IsFileLink");
+
+    return Recls_IsEntryLink(hEntry);
+}
+
+RECLS_FNDECL(recls_bool_t)
+Recls_DoesEntryExist(recls_entry_t hEntry)
 {
     function_scope_trace("Recls_DoesEntryExist");
 
@@ -338,9 +386,10 @@ RECLS_FNDECL(recls_bool_t) Recls_DoesEntryExist(recls_entry_t hEntry)
     return recls_file_exists_(hEntry->path.begin);
 }
 
-RECLS_FNDECL(recls_bool_t) Recls_IsFileUNC(recls_entry_t fileInfo)
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryUNC(recls_entry_t fileInfo)
 {
-    function_scope_trace("Recls_IsFileUNC");
+    function_scope_trace("Recls_IsEntryUNC");
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
@@ -360,7 +409,39 @@ RECLS_FNDECL(recls_bool_t) Recls_IsFileUNC(recls_entry_t fileInfo)
     return false;
 }
 
-RECLS_FNDECL(recls_time_t) Recls_GetCreationTime(recls_entry_t fileInfo)
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntrySocket(
+    /* [in] */ recls_entry_t hEntry
+)
+{
+    function_scope_trace("Recls_IsEntrySocket");
+
+    RECLS_ASSERT(ss_nullptr_k != hEntry);
+
+#if defined(RECLS_PLATFORM_IS_UNIX) && \
+    !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+
+    return (hEntry->attributes & S_IFMT) == S_IFSOCK;
+#else /* unrecognised platform */
+
+    STLSOFT_SUPPRESS_UNUSED(hEntry);
+
+    return false;
+#endif /* platform */
+}
+
+RECLS_FNDECL(recls_bool_t)
+Recls_IsFileUNC(
+    /* [in] */ recls_entry_t hEntry
+)
+{
+    function_scope_trace("Recls_IsFileUNC");
+
+    return Recls_IsEntryUNC(hEntry);
+}
+
+RECLS_FNDECL(recls_time_t)
+Recls_GetCreationTime(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_GetCreationTime");
 
@@ -369,7 +450,8 @@ RECLS_FNDECL(recls_time_t) Recls_GetCreationTime(recls_entry_t fileInfo)
     return fileInfo->GetCreationTime_;
 }
 
-RECLS_FNDECL(recls_time_t) Recls_GetLastStatusChangeTime(recls_entry_t fileInfo)
+RECLS_FNDECL(recls_time_t)
+Recls_GetLastStatusChangeTime(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_GetLastStatusChangeTime");
 
@@ -378,7 +460,8 @@ RECLS_FNDECL(recls_time_t) Recls_GetLastStatusChangeTime(recls_entry_t fileInfo)
     return fileInfo->GetLastStatusChangeTime_;
 }
 
-RECLS_FNDECL(recls_filesize_t) Recls_GetSizeProperty(recls_entry_t fileInfo)
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetSizeProperty(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_GetSizeProperty");
 
@@ -387,7 +470,8 @@ RECLS_FNDECL(recls_filesize_t) Recls_GetSizeProperty(recls_entry_t fileInfo)
     return fileInfo->size;
 }
 
-RECLS_FNDECL(recls_time_t) Recls_GetModificationTime(recls_entry_t fileInfo)
+RECLS_FNDECL(recls_time_t)
+Recls_GetModificationTime(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_GetModificationTime");
 
@@ -396,7 +480,8 @@ RECLS_FNDECL(recls_time_t) Recls_GetModificationTime(recls_entry_t fileInfo)
     return fileInfo->modificationTime;
 }
 
-RECLS_FNDECL(recls_time_t) Recls_GetLastAccessTime(recls_entry_t fileInfo)
+RECLS_FNDECL(recls_time_t)
+Recls_GetLastAccessTime(recls_entry_t fileInfo)
 {
     function_scope_trace("Recls_GetLastAccessTime");
 
@@ -404,6 +489,7 @@ RECLS_FNDECL(recls_time_t) Recls_GetLastAccessTime(recls_entry_t fileInfo)
 
     return fileInfo->lastAccessTime;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

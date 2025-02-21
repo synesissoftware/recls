@@ -4,11 +4,11 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 9th July 2024
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,7 +52,8 @@ using ::recls::impl::recls_debug2_trace_printf_;
  * extended API functions
  */
 
-RECLS_FNDECL(size_t) Recls_DeriveRelativePath(
+RECLS_FNDECL(size_t)
+Recls_DeriveRelativePath(
     recls_char_t const* origin
 ,   recls_char_t const* target
 ,   recls_char_t*       result

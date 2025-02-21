@@ -4,11 +4,11 @@
  * Purpose: Platform-independent utility functions for recls API.
  *
  * Created: 17th August 2003
- * Updated: 8th July 2024
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -176,12 +176,14 @@ RECLS_LINKAGE_C size_t recls_align_up_size_(
 
 #if defined(RECLS_COMPILER_IS_DMC) || \
     defined(RECLS_COMPILER_IS_WATCOM)
-RECLS_FNDECL(size_t) recls_get_string_property_(
+RECLS_FNDECL(size_t)
+recls_get_string_property_(
     struct recls_strptrs_t const*       ptrs
 ,   recls_char_t *                      buffer
 ,   size_t                              cchBuffer
 #else /* ? compiler */
-RECLS_FNDECL(size_t) recls_get_string_property_(
+RECLS_FNDECL(size_t)
+recls_get_string_property_(
     struct recls_strptrs_t const* const ptrs
 ,   recls_char_t *const                 buffer
 ,   size_t const                        cchBuffer

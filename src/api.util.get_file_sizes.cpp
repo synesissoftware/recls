@@ -4,11 +4,11 @@
  * Purpose: recls API utility functions.
  *
  * Created: 10th February 2010
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -32,6 +32,7 @@
 
 #include "impl.trace.h"
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -41,24 +42,29 @@ namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * extended API functions
  */
 
-RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeGigaBytes(recls_filesize_t size)
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeGigaBytes(recls_filesize_t size)
 {
     return size / (1024 * 1024 * 1024);
 }
 
-RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeMegaBytes(recls_filesize_t size)
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeMegaBytes(recls_filesize_t size)
 {
     return size / (1024 * 1024);
 }
 
-RECLS_FNDECL(recls_filesize_t) Recls_GetFileSizeKiloBytes(recls_filesize_t size)
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeKiloBytes(recls_filesize_t size)
 {
     return size / (1024);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

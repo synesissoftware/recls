@@ -4,11 +4,11 @@
  * Purpose: This file contains the Windows versions of recls API.
  *
  * Created: 16th August 2003
- * Updated: 30th December 2023
+ * Updated: 20th February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -165,9 +165,12 @@ using ::recls::impl::recls_debug2_trace_printf_;
  * property elicitation
  */
 
-RECLS_FNDECL(size_t) Recls_GetShortFileProperty(    recls_entry_t   fileInfo
-                                                ,   recls_char_t*   buffer
-                                                ,   size_t          cchBuffer)
+RECLS_FNDECL(size_t)
+Recls_GetShortFileProperty(
+    recls_entry_t   fileInfo
+,   recls_char_t*   buffer
+,   size_t          cchBuffer
+)
 {
     function_scope_trace("Recls_GetShortFileProperty");
 
@@ -176,8 +179,11 @@ RECLS_FNDECL(size_t) Recls_GetShortFileProperty(    recls_entry_t   fileInfo
     return recls_get_string_property_(&fileInfo->shortFile, buffer, cchBuffer);
 }
 
-RECLS_FNDECL(void) Recls_GetDriveProperty(  recls_entry_t   fileInfo
-                                        ,   recls_char_t*   pchDrive)
+RECLS_FNDECL(void)
+Recls_GetDriveProperty(
+    recls_entry_t   fileInfo
+,   recls_char_t*   pchDrive
+)
 {
     function_scope_trace("Recls_GetDriveProperty");
 
