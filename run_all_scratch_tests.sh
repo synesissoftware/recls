@@ -8,6 +8,7 @@ MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
 ListOnly=0
 RunMake=1
+Verbosity=${XTESTS_VERBOSITY:-${TEST_VERBOSITY:-3}}
 
 
 # ##########################################################
@@ -23,6 +24,11 @@ while [[ $# -gt 0 ]]; do
     -M|--no-make)
 
       RunMake=0
+      ;;
+    --verbosity)
+
+      shift
+      Verbosity=$1
       ;;
     --help)
 
@@ -45,6 +51,9 @@ Flags/options:
     -M
     --no-make
         does not execute CMake and make before running tests
+
+    --verbosity <verbosity>
+        specifies an explicit verbosity for the unit-test(s)
 
 
     standard flags:
@@ -116,8 +125,14 @@ if [ $status -eq 0 ]; then
       continue
     fi
 
-    echo
-    echo "executing $f:"
+    if [ $Verbosity -ge 3 ]; then
+
+      echo
+    fi
+    if [ $Verbosity -ge 2 ]; then
+
+      echo "executing $f:"
+    fi
 
     if $f; then
 

@@ -4,11 +4,11 @@
  * Purpose: Return codes for the  recls API.
  *
  * Created: 15th August 2003
- * Updated: 30th December 2023
+ * Updated: 23rd February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -30,7 +30,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MINOR      7
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       38
+# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       39
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/retcodes.h
@@ -48,6 +48,7 @@ namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper macros
  */
@@ -60,6 +61,7 @@ namespace recls
 #  define RECLS_STATIC_CAST_(t, v)              ((t)(v))
 # endif /* __cplusplus */
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * error codes
@@ -125,8 +127,8 @@ namespace recls
 
 /** A rooted pattern must not be specified with other patterns */
 #define RECLS_RC_ROOTED_PATHS_IN_PATTERNS                   RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1025))
-
 /** @} */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -136,7 +138,14 @@ namespace recls
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_RECLS_H_RECLS */
 

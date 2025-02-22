@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  10th January 2025
+# Updated:  23rd February 2025
 #
 # ######################################################################## #
 
@@ -76,7 +76,7 @@ endif(MSVC)
 
 
 # ##########################################################
-# dependencies, includes, options
+# dependencies, features, includes, and options
 
 # ################################################
 # includes - 1
@@ -87,22 +87,22 @@ include(TargetMacros)
 
 
 # ################################################
-# dependencies and options
+# dependencies, features, and options
 
 option(BUILD_EXAMPLES "Build examples" ON)
+
 
 # ######################################
 # dependencies
 #
 # required:
+# - STLSoft;
+# - xTests - required for testing;
 #
 # optional:
 # - b64 - may be needed by Pantheios;
-# - STLSoft - required unless NO_B64_CPP_API is specified, and by xTests
-#    (for testing);
 # - Pantheios - ...
-# - shwild - ...
-# - xTests - required for testing
+# - shwild - required for testing;
 
 
 # ##############################
@@ -137,6 +137,18 @@ endif()
 
 if(DEFINED STLSOFT_INCLUDE_DIR)
 
+	if(BUILD_TESTING)
+		find_package(STLSoft REQUIRED)
+
+		if(NOT STLSoft_FOUND)
+
+			message(FATAL_ERROR "When specifying STLSOFT explicitly it it still required to have an existing CMake installation of STLSoft in testing to satisfy xTest's dependency requirements. The specified STLSoft will be used for all compilation")
+		else()
+
+			message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) - required only to enable xTests package; the current project's header files will be used for all compilation")
+		endif()
+	endif(BUILD_TESTING)
+
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
 
@@ -151,6 +163,12 @@ if(BUILD_TESTING)
 	if(b64_FOUND)
 
 		message("-- CMake package b64 found (version ${b64_VERSION})")
+
+		add_compile_definitions(HAS_b64)
+	else(b64_FOUND)
+
+		add_compile_definitions(PANTHEIOS_NO_B64)
+		add_compile_definitions(RECLS_NO_B64)
 	endif(b64_FOUND)
 endif(BUILD_TESTING)
 
@@ -179,7 +197,22 @@ if(BUILD_TESTING)
 	if(shwild_FOUND)
 
 		message("-- CMake package shwild found (version ${shwild_VERSION})")
+
+		add_compile_definitions(HAS_shwild)
+		add_compile_definitions(PANTHEIOS_HAS_SHWILD)
+		add_compile_definitions(RECLS_HAS_SHWILD)
+		add_compile_definitions(XTESTS_HAS_SHWILD)
+	else(shwild_FOUND)
+
+		add_compile_definitions(PANTHEIOS_NO_SHWILD)
+		add_compile_definitions(RECLS_NO_SHWILD)
+		add_compile_definitions(XTESTS_NO_SHWILD)
 	endif(shwild_FOUND)
+else(BUILD_TESTING)
+
+	add_compile_definitions(PANTHEIOS_NO_SHWILD)
+	add_compile_definitions(RECLS_NO_SHWILD)
+	add_compile_definitions(XTESTS_NO_SHWILD)
 endif(BUILD_TESTING)
 
 
@@ -188,7 +221,7 @@ endif(BUILD_TESTING)
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.25)
+	set(xTests_REQUIRED_VERSION_ 0.26)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
@@ -211,7 +244,7 @@ include(GNUInstallDirs)
 # targets
 
 # ################################################
-# main library
+# main libraries
 
 add_subdirectory(src)
 

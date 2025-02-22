@@ -4,11 +4,11 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 23rd October 2024
+ * Updated: 23rd February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      22
 # define RECLS_VER_RECLS_H_RECLS_REVISION   1
-# define RECLS_VER_RECLS_H_RECLS_EDIT       139
+# define RECLS_VER_RECLS_H_RECLS_EDIT       140
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -135,11 +135,12 @@
 #define RECLS_VER_1_10_0_ALPHA_8                            0x010a0008
 #define RECLS_VER_1_10_0_ALPHA_9                            0x010a0009
 #define RECLS_VER_1_10_0_ALPHA_10                           0x010a000a
+#define RECLS_VER_1_10_0_B01                                0x010a0081
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_ALPHA_10
+#define RECLS_VER               RECLS_VER_1_10_0_B01
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -379,7 +380,6 @@ namespace borland_compatibility
         }
     };
     static compatibility_initialiser s_init;
-
 } /* namespace borland_compatibility */
 
 # pragma warn .8026
@@ -879,8 +879,8 @@ Recls_GetWildcardsAll(void);
 RECLS_FNDECL(recls_char_t const*)
 Recls1_FileSystem_GetWildcardsAll(void);
 #endif /* 0 */
-
 /** @} */
+
 
 /***************************************
  * Search control
@@ -1010,6 +1010,8 @@ RECLS_API Recls1_FileSystem_CloseSearch(
  *
  * \pre (NULL != path)
  * \pre (NULL != phEntry)
+ *
+ * \see Recls_CloseDetails
  */
 RECLS_API Recls_Stat(
     /* [in] */ recls_char_t const*  path
@@ -1025,9 +1027,8 @@ RECLS_API Recls1_FileSystem_Stat(
 ,   /* [out] */ Recls1_entry_t*     pentry
 );
 #endif /* 0 */
-
-
 /** @} */
+
 
 /***************************************
  * Search enumeration
@@ -1073,6 +1074,8 @@ RECLS_API Recls1_Search_Next(
  * \retval RECLS_RC_OK Position was advanced; search handle can be queried for details
  * \retval RECLS_RC_NO_MORE_DATA There are no more items in the search
  * \retval Any other status code indicates an error
+ *
+ * \see Recls_CloseDetails
  */
 RECLS_API Recls_GetDetails(
     /* [in] */ hrecls_t         hSrch
@@ -1093,13 +1096,15 @@ RECLS_API Recls_GetDetails(
  * \return Status code
  * \retval RECLS_RC_OK Position was advanced; search handle can be queried for details
  * \retval Any other status code indicates an error
+ *
+ * \see Recls_CloseDetails
  */
 RECLS_API Recls_GetNextDetails(
     /* [in] */ hrecls_t         hSrch
 ,   /* [out] */ recls_entry_t*  phEntry
 );
-
 /** @} */
+
 
 /***************************************
  * File entry information
@@ -1132,13 +1137,15 @@ Recls_CloseDetails(
  * \return Status code
  * \retval RECLS_RC_OK Entry was generated.
  * \retval Any other status code indicates an error
+ *
+ * \see Recls_CloseDetails
  */
 RECLS_API Recls_CopyDetails(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [out] */ recls_entry_t*  phEntry
 );
-
 /** @} */
+
 
 /***************************************
  * Error handling
@@ -1228,8 +1235,8 @@ RECLS_FNDECL(int)
 Recls_GetErrno(
     /* [in] */ recls_rc_t rc
 );
-
 /** @} */
+
 
 /***************************************
  * Property elicitation
@@ -1642,8 +1649,8 @@ Recls_GetChecksum(
     /* [in] */ recls_entry_t hEntry
 );
 #endif /* 0 */
-
 /** @} */
+
 
 /***************************************
  * Logging
@@ -1672,16 +1679,16 @@ typedef void (RECLS_CALLCONV_DEFAULT* recls_log_pfn_t)(
 );
 
 #ifndef RECLS_NO_NAMESPACE
-typedef recls_log_pfn_t                 log_pfn_t;
+typedef recls_log_pfn_t                                     log_pfn_t;
 #endif /* !RECLS_NO_NAMESPACE */
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 struct recls_log_severities_t;
 
 # ifndef RECLS_NO_NAMESPACE
-typedef recls_log_severities_t          log_severities_t;
+typedef recls_log_severities_t                              log_severities_t;
 # elif !defined(__cplusplus)
-typedef struct recls_log_severities_t   recls_log_severities_t;
+typedef struct recls_log_severities_t                       recls_log_severities_t;
 # endif /* __cplusplus */
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
@@ -1876,8 +1883,8 @@ Recls_SetApiLogFunction(
 ,   int                             flags
 ,   recls_log_severities_t const*   severities
 );
-
 /** @} */
+
 
 /***************************************
  * Extended API functions
@@ -1955,8 +1962,8 @@ Recls_CalcDirectorySizeFeedback(
 ,   /* [in] */ hrecls_progress_fn_t     pfn
 ,   /* [in] */ recls_process_fn_param_t param
 );
-
 /** @} */
+
 
 /***************************************
  * Size functions
@@ -1988,8 +1995,8 @@ Recls_GetFileSizeMegaBytes(recls_filesize_t size);
  */
 RECLS_FNDECL(recls_filesize_t)
 Recls_GetFileSizeKiloBytes(recls_filesize_t size);
-
 /** @} */
+
 
 /***************************************
  * Path functions
@@ -2105,7 +2112,6 @@ RECLS_API Recls_RemoveDirectory(
 ,   /* [in] */ int                          flags   /* = 0 */
 ,   /* [out] */ recls_directoryResults_t*   results /* = NULL */
 );
-
 /** @} */
 
 
@@ -2124,22 +2130,29 @@ namespace stlsoft
 {
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
+
  /* recls_root_t */
 
-inline RECLS_QUAL(recls_char_t) const* c_str_ptr(RECLS_QUAL(recls_root_t) const &root)
+inline
+RECLS_QUAL(recls_char_t) const*
+c_str_ptr(RECLS_QUAL(recls_root_t) const &root)
 {
     return root.name;
 }
 
 #ifdef RECLS_CHAR_TYPE_IS_CHAR
-inline RECLS_QUAL(recls_char_t) const* c_str_ptr_a(RECLS_QUAL(recls_root_t) const &root)
+inline
+RECLS_QUAL(recls_char_t) const*
+c_str_ptr_a(RECLS_QUAL(recls_root_t) const &root)
 {
     return c_str_ptr(root);
 }
 #endif /* RECLS_CHAR_TYPE_IS_CHAR */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-inline RECLS_QUAL(recls_char_t) const* c_str_ptr_w(RECLS_QUAL(recls_root_t) const &root)
+inline
+RECLS_QUAL(recls_char_t) const*
+c_str_ptr_w(RECLS_QUAL(recls_root_t) const &root)
 {
     return c_str_ptr(root);
 }
@@ -2149,18 +2162,24 @@ inline RECLS_QUAL(recls_char_t) const* c_str_ptr_w(RECLS_QUAL(recls_root_t) cons
 
  /* recls_rc_t */
 
-inline RECLS_QUAL(recls_char_t) const* c_str_ptr(RECLS_QUAL(recls_rc_t) rc)
+inline
+RECLS_QUAL(recls_char_t) const*
+c_str_ptr(RECLS_QUAL(recls_rc_t) rc)
 {
     return RECLS_QUAL(Recls_GetSearchCodeString)(rc);
 }
 #ifdef RECLS_CHAR_TYPE_IS_CHAR
-inline RECLS_QUAL(recls_char_t) const* c_str_ptr_a(RECLS_QUAL(recls_rc_t) rc)
+inline
+RECLS_QUAL(recls_char_t) const*
+c_str_ptr_a(RECLS_QUAL(recls_rc_t) rc)
 {
     return c_str_ptr(rc);
 }
 #endif /* RECLS_CHAR_TYPE_IS_CHAR */
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-inline RECLS_QUAL(recls_char_t) const* c_str_ptr_w(RECLS_QUAL(recls_rc_t) rc)
+inline
+RECLS_QUAL(recls_char_t) const*
+c_str_ptr_w(RECLS_QUAL(recls_rc_t) rc)
 {
     return c_str_ptr(rc);
 }
@@ -2169,46 +2188,56 @@ inline RECLS_QUAL(recls_char_t) const* c_str_ptr_w(RECLS_QUAL(recls_rc_t) rc)
 # if defined(RECLS_NO_NAMESPACE)
 inline recls_char_t const* c_str_data(recls_rc_t rc)
 # else /* ? RECLS_NO_NAMESPACE */
-inline RECLS_QUAL(recls_char_t) const* c_str_data(RECLS_QUAL(recls_rc_t) rc)
+inline
+RECLS_QUAL(recls_char_t) const*
+c_str_data(RECLS_QUAL(recls_rc_t) rc)
 # endif /* RECLS_NO_NAMESPACE */
 {
     return RECLS_QUAL(Recls_GetSearchCodeString)(rc);
 }
 #ifdef RECLS_CHAR_TYPE_IS_CHAR
-inline RECLS_QUAL(recls_char_t) const* c_str_data_a(RECLS_QUAL(recls_rc_t) rc)
+inline
+RECLS_QUAL(recls_char_t) const*
+c_str_data_a(RECLS_QUAL(recls_rc_t) rc)
 {
     return c_str_data(rc);
 }
 #endif /* RECLS_CHAR_TYPE_IS_CHAR */
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-inline RECLS_QUAL(recls_char_t) const* c_str_data_w(RECLS_QUAL(recls_rc_t) rc)
+inline
+RECLS_QUAL(recls_char_t) const*
+c_str_data_w(RECLS_QUAL(recls_rc_t) rc)
 {
     return c_str_data(rc);
 }
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-inline size_t c_str_len(RECLS_QUAL(recls_rc_t) rc)
+inline
+size_t
+c_str_len(RECLS_QUAL(recls_rc_t) rc)
 {
     return RECLS_QUAL(Recls_GetSearchCodeStringLength)(rc);
 }
 #ifdef RECLS_CHAR_TYPE_IS_CHAR
-inline size_t c_str_len_a(RECLS_QUAL(recls_rc_t) rc)
+inline
+size_t
+c_str_len_a(RECLS_QUAL(recls_rc_t) rc)
 {
     return c_str_len(rc);
 }
 #endif /* RECLS_CHAR_TYPE_IS_CHAR */
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-inline size_t c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
+inline
+size_t
+c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 {
     return c_str_len(rc);
 }
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-
 # ifndef _STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 # endif /* !_STLSOFT_NO_NAMESPACE */
-
 #endif /* __cplusplus */
 
 

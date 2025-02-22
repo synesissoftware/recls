@@ -3,7 +3,7 @@ recls - Changes
 ---------------
 
 ; Created:  28th May 2006
-; Updated:  23rd October 2024
+; Updated:  23rd February 2025
 
 ============================================================================
 
@@ -17,6 +17,34 @@ recls - Changes
     *******************************************************************
 
 
+recls 1.10.1 (beta 1) released - 23rd February 2025
+===================================================
+
+Summary:
+--------
+
+ * added `Recls_IsEntrySocket()` API function and refactored Entry API;
+ * Ensured compatibility with Pantheios;
+ * Updated dependency requirements;
+
+Details:
+--------
+
+Added `Recls_IsEntrySocket()` API function and refactored Entry API:
+ * optionally incorporates **b64** via CMake;
+ * added `Recls_IsEntrySocket()` and `recls::entry#is_socket()`;
+ * added component test **test.component.util.cpp.is_socket**;
+ * renamed API functions `Recls_IsFile*()` => `Recls_IsEntry*()`, and added backwards-compatible functions;
+
+Ensured compatibility with Pantheios:
+ * optionally incorporates **b64** via CMake;
+ * **test.scratch.with_pantheios** adjusted to ensure full functionality;
+
+Updated dependency requirements:
+ * now depends on 1.11.1-beta2+ of **STLSoft**;
+ * now depends on 0.26.0-beta3+ of **xTests**;
+
+
 recls 1.10.1 (alpha 9) released - 23rd October 2024
 ===================================================
 
@@ -25,7 +53,6 @@ Summary:
 
  * Project boilerplate improvements;
  * Updated dependency requirements;
-
 
 Details:
 --------
@@ -46,7 +73,6 @@ Summary:
  * CMake build scripts enhancements;
  * Visual C++ (19xx+) compatibility;
 
-
 Details:
 --------
 
@@ -65,7 +91,6 @@ Summary:
  * CMake build scripts enhancements;
  * Tidying of component / scratch / unit test programs;
  * ensuring all **recls/cpp/\*.hpp** files are self-sufficient;
-
 
 Details:
 --------
@@ -88,7 +113,6 @@ Summary:
  * Visual C++ 17 (2022) compatibility;
  * CMake Windows compatibility;
  * GCC compatibility improvements;
-
 
 Details:
 --------

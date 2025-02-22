@@ -1,6 +1,14 @@
 # recls - History
 
 
+23rd February 2025 - 1.10.1 beta1
+---------------------------------
+
+ * added `Recls_IsEntrySocket()` API function and refactored Entry API;
+ * Ensured compatibility with Pantheios;
+ * Updated dependency requirements;
+
+
 23rd October 2024 - 1.10.0 alpha9
 ---------------------------------
 

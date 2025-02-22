@@ -4,11 +4,11 @@
  * Purpose: Platform discrimination for recls API.
  *
  * Created: 18th August 2003
- * Updated: 30th December 2023
+ * Updated: 23rd February 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -25,10 +25,10 @@
 
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_MAJOR     3
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_MINOR     7
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_REVISION  2
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_EDIT      39
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_MAJOR    3
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_MINOR    7
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_REVISION 2
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_EDIT     40
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform_types.h
@@ -57,6 +57,7 @@
 # error Platform not (yet) recognised
 #endif /* platform */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -65,6 +66,7 @@
 namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -251,6 +253,7 @@ struct recls_entryinfo_t
 };
 #endif /* !RECLS_PURE_API */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
  */
@@ -427,10 +430,16 @@ namespace stlsoft
 #  endif /* !_STLSOFT_NO_NAMESPACE */
 
 # endif /* __cplusplus */
-
 #endif /* !RECLS_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* RECLS_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* !RECLS_INCL_RECLS_INTERNAL_H_PLATFORM_TYPES */
 

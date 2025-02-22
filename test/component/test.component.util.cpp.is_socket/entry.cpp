@@ -4,7 +4,7 @@
  * Purpose: Tests `recls::entry#is_socket()`.
  *
  * Created: 20th February 2025
- * Updated: 20th February 2025
+ * Updated: 23rd February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -82,6 +82,8 @@ namespace
 
 namespace
 {
+
+    int verbosity = 2;
 } // anonymous namespace
 
 
@@ -92,8 +94,6 @@ namespace
 int main(int argc, char **argv)
 {
     int retCode = EXIT_SUCCESS;
-    int verbosity = 2;
-
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
     if (XTESTS_START_RUNNER("test.component.util.cpp.is_socket", verbosity))
@@ -133,16 +133,19 @@ static void TEST_is_socket(void)
 
         td_path = td.c_str();
 
-        std::cerr
-            << '\t'
-            << "path="
-            << path
-            << std::endl
-            << '\t'
-            << "sk_path="
-            << sk_path
-            << std::endl
-            ;
+        if (verbosity >= 4)
+        {
+            std::cerr
+                << '\t'
+                << "path="
+                << path
+                << std::endl
+                << '\t'
+                << "sk_path="
+                << sk_path
+                << std::endl
+                ;
+        }
 
         int sk = socket(AF_UNIX, SOCK_STREAM, 0);
 
