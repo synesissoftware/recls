@@ -39,6 +39,7 @@
 #include <xtests/util/temp_directory.hpp>
 
 /* STLSoft header files */
+#include <inetstl/util/uds_helpers.h>
 #include <platformstl/filesystem/path.hpp>
 #include <stlsoft/smartptr/scoped_handle.hpp>
 
@@ -159,18 +160,18 @@ static void TEST_is_socket(void)
         {
             stlsoft::scoped_handle scoper(sk, close);
 
-            struct sockaddr_un sa;
+            struct sockaddr_un  sa;
+            size_t              cb_actual;
+            int const           r = inetstl_c_sockaddr_un_init_from_path(&sa, sizeof(sa), sk_path.c_str(), &cb_actual);
 
-            if (sk_path.length() >= STLSOFT_NUM_ELEMENTS(sa.sun_path))
+            if (0 != r)
             {
-                TEST_FAIL_WITH_QUALIFIER("socket_path is too long to test", sk_path);
+                // int const e = errno;
+
+                TEST_FAIL_WITH_QUALIFIER("failed to initialise UDS socket address from path", strerror(r));
             }
             else
             {
-                sa.sun_len = sizeof(sa);
-                sa.sun_family = AF_UNIX;
-                strcpy(sa.sun_path, sk_path.c_str());
-
                 int const r = bind(sk, (struct sockaddr*)&sa, sizeof(sa));
 
                 if (0 != r)

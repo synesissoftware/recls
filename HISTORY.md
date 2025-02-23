@@ -1,6 +1,13 @@
 # recls - History
 
 
+                   - 1.10.1 beta2
+---------------------------------
+
+ * GCC compatibility;
+ * tidying;
+
+
 23rd February 2025 - 1.10.1 beta1
 ---------------------------------
 

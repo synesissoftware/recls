@@ -41,17 +41,6 @@ while [[ $# -gt 0 ]]; do
 
       MinGW=1
       ;;
-    -E|--disable-examples)
-      ExamplesDisabled=1
-      ;;
-    -T|--disable-testing)
-
-      TestingDisabled=1
-      ;;
-    --mingw)
-
-      MinGW=1
-      ;;
     -m|--run-make)
 
       RunMake=1

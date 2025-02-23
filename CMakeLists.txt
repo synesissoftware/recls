@@ -55,7 +55,6 @@ set(PROJECT_VERSION_MINOR ${_VERSION_MINOR})
 set(PROJECT_VERSION_PATCH ${_VERSION_PATCH})
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
-
 # adhere strictly to C and C++ standards plus extensions. These are actually
 # useless since we do not compile anything; they merely state our intention.
 set(CMAKE_C_STANDARD 17)
@@ -105,7 +104,7 @@ option(BUILD_EXAMPLES "Build examples" ON)
 # - shwild - required for testing;
 
 
-# ##############################
+# ############################
 # STLSoft
 #
 # We provide flexibility here, as in:
@@ -140,13 +139,6 @@ if(DEFINED STLSOFT_INCLUDE_DIR)
 	if(BUILD_TESTING)
 		find_package(STLSoft REQUIRED)
 
-		if(NOT STLSoft_FOUND)
-
-			message(FATAL_ERROR "When specifying STLSOFT explicitly it it still required to have an existing CMake installation of STLSoft in testing to satisfy xTest's dependency requirements. The specified STLSoft will be used for all compilation")
-		else()
-
-			message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) - required only to enable xTests package; the current project's header files will be used for all compilation")
-		endif()
 	endif(BUILD_TESTING)
 
 	include_directories(${STLSOFT_INCLUDE_DIR})

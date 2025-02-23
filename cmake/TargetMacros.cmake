@@ -33,11 +33,11 @@ macro(define_target_compile_options target_name)
 			$<$<CXX_COMPILER_ID:MSVC>:
 				/WX /W4
 
-				${GCC_WARN_NO_cxx11_long_long}
 				${X_MSVC_CUSTOM_WARNINGS_}
 			>
 	)
 endmacro(define_target_compile_options)
+
 
 function(define_automated_test_program program_name entry_point_source_name)
 
@@ -62,6 +62,7 @@ function(define_automated_test_program program_name entry_point_source_name)
 
 	define_target_compile_options(${program_name})
 endfunction(define_automated_test_program)
+
 
 function(define_example_program program_name entry_point_source_name)
 
