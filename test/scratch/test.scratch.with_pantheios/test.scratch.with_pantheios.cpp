@@ -4,7 +4,7 @@
  * Purpose: Demonstrates using Pantheios for recls API logging.
  *
  * Created: 13th December 2008
- * Updated: 10th January 2025
+ * Updated: 23rd February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -66,6 +66,20 @@ extern "C" const char PANTHEIOS_FE_PROCESS_IDENTITY[]    =   "test.scratch.with_
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
+
+void RECLS_CALLCONV_DEFAULT recls_log_to_pantheios(
+    int                 severity
+,   char const*         fmt
+,   va_list             args
+)
+{
+    pantheios::pantheios_logvprintf(severity, fmt, args);
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * main()
  */
 
@@ -84,7 +98,7 @@ static int main_(int /* argc */, char** /*argv*/)
     using recls::recls_log_pfn_t;
     using recls::recls_rc_t;
 
-    Recls_SetApiLogFunction((recls_log_pfn_t)pantheios::pantheios_logvprintf, PANTHEIOS_SEV_DEBUG, 0);
+    Recls_SetApiLogFunction(recls_log_to_pantheios, PANTHEIOS_SEV_DEBUG, 0);
 
     hrecls_t    hSrch;
     recls_rc_t  rc = Recls_Search(".", Recls_GetWildcardsAll(), RECLS_F_RECURSIVE, &hSrch);
