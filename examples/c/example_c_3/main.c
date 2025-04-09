@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_c_3.c
+ * File:    examples/c/example_c_3/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
@@ -15,7 +15,7 @@
  *            - elicitation of entry properties via API function calls
  *
  * Created: 29th May 2006
- * Updated: 20th February 2025
+ * Updated: 9th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_cpp_3.cpp
+ * File:    examples/cpp/example_cpp_3/main.cpp
  *
  * Purpose: C++ example program for recls/C++. Demonstrates:
  *
@@ -12,7 +12,7 @@
  *            - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 9th July 2024
+ * Updated: 9th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_c_7.c
+ * File:    examples/c/example_c_7/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
@@ -9,7 +9,7 @@
  *            - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 8th July 2024
+ * Updated: 9th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

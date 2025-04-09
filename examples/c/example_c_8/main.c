@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_c_8.c
+ * File:    examples/c/example_c_8/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
@@ -10,7 +10,7 @@
  *              Recls_CalcDirectorySize())
  *
  * Created: 17th June 2006
- * Updated: 8th July 2024
+ * Updated: 9th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

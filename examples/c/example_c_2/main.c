@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_c_2.c
+ * File:    examples/c/example_c_2/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
@@ -13,7 +13,7 @@
  *            - display of progress (of each directory traversed)
  *
  * Created: 29th May 2006
- * Updated: 8th July 2024
+ * Updated: 9th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
