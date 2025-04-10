@@ -4,7 +4,7 @@
  * Purpose: Platform discrimination for recls API.
  *
  * Created: 18th August 2003
- * Updated: 23rd February 2025
+ * Updated: 10th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -28,7 +28,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_MAJOR    3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_MINOR    7
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_REVISION 2
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_EDIT     40
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_TYPES_EDIT     41
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform_types.h
@@ -93,13 +93,15 @@ namespace recls
 /** The recls library ambient character type */
 #if defined(UNICODE) && \
     !defined(RECLS_NO_UNICODE)
-typedef recls_char_w_t              recls_char_t;
+
+typedef recls_char_w_t                                      recls_char_t;
 # define RECLS_CHAR_TYPE_IS_WCHAR
-# define RECLS_LITERAL(x)           L ## x
+# define RECLS_LITERAL(x)                                   L ## x
 #else /* ? UNICODE && !RECLS_NO_UNICODE */
-typedef recls_char_a_t              recls_char_t;
+
+typedef recls_char_a_t                                      recls_char_t;
 # define RECLS_CHAR_TYPE_IS_CHAR
-# define RECLS_LITERAL(x)           x
+# define RECLS_LITERAL(x)                                   x
 #endif /* UNICODE && !RECLS_NO_UNICODE */
 
 
@@ -434,7 +436,7 @@ namespace stlsoft
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * inclusion
+ * inclusion control
  */
 
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT

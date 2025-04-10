@@ -4,7 +4,7 @@
  * Purpose: Return codes for the  recls API.
  *
  * Created: 15th August 2003
- * Updated: 23rd February 2025
+ * Updated: 10th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -30,7 +30,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MINOR      7
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       39
+# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       40
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/retcodes.h
@@ -140,7 +140,7 @@ namespace recls
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * inclusion
+ * inclusion control
  */
 
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT
