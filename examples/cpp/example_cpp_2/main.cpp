@@ -48,7 +48,7 @@ int main(int /* argc */, char* /* argv */[])
         /* Enumerate all under the home directory, matching *.??? or makefile*.*. */
         int                     flags   =   recls::RECLS_F_FILES | recls::RECLS_F_RECURSIVE;
 
-        recls::search_sequence  files(home, RECLS_LITERAL("*.???|makefile|makefile.*|"), flags);
+        recls::search_sequence  files(home, RECLS_LITERAL("*.?????|makefile|makefile.*|"), flags);
 
         /* and display each entry's search-relative path */
         { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)

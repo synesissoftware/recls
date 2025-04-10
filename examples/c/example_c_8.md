@@ -1,3 +1,13 @@
+# recls Example - **example_c_8**
+
+## Summary
+
+T.B.C.
+
+
+## Source
+
+```C
 /* /////////////////////////////////////////////////////////////////////////
  * File:    examples/c/example_c_8/main.c
  *
@@ -100,4 +110,24 @@ int main(int argc, char* argv[])
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+```
+
+
+## Discussion
+
+T.B.C.
+
+
+## Example results
+
+```
+All roots on host system:
+  /
+
+Measuring root directories of selected roots on host system. This could take several minutes ...
+  / : 974 MB
+```
+
+
+<!-- ########################### end of file ########################### -->
 

@@ -13,7 +13,7 @@
  *            - display of progress (of each directory traversed)
  *
  * Created: 29th May 2006
- * Updated: 9th April 2025
+ * Updated: 10th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,6 +26,7 @@
 #ifdef RECLS_PLATFORM_API_WINDOWS
 # include <winstl/system/console_functions.h>
 #endif /* RECLS_PLATFORM_API_WINDOWS */
+#include <stlsoft/stlsoft.h>
 
 /* Standard C Library Files */
 #include <stdio.h>      /* for printf() / fprintf()         */
@@ -43,26 +44,37 @@
 
 #define MAX_CONSOLE_WIDTH                                   (76)
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
 
 static void write_backs(FILE* stm, size_t n);
 static void write_blanks(FILE* stm, size_t n);
 static void write_blank_line(FILE* stm, size_t n);
 static size_t get_console_width(void);
-static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const*         dir
-                                                        ,   size_t                      dirLen
-                                                        ,   recls_process_fn_param_t    param
-                                                        ,   void*                       reserved0
-                                                        ,   recls_uint32_t              reserved1);
+static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(
+    recls_char_t const*         dir
+,   size_t                      dirLen
+,   recls_process_fn_param_t    param
+,   void*                       reserved0
+,   recls_uint32_t              reserved1
+);
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * types
+ */
 
 struct feedback_t
 {
     size_t  lastLen;
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -111,11 +123,16 @@ int main(int argc, char* argv[])
         }
         while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
 
+        Recls_SearchClose(hSrch);
+
         return EXIT_SUCCESS;
     }
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * function implementions
+ */
 
 static void write_chars(
     recls_char_t*   buff
@@ -187,11 +204,14 @@ static size_t get_console_width(void)
     return w;
 }
 
-static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const*         dir
-                                                        ,   size_t                      dirLen
-                                                        ,   recls_process_fn_param_t    param
-                                                        ,   void*                       reserved0
-                                                        ,   recls_uint32_t              reserved1)
+static int RECLS_CALLCONV_DEFAULT
+example_c_2_progress_fn(
+    recls_char_t const*         dir
+,   size_t                      dirLen
+,   recls_process_fn_param_t    param
+,   void*                       reserved0
+,   recls_uint32_t              reserved1
+)
 {
     struct feedback_t*  feedback        =   (struct feedback_t*)param;
     size_t              newLen;
@@ -202,11 +222,10 @@ static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const* 
     {
         recls_char_t squeezedForm[MAX_CONSOLE_WIDTH];
 
-        memcpy(squeezedForm, dir, sizeof(squeezedForm[0]) * dirLen);
 
         squeezedForm[dirLen - 1] = '\0';
 
-        cch = Recls_SqueezePath(squeezedForm, squeezedForm, consoleWidth - 1);
+        cch = Recls_SqueezePath(dir, squeezedForm, consoleWidth - 1);
 
         dir = squeezedForm;
     }
@@ -234,6 +253,7 @@ static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const* 
 
     return 1; /* Continue processing. */
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

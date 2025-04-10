@@ -12,7 +12,7 @@
  *            - elicitation of entry properties structure members
  *
  * Created: 29th May 2006
- * Updated: 9th April 2025
+ * Updated: 10th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros and definitions
  */
@@ -34,7 +35,10 @@
 # define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -94,6 +98,7 @@ int main(int argc, char* argv[])
         return EXIT_SUCCESS;
     }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

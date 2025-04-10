@@ -43,7 +43,7 @@ int main(int /* argc */, char* /* argv */[])
     try
     {
         // stat() the current directory
-        recls::entry  home = recls::stat(RECLS_LITERAL("~"));
+        recls::entry  home = recls::stat(RECLS_LITERAL("."));
 
         // Print out its characteristics:
 

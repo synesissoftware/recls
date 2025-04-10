@@ -1,0 +1,416 @@
+# recls Example - **example_c_1**
+
+## Summary
+
+Illustrates recursive search, via `Recls_Search()`, and display of each full path.
+
+
+## Source
+
+```C
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    examples/c/example_c_1/main.c
+ *
+ * Purpose: C example program for the recls core library. Demonstrates:
+ *
+ *            - searching (via Recls_Search()) for files
+ *            - recursive operation
+ *            - display of full path of each entry
+ *            - handling of errors and reporting of error information
+ *            - elicitation of entry properties via API function calls
+ *
+ * Created: 29th May 2006
+ * Updated: 10th April 2025
+ *
+ * ////////////////////////////////////////////////////////////////////// */
+
+
+/* recls header files */
+#include <recls/recls.h>
+
+/* Standard C Library Files */
+#include <stdio.h>      /* for printf() / fprintf()         */
+#include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
+#include <string.h>
+
+/* /////////////////////////////////////////////////////////////////////////
+ * macros and definitions
+ */
+
+#ifdef RECLS_CHAR_TYPE_IS_WCHAR
+# define printf                                             wprintf
+# define fprintf                                            fwprintf
+#endif /* RECLS_CHAR_TYPE_IS_WCHAR */
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+int main(int argc, char* argv[])
+{
+    /* Declare a search handle, define the flags (for recursive file search)
+     * and start a search.
+     */
+    hrecls_t        hSrch;
+    recls_uint32_t  flags   =   RECLS_F_FILES | RECLS_F_RECURSIVE;
+    recls_rc_t      rc      =   Recls_Search(RECLS_LITERAL("."), Recls_GetWildcardsAll(), flags, &hSrch);
+
+    ((void)&argc);
+    ((void)&argv);
+
+    if (RECLS_RC_NO_MORE_DATA == rc)
+    {
+        printf(RECLS_LITERAL("  no matches found\n"));
+
+        return EXIT_SUCCESS;
+    }
+    else if (RECLS_FAILED(rc))
+    {
+        /* The search failed. Display the error string. */
+        recls_char_t    err[1001];
+        size_t          n   =   Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
+
+        err[n] = '\0';
+
+        fprintf(stderr, RECLS_LITERAL("Search failed: %s\n"), err);
+
+        return EXIT_FAILURE;
+    }
+    else
+    {
+        /* Get the details for the first entry, ... */
+
+        recls_info_t    entry;
+
+        Recls_GetDetails(hSrch, &entry);
+
+        do
+        {
+            /* ... display the full path, ... */
+
+            recls_char_t    path[1001];
+            size_t          cch;
+
+            cch = Recls_GetPathProperty(entry, &path[0], RECLS_NUM_ELEMENTS(path));
+            printf(RECLS_LITERAL("%.*s\n"), (int)cch, &path[0]);
+
+            /* ... close the entry handle, ... */
+            Recls_CloseDetails(entry);
+
+        } /* ... and get the next entry. */
+        while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
+
+        /* Close the search handle. */
+        Recls_SearchClose(hSrch);
+
+        return EXIT_SUCCESS;
+    }
+}
+
+/* ///////////////////////////// end of file //////////////////////////// */
+```
+
+
+## Discussion
+
+The program creates a recursive (`RECLS_F_RECURSIVE`) search from the current directory (`"."`) for files (`RECLS_F_FILES`) obtaining a search handle (`hSrch`). The return code (`rc`) is checked against `RECLS_RC_NO_MORE_DATA`, which means that the search was created successfully but obtained no matches. If the search otherwise failed (as per the check `RECLS_FAILED()`) then a description of the reason for the failure is obtained (by `Recls_GetErrorString()`) and written to `stderr`.
+
+If the search succeeds (and is non-empty), then the details of the first match are obtained by `Recls_GetDetails()` and then displayed in a loop, the terminating condition of which is determined by repeated calls to `Recls_GetNextDetails()`.
+
+Finally, the search handle is closed (and all its associated resources) by `Recls_SearchClose()`.
+
+
+## Example results
+
+```
+/Users/user/dev/synesissoftware/freelibs/recls/recls/AUTHORS.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/LICENSE
+/Users/user/dev/synesissoftware/freelibs/recls/recls/NEWS.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/HISTORY.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/FAQ.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/INSTALL.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/TODO.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/README.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/EXAMPLES.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/run_all_examples.sh
+/Users/user/dev/synesissoftware/freelibs/recls/recls/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/run_all_unit_tests.sh
+/Users/user/dev/synesissoftware/freelibs/recls/recls/clean_cmake.sh
+/Users/user/dev/synesissoftware/freelibs/recls/recls/CHANGES.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/prepare_cmake.sh
+/Users/user/dev/synesissoftware/freelibs/recls/recls/remove_cmake_artefacts.sh
+/Users/user/dev/synesissoftware/freelibs/recls/recls/recls.vc10.sln
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build_cmake.sh
+/Users/user/dev/synesissoftware/freelibs/recls/recls/run_all_scratch_tests.sh
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.squeeze_path/test.unit.api.squeeze_path.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.squeeze_path/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.squeeze_path/implicit_link.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.squeeze_path/vc10/test.unit.api.squeeze_path.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.squeeze_path/vc10/test.unit.api.squeeze_path.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.retcodes/test.unit.cpp.retcodes.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.retcodes/implicit_link.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.retcodes/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.retcodes/vc10/test.unit.cpp.retcodes.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.retcodes/vc10/test.unit.cpp.retcodes.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.c.retcodes/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.c.retcodes/implicit_link.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.c.retcodes/test.unit.c.retcodes.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.c.retcodes/vc10/test.unit.c.retcodes.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.c.retcodes/vc10/test.unit.c.retcodes.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.squeeze_path/implicit_link.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.squeeze_path/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.squeeze_path/vc10/test.unit.cpp.squeeze_path.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.squeeze_path/vc10/test.unit.cpp.squeeze_path.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.combine_paths/test.unit.cpp.combine_paths.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.combine_paths/implicit_link.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.combine_paths/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.combine_paths/vc10/test.unit.cpp.combine_paths.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.combine_paths/vc10/test.unit.cpp.combine_paths.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.stat/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.stat/test.unit.api.stat.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.stat/implicit_link.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.stat/vc10/test.unit.api.stat.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.stat/vc10/test.unit.api.stat.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.derive_relative_path/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.derive_relative_path/implicit_link.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.derive_relative_path/test.unit.cpp.derive_relative_path.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.derive_relative_path/vc10/test.unit.cpp.derive_relative_path.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.derive_relative_path/vc10/test.unit.cpp.derive_relative_path.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.combine_paths/test.unit.api.combine_paths.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.combine_paths/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.combine_paths/implicit_link.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.combine_paths/vc10/test.unit.api.combine_paths.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.combine_paths/vc10/test.unit.api.combine_paths.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.create_directory/test.unit.api.create_directory.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.create_directory/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.create_directory/implicit_link.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.create_directory/vc10/test.unit.api.createdirectory.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.create_directory/vc10/test.unit.api.createdirectory.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.is_socket/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.is_socket/entry.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.create_directory/implicit_link.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.create_directory/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.create_directory/test.component.util.cpp.create_directory.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.create_directory/vc10/test.component.util.cpp.create_directory.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.create_directory/vc10/test.component.util.cpp.create_directory.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.remove_directory/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.remove_directory/implicit_link.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.remove_directory/test.component.util.cpp.remove_directory.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.remove_directory/vc10/test.component.util.cpp.remove_directory.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.remove_directory/vc10/test.component.util.cpp.remove_directory.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.with_pantheios/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.with_pantheios/implicit_link.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.with_pantheios/test.scratch.with_pantheios.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.cpp_api/implicit_link.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.cpp_api/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.cpp_api/vc10/test.scratch.cpp_api.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.cpp_api/vc10/test.scratch.cpp_api.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.search.1/implicit_link.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.search.1/test.scratch.search.1.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.search.1/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.search.1/vc10/test.scratch.search.1.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.search.1/vc10/test.scratch.search.1.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test_c_1/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test_c_1/test_c_1.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.links/implicit_link.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.links/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.links/test.scratch.links.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.links/vc10/test.scratch.links.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.links/vc10/test.scratch.links.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/cmake/BuildType.cmake
+/Users/user/dev/synesissoftware/freelibs/recls/recls/cmake/LanguageFullVersion.cmake
+/Users/user/dev/synesissoftware/freelibs/recls/recls/cmake/TargetMacros.cmake
+/Users/user/dev/synesissoftware/freelibs/recls/recls/cmake/recls-config.cmake.in
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/implicit_link.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/fwd.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/recls.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/ftp.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/recls.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/windows.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/unix.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/assert.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_dmc.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/recls_filesize.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/platform_types.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_gcc.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_msvc.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_mwerks.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/language.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_como.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_clang.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/recls_time.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/retcodes.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_borland.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_vectorc.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_watcom.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_intel.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_ch.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/safestr.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/platform.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/warning/msvc.suppress.4530.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/classfwd.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/entry.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/search_sequence.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/ftp_search_sequence.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/directory_parts.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/root_sequence.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/windows.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/common.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/traits.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/exceptions.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/util.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/unix.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/internal/sequence_helper.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/pch.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/pch.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/vc10/recls.core.vcxproj
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/vc10/recls.core.vcxproj.filters
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/_dev_pragmatics_/warnings.msvc.10+.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/vcprops/recls.common.props
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/vcprops/recls.example.props
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/vcprops/recls.no-PCH.props
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/vcprops/recls.test.Catch.props
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/vcprops/recls.test.common.props
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/vcprops/recls.test.component.props
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/vcprops/recls.test.scratch.props
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/vcprops/recls.test.unit.props
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/vcprops/recls.test.xTests.props
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_2.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_1.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_3.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_1/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_1/main.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_3/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_3/main.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_2/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_2/main.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_2.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_6.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_7.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_3.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_8.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_4.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_1.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_5.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_3/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_3/main.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_4/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_4/main.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_5/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_5/main.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_2/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_2/main.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_7/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_7/main.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_8/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_8/main.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_1/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_1/main.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_6/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_6/main.c
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc45.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc14/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc47.mingw/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc12/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc14.unixem/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc15/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc16.unixem/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc81.mingw/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc44.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc12.unixem/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc34.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc47.win32/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc43.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc81.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc42.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc81.win32/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc10.unixem/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc9.x64/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc10/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc11.x64/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc15.unixem/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc10.x64/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc12.x64/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc16/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc11/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc41.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc40.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/clang130.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc16.x64/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc14.x64/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc15.x64/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc9.unixem/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc92.win32/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc92.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc34.win32/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc47.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc92.mingw/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/vc11.unixem/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc46.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/build/gcc93.unix/makefile
+/Users/user/dev/synesissoftware/freelibs/recls/recls/.vscode/settings.json
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearch.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearch.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearchDirectoryNode.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearchDirectoryNode.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearch.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearchDirectoryNode_windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearchDirectoryNode_windows.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearch_windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsSearch.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsSearch.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.entryinfo.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.error.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.extended.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.ftp.windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.retcodes.windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.search.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.unix.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.combine_paths.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.create_directory.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.derive_relative_path.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.get_file_sizes.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.remove_directory.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.squeeze_path.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.stat.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.api.search.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.api.search.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.atomic.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.constants.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.entryfunctions.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.entryinfo.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.entryinfo.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.fileinfo.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.fileinfo.unix.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.fileinfo.windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.root.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.snprintf.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.string.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.trace.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.trace.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.types.ftp.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.types.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.unix.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.inetstl.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.platformstl.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.stlsoft.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.unixstl.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.winstl.h
+```
+
+
+<!-- ########################### end of file ########################### -->
+

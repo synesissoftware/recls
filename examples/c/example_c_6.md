@@ -1,3 +1,13 @@
+# recls Example - **example_c_6**
+
+## Summary
+
+T.B.C.
+
+
+## Source
+
+```C
 /* /////////////////////////////////////////////////////////////////////////
  * File:    examples/c/example_c_6/main.c
  *
@@ -108,4 +118,33 @@ int main(int argc, char* argv[])
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+```
+
+
+## Discussion
+
+T.B.C.
+
+
+## Example results
+
+```
+/Users/user/dev/synesissoftware/freelibs/recls/recls
+  directory path: /Users/user/dev/synesissoftware/freelibs/recls/
+  directory:      /Users/user/dev/synesissoftware/freelibs/recls/
+  file:           recls
+  file name:      recls
+  file ext:
+  directory parts:
+    part:     /
+    part:     Users/
+    part:     user/
+    part:     dev/
+    part:     synesissoftware/
+    part:     freelibs/
+    part:     recls/
+```
+
+
+<!-- ########################### end of file ########################### -->
 
