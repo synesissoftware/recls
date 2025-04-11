@@ -204,6 +204,9 @@ example_c_2_progress_fn(
     size_t              cch;
     size_t              consoleWidth    =   get_console_width() - 1;
 
+    ((void)reserved0);
+    ((void)reserved1);
+
     if (consoleWidth < dirLen)
     {
         recls_char_t squeezedForm[MAX_CONSOLE_WIDTH];
@@ -234,9 +237,6 @@ example_c_2_progress_fn(
     }
 
     feedback->lastLen = newLen;
-
-    ((void)reserved0);
-    ((void)reserved1);
 
     return 1; /* Continue processing. */
 }
