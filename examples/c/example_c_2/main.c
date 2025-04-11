@@ -162,6 +162,7 @@ static void write_backs(FILE* stm, size_t n)
     write_chars(&backs[0], '\b', n);
 
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
+    fflush(stm);
 }
 
 static void write_blanks(FILE* stm, size_t n)
@@ -171,6 +172,7 @@ static void write_blanks(FILE* stm, size_t n)
     write_chars(&blanks[0], ' ', n);
 
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &blanks[0]);
+    fflush(stm);
 }
 
 static void write_blank_line(FILE* stm, size_t n)
@@ -182,8 +184,11 @@ static void write_blank_line(FILE* stm, size_t n)
     write_chars(&blanks[0], ' ', n);
 
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
+    fflush(stm);
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &blanks[0]);
+    fflush(stm);
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
+    fflush(stm);
 }
 
 static size_t get_console_width_(void)
