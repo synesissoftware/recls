@@ -13,7 +13,7 @@
  *            - display of progress (of each directory traversed)
  *
  * Created: 29th May 2006
- * Updated: 8th July 2024
+ * Updated: 11th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,6 +32,7 @@
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros and definitions
  */
@@ -43,26 +44,38 @@
 
 #define MAX_CONSOLE_WIDTH                                   (76)
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
 
 static void write_backs(FILE* stm, size_t n);
 static void write_blanks(FILE* stm, size_t n);
 static void write_blank_line(FILE* stm, size_t n);
 static size_t get_console_width(void);
-static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const*         dir
-                                                        ,   size_t                      dirLen
-                                                        ,   recls_process_fn_param_t    param
-                                                        ,   void*                       reserved0
-                                                        ,   recls_uint32_t              reserved1);
+static int RECLS_CALLCONV_DEFAULT
+example_c_2_progress_fn(
+    recls_char_t const*         dir
+,   size_t                      dirLen
+,   recls_process_fn_param_t    param
+,   void*                       reserved0
+,   recls_uint32_t              reserved1
+);
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * types
+ */
 
 struct feedback_t
 {
-    size_t  lastLen;
+    size_t lastLen;
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -115,7 +128,10 @@ int main(int argc, char* argv[])
     }
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * function implementions
+ */
 
 static void write_chars(
     recls_char_t*   buff
@@ -187,11 +203,14 @@ static size_t get_console_width(void)
     return w;
 }
 
-static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const*         dir
-                                                        ,   size_t                      dirLen
-                                                        ,   recls_process_fn_param_t    param
-                                                        ,   void*                       reserved0
-                                                        ,   recls_uint32_t              reserved1)
+static int RECLS_CALLCONV_DEFAULT
+example_c_2_progress_fn(
+    recls_char_t const*         dir
+,   size_t                      dirLen
+,   recls_process_fn_param_t    param
+,   void*                       reserved0
+,   recls_uint32_t              reserved1
+)
 {
     struct feedback_t*  feedback        =   (struct feedback_t*)param;
     size_t              newLen;
@@ -221,7 +240,7 @@ static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const* 
 
     if (newLen < feedback->lastLen)
     {
-        size_t  spare   =   feedback->lastLen - newLen;
+        size_t const spare = feedback->lastLen - newLen;
 
         write_blanks(stdout, spare);
         write_backs(stdout, spare);
@@ -234,6 +253,7 @@ static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const* 
 
     return 1; /* Continue processing. */
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
