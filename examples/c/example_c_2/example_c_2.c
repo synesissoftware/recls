@@ -199,6 +199,8 @@ example_c_2_progress_fn(
 ,   recls_uint32_t              reserved1
 )
 {
+    recls_char_t        squeezedForm[MAX_CONSOLE_WIDTH];
+
     struct feedback_t*  feedback        =   (struct feedback_t*)param;
     size_t              newLen;
     size_t              cch;
@@ -209,13 +211,8 @@ example_c_2_progress_fn(
 
     if (consoleWidth < dirLen)
     {
-        recls_char_t squeezedForm[MAX_CONSOLE_WIDTH];
+        cch = Recls_SqueezePath(dir, squeezedForm, STLSOFT_NUM_ELEMENTS(squeezedForm) - 1);
 
-        memcpy(squeezedForm, dir, sizeof(squeezedForm[0]) * dirLen);
-
-        squeezedForm[dirLen - 1] = '\0';
-
-        cch = Recls_SqueezePath(squeezedForm, squeezedForm, consoleWidth - 1);
 
         dir = squeezedForm;
     }
