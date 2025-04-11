@@ -13,7 +13,7 @@
  *            - display of progress (of each directory traversed)
  *
  * Created: 29th May 2006
- * Updated: 8th July 2024
+ * Updated: 11th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -23,17 +23,16 @@
 #include <recls/internal/safestr.h>
 
 /* STLSoft header files */
-#ifdef RECLS_PLATFORM_API_WINDOWS
-# include <winstl/system/console_functions.h>
-#endif /* RECLS_PLATFORM_API_WINDOWS */
+#include <platformstl/system/console_functions.h>
 
 /* Standard C Library Files */
 #include <stdio.h>      /* for printf() / fprintf()         */
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * macros and definitions
+ * macros
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
@@ -41,28 +40,45 @@
 # define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * constants and definitions
+ */
+
 #define MAX_CONSOLE_WIDTH                                   (76)
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
 
 static void write_backs(FILE* stm, size_t n);
 static void write_blanks(FILE* stm, size_t n);
 static void write_blank_line(FILE* stm, size_t n);
 static size_t get_console_width(void);
-static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const*         dir
-                                                        ,   size_t                      dirLen
-                                                        ,   recls_process_fn_param_t    param
-                                                        ,   void*                       reserved0
-                                                        ,   recls_uint32_t              reserved1);
+static int RECLS_CALLCONV_DEFAULT
+example_c_2_progress_fn(
+    recls_char_t const*         dir
+,   size_t                      dirLen
+,   recls_process_fn_param_t    param
+,   void*                       reserved0
+,   recls_uint32_t              reserved1
+);
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * types
+ */
 
 struct feedback_t
 {
-    size_t  lastLen;
+    size_t lastLen;
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -71,10 +87,8 @@ int main(int argc, char* argv[])
     struct feedback_t   feedback    =   { 0 };
     hrecls_t            hSrch;
     recls_uint32_t      flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
-    recls_rc_t          rc          =   Recls_SearchFeedback(NULL, SEARCH_PATTERN, flags, example_c_2_progress_fn, &feedback, &hSrch);
-
-    ((void)&argc);
-    ((void)&argv);
+    char const* const   search_dir  =   argc > 1 ? argv[1] : RECLS_LITERAL(".");
+    recls_rc_t          rc          =   Recls_SearchFeedback(search_dir, SEARCH_PATTERN, flags, example_c_2_progress_fn, &feedback, &hSrch);
 
     if (RECLS_RC_OK != rc)
     {
@@ -83,7 +97,7 @@ int main(int argc, char* argv[])
 
         err[n] = '\0';
 
-        fprintf(stderr, RECLS_LITERAL("Search failed: %s\n"), err);
+        fprintf(stderr, RECLS_LITERAL("Search in '%s' failed: %s\n"), search_dir, err);
 
         return EXIT_FAILURE;
     }
@@ -105,17 +119,28 @@ int main(int argc, char* argv[])
             write_blank_line(stdout, feedback.lastLen);
 
             /* full path */
-            printf(RECLS_LITERAL("%.*s\n"), (int)n, entry->path.begin);
+            printf(RECLS_LITERAL("%.*s\n"), (int)(entry->path.end - entry->path.begin), entry->path.begin);
+
+            feedback.lastLen = 0;
 
             Recls_CloseDetails(entry);
         }
         while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
 
+        Recls_SearchClose(hSrch);
+
+        write_backs(stdout, feedback.lastLen);
+        write_blanks(stdout, feedback.lastLen);
+        write_backs(stdout, feedback.lastLen);
+
         return EXIT_SUCCESS;
     }
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * function implementions
+ */
 
 static void write_chars(
     recls_char_t*   buff
@@ -138,6 +163,7 @@ static void write_backs(FILE* stm, size_t n)
     write_chars(&backs[0], '\b', n);
 
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
+    fflush(stm);
 }
 
 static void write_blanks(FILE* stm, size_t n)
@@ -147,6 +173,7 @@ static void write_blanks(FILE* stm, size_t n)
     write_chars(&blanks[0], ' ', n);
 
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &blanks[0]);
+    fflush(stm);
 }
 
 static void write_blank_line(FILE* stm, size_t n)
@@ -158,26 +185,16 @@ static void write_blank_line(FILE* stm, size_t n)
     write_chars(&blanks[0], ' ', n);
 
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
+    fflush(stm);
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &blanks[0]);
+    fflush(stm);
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
-}
-
-static size_t get_console_width_(void)
-{
-    /* In reality, this should evaluate as appropriate to the operating
-     * system.
-     */
-
-#ifdef RECLS_PLATFORM_API_WINDOWS
-    return winstl_C_get_console_width();
-#else /* ? RECLS_PLATFORM_API_??? */
-    return 48;
-#endif /* RECLS_PLATFORM_API_??? */
+    fflush(stm);
 }
 
 static size_t get_console_width(void)
 {
-    size_t w = get_console_width_();
+    size_t w = platformstl_C_get_console_width();
 
     if (w > MAX_CONSOLE_WIDTH)
     {
@@ -187,26 +204,29 @@ static size_t get_console_width(void)
     return w;
 }
 
-static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const*         dir
-                                                        ,   size_t                      dirLen
-                                                        ,   recls_process_fn_param_t    param
-                                                        ,   void*                       reserved0
-                                                        ,   recls_uint32_t              reserved1)
+static int RECLS_CALLCONV_DEFAULT
+example_c_2_progress_fn(
+    recls_char_t const*         dir
+,   size_t                      dirLen
+,   recls_process_fn_param_t    param
+,   void*                       reserved0
+,   recls_uint32_t              reserved1
+)
 {
+    recls_char_t        squeezedForm[MAX_CONSOLE_WIDTH];
+
     struct feedback_t*  feedback        =   (struct feedback_t*)param;
     size_t              newLen;
     size_t              cch;
     size_t              consoleWidth    =   get_console_width() - 1;
 
+    ((void)reserved0);
+    ((void)reserved1);
+
     if (consoleWidth < dirLen)
     {
-        recls_char_t squeezedForm[MAX_CONSOLE_WIDTH];
+        cch = Recls_SqueezePath(dir, squeezedForm, STLSOFT_NUM_ELEMENTS(squeezedForm) - 1);
 
-        memcpy(squeezedForm, dir, sizeof(squeezedForm[0]) * dirLen);
-
-        squeezedForm[dirLen - 1] = '\0';
-
-        cch = Recls_SqueezePath(squeezedForm, squeezedForm, consoleWidth - 1);
 
         dir = squeezedForm;
     }
@@ -221,7 +241,7 @@ static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const* 
 
     if (newLen < feedback->lastLen)
     {
-        size_t  spare   =   feedback->lastLen - newLen;
+        size_t const spare = feedback->lastLen - newLen;
 
         write_blanks(stdout, spare);
         write_backs(stdout, spare);
@@ -229,11 +249,9 @@ static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(  recls_char_t const* 
 
     feedback->lastLen = newLen;
 
-    ((void)reserved0);
-    ((void)reserved1);
-
     return 1; /* Continue processing. */
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
