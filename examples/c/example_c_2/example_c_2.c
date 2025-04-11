@@ -87,10 +87,8 @@ int main(int argc, char* argv[])
     struct feedback_t   feedback    =   { 0 };
     hrecls_t            hSrch;
     recls_uint32_t      flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
-    recls_rc_t          rc          =   Recls_SearchFeedback(NULL, SEARCH_PATTERN, flags, example_c_2_progress_fn, &feedback, &hSrch);
-
-    ((void)&argc);
-    ((void)&argv);
+    char const* const   search_dir  =   argc > 1 ? argv[1] : RECLS_LITERAL(".");
+    recls_rc_t          rc          =   Recls_SearchFeedback(search_dir, SEARCH_PATTERN, flags, example_c_2_progress_fn, &feedback, &hSrch);
 
     if (RECLS_RC_OK != rc)
     {
@@ -99,7 +97,7 @@ int main(int argc, char* argv[])
 
         err[n] = '\0';
 
-        fprintf(stderr, RECLS_LITERAL("Search failed: %s\n"), err);
+        fprintf(stderr, RECLS_LITERAL("Search in '%s' failed: %s\n"), search_dir, err);
 
         return EXIT_FAILURE;
     }
