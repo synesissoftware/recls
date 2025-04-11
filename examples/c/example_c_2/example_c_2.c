@@ -116,13 +116,19 @@ int main(int argc, char* argv[])
             write_blank_line(stdout, feedback.lastLen);
 
             /* full path */
-            printf(RECLS_LITERAL("%.*s\n"), (int)n, entry->path.begin);
+            printf(RECLS_LITERAL("%.*s\n"), (int)(entry->path.end - entry->path.begin), entry->path.begin);
+
+            feedback.lastLen = 0;
 
             Recls_CloseDetails(entry);
         }
         while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
 
         Recls_SearchClose(hSrch);
+
+        write_backs(stdout, feedback.lastLen);
+        write_blanks(stdout, feedback.lastLen);
+        write_backs(stdout, feedback.lastLen);
 
         return EXIT_SUCCESS;
     }
@@ -154,6 +160,7 @@ static void write_backs(FILE* stm, size_t n)
     write_chars(&backs[0], '\b', n);
 
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
+    fflush(stm);
 }
 
 static void write_blanks(FILE* stm, size_t n)
@@ -163,6 +170,7 @@ static void write_blanks(FILE* stm, size_t n)
     write_chars(&blanks[0], ' ', n);
 
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &blanks[0]);
+    fflush(stm);
 }
 
 static void write_blank_line(FILE* stm, size_t n)
@@ -174,8 +182,11 @@ static void write_blank_line(FILE* stm, size_t n)
     write_chars(&blanks[0], ' ', n);
 
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
+    fflush(stm);
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &blanks[0]);
+    fflush(stm);
     fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
+    fflush(stm);
 }
 
 static size_t get_console_width(void)
