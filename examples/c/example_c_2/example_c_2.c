@@ -122,6 +122,8 @@ int main(int argc, char* argv[])
         }
         while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
 
+        Recls_SearchClose(hSrch);
+
         return EXIT_SUCCESS;
     }
 }
