@@ -74,6 +74,7 @@
 		"compare": "cpp",
 		"complex": "cpp",
 		"concepts": "cpp",
+		"console_functions.h": "c",
 		"cstdarg": "cpp",
 		"cstddef": "cpp",
 		"cstdint": "cpp",
