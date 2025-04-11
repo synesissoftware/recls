@@ -63,6 +63,7 @@ static void test_1_10(void);
 static void test_1_11(void);
 static void test_1_12(void);
 static void test_1_13(void);
+static void test_1_14(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,6 +93,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_1_11);
         XTESTS_RUN_CASE(test_1_12);
         XTESTS_RUN_CASE(test_1_13);
+        XTESTS_RUN_CASE(test_1_14);
 
         XTESTS_PRINT_RESULTS();
 
@@ -258,6 +260,29 @@ static void test_1_13(void)
 
     XTESTS_TEST_INTEGER_EQUAL(1u, cch);
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("g"), result);
+}
+
+static void test_1_14(void)
+{
+    recls_char_t const  INPUT[] = RECLS_LITERAL("/Volumes/SAMSUNG-2/_C_dev/FastFormat/test/component/test.component.format_specification_defect_exceptions/vc6/");
+
+    {
+        size_t const    cch = Recls_SqueezePath(INPUT, NULL, 10);
+
+        XTESTS_TEST_INTEGER_EQUAL(10u, cch);
+    }
+
+    {
+
+        recls_char_t    result[108];
+        size_t const    cch = Recls_SqueezePath(INPUT, &result[0], STLSOFT_NUM_ELEMENTS(result));
+
+        result[cch] = '\0';
+
+        XTESTS_TEST_INTEGER_EQUAL(107u, cch);
+        XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("/Volumes/SAMSUNG-2/_C_dev/FastFormat/test/component/test.component.format_specification_defect_exceptio.../"), result);
+    }
+
 }
 
 
