@@ -13,7 +13,7 @@
  *            - display of progress (of each directory traversed)
  *
  * Created: 29th May 2006
- * Updated: 10th April 2025
+ * Updated: 11th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,14 +33,20 @@
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * macros and definitions
+ * macros
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
 # define printf                                             wprintf
 # define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * constants and definitions
+ */
 
 #define MAX_CONSOLE_WIDTH                                   (76)
 
@@ -53,7 +59,8 @@ static void write_backs(FILE* stm, size_t n);
 static void write_blanks(FILE* stm, size_t n);
 static void write_blank_line(FILE* stm, size_t n);
 static size_t get_console_width(void);
-static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(
+static int RECLS_CALLCONV_DEFAULT
+example_c_2_progress_fn(
     recls_char_t const*         dir
 ,   size_t                      dirLen
 ,   recls_process_fn_param_t    param
@@ -68,7 +75,7 @@ static int RECLS_CALLCONV_DEFAULT example_c_2_progress_fn(
 
 struct feedback_t
 {
-    size_t  lastLen;
+    size_t lastLen;
 };
 
 
