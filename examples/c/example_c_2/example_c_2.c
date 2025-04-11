@@ -32,13 +32,18 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * macros and definitions
+ * macros
  */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
 # define printf                                             wprintf
 # define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * constants and definitions
+ */
 
 #define MAX_CONSOLE_WIDTH                                   (76)
 
