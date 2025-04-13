@@ -102,7 +102,6 @@ int main(int argc, char* argv[])
         rc = Recls_Search(search_dir, SEARCH_PATTERN, flags, &hSrch);
     }
 
-
     if (RECLS_RC_OK != rc)
     {
         recls_char_t    err[1001];
