@@ -5,7 +5,7 @@
  *          `Recls_SqueezePath()`).
  *
  * Created: 13th December 2008
- * Updated: 11th April 2025
+ * Updated: 14th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -269,7 +269,7 @@ static void test_1_14(void)
     {
         size_t const    cch = Recls_SqueezePath(INPUT, NULL, 10);
 
-        XTESTS_TEST_INTEGER_EQUAL(10u, cch);
+        XTESTS_TEST_INTEGER_EQUAL(110u, cch);
     }
 
     {
@@ -279,8 +279,8 @@ static void test_1_14(void)
 
         result[cch] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(107u, cch);
-        XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("/Volumes/SAMSUNG-2/_C_dev/FastFormat/test/component/test.component.format_specification_defect_exceptio.../"), result);
+        XTESTS_TEST_INTEGER_EQUAL(108u, cch);
+        XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("/Volumes/SAMSUNG-2/_C_dev/FastFormat/test/component/test.component.format_specification_defect_exception.../"), result);
     }
 
 }
