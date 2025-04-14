@@ -45,9 +45,10 @@ int main(int argc, char* argv[])
     /* Declare a search handle, define the flags (for recursive file search)
      * and start a search.
      */
-    hrecls_t        hSrch;
-    recls_uint32_t  flags   =   RECLS_F_DIRECTORIES;
-    recls_rc_t      rc      =   Recls_Search(NULL, RECLS_LITERAL("*"), flags, &hSrch);
+    hrecls_t            hSrch;
+    recls_uint32_t      flags       =   RECLS_F_DIRECTORIES;
+    char const* const   search_dir  =   argc > 1 ? argv[1] : RECLS_LITERAL(".");
+    recls_rc_t          rc          =   Recls_Search(search_dir, RECLS_LITERAL("*"), flags, &hSrch);
 
     ((void)&argc);
     ((void)&argv);
@@ -72,7 +73,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        recls_info_t    entry;
+        recls_info_t entry;
 
         /* Get the details for the first entry, ... */
         Recls_GetDetails(hSrch, &entry);

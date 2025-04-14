@@ -115,6 +115,7 @@
 		"sstream": "cpp",
 		"stack": "cpp",
 		"stdexcept": "cpp",
+		"stdio.h": "c",
 		"streambuf": "cpp",
 		"string": "cpp",
 		"string_view": "cpp",

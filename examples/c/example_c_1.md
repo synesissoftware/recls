@@ -13,14 +13,15 @@ Illustrates recursive search, via `Recls_Search()`, and display of each full pat
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- *            - searching (via Recls_Search()) for files
- *            - recursive operation
+ *            - searching in current or named directory
+ *            - searching recursively for all files
+ *            - searching by Recls_Search()
  *            - display of full path of each entry
  *            - handling of errors and reporting of error information
  *            - elicitation of entry properties via API function calls
  *
  * Created: 29th May 2006
- * Updated: 10th April 2025
+ * Updated: 14th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,6 +34,7 @@ Illustrates recursive search, via `Recls_Search()`, and display of each full pat
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros and definitions
  */
@@ -42,16 +44,20 @@ Illustrates recursive search, via `Recls_Search()`, and display of each full pat
 # define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
     /* Declare a search handle, define the flags (for recursive file search)
      * and start a search.
      */
-    hrecls_t        hSrch;
-    recls_uint32_t  flags   =   RECLS_F_FILES | RECLS_F_RECURSIVE;
-    recls_rc_t      rc      =   Recls_Search(RECLS_LITERAL("."), Recls_GetWildcardsAll(), flags, &hSrch);
+    hrecls_t            hSrch;
+    recls_uint32_t      flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
+    char const* const   search_dir  =   argc > 1 ? argv[1] : RECLS_LITERAL(".");
+    recls_rc_t          rc          =   Recls_Search(search_dir, Recls_GetWildcardsAll(), flags, &hSrch);
 
     ((void)&argc);
     ((void)&argv);
@@ -105,6 +111,7 @@ int main(int argc, char* argv[])
     }
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
 ```
 
@@ -121,14 +128,6 @@ Finally, the search handle is closed (and all its associated resources) by `Recl
 ## Example results
 
 ```
-/Users/user/dev/synesissoftware/freelibs/recls/recls/AUTHORS.md
-/Users/user/dev/synesissoftware/freelibs/recls/recls/LICENSE
-/Users/user/dev/synesissoftware/freelibs/recls/recls/NEWS.md
-/Users/user/dev/synesissoftware/freelibs/recls/recls/HISTORY.md
-/Users/user/dev/synesissoftware/freelibs/recls/recls/FAQ.md
-/Users/user/dev/synesissoftware/freelibs/recls/recls/INSTALL.md
-/Users/user/dev/synesissoftware/freelibs/recls/recls/TODO.md
-/Users/user/dev/synesissoftware/freelibs/recls/recls/README.md
 /Users/user/dev/synesissoftware/freelibs/recls/recls/EXAMPLES.md
 /Users/user/dev/synesissoftware/freelibs/recls/recls/run_all_examples.sh
 /Users/user/dev/synesissoftware/freelibs/recls/recls/CMakeLists.txt
@@ -140,6 +139,14 @@ Finally, the search handle is closed (and all its associated resources) by `Recl
 /Users/user/dev/synesissoftware/freelibs/recls/recls/recls.vc10.sln
 /Users/user/dev/synesissoftware/freelibs/recls/recls/build_cmake.sh
 /Users/user/dev/synesissoftware/freelibs/recls/recls/run_all_scratch_tests.sh
+/Users/user/dev/synesissoftware/freelibs/recls/recls/LICENSE
+/Users/user/dev/synesissoftware/freelibs/recls/recls/AUTHORS.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/NEWS.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/HISTORY.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/FAQ.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/INSTALL.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/TODO.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/README.md
 /Users/user/dev/synesissoftware/freelibs/recls/recls/test/CMakeLists.txt
 /Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/CMakeLists.txt
 /Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.squeeze_path/test.unit.api.squeeze_path.c
@@ -225,14 +232,15 @@ Finally, the search handle is closed (and all its associated resources) by `Recl
 /Users/user/dev/synesissoftware/freelibs/recls/recls/cmake/LanguageFullVersion.cmake
 /Users/user/dev/synesissoftware/freelibs/recls/recls/cmake/TargetMacros.cmake
 /Users/user/dev/synesissoftware/freelibs/recls/recls/cmake/recls-config.cmake.in
+/Users/user/dev/synesissoftware/freelibs/recls/recls/.vscode-2/settings.json
 /Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/implicit_link.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/fwd.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/recls.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/ftp.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/recls.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/windows.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/unix.h
 /Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/assert.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/fwd.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/ftp.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/unix.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/windows.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/recls.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/recls.h
 /Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler.h
 /Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_dmc.h
 /Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/recls_filesize.h
@@ -266,8 +274,8 @@ Finally, the search handle is closed (and all its associated resources) by `Recl
 /Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/util.hpp
 /Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/unix.hpp
 /Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/internal/sequence_helper.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/pch.hpp
 /Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/pch.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/pch.hpp
 /Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/vc10/recls.core.vcxproj
 /Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/vc10/recls.core.vcxproj.filters
 /Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/_dev_pragmatics_/warnings.msvc.10+.h
@@ -291,12 +299,12 @@ Finally, the search handle is closed (and all its associated resources) by `Recl
 /Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_3/main.cpp
 /Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_2/CMakeLists.txt
 /Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_2/main.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_8.md
 /Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_2.md
 /Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_6.md
 /Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_7.md
 /Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_3.md
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_8.md
+/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_7.md
 /Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_4.md
 /Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_1.md
 /Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_5.md
@@ -385,6 +393,7 @@ Finally, the search handle is closed (and all its associated resources) by `Recl
 /Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.windows.cpp
 /Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.api.search.cpp
 /Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.api.search.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.assert.h
 /Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.atomic.h
 /Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.constants.hpp
 /Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.entryfunctions.h

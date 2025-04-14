@@ -41,12 +41,15 @@
  * main()
  */
 
-static int RECLS_CALLCONV_DEFAULT example_c_5_process_fn(   recls_info_t                entry
-                                                        ,   recls_process_fn_param_t    param)
+static int RECLS_CALLCONV_DEFAULT
+example_c_5_process_fn(
+    recls_info_t                entry
+,   recls_process_fn_param_t    param
+)
 {
-    recls_char_t        relativePath[1001];
-    recls_char_t const  *homePath   =   (recls_char_t const*)param;
-    size_t              cch         =   Recls_DeriveRelativePath(homePath, entry->path.begin, &relativePath[0], RECLS_NUM_ELEMENTS(relativePath));
+    recls_char_t                relativePath[1001];
+    recls_char_t const* const   homePath    =   (recls_char_t const*)param;
+    size_t                      cch         =   Recls_DeriveRelativePath(homePath, entry->path.begin, &relativePath[0], RECLS_NUM_ELEMENTS(relativePath));
 
     printf(RECLS_LITERAL("%.*s\n"), (int)cch, relativePath);
 
@@ -76,7 +79,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        recls_uint32_t  flags   =   RECLS_F_FILES | RECLS_F_DIRECTORIES | RECLS_F_RECURSIVE;
+        recls_uint32_t flags = RECLS_F_FILES | RECLS_F_DIRECTORIES | RECLS_F_RECURSIVE;
 
         /* Process all entries under the current directory, passing the home
          * entry's path pointer. This is valid since the path is always

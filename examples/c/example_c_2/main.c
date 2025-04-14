@@ -3,17 +3,16 @@
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- *            - searching (via Recls_SearchFeedback()) for files
- *            - use of multi-part pattern matching
- *            - recursive operation
+ *            - searching in current or named directory
+ *            - searching recursively for files matching common programming language extensions according to multi-part pattern matching
+ *            - searching by Recls_SearchFeedback() to show directory feedback if a tty, or Recls_Search() otherwise
  *            - display of full path of each entry
  *            - handling of errors and reporting of error information
- *            - elicitation of entry properties via entry structure
- *              members
+ *            - elicitation of entry properties via entry structure members
  *            - display of progress (of each directory traversed)
  *
  * Created: 29th May 2006
- * Updated: 12th April 2025
+ * Updated: 14th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -115,7 +114,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        recls_info_t    entry;
+        recls_info_t entry;
 
         Recls_GetDetails(hSrch, &entry);
 
@@ -126,7 +125,6 @@ int main(int argc, char* argv[])
                 write_blank_line(stdout, feedback.lastLen);
                 feedback.lastLen = 0;
             }
-
 
             /* full path */
             printf(RECLS_LITERAL("%.*s\n"), (int)(entry->path.end - entry->path.begin), entry->path.begin);

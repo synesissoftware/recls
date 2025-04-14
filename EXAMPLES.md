@@ -1,7 +1,7 @@
 # CLASP.Ruby Examples
 
-|Name|Language|Source & Description|Summary|
-|---|---|---|---|
+| Name | Language | Source & Description | Summary |
+| --- | --- | --- | --- |
 |**example_c_1**|C|[examples/c/example_c_1/main.c](./examples/c/example_c_1/main.c)<br/>[examples/c/example_c_1.md](./examples/c/example_c_1.md)|Illustrates recursive search, via `Recls_Search()`, and display of each full path.|
 |**example_c_2**|C|[examples/c/example_c_2/main.c](./examples/c/example_c_2/main.c)<br/>[examples/c/example_c_2.md](./examples/c/example_c_2.md)|Illustrates callback recursive search, via `Recls_SearchFeedback()`, and display of each full path.|
 |**example_c_3**|C|[examples/c/example_c_3/main.c](./examples/c/example_c_3/main.c)<br/>[examples/c/example_c_3.md](./examples/c/example_c_3.md)|Illustrates use of `Recls_Stat()`, `Recls_Search()`, `Recls_SqueezePath()`, `Recls_CalcDirectoryEntrySize()`.|

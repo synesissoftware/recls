@@ -3,14 +3,15 @@
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- *            - searching (via Recls_Search()) for files
- *            - recursive operation
+ *            - searching in current or named directory
+ *            - searching recursively for all files
+ *            - searching by Recls_Search()
  *            - display of full path of each entry
  *            - handling of errors and reporting of error information
  *            - elicitation of entry properties via API function calls
  *
  * Created: 29th May 2006
- * Updated: 10th April 2025
+ * Updated: 14th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -23,6 +24,7 @@
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros and definitions
  */
@@ -32,16 +34,20 @@
 # define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
     /* Declare a search handle, define the flags (for recursive file search)
      * and start a search.
      */
-    hrecls_t        hSrch;
-    recls_uint32_t  flags   =   RECLS_F_FILES | RECLS_F_RECURSIVE;
-    recls_rc_t      rc      =   Recls_Search(RECLS_LITERAL("."), Recls_GetWildcardsAll(), flags, &hSrch);
+    hrecls_t            hSrch;
+    recls_uint32_t      flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
+    char const* const   search_dir  =   argc > 1 ? argv[1] : RECLS_LITERAL(".");
+    recls_rc_t          rc          =   Recls_Search(search_dir, Recls_GetWildcardsAll(), flags, &hSrch);
 
     ((void)&argc);
     ((void)&argv);
@@ -94,6 +100,7 @@ int main(int argc, char* argv[])
         return EXIT_SUCCESS;
     }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -15,7 +15,7 @@
  *            - elicitation of entry properties via API function calls
  *
  * Created: 29th May 2006
- * Updated: 10th April 2025
+ * Updated: 14th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,8 +53,9 @@
 int main(int argc, char* argv[])
 {
     /* stat() the current directory */
-    recls_info_t    current;
-    recls_rc_t      rc  =   Recls_Stat(RECLS_LITERAL("."), RECLS_F_DIRECTORIES | RECLS_F_DIRECTORY_PARTS, &current);
+    recls_info_t        current;
+    char const* const   search_dir  =   argc > 1 ? argv[1] : RECLS_LITERAL(".");
+    recls_rc_t          rc          =   Recls_Stat(search_dir, RECLS_F_DIRECTORIES | RECLS_F_DIRECTORY_PARTS, &current);
 
     ((void)&argc);
     ((void)&argv);
@@ -91,7 +92,7 @@ int main(int argc, char* argv[])
         {
             /* The search failed. Display the error string. */
             recls_char_t    err[1001];
-            size_t          n   =   Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
+            size_t const    n   =   Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
 
             err[n] = '\0';
 
@@ -114,7 +115,7 @@ int main(int argc, char* argv[])
                 recls_bool_t        isDirectory;
                 recls_char_t        path[1001];
                 recls_char_t        squeezedPath[CCH_SQUEEZED_PATH];
-                size_t              cch = Recls_GetPathProperty(entry, &path[0], RECLS_NUM_ELEMENTS(path) - 1);;
+                size_t const        cch = Recls_GetPathProperty(entry, &path[0], RECLS_NUM_ELEMENTS(path) - 1);;
 
                 path[cch] = '\0';
 

@@ -499,6 +499,7 @@ dev/synesissoftware/freelibs/recls/recls/src/api.util.stat.cpp
 dev/synesissoftware/freelibs/recls/recls/src/api.windows.cpp
 dev/synesissoftware/freelibs/recls/recls/src/impl.api.search.cpp
 dev/synesissoftware/freelibs/recls/recls/src/impl.api.search.h
+dev/synesissoftware/freelibs/recls/recls/src/impl.assert.h
 dev/synesissoftware/freelibs/recls/recls/src/impl.atomic.h
 dev/synesissoftware/freelibs/recls/recls/src/impl.constants.hpp
 dev/synesissoftware/freelibs/recls/recls/src/impl.entryfunctions.h
