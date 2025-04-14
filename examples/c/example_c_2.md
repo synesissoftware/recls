@@ -2,7 +2,7 @@
 
 ## Summary
 
-Illustrates recursive search, via `Recls_Search()`, and display of each full path.
+Demonstrates recursive search, via `Recls_Search()`, and display of each full path.
 
 
 ## Source
