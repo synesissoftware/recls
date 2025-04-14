@@ -3,13 +3,14 @@
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- *            - searching in current or named directory
- *            - searching recursively for files matching common programming language extensions according to multi-part pattern matching
- *            - searching by Recls_SearchFeedback() to show directory feedback if a tty, or Recls_Search() otherwise
- *            - display of full path of each entry
- *            - handling of errors and reporting of error information
- *            - elicitation of entry properties via entry structure members
- *            - display of progress (of each directory traversed)
+ *  - search in current or named directory
+ *  - search matching names with common programming language extensions according to multi-part pattern matching
+ *  - search recursively for files
+ *  - search by Recls_SearchFeedback() to show directory feedback if a tty; Recls_Search() otherwise
+ *  - display of search-relative-path of each entry
+ *  - detecting failure and reporting of failure reason
+ *  - elicitation of entry properties via entry structure members
+ *  - display of progress of each directory traversed, squeezed into the console width via Recls_SqueezePath()
  *
  * Created: 29th May 2006
  * Updated: 14th April 2025
@@ -26,19 +27,8 @@
 #include <platformstl/system/console_functions.h>
 
 /* Standard C Library Files */
-#include <stdio.h>      /* for printf() / fprintf()         */
-#include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
-#include <string.h>
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * macros
- */
-
-#ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define printf                                             wprintf
-# define fprintf                                            fwprintf
-#endif /* RECLS_CHAR_TYPE_IS_WCHAR */
+#include <stdio.h>
+#include <stdlib.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,15 +76,17 @@ int main(int argc, char* argv[])
 {
     const recls_char_t  SEARCH_PATTERN[]    =   RECLS_LITERAL("*.c|*.cpp|*.cs|*.go|*.h|*.hpp|*.java|*.js|*.pl|*.py|*.rb|*.rs|*.ts");
 
-    struct feedback_t   feedback    =   { 0 };
     hrecls_t            hSrch;
+    char const*         search_dir  =   argc > 1 ? argv[1] : ".";
+    char const*         patterns    =   SEARCH_PATTERN;
     recls_uint32_t      flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
-    char const* const   search_dir  =   argc > 1 ? argv[1] : RECLS_LITERAL(".");
     recls_rc_t          rc;
+
+    struct feedback_t   feedback    =   { 0 };
 
     if (platformstl_C_isatty_stm(stdout))
     {
-        rc = Recls_SearchFeedback(search_dir, SEARCH_PATTERN, flags, example_c_2_progress_fn, &feedback, &hSrch);
+        rc = Recls_SearchFeedback(search_dir, patterns, flags, example_c_2_progress_fn, &feedback, &hSrch);
     }
     else
     {
@@ -104,7 +96,11 @@ int main(int argc, char* argv[])
     if (RECLS_RC_OK != rc)
     {
         recls_char_t    err[1001];
-        size_t  n   =   Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
+        size_t          n;
+
+failed:
+
+        n   =   Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
 
         err[n] = '\0';
 
@@ -127,11 +123,11 @@ int main(int argc, char* argv[])
             }
 
             /* full path */
-            printf(RECLS_LITERAL("%.*s\n"), (int)(entry->path.end - entry->path.begin), entry->path.begin);
+            printf(RECLS_LITERAL("%.*s\n"), (int)(entry->searchRelativePath.end - entry->searchRelativePath.begin), entry->searchRelativePath.begin);
 
             Recls_CloseDetails(entry);
         }
-        while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
+        while (RECLS_SUCCEEDED(rc = Recls_GetNextDetails(hSrch, &entry)));
 
         Recls_SearchClose(hSrch);
 
@@ -140,6 +136,11 @@ int main(int argc, char* argv[])
             write_backs(stdout, feedback.lastLen);
             write_blanks(stdout, feedback.lastLen);
             write_backs(stdout, feedback.lastLen);
+        }
+
+        if (RECLS_RC_NO_MORE_DATA != rc && RECLS_FAILED(rc))
+        {
+            goto failed;
         }
 
         return EXIT_SUCCESS;

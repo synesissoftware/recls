@@ -19,7 +19,7 @@ Demonstrates recursive search for all files under a given directory including al
  *  - search by Recls_Search()
  *  - display of full path of each entry
  *  - detecting failure and reporting of failure reason
- *  - elicitation of entry properties via API function calls
+ *  - elicitation of entry properties via entry structure members
  *
  * Created: 29th May 2006
  * Updated: 14th April 2025

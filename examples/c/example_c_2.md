@@ -2,7 +2,7 @@
 
 ## Summary
 
-Demonstrates recursive search, via `Recls_Search()`, and display of each full path.
+Demonstrates recursive search with feedback for all files matching a multi-part pattern under a given directory including all appropriate failure handling.
 
 
 ## Source
@@ -13,17 +13,17 @@ Demonstrates recursive search, via `Recls_Search()`, and display of each full pa
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- *            - searching (via Recls_SearchFeedback()) for files
- *            - use of multi-part pattern matching
- *            - recursive operation
- *            - display of full path of each entry
- *            - handling of errors and reporting of error information
- *            - elicitation of entry properties via entry structure
- *              members
- *            - display of progress (of each directory traversed)
+ *  - search in current or named directory
+ *  - search matching names with common programming language extensions according to multi-part pattern matching
+ *  - search recursively for files
+ *  - search by Recls_SearchFeedback() to show directory feedback if a tty; Recls_Search() otherwise
+ *  - display of search-relative-path of each entry
+ *  - detecting failure and reporting of failure reason
+ *  - elicitation of entry properties via entry structure members
+ *  - display of progress of each directory traversed, squeezed into the console width via Recls_SqueezePath()
  *
  * Created: 29th May 2006
- * Updated: 12th April 2025
+ * Updated: 14th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,19 +37,8 @@ Demonstrates recursive search, via `Recls_Search()`, and display of each full pa
 #include <platformstl/system/console_functions.h>
 
 /* Standard C Library Files */
-#include <stdio.h>      /* for printf() / fprintf()         */
-#include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
-#include <string.h>
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * macros
- */
-
-#ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define printf                                             wprintf
-# define fprintf                                            fwprintf
-#endif /* RECLS_CHAR_TYPE_IS_WCHAR */
+#include <stdio.h>
+#include <stdlib.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,15 +86,17 @@ int main(int argc, char* argv[])
 {
     const recls_char_t  SEARCH_PATTERN[]    =   RECLS_LITERAL("*.c|*.cpp|*.cs|*.go|*.h|*.hpp|*.java|*.js|*.pl|*.py|*.rb|*.rs|*.ts");
 
-    struct feedback_t   feedback    =   { 0 };
     hrecls_t            hSrch;
+    char const*         search_dir  =   argc > 1 ? argv[1] : ".";
+    char const*         patterns    =   SEARCH_PATTERN;
     recls_uint32_t      flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
-    char const* const   search_dir  =   argc > 1 ? argv[1] : RECLS_LITERAL(".");
     recls_rc_t          rc;
+
+    struct feedback_t   feedback    =   { 0 };
 
     if (platformstl_C_isatty_stm(stdout))
     {
-        rc = Recls_SearchFeedback(search_dir, SEARCH_PATTERN, flags, example_c_2_progress_fn, &feedback, &hSrch);
+        rc = Recls_SearchFeedback(search_dir, patterns, flags, example_c_2_progress_fn, &feedback, &hSrch);
     }
     else
     {
@@ -115,7 +106,11 @@ int main(int argc, char* argv[])
     if (RECLS_RC_OK != rc)
     {
         recls_char_t    err[1001];
-        size_t  n   =   Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
+        size_t          n;
+
+failed:
+
+        n   =   Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
 
         err[n] = '\0';
 
@@ -125,7 +120,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        recls_info_t    entry;
+        recls_info_t entry;
 
         Recls_GetDetails(hSrch, &entry);
 
@@ -137,13 +132,12 @@ int main(int argc, char* argv[])
                 feedback.lastLen = 0;
             }
 
-
             /* full path */
-            printf(RECLS_LITERAL("%.*s\n"), (int)(entry->path.end - entry->path.begin), entry->path.begin);
+            printf(RECLS_LITERAL("%.*s\n"), (int)(entry->searchRelativePath.end - entry->searchRelativePath.begin), entry->searchRelativePath.begin);
 
             Recls_CloseDetails(entry);
         }
-        while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
+        while (RECLS_SUCCEEDED(rc = Recls_GetNextDetails(hSrch, &entry)));
 
         Recls_SearchClose(hSrch);
 
@@ -152,6 +146,11 @@ int main(int argc, char* argv[])
             write_backs(stdout, feedback.lastLen);
             write_blanks(stdout, feedback.lastLen);
             write_backs(stdout, feedback.lastLen);
+        }
+
+        if (RECLS_RC_NO_MORE_DATA != rc && RECLS_FAILED(rc))
+        {
+            goto failed;
         }
 
         return EXIT_SUCCESS;
@@ -296,155 +295,165 @@ example_c_2_progress_fn(
 
 ## Discussion
 
-The program creates a recursive (`RECLS_F_RECURSIVE`) search from the current directory (`"."`) for files (`RECLS_F_FILES`) obtaining a search handle (`hSrch`). The return code (`rc`) is checked against `RECLS_RC_NO_MORE_DATA`, which means that the search was created successfully but obtained no matches. If the search otherwise failed (as per the check `RECLS_FAILED()`) then a description of the reason for the failure is obtained (by `Recls_GetErrorString()`) and written to `stderr`.
+The main functionality of this program follows that of **example_c_1**, except that the search-relative-path of each entry is printed rather than its full path. The additional functionality is by dint of the use of feedback processing, via `Recls_SearchFeedback()` (but only in the case where the standard output stream is a tty).
 
-If the search succeeds (and is non-empty), then the details of the first match are obtained by `Recls_GetDetails()` and then displayed in a loop, the terminating condition of which is determined by repeated calls to `Recls_GetNextDetails()`.
-
-Finally, the search handle is closed (and all its associated resources) by `Recls_SearchClose()`.
+The call to `Recls_SearchFeedback()` is passed the callback function `example_c_2_progress_fn()` which has two responsibilities:
+* write the currently-being-searched directory - `dir` and `dirLen` - to the standard output stream, squeezed into the width of the console by `Recls_SqueezePath()`; and
+* erasing the previously-written directory and returning the print-position ready for the next one;
 
 
 ## Example results
 
+When configured, built, and run specify the **test** directory
+
 ```
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.squeeze_path/implicit_link.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.squeeze_path/test.unit.api.squeeze_path.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.retcodes/implicit_link.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.retcodes/test.unit.cpp.retcodes.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.c.retcodes/implicit_link.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.c.retcodes/test.unit.c.retcodes.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.squeeze_path/implicit_link.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.combine_paths/implicit_link.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.combine_paths/test.unit.cpp.combine_paths.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.stat/implicit_link.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.stat/test.unit.api.stat.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.derive_relative_path/implicit_link.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.derive_relative_path/test.unit.cpp.derive_relative_path.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.combine_paths/implicit_link.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.combine_paths/test.unit.api.combine_paths.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.create_directory/implicit_link.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.create_directory/test.unit.api.create_directory.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.is_socket/entry.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.create_directory/implicit_link.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.create_directory/test.component.util.cpp.create_directory.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.remove_directory/implicit_link.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.remove_directory/test.component.util.cpp.remove_directory.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.with_pantheios/implicit_link.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.with_pantheios/test.scratch.with_pantheios.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.cpp_api/implicit_link.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.search.1/test.scratch.search.1.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.search.1/implicit_link.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test_c_1/test_c_1.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.links/implicit_link.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.links/test.scratch.links.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/assert.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/ftp.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/implicit_link.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/recls.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/unix.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/windows.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/fwd.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/recls.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_borland.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_ch.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_clang.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_como.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_dmc.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_gcc.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_intel.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_msvc.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_mwerks.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_vectorc.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/compiler_watcom.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/language.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/platform.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/platform_types.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/recls_filesize.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/recls_time.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/retcodes.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/safestr.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/internal/warning/msvc.suppress.4530.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/classfwd.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/common.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/directory_parts.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/entry.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/exceptions.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/ftp_search_sequence.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/root_sequence.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/search_sequence.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/traits.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/unix.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/util.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/windows.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/include/recls/cpp/internal/sequence_helper.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/pch.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/pch.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/projects/core/_dev_pragmatics_/warnings.msvc.10+.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_1/main.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_3/main.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/cpp/example_cpp_2/main.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_3/main.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_4/main.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_5/main.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_2/main.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_7/main.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_8/main.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_1/main.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/examples/c/example_c_6/main.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearch.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearchDirectoryNode.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearchDirectoryNode_windows.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearch_windows.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsSearch.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.entryinfo.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.error.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.extended.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.ftp.windows.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.retcodes.windows.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.search.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.unix.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.combine_paths.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.create_directory.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.derive_relative_path.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.get_file_sizes.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.remove_directory.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.squeeze_path.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.stat.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.windows.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.api.search.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.entryinfo.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.fileinfo.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.fileinfo.unix.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.fileinfo.windows.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.snprintf.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.trace.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.unix.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.windows.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.api.search.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.assert.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.atomic.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.entryfunctions.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.root.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.trace.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.inetstl.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.platformstl.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.stlsoft.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.unixstl.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.winstl.h
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearch.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearchDirectoryNode.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearch.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearchDirectoryNode_windows.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsSearch.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.constants.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.entryinfo.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.string.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.types.ftp.hpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.types.hpp
+$ ./prepare_cmake.sh
+$ ./build_cmake.sh
+$ ./_build/examples/c/example_c_2/example_c_2 .
+```
+
+then it produces results such as:
+
+```
+test/unit/test.unit.api.squeeze_path/implicit_link.c
+test/unit/test.unit.api.squeeze_path/test.unit.api.squeeze_path.c
+test/unit/test.unit.cpp.retcodes/implicit_link.cpp
+test/unit/test.unit.cpp.retcodes/test.unit.cpp.retcodes.cpp
+test/unit/test.unit.c.retcodes/implicit_link.c
+test/unit/test.unit.c.retcodes/test.unit.c.retcodes.c
+test/unit/test.unit.cpp.squeeze_path/implicit_link.cpp
+test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp
+test/unit/test.unit.cpp.combine_paths/implicit_link.cpp
+test/unit/test.unit.cpp.combine_paths/test.unit.cpp.combine_paths.cpp
+test/unit/test.unit.api.stat/implicit_link.c
+test/unit/test.unit.api.stat/test.unit.api.stat.c
+test/unit/test.unit.cpp.derive_relative_path/implicit_link.cpp
+test/unit/test.unit.cpp.derive_relative_path/test.unit.cpp.derive_relative_path.cpp
+test/unit/test.unit.api.combine_paths/implicit_link.c
+test/unit/test.unit.api.combine_paths/test.unit.api.combine_paths.c
+test/unit/test.unit.api.create_directory/implicit_link.c
+test/unit/test.unit.api.create_directory/test.unit.api.create_directory.c
+test/component/test.component.util.cpp.is_socket/entry.cpp
+test/component/test.component.util.cpp.create_directory/implicit_link.cpp
+test/component/test.component.util.cpp.create_directory/test.component.util.cpp.create_directory.cpp
+test/component/test.component.util.cpp.remove_directory/implicit_link.cpp
+test/component/test.component.util.cpp.remove_directory/test.component.util.cpp.remove_directory.cpp
+test/scratch/test.scratch.with_pantheios/implicit_link.cpp
+test/scratch/test.scratch.with_pantheios/test.scratch.with_pantheios.cpp
+test/scratch/test.scratch.cpp_api/implicit_link.cpp
+test/scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp
+test/scratch/test.scratch.search.1/test.scratch.search.1.c
+test/scratch/test.scratch.search.1/implicit_link.cpp
+test/scratch/test_c_1/test_c_1.c
+test/scratch/test.scratch.links/implicit_link.cpp
+test/scratch/test.scratch.links/test.scratch.links.cpp
+include/recls/assert.h
+include/recls/ftp.h
+include/recls/implicit_link.h
+include/recls/recls.h
+include/recls/unix.h
+include/recls/windows.h
+include/recls/fwd.hpp
+include/recls/recls.hpp
+include/recls/internal/compiler.h
+include/recls/internal/compiler_borland.h
+include/recls/internal/compiler_ch.h
+include/recls/internal/compiler_clang.h
+include/recls/internal/compiler_como.h
+include/recls/internal/compiler_dmc.h
+include/recls/internal/compiler_gcc.h
+include/recls/internal/compiler_intel.h
+include/recls/internal/compiler_msvc.h
+include/recls/internal/compiler_mwerks.h
+include/recls/internal/compiler_vectorc.h
+include/recls/internal/compiler_watcom.h
+include/recls/internal/language.h
+include/recls/internal/platform.h
+include/recls/internal/platform_types.h
+include/recls/internal/recls_filesize.h
+include/recls/internal/recls_time.h
+include/recls/internal/retcodes.h
+include/recls/internal/safestr.h
+include/recls/internal/warning/msvc.suppress.4530.h
+include/recls/cpp/classfwd.hpp
+include/recls/cpp/common.hpp
+include/recls/cpp/directory_parts.hpp
+include/recls/cpp/entry.hpp
+include/recls/cpp/exceptions.hpp
+include/recls/cpp/ftp_search_sequence.hpp
+include/recls/cpp/root_sequence.hpp
+include/recls/cpp/search_sequence.hpp
+include/recls/cpp/traits.hpp
+include/recls/cpp/unix.hpp
+include/recls/cpp/util.hpp
+include/recls/cpp/windows.hpp
+include/recls/cpp/internal/sequence_helper.hpp
+projects/core/pch.cpp
+projects/core/pch.hpp
+projects/core/_dev_pragmatics_/warnings.msvc.10+.h
+examples/cpp/example_cpp_1/main.cpp
+examples/cpp/example_cpp_3/main.cpp
+examples/cpp/example_cpp_2/main.cpp
+examples/c/example_c_3/main.c
+examples/c/example_c_4/main.c
+examples/c/example_c_5/main.c
+examples/c/example_c_2/main.c
+examples/c/example_c_7/main.c
+examples/c/example_c_8/main.c
+examples/c/example_c_1/main.c
+examples/c/example_c_6/main.c
+src/ReclsFileSearch.cpp
+src/ReclsFileSearchDirectoryNode.cpp
+src/ReclsFtpSearchDirectoryNode_windows.cpp
+src/ReclsFtpSearch_windows.cpp
+src/ReclsSearch.cpp
+src/api.entryinfo.cpp
+src/api.error.cpp
+src/api.extended.cpp
+src/api.ftp.windows.cpp
+src/api.retcodes.windows.cpp
+src/api.search.cpp
+src/api.unix.cpp
+src/api.util.combine_paths.cpp
+src/api.util.create_directory.cpp
+src/api.util.derive_relative_path.cpp
+src/api.util.get_file_sizes.cpp
+src/api.util.remove_directory.cpp
+src/api.util.squeeze_path.cpp
+src/api.util.stat.cpp
+src/api.windows.cpp
+src/impl.api.search.cpp
+src/impl.entryinfo.cpp
+src/impl.fileinfo.cpp
+src/impl.fileinfo.unix.cpp
+src/impl.fileinfo.windows.cpp
+src/impl.snprintf.cpp
+src/impl.trace.cpp
+src/impl.util.cpp
+src/impl.util.unix.cpp
+src/impl.util.windows.cpp
+src/impl.api.search.h
+src/impl.assert.h
+src/impl.atomic.h
+src/impl.entryfunctions.h
+src/impl.root.h
+src/impl.trace.h
+src/impl.util.h
+src/incl.inetstl.h
+src/incl.platformstl.h
+src/incl.stlsoft.h
+src/incl.unixstl.h
+src/incl.winstl.h
+src/ReclsFileSearch.hpp
+src/ReclsFileSearchDirectoryNode.hpp
+src/ReclsFtpSearch.hpp
+src/ReclsFtpSearchDirectoryNode_windows.hpp
+src/ReclsSearch.hpp
+src/impl.constants.hpp
+src/impl.entryinfo.hpp
+src/impl.string.hpp
+src/impl.types.ftp.hpp
+src/impl.types.hpp
 ```
 
 
