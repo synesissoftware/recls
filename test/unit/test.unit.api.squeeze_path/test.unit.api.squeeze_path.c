@@ -5,7 +5,7 @@
  *          `Recls_SqueezePath()`).
  *
  * Created: 13th December 2008
- * Updated: 17th October 2024
+ * Updated: 15th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,7 +25,7 @@
  */
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -63,6 +63,7 @@ static void test_1_10(void);
 static void test_1_11(void);
 static void test_1_12(void);
 static void test_1_13(void);
+static void test_1_14(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,6 +93,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_1_11);
         XTESTS_RUN_CASE(test_1_12);
         XTESTS_RUN_CASE(test_1_13);
+        XTESTS_RUN_CASE(test_1_14);
 
         XTESTS_PRINT_RESULTS();
 
@@ -120,7 +122,7 @@ static void test_1_0(void)
 static void test_1_1(void)
 {
     recls_char_t    result[1];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL(""), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL(""), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -131,7 +133,7 @@ static void test_1_1(void)
 static void test_1_2(void)
 {
     recls_char_t    result[11];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL(""), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL(""), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -142,7 +144,7 @@ static void test_1_2(void)
 static void test_1_3(void)
 {
     recls_char_t    result[12];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -153,7 +155,7 @@ static void test_1_3(void)
 static void test_1_4(void)
 {
     recls_char_t    result[11];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -164,7 +166,7 @@ static void test_1_4(void)
 static void test_1_5(void)
 {
     recls_char_t    result[10];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -175,7 +177,7 @@ static void test_1_5(void)
 static void test_1_6(void)
 {
     recls_char_t    result[9];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -186,7 +188,7 @@ static void test_1_6(void)
 static void test_1_7(void)
 {
     recls_char_t    result[8];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -197,7 +199,7 @@ static void test_1_7(void)
 static void test_1_8(void)
 {
     recls_char_t    result[7];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -208,7 +210,7 @@ static void test_1_8(void)
 static void test_1_9(void)
 {
     recls_char_t    result[6];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -219,7 +221,7 @@ static void test_1_9(void)
 static void test_1_10(void)
 {
     recls_char_t    result[5];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -230,7 +232,7 @@ static void test_1_10(void)
 static void test_1_11(void)
 {
     recls_char_t    result[4];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -241,7 +243,7 @@ static void test_1_11(void)
 static void test_1_12(void)
 {
     recls_char_t    result[3];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -252,12 +254,36 @@ static void test_1_12(void)
 static void test_1_13(void)
 {
     recls_char_t    result[2];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result) - 1);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL("abc/def/ghi"), &result[0], STLSOFT_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
     XTESTS_TEST_INTEGER_EQUAL(1u, cch);
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("g"), result);
+}
+
+static void test_1_14(void)
+{
+    recls_char_t const  INPUT[] = RECLS_LITERAL("/Volumes/SAMSUNG-2/_C_dev/FastFormat/test/component/test.component.format_specification_defect_exceptions/vc6/");
+
+    {
+        size_t const    cch = Recls_SqueezePath(INPUT, NULL, 10);
+
+        XTESTS_TEST_INTEGER_EQUAL(110u, cch);
+    }
+
+    {
+
+        recls_char_t    result[109];
+        size_t const    cch = (result[108] = '#', Recls_SqueezePath(INPUT, &result[0], STLSOFT_NUM_ELEMENTS(result) - 1));
+
+        result[cch] = '\0';
+
+        XTESTS_TEST_INTEGER_EQUAL(107u, cch);
+        TEST_CHAR_EQ('#', result[108]);
+        XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("/Volumes/SAMSUNG-2/_C_dev/FastFormat/test/component/test.component.format_specification_defect_exceptio.../"), result);
+    }
+
 }
 
 

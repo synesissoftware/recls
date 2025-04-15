@@ -5,12 +5,16 @@
  *          `recls::squeeze_path()`).
  *
  * Created: 7th June 2008
- * Updated: 3rd January 2024
+ * Updated: 15th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* /////////////////////////////////////
  * test component header file include(s)
  */
 
@@ -21,8 +25,8 @@
 
 #include <recls/recls.hpp>
 
-/* /////////////////////////////////////////////////////////////////////////
- * includes
+/* /////////////////////////////////////
+ * general includes
  */
 
 /* xTests header files */
@@ -34,6 +38,7 @@
 /* Standard C header files */
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -43,6 +48,7 @@
 #else
 # define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -91,8 +97,8 @@ namespace
     static void test_1_37(void);
     static void test_1_38(void);
     static void test_1_39(void);
-
 } // anonymous namespace
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -155,6 +161,7 @@ int main(int argc, char **argv)
 
     return retCode;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
@@ -439,9 +446,8 @@ static void test_1_38()
 static void test_1_39()
 {
 }
-
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
