@@ -81,7 +81,7 @@ failed:
         do
         {
             /* ... display the full path, ... */
-            printf(RECLS_LITERAL("%.*s\n"), (int)(entry->path.end - entry->path.begin), entry->path.begin);
+            printf("%.*s\n", (int)(entry->path.end - entry->path.begin), entry->path.begin);
 
             /* ... close the entry handle, ... */
             Recls_CloseDetails(entry);

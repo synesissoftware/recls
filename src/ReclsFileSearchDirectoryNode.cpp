@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 10th April 2025
+ * Updated: 15th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -43,6 +43,7 @@
 # endif /* RECLS_PLATFORM_IS_WINDOWS */
 #endif /* RECLS_CHAR_TYPE_IS_???? */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -53,6 +54,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * ReclsFileSearchDirectoryNode
@@ -488,7 +490,7 @@ ReclsFileSearchDirectoryNode::Stat(
         size_t const        entryFileLen    =   pathLen2 - entryDirLen;
         RECLS_ASSERT(entryFileLen == types::traits_type::str_len(entryFile));
 
-        *phEntry = create_entryinfo(pathLen2, path, entryDirLen, path, pathLen2, entryFile, entryFileLen, flags, pst);
+        *phEntry = create_entryinfo(entryDirLen, path, entryDirLen, path, pathLen2, entryFile, entryFileLen, flags, pst);
 
         return (ss_nullptr_k == *phEntry) ? RECLS_RC_OUT_OF_MEMORY : RECLS_RC_OK;
     }
@@ -819,6 +821,7 @@ ReclsFileSearchDirectoryNode::GetNextDetails(
 
     return rc;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

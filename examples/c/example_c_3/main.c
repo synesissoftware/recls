@@ -3,19 +3,16 @@
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- *            - stat() of current directory (via Recls_Stat())
- *            - searching (via Recls_Search()) for files and directories
- *            - recursive operation
- *            - display of full path of each entry, squeezed to constant
- *              width (via Recls_SqueezePath())
- *            - display of file size for file entries
- *            - display of directory contents size for directory
- *              entries, (determined via Recls_CalcDirectoryEntrySize())
- *            - handling of errors and reporting of error information
- *            - elicitation of entry properties via API function calls
+ *  - search in current or named directory
+ *  - search matching all names - implicitly, by specifying NULL for the patterns parameter
+ *  - search non-recursively for files and directories
+ *  - search by Recls_Search()
+ *  - display of entry-name for each matched entry, squeezed into maximum 64-characters via Recls_SqueezePath()
+ *  - display of file-size for each matched file; display of directory size (sum of all file-sizes in all subdirectories, via Recls_CalcDirectoryEntrySize()) for matched directory
+ *  - detecting failure and reporting of failure reason
  *
  * Created: 29th May 2006
- * Updated: 14th April 2025
+ * Updated: 15th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,26 +21,15 @@
 #include <recls/recls.h>
 
 /* Standard C Library Files */
-#include <stdio.h>      /* for printf() / fprintf()         */
-#include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
-#include <string.h>
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * macros and definitions
- */
-
-#ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define printf                                             wprintf
-# define fprintf                                            fwprintf
-#endif /* RECLS_CHAR_TYPE_IS_WCHAR */
+#include <stdio.h>
+#include <stdlib.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
 
-#define CCH_SQUEEZED_PATH                                   (64)
+#define CCH_SQUEEZED_PATH                                   (36)
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -52,139 +38,106 @@
 
 int main(int argc, char* argv[])
 {
-    /* stat() the current directory */
-    recls_info_t        current;
-    char const* const   search_dir  =   argc > 1 ? argv[1] : RECLS_LITERAL(".");
-    recls_rc_t          rc          =   Recls_Stat(search_dir, RECLS_F_DIRECTORIES | RECLS_F_DIRECTORY_PARTS, &current);
+    hrecls_t        hSrch;
+    char const*     search_dir  =   argc > 1 ? argv[1] : ".";
+    char const*     patterns    =   NULL;
+    recls_uint32_t  flags       =   RECLS_F_FILES | RECLS_F_DIRECTORIES;
+    recls_rc_t      rc          =   Recls_Search(search_dir, patterns, flags, &hSrch);
 
-    ((void)&argc);
-    ((void)&argv);
-
-    if (RECLS_FAILED(rc))
+    if (RECLS_RC_NO_MORE_DATA == rc)
     {
-        /* The search failed. Display the error string. */
-        recls_char_t    err[1001];
-        size_t          n   =   Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
+        printf("  no matches found\n");
 
-        err[n] = '\0';
+        return EXIT_SUCCESS;
+    }
+    else if (RECLS_FAILED(rc))
+    {
+        /* The search failed. Display the failure reason. */
+failed:
 
-        fprintf(stderr, RECLS_LITERAL("stat of current directory failed: %s\n"), err);
+        fprintf(
+            stderr
+        ,   "Search in '%s' failed: %.*s\n"
+        ,   search_dir
+        ,   (int)Recls_GetSearchCodeStringLength(rc), Recls_GetSearchCodeString(rc)
+        );
 
         return EXIT_FAILURE;
     }
     else
     {
-        hrecls_t        hSrch;
-        recls_uint32_t  flags   =   RECLS_F_FILES | RECLS_F_DIRECTORIES | RECLS_F_RECURSIVE;
+        recls_info_t entry;
 
-        rc = Recls_Search(current->path.begin, NULL, flags, &hSrch);
+        /* Get the details for the first entry, ... */
+        Recls_GetDetails(hSrch, &entry);
 
-        /* ... close the entry handle, ... */
-        Recls_CloseDetails(current);
-
-        if (RECLS_RC_NO_MORE_DATA == rc)
+        do
         {
-            printf(RECLS_LITERAL("  no matches found\n"));
+            recls_filesize_t    size;
+            recls_filesize_t    unit_size;
+            char const*         unit_label;
+            char const*         type_label;
+            recls_char_t        squeezedPath[CCH_SQUEEZED_PATH];
+            size_t              cch;
 
-            return EXIT_SUCCESS;
-        }
-        else if (RECLS_FAILED(rc))
-        {
-            /* The search failed. Display the error string. */
-            recls_char_t    err[1001];
-            size_t const    n   =   Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
 
-            err[n] = '\0';
-
-            fprintf(stderr, RECLS_LITERAL("Search failed: %s\n"), err);
-
-            return EXIT_FAILURE;
-        }
-        else
-        {
-            /* Get the details for the first entry, ... */
-
-            recls_info_t    entry;
-
-            Recls_GetDetails(hSrch, &entry);
-
-            do
+            if (Recls_IsEntryDirectory(entry))
             {
-                /* ... get the full path, ... */
-                recls_filesize_t    size;
-                recls_bool_t        isDirectory;
-                recls_char_t        path[1001];
-                recls_char_t        squeezedPath[CCH_SQUEEZED_PATH];
-                size_t const        cch = Recls_GetPathProperty(entry, &path[0], RECLS_NUM_ELEMENTS(path) - 1);;
+                size = Recls_CalcDirectoryEntrySize(entry);
+                type_label = "directory";
+            }
+            else
+            {
+                size = Recls_GetSizeProperty(entry);
+                type_label = "file";
+            }
 
-                path[cch] = '\0';
+            if (0 != (unit_size = Recls_GetFileSizeGigaBytes(size)))
+            {
+                unit_label = "GB";
+            }
+            else if (0 != (unit_size = Recls_GetFileSizeMegaBytes(size)))
+            {
+                unit_label = "MB";
+            }
+            else if (0 != (unit_size = Recls_GetFileSizeKiloBytes(size)))
+            {
+                unit_label = "KB";
+            }
+            else
+            {
+                unit_label = "byte(s)";
+            }
 
-                /* ... squeeze it into CCH_SQUEEZED_PATH characters, ... */
-                cch = Recls_SqueezePath(path, &squeezedPath[0], RECLS_NUM_ELEMENTS(squeezedPath));
 
-                /* ... determine type, ... */
-                isDirectory = Recls_IsEntryDirectory(entry);
+            /* ... squeeze name+ext into CCH_SQUEEZED_PATH characters, ... */
+            cch = Recls_SqueezePath(entry->fileName.begin, &squeezedPath[0], CCH_SQUEEZED_PATH - 1);
 
-                if (isDirectory)
-                {
-                    /* ... calculate size, or ... */
-                    size = Recls_CalcDirectoryEntrySize(entry);
-                }
-                else
-                {
-                    /* ... elicit size, ... */
+            ((void)&cch);
 
-                    size = Recls_GetSizeProperty(entry);
-                }
+            printf( RECLS_LITERAL("%32s: %9s; %4lu %s\n")
+            ,   squeezedPath
+            ,   type_label
+            ,   (unsigned long)unit_size
+            ,   unit_label
+            );
 
-                if (0 != Recls_GetFileSizeGigaBytes(size))
-                {
-                    printf( RECLS_LITERAL("%.*s: %s; %lu MB\n")
-                        ,   (int)cch
-                        ,   squeezedPath
-                        ,   isDirectory ? RECLS_LITERAL("directory") : RECLS_LITERAL("file")
-                        ,   (unsigned long)Recls_GetFileSizeMegaBytes(size)
-                        );
-                }
-                else if (0 != Recls_GetFileSizeMegaBytes(size))
-                {
-                    printf( RECLS_LITERAL("%.*s: %s; %lu MB\n")
-                        ,   (int)cch
-                        ,   squeezedPath
-                        ,   isDirectory ? RECLS_LITERAL("directory") : RECLS_LITERAL("file")
-                        ,   (unsigned long)Recls_GetFileSizeMegaBytes(size)
-                        );
-                }
-                else if (0 != Recls_GetFileSizeKiloBytes(size))
-                {
-                    printf( RECLS_LITERAL("%.*s: %s; %lu KB\n")
-                        ,   (int)cch
-                        ,   squeezedPath
-                        ,   isDirectory ? RECLS_LITERAL("directory") : RECLS_LITERAL("file")
-                        ,   (unsigned long)Recls_GetFileSizeKiloBytes(size)
-                        );
-                }
-                else
-                {
-                    printf( RECLS_LITERAL("%.*s: %s; %lu bytes\n")
-                        ,   (int)cch
-                        ,   squeezedPath
-                        ,   isDirectory ? RECLS_LITERAL("directory") : RECLS_LITERAL("file")
-                        ,   (unsigned long)size
-                        );
-                }
 
-                /* ... close the entry handle, ... */
-                Recls_CloseDetails(entry);
+            /* ... close the entry handle, ... */
+            Recls_CloseDetails(entry);
 
-            } /* ... and get the next entry. */
-            while (RECLS_SUCCEEDED(Recls_GetNextDetails(hSrch, &entry)));
+        } /* ... and get the next entry. */
+        while (RECLS_RC_OK == (rc = Recls_GetNextDetails(hSrch, &entry)));
 
-            /* Close the search handle. */
-            Recls_SearchClose(hSrch);
+        /* Close the search handle. */
+        Recls_SearchClose(hSrch);
 
-            return EXIT_SUCCESS;
+        if (RECLS_RC_NO_MORE_DATA != rc && RECLS_FAILED(rc))
+        {
+            goto failed;
         }
+
+        return EXIT_SUCCESS;
     }
 }
 

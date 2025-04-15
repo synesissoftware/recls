@@ -13,7 +13,7 @@
  *  - display of progress of each directory traversed, squeezed into the console width via Recls_SqueezePath()
  *
  * Created: 29th May 2006
- * Updated: 14th April 2025
+ * Updated: 15th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -74,7 +74,7 @@ struct feedback_t
 
 int main(int argc, char* argv[])
 {
-    const recls_char_t  SEARCH_PATTERN[]    =   RECLS_LITERAL("*.c|*.cpp|*.cs|*.go|*.h|*.hpp|*.java|*.js|*.pl|*.py|*.rb|*.rs|*.ts");
+    const recls_char_t  SEARCH_PATTERN[]    =   "*.c|*.cpp|*.cs|*.go|*.h|*.hpp|*.java|*.js|*.pl|*.py|*.rb|*.rs|*.ts";
 
     hrecls_t            hSrch;
     char const*         search_dir  =   argc > 1 ? argv[1] : ".";
@@ -104,7 +104,7 @@ failed:
 
         err[n] = '\0';
 
-        fprintf(stderr, RECLS_LITERAL("Search in '%s' failed: %s\n"), search_dir, err);
+        fprintf(stderr, "Search in '%s' failed: %s\n", search_dir, err);
 
         return EXIT_FAILURE;
     }
@@ -123,7 +123,7 @@ failed:
             }
 
             /* full path */
-            printf(RECLS_LITERAL("%.*s\n"), (int)(entry->searchRelativePath.end - entry->searchRelativePath.begin), entry->searchRelativePath.begin);
+            printf("%.*s\n", (int)(entry->searchRelativePath.end - entry->searchRelativePath.begin), entry->searchRelativePath.begin);
 
             Recls_CloseDetails(entry);
         }
@@ -172,7 +172,7 @@ static void write_backs(FILE* stm, size_t n)
 
     write_chars(&backs[0], '\b', n);
 
-    fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
+    fprintf(stm, "%.*s", (int)n, &backs[0]);
     fflush(stm);
 }
 
@@ -182,7 +182,7 @@ static void write_blanks(FILE* stm, size_t n)
 
     write_chars(&blanks[0], ' ', n);
 
-    fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &blanks[0]);
+    fprintf(stm, "%.*s", (int)n, &blanks[0]);
     fflush(stm);
 }
 
@@ -194,11 +194,11 @@ static void write_blank_line(FILE* stm, size_t n)
     write_chars(&backs[0], '\b', n);
     write_chars(&blanks[0], ' ', n);
 
-    fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
+    fprintf(stm, "%.*s", (int)n, &backs[0]);
     fflush(stm);
-    fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &blanks[0]);
+    fprintf(stm, "%.*s", (int)n, &blanks[0]);
     fflush(stm);
-    fprintf(stm, RECLS_LITERAL("%.*s"), (int)n, &backs[0]);
+    fprintf(stm, "%.*s", (int)n, &backs[0]);
     fflush(stm);
 }
 
@@ -259,7 +259,7 @@ example_c_2_progress_fn(
 
             write_backs(stdout, feedback->lastLen);
 
-            newLen = (size_t)fprintf(stdout, RECLS_LITERAL("%.*s"), (int)cch, dir);
+            newLen = (size_t)fprintf(stdout, "%.*s", (int)cch, dir);
 
             if (newLen < feedback->lastLen)
             {

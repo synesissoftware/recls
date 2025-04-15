@@ -13,15 +13,13 @@ T.B.C.
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- *            - stat() of current directory (via Recls_Stat())
- *            - display of full path, drive (Win32 only), directory,
- *              directory path, file, file name, file extension, and
- *              directory parts of each entry
- *            - elicitation of entry properties via structure members
- *            - handling of errors and reporting of error information
+ * - stat() of current directory (via Recls_Stat()) or named path
+ * - display of full path, drive (Win32 only), directory, directory path, file, file name, file extension, and directory parts of each entry
+ * - elicitation of entry properties via structure members
+ * - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 10th April 2025
+ * Updated: 15th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -30,19 +28,8 @@ T.B.C.
 #include <recls/recls.h>
 
 /* Standard C Library Files */
-#include <stdio.h>      /* for printf() / fprintf()         */
-#include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
-#include <string.h>
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * macros and definitions
- */
-
-#ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define printf                                             wprintf
-# define fprintf                                            fwprintf
-#endif /* RECLS_CHAR_TYPE_IS_WCHAR */
+#include <stdio.h>
+#include <stdlib.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -53,61 +40,80 @@ int main(int argc, char* argv[])
 {
     /* stat() the current directory */
     recls_info_t    current;
-    recls_rc_t      rc  =   Recls_Stat(RECLS_LITERAL("."), RECLS_F_DIRECTORIES | RECLS_F_DIRECTORY_PARTS, &current);
-
-    ((void)&argc);
-    ((void)&argv);
+    char const*     path    =   argc > 1 ? argv[1] : ".";
+    recls_rc_t      rc      =   Recls_Stat(path, RECLS_F_DIRECTORY_PARTS, &current);
 
     if (RECLS_FAILED(rc))
     {
         /* The search failed. Display the error string. */
-        recls_char_t    err[1001];
-        size_t  n   =   Recls_GetErrorString(rc, &err[0], sizeof(err) - 1);
+        recls_char_t    err[100];
+        size_t          n   =   Recls_GetErrorString(rc, &err[0], sizeof(err));
 
-        err[n] = '\0';
-
-        fprintf(stderr, RECLS_LITERAL("stat of current directory failed: %s\n"), err);
+        fprintf(stderr, "stat of '%s' failed: %.*s\n", path, (int)n, err);
 
         return EXIT_FAILURE;
     }
     else
     {
-        struct recls_strptrs_t const    *part_ptr;
+        /* full path */
+        printf("  given path:       %s\n", path);
+
+        printf("\n");
 
         /* full path */
-        printf(RECLS_LITERAL("%s\n"), current->path.begin);
-
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
-        /* drive (Windows-only) */
-        printf(RECLS_LITERAL("  drive:          %c:\n"), current->drive);
-#endif /* RECLS_PLATFORM_IS_WINDOWS */
+        printf("  full path:        %s\n", current->path.begin);
 
         /* directory path */
-        printf(RECLS_LITERAL("  directory path: %.*s\n"), (int)(current->directory.end - current->path.begin), current->path.begin);
+        printf("  directory path:   %.*s\n", (int)(current->directory.end - current->path.begin), current->path.begin);
+
+#if defined(RECLS_PLATFORM_IS_WINDOWS)
+
+        /* drive (Windows-only) */
+        printf("  drive:            %c:\n", current->drive);
 
         /* directory */
-        printf(RECLS_LITERAL("  directory:      %.*s\n"), (int)(current->directory.end - current->directory.begin), current->directory.begin);
+        printf("  directory:          %.*s\n", (int)(current->directory.end - current->directory.begin), current->directory.begin);
+#else
+
+        /* directory */
+        printf("  directory:        %.*s\n", (int)(current->directory.end - current->directory.begin), current->directory.begin);
+#endif /* RECLS_PLATFORM_IS_WINDOWS */
 
         /* file */
-        printf(RECLS_LITERAL("  file:           %.*s\n"), (int)(current->fileExt.end - current->fileName.begin), current->fileName.begin);
+        printf("  basename:         %*s%.*s\n", (int)(current->directory.end - current->path.begin), "", (int)(current->fileExt.end - current->fileName.begin), current->fileName.begin);
 
         /* file name */
-        printf(RECLS_LITERAL("  file name:      %.*s\n"), (int)(current->fileName.end - current->fileName.begin), current->fileName.begin);
+        printf("  stem:             %*s%.*s\n", (int)(current->directory.end - current->path.begin), "", (int)(current->fileName.end - current->fileName.begin), current->fileName.begin);
 
         /* file extension */
-        printf(RECLS_LITERAL("  file ext:       %.*s\n"), (int)(current->fileExt.end - current->fileExt.begin), current->fileExt.begin);
+        if (current->fileExt.end != current->fileExt.begin)
+        {
+            printf("  extension:        %*s%*s%.*s\n", (int)(current->directory.end - current->path.begin), "", 1 + (int)(current->fileName.end - current->fileName.begin), "", (int)(current->fileExt.end - current->fileExt.begin), current->fileExt.begin);
+        }
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
         /* drive (Windows-only) */
-        printf(RECLS_LITERAL("  short file:     %.*s\n"), (int)(current->shortFile.end - current->shortFile.begin), current->shortFile.begin);
+        printf("  short file:       %.*s\n", (int)(current->shortFile.end - current->shortFile.begin), current->shortFile.begin);
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
 
         /* directory parts */
-        printf(RECLS_LITERAL("  directory parts:\n"));
-        for (part_ptr = current->directoryParts.begin; part_ptr != current->directoryParts.end; ++part_ptr)
+        printf("  directory parts:\n");
         {
-            printf(RECLS_LITERAL("    part:     %.*s\n"), (int)(part_ptr->end - part_ptr->begin), part_ptr->begin);
+            struct recls_strptrs_t const*   part_ptr;
+            int                             offset = 0;
+
+            for (part_ptr = current->directoryParts.begin; part_ptr != current->directoryParts.end; ++part_ptr)
+            {
+                printf("    part:           %*s%.*s\n", offset, "", (int)(part_ptr->end - part_ptr->begin), part_ptr->begin);
+
+                offset += (int)(part_ptr->end - part_ptr->begin);
+            }
         }
+
+        printf("\n");
+
+        printf("  search directory: %.*s\n", (int)(current->searchDirectory.end - current->searchDirectory.begin), current->searchDirectory.begin);
+        printf("  search-rel path:  %.*s\n", (int)(current->searchRelativePath.end - current->searchRelativePath.begin), current->searchRelativePath.begin);
 
         /* Close the current entry. */
         Recls_CloseDetails(current);

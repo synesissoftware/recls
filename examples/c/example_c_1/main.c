@@ -12,7 +12,7 @@
  *  - elicitation of entry properties via entry structure members
  *
  * Created: 29th May 2006
- * Updated: 14th April 2025
+ * Updated: 15th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -71,7 +71,7 @@ failed:
         do
         {
             /* ... display the full path, ... */
-            printf(RECLS_LITERAL("%.*s\n"), (int)(entry->path.end - entry->path.begin), entry->path.begin);
+            printf("%.*s\n", (int)(entry->path.end - entry->path.begin), entry->path.begin);
 
             /* ... close the entry handle, ... */
             Recls_CloseDetails(entry);

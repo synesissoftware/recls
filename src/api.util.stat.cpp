@@ -4,7 +4,7 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 15th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -34,6 +34,7 @@
 
 #include "impl.trace.h"
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -50,8 +51,8 @@ using ::recls::impl::recls_error_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_debug2_trace_printf_;
-
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * extended API functions
@@ -205,6 +206,7 @@ recls_rc_t Recls_Stat_X_(
         );
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
