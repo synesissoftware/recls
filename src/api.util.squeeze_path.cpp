@@ -4,7 +4,7 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 15th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -34,6 +34,7 @@
 
 #include <platformstl/filesystem/path_functions.hpp>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -48,14 +49,15 @@ using ::recls::impl::recls_error_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_debug2_trace_printf_;
-
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * extended API functions
  */
 
 #ifdef RECLS_EXCEPTION_SUPPORT_
+
 static
 size_t
 Recls_SqueezePath_X_(
@@ -103,34 +105,16 @@ Recls_SqueezePath_X_(
     ,   static_cast<unsigned long>(cchResult)
     );
 
-    if (ss_nullptr_k == result)
+    size_t n = platformstl::path_squeeze(path, result, cchResult);
+
+    if (0 != n)
     {
-        size_t n = platformstl::path_squeeze(path, result, cchResult);
-
-        if (0 != n)
-        {
-            --n;
-        }
-
-        return n;
+        --n;
     }
-    else
-    {
-        stlsoft::auto_buffer<recls_char_t, 512> buffer(1 + cchResult);
-        size_t                                  n = platformstl::path_squeeze(path, &buffer[0], buffer.size());
 
-        if (0 != n)
-        {
-            RECLS_ASSERT(n <= cchResult + 1);
-
-            types::traits_type::char_copy(result, buffer.data(), n);
-
-            --n;
-        }
-
-        return n;
-    }
+    return n;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
