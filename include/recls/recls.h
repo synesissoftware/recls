@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 23rd February 2025
+ * Updated: 9th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      22
-# define RECLS_VER_RECLS_H_RECLS_REVISION   2
-# define RECLS_VER_RECLS_H_RECLS_EDIT       141
+# define RECLS_VER_RECLS_H_RECLS_REVISION   3
+# define RECLS_VER_RECLS_H_RECLS_EDIT       142
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -137,11 +137,12 @@
 #define RECLS_VER_1_10_0_ALPHA_10                           0x010a000a
 #define RECLS_VER_1_10_0_B01                                0x010a0081
 #define RECLS_VER_1_10_0_B02                                0x010a0082
+#define RECLS_VER_1_10_0_B03                                0x010a0083
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_B02
+#define RECLS_VER               RECLS_VER_1_10_0_B03
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -209,9 +210,12 @@ namespace recls
  * macros
  */
 
-#if defined(STLSOFT_NUM_ELEMENTS)
+#if 0
+#elif defined(STLSOFT_NUM_ELEMENTS)
+
 # define RECLS_NUM_ELEMENTS(x)                              STLSOFT_NUM_ELEMENTS(x)
 #else /* ? STLSOFT_NUM_ELEMENTS */
+
 # define RECLS_NUM_ELEMENTS(x)                              (sizeof(x) / sizeof((x)[0]))
 #endif /* STLSOFT_NUM_ELEMENTS */
 
@@ -226,15 +230,21 @@ namespace recls
  *
  * \ingroup group__recls
  */
-#if defined(RECLS_DOCUMENTATION_SKIP_SECTION)
+#if 0
+#elif defined(RECLS_DOCUMENTATION_SKIP_SECTION)
+
 # define RECLS_ROOT_NAME_LEN                                (1) or (3)
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
 # define RECLS_ROOT_NAME_LEN                                (3)
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
 # define RECLS_ROOT_NAME_LEN                                (1)
 #elif defined(RECLS_OVERRIDE_PLATFORM)
-  /* Assume that the appropriate inclusions are made */
+
+/* Assume that the appropriate inclusions are made */
 #else
+
 # error Platform not recognised
 #endif /* platform */
 
@@ -313,7 +323,6 @@ inline bool RECLS_SUCCEEDED(recls_rc_t const &rc)
 {
     return !RECLS_FAILED(rc);
 }
-
 #else /* ? __cplusplus */
 
 /** General success code.
@@ -338,18 +347,19 @@ inline bool RECLS_SUCCEEDED(recls_rc_t const &rc)
  * \ingroup group__recls
  */
 # define RECLS_SUCCEEDED(rc)                                (!RECLS_FAILED(rc))
-
 #endif /* __cplusplus */
 
 /* hrecls_t */
 #if !defined(RECLS_DOCUMENTATION_SKIP_SECTION) && \
     defined(RECLS_COMPILER_IS_BORLAND) && \
     __BORLANDC__ < 0x0560
+
 struct hrecls_t_
 {
     int dummy;
 };
 #else /* ? compiler */
+
 struct hrecls_t_;
 #endif /* compiler */
 
@@ -366,6 +376,7 @@ typedef struct hrecls_t_ const*                             hrecls_t;
 
 #if defined(__cplusplus) && \
     defined(__BORLANDC__)
+
 # pragma warn -8026
 
 namespace borland_compatibility
@@ -604,6 +615,7 @@ enum RECLS_REMDIR_FLAG
 
 #if !defined(__cplusplus) && \
     !defined(RECLS_DOCUMENTATION_SKIP_SECTION)
+
 typedef enum RECLS_FLAG         RECLS_FLAG;
 typedef enum RECLS_ROOTS_FLAG   RECLS_ROOTS_FLAG;
 #endif /* !__cplusplus && !RECLS_DOCUMENTATION_SKIP_SECTION */
@@ -618,6 +630,7 @@ typedef enum RECLS_ROOTS_FLAG   RECLS_ROOTS_FLAG;
 #elif defined(RECLS_PLATFORM_IS_UNIX)
  */
 #ifndef RECLS_COMPILER_IS_CH
+
 /** Structure containing information about a file-system root.
  *
  * \ingroup group__recls
@@ -635,8 +648,10 @@ struct recls_root_t
 };
 
 # ifndef RECLS_NO_NAMESPACE
+
 typedef recls_root_t                                        root_t;
 # elif !defined(__cplusplus)
+
 typedef struct recls_root_t                                 recls_root_t;
 # endif /* __cplusplus */
 
@@ -655,8 +670,10 @@ struct recls_directoryResults_t
 };
 
 # ifndef RECLS_NO_NAMESPACE
+
 typedef recls_directoryResults_t                            directoryResults_t;
 # elif !defined(__cplusplus)
+
 typedef struct recls_directoryResults_t                     recls_directoryResults_t;
 # endif /* __cplusplus */
 
@@ -748,6 +765,7 @@ typedef recls_process_fn_param_t                            process_fn_param_t;
 /** @{ */
 
 #ifndef RECLS_COMPILER_IS_CH
+
 /** Retrieves the file-system roots for the current operating system.
  *
  * \ingroup group__recls
@@ -912,7 +930,8 @@ Recls1_FileSystem_GetWildcardsAll(void);
  * \return A status code indicating success/failure.
  * \retval RECLS_RC_NO_MORE_DATA No items matched the given search criteria.
  */
-RECLS_API Recls_Search(
+RECLS_API
+Recls_Search(
     /* [in] */ recls_char_t const*  searchRoot
 ,   /* [in] */ recls_char_t const*  pattern
 ,   /* [in] */ recls_uint32_t       flags
@@ -935,7 +954,8 @@ RECLS_API Recls_Search(
  *
  * \return A status code indicating success/failure
  */
-RECLS_API Recls_SearchFeedback(
+RECLS_API
+Recls_SearchFeedback(
     /* [in] */ recls_char_t const*          searchRoot
 ,   /* [in] */ recls_char_t const*          pattern
 ,   /* [in] */ recls_uint32_t               flags
@@ -944,7 +964,8 @@ RECLS_API Recls_SearchFeedback(
 ,   /* [out] */ hrecls_t*                   phSrch
 );
 
-RECLS_API Recls_SearchProcessFeedback(
+RECLS_API
+Recls_SearchProcessFeedback(
     /* [in] */ recls_char_t const*          searchRoot
 ,   /* [in] */ recls_char_t const*          pattern
 ,   /* [in] */ recls_uint32_t               flags
@@ -969,7 +990,8 @@ RECLS_API Recls_SearchProcessFeedback(
  *
  * \note Available from version 1.1 of the <b>recls</b> API
  */
-RECLS_API Recls_SearchProcess(
+RECLS_API
+Recls_SearchProcess(
     /* [in] */ recls_char_t const*      searchRoot
 ,   /* [in] */ recls_char_t const*      pattern
 ,   /* [in] */ recls_uint32_t           flags
@@ -990,7 +1012,8 @@ Recls_SearchClose(
 
 #if 0
 /* New Recls1 API. */
-RECLS_API Recls1_FileSystem_CloseSearch(
+RECLS_API
+Recls1_FileSystem_CloseSearch(
     /* [in] */ hrecls_t hSrch
 );
 #endif /* 0 */
@@ -1014,7 +1037,8 @@ RECLS_API Recls1_FileSystem_CloseSearch(
  *
  * \see Recls_CloseDetails
  */
-RECLS_API Recls_Stat(
+RECLS_API
+Recls_Stat(
     /* [in] */ recls_char_t const*  path
 ,   /* [in] */ recls_uint32_t       flags
 ,   /* [out] */ recls_entry_t*      phEntry
@@ -1022,7 +1046,8 @@ RECLS_API Recls_Stat(
 
 #if 0
 /* New Recls1 API. */
-RECLS_API Recls1_FileSystem_Stat(
+RECLS_API
+Recls1_FileSystem_Stat(
     /* [in] */ Recls1_char_t const* path
 ,   /* [in] */ Recls1_uint32_t      flags
 ,   /* [out] */ Recls1_entry_t*     pentry
@@ -1052,13 +1077,15 @@ RECLS_API Recls1_FileSystem_Stat(
  * \retval RECLS_RC_NO_MORE_DATA There are no more items in the search
  * \retval Any other status code indicates an error
  */
-RECLS_API Recls_GetNext(
+RECLS_API
+Recls_GetNext(
     /* [in] */ hrecls_t hSrch
 );
 
 #if 0
 /* New Recls1 API. */
-RECLS_API Recls1_Search_Next(
+RECLS_API
+Recls1_Search_Next(
     /* [in] */ hrecls_t hSrch
 );
 #endif /* 0 */
@@ -1078,7 +1105,8 @@ RECLS_API Recls1_Search_Next(
  *
  * \see Recls_CloseDetails
  */
-RECLS_API Recls_GetDetails(
+RECLS_API
+Recls_GetDetails(
     /* [in] */ hrecls_t         hSrch
 ,   /* [out] */ recls_entry_t*  phEntry
 );
@@ -1100,7 +1128,8 @@ RECLS_API Recls_GetDetails(
  *
  * \see Recls_CloseDetails
  */
-RECLS_API Recls_GetNextDetails(
+RECLS_API
+Recls_GetNextDetails(
     /* [in] */ hrecls_t         hSrch
 ,   /* [out] */ recls_entry_t*  phEntry
 );
@@ -1141,7 +1170,8 @@ Recls_CloseDetails(
  *
  * \see Recls_CloseDetails
  */
-RECLS_API Recls_CopyDetails(
+RECLS_API
+Recls_CopyDetails(
     /* [in] */ recls_entry_t    hEntry
 ,   /* [out] */ recls_entry_t*  phEntry
 );
@@ -1166,7 +1196,8 @@ RECLS_API Recls_CopyDetails(
  *
  * \return The last error code for the search handle
  */
-RECLS_API Recls_GetLastError(
+RECLS_API
+Recls_GetLastError(
     /* [in] */ hrecls_t hSrch
 );
 
@@ -1805,6 +1836,7 @@ struct recls_log_severities_t
     int   severities[8];
 
 #ifdef __cplusplus
+
 public:
     recls_log_severities_t(int fatalSeverity, int errorSeverity, int warningSeverity, int informationalSeverity, int debug0Severity, int debug1Severity, int debug2Severity, int debug3Severity)
     {
@@ -1919,8 +1951,8 @@ Recls_IsDirectoryEntryEmpty(
     /* [in] */ recls_entry_t hEntry
 );
 
-/** Calculates the number of bytes in files in the given directory
- *    and all its sub-directories.
+/** Calculates the number of bytes in files in the given directory and all
+ * its sub-directories.
  *
  * \ingroup group__recls
  *
@@ -1931,8 +1963,8 @@ Recls_CalcDirectorySize(
     /* [in] */ recls_char_t const* dir
 );
 
-/** Calculates the number of bytes in files in the given directory
- *    entry and all its sub-directories.
+/** Calculates the number of bytes in files in the given directory entry and
+ * all its sub-directories.
  *
  * \ingroup group__recls
  *
@@ -2089,7 +2121,8 @@ Recls_SqueezePath(
  *
  * \pre NULL != path
  */
-RECLS_API Recls_CreateDirectory(
+RECLS_API
+Recls_CreateDirectory(
     /* [in] */ recls_char_t const*          path
 ,   /* [out] */ recls_directoryResults_t*   results /* = NULL */
 );
@@ -2108,7 +2141,8 @@ RECLS_API Recls_CreateDirectory(
  *
  * \pre NULL != path
  */
-RECLS_API Recls_RemoveDirectory(
+RECLS_API
+Recls_RemoveDirectory(
     /* [in] */ recls_char_t const*          path
 ,   /* [in] */ int                          flags   /* = 0 */
 ,   /* [out] */ recls_directoryResults_t*   results /* = NULL */
@@ -2142,6 +2176,7 @@ c_str_ptr(RECLS_QUAL(recls_root_t) const &root)
 }
 
 #ifdef RECLS_CHAR_TYPE_IS_CHAR
+
 inline
 RECLS_QUAL(recls_char_t) const*
 c_str_ptr_a(RECLS_QUAL(recls_root_t) const &root)
@@ -2151,6 +2186,7 @@ c_str_ptr_a(RECLS_QUAL(recls_root_t) const &root)
 #endif /* RECLS_CHAR_TYPE_IS_CHAR */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
+
 inline
 RECLS_QUAL(recls_char_t) const*
 c_str_ptr_w(RECLS_QUAL(recls_root_t) const &root)
@@ -2170,6 +2206,7 @@ c_str_ptr(RECLS_QUAL(recls_rc_t) rc)
     return RECLS_QUAL(Recls_GetSearchCodeString)(rc);
 }
 #ifdef RECLS_CHAR_TYPE_IS_CHAR
+
 inline
 RECLS_QUAL(recls_char_t) const*
 c_str_ptr_a(RECLS_QUAL(recls_rc_t) rc)
@@ -2178,6 +2215,7 @@ c_str_ptr_a(RECLS_QUAL(recls_rc_t) rc)
 }
 #endif /* RECLS_CHAR_TYPE_IS_CHAR */
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
+
 inline
 RECLS_QUAL(recls_char_t) const*
 c_str_ptr_w(RECLS_QUAL(recls_rc_t) rc)
@@ -2186,10 +2224,11 @@ c_str_ptr_w(RECLS_QUAL(recls_rc_t) rc)
 }
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-# if defined(RECLS_NO_NAMESPACE)
-inline recls_char_t const* c_str_data(recls_rc_t rc)
-# else /* ? RECLS_NO_NAMESPACE */
 inline
+# if defined(RECLS_NO_NAMESPACE)
+recls_char_t const*
+c_str_data(recls_rc_t rc)
+# else /* ? RECLS_NO_NAMESPACE */
 RECLS_QUAL(recls_char_t) const*
 c_str_data(RECLS_QUAL(recls_rc_t) rc)
 # endif /* RECLS_NO_NAMESPACE */
@@ -2197,6 +2236,7 @@ c_str_data(RECLS_QUAL(recls_rc_t) rc)
     return RECLS_QUAL(Recls_GetSearchCodeString)(rc);
 }
 #ifdef RECLS_CHAR_TYPE_IS_CHAR
+
 inline
 RECLS_QUAL(recls_char_t) const*
 c_str_data_a(RECLS_QUAL(recls_rc_t) rc)
@@ -2205,6 +2245,7 @@ c_str_data_a(RECLS_QUAL(recls_rc_t) rc)
 }
 #endif /* RECLS_CHAR_TYPE_IS_CHAR */
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
+
 inline
 RECLS_QUAL(recls_char_t) const*
 c_str_data_w(RECLS_QUAL(recls_rc_t) rc)

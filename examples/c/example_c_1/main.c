@@ -1,18 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_c_4.c
+ * File:    examples/c/example_c_1/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- *            - searching (via Recls_Search()) for directories
- *            - non-recursive operation
- *            - filtering of non-empty directories, (via
- *              Recls_IsDirectoryEntryEmpty())
- *            - display of search relative path
+ *            - searching (via Recls_Search()) for files
+ *            - recursive operation
+ *            - display of full path of each entry
  *            - handling of errors and reporting of error information
- *            - elicitation of entry properties structure members
+ *            - elicitation of entry properties via API function calls
  *
  * Created: 29th May 2006
- * Updated: 8th July 2024
+ * Updated: 10th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,8 +40,8 @@ int main(int argc, char* argv[])
      * and start a search.
      */
     hrecls_t        hSrch;
-    recls_uint32_t  flags   =   RECLS_F_DIRECTORIES;
-    recls_rc_t      rc      =   Recls_Search(NULL, RECLS_LITERAL("*"), flags, &hSrch);
+    recls_uint32_t  flags   =   RECLS_F_FILES | RECLS_F_RECURSIVE;
+    recls_rc_t      rc      =   Recls_Search(RECLS_LITERAL("."), Recls_GetWildcardsAll(), flags, &hSrch);
 
     ((void)&argc);
     ((void)&argv);
@@ -68,19 +66,21 @@ int main(int argc, char* argv[])
     }
     else
     {
+        /* Get the details for the first entry, ... */
+
         recls_info_t    entry;
 
-        /* Get the details for the first entry, ... */
         Recls_GetDetails(hSrch, &entry);
 
         do
         {
-            /* ... test whether it's non-empty, ... */
-            if (!Recls_IsDirectoryEntryEmpty(entry))
-            {
-                /* ... display the search relative path, ... */
-                printf(RECLS_LITERAL("%.*s\n"), (int)(entry->searchRelativePath.end - entry->searchRelativePath.begin), entry->searchRelativePath.begin);
-            }
+            /* ... display the full path, ... */
+
+            recls_char_t    path[1001];
+            size_t          cch;
+
+            cch = Recls_GetPathProperty(entry, &path[0], RECLS_NUM_ELEMENTS(path));
+            printf(RECLS_LITERAL("%.*s\n"), (int)cch, &path[0]);
 
             /* ... close the entry handle, ... */
             Recls_CloseDetails(entry);

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_c_3.c
+ * File:    examples/c/example_c_3/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
@@ -15,7 +15,7 @@
  *            - elicitation of entry properties via API function calls
  *
  * Created: 29th May 2006
- * Updated: 20th February 2025
+ * Updated: 10th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,6 +28,7 @@
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros and definitions
  */
@@ -37,7 +38,17 @@
 # define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * constants
+ */
+
+#define CCH_SQUEEZED_PATH                                   (64)
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -102,12 +113,12 @@ int main(int argc, char* argv[])
                 recls_filesize_t    size;
                 recls_bool_t        isDirectory;
                 recls_char_t        path[1001];
-                recls_char_t        squeezedPath[48];
+                recls_char_t        squeezedPath[CCH_SQUEEZED_PATH];
                 size_t              cch = Recls_GetPathProperty(entry, &path[0], RECLS_NUM_ELEMENTS(path) - 1);;
 
                 path[cch] = '\0';
 
-                /* ... squeeze it into 48 characters, ... */
+                /* ... squeeze it into CCH_SQUEEZED_PATH characters, ... */
                 cch = Recls_SqueezePath(path, &squeezedPath[0], RECLS_NUM_ELEMENTS(squeezedPath));
 
                 /* ... determine type, ... */
@@ -175,6 +186,7 @@ int main(int argc, char* argv[])
         }
     }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

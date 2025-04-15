@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_c_2.c
+ * File:    examples/c/example_c_2/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
@@ -13,7 +13,7 @@
  *            - display of progress (of each directory traversed)
  *
  * Created: 29th May 2006
- * Updated: 11th April 2025
+ * Updated: 12th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -23,6 +23,7 @@
 #include <recls/internal/safestr.h>
 
 /* STLSoft header files */
+#include <stlsoft/memory/auto_buffer.h>
 #include <platformstl/system/console_functions.h>
 
 /* Standard C Library Files */
@@ -45,7 +46,9 @@
  * constants and definitions
  */
 
-#define MAX_CONSOLE_WIDTH                                   (76)
+#define DEFAULT_CONSOLE_WIDTH                               (256)
+#define MIN_CONSOLE_WIDTH                                   (40)
+#define MAX_CONSOLE_WIDTH                                   (2048)
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,13 +85,22 @@ struct feedback_t
 
 int main(int argc, char* argv[])
 {
-    const recls_char_t  SEARCH_PATTERN[]    =   RECLS_LITERAL("*.h|*.hpp|*.c|*.cpp|*.cs|*.d|*.java|*.pl|*.py|*.rb");
+    const recls_char_t  SEARCH_PATTERN[]    =   RECLS_LITERAL("*.c|*.cpp|*.cs|*.go|*.h|*.hpp|*.java|*.js|*.pl|*.py|*.rb|*.rs|*.ts");
 
     struct feedback_t   feedback    =   { 0 };
     hrecls_t            hSrch;
     recls_uint32_t      flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
     char const* const   search_dir  =   argc > 1 ? argv[1] : RECLS_LITERAL(".");
-    recls_rc_t          rc          =   Recls_SearchFeedback(search_dir, SEARCH_PATTERN, flags, example_c_2_progress_fn, &feedback, &hSrch);
+    recls_rc_t          rc;
+
+    if (platformstl_C_isatty_stm(stdout))
+    {
+        rc = Recls_SearchFeedback(search_dir, SEARCH_PATTERN, flags, example_c_2_progress_fn, &feedback, &hSrch);
+    }
+    else
+    {
+        rc = Recls_Search(search_dir, SEARCH_PATTERN, flags, &hSrch);
+    }
 
     if (RECLS_RC_OK != rc)
     {
@@ -109,19 +121,15 @@ int main(int argc, char* argv[])
 
         do
         {
-            size_t n = (size_t)(entry->path.end - entry->path.begin);
-
-            if (n > MAX_CONSOLE_WIDTH - 1)
+            if (0 != feedback.lastLen)
             {
-                n = MAX_CONSOLE_WIDTH - 1;
+                write_blank_line(stdout, feedback.lastLen);
+                feedback.lastLen = 0;
             }
 
-            write_blank_line(stdout, feedback.lastLen);
 
             /* full path */
             printf(RECLS_LITERAL("%.*s\n"), (int)(entry->path.end - entry->path.begin), entry->path.begin);
-
-            feedback.lastLen = 0;
 
             Recls_CloseDetails(entry);
         }
@@ -129,9 +137,12 @@ int main(int argc, char* argv[])
 
         Recls_SearchClose(hSrch);
 
-        write_backs(stdout, feedback.lastLen);
-        write_blanks(stdout, feedback.lastLen);
-        write_backs(stdout, feedback.lastLen);
+        if (0 != feedback.lastLen)
+        {
+            write_backs(stdout, feedback.lastLen);
+            write_blanks(stdout, feedback.lastLen);
+            write_backs(stdout, feedback.lastLen);
+        }
 
         return EXIT_SUCCESS;
     }
@@ -213,41 +224,57 @@ example_c_2_progress_fn(
 ,   recls_uint32_t              reserved1
 )
 {
-    recls_char_t        squeezedForm[MAX_CONSOLE_WIDTH];
+    size_t const consoleWidth = get_console_width() - 1;
 
-    struct feedback_t*  feedback        =   (struct feedback_t*)param;
-    size_t              newLen;
-    size_t              cch;
-    size_t              consoleWidth    =   get_console_width() - 1;
+    STLSOFT_ASSERT(NULL != param);
 
     ((void)reserved0);
     ((void)reserved1);
 
-    if (consoleWidth < dirLen)
+    if (consoleWidth >= MIN_CONSOLE_WIDTH)
     {
-        cch = Recls_SqueezePath(dir, squeezedForm, STLSOFT_NUM_ELEMENTS(squeezedForm) - 1);
+        STLSOFT_C_AUTO_BUFFER_DECLARE(char, DEFAULT_CONSOLE_WIDTH, squeezedForm);
 
+        if (0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(squeezedForm, consoleWidth + 1))
+        {
+            fprintf(stderr, "failed to allocate memory\n");
 
-        dir = squeezedForm;
+            abort();
+        }
+        else
+        {
+            struct feedback_t* const    feedback        =   (struct feedback_t*)param;
+            size_t                      newLen;
+            size_t                      cch;
+
+            if (consoleWidth < dirLen)
+            {
+                cch = Recls_SqueezePath(dir, squeezedForm.ptr, squeezedForm.size);
+
+                dir = squeezedForm.ptr;
+            }
+            else
+            {
+                cch = dirLen;
+            }
+
+            write_backs(stdout, feedback->lastLen);
+
+            newLen = (size_t)fprintf(stdout, RECLS_LITERAL("%.*s"), (int)cch, dir);
+
+            if (newLen < feedback->lastLen)
+            {
+                size_t const spare = feedback->lastLen - newLen;
+
+                write_blanks(stdout, spare);
+                write_backs(stdout, spare);
+            }
+
+            feedback->lastLen = newLen;
+
+            STLSOFT_C_AUTO_BUFFER_FREE(squeezedForm);
+        }
     }
-    else
-    {
-        cch = dirLen;
-    }
-
-    write_backs(stdout, feedback->lastLen);
-
-    newLen = (size_t)fprintf(stdout, RECLS_LITERAL("%.*s"), (int)cch, dir);
-
-    if (newLen < feedback->lastLen)
-    {
-        size_t const spare = feedback->lastLen - newLen;
-
-        write_blanks(stdout, spare);
-        write_backs(stdout, spare);
-    }
-
-    feedback->lastLen = newLen;
 
     return 1; /* Continue processing. */
 }

@@ -111,7 +111,7 @@ int main(int argc, char* argv[])
 static void test_1_0(void)
 {
     recls_char_t    result[1];
-    size_t  cch = Recls_SqueezePath(RECLS_LITERAL(""), NULL, 0);
+    size_t const    cch = Recls_SqueezePath(RECLS_LITERAL(""), NULL, 0);
 
     result[cch] = '\0';
 

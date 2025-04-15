@@ -4,7 +4,7 @@
  * Purpose: Windows-specific header file for recls API.
  *
  * Created: 18th August 2003
- * Updated: 23rd February 2025
+ * Updated: 10th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -48,7 +48,7 @@
 # define RECLS_VER_RECLS_H_WINDOWS_MAJOR    4
 # define RECLS_VER_RECLS_H_WINDOWS_MINOR    2
 # define RECLS_VER_RECLS_H_WINDOWS_REVISION 1
-# define RECLS_VER_RECLS_H_WINDOWS_EDIT     29
+# define RECLS_VER_RECLS_H_WINDOWS_EDIT     30
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/windows.h
@@ -138,7 +138,7 @@ Recls_ResultCodeToWindowsErrorCode(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * inclusion
+ * inclusion control
  */
 
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT

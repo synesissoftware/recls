@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_c_5.c
+ * File:    examples/c/example_c_5/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
@@ -13,7 +13,7 @@
  *            - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 9th July 2024
+ * Updated: 10th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,6 +26,7 @@
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros and definitions
  */
@@ -35,7 +36,10 @@
 # define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int RECLS_CALLCONV_DEFAULT example_c_5_process_fn(   recls_info_t                entry
                                                         ,   recls_process_fn_param_t    param)
@@ -101,6 +105,7 @@ int main(int argc, char* argv[])
         return EXIT_SUCCESS;
     }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

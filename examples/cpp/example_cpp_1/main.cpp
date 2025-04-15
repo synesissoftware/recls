@@ -1,18 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_cpp_2.cpp
+ * File:    examples/cpp/example_cpp_1/main.cpp
  *
  * Purpose: C++ example program for recls/C++. Demonstrates:
  *
- *            - stat()-ing of home directory
- *            - searching for files, according to multi-part pattern
+ *            - searching for files
  *            - recursive operation
- *            - evaluation of relative path of each entry, with respect
- *              to home directory
+ *            - display of full path of each entry
  *            - handling exceptions and reporting of error information
  *            - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 9th July 2024
+ * Updated: 9th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,36 +40,29 @@ int main(int /* argc */, char* /* argv */[])
 {
     try
     {
-        /* stat() the home directory */
-        recls::entry            home    =   recls::stat(RECLS_LITERAL("~"));
-
-        /* Enumerate all under the home directory, matching *.??? or makefile*.*. */
         int                     flags   =   recls::RECLS_F_FILES | recls::RECLS_F_RECURSIVE;
+        recls::search_sequence  files(RECLS_LITERAL("."), recls::Recls_GetWildcardsAll(), flags);
 
-        recls::search_sequence  files(home, RECLS_LITERAL("*.???|makefile|makefile.*|"), flags);
-
-        /* and display each entry's search-relative path */
         { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
         {
-            recls::entry        entry           =   *i;
-            recls::string_t     relativePath    =   entry.get_search_relative_path();
+            recls::entry entry = *i;
 
-            std::cout << relativePath << std::endl;
+            std::cout << entry.get_path() << std::endl;
         }}
     }
     catch (recls::recls_exception& x)
     {
-        std::cerr << RECLS_LITERAL("Could not elicit home directory by stat()-ing '~': ") << x.get_rc() << ", " << x.what() << std::endl;
+        std::cerr << RECLS_LITERAL("Recls error: ") << x.get_rc() << RECLS_LITERAL(", ") << x.what() << std::endl;
 
         return EXIT_FAILURE;
     }
-    catch (std::bad_alloc&)
+    catch (std::bad_alloc &)
     {
         std::cerr << RECLS_LITERAL("Out of memory") << std::endl;
 
         return EXIT_FAILURE;
     }
-    catch (std::exception& x)
+    catch (std::exception &x)
     {
         std::cerr << RECLS_LITERAL("Unhandled error: ") << x.what() << std::endl;
 

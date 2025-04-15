@@ -4,11 +4,11 @@
  * Purpose: FTP-specific header file for recls API.
  *
  * Created: 18th August 2003
- * Updated: 9th July 2024
+ * Updated: 10th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,7 +48,7 @@
 # define RECLS_VER_RECLS_H_FTP_MAJOR    3
 # define RECLS_VER_RECLS_H_FTP_MINOR    2
 # define RECLS_VER_RECLS_H_FTP_REVISION 2
-# define RECLS_VER_RECLS_H_FTP_EDIT     16
+# define RECLS_VER_RECLS_H_FTP_EDIT     17
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/ftp.h
@@ -132,7 +132,7 @@ Recls_SearchFtp(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * inclusion
+ * inclusion control
  */
 
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT

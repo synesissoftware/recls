@@ -4,7 +4,7 @@
  * Purpose: recls API utility functions.
  *
  * Created: 10th February 2010
- * Updated: 20th February 2025
+ * Updated: 10th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -25,7 +25,7 @@
  */
 
 #include <recls/recls.h>
-#include <recls/assert.h>
+#include "impl.assert.h"
 #include "impl.root.h"
 #include "impl.types.hpp"
 #include "impl.util.h"

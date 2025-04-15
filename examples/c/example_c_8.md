@@ -1,5 +1,15 @@
+# recls Example - **example_c_8**
+
+## Summary
+
+T.B.C.
+
+
+## Source
+
+```C
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_c_8.c
+ * File:    examples/c/example_c_8/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
@@ -10,7 +20,7 @@
  *              Recls_CalcDirectorySize())
  *
  * Created: 17th June 2006
- * Updated: 8th July 2024
+ * Updated: 10th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -23,6 +33,7 @@
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros and definitions
  */
@@ -32,7 +43,10 @@
 # define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -94,5 +108,26 @@ int main(int argc, char* argv[])
     return EXIT_SUCCESS;
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+```
+
+
+## Discussion
+
+T.B.C.
+
+
+## Example results
+
+```
+All roots on host system:
+  /
+
+Measuring root directories of selected roots on host system. This could take several minutes ...
+  / : 974 MB
+```
+
+
+<!-- ########################### end of file ########################### -->
 

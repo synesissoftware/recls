@@ -1,15 +1,24 @@
+# recls Example - **example_c_7**
+
+## Summary
+
+T.B.C.
+
+
+## Source
+
+```C
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example_c_7.c
+ * File:    examples/c/example_c_7/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
  *            - stat() of current directory (via Recls_Stat())
  *            - combining paths (via Recls_CombinePaths())
- *            - elicitation of entry properties via structure members
  *            - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 8th July 2024
+ * Updated: 10th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -22,6 +31,7 @@
 #include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros and definitions
  */
@@ -31,7 +41,10 @@
 # define fprintf                                            fwprintf
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -70,5 +83,22 @@ int main(int argc, char* argv[])
     }
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+```
+
+
+## Discussion
+
+T.B.C.
+
+
+## Example results
+
+```
+/Users/user/dev/synesissoftware/freelibs/recls/recls combined with abc/def/ yields /Users/user/dev/synesissoftware/freelibs/recls/recls/abc/def/
+```
+
+
+<!-- ########################### end of file ########################### -->
 
