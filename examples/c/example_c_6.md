@@ -2,7 +2,7 @@
 
 ## Summary
 
-T.B.C.
+Demonstrates use of `Recls_Stat()` on current directory or named path, showing various elements of the path in exploded form.
 
 
 ## Source
@@ -129,26 +129,40 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
-T.B.C.
+When configured, built, and run specify the **test** directory
+
+```
+$ ./prepare_cmake.sh
+$ ./build_cmake.sh
+$ ./_build/examples/c/example_c_6/example_c_6 prepare_cmake.sh
+```
+
+then it produces results such as:
 
 
 ## Example results
 
 ```
-/Users/user/dev/synesissoftware/freelibs/recls/recls
-  directory path: /Users/user/dev/synesissoftware/freelibs/recls/
-  directory:      /Users/user/dev/synesissoftware/freelibs/recls/
-  file:           recls
-  file name:      recls
-  file ext:
+  given path:       prepare_cmake.sh
+
+  full path:        /Users/mwan/dev/synesissoftware/freelibs/recls/recls/prepare_cmake.sh
+  directory path:   /Users/mwan/dev/synesissoftware/freelibs/recls/recls/
+  directory:        /Users/mwan/dev/synesissoftware/freelibs/recls/recls/
+  basename:                                                              prepare_cmake.sh
+  stem:                                                                  prepare_cmake
+  extension:                                                                           sh
   directory parts:
-    part:     /
-    part:     Users/
-    part:     user/
-    part:     dev/
-    part:     synesissoftware/
-    part:     freelibs/
-    part:     recls/
+    part:           /
+    part:            Users/
+    part:                  mwan/
+    part:                       dev/
+    part:                           synesissoftware/
+    part:                                           freelibs/
+    part:                                                    recls/
+    part:                                                          recls/
+
+  search directory: /Users/mwan/dev/synesissoftware/freelibs/recls/recls/
+  search-rel path:  prepare_cmake.sh
 ```
 
 

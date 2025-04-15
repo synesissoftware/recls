@@ -2,7 +2,7 @@
 
 ## Summary
 
-T.B.C.
+Demonstrates combining of paths via `Recls_CombinePaths()`.
 
 
 ## Source
@@ -13,9 +13,9 @@ T.B.C.
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- *            - stat() of current directory (via Recls_Stat())
- *            - combining paths (via Recls_CombinePaths())
- *            - handling of errors and reporting of error information
+ *  - stat() of current directory (via Recls_Stat())
+ *  - combining paths (via Recls_CombinePaths())
+ *  - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
  * Updated: 15th April 2025
@@ -79,7 +79,15 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
-T.B.C.
+When configured, built, and run specify the **test** directory
+
+```
+$ ./prepare_cmake.sh
+$ ./build_cmake.sh
+$ ./_build/examples/c/example_c_7/example_c_7
+```
+
+then it produces results such as:
 
 
 ## Example results

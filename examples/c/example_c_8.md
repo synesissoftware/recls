@@ -2,7 +2,7 @@
 
 ## Summary
 
-T.B.C.
+Demonstrates elicitation of roots via `Recls_GetRoots()` and `Recls_GetSelectedRoots()`, and then obtaining size of files under one of the selected roots via `Recls_CalcDirectorySize()`.
 
 
 ## Source
@@ -13,14 +13,11 @@ T.B.C.
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- *            - elicitation of all roots (via Recls_GetRoots()), and
- *              selected roots (via Recls_GetSelectedRoots()), on host
- *              system
- *            - determination of total size of all files per root (via
- *              Recls_CalcDirectorySize())
+ *  - elicitation of all roots (via Recls_GetRoots()), and selected roots (via Recls_GetSelectedRoots()), on host system
+ *  - determination of total size of all files per root (via Recls_CalcDirectorySize())
  *
  * Created: 17th June 2006
- * Updated: 10th April 2025
+ * Updated: 15th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -104,7 +101,15 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
-T.B.C.
+When configured, built, and run specify the **test** directory
+
+```
+$ ./prepare_cmake.sh
+$ ./build_cmake.sh
+$ ./_build/examples/c/example_c_8/example_c_8
+```
+
+then it produces results such as:
 
 
 ## Example results

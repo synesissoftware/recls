@@ -3,11 +3,8 @@
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- *            - elicitation of all roots (via Recls_GetRoots()), and
- *              selected roots (via Recls_GetSelectedRoots()), on host
- *              system
- *            - determination of total size of all files per root (via
- *              Recls_CalcDirectorySize())
+ *  - elicitation of all roots (via Recls_GetRoots()), and selected roots (via Recls_GetSelectedRoots()), on host system
+ *  - determination of total size of all files per root (via Recls_CalcDirectorySize())
  *
  * Created: 17th June 2006
  * Updated: 15th April 2025

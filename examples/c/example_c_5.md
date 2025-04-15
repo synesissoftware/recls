@@ -2,7 +2,7 @@
 
 ## Summary
 
-T.B.C.
+Demonstrates recursive search via process callback function, in which the entry's path is shown relative to the home or given directory.
 
 
 ## Source
