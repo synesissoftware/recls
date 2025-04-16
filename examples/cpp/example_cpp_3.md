@@ -191,6 +191,28 @@ $ ./_build/examples/cpp/example_cpp_3/example_cpp_3 test
 then it produces results such as:
 
 ```
+  given path:       ./prepare_cmake.sh
+
+  full path:        /Users/mwan/dev/synesissoftware/freelibs/recls/recls/prepare_cmake.sh
+  type:             <file>
+  directory path:   /Users/mwan/dev/synesissoftware/freelibs/recls/recls/
+  directory:        /Users/mwan/dev/synesissoftware/freelibs/recls/recls/
+  basename:                                                              prepare_cmake.sh
+  stem:                                                                  prepare_cmake
+  extension:                                                                          .sh
+  directory parts:
+    part:           /
+    part:            Users/
+    part:                  mwan/
+    part:                       dev/
+    part:                           synesissoftware/
+    part:                                           freelibs/
+    part:                                                    recls/
+    part:                                                          recls/
+  size:             3804 byte(s)
+
+  search directory: /Users/mwan/dev/synesissoftware/freelibs/recls/recls/
+  search-rel path:  prepare_cmake.sh
 ```
 
 

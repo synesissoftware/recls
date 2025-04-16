@@ -111,6 +111,25 @@ $ ./_build/examples/cpp/example_cpp_2/example_cpp_2 test
 then it produces results such as:
 
 ```
+temp/Catch2/CMakeLists.txt 7083
+temp/Catch2/tools/misc/coverage-helper.cpp 3997
+temp/Catch2/tools/misc/CMakeLists.txt 416
+temp/Catch2/fuzzing/NullOStream.cpp 475
+temp/Catch2/fuzzing/fuzz_TestSpecParser.cpp 593
+temp/Catch2/fuzzing/fuzz_XmlWriter.cpp 547
+temp/Catch2/fuzzing/fuzz_textflow.cpp 1347
+temp/Catch2/fuzzing/CMakeLists.txt 753
+temp/Catch2/tests/CMakeLists.txt 26260
+temp/Catch2/tests/TestScripts/DiscoverTests/register-tests.cpp 678
+temp/Catch2/tests/TestScripts/DiscoverTests/CMakeLists.txt 295
+temp/Catch2/tests/SelfTest/TestRegistrations.cpp 6734
+temp/Catch2/tests/SelfTest/IntrospectiveTests/Algorithms.tests.cpp 3552
+temp/Catch2/tests/SelfTest/IntrospectiveTests/AssertionHandler.tests.cpp 539
+temp/Catch2/tests/SelfTest/IntrospectiveTests/Clara.tests.cpp 2993
+temp/Catch2/tests/SelfTest/IntrospectiveTests/CmdLine.tests.cpp 15944
+temp/Catch2/tests/SelfTest/IntrospectiveTests/CmdLineHelpers.tests.cpp 4878
+temp/Catch2/tests/SelfTest/IntrospectiveTests/ColourImpl.tests.cpp 1944
+. . .
 ```
 
 
