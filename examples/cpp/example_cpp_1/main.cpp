@@ -42,9 +42,7 @@ int main(int argc, char* argv[])
 
         { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
         {
-            recls::entry entry = *i;
-
-            std::cout << entry.get_path() << std::endl;
+            std::cout << *i << std::endl;
         }}
 
         return EXIT_SUCCESS;

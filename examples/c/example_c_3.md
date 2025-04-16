@@ -22,7 +22,7 @@ Demonstrates non-recursive search for all files and directories under a given di
  *  - detecting failure and reporting of failure reason
  *
  * Created: 29th May 2006
- * Updated: 15th April 2025
+ * Updated: 16th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -158,7 +158,16 @@ failed:
 
 ## Discussion
 
-T.B.C.
+The functionality follows a similar pattern to that demonstrated already in **example_c_1** and **example_c_2**. The key differences are that the flag `RECLS_F_RECURSIVE` is _not_ specified, hence only files in the searched directory are listed.
+
+The other differences are the use of entry attribute functions:
+ * `Recls_IsEntryDirectory()` - indicates whether the entry is a directory;
+ * `Recls_GetSizeProperty()` - obtains the size of the entry in the case of a file; directories have 0 size;
+ * `Recls_GetFileSizeGigaBytes()`, `Recls_GetFileSizeMegaBytes()`, `Recls_GetFileSizeKiloBytes()` - return the size in the given units;
+
+and the use of utility functions:
+ * `Recls_CalcDirectoryEntrySize()` - conducts a search in a directory represented by an entry (`recls_info_t`), obtaining the sum of the sizes of all the files in it, and in all its subdirectories;;
+ * `Recls_SqueezePath()` - squeezes a path into a potentially smaller space, replacing a portion of the path with the substitution substring `"..."`  to as to fit adequately;
 
 
 ## Example results

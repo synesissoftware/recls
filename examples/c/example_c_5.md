@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
-T.B.C.
+Similar to **example_c_2**, which uses `Recls_SearchFeedback()` to obtain processing updates of each traversed directory, this example uses another wholesale search API function, `Recls_SearchProcess()`, which takes the callback function `example_c_5_process_fn()` that receives each entry located under the current or named directory. In each invocation the entry's path is derived relative to the home directory that was passed as the opaque `param`, via the `Recls_DeriveRelativePath()` utility function.
 
 
 ## Example results

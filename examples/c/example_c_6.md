@@ -161,7 +161,7 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
-T.B.C.
+The functionality here is very simple. The entry is obtained via a call to `Recls_Stat()`, and the remainder of the functionality is just about representing the entry's attributes in a highly obvious form. In particular, it illustrates how the entry's directory-parts - to obtain which the `RECLS_F_DIRECTORY_PARTS` flag must be specified - are provided in a fully recomposable form, i.e. concatentation of each directory part in turn results in the `directory` property.
 
 
 ## Example results

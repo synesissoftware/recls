@@ -2,7 +2,7 @@
 
 ## Summary
 
-T.B.C.
+Demonstrates recursive search for all files under the home directory matching a multi-part pattern.
 
 
 ## Source
@@ -21,7 +21,7 @@ T.B.C.
  *  - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 15th April 2025
+ * Updated: 16th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,7 +61,7 @@ int main(int /* argc */, char* /* argv */[])
             recls::entry        entry           =   *i;
             recls::string_t     relativePath    =   entry.get_search_relative_path();
 
-            std::cout << relativePath << std::endl;
+            std::cout << relativePath << ' ' << entry.get_size() << std::endl;
         }}
 
         return EXIT_SUCCESS;
@@ -93,7 +93,9 @@ int main(int /* argc */, char* /* argv */[])
 
 ## Discussion
 
-T.B.C.
+The entry for the home directory is obtained via `recls::stat()`, which may then be passed to `recls::search_sequence()` along with the patterns and flags.
+
+In the processing loop, as each matching entry is obtained its search-relative path and size are written to standard output stream.
 
 
 ## Example results

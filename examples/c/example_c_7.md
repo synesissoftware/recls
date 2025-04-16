@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
-T.B.C.
+The call to `Recls_Stat()` is use here simply to obtain an actual path of the current directory with which to combine with the example relative path `"abc/def/"` via the utility function `Recls_CombinePaths()`.
 
 
 ## Example results

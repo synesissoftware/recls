@@ -108,7 +108,8 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
-T.B.C.
+The functionality follows a similar pattern to that demonstrated already in **example_c_1**, **example_c_2**, **example_c_3**. The sole key differences is that each found entry is assessed as to whether it is empty, via `Recls_IsDirectoryEntryEmpty()`, and only those are displayed.
+
 
 
 ## Example results

@@ -101,7 +101,9 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
-T.B.C.
+The first part of the program uses the API function `Recls_GetRoots()` to obtain the list of roots. (On Unix, this will contain a single item `"/"`; on Windows, this might contain multiple roots of the form `"C:\"`, `"I:\"`, etc.).
+
+The second part of the program uses the API function `Recls_GetSelectedRoots()` along with a set of flags indicating that only roots matching the given criteria are obtained. Then, for each of these, the directory size of the root is obtained via the utility function `Recls_CalcDirectorySize()` and displayed in the appropriate units.
 
 
 ## Example results

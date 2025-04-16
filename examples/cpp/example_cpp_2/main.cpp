@@ -11,7 +11,7 @@
  *  - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 15th April 2025
+ * Updated: 16th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,7 +51,7 @@ int main(int /* argc */, char* /* argv */[])
             recls::entry        entry           =   *i;
             recls::string_t     relativePath    =   entry.get_search_relative_path();
 
-            std::cout << relativePath << std::endl;
+            std::cout << relativePath << ' ' << entry.get_size() << std::endl;
         }}
 
         return EXIT_SUCCESS;

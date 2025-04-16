@@ -52,9 +52,7 @@ int main(int argc, char* argv[])
 
         { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
         {
-            recls::entry entry = *i;
-
-            std::cout << entry.get_path() << std::endl;
+            std::cout << *i << std::endl;
         }}
 
         return EXIT_SUCCESS;
@@ -86,7 +84,18 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
-T.B.C.
+This is effectively the same functionality as provided in **example_c_1**, but implemented in terms of the **recls/C++** API, which provides much more succinct syntax for the normative case (albeit the fully-exploded exception-handling as shown here can be quite verbose).
+
+Note that the expression `*i` is of type `recls::entry`, which is directly insertable into the stream statement in the form of the full path. It could be equivalently expressed as:
+
+```C++
+        { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
+        {
+            recls::entry const entry = *i;
+
+            std::cout << entry.get_path() << std::endl;
+        }}
+```
 
 
 ## Example results
