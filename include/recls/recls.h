@@ -138,11 +138,12 @@
 #define RECLS_VER_1_10_0_B01                                0x010a0081
 #define RECLS_VER_1_10_0_B02                                0x010a0082
 #define RECLS_VER_1_10_0_B03                                0x010a0083
+#define RECLS_VER_1_10_0_B04                                0x010a0084
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_B03
+#define RECLS_VER               RECLS_VER_1_10_0_B04
 
 
 /* /////////////////////////////////////////////////////////////////////////
