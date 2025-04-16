@@ -1,7 +1,14 @@
 # recls - History
 
 
-                   - 1.10.1 beta2
+16th April 2025 - 1.10.1 beta3
+------------------------------
+
+ * Fixes to `Recls_SqueezePath()`;
+ * Wholesale improvements to examples;
+
+
+23rd February 2025 - 1.10.1 beta2
 ---------------------------------
 
  * GCC compatibility;

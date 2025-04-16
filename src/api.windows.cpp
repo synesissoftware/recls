@@ -4,7 +4,7 @@
  * Purpose: This file contains the Windows versions of recls API.
  *
  * Created: 16th August 2003
- * Updated: 20th February 2025
+ * Updated: 10th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -25,7 +25,7 @@
  */
 
 #include <recls/recls.h>
-#include <recls/assert.h>
+#include "impl.assert.h"
 #include "impl.root.h"
 #include "incl.winstl.h"
 #include "impl.util.h"

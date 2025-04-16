@@ -4,7 +4,7 @@
  * Purpose: recls C++ mapping - common types and feature discrimination.
  *
  * Created: 18th August 2003
- * Updated: 23rd February 2025
+ * Updated: 15th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MINOR       0
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    16
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        53
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    17
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        54
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,8 +70,8 @@
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010b0182
-# error The recls C++ mapping now requires version 1.11.1 (beta 2) or later of the STLSoft libraries. (www.stlsoft.org/downloads.html)
+    _STLSOFT_VER < 0x010b0183
+# error The recls C++ mapping now requires version 1.11.1 (beta 3) or later of the STLSoft libraries. (www.stlsoft.org/downloads.html)
 #endif /* STLSoft version */
 
 #if defined(_STLSOFT_NO_NAMESPACE)

@@ -4,7 +4,7 @@
  * Purpose: Tests `recls::entry#is_socket()`.
  *
  * Created: 20th February 2025
- * Updated: 23rd February 2025
+ * Updated: 16th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -158,7 +158,7 @@ static void TEST_is_socket(void)
         }
         else
         {
-            stlsoft::scoped_handle scoper(sk, close);
+            stlsoft::scoped_handle<int> scoper(sk, close);
 
             struct sockaddr_un  sa;
             size_t              cb_actual;

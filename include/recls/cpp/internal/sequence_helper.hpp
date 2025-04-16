@@ -4,11 +4,11 @@
  * Purpose: recls::internal::sequence_helper struct.
  *
  * Created: 10th September 2003
- * Updated: 13th January 2024
+ * Updated: 16th April 2025
  *
  * Home:    http://recls.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_MAJOR     5
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_MINOR     0
-# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_REVISION  6
-# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_EDIT      104
+# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_REVISION  7
+# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_EDIT      105
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -63,6 +63,7 @@
  *  \link recls::cpp::search_sequence search_sequence\endlink
  *  class, and supporting classes.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 # endif /* !STLSOFT_INCL_H_CSTDDEF */
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -93,6 +95,7 @@ namespace recls
 namespace cpp
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * utility classes
@@ -234,7 +237,7 @@ public:
     static
     char_type const*
     copy_or_null(
-        T_buffer&               dest
+        T_buffer&            /* dest */
     ,   stlsoft::NULL_v const&
     ) STLSOFT_NOEXCEPT
     {
@@ -251,7 +254,7 @@ public:
     static
     char_type const*
     copy_or_null(
-        T_buffer&               dest
+        T_buffer&            /* dest */
     ,   std::nullptr_t const&
     ) STLSOFT_NOEXCEPT
     {
@@ -260,6 +263,7 @@ public:
 #endif
 };
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

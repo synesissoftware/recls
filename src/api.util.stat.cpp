@@ -4,11 +4,11 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 9th July 2024
+ * Updated: 15th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -25,7 +25,7 @@
  */
 
 #include <recls/recls.h>
-#include <recls/assert.h>
+#include "impl.assert.h"
 #include "impl.root.h"
 #include "impl.types.hpp"
 #include "impl.util.h"
@@ -33,6 +33,7 @@
 #include "ReclsFileSearchDirectoryNode.hpp"
 
 #include "impl.trace.h"
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -50,8 +51,8 @@ using ::recls::impl::recls_error_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_debug2_trace_printf_;
-
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * extended API functions
@@ -205,6 +206,7 @@ recls_rc_t Recls_Stat_X_(
         );
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

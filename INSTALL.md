@@ -211,10 +211,10 @@ use one of the custom makefiles provided with the project, as follows:
 
       ```
       . . .
-      -rw-r--r--   1 mwan  staff   110K 30 Nov 12:24 librecls.0.core.gcc42.a
-      -rw-r--r--   1 mwan  staff   262K 30 Nov 12:24 librecls.0.core.gcc42.debug.a
-      -rw-r--r--   1 mwan  staff   110K 30 Nov 12:24 librecls.0.core.gcc42.mt.a
-      -rw-r--r--   1 mwan  staff   262K 30 Nov 12:24 librecls.0.core.gcc42.mt.debug.a
+      -rw-r--r--   1 user  staff   110K 30 Nov 12:24 librecls.0.core.gcc42.a
+      -rw-r--r--   1 user  staff   262K 30 Nov 12:24 librecls.0.core.gcc42.debug.a
+      -rw-r--r--   1 user  staff   110K 30 Nov 12:24 librecls.0.core.gcc42.mt.a
+      -rw-r--r--   1 user  staff   262K 30 Nov 12:24 librecls.0.core.gcc42.mt.debug.a
       ```
 
       The best choice is `librecls.0.core.gcc42.a`, which is the archive

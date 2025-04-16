@@ -4,11 +4,11 @@
  * Purpose: Assertion macros for recls API.
  *
  * Created: 15th August 2003
- * Updated: 9th July 2024
+ * Updated: 10th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,7 +48,7 @@
 # define RECLS_VER_RECLS_H_ASSERT_MAJOR     3
 # define RECLS_VER_RECLS_H_ASSERT_MINOR     1
 # define RECLS_VER_RECLS_H_ASSERT_REVISION  2
-# define RECLS_VER_RECLS_H_ASSERT_EDIT      29
+# define RECLS_VER_RECLS_H_ASSERT_EDIT      30
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/assert.h
@@ -78,11 +78,13 @@
     defined(_MSC_VER) && \
     (   defined(_DEBUG) || \
         defined(DEBUG))
+
 # include <crtdbg.h> /* Prefer MSVCRT for VC++ and compatible compilers */
-# define RECLS_ASSERT(x)                    _ASSERTE(x)
+# define RECLS_ASSERT(x)                                    _ASSERTE(x)
 #else
+
 # include <assert.h>
-# define RECLS_ASSERT(x)                    assert(x)
+# define RECLS_ASSERT(x)                                    assert(x)
 #endif /* compiler */
 
 /** \def recls_assert(expr)
@@ -97,7 +99,7 @@
  *
  * \note This is a simple \#define for RECLS_ASSERT().
  */
-#define recls_assert(expr)                  RECLS_ASSERT(expr)
+#define recls_assert(expr)                                  RECLS_ASSERT(expr)
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,14 +118,18 @@
  * \param x The expression that must evaluate to \c true
  */
 
-#if defined(__WATCOMC__)
-# define RECLS_MESSAGE_ASSERT(m, x)         RECLS_ASSERT(x)
+#if 0
+#elif defined(__WATCOMC__)
+
+# define RECLS_MESSAGE_ASSERT(m, x)                         RECLS_ASSERT(x)
 #elif defined(__COMO__) || \
        defined(__GNUC__) || \
        defined(__MWERKS__)
-# define RECLS_MESSAGE_ASSERT(m, x)         RECLS_ASSERT(((m) && (x)))
+
+# define RECLS_MESSAGE_ASSERT(m, x)                         RECLS_ASSERT(((m) && (x)))
 #else /* ? compiler */
-# define RECLS_MESSAGE_ASSERT(m, x)         RECLS_ASSERT(((m), (x)))
+
+# define RECLS_MESSAGE_ASSERT(m, x)                         RECLS_ASSERT(((m), (x)))
 #endif /* compiler */
 
 /** \def recls_message_assert(msg, expr)
@@ -139,7 +145,7 @@
  *
  * \note This is a simple \#define for RECLS_MESSAGE_ASSERT().
  */
-#define recls_message_assert(msg, expr)     RECLS_MESSAGE_ASSERT(msg, expr)
+#define recls_message_assert(msg, expr)                     RECLS_MESSAGE_ASSERT(msg, expr)
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -162,7 +168,7 @@ namespace recls
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * inclusion
+ * inclusion control
  */
 
 #ifdef RECLS_CF_PRAGMA_ONCE_SUPPORT

@@ -5,11 +5,11 @@
  *          recls API.
  *
  * Created: 16th August 2003
- * Updated: 16th October 2024
+ * Updated: 10th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -26,7 +26,7 @@
  */
 
 #include <recls/recls.h>
-#include <recls/assert.h>
+#include "impl.assert.h"
 #include "impl.root.h"
 #include "incl.winstl.h"
 #include "impl.atomic.h"

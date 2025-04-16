@@ -4,11 +4,11 @@
  * Purpose: Implementation of the create_entryinfo() function.
  *
  * Created: 31st May 2004
- * Updated: 30th December 2023
+ * Updated: 10th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -25,7 +25,7 @@
  */
 
 #include <recls/recls.h>
-#include <recls/assert.h>
+#include "impl.assert.h"
 #include "impl.root.h"
 #include "incl.stlsoft.h"
 #ifdef RECLS_STLSOFT_1_12_OR_LATER
