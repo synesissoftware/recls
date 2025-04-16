@@ -108,6 +108,11 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
+T.B.C.
+
+
+## Example results
+
 When configured, built, and run specify the **test** directory
 
 ```
@@ -117,9 +122,6 @@ $ ./_build/examples/c/example_c_4/example_c_4 ~/Documents
 ```
 
 then it produces results such as:
-
-
-## Example results
 
 ```
 /Users/user/Documents/temp/other

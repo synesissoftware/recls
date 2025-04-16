@@ -3,14 +3,16 @@
  *
  * Purpose: C++ example program for recls/C++. Demonstrates:
  *
- *  - searching for files
- *  - recursive operation
+ *  - search in current or named directory
+ *  - search matching all names
+ *  - search recursively for files
+ *  - search by recls::search_sequence
  *  - display of full path of each entry
- *  - handling exceptions and reporting of error information
- *  - elicitation of entry properties via method calls
+ *  - detecting failure and reporting of failure reason
+ *  - elicitation of entry properties via entry attribute method calls
  *
  * Created: 18th June 2006
- * Updated: 15th April 2025
+ * Updated: 16th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -30,12 +32,13 @@
  * main()
  */
 
-int main(int /* argc */, char* /* argv */[])
+int main(int argc, char* argv[])
 {
     try
     {
-        int                     flags   =   recls::RECLS_F_FILES | recls::RECLS_F_RECURSIVE;
-        recls::search_sequence  files(".", recls::Recls_GetWildcardsAll(), flags);
+        char const*             search_dir  =   argc > 1 ? argv[1] : ".";
+        int                     flags       =   recls::RECLS_F_FILES | recls::RECLS_F_RECURSIVE;
+        recls::search_sequence  files(search_dir, recls::wildcardsAll(), flags);
 
         { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
         {
@@ -43,33 +46,27 @@ int main(int /* argc */, char* /* argv */[])
 
             std::cout << entry.get_path() << std::endl;
         }}
+
+        return EXIT_SUCCESS;
     }
     catch (recls::recls_exception& x)
     {
         std::cerr << "Recls error: " << x.get_rc() << ", " << x.what() << std::endl;
-
-        return EXIT_FAILURE;
     }
     catch (std::bad_alloc &)
     {
         std::cerr << "Out of memory" << std::endl;
-
-        return EXIT_FAILURE;
     }
     catch (std::exception &x)
     {
         std::cerr << "Unhandled error: " << x.what() << std::endl;
-
-        return EXIT_FAILURE;
     }
     catch (...)
     {
         std::cerr << "Unhandled unknown error" << std::endl;
-
-        return EXIT_FAILURE;
     }
 
-    return EXIT_SUCCESS;
+    return EXIT_FAILURE;
 }
 
 

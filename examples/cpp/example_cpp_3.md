@@ -2,7 +2,7 @@
 
 ## Summary
 
-T.B.C.
+Demonstrates use of `recls::stat()` on current directory or named path, showing various elements of the path in exploded form.
 
 
 ## Source
@@ -151,6 +151,16 @@ T.B.C.
 
 
 ## Example results
+
+When configured, built, and run specify the **test** directory
+
+```
+$ ./prepare_cmake.sh
+$ ./build_cmake.sh
+$ ./_build/examples/cpp/example_cpp_3/example_cpp_3 test
+```
+
+then it produces results such as:
 
 ```
 ```

@@ -4,7 +4,7 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 15th April 2025
+ * Updated: 16th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -104,7 +104,7 @@ Recls_SqueezePath_X_(
     ,   static_cast<unsigned long>(cchResult)
     );
 
-    size_t n = unixstl::path_squeeze(path, result, cchResult);
+    size_t n = platformstl::path_squeeze(path, result, cchResult);
 
     if (0 != n)
     {

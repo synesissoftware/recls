@@ -110,6 +110,11 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
+T.B.C.
+
+
+## Example results
+
 When configured, built, and run specify the **test** directory
 
 ```
@@ -119,9 +124,6 @@ $ ./_build/examples/c/example_c_5/example_c_5 /Volumes/Non-TM\ backups/dir
 ```
 
 then it produces results such as:
-
-
-## Example results
 
 ```
 ../../Volumes/Non-TM backups/dir/dir-1

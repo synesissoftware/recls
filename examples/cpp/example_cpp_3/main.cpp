@@ -3,16 +3,15 @@
  *
  * Purpose: C++ example program for recls/C++. Demonstrates:
  *
- *            - stat()-ing of current directory
- *            - searching for files, according to multi-part pattern
- *            - recursive operation
- *            - evaluation of relative path of each entry, with respect
- *              to home directory
- *            - handling exceptions and reporting of error information
- *            - elicitation of entry properties via method calls
+ *  - stat() of current directory (via recls::stat()) or named path
+ *  - searching for files, according to multi-part pattern
+ *  - recursive operation
+ *  - evaluation of relative path of each entry, with respect to entry directory
+ *  - handling exceptions and reporting of error information
+ *  - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 9th April 2025
+ * Updated: 16th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -23,89 +22,117 @@
 /* Standard C++ header files */
 #include <exception>
 #include <iostream>
+#include <string>
 
 /* Standard C header files */
-#include <stdlib.h>     /* for EXIT_SUCCESS / EXIT_FAILURE  */
+#include <stdlib.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * macros and definitions
+ * main()
  */
 
-#ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define cout                                               wcout
-# define cerr                                               wcerr
-#endif /* RECLS_CHAR_TYPE_IS_WCHAR */
-
-/* ////////////////////////////////////////////////////////////////////// */
-
-int main(int /* argc */, char* /* argv */[])
+int main(int argc, char* argv[])
 {
     try
     {
-        // stat() the current directory
-        recls::entry  home = recls::stat(".");
+        char const*     path    =   argc > 1 ? argv[1] : ".";
+
+        std::cout << "  given path:       " << path << std::endl;
+
+        std::cout << std::endl;
+
+        // stat() the path
+        recls::entry    entry    =   recls::stat(path, recls::DIRECTORY_PARTS);
 
         // Print out its characteristics:
 
-        // 1. Full path
-        std::cout << "path: " << home.get_path() << std::endl;
+        // full path
+        std::cout << "  full path:        " << entry.get_path() << std::endl;
 
-        // 2. Search-relative path
-        std::cout << "search-relative path: " << home.get_search_relative_path() << std::endl;
-
-        // 3. Search directory
-        std::cout << "search directory: " << home.get_search_directory() << std::endl;
-
-#ifdef RECLS_PLATFORM_API_WINDOWS
-        // 4. Drive property
-        std::cout << "drive: " << home.get_drive() << std::endl;
-#endif /* RECLS_PLATFORM_API_WINDOWS */
-
-        // 5. Directory path property
-        std::cout << "directory path: " << home.get_directory_path() << std::endl;
-
-        // 6. Directory property
-        std::cout << "directory: " << home.get_directory() << std::endl;
-
-        // 7. File property
-        std::cout << "file: " << home.get_file() << std::endl;
-
-        // 8. File name property
-        std::cout << "file name: " << home.get_file_name() << std::endl;
-
-        // 9. File extension property
-        std::cout << "file extension: " << home.get_file_extension() << std::endl;
-
-        // 10. Type
-        if (home.is_directory())
+        // type
+        std::cout << "  type:             ";
+        if (entry.is_directory())
         {
-            std::cout << " <directory>" << std::endl;
+            std::cout << "<directory>";
+        }
+        else
+        if (entry.is_socket())
+        {
+            std::cout << "<socket>";
         }
         else
         {
-            std::cout << " <file>" << std::endl;
+            std::cout << "<file>";
         }
-        if (home.is_link())
+        if (entry.is_link())
         {
-            std::cout << " <link>" << std::endl;
+            std::cout << " <link>";
         }
-        if (home.is_readonly())
+        if (entry.is_readonly())
         {
-            std::cout << " <read-only>" << std::endl;
+            std::cout << " <read-only>";
+        }
+        std::cout << std::endl;
+
+        // directory path
+        std::cout << "  directory path:   " << entry.get_directory_path() << std::endl;
+
+#ifdef RECLS_PLATFORM_API_WINDOWS
+
+        // drive
+        std::cout << "  drive:            " << entry.get_drive() << ':' << std::endl;
+
+        // directory
+        std::cout << "  directory:          " << entry.get_directory() << std::endl;
+#else /* ? RECLS_PLATFORM_IS_WINDOWS */
+
+        // directory
+        std::cout << "  directory:        " << entry.get_directory() << std::endl;
+#endif /* RECLS_PLATFORM_API_WINDOWS */
+
+        // basename
+        std::cout << "  basename:         " << std::string(entry.get_directory_path().size(), ' ') << entry.get_file() << std::endl;
+
+        // stem
+        std::cout << "  stem:             " << std::string(entry.get_directory_path().size(), ' ') << entry.get_file_name() << std::endl;
+
+        // extension
+        if (!entry.get_file_extension().empty())
+        {
+            std::cout << "  extension:        " << std::string(entry.get_directory_path().size() + entry.get_file_name().size(), ' ') << entry.get_file_extension() << std::endl;
         }
 
-        // 11. Size
+        // directory parts
+        std::cout << "  directory parts:" << std::endl;
+        unsigned n = 0;
+        for (auto const& part : entry.get_directory_parts())
+        {
+            std::cout << "    part:           " << std::string(n, ' ') << part << std::endl;
+
+            n += part.size();
+        }
+
+        // size
         //
         // We cast because some standard libraries cannot handle 64-bit
         // integers. If the file size exceeds that representable in 32-bits
         // then this will yield an invalid value; don't copy this into your
         // own code unless you are *totally* sure you'll never work with
         // files larger than 4GB in size.
-        std::cout << static_cast<unsigned long>(home.get_size()) << " bytes" << std::endl;
+        std::cout << "  size:             " << static_cast<unsigned long>(entry.get_size()) << " byte(s)" << std::endl;
+
+        std::cout << std::endl;
+
+        // search directory
+        std::cout << "  search directory: " << entry.get_search_directory() << std::endl;
+
+        // search-relative path
+        std::cout << "  search-rel path:  " << entry.get_search_relative_path() << std::endl;
     }
     catch (recls::recls_exception& x)
     {
-        std::cerr << "Could not elicit home directory by stat()-ing '~': " << x.get_rc() << ", " << x.what() << std::endl;
+        std::cerr << "Could not elicit entry directory by stat()-ing '~': " << x.get_rc() << ", " << x.what() << std::endl;
 
         return EXIT_FAILURE;
     }
@@ -130,6 +157,7 @@ int main(int /* argc */, char* /* argv */[])
 
     return EXIT_SUCCESS;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -101,6 +101,11 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
+T.B.C.
+
+
+## Example results
+
 When configured, built, and run specify the **test** directory
 
 ```
@@ -110,9 +115,6 @@ $ ./_build/examples/c/example_c_8/example_c_8
 ```
 
 then it produces results such as:
-
-
-## Example results
 
 ```
 All roots on host system:

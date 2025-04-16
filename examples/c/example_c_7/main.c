@@ -3,12 +3,12 @@
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- * - stat() of current directory (via Recls_Stat())
- * - combining paths (via Recls_CombinePaths())
- * - handling of errors and reporting of error information
+ *  - stat() of current directory (via Recls_Stat())
+ *  - combining paths (via Recls_CombinePaths())
+ *  - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 10th April 2025
+ * Updated: 16th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

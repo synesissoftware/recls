@@ -13,13 +13,13 @@ Demonstrates use of `Recls_Stat()` on current directory or named path, showing v
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
- * - stat() of current directory (via Recls_Stat()) or named path
- * - display of full path, drive (Win32 only), directory, directory path, file, file name, file extension, and directory parts of each entry
- * - elicitation of entry properties via structure members
- * - handling of errors and reporting of error information
+ *  - stat() of current directory (via Recls_Stat()) or named path
+ *  - display of full path, drive (Win32 only), directory, directory path, file, file name, file extension, and directory parts of each entry
+ *  - elicitation of entry properties via structure members
+ *  - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 15th April 2025
+ * Updated: 16th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,14 +38,14 @@ Demonstrates use of `Recls_Stat()` on current directory or named path, showing v
 
 int main(int argc, char* argv[])
 {
-    /* stat() the current directory */
-    recls_info_t    current;
+    /* stat() the path */
+    recls_info_t    entry;
     char const*     path    =   argc > 1 ? argv[1] : ".";
-    recls_rc_t      rc      =   Recls_Stat(path, RECLS_F_DIRECTORY_PARTS, &current);
+    recls_rc_t      rc      =   Recls_Stat(path, RECLS_F_DIRECTORY_PARTS, &entry);
 
     if (RECLS_FAILED(rc))
     {
-        /* The search failed. Display the error string. */
+        /* search failed : display the error string */
         recls_char_t    err[100];
         size_t          n   =   Recls_GetErrorString(rc, &err[0], sizeof(err));
 
@@ -61,39 +61,65 @@ int main(int argc, char* argv[])
         printf("\n");
 
         /* full path */
-        printf("  full path:        %s\n", current->path.begin);
+        printf("  full path:        %s\n", entry->path.begin);
+
+        /* type */
+        printf("  type:             ");
+        if (Recls_IsEntryDirectory(entry))
+        {
+            printf("<directory>");
+        }
+        else
+        if (Recls_IsEntrySocket(entry))
+        {
+            printf("<socket>");
+        }
+        else
+        {
+            printf("<file>");
+        }
+        if (Recls_IsEntryLink(entry))
+        {
+            printf(" <link>");
+        }
+        if (Recls_IsEntryReadOnly(entry))
+        {
+            printf(" <read-only>");
+        }
+        printf("\n");
+
 
         /* directory path */
-        printf("  directory path:   %.*s\n", (int)(current->directory.end - current->path.begin), current->path.begin);
+        printf("  directory path:   %.*s\n", (int)(entry->directory.end - entry->path.begin), entry->path.begin);
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
 
         /* drive (Windows-only) */
-        printf("  drive:            %c:\n", current->drive);
+        printf("  drive:            %c:\n", entry->drive);
 
         /* directory */
-        printf("  directory:          %.*s\n", (int)(current->directory.end - current->directory.begin), current->directory.begin);
-#else
+        printf("  directory:          %.*s\n", (int)(entry->directory.end - entry->directory.begin), entry->directory.begin);
+#else /* ? RECLS_PLATFORM_IS_WINDOWS */
 
         /* directory */
-        printf("  directory:        %.*s\n", (int)(current->directory.end - current->directory.begin), current->directory.begin);
+        printf("  directory:        %.*s\n", (int)(entry->directory.end - entry->directory.begin), entry->directory.begin);
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
 
-        /* file */
-        printf("  basename:         %*s%.*s\n", (int)(current->directory.end - current->path.begin), "", (int)(current->fileExt.end - current->fileName.begin), current->fileName.begin);
+        /* basename */
+        printf("  basename:         %*s%.*s\n", (int)(entry->directory.end - entry->path.begin), "", (int)(entry->fileExt.end - entry->fileName.begin), entry->fileName.begin);
 
-        /* file name */
-        printf("  stem:             %*s%.*s\n", (int)(current->directory.end - current->path.begin), "", (int)(current->fileName.end - current->fileName.begin), current->fileName.begin);
+        /* stem */
+        printf("  stem:             %*s%.*s\n", (int)(entry->directory.end - entry->path.begin), "", (int)(entry->fileName.end - entry->fileName.begin), entry->fileName.begin);
 
-        /* file extension */
-        if (current->fileExt.end != current->fileExt.begin)
+        /* extension */
+        if (entry->fileExt.end != entry->fileExt.begin)
         {
-            printf("  extension:        %*s%*s%.*s\n", (int)(current->directory.end - current->path.begin), "", 1 + (int)(current->fileName.end - current->fileName.begin), "", (int)(current->fileExt.end - current->fileExt.begin), current->fileExt.begin);
+            printf("  extension:        %*s%*s%.*s\n", (int)(entry->directory.end - entry->path.begin), "", 1 + (int)(entry->fileName.end - entry->fileName.begin), "", (int)(entry->fileExt.end - entry->fileExt.begin), entry->fileExt.begin);
         }
 
 #if defined(RECLS_PLATFORM_IS_WINDOWS)
         /* drive (Windows-only) */
-        printf("  short file:       %.*s\n", (int)(current->shortFile.end - current->shortFile.begin), current->shortFile.begin);
+        printf("  short file:       %.*s\n", (int)(entry->shortFile.end - entry->shortFile.begin), entry->shortFile.begin);
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
 
         /* directory parts */
@@ -102,7 +128,7 @@ int main(int argc, char* argv[])
             struct recls_strptrs_t const*   part_ptr;
             int                             offset = 0;
 
-            for (part_ptr = current->directoryParts.begin; part_ptr != current->directoryParts.end; ++part_ptr)
+            for (part_ptr = entry->directoryParts.begin; part_ptr != entry->directoryParts.end; ++part_ptr)
             {
                 printf("    part:           %*s%.*s\n", offset, "", (int)(part_ptr->end - part_ptr->begin), part_ptr->begin);
 
@@ -110,13 +136,19 @@ int main(int argc, char* argv[])
             }
         }
 
+        /* size */
+        printf("  size:             %lu byte(s)\n", (unsigned long)(entry->size));
+
         printf("\n");
 
-        printf("  search directory: %.*s\n", (int)(current->searchDirectory.end - current->searchDirectory.begin), current->searchDirectory.begin);
-        printf("  search-rel path:  %.*s\n", (int)(current->searchRelativePath.end - current->searchRelativePath.begin), current->searchRelativePath.begin);
+        /* search directory */
+        printf("  search directory: %.*s\n", (int)(entry->searchDirectory.end - entry->searchDirectory.begin), entry->searchDirectory.begin);
 
-        /* Close the current entry. */
-        Recls_CloseDetails(current);
+        /* search-relative path */
+        printf("  search-rel path:  %.*s\n", (int)(entry->searchRelativePath.end - entry->searchRelativePath.begin), entry->searchRelativePath.begin);
+
+        /* close the entry. */
+        Recls_CloseDetails(entry);
 
         return EXIT_SUCCESS;
     }
@@ -129,39 +161,43 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
+T.B.C.
+
+
+## Example results
+
 When configured, built, and run specify the **test** directory
 
 ```
 $ ./prepare_cmake.sh
 $ ./build_cmake.sh
-$ ./_build/examples/c/example_c_6/example_c_6 prepare_cmake.sh
+$ ./_build/examples/c/example_c_6/example_c_6 ./prepare_cmake.sh
 ```
 
 then it produces results such as:
 
-
-## Example results
-
 ```
-  given path:       prepare_cmake.sh
+  given path:       ./prepare_cmake.sh
 
-  full path:        /Users/mwan/dev/synesissoftware/freelibs/recls/recls/prepare_cmake.sh
-  directory path:   /Users/mwan/dev/synesissoftware/freelibs/recls/recls/
-  directory:        /Users/mwan/dev/synesissoftware/freelibs/recls/recls/
+  full path:        /Users/user/dev/synesissoftware/freelibs/recls/recls/prepare_cmake.sh
+  type:             <file>
+  directory path:   /Users/user/dev/synesissoftware/freelibs/recls/recls/
+  directory:        /Users/user/dev/synesissoftware/freelibs/recls/recls/
   basename:                                                              prepare_cmake.sh
   stem:                                                                  prepare_cmake
   extension:                                                                           sh
   directory parts:
     part:           /
     part:            Users/
-    part:                  mwan/
+    part:                  user/
     part:                       dev/
     part:                           synesissoftware/
     part:                                           freelibs/
     part:                                                    recls/
     part:                                                          recls/
+  size:             3804 byte(s)
 
-  search directory: /Users/mwan/dev/synesissoftware/freelibs/recls/recls/
+  search directory: /Users/user/dev/synesissoftware/freelibs/recls/recls/
   search-rel path:  prepare_cmake.sh
 ```
 

@@ -158,6 +158,11 @@ failed:
 
 ## Discussion
 
+T.B.C.
+
+
+## Example results
+
 When configured, built, and run specify the **test** directory
 
 ```
@@ -168,8 +173,6 @@ $ ./_build/examples/c/example_c_3/example_c_3 .
 
 then it produces results such as:
 
-
-## Example results
 
 ```
                       AUTHORS.md:      file;    0 byte(s)

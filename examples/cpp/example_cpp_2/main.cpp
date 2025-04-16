@@ -33,6 +33,8 @@
 
 int main(int /* argc */, char* /* argv */[])
 {
+    const recls::char_t  SEARCH_PATTERN[]   =   "*.?pp|CMakeLists.*|";
+
     try
     {
         /* stat() the home directory */
@@ -41,7 +43,7 @@ int main(int /* argc */, char* /* argv */[])
         /* Enumerate all under the home directory, matching *.??? or makefile*.*. */
         int                     flags   =   recls::RECLS_F_FILES | recls::RECLS_F_RECURSIVE;
 
-        recls::search_sequence  files(home, "*.?????|makefile|makefile.*|", flags);
+        recls::search_sequence  files(home, SEARCH_PATTERN, flags);
 
         /* and display each entry's search-relative path */
         { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
@@ -51,33 +53,27 @@ int main(int /* argc */, char* /* argv */[])
 
             std::cout << relativePath << std::endl;
         }}
+
+        return EXIT_SUCCESS;
     }
     catch (recls::recls_exception& x)
     {
         std::cerr << "Could not elicit home directory by stat()-ing '~': " << x.get_rc() << ", " << x.what() << std::endl;
-
-        return EXIT_FAILURE;
     }
     catch (std::bad_alloc&)
     {
         std::cerr << "Out of memory" << std::endl;
-
-        return EXIT_FAILURE;
     }
     catch (std::exception& x)
     {
         std::cerr << "Unhandled error: " << x.what() << std::endl;
-
-        return EXIT_FAILURE;
     }
     catch (...)
     {
         std::cerr << "Unhandled unknown error" << std::endl;
-
-        return EXIT_FAILURE;
     }
 
-    return EXIT_SUCCESS;
+    return EXIT_FAILURE;
 }
 
 

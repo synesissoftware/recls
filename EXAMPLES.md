@@ -10,9 +10,9 @@
 |**example_c_6**|C|[examples/c/example_c_6/main.c](./examples/c/example_c_6/main.c)<br/>[examples/c/example_c_6.md](./examples/c/example_c_6.md)|Demonstrates use of `Recls_Stat()` on current directory or named path, showing various elements of the path in exploded form|
 |**example_c_7**|C|[examples/c/example_c_7/main.c](./examples/c/example_c_7/main.c)<br/>[examples/c/example_c_7.md](./examples/c/example_c_7.md)|Demonstrates combining of paths via `Recls_CombinePaths()`.|
 |**example_c_8**|C|[examples/c/example_c_8/main.c](./examples/c/example_c_8/main.c)<br/>[examples/c/example_c_8.md](./examples/c/example_c_8.md)|Demonstrates elicitation of roots via `Recls_GetRoots()` and `Recls_GetSelectedRoots()`, and then obtaining size of files under one of the selected roots via `Recls_CalcDirectorySize()`.|
-|**example_cpp_1**|C++|[examples/cpp/example_cpp_1/main.cpp](./examples/cpp/example_cpp_1/main.cpp)<br/>[examples/cpp/example_cpp_1.md](./examples/cpp/example_cpp_1.md)|Demonstrates recursive search using `recls::search_sequence`|
+|**example_cpp_1**|C++|[examples/cpp/example_cpp_1/main.cpp](./examples/cpp/example_cpp_1/main.cpp)<br/>[examples/cpp/example_cpp_1.md](./examples/cpp/example_cpp_1.md)|Demonstrates recursive search for all files under a given directory including all appropriate failure handling.|
 |**example_cpp_2**|C++|[examples/cpp/example_cpp_2/main.cpp](./examples/cpp/example_cpp_2/main.cpp)<br/>[examples/cpp/example_cpp_2.md](./examples/cpp/example_cpp_2.md)|Demonstrates obtaining `stat()` of home directory using `recls::stat`, then recursive search under that of files matching a complex pattern|
-|**example_cpp_3**|C++|[examples/cpp/example_cpp_3/main.cpp](./examples/cpp/example_cpp_3/main.cpp)<br/>[examples/cpp/example_cpp_3.md](./examples/cpp/example_cpp_3.md)|Demonstrates obtaining `stat()` of home directory using `recls::stat`, then recursive search under that of files matching a complex pattern|
+|**example_cpp_3**|C++|[examples/cpp/example_cpp_3/main.cpp](./examples/cpp/example_cpp_3/main.cpp)<br/>[examples/cpp/example_cpp_3.md](./examples/cpp/example_cpp_3.md)|Demonstrates use of `recls::stat()` on current directory or named path, showing various elements of the path in exploded form|
 
 
 <!-- ########################### end of file ########################### -->

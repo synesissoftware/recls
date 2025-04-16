@@ -18,7 +18,7 @@ Demonstrates combining of paths via `Recls_CombinePaths()`.
  *  - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 15th April 2025
+ * Updated: 16th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -79,6 +79,11 @@ int main(int argc, char* argv[])
 
 ## Discussion
 
+T.B.C.
+
+
+## Example results
+
 When configured, built, and run specify the **test** directory
 
 ```
@@ -88,9 +93,6 @@ $ ./_build/examples/c/example_c_7/example_c_7
 ```
 
 then it produces results such as:
-
-
-## Example results
 
 ```
 /Users/user/dev/synesissoftware/freelibs/recls/recls combined with abc/def/ yields /Users/user/dev/synesissoftware/freelibs/recls/recls/abc/def/

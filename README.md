@@ -1,5 +1,6 @@
 # recls <!-- omit in toc -->
 
+
 ## Table of Contents <!-- omit in toc -->
 
 - [Introduction](#introduction)
@@ -13,18 +14,18 @@
   - [Related projects](#related-projects)
   - [License](#license)
 
+
 ## Introduction
 
-**recls** is T.B.C.
+**recls** - **rec**ursive **ls** - is a platform-independent recursive file-system search library implemented in C and C++ with a C-API, and a C++ binding.
 
-**recls** is completely free and includes source released under a BSD-style
-license.
+**recls** is completely free and includes source released under a BSD-style license.
+
 
 ## Installation
 
-Detailed instructions - via **CMake**, via bundling, via custom makefile
-parameters - are provided in the accompanying [INSTALL.md](./INSTALL.md)
-file.
+Detailed instructions - via **CMake**, via bundling, via custom makefile parameters - are provided in the accompanying [INSTALL.md](./INSTALL.md) file.
+
 
 ## Components
 
@@ -38,9 +39,11 @@ Examples are provided in the ```examples``` directory, along with a markdown des
 
 ## Project Information
 
+
 ### Where to get help
 
 [GitHub Page](https://github.com/synesissoftware/recls "GitHub Page")
+
 
 ### Contribution guidelines
 
@@ -48,17 +51,23 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 
 If you'd like to help out with the project, please raise an issue via [GitHub Page](https://github.com/synesissoftware/recls/issues "GitHub Page") - you'll be very welcome!
 
+
 ### Dependencies
+
 
 #### STLSoft <!-- omit in toc -->
 
-**recls** depends on the **STLSoft** libraries, version 1.10.2 (or later).
+**recls** depends on the **STLSoft** libraries, version 1.11.1 (or later).
 
-* [STLSoft 1.10](http://github.com/synesissoftware/STLSoft-1.10/) (Recommended)
+* [STLSoft 1.11](http://github.com/synesissoftware/STLSoft-1.11/);
+
 
 ### Related projects
 
-T.B.C.
+Projects in which **recls** is used include:
+
+* [**libCLImate**](https://github.com/synesissoftware/libCLImate)
+
 
 ### License
 
