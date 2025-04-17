@@ -50,6 +50,8 @@ static void TEST_Recls_GetFileSizeMebiBytes(void);
 static void TEST_Recls_GetFileSizeMegaBytes(void);
 static void TEST_Recls_GetFileSizeGibiBytes(void);
 static void TEST_Recls_GetFileSizeGigaBytes(void);
+static void TEST_Recls_GetFileSizeTebiBytes(void);
+static void TEST_Recls_GetFileSizeTeraBytes(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,6 +73,8 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(TEST_Recls_GetFileSizeMegaBytes);
         XTESTS_RUN_CASE(TEST_Recls_GetFileSizeGibiBytes);
         XTESTS_RUN_CASE(TEST_Recls_GetFileSizeGigaBytes);
+        XTESTS_RUN_CASE(TEST_Recls_GetFileSizeTebiBytes);
+        XTESTS_RUN_CASE(TEST_Recls_GetFileSizeTeraBytes);
 
         XTESTS_PRINT_RESULTS();
 
@@ -179,6 +183,28 @@ static void TEST_Recls_GetFileSizeGigaBytes(void)
     TEST_INT_EQ(9, Recls_GetFileSizeGigaBytes(RFS_(10) * 1000 * 1000 * 1000 - 1));
     TEST_INT_EQ(10, Recls_GetFileSizeGigaBytes(RFS_(10) * 1000 * 1000 * 1000));
     TEST_INT_EQ(10, Recls_GetFileSizeGigaBytes(RFS_(10) * 1024 * 1024 * 1024));
+}
+
+static void TEST_Recls_GetFileSizeTebiBytes(void)
+{
+    TEST_INT_EQ(0, Recls_GetFileSizeTebiBytes(RFS_(1) * 1000 * 1000 * 1000));
+    TEST_INT_EQ(0, Recls_GetFileSizeTebiBytes(RFS_(1) * 1024 * 1024 * 1024));
+
+    TEST_INT_EQ(0, Recls_GetFileSizeTebiBytes(RFS_(1) * 1000 * 1000 * 1000 * 1000));
+    TEST_INT_EQ(1, Recls_GetFileSizeTebiBytes(RFS_(1) * 1024 * 1024 * 1024 * 1024));
+}
+
+static void TEST_Recls_GetFileSizeTeraBytes(void)
+{
+    TEST_INT_EQ(1, Recls_GetFileSizeTeraBytes(RFS_(1) * 1000 * 1000 * 1000 * 1000));
+    TEST_INT_EQ(1, Recls_GetFileSizeTeraBytes(RFS_(1) * 1024 * 1024 * 1024 * 1024));
+
+    TEST_INT_EQ(4, Recls_GetFileSizeTeraBytes(RFS_(4) * 1000 * 1000 * 1000 * 1000));
+    TEST_INT_EQ(4, Recls_GetFileSizeTeraBytes(RFS_(4) * 1024 * 1024 * 1024 * 1024));
+
+    TEST_INT_EQ(9, Recls_GetFileSizeTeraBytes(RFS_(10) * 1000 * 1000 * 1000 * 1000 - 1));
+    TEST_INT_EQ(10, Recls_GetFileSizeTeraBytes(RFS_(10) * 1000 * 1000 * 1000 * 1000));
+    TEST_INT_EQ(10, Recls_GetFileSizeTeraBytes(RFS_(10) * 1024 * 1024 * 1024 * 1024));
 }
 
 

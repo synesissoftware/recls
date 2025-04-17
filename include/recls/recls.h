@@ -2053,6 +2053,20 @@ Recls_GetFileSizeMebiBytes(recls_filesize_t size);
 RECLS_FNDECL(recls_filesize_t)
 Recls_GetFileSizeMegaBytes(recls_filesize_t size);
 
+/** Calculates the whole number of tebibytes in the file size.
+ *
+ * \ingroup group__recls
+ */
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeTebiBytes(recls_filesize_t size);
+
+/** Calculates the whole number of terabytes in the file size.
+ *
+ * \ingroup group__recls
+ */
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeTeraBytes(recls_filesize_t size);
+
 
 /***************************************
  * Path functions
