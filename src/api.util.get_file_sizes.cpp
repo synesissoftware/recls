@@ -50,19 +50,50 @@ namespace recls
 RECLS_FNDECL(recls_filesize_t)
 Recls_GetFileSizeGigaBytes(recls_filesize_t size)
 {
-    return size / (1024 * 1024 * 1024);
+    return size / (recls_filesize_t(1000) * 1000 * 1000);
 }
 
 RECLS_FNDECL(recls_filesize_t)
 Recls_GetFileSizeMegaBytes(recls_filesize_t size)
 {
-    return size / (1024 * 1024);
+    return size / (recls_filesize_t(1000) * 1000);
 }
 
 RECLS_FNDECL(recls_filesize_t)
 Recls_GetFileSizeKiloBytes(recls_filesize_t size)
 {
+    return size / (recls_filesize_t(1000));
+}
+
+
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeGibiBytes(recls_filesize_t size)
+{
+    return size / (1024 * 1024 * 1024);
+}
+
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeMebiBytes(recls_filesize_t size)
+{
+    return size / (1024 * 1024);
+}
+
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeKibiBytes(recls_filesize_t size)
+{
     return size / (1024);
+}
+
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeTebiBytes(recls_filesize_t size)
+{
+    return size / (recls_filesize_t(1024) * 1024 * 1024 * 1024);
+}
+
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeTeraBytes(recls_filesize_t size)
+{
+    return size / (recls_filesize_t(1000) * 1000 * 1000 * 1000);
 }
 
 

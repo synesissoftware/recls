@@ -17,12 +17,33 @@ recls - Changes
     *******************************************************************
 
 
+recls 1.10.1 (beta 4) released - 17th April 2025
+================================================
+
+ * Added `Recls_GetFileSizeGibiBytes()`, `Recls_GetFileSizeKibiBytes()`, `Recls_GetFileSizeMebiBytes()`, `Recls_GetFileSizeTebiBytes()`;
+ * Fixed calculations (from 1,024 factor to 1,000) for `Recls_GetFileSizeGigaBytes()`, `Recls_GetFileSizeKiloBytes()`, `Recls_GetFileSizeMegaBytes()`;
+ * Added `Recls_GetFileSizeTeraBytes()`;
+ * Canonicalising all unit/component test implementation file names;
+ * Removed all implicit-link implementation files;
+ * Removed all Visual C++ solution/project files;
+
+
 recls 1.10.1 (beta 3) released - 17th April 2025
 ================================================
+
+Summary:
+--------
 
  * Fixes to `Recls_SqueezePath()`;
  * Fix to `Recls_Stat()`;
  * Wholesale improvements to examples;
+ * Updated dependency requirements;
+
+Details:
+--------
+
+Updated dependency requirements:
+ * now depends on 1.11.1-beta3+ of **STLSoft**;
 
 
 recls 1.10.1 (beta 2) released - 23rd February 2025

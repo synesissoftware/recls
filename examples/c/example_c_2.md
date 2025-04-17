@@ -315,37 +315,22 @@ $ ./_build/examples/c/example_c_2/example_c_2 .
 then it produces results such as:
 
 ```
-test/unit/test.unit.api.squeeze_path/implicit_link.c
 test/unit/test.unit.api.squeeze_path/test.unit.api.squeeze_path.c
-test/unit/test.unit.cpp.retcodes/implicit_link.cpp
 test/unit/test.unit.cpp.retcodes/test.unit.cpp.retcodes.cpp
-test/unit/test.unit.c.retcodes/implicit_link.c
 test/unit/test.unit.c.retcodes/test.unit.c.retcodes.c
-test/unit/test.unit.cpp.squeeze_path/implicit_link.cpp
 test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp
-test/unit/test.unit.cpp.combine_paths/implicit_link.cpp
 test/unit/test.unit.cpp.combine_paths/test.unit.cpp.combine_paths.cpp
-test/unit/test.unit.api.stat/implicit_link.c
 test/unit/test.unit.api.stat/test.unit.api.stat.c
-test/unit/test.unit.cpp.derive_relative_path/implicit_link.cpp
 test/unit/test.unit.cpp.derive_relative_path/test.unit.cpp.derive_relative_path.cpp
-test/unit/test.unit.api.combine_paths/implicit_link.c
 test/unit/test.unit.api.combine_paths/test.unit.api.combine_paths.c
-test/unit/test.unit.api.create_directory/implicit_link.c
 test/unit/test.unit.api.create_directory/test.unit.api.create_directory.c
 test/component/test.component.util.cpp.is_socket/entry.cpp
-test/component/test.component.util.cpp.create_directory/implicit_link.cpp
 test/component/test.component.util.cpp.create_directory/test.component.util.cpp.create_directory.cpp
-test/component/test.component.util.cpp.remove_directory/implicit_link.cpp
 test/component/test.component.util.cpp.remove_directory/test.component.util.cpp.remove_directory.cpp
-test/scratch/test.scratch.with_pantheios/implicit_link.cpp
 test/scratch/test.scratch.with_pantheios/test.scratch.with_pantheios.cpp
-test/scratch/test.scratch.cpp_api/implicit_link.cpp
 test/scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp
 test/scratch/test.scratch.search.1/test.scratch.search.1.c
-test/scratch/test.scratch.search.1/implicit_link.cpp
 test/scratch/test_c_1/test_c_1.c
-test/scratch/test.scratch.links/implicit_link.cpp
 test/scratch/test.scratch.links/test.scratch.links.cpp
 include/recls/assert.h
 include/recls/ftp.h

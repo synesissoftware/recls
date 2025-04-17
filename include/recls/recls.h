@@ -51,9 +51,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
-# define RECLS_VER_RECLS_H_RECLS_MINOR      22
-# define RECLS_VER_RECLS_H_RECLS_REVISION   3
-# define RECLS_VER_RECLS_H_RECLS_EDIT       144
+# define RECLS_VER_RECLS_H_RECLS_MINOR      23
+# define RECLS_VER_RECLS_H_RECLS_REVISION   0
+# define RECLS_VER_RECLS_H_RECLS_EDIT       145
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -138,11 +138,12 @@
 #define RECLS_VER_1_10_0_B01                                0x010a0081
 #define RECLS_VER_1_10_0_B02                                0x010a0082
 #define RECLS_VER_1_10_0_B03                                0x010a0083
+#define RECLS_VER_1_10_0_B04                                0x010a0084
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_B03
+#define RECLS_VER               RECLS_VER_1_10_0_B04
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -2008,6 +2009,13 @@ Recls_CalcDirectorySizeFeedback(
  */
 /** @{ */
 
+/** Calculates the whole number of gibibytes in the file size.
+ *
+ * \ingroup group__recls
+ */
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeGibiBytes(recls_filesize_t size);
+
 /** Calculates the whole number of gigabytes in the file size.
  *
  * \ingroup group__recls
@@ -2015,12 +2023,13 @@ Recls_CalcDirectorySizeFeedback(
 RECLS_FNDECL(recls_filesize_t)
 Recls_GetFileSizeGigaBytes(recls_filesize_t size);
 
-/** Calculates the whole number of megabytes in the file size.
+/** Calculates the whole number of kibibytes in the file size.
  *
  * \ingroup group__recls
  */
 RECLS_FNDECL(recls_filesize_t)
-Recls_GetFileSizeMegaBytes(recls_filesize_t size);
+Recls_GetFileSizeKibiBytes(recls_filesize_t size);
+/** @} */
 
 /** Calculates the whole number of kilobytes in the file size.
  *
@@ -2029,6 +2038,34 @@ Recls_GetFileSizeMegaBytes(recls_filesize_t size);
 RECLS_FNDECL(recls_filesize_t)
 Recls_GetFileSizeKiloBytes(recls_filesize_t size);
 /** @} */
+
+/** Calculates the whole number of mebibytes in the file size.
+ *
+ * \ingroup group__recls
+ */
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeMebiBytes(recls_filesize_t size);
+
+/** Calculates the whole number of megabytes in the file size.
+ *
+ * \ingroup group__recls
+ */
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeMegaBytes(recls_filesize_t size);
+
+/** Calculates the whole number of tebibytes in the file size.
+ *
+ * \ingroup group__recls
+ */
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeTebiBytes(recls_filesize_t size);
+
+/** Calculates the whole number of terabytes in the file size.
+ *
+ * \ingroup group__recls
+ */
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeTeraBytes(recls_filesize_t size);
 
 
 /***************************************
