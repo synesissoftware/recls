@@ -85,16 +85,17 @@ static void TEST_Recls_GetFileSizeKiloBytes(void)
 
     TEST_INT_EQ(0, Recls_GetFileSizeKiloBytes(RFS_(999)));
 
-    TEST_INT_EQ(0, Recls_GetFileSizeKiloBytes(RFS_(1000)));
-    TEST_INT_EQ(0, Recls_GetFileSizeKiloBytes(RFS_(1023)));
+    TEST_INT_EQ(1, Recls_GetFileSizeKiloBytes(RFS_(1000)));
+    TEST_INT_EQ(1, Recls_GetFileSizeKiloBytes(RFS_(1023)));
 
     TEST_INT_EQ(1, Recls_GetFileSizeKiloBytes(RFS_(1024)));
 
-    TEST_INT_EQ(9, Recls_GetFileSizeKiloBytes(RFS_(10239)));
+    TEST_INT_EQ(10, Recls_GetFileSizeKiloBytes(RFS_(10239)));
     TEST_INT_EQ(10, Recls_GetFileSizeKiloBytes(RFS_(10240)));
 
-    TEST_INT_EQ(1023, Recls_GetFileSizeKiloBytes(RFS_(1024) * 1024 - 1));
-    TEST_INT_EQ(1024, Recls_GetFileSizeKiloBytes(RFS_(1024) * 1024));
+    TEST_INT_EQ(1023, Recls_GetFileSizeKiloBytes(RFS_(1000) * 1024 - 1));
+    TEST_INT_EQ(1048, Recls_GetFileSizeKiloBytes(RFS_(1024) * 1024 - 1));
+    TEST_INT_EQ(1048, Recls_GetFileSizeKiloBytes(RFS_(1024) * 1024));
 }
 
 static void TEST_Recls_GetFileSizeMegaBytes(void)
@@ -106,22 +107,23 @@ static void TEST_Recls_GetFileSizeMegaBytes(void)
     TEST_INT_EQ(0, Recls_GetFileSizeMegaBytes(RFS_(1024)));
     TEST_INT_EQ(0, Recls_GetFileSizeMegaBytes(RFS_(100) * 1024));
 
-    TEST_INT_EQ(0, Recls_GetFileSizeMegaBytes(RFS_(1024) * 1024 - 1));
+    TEST_INT_EQ(1, Recls_GetFileSizeMegaBytes(RFS_(1024) * 1024 - 1));
     TEST_INT_EQ(1, Recls_GetFileSizeMegaBytes(RFS_(1024) * 1024));
 
-    TEST_INT_EQ(9, Recls_GetFileSizeMegaBytes(RFS_(10) * 1000 * 1000));
+    TEST_INT_EQ(10, Recls_GetFileSizeMegaBytes(RFS_(10) * 1000 * 1000));
     TEST_INT_EQ(10, Recls_GetFileSizeMegaBytes(RFS_(10) * 1024 * 1024));
 }
 
 static void TEST_Recls_GetFileSizeGigaBytes(void)
 {
-    TEST_INT_EQ(0, Recls_GetFileSizeGigaBytes(RFS_(1) * 1000 * 1000 * 1000));
+    TEST_INT_EQ(1, Recls_GetFileSizeGigaBytes(RFS_(1) * 1000 * 1000 * 1000));
     TEST_INT_EQ(1, Recls_GetFileSizeGigaBytes(RFS_(1) * 1024 * 1024 * 1024));
 
-    TEST_INT_EQ(3, Recls_GetFileSizeGigaBytes(RFS_(4) * 1000 * 1000 * 1000));
+    TEST_INT_EQ(4, Recls_GetFileSizeGigaBytes(RFS_(4) * 1000 * 1000 * 1000));
     TEST_INT_EQ(4, Recls_GetFileSizeGigaBytes(RFS_(4) * 1024 * 1024 * 1024));
 
-    TEST_INT_EQ(9, Recls_GetFileSizeGigaBytes(RFS_(10) * 1000 * 1000 * 1000));
+    TEST_INT_EQ(9, Recls_GetFileSizeGigaBytes(RFS_(10) * 1000 * 1000 * 1000 - 1));
+    TEST_INT_EQ(10, Recls_GetFileSizeGigaBytes(RFS_(10) * 1000 * 1000 * 1000));
     TEST_INT_EQ(10, Recls_GetFileSizeGigaBytes(RFS_(10) * 1024 * 1024 * 1024));
 }
 
