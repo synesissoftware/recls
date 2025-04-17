@@ -2,7 +2,7 @@
 
 ## recls 1.10
 
-* [ ] Fix up GigaBytes / GibiBytes;
+* [x] Fix up GigaBytes / GibiBytes;
 * [ ] macOS infinite (circular) descending recursive search identification and solution;
 * [ ] `RECLS_F_SOCKETS`;
 * [ ] `RECLS_F_DEVICES`;

@@ -62,8 +62,26 @@ Recls_GetFileSizeMegaBytes(recls_filesize_t size)
 RECLS_FNDECL(recls_filesize_t)
 Recls_GetFileSizeKiloBytes(recls_filesize_t size)
 {
-
     return size / (1000);
+}
+
+
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeGibiBytes(recls_filesize_t size)
+{
+    return size / (1024 * 1024 * 1024);
+}
+
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeMebiBytes(recls_filesize_t size)
+{
+    return size / (1024 * 1024);
+}
+
+RECLS_FNDECL(recls_filesize_t)
+Recls_GetFileSizeKibiBytes(recls_filesize_t size)
+{
+    return size / (1024);
 }
 
 
