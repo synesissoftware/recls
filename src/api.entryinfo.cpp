@@ -4,7 +4,7 @@
  * Purpose: recls API functions pertaining to entry info.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 17th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -32,7 +32,8 @@
 
 #include "impl.trace.h"
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # include <sys/stat.h>
 #endif /* UNIX */
 
@@ -69,7 +70,8 @@ always_false_()
  * constants
  */
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # define GetCreationTime_                                   modificationTime
 # define GetLastStatusChangeTime_                           lastStatusChangeTime
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
@@ -295,7 +297,8 @@ Recls_IsEntryReadOnly(recls_entry_t fileInfo)
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
     return (fileInfo->attributes & S_IWRITE) == 0;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
@@ -325,7 +328,8 @@ Recls_IsEntryDirectory(recls_entry_t fileInfo)
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
     return (fileInfo->attributes & S_IFMT) == S_IFDIR;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)

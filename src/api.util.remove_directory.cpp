@@ -4,7 +4,7 @@
  * Purpose: more recls API extended functions.
  *
  * Created: 30th January 2009
- * Updated: 10th April 2025
+ * Updated: 17th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -37,7 +37,8 @@
 
 #include <vector>
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # include <sys/stat.h>
 # include <sys/types.h>
 #endif /* RECLS_PLATFORM_IS_UNIX */

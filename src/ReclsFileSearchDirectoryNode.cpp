@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 15th April 2025
+ * Updated: 17th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -111,7 +111,8 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
 
     ssFlags |= sequence_t::directories;
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
 #  pragma message(_sscomp_fileline_message("TODO: Make this for all, once findfile_sequence supports fullPath"))
 # endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
@@ -202,7 +203,8 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::CreateEntryInfo");
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
     typedef int (*PfnStat)(char const*, struct stat*);
 
@@ -579,7 +581,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
                 m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                     m_flags
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
                 // The way glob_sequence works
                 ,   *m_directoriesBegin
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
@@ -728,7 +731,8 @@ ReclsFileSearchDirectoryNode::GetNext()
 
                     m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                         m_flags
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
                     ,   *m_directoriesBegin
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
                     ,   (*m_directoriesBegin).get_path()

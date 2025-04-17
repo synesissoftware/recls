@@ -4,7 +4,7 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 17th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -50,7 +50,8 @@ using ::recls::impl::recls_debug0_trace_printf_;
  * constants
  */
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # define RAPI_PATHNAMESEP                                   '/'
 # define RAPI_PATHSEP                                       ':'
 # define RAPI_WILDCARDSALL                                  '*'

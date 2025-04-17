@@ -4,11 +4,11 @@
  * Purpose: Platform discrimination for recls API.
  *
  * Created: 15th August 2003
- * Updated: 9th July 2024
+ * Updated: 17th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -28,7 +28,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       29
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       30
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -100,7 +100,8 @@
 # endif /* platform */
 #endif /* !RECLS_OVERRIDE_PLATFORM */
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # if defined(__amd64__) || \
      defined(__amd64) || \
      defined(_AMD64_) || \

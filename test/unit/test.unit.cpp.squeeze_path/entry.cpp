@@ -5,7 +5,7 @@
  *          `recls::squeeze_path()`).
  *
  * Created: 7th June 2008
- * Updated: 15th April 2025
+ * Updated: 17th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -172,7 +172,8 @@ namespace
 
 static void test_1_0(void)
 {
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL(""), recls::squeeze_path(RECLS_LITERAL("abc/def/ghi"), 0));
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("g"), recls::squeeze_path(RECLS_LITERAL("abc/def/ghi"), 1));

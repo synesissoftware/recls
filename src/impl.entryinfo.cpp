@@ -4,7 +4,7 @@
  * Purpose: Implementation of the create_entryinfo() function.
  *
  * Created: 31st May 2004
- * Updated: 10th April 2025
+ * Updated: 17th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -138,7 +138,8 @@ create_entryinfo(
     size_t const    cchFileName =   entryFileLen;
     size_t const    cDirParts   =   (RECLS_F_DIRECTORY_PARTS == (flags & RECLS_F_DIRECTORY_PARTS)) ? types::count_dir_parts(dir0, end) : 0;
     size_t const    cbPath      =   recls_align_up_size_(sizeof(recls_char_t) * (1 + entryPathLen));
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
     size_t const    cbAlt       =   0;  // UNIX doesn't have alt paths
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
     size_t const    cbAlt       =   recls_align_up_size_(sizeof(recls_char_t) * (1 + RECLS_NUM_ELEMENTS(st->cAlternateFileName)));
@@ -262,7 +263,8 @@ create_entryinfo(
         }
 
         // drive, directory, file (name + ext)
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
         info->directory.begin               =   &fullPath[dir0 - entryPath];
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
         info->drive                         =   ('\\' == fullPath[0]) ? '\0' : fullPath[0];
@@ -346,7 +348,8 @@ create_entryinfo(
             info->attributes            =   0;
 
             // time, size
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
             info->lastStatusChangeTime  =   no_time;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
             info->creationTime          =   no_time;
@@ -371,7 +374,8 @@ create_entryinfo(
 #endif /* platform */
 
             // attributes
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
             info->attributes            =   st->st_mode;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
             info->attributes            =   st->dwFileAttributes;
@@ -380,7 +384,8 @@ create_entryinfo(
 #endif /* platform */
 
             // time, size
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
             info->lastStatusChangeTime  =   st->st_ctime;
             info->modificationTime      =   st->st_mtime;
             info->lastAccessTime        =   st->st_atime;
@@ -478,7 +483,8 @@ create_drive_entryinfo(
         info->numRelativeDirectoryParts     =   0;
 
         // Number of (hard) links
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
         if (0 != (RECLS_F_LINK_COUNT & flags) &&
             ss_nullptr_k != st)
         {
@@ -493,7 +499,8 @@ create_drive_entryinfo(
         }
 #endif /* OS */
         // node index and device Id
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
         if (0 != (RECLS_F_NODE_INDEX & flags) &&
             ss_nullptr_k != st)
         {
@@ -547,7 +554,8 @@ create_drive_entryinfo(
 #endif /* platform */
 
             // attributes
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
             info->attributes            =   S_IFDIR;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
             info->attributes            =   FILE_ATTRIBUTE_DIRECTORY;
@@ -556,7 +564,8 @@ create_drive_entryinfo(
 #endif /* platform */
 
             // time, size
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
             info->lastStatusChangeTime  =   no_time;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
             info->creationTime          =   no_time;
@@ -576,7 +585,8 @@ create_drive_entryinfo(
 #endif /* platform */
 
             // attributes
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
             info->attributes            =   st->st_mode;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
             info->attributes            =   st->dwFileAttributes;
@@ -585,7 +595,8 @@ create_drive_entryinfo(
 #endif /* platform */
 
             // time, size
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
             info->lastStatusChangeTime  =   st->st_ctime;
             info->modificationTime      =   st->st_mtime;
             info->lastAccessTime        =   st->st_atime;
