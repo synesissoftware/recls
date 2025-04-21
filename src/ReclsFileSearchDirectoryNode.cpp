@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 17th April 2025
+ * Updated: 20th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -69,20 +69,20 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
 
 #ifdef RECLS_USING_STLSOFT_SEARCHSPEC_SEQUENCE_
     // Because Digital Mars 8.40- has a problem, we must access the typedef separately from the enum value
-    typedef entry_sequence_type::find_sequence_type sequence_t;
+    typedef entry_sequence_type::find_sequence_type         sequence_t;
 #else /* ? RECLS_USING_STLSOFT_SEARCHSPEC_SEQUENCE_ */
-    typedef entry_sequence_type                     sequence_t;
+    typedef entry_sequence_type                             sequence_t;
 #endif /* RECLS_USING_STLSOFT_SEARCHSPEC_SEQUENCE_ */
 
     int ssFlags = 0;
 
-    if (0 != (flags & RECLS_F_FILES))
-    {
-        ssFlags |= sequence_t::files;
-    }
     if (0 != (flags & RECLS_F_DIRECTORIES))
     {
         ssFlags |= sequence_t::directories;
+    }
+    if (0 != (flags & RECLS_F_FILES))
+    {
+        ssFlags |= sequence_t::files;
     }
 
     if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))

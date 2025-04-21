@@ -4,7 +4,7 @@
  * Purpose: more recls API extended functions.
  *
  * Created: 30th January 2009
- * Updated: 17th April 2025
+ * Updated: 21st April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -260,7 +260,7 @@ namespace
 
                 rc = Recls_SearchProcess(   path
                                         ,   ss_nullptr_k
-                                        ,   RECLS_F_FILES | RECLS_F_RECURSIVE | RECLS_F_DETAILS_LATER
+                                        ,   RECLS_F_DETAILS_LATER | RECLS_F_RECURSIVE | RECLS_F_FILES
                                         ,   file_removal_fn_
                                         ,   &info
                                         );

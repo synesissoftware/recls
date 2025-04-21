@@ -11,7 +11,7 @@
  *  - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 16th April 2025
+ * Updated: 21st April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,7 +41,7 @@ int main(int /* argc */, char* /* argv */[])
         recls::entry            home    =   recls::stat("~");
 
         /* Enumerate all under the home directory, matching *.??? or makefile*.*. */
-        int                     flags   =   recls::RECLS_F_FILES | recls::RECLS_F_RECURSIVE;
+        int                     flags   =   recls::RECURSIVE | recls::FILES;
 
         recls::search_sequence  files(home, SEARCH_PATTERN, flags);
 

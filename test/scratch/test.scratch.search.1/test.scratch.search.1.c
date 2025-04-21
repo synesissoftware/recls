@@ -4,7 +4,7 @@
  * Purpose: Demonstrates use of recls C API for searching.
  *
  * Created: 12th August 2009
- * Updated: 3rd January 2024
+ * Updated: 21st April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
     {
         char const* const   directory   =   argv[1];
         char const* const   patterns    =   argv[2];
-        recls_uint32_t      flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
+        recls_uint32_t      flags       =   RECLS_F_RECURSIVE | RECLS_F_FILES;
         hrecls_t            hSrch;
         recls_rc_t          rc;
 

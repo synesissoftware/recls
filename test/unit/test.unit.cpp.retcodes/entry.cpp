@@ -4,7 +4,7 @@
  * Purpose: Unit-test of recls status codes via C++ API.
  *
  * Created: 13th December 2008
- * Updated: 17th October 2024
+ * Updated: 21st April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -118,6 +118,11 @@ static recls_rc_t const s_FAILURE_CODES[] =
     ,   RECLS_RC_DIRECTORY_NOT_FOUND
     ,   RECLS_RC_ENTRY_IS_DIRECTORY
     ,   RECLS_RC_ENTRY_IS_NOT_DIRECTORY
+#ifdef RECLS_PLATFORM_IS_WINDOWS
+    ,   RECLS_RC_SHORT_NAME_NOT_AVAILABLE
+#endif
+    ,   RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS
+    ,   RECLS_RC_ROOTED_PATHS_IN_PATTERNS
 };
 
 

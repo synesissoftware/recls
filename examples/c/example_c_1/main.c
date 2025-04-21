@@ -12,7 +12,7 @@
  *  - elicitation of entry properties via entry structure members
  *
  * Created: 29th May 2006
- * Updated: 15th April 2025
+ * Updated: 21st April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
     hrecls_t        hSrch;
     char const*     search_dir  =   argc > 1 ? argv[1] : ".";
     char const*     patterns    =   Recls_GetWildcardsAll();
-    recls_uint32_t  flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
+    recls_uint32_t  flags       =   RECLS_F_RECURSIVE | RECLS_F_FILES;
     recls_rc_t      rc          =   Recls_Search(search_dir, patterns, flags, &hSrch);
 
     if (RECLS_RC_NO_MORE_DATA == rc)
