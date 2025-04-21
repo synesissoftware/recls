@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
     {
         char const* const   directory   =   argv[1];
         char const* const   patterns    =   argv[2];
-        recls_uint32_t      flags       =   RECLS_F_RECURSIVE | RECLS_F_FILES;
+        recls_uint32_t      flags       =   RECLS_F_RECURSIVE | RECLS_F_FILES | RECLS_F_SOCKETS;
         hrecls_t            hSrch;
         recls_rc_t          rc;
 

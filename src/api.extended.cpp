@@ -4,7 +4,7 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 17th April 2025
+ * Updated: 21st April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -191,7 +191,7 @@ Recls_CalcDirectorySizeFeedback(
     static recls_filesize_t zero;
     recls_filesize_t        total = zero;
 
-    flags   &=  ~(RECLS_F_DIRECTORIES);
+    flags   &=  ~(RECLS_F_DIRECTORIES | RECLS_F_SOCKETS);
     flags   |=  RECLS_F_FILES;
     flags   |=  RECLS_F_RECURSIVE;
 

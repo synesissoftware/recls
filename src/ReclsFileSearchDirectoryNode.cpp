@@ -84,6 +84,13 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
     {
         ssFlags |= sequence_t::files;
     }
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+    if (0 != (flags & RECLS_F_SOCKETS))
+    {
+        ssFlags |= sequence_t::sockets;
+    }
+#endif
 
     if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
     {

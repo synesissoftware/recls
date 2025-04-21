@@ -4,7 +4,7 @@
  * Purpose: Test stat functionality of recls C API function `Recls_Stat()`.
  *
  * Created: 13th December 2008
- * Updated: 17th October 2024
+ * Updated: 21st April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -572,7 +572,7 @@ static void test_1_14(void)
     recls_info_t    entry;
     unsigned        flags   =   0
                             |   RECLS_F_DETAILS_LATER
-                            |   RECLS_F_FILES
+                            |   RECLS_F_SOCKETS
                             ;
     recls_rc_t      rc      =   Recls_Stat(s_nonexistent_path, flags, &entry);
 

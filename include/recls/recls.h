@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 17th April 2025
+ * Updated: 21st April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
-# define RECLS_VER_RECLS_H_RECLS_MINOR      23
-# define RECLS_VER_RECLS_H_RECLS_REVISION   0
-# define RECLS_VER_RECLS_H_RECLS_EDIT       145
+# define RECLS_VER_RECLS_H_RECLS_MINOR      24
+# define RECLS_VER_RECLS_H_RECLS_REVISION   1
+# define RECLS_VER_RECLS_H_RECLS_EDIT       147
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -139,11 +139,12 @@
 #define RECLS_VER_1_10_0_B02                                0x010a0082
 #define RECLS_VER_1_10_0_B03                                0x010a0083
 #define RECLS_VER_1_10_0_B04                                0x010a0084
+#define RECLS_VER_1_10_0_B05                                0x010a0085
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_B04
+#define RECLS_VER               RECLS_VER_1_10_0_B05
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -443,6 +444,7 @@ enum RECLS_FLAG
     ,   RECLS_F_DIRECTORIES                         =   0x00000002  /*!< Include directories in search */
     ,   RECLS_F_LINKS                               =   0x00000004  /*!< Include links in search. Ignored in Windows */
     ,   RECLS_F_DEVICES                             =   0x00000008  /*!< Include devices in search. Not currently supported */
+    ,   RECLS_F_SOCKETS                             =   0x00000010  /*!< Include sockets in search */
     ,   RECLS_F_TYPEMASK                            =   0x00000FFF
     ,   RECLS_F_DIR_PROGRESS                        =   0x00001000  /*!< Reports each traversed directory to the callback function supplied to Recls_SearchFeedback() */
     ,   RECLS_F_STOP_ON_ACCESS_FAILURE              =   0x00002000  /*!< Stops if a directory cannot be accessed. Supported on Windows from version 1.9 onwards. */
@@ -486,6 +488,10 @@ enum RECLS_FLAG
 #if !defined(DEVICES)
     ,   DEVICES = RECLS_F_DEVICES /*!< RECLS_F_DEVICES. */
 #endif /* !DEVICES */
+
+#if !defined(SOCKETS)
+    ,   SOCKETS = RECLS_F_SOCKETS /*!< RECLS_F_SOCKETS. */
+#endif /* !SOCKETS */
 
 #if !defined(TYPEMASK)
     ,   TYPEMASK = RECLS_F_TYPEMASK /*!< RECLS_F_TYPEMASK. */

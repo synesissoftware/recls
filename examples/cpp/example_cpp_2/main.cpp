@@ -4,7 +4,7 @@
  * Purpose: C++ example program for recls/C++. Demonstrates:
  *
  *  - stat()-ing of home directory
- *  - searching for files, according to multi-part pattern
+ *  - searching for files and sockets, according to multi-part pattern
  *  - recursive operation
  *  - evaluation of relative path of each entry, with respect to home directory
  *  - handling exceptions and reporting of error information
@@ -41,7 +41,7 @@ int main(int /* argc */, char* /* argv */[])
         recls::entry            home    =   recls::stat("~");
 
         /* Enumerate all under the home directory, matching *.??? or makefile*.*. */
-        int                     flags   =   recls::RECURSIVE | recls::FILES;
+        int                     flags   =   recls::RECURSIVE | recls::FILES | recls::SOCKETS;
 
         recls::search_sequence  files(home, SEARCH_PATTERN, flags);
 

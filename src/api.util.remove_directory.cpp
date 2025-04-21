@@ -260,7 +260,7 @@ namespace
 
                 rc = Recls_SearchProcess(   path
                                         ,   ss_nullptr_k
-                                        ,   RECLS_F_DETAILS_LATER | RECLS_F_RECURSIVE | RECLS_F_FILES
+                                        ,   RECLS_F_DETAILS_LATER | RECLS_F_RECURSIVE | RECLS_F_FILES | RECLS_F_SOCKETS
                                         ,   file_removal_fn_
                                         ,   &info
                                         );

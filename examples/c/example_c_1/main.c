@@ -5,7 +5,7 @@
  *
  *  - search in current or named directory
  *  - search matching all names
- *  - search recursively for files
+ *  - search recursively for files and sockets
  *  - search by Recls_Search()
  *  - display of full path of each entry
  *  - detecting failure and reporting of failure reason
@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
     hrecls_t        hSrch;
     char const*     search_dir  =   argc > 1 ? argv[1] : ".";
     char const*     patterns    =   Recls_GetWildcardsAll();
-    recls_uint32_t  flags       =   RECLS_F_RECURSIVE | RECLS_F_FILES;
+    recls_uint32_t  flags       =   RECLS_F_RECURSIVE | RECLS_F_FILES | RECLS_F_SOCKETS;
     recls_rc_t      rc          =   Recls_Search(search_dir, patterns, flags, &hSrch);
 
     if (RECLS_RC_NO_MORE_DATA == rc)
