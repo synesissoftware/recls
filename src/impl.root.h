@@ -4,11 +4,11 @@
  * Purpose: Implementation root header.
  *
  * Created: 7th March 2005
- * Updated: 17th October 2024
+ * Updated: 17th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -134,7 +134,8 @@
 
 /** \def RECLS_MT If defined, it indicates a multithreaded build */
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # if defined(_REENTRANT)
 

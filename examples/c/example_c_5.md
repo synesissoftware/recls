@@ -15,13 +15,13 @@ Demonstrates recursive search via process callback function, in which the entry'
  *
  *  - stat() of home directory (via Recls_Stat())
  *  - search matching all names
- *  - search recursively for files and directories
+ *  - search recursively for directories, files, and sockets
  *  - search as en-bloc processing, via Recls_SearchProcess()
  *  - display of each entry's path relative to home directory (via Recls_DeriveRelativePath())
  *  - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 15th April 2025
+ * Updated: 21st April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
         hrecls_t        hSrch;
         char const*     search_dir  =   argc > 1 ? argv[1] : ".";
         char const*     patterns    =   Recls_GetWildcardsAll();
-        recls_uint32_t  flags       =   RECLS_F_FILES | RECLS_F_DIRECTORIES | RECLS_F_RECURSIVE;
+        recls_uint32_t  flags       =   RECLS_F_RECURSIVE | RECLS_F_DIRECTORIES | RECLS_F_FILES | RECLS_F_SOCKETS;
         recls_rc_t      rc          =   Recls_Search(search_dir, patterns, flags, &hSrch);
 
         /* Process all entries under the current directory, passing the home

@@ -21,13 +21,16 @@ Demonstrates use of `recls::stat()` on current directory or named path, showing 
  *  - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 16th April 2025
+ * Updated: 22nd April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* recls header files */
 #include <recls/recls.hpp>
+
+/* STLSoft C++ header files */
+#include <platformstl/filesystem/path_functions.h>
 
 /* Standard C++ header files */
 #include <exception>
@@ -36,6 +39,7 @@ Demonstrates use of `recls::stat()` on current directory or named path, showing 
 
 /* Standard C header files */
 #include <stdlib.h>
+#include <string.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -44,16 +48,74 @@ Demonstrates use of `recls::stat()` on current directory or named path, showing 
 
 int main(int argc, char* argv[])
 {
+    stlsoft::string_slice_m_t program_name = platformstl::get_executable_name_from_path(argv[0]);
+
+    for (int i = 1; i != argc; ++i)
+    {
+        if (0 == ::strcmp("--help", argv[i]))
+        {
+            std::cerr
+                << "USAGE: "
+                << program_name
+                << " [ <path> [ <type-filter-number> ]]"
+                << std::endl;
+
+            return EXIT_SUCCESS;
+        }
+    }
+
+    char const* path    =   argc > 1 ? argv[1] : ".";
+    unsigned    flags   =   0;
+
+    if (argc > 2)
+    {
+        char*   endptr;
+        long    n = strtol(argv[2], &endptr, 0);
+
+        if (0 == n)
+        {
+            if ('\0' != *endptr)
+            {
+                std::cerr
+                    << program_name
+                    << ": could not parse value "
+                    << argv[2]
+                    << " into recls flags; use --help for usage"
+                    << std::endl;
+
+                return EXIT_FAILURE;
+            }
+        }
+        else
+        {
+            if (n < 0 || 0 != (n & ~recls::TYPEMASK))
+            {
+                std::cerr
+                    << program_name
+                    << ": invalid type selector value "
+                    << n
+                    << " into recls flags; use --help for usage"
+                    << std::endl;
+
+                return EXIT_FAILURE;
+            }
+            else
+            {
+                flags |= n;
+            }
+        }
+    }
+
+    flags |= recls::DIRECTORY_PARTS;
+
     try
     {
-        char const*     path    =   argc > 1 ? argv[1] : ".";
-
         std::cout << "  given path:       " << path << std::endl;
 
         std::cout << std::endl;
 
         // stat() the path
-        recls::entry    entry    =   recls::stat(path, recls::DIRECTORY_PARTS);
+        recls::entry    entry    =   recls::stat(path, flags);
 
         // Print out its characteristics:
 
@@ -142,25 +204,25 @@ int main(int argc, char* argv[])
     }
     catch (recls::recls_exception& x)
     {
-        std::cerr << "Could not elicit entry directory by stat()-ing '~': " << x.get_rc() << ", " << x.what() << std::endl;
+        std::cerr << program_name << ": could not elicit information by invoking `recls::stat()` on '" << path << "': " << x.what() << " (" << x.get_rc() << ")" << std::endl;
 
         return EXIT_FAILURE;
     }
     catch (std::bad_alloc &)
     {
-        std::cerr << "Out of memory" << std::endl;
+        std::cerr << program_name << ": out of memory" << std::endl;
 
         return EXIT_FAILURE;
     }
     catch (std::exception &x)
     {
-        std::cerr << "Unhandled error: " << x.what() << std::endl;
+        std::cerr << program_name << ": unhandled failure: " << x.what() << std::endl;
 
         return EXIT_FAILURE;
     }
     catch (...)
     {
-        std::cerr << "Unhandled unknown error" << std::endl;
+        std::cerr << program_name << ": unhandled unknown error" << std::endl;
 
         return EXIT_FAILURE;
     }
@@ -213,6 +275,74 @@ then it produces results such as:
 
   search directory: /Users/user/dev/synesissoftware/freelibs/recls/recls/
   search-rel path:  prepare_cmake.sh
+```
+
+and when run with:
+
+```
+$ ./_build/examples/cpp/example_cpp_3/example_cpp_3 /tmp/mysql.sock
+```
+
+then it produces results such as:
+
+```
+  given path:       /tmp/mysql.sock
+
+  full path:        /tmp/mysql.sock
+  type:             <socket>
+  directory path:   /tmp/
+  directory:        /tmp/
+  basename:              mysql.sock
+  stem:                  mysql
+  extension:                  .sock
+  directory parts:
+    part:           /
+    part:            tmp/
+  size:             0 byte(s)
+
+  search directory: /tmp/
+  search-rel path:  mysql.sock
+```
+
+and when run with:
+
+```
+$ ./_build/examples/cpp/example_cpp_3/example_cpp_3 /tmp/mysql.sock 16
+```
+
+then it produces results such as:
+
+```
+  given path:       /tmp/mysql.sock
+
+  full path:        /tmp/mysql.sock
+  type:             <socket>
+  directory path:   /tmp/
+  directory:        /tmp/
+  basename:              mysql.sock
+  stem:                  mysql
+  extension:                  .sock
+  directory parts:
+    part:           /
+    part:            tmp/
+  size:             0 byte(s)
+
+  search directory: /tmp/
+  search-rel path:  mysql.sock
+```
+
+and when run with:
+
+```
+$ ./_build/examples/cpp/example_cpp_3/example_cpp_3 /tmp/mysql.sock 3
+```
+
+then it produces results such as:
+
+```
+  given path:       /tmp/mysql.sock
+
+example_cpp_3: could not elicit information by invoking `recls::stat()` on '/tmp/mysql.sock': given path was a socket when one was not expected (0xfffffffffffffbfc)
 ```
 
 

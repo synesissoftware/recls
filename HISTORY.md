@@ -1,6 +1,23 @@
 # recls - History
 
 
+22nd April 2025 - 1.10.1 beta5
+------------------------------
+
+ * Added support for searching for/stat()-ing sockets: `RECLS_F_SOCKETS`, `RECLS_RC_ENTRY_IS_FILE`, `RECLS_RC_ENTRY_IS_SOCKET`;
+
+
+17th April 2025 - 1.10.1 beta4
+------------------------------
+
+ * Added `Recls_GetFileSizeGibiBytes()`, `Recls_GetFileSizeKibiBytes()`, `Recls_GetFileSizeMebiBytes()`, `Recls_GetFileSizeTebiBytes()`;
+ * Fixed calculations (from 1,024 factor to 1,000) for `Recls_GetFileSizeGigaBytes()`, `Recls_GetFileSizeKiloBytes()`, `Recls_GetFileSizeMegaBytes()`;
+ * Added `Recls_GetFileSizeTeraBytes()`;
+ * Canonicalising all unit/component test implementation file names;
+ * Removed all implicit-link implementation files;
+ * Removed all Visual C++ solution/project files;
+
+
 16th April 2025 - 1.10.1 beta3
 ------------------------------
 

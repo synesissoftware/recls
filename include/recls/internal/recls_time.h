@@ -4,11 +4,11 @@
  * Purpose: Partially platform-independent time type for recls.
  *
  * Created: 18th August 2003
- * Updated: 30th December 2023
+ * Updated: 17th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -28,7 +28,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_MAJOR    1
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_MINOR    0
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_REVISION 1
-# define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_EDIT     3
+# define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_EDIT     4
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/recls_time.h
@@ -47,7 +47,8 @@
 
 #include <time.h>
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # include <sys/types.h>
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # include <windows.h>

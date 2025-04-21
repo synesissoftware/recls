@@ -126,8 +126,9 @@ lookup_error_string_(
     RC_STR_DECL(RECLS_RC_SHORT_NAME_NOT_AVAILABLE,  EFAIL,          "could not obtain short name");
 #endif
     RC_STR_DECL(RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS,   EINVAL,         "the search-directory parameter cannot contain path separator or wildcard characters");
-    RC_STR_DECL(RECLS_RC_ROOTED_PATHS_IN_PATTERNS,              EINVAL,         "a rooted pattern must not be specified with other patterns");
-
+    RC_STR_DECL(RECLS_RC_ROOTED_PATHS_IN_PATTERNS,  EINVAL,         "a rooted pattern must not be specified with other patterns");
+    RC_STR_DECL(RECLS_RC_ENTRY_IS_FILE,             EFAIL,          "given path was a file when one was not expected");
+    RC_STR_DECL(RECLS_RC_ENTRY_IS_SOCKET,           EFAIL,          "given path was a socket when one was not expected");
 
     static const StringEntry* entries[] =
     {
@@ -160,6 +161,8 @@ lookup_error_string_(
 #endif
         RC_STR_ENTRY(RECLS_RC_SEARCH_DIRECTORY_INVALID_CHARACTERS),
         RC_STR_ENTRY(RECLS_RC_ROOTED_PATHS_IN_PATTERNS),
+        RC_STR_ENTRY(RECLS_RC_ENTRY_IS_FILE),
+        RC_STR_ENTRY(RECLS_RC_ENTRY_IS_SOCKET),
     };
     int                         e_;     // Null object pattern
     size_t                      len_;   // Null object pattern

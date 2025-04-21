@@ -15,14 +15,14 @@ Demonstrates non-recursive search for all files and directories under a given di
  *
  *  - search in current or named directory
  *  - search matching all names - implicitly, by specifying NULL for the patterns parameter
- *  - search non-recursively for files and directories
+ *  - search non-recursively for directories, files, and sockets
  *  - search by Recls_Search()
  *  - display of entry-name for each matched entry, squeezed into maximum 64-characters via Recls_SqueezePath()
  *  - display of file-size for each matched file; display of directory size (sum of all file-sizes in all subdirectories, via Recls_CalcDirectoryEntrySize()) for matched directory
  *  - detecting failure and reporting of failure reason
  *
  * Created: 29th May 2006
- * Updated: 16th April 2025
+ * Updated: 22nd April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,8 +50,8 @@ int main(int argc, char* argv[])
 {
     hrecls_t        hSrch;
     char const*     search_dir  =   argc > 1 ? argv[1] : ".";
-    char const*     patterns    =   NULL;
-    recls_uint32_t  flags       =   RECLS_F_FILES | RECLS_F_DIRECTORIES;
+    char const*     patterns    =   "*|.*";
+    recls_uint32_t  flags       =   RECLS_F_DIRECTORIES | RECLS_F_FILES | RECLS_F_SOCKETS;
     recls_rc_t      rc          =   Recls_Search(search_dir, patterns, flags, &hSrch);
 
     if (RECLS_RC_NO_MORE_DATA == rc)
@@ -97,6 +97,12 @@ failed:
                 type_label = "directory";
             }
             else
+            if (Recls_IsEntrySocket(entry))
+            {
+                size = 0;
+                type_label = "socket";
+            }
+            else
             {
                 size = Recls_GetSizeProperty(entry);
                 type_label = "file";
@@ -125,7 +131,7 @@ failed:
 
             ((void)&cch);
 
-            printf( RECLS_LITERAL("%32s: %9s; %4lu %s\n")
+            printf("%36s: %9s; %4lu %s\n"
             ,   squeezedPath
             ,   type_label
             ,   (unsigned long)unit_size
@@ -177,42 +183,66 @@ When configured, built, and run specify the **test** directory
 ```
 $ ./prepare_cmake.sh
 $ ./build_cmake.sh
-$ ./_build/examples/c/example_c_3/example_c_3 .
+$ ./_build/examples/c/example_c_3/example_c_3 src
 ```
 
 then it produces results such as:
 
 
 ```
-                      AUTHORS.md:      file;    0 byte(s)
-                     CHANGES.txt:      file;   78 KB
-                  CMakeLists.txt:      file;    8 KB
-                     EXAMPLES.md:      file;    3 KB
-                          FAQ.md:      file;    6 KB
-                      HISTORY.md:      file;    1 KB
-                      INSTALL.md:      file;    5 KB
-                         LICENSE:      file;    1 KB
-                         NEWS.md:      file;    4 KB
-                       README.md:      file;    1 KB
-                         TODO.md:      file;    0 byte(s)
-                             bin: directory;    0 byte(s)
-                           build: directory;    7 MB
-                  build_cmake.sh:      file;    2 KB
-                  clean_cmake.sh:      file;    1 KB
-                           cmake: directory;    4 KB
-                        examples: directory;  176 KB
-                         include: directory;  327 KB
-                             lib: directory;    0 byte(s)
-                prepare_cmake.sh:      file;    3 KB
-                        projects: directory;   54 KB
-                  recls.vc10.sln:      file;   65 KB
-       remove_cmake_artefacts.sh:      file;    2 KB
-             run_all_examples.sh:      file;    2 KB
-        run_all_scratch_tests.sh:      file;    2 KB
-           run_all_unit_tests.sh:      file;    2 KB
-                         scratch: directory;    0 byte(s)
-                             src: directory;  334 KB
-                            test: directory;  288 KB
+                      CMakeLists.txt:      file;    3 KB
+                 ReclsFileSearch.cpp:      file;   10 KB
+                 ReclsFileSearch.hpp:      file;    5 KB
+    ReclsFileSearchDirectoryNode.cpp:      file;   26 KB
+    ReclsFileSearchDirectoryNode.hpp:      file;    7 KB
+                  ReclsFtpSearch.hpp:      file;    3 KB
+  ReclsFtpSearchD...Node_windows.cpp:      file;   22 KB
+  ReclsFtpSearchD...Node_windows.hpp:      file;    5 KB
+          ReclsFtpSearch_windows.cpp:      file;    9 KB
+                     ReclsSearch.cpp:      file;    3 KB
+                     ReclsSearch.hpp:      file;    3 KB
+                   api.entryinfo.cpp:      file;   12 KB
+                       api.error.cpp:      file;    9 KB
+                    api.extended.cpp:      file;    6 KB
+                 api.ftp.windows.cpp:      file;    3 KB
+            api.retcodes.windows.cpp:      file;    4 KB
+                      api.search.cpp:      file;    7 KB
+                        api.unix.cpp:      file;    2 KB
+          api.util.combine_paths.cpp:      file;    3 KB
+       api.util.create_directory.cpp:      file;   10 KB
+   api.util.derive_relative_path.cpp:      file;    6 KB
+         api.util.get_file_sizes.cpp:      file;    2 KB
+       api.util.remove_directory.cpp:      file;   14 KB
+           api.util.squeeze_path.cpp:      file;    3 KB
+                   api.util.stat.cpp:      file;    6 KB
+                     api.windows.cpp:      file;    8 KB
+                 impl.api.search.cpp:      file;   21 KB
+                   impl.api.search.h:      file;    2 KB
+                       impl.assert.h:      file;    1 KB
+                       impl.atomic.h:      file;    2 KB
+                  impl.constants.hpp:      file;    3 KB
+               impl.entryfunctions.h:      file;    2 KB
+                  impl.entryinfo.cpp:      file;   24 KB
+                  impl.entryinfo.hpp:      file;    2 KB
+                   impl.fileinfo.cpp:      file;    4 KB
+              impl.fileinfo.unix.cpp:      file;    4 KB
+           impl.fileinfo.windows.cpp:      file;    2 KB
+                         impl.root.h:      file;    4 KB
+                   impl.snprintf.cpp:      file;    4 KB
+                     impl.string.hpp:      file;    1 KB
+                      impl.trace.cpp:      file;   11 KB
+                        impl.trace.h:      file;    4 KB
+                  impl.types.ftp.hpp:      file;    5 KB
+                      impl.types.hpp:      file;    4 KB
+                       impl.util.cpp:      file;   10 KB
+                         impl.util.h:      file;    3 KB
+                  impl.util.unix.cpp:      file;    4 KB
+               impl.util.windows.cpp:      file;    3 KB
+                      incl.inetstl.h:      file;    1 KB
+                  incl.platformstl.h:      file;    1 KB
+                      incl.stlsoft.h:      file;    2 KB
+                      incl.unixstl.h:      file;    1 KB
+                       incl.winstl.h:      file;    1 KB
 ```
 
 

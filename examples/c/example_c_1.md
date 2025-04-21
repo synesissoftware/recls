@@ -9,20 +9,20 @@ Demonstrates recursive search for all files under a given directory including al
 
 ```C
 /* /////////////////////////////////////////////////////////////////////////
- * File:    examples/c/example_c_1/main.c
+ * File:    examples/c/example_c_3/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
  *  - search in current or named directory
- *  - search matching all names
- *  - search recursively for files
+ *  - search matching all names - implicitly, by specifying NULL for the patterns parameter
+ *  - search non-recursively for directories, files, and sockets
  *  - search by Recls_Search()
- *  - display of full path of each entry
+ *  - display of entry-name for each matched entry, squeezed into maximum 64-characters via Recls_SqueezePath()
+ *  - display of file-size for each matched file; display of directory size (sum of all file-sizes in all subdirectories, via Recls_CalcDirectoryEntrySize()) for matched directory
  *  - detecting failure and reporting of failure reason
- *  - elicitation of entry properties via entry structure members
  *
  * Created: 29th May 2006
- * Updated: 14th April 2025
+ * Updated: 22nd April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,19 +36,22 @@ Demonstrates recursive search for all files under a given directory including al
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * constants
+ */
+
+#define CCH_SQUEEZED_PATH                                   (36)
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * main()
  */
 
 int main(int argc, char* argv[])
 {
-    /* Declare a search handle, define search directory as named or current,
-     * pattern matching all names, flags for recursive search of files, and
-     * start a search.
-     */
     hrecls_t        hSrch;
     char const*     search_dir  =   argc > 1 ? argv[1] : ".";
-    char const*     patterns    =   Recls_GetWildcardsAll();
-    recls_uint32_t  flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
+    char const*     patterns    =   "*|.*";
+    recls_uint32_t  flags       =   RECLS_F_DIRECTORIES | RECLS_F_FILES | RECLS_F_SOCKETS;
     recls_rc_t      rc          =   Recls_Search(search_dir, patterns, flags, &hSrch);
 
     if (RECLS_RC_NO_MORE_DATA == rc)
@@ -80,8 +83,61 @@ failed:
 
         do
         {
-            /* ... display the full path, ... */
-            printf("%.*s\n", (int)(entry->path.end - entry->path.begin), entry->path.begin);
+            recls_filesize_t    size;
+            recls_filesize_t    unit_size;
+            char const*         unit_label;
+            char const*         type_label;
+            recls_char_t        squeezedPath[CCH_SQUEEZED_PATH];
+            size_t              cch;
+
+
+            if (Recls_IsEntryDirectory(entry))
+            {
+                size = Recls_CalcDirectoryEntrySize(entry);
+                type_label = "directory";
+            }
+            else
+            if (Recls_IsEntrySocket(entry))
+            {
+                size = 0;
+                type_label = "socket";
+            }
+            else
+            {
+                size = Recls_GetSizeProperty(entry);
+                type_label = "file";
+            }
+
+            if (0 != (unit_size = Recls_GetFileSizeGigaBytes(size)))
+            {
+                unit_label = "GB";
+            }
+            else if (0 != (unit_size = Recls_GetFileSizeMegaBytes(size)))
+            {
+                unit_label = "MB";
+            }
+            else if (0 != (unit_size = Recls_GetFileSizeKiloBytes(size)))
+            {
+                unit_label = "KB";
+            }
+            else
+            {
+                unit_label = "byte(s)";
+            }
+
+
+            /* ... squeeze name+ext into CCH_SQUEEZED_PATH characters, ... */
+            cch = Recls_SqueezePath(entry->fileName.begin, &squeezedPath[0], CCH_SQUEEZED_PATH - 1);
+
+            ((void)&cch);
+
+            printf("%36s: %9s; %4lu %s\n"
+            ,   squeezedPath
+            ,   type_label
+            ,   (unsigned long)unit_size
+            ,   unit_label
+            );
+
 
             /* ... close the entry handle, ... */
             Recls_CloseDetails(entry);
@@ -130,50 +186,65 @@ When configured, built, and run specify the **test** directory
 ```
 $ ./prepare_cmake.sh
 $ ./build_cmake.sh
-$ ./_build/examples/c/example_c_1/example_c_1 test
+$ ./_build/examples/c/example_c_1/example_c_1 src
 ```
 
 then it produces results such as:
 
 ```
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.squeeze_path/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.squeeze_path/test.unit.api.squeeze_path.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.retcodes/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.retcodes/test.unit.cpp.retcodes.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.c.retcodes/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.c.retcodes/test.unit.c.retcodes.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.squeeze_path/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.combine_paths/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.combine_paths/test.unit.cpp.combine_paths.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.stat/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.stat/test.unit.api.stat.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.derive_relative_path/test.unit.cpp.derive_relative_path.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.cpp.derive_relative_path/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.combine_paths/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.combine_paths/test.unit.api.combine_paths.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.create_directory/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/unit/test.unit.api.create_directory/test.unit.api.create_directory.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.is_socket/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.is_socket/entry.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.create_directory/test.component.util.cpp.create_directory.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.create_directory/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.remove_directory/test.component.util.cpp.remove_directory.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/component/test.component.util.cpp.remove_directory/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.with_pantheios/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.with_pantheios/test.scratch.with_pantheios.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.cpp_api/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.search.1/test.scratch.search.1.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.search.1/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test_c_1/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test_c_1/test_c_1.c
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.links/CMakeLists.txt
-/Users/user/dev/synesissoftware/freelibs/recls/recls/test/scratch/test.scratch.links/test.scratch.links.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/CMakeLists.txt
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearch.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearch.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearchDirectoryNode.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFileSearchDirectoryNode.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearch.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearchDirectoryNode_windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearchDirectoryNode_windows.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsFtpSearch_windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsSearch.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/ReclsSearch.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.entryinfo.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.error.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.extended.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.ftp.windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.retcodes.windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.search.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.unix.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.combine_paths.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.create_directory.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.derive_relative_path.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.get_file_sizes.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.remove_directory.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.squeeze_path.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.util.stat.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/api.windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.api.search.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.api.search.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.assert.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.atomic.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.constants.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.entryfunctions.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.entryinfo.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.entryinfo.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.fileinfo.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.fileinfo.unix.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.fileinfo.windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.root.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.snprintf.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.string.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.trace.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.trace.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.types.ftp.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.types.hpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.unix.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/impl.util.windows.cpp
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.inetstl.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.platformstl.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.stlsoft.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.unixstl.h
+/Users/user/dev/synesissoftware/freelibs/recls/recls/src/incl.winstl.h
 ```
 
 

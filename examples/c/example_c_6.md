@@ -177,7 +177,7 @@ $ ./_build/examples/c/example_c_6/example_c_6 ./prepare_cmake.sh
 then it produces results such as:
 
 ```
-  given path:       ./prepare_cmake.sh
+  given path:       prepare_cmake.sh
 
   full path:        /Users/user/dev/synesissoftware/freelibs/recls/recls/prepare_cmake.sh
   type:             <file>
@@ -199,6 +199,33 @@ then it produces results such as:
 
   search directory: /Users/user/dev/synesissoftware/freelibs/recls/recls/
   search-rel path:  prepare_cmake.sh
+```
+
+or, with
+
+```
+$ ./_build/examples/c/example_c_6/example_c_6 /tmp/mysql.sock
+```
+
+then produces results such as:
+
+```
+  given path:       /tmp/mysql.sock
+
+  full path:        /tmp/mysql.sock
+  type:             <socket>
+  directory path:   /tmp/
+  directory:        /tmp/
+  basename:              mysql.sock
+  stem:                  mysql
+  extension:                   sock
+  directory parts:
+    part:           /
+    part:            tmp/
+  size:             0 byte(s)
+
+  search directory: /tmp/
+  search-rel path:  mysql.sock
 ```
 
 

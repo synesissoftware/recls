@@ -4,7 +4,7 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 15th April 2025
+ * Updated: 21st April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -158,9 +158,10 @@ recls_rc_t Recls_Stat_X_(
         return RECLS_RC_INVALID_NAME;
     }
 
-    types::path_type   path_(path, pathLen);
+    types::path_type        path_(path, pathLen);
+    types::stat_data_type   stat_data;
 
-    if (!path_.exists() &&
+    if (!types::traits_type::stat(path, &stat_data) &&
         RECLS_F_DETAILS_LATER == (flags & RECLS_F_DETAILS_LATER) &&
         0 != (flags & RECLS_F_TYPEMASK)) // To allow non-existant things to be stat'd
     {
@@ -178,19 +179,35 @@ recls_rc_t Recls_Stat_X_(
     }
     else
     {
-        if (types::traits_type::is_directory(path_.c_str()))
+        if (0 != (flags & RECLS_F_TYPEMASK))
         {
-            if (RECLS_F_FILES == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
+            // a type filter was specified, so validate against it
+
+            if (types::traits_type::is_directory(&stat_data))
             {
-                return RECLS_RC_ENTRY_IS_DIRECTORY;
+                if (0 == (flags & RECLS_F_DIRECTORIES))
+                {
+                    return RECLS_RC_ENTRY_IS_DIRECTORY;
+                }
             }
-        }
-        else
-        {
-            if (RECLS_F_DIRECTORIES == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
+
+            if (types::traits_type::is_file(&stat_data))
             {
-                return RECLS_RC_ENTRY_IS_NOT_DIRECTORY;
+                if (0 == (flags & RECLS_F_FILES))
+                {
+                    return RECLS_RC_ENTRY_IS_FILE;
+                }
             }
+
+#ifndef _WIN32
+            if (types::traits_type::is_socket(&stat_data))
+            {
+                if (0 == (flags & RECLS_F_SOCKETS))
+                {
+                    return RECLS_RC_ENTRY_IS_SOCKET;
+                }
+            }
+#endif
         }
 
         path_.make_absolute(false);

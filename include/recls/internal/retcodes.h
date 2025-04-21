@@ -4,7 +4,7 @@
  * Purpose: Return codes for the  recls API.
  *
  * Created: 15th August 2003
- * Updated: 10th April 2025
+ * Updated: 21st April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -28,9 +28,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MAJOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MINOR      7
-# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       40
+# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_MINOR      8
+# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_REVISION   0
+# define RECLS_VER_RECLS_INTERNAL_H_RETCODES_EDIT       42
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/retcodes.h
@@ -38,6 +38,7 @@
  * \brief [C, C++] Return codes for the
  *  \ref group__recls API.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -127,6 +128,13 @@ namespace recls
 
 /** A rooted pattern must not be specified with other patterns */
 #define RECLS_RC_ROOTED_PATHS_IN_PATTERNS                   RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1025))
+
+
+/** Given path was a file when one was not expected */
+#define RECLS_RC_ENTRY_IS_FILE                              RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1026))
+
+/** Given path was a socket when one was not expected */
+#define RECLS_RC_ENTRY_IS_SOCKET                            RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1027))
 /** @} */
 
 

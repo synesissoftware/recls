@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 15th April 2025
+ * Updated: 20th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -69,21 +69,28 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
 
 #ifdef RECLS_USING_STLSOFT_SEARCHSPEC_SEQUENCE_
     // Because Digital Mars 8.40- has a problem, we must access the typedef separately from the enum value
-    typedef entry_sequence_type::find_sequence_type sequence_t;
+    typedef entry_sequence_type::find_sequence_type         sequence_t;
 #else /* ? RECLS_USING_STLSOFT_SEARCHSPEC_SEQUENCE_ */
-    typedef entry_sequence_type                     sequence_t;
+    typedef entry_sequence_type                             sequence_t;
 #endif /* RECLS_USING_STLSOFT_SEARCHSPEC_SEQUENCE_ */
 
     int ssFlags = 0;
 
-    if (0 != (flags & RECLS_F_FILES))
-    {
-        ssFlags |= sequence_t::files;
-    }
     if (0 != (flags & RECLS_F_DIRECTORIES))
     {
         ssFlags |= sequence_t::directories;
     }
+    if (0 != (flags & RECLS_F_FILES))
+    {
+        ssFlags |= sequence_t::files;
+    }
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+    if (0 != (flags & RECLS_F_SOCKETS))
+    {
+        ssFlags |= sequence_t::sockets;
+    }
+#endif
 
     if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
     {
@@ -111,7 +118,8 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
 
     ssFlags |= sequence_t::directories;
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
 #  pragma message(_sscomp_fileline_message("TODO: Make this for all, once findfile_sequence supports fullPath"))
 # endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
@@ -202,7 +210,8 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::CreateEntryInfo");
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
     typedef int (*PfnStat)(char const*, struct stat*);
 
@@ -579,7 +588,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
                 m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                     m_flags
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
                 // The way glob_sequence works
                 ,   *m_directoriesBegin
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
@@ -728,7 +738,8 @@ ReclsFileSearchDirectoryNode::GetNext()
 
                     m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                         m_flags
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
                     ,   *m_directoriesBegin
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
                     ,   (*m_directoriesBegin).get_path()

@@ -4,11 +4,11 @@
  * Purpose: ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 30th December 2023
+ * Updated: 17th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -33,7 +33,8 @@
 // Platform-specific includes
 #include <platformstl/platformstl.h>
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # include <unixstl/filesystem/glob_sequence.hpp>
 # include <unixstl/filesystem/readdir_sequence.hpp>
@@ -85,7 +86,8 @@ public:
 private:
 
     /// The file entry search type
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
     typedef unixstl::glob_sequence                          file_find_sequence_type;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
     typedef winstl::basic_findfile_sequence<
@@ -95,7 +97,8 @@ private:
 #endif /* platform */
 
     /// The directory search type
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
     typedef unixstl::readdir_sequence                       directory_sequence_type;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
     typedef file_find_sequence_type                         directory_sequence_type;

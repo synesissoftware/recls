@@ -5,7 +5,7 @@
  *          Windows.
  *
  * Created: 1st June 2004
- * Updated: 10th April 2025
+ * Updated: 21st April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -245,13 +245,13 @@ ReclsFtpSearchDirectoryNode::essFlags_from_reclsFlags_(
 
     int ssFlags = 0;
 
-    if (0 != (flags & RECLS_F_FILES))
-    {
-        ssFlags |= sequence_t::files;
-    }
     if (0 != (flags & RECLS_F_DIRECTORIES))
     {
         ssFlags |= sequence_t::directories;
+    }
+    if (0 != (flags & RECLS_F_FILES))
+    {
+        ssFlags |= sequence_t::files;
     }
 
     return ssFlags;

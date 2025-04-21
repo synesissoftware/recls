@@ -4,7 +4,7 @@
  * Purpose: Unit-test of recls C API function `Recls_CombinePaths()`.
  *
  * Created: 13th December 2008
- * Updated: 17th October 2024
+ * Updated: 17th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -153,7 +153,8 @@ static void test_1_3(void)
     result[cch] = '\0';
 
     XTESTS_TEST_INTEGER_EQUAL(7u, cch);
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("abc/def"), result);
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("abc\\def"), result);

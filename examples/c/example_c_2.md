@@ -23,7 +23,7 @@ Demonstrates recursive search with feedback for all files matching a multi-part 
  *  - display of progress of each directory traversed, squeezed into the console width via Recls_SqueezePath()
  *
  * Created: 29th May 2006
- * Updated: 15th April 2025
+ * Updated: 21st April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
     hrecls_t            hSrch;
     char const*         search_dir  =   argc > 1 ? argv[1] : ".";
     char const*         patterns    =   SEARCH_PATTERN;
-    recls_uint32_t      flags       =   RECLS_F_FILES | RECLS_F_RECURSIVE;
+    recls_uint32_t      flags       =   RECLS_F_RECURSIVE | RECLS_F_FILES;
     recls_rc_t          rc;
 
     struct feedback_t   feedback    =   { 0 };
@@ -309,136 +309,30 @@ When configured, built, and run specify the **test** directory
 ```
 $ ./prepare_cmake.sh
 $ ./build_cmake.sh
-$ ./_build/examples/c/example_c_2/example_c_2 .
+$ ./_build/examples/c/example_c_2/example_c_2 test
 ```
 
 then it produces results such as:
 
 ```
-test/unit/test.unit.api.squeeze_path/test.unit.api.squeeze_path.c
-test/unit/test.unit.cpp.retcodes/test.unit.cpp.retcodes.cpp
-test/unit/test.unit.c.retcodes/test.unit.c.retcodes.c
-test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp
-test/unit/test.unit.cpp.combine_paths/test.unit.cpp.combine_paths.cpp
-test/unit/test.unit.api.stat/test.unit.api.stat.c
-test/unit/test.unit.cpp.derive_relative_path/test.unit.cpp.derive_relative_path.cpp
-test/unit/test.unit.api.combine_paths/test.unit.api.combine_paths.c
-test/unit/test.unit.api.create_directory/test.unit.api.create_directory.c
-test/component/test.component.util.cpp.is_socket/entry.cpp
-test/component/test.component.util.cpp.create_directory/test.component.util.cpp.create_directory.cpp
-test/component/test.component.util.cpp.remove_directory/test.component.util.cpp.remove_directory.cpp
-test/scratch/test.scratch.with_pantheios/test.scratch.with_pantheios.cpp
-test/scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp
-test/scratch/test.scratch.search.1/test.scratch.search.1.c
-test/scratch/test_c_1/test_c_1.c
-test/scratch/test.scratch.links/test.scratch.links.cpp
-include/recls/assert.h
-include/recls/ftp.h
-include/recls/implicit_link.h
-include/recls/recls.h
-include/recls/unix.h
-include/recls/windows.h
-include/recls/fwd.hpp
-include/recls/recls.hpp
-include/recls/internal/compiler.h
-include/recls/internal/compiler_borland.h
-include/recls/internal/compiler_ch.h
-include/recls/internal/compiler_clang.h
-include/recls/internal/compiler_como.h
-include/recls/internal/compiler_dmc.h
-include/recls/internal/compiler_gcc.h
-include/recls/internal/compiler_intel.h
-include/recls/internal/compiler_msvc.h
-include/recls/internal/compiler_mwerks.h
-include/recls/internal/compiler_vectorc.h
-include/recls/internal/compiler_watcom.h
-include/recls/internal/language.h
-include/recls/internal/platform.h
-include/recls/internal/platform_types.h
-include/recls/internal/recls_filesize.h
-include/recls/internal/recls_time.h
-include/recls/internal/retcodes.h
-include/recls/internal/safestr.h
-include/recls/internal/warning/msvc.suppress.4530.h
-include/recls/cpp/classfwd.hpp
-include/recls/cpp/common.hpp
-include/recls/cpp/directory_parts.hpp
-include/recls/cpp/entry.hpp
-include/recls/cpp/exceptions.hpp
-include/recls/cpp/ftp_search_sequence.hpp
-include/recls/cpp/root_sequence.hpp
-include/recls/cpp/search_sequence.hpp
-include/recls/cpp/traits.hpp
-include/recls/cpp/unix.hpp
-include/recls/cpp/util.hpp
-include/recls/cpp/windows.hpp
-include/recls/cpp/internal/sequence_helper.hpp
-projects/core/pch.cpp
-projects/core/pch.hpp
-projects/core/_dev_pragmatics_/warnings.msvc.10+.h
-examples/cpp/example_cpp_1/main.cpp
-examples/cpp/example_cpp_3/main.cpp
-examples/cpp/example_cpp_2/main.cpp
-examples/c/example_c_3/main.c
-examples/c/example_c_4/main.c
-examples/c/example_c_5/main.c
-examples/c/example_c_2/main.c
-examples/c/example_c_7/main.c
-examples/c/example_c_8/main.c
-examples/c/example_c_1/main.c
-examples/c/example_c_6/main.c
-src/ReclsFileSearch.cpp
-src/ReclsFileSearchDirectoryNode.cpp
-src/ReclsFtpSearchDirectoryNode_windows.cpp
-src/ReclsFtpSearch_windows.cpp
-src/ReclsSearch.cpp
-src/api.entryinfo.cpp
-src/api.error.cpp
-src/api.extended.cpp
-src/api.ftp.windows.cpp
-src/api.retcodes.windows.cpp
-src/api.search.cpp
-src/api.unix.cpp
-src/api.util.combine_paths.cpp
-src/api.util.create_directory.cpp
-src/api.util.derive_relative_path.cpp
-src/api.util.get_file_sizes.cpp
-src/api.util.remove_directory.cpp
-src/api.util.squeeze_path.cpp
-src/api.util.stat.cpp
-src/api.windows.cpp
-src/impl.api.search.cpp
-src/impl.entryinfo.cpp
-src/impl.fileinfo.cpp
-src/impl.fileinfo.unix.cpp
-src/impl.fileinfo.windows.cpp
-src/impl.snprintf.cpp
-src/impl.trace.cpp
-src/impl.util.cpp
-src/impl.util.unix.cpp
-src/impl.util.windows.cpp
-src/impl.api.search.h
-src/impl.assert.h
-src/impl.atomic.h
-src/impl.entryfunctions.h
-src/impl.root.h
-src/impl.trace.h
-src/impl.util.h
-src/incl.inetstl.h
-src/incl.platformstl.h
-src/incl.stlsoft.h
-src/incl.unixstl.h
-src/incl.winstl.h
-src/ReclsFileSearch.hpp
-src/ReclsFileSearchDirectoryNode.hpp
-src/ReclsFtpSearch.hpp
-src/ReclsFtpSearchDirectoryNode_windows.hpp
-src/ReclsSearch.hpp
-src/impl.constants.hpp
-src/impl.entryinfo.hpp
-src/impl.string.hpp
-src/impl.types.ftp.hpp
-src/impl.types.hpp
+unit/test.unit.api.squeeze_path/entry.c
+unit/test.unit.cpp.retcodes/entry.cpp
+unit/test.unit.c.retcodes/entry.c
+unit/test.unit.cpp.squeeze_path/entry.cpp
+unit/test.unit.cpp.combine_paths/entry.cpp
+unit/test.unit.util.file_sizes/entry.c
+unit/test.unit.api.stat/entry.c
+unit/test.unit.cpp.derive_relative_path/entry.cpp
+unit/test.unit.api.combine_paths/entry.c
+unit/test.unit.api.create_directory/entry.c
+component/test.component.util.cpp.is_socket/entry.cpp
+component/test.component.util.cpp.create_directory/entry.cpp
+component/test.component.util.cpp.remove_directory/entry.cpp
+scratch/test.scratch.with_pantheios/test.scratch.with_pantheios.cpp
+scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp
+scratch/test.scratch.search.1/test.scratch.search.1.c
+scratch/test_c_1/test_c_1.c
+scratch/test.scratch.links/test.scratch.links.cpp
 ```
 
 

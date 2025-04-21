@@ -4,7 +4,7 @@
  * Purpose: Tracing.
  *
  * Created: 30th September 2003
- * Updated: 10th April 2025
+ * Updated: 17th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -33,7 +33,8 @@
 
 /* STLSoft / platform-specific header files */
 #include <stlsoft/internal/safestr.h>
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # include <stlsoft/error/errno_scope.hpp>
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # ifdef RECLS_STLSOFT_1_12_OR_LATER
@@ -247,7 +248,8 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 typedef stlsoft::errno_scope                error_scope_t;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)

@@ -4,11 +4,11 @@
  * Purpose: Implementation header.
  *
  * Created: 12th December 2008
- * Updated: 30th December 2023
+ * Updated: 21st April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -26,6 +26,7 @@
 # ifdef RECLS_INCL_SRC_HPP_IMPL_TYPES_FTP
 #  error Cannot include impl.types.ftp.hpp and impl.types.hpp in same compilation unit
 # endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -45,6 +46,7 @@
 
 #include <algorithm>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -55,6 +57,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -134,7 +137,8 @@ public: // operations
     }
 };
 
-typedef file_types  types; // This is required to avoid bad linker behaviour (which makes sense!)
+typedef file_types                                          types; // This is required to avoid bad linker behaviour (which makes sense!)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -144,8 +148,6 @@ typedef file_types  types; // This is required to avoid bad linker behaviour (wh
 } /* namespace impl */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_SRC_HPP_IMPL_TYPES */
 

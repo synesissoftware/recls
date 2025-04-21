@@ -4,7 +4,7 @@
  * Purpose: Unit-test of recls C++ API function `recls::derive_relative_path()`.
  *
  * Created: 7th June 2008
- * Updated: 3rd January 2024
+ * Updated: 17th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -159,7 +159,8 @@ int main(int argc, char **argv)
 #if 0
 static void run_unittests()
 {
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
     // 1. combine_paths
 
@@ -336,7 +337,8 @@ namespace
 
 static void test_1_0(void)
 {
-#if defined(RECLS_PLATFORM_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
