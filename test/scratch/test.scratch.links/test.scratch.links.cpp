@@ -35,23 +35,31 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * types
+ */
+
+namespace {
+
+    typedef stlsoft::string_slice_m_t                       sslice_t;
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * helpers
  */
 
 static
 int
 show_usage(
-    FILE*       out
-,   char const* arg0
-,   int         xc
+    sslice_t const  program_name
+,   FILE*           stm
+,   int             xc
 )
 {
-    stlsoft::string_slice_m_t const xname = platformstl::get_executable_name_from_path(arg0);
-
     fprintf(
-        out
+        stm
     ,   "USAGE: %.*s  [ { --help | <search-root-dir> | } ]\n"
-    ,   int(xname.len), xname.ptr
+    ,   int(program_name.len), program_name.ptr
     );
 
     return xc;
@@ -62,7 +70,11 @@ show_usage(
  * main()
  */
 
-static int main_(int argc, char* argv[])
+static int main_(
+    sslice_t const  program_name
+,   int             argc
+,   char*           argv[]
+)
 {
     char const* searchRoot = NULL;
 
@@ -75,7 +87,7 @@ static int main_(int argc, char* argv[])
 
         if (0 == ::strcmp("--help", argv[1]))
         {
-            return show_usage(stdout, argv[0], EXIT_SUCCESS);
+            return show_usage(program_name, stdout, EXIT_SUCCESS);
         }
         else
         {
@@ -84,7 +96,7 @@ static int main_(int argc, char* argv[])
         break;
     default:
 
-        return show_usage(stderr, argv[0], EXIT_FAILURE);
+        return show_usage(program_name, stderr, EXIT_FAILURE);
     }
 
     std::cout
@@ -182,19 +194,19 @@ static int main_(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
-    char const* const program_name = platformstl::get_executable_name_from_path(argv[0]).ptr;
+    sslice_t const program_name = platformstl::get_executable_name_from_path(argv[0]);
 
     try
     {
-        return main_(argc, argv);
+        return main_(program_name, argc, argv);
     }
     catch (std::bad_alloc&)
     {
-        fprintf(stderr, "%s: out of memory\n", program_name);
+        fprintf(stderr, "%.*s: out of memory\n", int(program_name.len), program_name.ptr);
     }
     catch (std::exception& x)
     {
-        fprintf(stderr, "%s: Unhandled exception (%s): %s\n", program_name, typeid(x).name(), x.what());
+        fprintf(stderr, "%.*s: Unhandled exception (%s): %s\n", int(program_name.len), program_name.ptr, typeid(x).name(), x.what());
     }
     catch (...)
     {
