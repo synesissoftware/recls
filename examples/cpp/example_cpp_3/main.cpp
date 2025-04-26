@@ -11,7 +11,7 @@
  *  - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 22nd April 2025
+ * Updated: 23rd April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -167,7 +167,7 @@ int main(int argc, char* argv[])
 
         // directory parts
         std::cout << "  directory parts:" << std::endl;
-        unsigned n = 0;
+        std::size_t n = 0;
         for (auto const& part : entry.get_directory_parts())
         {
             std::cout << "    part:           " << std::string(n, ' ') << part << std::endl;
