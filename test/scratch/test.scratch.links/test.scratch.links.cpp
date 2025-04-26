@@ -4,7 +4,7 @@
  * Purpose: Finds and lists multiply-linked files.
  *
  * Created: 23rd February 2011
- * Updated: 17th October 2024
+ * Updated: 26th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -184,17 +184,8 @@ int main(int argc, char* argv[])
 {
     char const* const program_name = platformstl::get_executable_name_from_path(argv[0]).ptr;
 
-#if 0
-    { for (size_t i = 0; i < 0xffffffff; ++i){} }
-#endif /* 0 */
-
     try
     {
-#if defined(_DEBUG) || \
-    defined(__SYNSOFT_DBS_DEBUG)
-        puts("test.scratch.links: " __STLSOFT_COMPILER_LABEL_STRING);
-#endif /* debug */
-
         return main_(argc, argv);
     }
     catch (std::bad_alloc&)
