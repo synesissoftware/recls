@@ -130,7 +130,7 @@ public:
         : hSrch(h)
         , cRefs(1)
     {}
-    void Release()
+    void Release() STLSOFT_NOEXCEPT
     {
         if (--cRefs == 0)
         {
@@ -430,7 +430,7 @@ inline
 recls_bool_t
 is_empty(
     search_sequence const& s
-)
+) STLSOFT_NOEXCEPT
 {
     return s.empty();
 }
