@@ -48,22 +48,6 @@ namespace {
  * helpers
  */
 
-static
-int
-show_usage(
-    sslice_t const  program_name
-,   FILE*           stm
-,   int             xc
-)
-{
-    fprintf(
-        stm
-    ,   "USAGE: %.*s  [ { --help | <search-root-dir> | } ]\n"
-    ,   int(program_name.len), program_name.ptr
-    );
-
-    return xc;
-}
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,7 +71,13 @@ static int main_(
 
         if (0 == ::strcmp("--help", argv[1]))
         {
-            return show_usage(program_name, stdout, EXIT_SUCCESS);
+            std::cout
+                << "USAGE: "
+                << program_name
+                << " [ { --help | <search-root-dir> | } ]"
+                << std::endl;
+
+            return EXIT_SUCCESS;
         }
         else
         {
@@ -96,7 +86,12 @@ static int main_(
         break;
     default:
 
-        return show_usage(program_name, stderr, EXIT_FAILURE);
+        std::cerr
+            << program_name
+            << ": too many arguments; use --help for usage"
+            << std::endl;
+
+        return EXIT_FAILURE;
     }
 
     std::cout
@@ -203,6 +198,10 @@ int main(int argc, char* argv[])
     catch (std::bad_alloc&)
     {
         fprintf(stderr, "%.*s: out of memory\n", int(program_name.len), program_name.ptr);
+    }
+    catch (recls::recls_exception& x)
+    {
+        fprintf(stderr, "%.*s: %s\n", int(program_name.len), program_name.ptr, x.what());
     }
     catch (std::exception& x)
     {
