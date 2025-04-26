@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 22nd April 2025
+ * Updated: 26th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      24
-# define RECLS_VER_RECLS_H_RECLS_REVISION   1
-# define RECLS_VER_RECLS_H_RECLS_EDIT       148
+# define RECLS_VER_RECLS_H_RECLS_REVISION   2
+# define RECLS_VER_RECLS_H_RECLS_EDIT       149
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -140,11 +140,12 @@
 #define RECLS_VER_1_10_0_B03                                0x010a0083
 #define RECLS_VER_1_10_0_B04                                0x010a0084
 #define RECLS_VER_1_10_0_B05                                0x010a0085
+#define RECLS_VER_1_10_0_B06                                0x010a0086
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_B05
+#define RECLS_VER               RECLS_VER_1_10_0_B06
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -709,6 +710,13 @@ typedef recls_entry_t                                       recls_info_t;
  */
 typedef void*                                               recls_process_fn_param_t;
 
+/** Opaque type representing a user-defined parameter to the progress
+ * function.
+ *
+ * \ingroup group__recls
+ */
+typedef void*                                               recls_progress_fn_param_t;
+
 /** User-supplied process function, used by Recls_SearchProcess()
  *
  * \ingroup group__recls
@@ -739,11 +747,11 @@ typedef int (RECLS_CALLCONV_DEFAULT *hrecls_process_fn_t)(
  * \retval non-0 continue the processing
  */
 typedef int (RECLS_CALLCONV_DEFAULT *hrecls_progress_fn_t)(
-    /* [in] */ recls_char_t const*      dir
-,   /* [in] */ size_t                   dirLen
-,   /* [in] */ recls_process_fn_param_t param
-,   /* [in] */ void*                    reserved0
-,   /* [in] */ recls_uint32_t           reserved1
+    /* [in] */ recls_char_t const*          dir
+,   /* [in] */ size_t                       dirLen
+,   /* [in] */ recls_progress_fn_param_t    param
+,   /* [in] */ void*                        reserved0
+,   /* [in] */ recls_uint32_t               reserved1
 );
 
 
@@ -753,7 +761,10 @@ typedef int (RECLS_CALLCONV_DEFAULT *hrecls_progress_fn_t)(
 
 #if !defined(RECLS_NO_NAMESPACE)
 typedef recls_entry_t                                       info_t;
+typedef hrecls_process_fn_t                                 process_fn_t;
+typedef hrecls_progress_fn_t                                progress_fn_t;
 typedef recls_process_fn_param_t                            process_fn_param_t;
+typedef recls_progress_fn_param_t                           progress_fn_param_t;
 #endif /* !RECLS_NO_NAMESPACE */
 
 

@@ -113,7 +113,7 @@ static int main_(
         static int function(
             /* [in] */ recls::char_t const*         dir
         ,   /* [in] */ size_t                       dirLen
-        ,   /* [in] */ recls::process_fn_param_t    param
+        ,   /* [in] */ recls::progress_fn_param_t   param
         ,   /* [in] */ void*                     /* reserved0 */
         ,   /* [in] */ recls::uint32_t           /* reserved1 */
         )
