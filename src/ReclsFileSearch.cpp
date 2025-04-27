@@ -138,7 +138,7 @@ ReclsFileSearch::FindAndCreate(
     ,   int(searchDirLen), searchDir
     ,   int(patternLen), pattern
     ,   flags
-    ,   (void*)pfn
+    ,   STLSOFT_C_CAST(void*, pfn)
     ,   param
     );
 
