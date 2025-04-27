@@ -4,7 +4,7 @@
  * Purpose: Implementation of the create_entryinfo() function.
  *
  * Created: 31st May 2004
- * Updated: 17th April 2025
+ * Updated: 27th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -424,7 +424,7 @@ create_entryinfo(
 
     recls_debug1_trace_printf_(
         RECLS_LITERAL("created entry info (%p) for '%.*s'")
-    ,   info
+    ,   static_cast<void const*>(info)
     ,   int(entryPathLen), stlsoft::c_str_ptr(entryPath)
     );
 
@@ -633,7 +633,7 @@ create_drive_entryinfo(
 
     recls_debug1_trace_printf_(
         RECLS_LITERAL("created drive info (%p) for '%.*s'")
-    ,   info
+    ,   static_cast<void const*>(info)
     ,   int(entryPathLen), stlsoft::c_str_ptr(entryPath)
     );
 

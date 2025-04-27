@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearch class for Windows.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 27th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -138,7 +138,7 @@ ReclsFileSearch::FindAndCreate(
     ,   int(searchDirLen), searchDir
     ,   int(patternLen), pattern
     ,   flags
-    ,   pfn
+    ,   STLSOFT_C_CAST(void*, pfn)
     ,   param
     );
 

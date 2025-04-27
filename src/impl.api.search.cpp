@@ -4,7 +4,7 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 27th April 2025
  *
  * Home:    http://recls.org/
  *
@@ -256,7 +256,7 @@ Recls_SearchFeedback_x_(
     ,   stlsoft::c_str_ptr(searchRoot)
     ,   stlsoft::c_str_ptr(patterns)
     ,   flags
-    ,   pfn
+    ,   STLSOFT_C_CAST(void*, pfn)
     ,   param
     );
 
@@ -639,9 +639,9 @@ Recls_SearchProcessFeedback_(
     ,   stlsoft::c_str_ptr(searchRoot)
     ,   stlsoft::c_str_ptr(pattern)
     ,   flags
-    ,   pfn
+    ,   STLSOFT_C_CAST(void*, pfn)
     ,   param
-    ,   pfnProgress
+    ,   STLSOFT_C_CAST(void*, pfnProgress)
     ,   paramProgress
     );
 
