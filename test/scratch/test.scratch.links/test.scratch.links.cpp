@@ -41,6 +41,12 @@
 namespace {
 
     typedef stlsoft::string_slice_m_t                       sslice_t;
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    typedef std::basic_string<
+        char
+    >                                                       string_r_t;
+#endif
 } // anonymous namespace
 
 
@@ -102,11 +108,7 @@ static int main_(
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 
-    typedef std::basic_string<
-        char
-    >                                   string_r_t;
-
-    string_r_t                          longest_dir;
+    string_r_t longest_dir;
 
     struct callback
     {
