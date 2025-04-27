@@ -4,7 +4,7 @@
  * Purpose: Main (platform-independent) implementation file for the recls API.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 27th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -153,7 +153,7 @@ Recls_SearchClose(hrecls_t hSrch)
 {
     function_scope_trace("Recls_SearchClose");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SearchClose(%p)"), hSrch);
+    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_SearchClose(%p)"), static_cast<void const*>(hSrch));
 
     ReclsSearch* const si = ReclsSearch::FromHandle(hSrch);
 

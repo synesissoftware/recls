@@ -4,11 +4,11 @@
  * Purpose: Tracing.
  *
  * Created: 30th September 2003
- * Updated: 9th July 2024
+ * Updated: 27th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -77,15 +77,35 @@ enum recls_sev_index_t_
 typedef enum recls_sev_index_t_   recls_sev_index_t_;
 #endif /* __cplusplus */
 
+
+#if 0
+#elif defined(__GNUC__)
+
+# define RECLS_IMPL_FMT_PRINTF_(x, y)                       __attribute__ ((format (printf, x, y)))
+#else
+
+# define RECLS_IMPL_FMT_PRINTF_(x, y)
+#endif
+
+
+RECLS_IMPL_FMT_PRINTF_(2, 3)
 void recls_log_printf_(int sevIndex, recls_char_t const* fmt, ...);
 
+RECLS_IMPL_FMT_PRINTF_(1, 2)
 void recls_fatal_trace_printf_(recls_char_t const* fmt, ...);
+RECLS_IMPL_FMT_PRINTF_(1, 2)
 void recls_error_trace_printf_(recls_char_t const* fmt, ...);
+RECLS_IMPL_FMT_PRINTF_(1, 2)
 void recls_warning_trace_printf_(recls_char_t const* fmt, ...);
+RECLS_IMPL_FMT_PRINTF_(1, 2)
 void recls_info_trace_printf_(recls_char_t const* fmt, ...);
+RECLS_IMPL_FMT_PRINTF_(1, 2)
 void recls_debug0_trace_printf_(recls_char_t const* fmt, ...);
+RECLS_IMPL_FMT_PRINTF_(1, 2)
 void recls_debug1_trace_printf_(recls_char_t const* fmt, ...);
+RECLS_IMPL_FMT_PRINTF_(1, 2)
 void recls_debug2_trace_printf_(recls_char_t const* fmt, ...);
+RECLS_IMPL_FMT_PRINTF_(1, 2)
 void recls_debug3_trace_printf_(recls_char_t const* fmt, ...);
 
 
