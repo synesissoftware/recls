@@ -4,7 +4,7 @@
  * Purpose: more recls API extended functions.
  *
  * Created: 30th January 2009
- * Updated: 17th April 2025
+ * Updated: 27th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -197,11 +197,13 @@ namespace
             // Now try and create the directory
             if (!platformstl::create_directory_recurse(path))
             {
+                long const e = static_cast<long>(types::traits_type::get_last_error());
+
                 recls_error_trace_printf_(
                     RECLS_LITERAL("platformstl::create_directory_recurse(%.*s) failed: %ld")
                 ,   int(pathLen)
                 ,   stlsoft::c_str_ptr(path)
-                ,   types::traits_type::get_last_error()
+                ,   e
                 );
 
                 return RECLS_RC_FAIL;

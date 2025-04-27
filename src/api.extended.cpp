@@ -4,7 +4,7 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 21st April 2025
+ * Updated: 27th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -125,7 +125,7 @@ Recls_IsDirectoryEntryEmpty(recls_entry_t hEntry)
 {
     function_scope_trace("Recls_IsDirectoryEntryEmpty");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_IsDirectoryEntryEmpty(%p)"), hEntry);
+    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_IsDirectoryEntryEmpty(%p)"), static_cast<void const*>(hEntry));
 
     RECLS_ASSERT(ss_nullptr_k != hEntry);
     RECLS_ASSERT(Recls_IsEntryDirectory(hEntry));
@@ -168,7 +168,7 @@ Recls_CalcDirectoryEntrySize(recls_entry_t hEntry)
 {
     function_scope_trace("Recls_CalcDirectoryEntrySize");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_CalcDirectoryEntrySize(%p)"), hEntry);
+    recls_debug0_trace_printf_(RECLS_LITERAL("Recls_CalcDirectoryEntrySize(%p)"), static_cast<void const*>(hEntry));
 
     RECLS_ASSERT(ss_nullptr_k != hEntry);
     RECLS_ASSERT(Recls_IsEntryDirectory(hEntry));
