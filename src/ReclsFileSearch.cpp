@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearch class for Windows.
  *
  * Created: 16th August 2003
- * Updated: 27th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -113,7 +113,7 @@ ReclsFileSearch::FindAndCreate(
 ,   size_t                      patternLen
 ,   recls_uint32_t              flags
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 ,   ReclsFileSearch**           ppsi
 )
 {
@@ -153,7 +153,7 @@ ReclsFileSearch::FindAndCreate_(
 ,   size_t                      patternLen
 ,   recls_uint32_t              flags
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 ,   class_type**                ppsi
 )
 {
@@ -279,7 +279,7 @@ ReclsFileSearch::ReclsFileSearch(
 ,   recls_char_t const*         pattern
 ,   size_t                      patternLen
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 ,   recls_uint32_t              flags
 ,   recls_rc_t*                 prc
 )

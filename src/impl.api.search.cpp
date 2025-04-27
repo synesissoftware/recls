@@ -4,7 +4,7 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 27th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    http://recls.org/
  *
@@ -151,7 +151,7 @@ Recls_SearchFeedback_x_(
 ,   /* [in] */ size_t                       patternsLen
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_progress_fn_t         pfn
-,   /* [in] */ recls_process_fn_param_t     param
+,   /* [in] */ recls_progress_fn_param_t    param
 ,   /* [out] */ hrecls_t*                   phSrch
 );
 
@@ -172,7 +172,7 @@ Recls_SearchFeedback_(
 ,   /* [in] */ recls_char_t const*          patterns
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_progress_fn_t         pfn
-,   /* [in] */ recls_process_fn_param_t     param
+,   /* [in] */ recls_progress_fn_param_t    param
 ,   /* [out] */ hrecls_t*                   phSrch
 )
 {
@@ -247,7 +247,7 @@ Recls_SearchFeedback_x_(
 ,   /* [in] */ size_t                       patternsLen
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_progress_fn_t         pfn
-,   /* [in] */ recls_process_fn_param_t     param
+,   /* [in] */ recls_progress_fn_param_t    param
 ,   /* [out] */ hrecls_t*                   phSrch
 )
 {
@@ -629,7 +629,7 @@ Recls_SearchProcessFeedback_(
 ,   /* [in] */ hrecls_process_fn_t          pfn
 ,   /* [in] */ recls_process_fn_param_t     param
 ,   /* [in] */ hrecls_progress_fn_t         pfnProgress
-,   /* [out] */ recls_process_fn_param_t    paramProgress
+,   /* [out] */ recls_progress_fn_param_t   paramProgress
 )
 {
     RECLS_ASSERT(ss_nullptr_k != pfn);

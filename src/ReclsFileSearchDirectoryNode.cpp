@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 20th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -271,7 +271,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 ,   recls_char_t const*         pattern
 ,   size_t                      patternLen
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 )
     : m_current(ss_nullptr_k)
     , m_dnode(ss_nullptr_k)
@@ -323,7 +323,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 ,   recls_char_t const*         pattern
 ,   size_t                      patternLen
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 ,   recls_rc_t*                 prc
 )
 {
@@ -536,7 +536,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         {
             typedef int (RECLS_CALLCONV_STDDECL *stdcall_progress_fn_t)(recls_char_t const*
                                                                     ,   size_t
-                                                                    ,   recls_process_fn_param_t
+                                                                    ,   recls_progress_fn_param_t
                                                                     ,   void*
                                                                     ,   recls_uint32_t);
 
