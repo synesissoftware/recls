@@ -4,7 +4,7 @@
  * Purpose: recls C++ mapping - search_sequence class.
  *
  * Created: 10th September 2003
- * Updated: 26th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -270,11 +270,11 @@ public:
     /// Commence a search according to the given search pattern and flags, relative to \c directory
     template <typename S1, typename S2>
     search_sequence(
-        S1 const&           directory
-    ,   S2 const&           pattern
-    ,   recls_uint32_t      flags
-    ,   progress_fn_t       pfnProgress
-    ,   progress_fn_param_t paramProgress
+        S1 const&                   directory
+    ,   S2 const&                   pattern
+    ,   recls_uint32_t              flags
+    ,   hrecls_progress_fn_t        pfnProgress
+    ,   recls_progress_fn_param_t   paramProgress
     )
         : m_directory_(1)
         , m_pattern_(1)
@@ -332,13 +332,13 @@ public:
 private:
     friend class basic_search_sequence_const_iterator<char_type, traits_type, value_type>;
 
-    directory_buffer_type       m_directory_;
-    pattern_buffer_type         m_pattern_;
-    char_type const* const      m_directory;
-    char_type const* const      m_pattern;
-    recls_uint32_t              m_flags;
-    progress_fn_t const         m_pfnProgress;
-    progress_fn_param_t const   m_paramProgress;
+    directory_buffer_type           m_directory_;
+    pattern_buffer_type             m_pattern_;
+    char_type const* const          m_directory;
+    char_type const* const          m_pattern;
+    recls_uint32_t                  m_flags;
+    hrecls_progress_fn_t const      m_pfnProgress;
+    recls_progress_fn_param_t const m_paramProgress;
 /// @}
 };
 
