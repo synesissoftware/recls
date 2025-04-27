@@ -4,7 +4,7 @@
  * Purpose: Demonstrates using Pantheios for recls API logging.
  *
  * Created: 13th December 2008
- * Updated: 23rd April 2025
+ * Updated: 28th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -69,7 +69,7 @@ static int main_(int /* argc */, char** /*argv*/)
     using recls::recls_log_pfn_t;
     using recls::recls_rc_t;
 
-    Recls_SetApiLogFunction(recls_log_to_pantheios, PANTHEIOS_SEV_DEBUG, 0);
+    Recls_SetApiLogFunction(recls_log_to_pantheios, 0, NULL);
 
     hrecls_t    hSrch;
     recls_rc_t  rc = Recls_Search(".", Recls_GetWildcardsAll(), RECLS_F_RECURSIVE, &hSrch);
