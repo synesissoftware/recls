@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 22nd April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      24
 # define RECLS_VER_RECLS_H_RECLS_REVISION   1
-# define RECLS_VER_RECLS_H_RECLS_EDIT       148
+# define RECLS_VER_RECLS_H_RECLS_EDIT       149
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -140,11 +140,12 @@
 #define RECLS_VER_1_10_0_B03                                0x010a0083
 #define RECLS_VER_1_10_0_B04                                0x010a0084
 #define RECLS_VER_1_10_0_B05                                0x010a0085
+#define RECLS_VER_1_10_0_B06                                0x010a0086
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_B05
+#define RECLS_VER               RECLS_VER_1_10_0_B06
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -623,8 +624,8 @@ enum RECLS_REMDIR_FLAG
 #if !defined(__cplusplus) && \
     !defined(RECLS_DOCUMENTATION_SKIP_SECTION)
 
-typedef enum RECLS_FLAG         RECLS_FLAG;
-typedef enum RECLS_ROOTS_FLAG   RECLS_ROOTS_FLAG;
+typedef enum RECLS_FLAG                                     RECLS_FLAG;
+typedef enum RECLS_ROOTS_FLAG                               RECLS_ROOTS_FLAG;
 #endif /* !__cplusplus && !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 

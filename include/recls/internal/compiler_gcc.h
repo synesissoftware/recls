@@ -4,7 +4,7 @@
  * Purpose: GCC specific types and includes for recls API.
  *
  * Created: 17th August 2003
- * Updated: 30th December 2023
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -34,7 +34,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_MINOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_REVISION   2
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_EDIT       17
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_GCC_EDIT       18
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_gcc.h
@@ -43,12 +43,14 @@
  *  \ref group__recls API.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
 #include <stddef.h>
 #include <stdint.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -59,6 +61,7 @@ namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * #pragma once
  */
@@ -68,6 +71,7 @@ namespace recls
         __GNUC_MINOR__ >= 4)
 # define RECLS_CF_PRAGMA_ONCE_SUPPORT
 #endif /* version */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -104,6 +108,7 @@ typedef uintptr_t                                           recls_uintptr_t;
 typedef char                                                recls_char_a_t;
 typedef wchar_t                                             recls_char_w_t;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -111,6 +116,7 @@ typedef wchar_t                                             recls_char_w_t;
 #if !defined(RECLS_NO_NAMESPACE)
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

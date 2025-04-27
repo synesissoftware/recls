@@ -4,7 +4,7 @@
  * Purpose: Partially platform-independent time type for recls.
  *
  * Created: 18th August 2003
- * Updated: 17th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -28,7 +28,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_MAJOR    1
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_MINOR    0
 # define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_REVISION 1
-# define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_EDIT     4
+# define RECLS_VER_RECLS_INTERNAL_H_RECLS_TIME_EDIT     5
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/recls_time.h
@@ -58,6 +58,7 @@
 # error Platform not (yet) recognised
 #endif /* platform */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -66,6 +67,7 @@
 namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -78,12 +80,10 @@ namespace recls
 #if defined(RECLS_PURE_API) || \
     defined(RECLS_PLATFORM_IS_UNIX)
 
- typedef time_t                     recls_time_t;
-
+typedef time_t                                              recls_time_t;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
- typedef FILETIME                   recls_time_t;
-
+typedef FILETIME                                            recls_time_t;
 #elif defined(RECLS_OVERRIDE_PLATFORM)
 
 # ifndef RECLS_CUSTOM_TIME_T
@@ -94,15 +94,14 @@ namespace recls
 #  error Must define RECLS_CUSTOM_FILESIZE_T if compiling with RECLS_OVERRIDE_PLATFORM
 # endif /* !RECLS_CUSTOM_TIME_T */
 
- typedef RECLS_CUSTOM_TIME_T        recls_time_t;
-
+typedef RECLS_CUSTOM_TIME_T                                 recls_time_t;
 #else
 
 # error Platform not (yet) recognised
 
- typedef <platform-dependent-type>  recls_time_t;
-
+typedef <platform-dependent-type>                           recls_time_t;
 #endif /* platform */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -111,6 +110,7 @@ namespace recls
 #if !defined(RECLS_NO_NAMESPACE)
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose: Tracing.
  *
  * Created: 30th September 2003
- * Updated: 27th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -74,7 +74,7 @@ enum recls_sev_index_t_
 #endif /* !RECLS_NO_NAMESPACE */
 
 #ifndef __cplusplus
-typedef enum recls_sev_index_t_   recls_sev_index_t_;
+typedef enum recls_sev_index_t_                             recls_sev_index_t_;
 #endif /* __cplusplus */
 
 
@@ -113,7 +113,7 @@ void recls_debug3_trace_printf_(recls_char_t const* fmt, ...);
 class function_scope
 {
 public:
-    typedef function_scope  class_type;
+    typedef function_scope                                  class_type;
 
 public: /// Construction
     explicit
