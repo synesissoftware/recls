@@ -4,7 +4,7 @@
  * Purpose: Platform-independent utility functions for recls API.
  *
  * Created: 17th August 2003
- * Updated: 10th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -305,11 +305,17 @@ RECLS_API recls_is_valid_pattern_(
     (   defined(RECLS_COMPILER_IS_MSVC) && \
         _MSC_VER < 1300 && \
         _STLSOFT_VER < 0x00010807)
-        typedef ::stlsoft::string_tokeniser<string_t, char>         tokeniser_t;
+        typedef ::stlsoft::string_tokeniser<
+            string_t
+        ,   char
+        >                                                   tokeniser_t;
 
         tokeniser_t     tokens(pattern, *Recls_GetPathSeparator());
 # else /* ? compiler */
-        typedef ::stlsoft::string_tokeniser<string_t, string_t>     tokeniser_t;
+        typedef ::stlsoft::string_tokeniser<
+            string_t
+        ,   string_t
+        >                                                   tokeniser_t;
 
         tokeniser_t     tokens(pattern, Recls_GetPathSeparator());
 # endif /* compiler */

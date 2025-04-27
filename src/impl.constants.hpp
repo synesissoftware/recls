@@ -4,11 +4,11 @@
  * Purpose: Common constants.
  *
  * Created: 28th February 2007
- * Updated: 30th December 2023
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -23,6 +23,7 @@
 #ifndef RECLS_INCL_SRC_HPP_IMPL_CONSTANTS
 #define RECLS_INCL_SRC_HPP_IMPL_CONSTANTS
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -30,6 +31,7 @@
 #include <recls/recls.h>
 #include "incl.stlsoft.h"
 #include <stlsoft/string/string_view.hpp>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -41,6 +43,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -54,7 +57,7 @@ namespace impl
 struct constants
 {
 public: // types
-    typedef ::stlsoft::basic_string_view<recls_char_t>  string_type;
+    typedef ::stlsoft::basic_string_view<recls_char_t>      string_type;
 
 public: // constants
     static string_type  default_search_root()
@@ -79,6 +82,7 @@ private: // construction
     constants(constants const&);        // copy-construction proscribed
     void operator =(constants const&);  // copy-assignment proscribed
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

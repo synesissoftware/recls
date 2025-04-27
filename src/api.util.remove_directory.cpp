@@ -4,7 +4,7 @@
  * Purpose: more recls API extended functions.
  *
  * Created: 30th January 2009
- * Updated: 21st April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -195,8 +195,8 @@ namespace
         return 1;
     }
 
-    typedef RECLS_STRING_TEMPLATE_1(recls_char_t)   directory_t;
-    typedef std::vector<directory_t>                directories_t;
+    typedef RECLS_STRING_TEMPLATE_1(recls_char_t)           directory_t;
+    typedef std::vector<directory_t>                        directories_t;
 
     struct directory_removal_info_t_
     {

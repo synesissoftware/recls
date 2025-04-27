@@ -251,10 +251,10 @@ namespace impl
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
 
-typedef stlsoft::errno_scope                error_scope_t;
+typedef stlsoft::errno_scope                                error_scope_t;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
-typedef winstl::last_error_scope            error_scope_t;
+typedef winstl::last_error_scope                            error_scope_t;
 #else /* ? platform */
 
 # error Unrecognised platform

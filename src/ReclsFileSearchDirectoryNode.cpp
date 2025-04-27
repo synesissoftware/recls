@@ -127,7 +127,7 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_");
 
-    typedef directory_sequence_type sequence_t;
+    typedef directory_sequence_type                         sequence_t;
 
     int ssFlags = 0;
 
