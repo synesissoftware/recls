@@ -11,7 +11,7 @@
  *  - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 21st April 2025
+ * Updated: 23rd April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,18 +61,16 @@ int main(int argc, char* argv[])
     }
     else
     {
-        hrecls_t        hSrch;
         char const*     search_dir  =   argc > 1 ? argv[1] : ".";
         char const*     patterns    =   Recls_GetWildcardsAll();
         recls_uint32_t  flags       =   RECLS_F_RECURSIVE | RECLS_F_DIRECTORIES | RECLS_F_FILES | RECLS_F_SOCKETS;
-        recls_rc_t      rc          =   Recls_Search(search_dir, patterns, flags, &hSrch);
 
         /* Process all entries under the current directory, passing the home
          * entry's path pointer. This is valid since the path is always
          * nul-terminated.
          */
 
-        rc = Recls_SearchProcess(search_dir, Recls_GetWildcardsAll(), flags, example_c_5_process_fn, (void*)home->path.begin);
+        rc = Recls_SearchProcess(search_dir, patterns, flags, example_c_5_process_fn, (void*)home->path.begin);
 
         /* Close the home entry. */
 

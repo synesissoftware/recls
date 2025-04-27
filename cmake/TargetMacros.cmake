@@ -48,6 +48,7 @@ function(define_automated_test_program program_name entry_point_source_name)
 	target_link_libraries(${program_name}
 		PRIVATE
 			core
+			$<${shwild_FOUND}:shwild::core>
 			$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 			$<IF:$<VERSION_LESS:${xTests_VERSION},"0.23">,xTests::xTests.core,xTests::core>
 	)
@@ -73,6 +74,7 @@ function(define_example_program program_name entry_point_source_name)
 	target_link_libraries(${program_name}
 		PRIVATE
 			core
+			$<${shwild_FOUND}:shwild::core>
 			$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 	)
 
