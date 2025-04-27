@@ -4,11 +4,11 @@
  * Purpose: Traits for recls C++ mapping.
  *
  * Created: 25th March 2004
- * Updated: 13th January 2024
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MAJOR       5
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MINOR       1
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    4
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        29
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    5
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        30
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/traits.hpp
@@ -187,7 +187,7 @@ public:
         return Recls_Search(searchRoot, pattern, flags, phSrch);
     }
 
-    static recls_rc_t SearchFeedback(char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_progress_fn_t pfn, recls_process_fn_param_t param, hrecls_t* phSrch)
+    static recls_rc_t SearchFeedback(char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_progress_fn_t pfn, recls_progress_fn_param_t param, hrecls_t* phSrch)
     {
         return Recls_SearchFeedback(searchRoot, pattern, flags, pfn, param, phSrch);
     }
@@ -278,7 +278,7 @@ public:
         return Recls_Search(searchRoot, pattern, flags, phSrch);
     }
 
-    static recls_rc_t SearchFeedback(char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_progress_fn_t pfn, recls_process_fn_param_t param, hrecls_t* phSrch)
+    static recls_rc_t SearchFeedback(char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_progress_fn_t pfn, recls_progress_fn_param_t param, hrecls_t* phSrch)
     {
         return Recls_SearchFeedback(searchRoot, pattern, flags, pfn, param, phSrch);
     }

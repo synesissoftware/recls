@@ -978,7 +978,7 @@ Recls_SearchFeedback(
 ,   /* [in] */ recls_char_t const*          pattern
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_progress_fn_t         pfn
-,   /* [in] */ recls_process_fn_param_t     param
+,   /* [in] */ recls_progress_fn_param_t    param
 ,   /* [out] */ hrecls_t*                   phSrch
 );
 
@@ -990,7 +990,7 @@ Recls_SearchProcessFeedback(
 ,   /* [in] */ hrecls_process_fn_t          pfn
 ,   /* [in] */ recls_process_fn_param_t     param
 ,   /* [in] */ hrecls_progress_fn_t         pfnProgress
-,   /* [out] */ recls_process_fn_param_t    paramProgress
+,   /* [out] */ recls_progress_fn_param_t   paramProgress
 );
 
 /** Searches a given directory for matching files of the given pattern, and processes them according to the given process function
@@ -1004,7 +1004,8 @@ Recls_SearchProcessFeedback(
  * \param pfn The processing function
  * \param param A caller-supplied parameter that is passed through to \c pfn on each invocation. The function can cancel the enumeration by returning 0
  *
- * \return A status code indicating success/failure
+ * \return A status code indicating success/failure. The value
+ *  RECLS_RC_NO_MORE_DATA will be translated to RECLS_RC_OK.
  *
  * \note Available from version 1.1 of the <b>recls</b> API
  */
@@ -2008,10 +2009,10 @@ Recls_CalcDirectoryEntrySize(
  */
 RECLS_FNDECL(recls_filesize_t)
 Recls_CalcDirectorySizeFeedback(
-    /* [in] */ recls_char_t const*      dir
-,   /* [in] */ recls_uint32_t           flags
-,   /* [in] */ hrecls_progress_fn_t     pfn
-,   /* [in] */ recls_process_fn_param_t param
+    /* [in] */ recls_char_t const*          dir
+,   /* [in] */ recls_uint32_t               flags
+,   /* [in] */ hrecls_progress_fn_t         pfn
+,   /* [in] */ recls_progress_fn_param_t    param
 );
 /** @} */
 
