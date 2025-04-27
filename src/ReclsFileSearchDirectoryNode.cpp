@@ -45,6 +45,21 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if _STLSOFT_VER < 0x01097bff
+# error Requires STLSoft 1.9.123 or later
+#endif
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+# if _WINSTL_VER < 0x010a05ff
+#  error Requires WinSTL 1.10.5 or later
+# endif
+#endif
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
@@ -348,18 +363,6 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
         node = new ReclsFileSearchDirectoryNode(flags, searchDir, rootDirLen, pattern, patternLen, pfn, param);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-# if _STLSOFT_VER >= 0x01097bff
-#  if defined(PLATFORMSTL_OS_IS_UNIX)
-    catch (unixstl::readdir_sequence_exception& x)
-    {
-        recls_error_trace_printf_(RECLS_LITERAL("could not enumerate contents of directory '%s'"), x.Directory.c_str());
-
-        *prc = RECLS_RC_ACCESS_DENIED;
-
-        node = ss_nullptr_k;
-    }
-#  endif /* OS */
-# endif /* _STLSOFT_VER */
     catch (std::bad_alloc&)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
@@ -368,22 +371,28 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 
         node = ss_nullptr_k;
     }
-# if defined(_WINSTL_VER) && \
-     _WINSTL_VER >= 0x010a05ff
+# if 0
+# elif defined(PLATFORMSTL_OS_IS_UNIX)
+    catch (unixstl::readdir_sequence_exception& x)
+# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
     catch (winstl_ns_qual(access_exception)& x)
+# endif
     {
-#  if defined(RECLS_CHAR_TYPE_IS_WCHAR)
-        recls_error_trace_printf_(winstl::a2t(x.what()).c_str());
-#  else
-        recls_error_trace_printf_(x.what());
-#  endif
+        recls_error_trace_printf_(
+            RECLS_LITERAL("failed to enumerate contents of directory '%s': %s")
+        ,   x.Directory.c_str()
+# if defined(RECLS_CHAR_TYPE_IS_WCHAR)
+        ,   winstl::a2t(x.what()).c_str()
+# else
+        ,   x.what()
+# endif
+        );
 
         *prc = RECLS_RC_ACCESS_DENIED;
 
         node = ss_nullptr_k;
     }
-# endif
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif
 
     if (ss_nullptr_k != node)
     {

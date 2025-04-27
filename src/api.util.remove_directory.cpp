@@ -34,6 +34,12 @@
 #include "impl.trace.h"
 
 #include <platformstl/exception/platformstl_exception.hpp>
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+# include <stlsoft/error/error_desc.hpp>
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# include <winstl/error/error_desc.hpp>
+#endif
 
 #include <vector>
 
@@ -166,6 +172,19 @@ namespace
 
         if (!types::traits_type::delete_file(path))
         {
+            types::traits_type::error_type const e = types::traits_type::get_last_error();
+
+            recls_error_trace_printf_(
+                RECLS_LITERAL("failed to delete file '%s': %s")
+            ,   path
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+            ,   stlsoft::error_desc(e).c_str()
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+            ,   winstl::error_desc(e).c_str()
+#endif
+            );
+
             info.rc = RECLS_RC_ACCESS_DENIED;
 
             return 0;
@@ -301,6 +320,19 @@ namespace
 
                     if (!types::traits_type::remove_directory(directory.c_str()))
                     {
+                        types::traits_type::error_type const e = types::traits_type::get_last_error();
+
+                        recls_error_trace_printf_(
+                            RECLS_LITERAL("failed to remove directory '%s': %s")
+                        ,   directory.c_str()
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+                        ,   stlsoft::error_desc(e).c_str()
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+                        ,   winstl::error_desc(e).c_str()
+#endif
+                        );
+
                         return RECLS_RC_ACCESS_DENIED;
                     }
                     else
@@ -317,6 +349,20 @@ namespace
 
             if (!types::traits_type::remove_directory(path))
             {
+                types::traits_type::error_type const e = types::traits_type::get_last_error();
+
+                recls_error_trace_printf_(
+                    RECLS_LITERAL("failed to remove directory '%s': %s")
+                ,   path
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+                ,   stlsoft::error_desc(e).c_str()
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+                ,   winstl::error_desc(e).c_str()
+#endif
+                );
+
+
                 return RECLS_RC_ACCESS_DENIED;
             }
             else
