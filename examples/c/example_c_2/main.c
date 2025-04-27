@@ -13,7 +13,7 @@
  *  - display of progress of each directory traversed, squeezed into the console width via Recls_SqueezePath()
  *
  * Created: 29th May 2006
- * Updated: 21st April 2025
+ * Updated: 28th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -52,7 +52,7 @@ static int RECLS_CALLCONV_DEFAULT
 example_c_2_progress_fn(
     recls_char_t const*         dir
 ,   size_t                      dirLen
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 ,   void*                       reserved0
 ,   recls_uint32_t              reserved1
 );
@@ -218,7 +218,7 @@ static int RECLS_CALLCONV_DEFAULT
 example_c_2_progress_fn(
     recls_char_t const*         dir
 ,   size_t                      dirLen
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 ,   void*                       reserved0
 ,   recls_uint32_t              reserved1
 )

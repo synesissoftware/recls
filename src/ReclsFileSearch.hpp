@@ -4,11 +4,11 @@
  * Purpose: Definition of the ReclsFileSearch class.
  *
  * Created: 31st May 2004
- * Updated: 9th July 2024
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-20245, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -79,7 +79,7 @@ protected:
     ,   recls_char_t const*         pattern
     ,   size_t                      patternLen
     ,   hrecls_progress_fn_t        pfn
-    ,   recls_process_fn_param_t    param
+    ,   recls_progress_fn_param_t   param
     ,   recls_uint32_t              flags
     ,   recls_rc_t*                 prc
     );
@@ -111,7 +111,7 @@ public:
     ,   size_t                      patternLen
     ,   recls_uint32_t              flags
     ,   hrecls_progress_fn_t        pfn
-    ,   recls_process_fn_param_t    param
+    ,   recls_progress_fn_param_t   param
     ,   class_type**                ppsi
     );
 private:
@@ -136,7 +136,7 @@ private: // implementation
     ,   size_t                      patternLen
     ,   recls_uint32_t              flags
     ,   hrecls_progress_fn_t        pfn
-    ,   recls_process_fn_param_t    param
+    ,   recls_progress_fn_param_t   param
     ,   class_type**                ppsi
     );
 
@@ -145,7 +145,7 @@ private: // fields
     recls_char_t const* const       m_searchDir;
     size_t const                    m_searchDirLen;
     hrecls_progress_fn_t const      m_pfn;
-    recls_process_fn_param_t const  m_param;
+    recls_progress_fn_param_t const m_param;
 
     /** The opaque data of the search */
     recls_byte_t                    data[1];

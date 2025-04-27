@@ -4,7 +4,7 @@
  * Purpose: Main (platform-independent) implementation file for the recls API.
  *
  * Created: 16th August 2003
- * Updated: 27th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -122,7 +122,7 @@ RECLS_API Recls_SearchFeedback(
 ,   recls_char_t const*         pattern
 ,   recls_uint32_t              flags
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 ,   hrecls_t*                   phSrch
 )
 {
@@ -173,7 +173,7 @@ RECLS_API Recls_SearchProcessFeedback(
 ,   hrecls_process_fn_t         pfn
 ,   recls_process_fn_param_t    param
 ,   hrecls_progress_fn_t        pfnProgress
-,   recls_process_fn_param_t    paramProgress
+,   recls_progress_fn_param_t   paramProgress
 )
 {
     function_scope_trace("Recls_SearchProcessFeedback");

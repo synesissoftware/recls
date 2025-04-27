@@ -4,11 +4,11 @@
  * Purpose: Implementation header.
  *
  * Created: 1st January 2021
- * Updated: 30th December 2023
+ * Updated: 28th April 2025
  *
  * Home:    http://recls.org/
  *
- * Copyright (c) 2021-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2021-2025, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,6 +28,7 @@
 
 #include <recls/recls.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -38,6 +39,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -63,8 +65,9 @@ Recls_SearchProcessFeedback_(
 ,   /* [in] */ hrecls_process_fn_t          pfn
 ,   /* [in] */ recls_process_fn_param_t     param
 ,   /* [in] */ hrecls_progress_fn_t         pfnProgress
-,   /* [out] */ recls_process_fn_param_t    paramProgress
+,   /* [out] */ recls_progress_fn_param_t   paramProgress
 );
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -75,7 +78,10 @@ Recls_SearchProcessFeedback_(
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
 
 #endif /* !RECLS_INCL_SRC_H_IMPL_API_SEARCH */
 

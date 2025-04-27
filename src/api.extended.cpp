@@ -4,7 +4,7 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 27th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -181,7 +181,7 @@ Recls_CalcDirectorySizeFeedback(
     recls_char_t const*         dir
 ,   recls_uint32_t              flags
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 )
 {
     function_scope_trace("Recls_CalcDirectorySizeFeedback");
