@@ -5,7 +5,7 @@
  *          Windows.
  *
  * Created: 1st June 2004
- * Updated: 21st April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -46,6 +46,7 @@
 # include <winstl/shims/conversion/to_uint64/WIN32_FIND_DATA.hpp>
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -56,6 +57,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * utility functions
@@ -209,6 +211,7 @@ create_entryinfo_from_psrecord(
     return info;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * ReclsFtpSearchDirectoryNode
  */
@@ -238,9 +241,9 @@ ReclsFtpSearchDirectoryNode::essFlags_from_reclsFlags_(
 {
 #if defined(RECLS_USING_INETSTL_SEARCHSPEC_SEQUENCE_)
     // Because Digital Mars 8.40- has a problem, we must access the typedef separately from the enum value
-    typedef entry_sequence_type::find_sequence_type sequence_t;
+    typedef entry_sequence_type::find_sequence_type         sequence_t;
 #else /* ? RECLS_USING_INETSTL_SEARCHSPEC_SEQUENCE_ */
-    typedef entry_sequence_type                     sequence_t;
+    typedef entry_sequence_type                             sequence_t;
 #endif /* RECLS_USING_INETSTL_SEARCHSPEC_SEQUENCE_ */
 
     int ssFlags = 0;
@@ -695,6 +698,7 @@ ReclsFtpSearchDirectoryNode::GetNextDetails(
 
     return rc;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

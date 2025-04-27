@@ -4,7 +4,7 @@
  * Purpose: Clang specific types and includes for recls API.
  *
  * Created: 20th December 2023
- * Updated: 20th December 2023
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -30,10 +30,10 @@
 
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CLANG_MAJOR      1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CLANG_MINOR      0
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CLANG_REVISION   0
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CLANG_EDIT       1
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CLANG_MAJOR    1
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CLANG_MINOR    0
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CLANG_REVISION 0
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_CLANG_EDIT     2
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_clang.h
@@ -42,12 +42,14 @@
  *  \ref group__recls API.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
 #include <stddef.h>
 #include <stdint.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -58,11 +60,13 @@ namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * #pragma once
  */
 
 #define RECLS_CF_PRAGMA_ONCE_SUPPORT
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -99,6 +103,7 @@ typedef uintptr_t                                           recls_uintptr_t;
 typedef char                                                recls_char_a_t;
 typedef wchar_t                                             recls_char_w_t;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -106,6 +111,7 @@ typedef wchar_t                                             recls_char_w_t;
 #if !defined(RECLS_NO_NAMESPACE)
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

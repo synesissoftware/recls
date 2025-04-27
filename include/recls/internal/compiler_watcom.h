@@ -4,11 +4,11 @@
  * Purpose: Watcom C++ specific types and includes for recls API.
  *
  * Created: 23rd September 2003
- * Updated: 30th December 2023
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -34,7 +34,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_WATCOM_MAJOR       2
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_WATCOM_MINOR       3
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_WATCOM_REVISION    1
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_WATCOM_EDIT        15
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_WATCOM_EDIT        16
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler_watcom.h
@@ -43,11 +43,13 @@
  *  \ref group__recls api.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
 #include <stddef.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -58,6 +60,7 @@ namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * messaging
  */
@@ -65,11 +68,13 @@ namespace recls
 #define RECLS_PRAGMA_MESSAGE_SUPPORT
 #define RECLS_PRAGMA_MESSAGE_IS_INTRUSIVE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * #pragma once
  */
 
 #define RECLS_CF_PRAGMA_ONCE_SUPPORT
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -85,30 +90,31 @@ namespace recls
 /** \def recls_sint64_t The 64-bit signed integer type for the \ref group__recls  API */
 /** \def recls_uint64_t The 64-bit unsigned integer type for the \ref group__recls  API */
 
-typedef unsigned char       recls_byte_t;
+typedef unsigned char                                       recls_byte_t;
 
-typedef signed char         recls_sint8_t;
-typedef unsigned char       recls_uint8_t;
+typedef signed char                                         recls_sint8_t;
+typedef unsigned char                                       recls_uint8_t;
 
-typedef signed short        recls_sint16_t;
-typedef unsigned short      recls_uint16_t;
+typedef signed short                                        recls_sint16_t;
+typedef unsigned short                                      recls_uint16_t;
 
-typedef signed long         recls_sint32_t;
-typedef unsigned long       recls_uint32_t;
+typedef signed long                                         recls_sint32_t;
+typedef unsigned long                                       recls_uint32_t;
 
-typedef signed __int64      recls_sint64_t;
-typedef unsigned __int64    recls_uint64_t;
+typedef signed __int64                                      recls_sint64_t;
+typedef unsigned __int64                                    recls_uint64_t;
 
 #if defined(_WIN64)
-typedef recls_uint64_t      recls_uintptr_t;
+typedef recls_uint64_t                                      recls_uintptr_t;
 #else /* ? _WIN64 */
-typedef recls_uint32_t      recls_uintptr_t;
+typedef recls_uint32_t                                      recls_uintptr_t;
 #endif /* _WIN64 */
 
 /** \def recls_char_a_t The ANSI character type for the \ref group__recls  API */
 /** \def recls_char_w_t The Unicode character type for the \ref group__recls  API */
-typedef char                recls_char_a_t;
-typedef wchar_t             recls_char_w_t;
+typedef char                                                recls_char_a_t;
+typedef wchar_t                                             recls_char_w_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * warnings
@@ -127,6 +133,7 @@ typedef wchar_t             recls_char_w_t;
 #if !defined(RECLS_NO_NAMESPACE)
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

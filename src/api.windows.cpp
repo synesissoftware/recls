@@ -4,7 +4,7 @@
  * Purpose: This file contains the Windows versions of recls API.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -40,6 +40,7 @@
 
 #include <ctype.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -50,6 +51,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -63,7 +65,7 @@ check_drives(char* drives, recls_uint32_t flags)
 check_drives(char (*drives)[26], recls_uint32_t flags)
 #endif /* compiler */
 {
-    typedef winstl::filesystem_traits<char> trait_t;
+    typedef winstl::filesystem_traits<char>                 trait_t;
 
     size_t n = 0;
 
@@ -143,6 +145,7 @@ check_drives(char (*drives)[26], recls_uint32_t flags)
     return n;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -160,6 +163,7 @@ using ::recls::impl::recls_debug0_trace_printf_;
 using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_debug2_trace_printf_;
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * property elicitation
@@ -196,6 +200,7 @@ Recls_GetDriveProperty(
 
     *pchDrive = (':' == fileInfo->path.begin[1]) ? static_cast<recls_char_t>(toupper(fileInfo->drive)) : '\0';
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * roots
@@ -237,8 +242,11 @@ Recls_GetRoots_(
     return n;
 }
 
-RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
-                                    ,   size_t          cRoots)
+RECLS_LINKAGE_C size_t
+Recls_GetRoots(
+    recls_root_t*   roots
+,   size_t          cRoots
+)
 {
     function_scope_trace("Recls_GetRoots");
 
@@ -251,7 +259,7 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
     // I officially declare .NET to be a disgusting pile of stinking
     // garbage, and I look forward to the day when I can know that I will
     // never have to go anywhere near it again.
-    typedef stlsoft::sign_traits<size_t>::signed_type   signed_t;
+    typedef stlsoft::sign_traits<size_t>::signed_type       signed_t;
 
     if (static_cast<signed_t>(cRoots) < 0)
     {
@@ -277,9 +285,12 @@ RECLS_LINKAGE_C size_t Recls_GetRoots(  recls_root_t*   roots
     return Recls_GetRoots_(roots, cRoots, 0);
 }
 
-RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
-                                            ,   size_t          cRoots
-                                            ,   recls_uint32_t  flags)
+RECLS_LINKAGE_C size_t
+Recls_GetSelectedRoots(
+    recls_root_t*   roots
+,   size_t          cRoots
+,   recls_uint32_t  flags
+)
 {
     function_scope_trace("Recls_GetSelectedRoots");
 
@@ -287,7 +298,7 @@ RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
 
     // Same disgusting measure necessitated by the same disgusting, poorly
     // designed and shockingly documented facilities in .NET
-    typedef stlsoft::sign_traits<size_t>::signed_type   signed_t;
+    typedef stlsoft::sign_traits<size_t>::signed_type       signed_t;
 
     if (static_cast<signed_t>(cRoots) < 0)
     {
@@ -310,6 +321,7 @@ RECLS_LINKAGE_C size_t Recls_GetSelectedRoots(  recls_root_t*   roots
 
     return Recls_GetRoots_(roots, cRoots, flags);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
