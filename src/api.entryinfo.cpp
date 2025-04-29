@@ -4,7 +4,7 @@
  * Purpose: recls API functions pertaining to entry info.
  *
  * Created: 16th August 2003
- * Updated: 17th April 2025
+ * Updated: 29th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -270,7 +270,8 @@ Recls_EntryExists(recls_entry_t fileInfo)
 
     if (0 != fileInfo->size ||
         0 != fileInfo->attributes ||
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
         0 != fileInfo->GetCreationTime_.dwLowDateTime ||
         0 != fileInfo->GetCreationTime_.dwHighDateTime ||
         0 != fileInfo->GetLastStatusChangeTime_.dwLowDateTime ||

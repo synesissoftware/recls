@@ -4,7 +4,7 @@
  * Purpose: Implementation of the create_entryinfo() function.
  *
  * Created: 31st May 2004
- * Updated: 27th April 2025
+ * Updated: 29th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -161,18 +161,18 @@ create_entryinfo(
         recls_byte_t* const     pData       =   &info->data[0];
         recls_byte_t* const     pParts      =   pData + 0;
         recls_byte_t* const     pPath       =   pParts + (cDirParts * sizeof(recls_strptrs_t));
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#ifdef RECLS_PLATFORM_IS_WINDOWS
         recls_byte_t* const     pAltName    =   pPath + cbPath;
 #endif /* platform */
         recls_byte_t* const     pSearchCopy =   pPath + cbPath + cbAlt;
 
         recls_char_t*           fullPath    =   ::stlsoft::sap_cast<recls_char_t*>(pPath);
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#ifdef RECLS_PLATFORM_IS_WINDOWS
         recls_char_t*           altName     =   ::stlsoft::sap_cast<recls_char_t*>(pAltName);
 #endif /* platform */
 
         RECLS_ASSERT(::stlsoft::sap_cast<recls_char_t*>(pData + (cDirParts * sizeof(recls_strptrs_t))) == fullPath);
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#ifdef RECLS_PLATFORM_IS_WINDOWS
         RECLS_ASSERT(::stlsoft::sap_cast<recls_char_t*>(pData + (cDirParts * sizeof(recls_strptrs_t) + cbPath)) == altName);
 #endif /* platform */
 
@@ -338,7 +338,7 @@ create_entryinfo(
             memset(&no_size, 0, sizeof(no_size));
 
             // alt name
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#ifdef RECLS_PLATFORM_IS_WINDOWS
             altName[0] = '\0';
             info->shortFile.begin   =   altName;
             info->shortFile.end     =   altName;
@@ -365,7 +365,7 @@ create_entryinfo(
             RECLS_ASSERT(ss_nullptr_k != st);
 
             // alt name
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#ifdef RECLS_PLATFORM_IS_WINDOWS
             size_t altLen = types::traits_type::str_len(st->cAlternateFileName);
             types::traits_type::char_copy(altName, st->cAlternateFileName, altLen);
             altName[altLen] = '\0';
@@ -519,7 +519,8 @@ create_drive_entryinfo(
 
         // drive, directory, file (name + ext)
         info->directory.begin               =   info->path.end;
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
         info->drive                         =   ('\\' == fullPath[0]) ? '\0' : fullPath[0];
 #elif defined(RECLS_PLATFORM_IS_UNIX)
 #else /* ? platform */
@@ -548,7 +549,7 @@ create_drive_entryinfo(
             memset(&no_size, 0, sizeof(no_size));
 
             // alt name
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#ifdef RECLS_PLATFORM_IS_WINDOWS
             info->shortFile.begin           =   info->path.end;
             info->shortFile.end             =   info->path.end;
 #endif /* platform */
@@ -579,7 +580,7 @@ create_drive_entryinfo(
         else
         {
             // alt name
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#ifdef RECLS_PLATFORM_IS_WINDOWS
             info->shortFile.begin           =   info->path.begin;
             info->shortFile.end             =   info->path.end;
 #endif /* platform */

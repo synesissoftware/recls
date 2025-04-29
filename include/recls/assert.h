@@ -4,7 +4,7 @@
  * Purpose: Assertion macros for recls API.
  *
  * Created: 15th August 2003
- * Updated: 10th April 2025
+ * Updated: 29th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -47,8 +47,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_ASSERT_MAJOR     3
 # define RECLS_VER_RECLS_H_ASSERT_MINOR     1
-# define RECLS_VER_RECLS_H_ASSERT_REVISION  2
-# define RECLS_VER_RECLS_H_ASSERT_EDIT      30
+# define RECLS_VER_RECLS_H_ASSERT_REVISION  3
+# define RECLS_VER_RECLS_H_ASSERT_EDIT      31
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/assert.h
@@ -74,7 +74,8 @@
  * \param x The expression that must evaluate to \c true
  */
 
-#if defined(RECLS_PLATFORM_IS_WINDOWS) && \
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS) && \
     defined(_MSC_VER) && \
     (   defined(_DEBUG) || \
         defined(DEBUG))
