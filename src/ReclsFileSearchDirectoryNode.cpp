@@ -454,7 +454,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 #  ifdef ENAMETOOLONG
         case ENAMETOOLONG:
 
-        *prc = RECLS_RC_PATH_LIMIT_EXCEEDED;
+            *prc = RECLS_RC_PATH_LIMIT_EXCEEDED;
 
         break;
 #  endif // ENAMETOOLONG

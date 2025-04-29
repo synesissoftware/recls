@@ -96,18 +96,16 @@ int main(int argc, char* argv[])
     }
     else
     {
-#if 0
         recls_log_severities_t severities = {
             PANTHEIOS_SEV_ALERT,
             PANTHEIOS_SEV_ERROR,
             PANTHEIOS_SEV_WARNING,
-            -1, //PANTHEIOS_SEV_INFORMATIONAL,
-            -1, //PANTHEIOS_SEV_DEBUG,
+            PANTHEIOS_SEV_INFORMATIONAL,
+            PANTHEIOS_SEV_DEBUG,
             -1,
             -1,
             -1,
         };
-#endif
 
 #if defined(_MSC_VER) && \
     defined(_DEBUG)
@@ -117,7 +115,7 @@ int main(int argc, char* argv[])
         _CrtMemCheckpoint(&memState);
 #endif /* _MSC_VER && _MSC_VER */
 
-        Recls_SetApiLogFunction(recls_log_to_pantheios, 0, NULL);//&severities);
+        Recls_SetApiLogFunction(recls_log_to_pantheios, 0, &severities);
 
         int const rm = main_(program_name, argc, argv);
 
