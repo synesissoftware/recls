@@ -436,7 +436,35 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 # endif
         );
 
+# if 0
+# elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        switch (x.status_code())
+        {
+        case EACCES:
+#  ifdef EPERM
+        case EPERM:
+#  endif // EPERM
+
+            *prc = RECLS_RC_ACCESS_DENIED;
+
+            break;
+#  ifdef ENAMETOOLONG
+        case ENAMETOOLONG:
+
+        *prc = RECLS_RC_PATH_LIMIT_EXCEEDED;
+
+        break;
+#  endif // ENAMETOOLONG
+        default:
+
+            *prc = RECLS_RC_FAIL;
+            break;
+        }
+# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
         *prc = RECLS_RC_ACCESS_DENIED;
+# endif
 
         node = ss_nullptr_k;
     }
