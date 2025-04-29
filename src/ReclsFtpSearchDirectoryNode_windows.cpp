@@ -5,7 +5,7 @@
  *          Windows.
  *
  * Created: 1st June 2004
- * Updated: 28th April 2025
+ * Updated: 29th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -42,7 +42,7 @@
 # include <winstl/conversion/char_conversions.hpp>
 #endif /* RECLS_CHAR_TYPE_IS_???? */
 
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#ifdef RECLS_PLATFORM_IS_WINDOWS
 # include <winstl/shims/conversion/to_uint64/WIN32_FIND_DATA.hpp>
 #endif /* RECLS_PLATFORM_IS_WINDOWS */
 
