@@ -63,6 +63,7 @@
  *  class, and supporting classes.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -82,6 +83,7 @@
 # include <tchar.h>
 #endif /* WIN32 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -92,6 +94,7 @@ namespace recls
 namespace cpp
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -108,6 +111,7 @@ class basic_search_sequence_const_iterator;
 
 class ftp_search_sequence;
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * utility classes
@@ -126,7 +130,7 @@ public:
         : hSrch(h)
         , cRefs(1)
     {}
-    void Release()
+    void Release() STLSOFT_NOEXCEPT
     {
         if (--cRefs == 0)
         {
@@ -150,8 +154,12 @@ private:
             Recls_SearchClose(hSrch);
         }
     }
+private:
+    rss_shared_handle(rss_shared_handle const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(rss_shared_handle const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -404,6 +412,7 @@ private:
     rss_shared_handle*  m_handle;
 };
 
+
 ////////////////////////////////////////////////////////////////////////////
 // shims
 
@@ -421,10 +430,11 @@ inline
 recls_bool_t
 is_empty(
     search_sequence const& s
-)
+) STLSOFT_NOEXCEPT
 {
     return s.empty();
 }
+
 
 ////////////////////////////////////////////////////////////////////////////
 // implementation
@@ -687,6 +697,7 @@ basic_search_sequence_const_iterator<C, T, V>::operator !=(
     return !operator ==(rhs);
 }
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

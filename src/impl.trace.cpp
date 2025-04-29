@@ -66,11 +66,11 @@ namespace
 #endif /* !RECLS_NO_NAMESPACE */
 
     int const fatalSeverity_DEFAULT         = 1;
-    int const errorSeverity_DEFAULT         = 4;
-    int const warningSeverity_DEFAULT       = 5;
-    int const informationalSeverity_DEFAULT = 7;
-    int const debug0Severity_DEFAULT        = 8;
-    int const debug1Severity_DEFAULT        = 9;
+    int const errorSeverity_DEFAULT         = 3;
+    int const warningSeverity_DEFAULT       = 4;
+    int const informationalSeverity_DEFAULT = 6;
+    int const debug0Severity_DEFAULT        = 7;
+    int const debug1Severity_DEFAULT        = 8;
     int const debug2Severity_DEFAULT        = -1;
     int const debug3Severity_DEFAULT        = -1;
 

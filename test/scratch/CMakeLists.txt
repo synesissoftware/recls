@@ -1,5 +1,6 @@
 
 add_subdirectory(test.scratch.cpp_api)
+add_subdirectory(test.scratch.ignore_inaccessible_nodes)
 add_subdirectory(test.scratch.links)
 add_subdirectory(test.scratch.search.1)
 if(Pantheios_FOUND)

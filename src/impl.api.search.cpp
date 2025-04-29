@@ -707,6 +707,11 @@ Recls_SearchProcessFeedback_(
         }
         while (RECLS_SUCCEEDED(rc = Recls_GetNext(hSrch)));
 
+        recls_debug0_trace_printf_(
+            RECLS_LITERAL("Recls_SearchProcessFeedback_() completed with rc=%s")
+        ,   Recls_GetSearchCodeString(rc)
+        );
+
         Recls_SearchClose(hSrch);
     }
 

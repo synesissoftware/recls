@@ -119,6 +119,12 @@ ReclsFileSearch::FindAndCreate(
 {
     function_scope_trace("ReclsFileSearch::FindAndCreate");
 
+    recls_debug0_trace_printf_(RECLS_LITERAL("%s:%d:%s(flags=%08x, searchDir='%.*s', pattern='%.*s')"), __STLSOFT_FILE_LINE_FUNCTION__
+    ,   flags
+    ,   int(searchDirLen), searchDir
+    ,   int(patternLen), pattern
+    );
+
 
     // pre-conditions
 

@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      24
 # define RECLS_VER_RECLS_H_RECLS_REVISION   1
-# define RECLS_VER_RECLS_H_RECLS_EDIT       149
+# define RECLS_VER_RECLS_H_RECLS_EDIT       150
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -761,6 +761,8 @@ typedef int (RECLS_CALLCONV_DEFAULT *hrecls_progress_fn_t)(
 
 #if !defined(RECLS_NO_NAMESPACE)
 typedef recls_entry_t                                       info_t;
+typedef hrecls_process_fn_t                                 process_fn_t;
+typedef hrecls_progress_fn_t                                progress_fn_t;
 typedef recls_process_fn_param_t                            process_fn_param_t;
 typedef recls_progress_fn_param_t                           progress_fn_param_t;
 #endif /* !RECLS_NO_NAMESPACE */
