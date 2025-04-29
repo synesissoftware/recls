@@ -4,7 +4,7 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 29th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    http://recls.org/
  *
@@ -60,6 +60,7 @@
 
 #include "impl.trace.h"
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -72,6 +73,7 @@
 # error
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -82,6 +84,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -117,6 +120,7 @@ has_checked(
     return 0 != (checks & mask);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -136,6 +140,20 @@ recls_char_t const s_path_separators[] =
     ,   '\0'
 };
 
+recls_uint32_t const s_defaultTypes     =   0
+                                        |   RECLS_F_FILES
+                                        ;
+
+recls_uint32_t const s_supportedTypes   =   0
+                                        |   RECLS_F_DIRECTORIES
+                                        |   RECLS_F_FILES
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+                                        |   RECLS_F_SOCKETS
+#endif
+                                        ;
+
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper/internal functions
  */
@@ -154,6 +172,7 @@ Recls_SearchFeedback_x_(
 ,   /* [in] */ recls_progress_fn_param_t    param
 ,   /* [out] */ hrecls_t*                   phSrch
 );
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * search control
@@ -563,11 +582,13 @@ Recls_SearchFeedback_x_(
     // Default the flags
     if (0 == (flags & RECLS_F_TYPEMASK))
     {
-        flags |= RECLS_F_FILES;
+        flags |= s_defaultTypes;
     }
 
-    if (0 == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
+    if (0 == (flags & s_supportedTypes))
     {
+        recls_warning_trace_printf_("requested flags 0x%08x does not contain a supported set of types", flags);
+
         rc = RECLS_RC_INVALID_SEARCH_TYPE;
     }
     // Validate the pattern.
@@ -722,6 +743,7 @@ Recls_SearchProcessFeedback_(
 
     return rc;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
