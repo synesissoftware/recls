@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 29th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -489,6 +489,13 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     }
 #endif
 
+    if (RECLS_RC_ACCESS_DENIED == *prc)
+    {
+        delete node;
+
+        node = NULL;
+    }
+    else
     if (ss_nullptr_k != node)
     {
         // Ensure that it, or one of its sub-nodes, has matching entries.
@@ -826,6 +833,12 @@ ReclsFileSearchDirectoryNode::GetNext()
             }
         }
 
+        if (RECLS_RC_ACCESS_DENIED == rc &&
+            0 != (RECLS_F_STOP_ON_ACCESS_FAILURE & m_flags))
+        {
+            return rc;
+        }
+        else
         if (m_directoriesBegin == m_directories.end())
         {
             // Enumeration is complete.
