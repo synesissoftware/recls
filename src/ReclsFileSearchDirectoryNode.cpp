@@ -427,8 +427,8 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 # endif
     {
         recls_error_trace_printf_(
-            RECLS_LITERAL("failed to enumerate contents of directory '%s': %s")
-        ,   x.Directory.c_str()
+            RECLS_LITERAL("failed to enumerate contents of directory '%.*s': %s")
+        ,   static_cast<int>(rootDirLen), searchDir
 # if defined(RECLS_CHAR_TYPE_IS_WCHAR)
         ,   winstl::a2t(x.what()).c_str()
 # else
