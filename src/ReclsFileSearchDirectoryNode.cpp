@@ -195,6 +195,7 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if (0 == (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
         {
+            ssFlags |= sequence_t::noThrowOnAccessFailure;
         }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
