@@ -3,7 +3,9 @@
 #include <recls/recls.h>
 
 /* Pantheios header files */
-#include <pantheios/pantheios.h>
+#ifdef HAS_Pantheios
+# include <pantheios/pantheios.h>
+#endif /* HAS_Pantheios */
 
 /* STLSoft header files */
 #include <platformstl/filesystem/path_functions.h>
@@ -27,6 +29,8 @@ const char PANTHEIOS_FE_PROCESS_IDENTITY[]    =   "test.scratch.ignore_inaccessi
  * helper functions
  */
 
+#ifdef HAS_Pantheios
+
 void RECLS_CALLCONV_DEFAULT recls_log_to_pantheios(
     int         severity
 ,   char const* fmt
@@ -35,6 +39,7 @@ void RECLS_CALLCONV_DEFAULT recls_log_to_pantheios(
 {
     pantheios_logvprintf(severity, fmt, args);
 }
+#endif /* HAS_Pantheios */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,6 +101,8 @@ int main(int argc, char* argv[])
     }
     else
     {
+#ifdef HAS_Pantheios
+
         recls_log_severities_t severities = {
             PANTHEIOS_SEV_ALERT,
             PANTHEIOS_SEV_ERROR,
@@ -106,6 +113,7 @@ int main(int argc, char* argv[])
             -1,
             -1,
         };
+#endif /* HAS_Pantheios */
 
 #if defined(_MSC_VER) && \
     defined(_DEBUG)
@@ -115,7 +123,10 @@ int main(int argc, char* argv[])
         _CrtMemCheckpoint(&memState);
 #endif /* _MSC_VER && _MSC_VER */
 
+#ifdef HAS_Pantheios
+
         Recls_SetApiLogFunction(recls_log_to_pantheios, 0, &severities);
+#endif /* HAS_Pantheios */
 
         int const rm = main_(program_name, argc, argv);
 
