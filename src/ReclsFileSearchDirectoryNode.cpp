@@ -92,31 +92,45 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
 
     int ssFlags = 0;
 
-    if (0 != (flags & RECLS_F_DIRECTORIES))
+
+    /* types */
     {
-        ssFlags |= sequence_t::directories;
-    }
-    if (0 != (flags & RECLS_F_FILES))
-    {
-        ssFlags |= sequence_t::files;
-    }
+        if (0 != (flags & RECLS_F_DIRECTORIES))
+        {
+            ssFlags |= sequence_t::directories;
+        }
+        if (0 != (flags & RECLS_F_FILES))
+        {
+            ssFlags |= sequence_t::files;
+        }
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
-    if (0 != (flags & RECLS_F_SOCKETS))
-    {
-        ssFlags |= sequence_t::sockets;
-    }
+        if (0 != (flags & RECLS_F_SOCKETS))
+        {
+            ssFlags |= sequence_t::sockets;
+        }
 #endif
+    }
 
-    if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+
+    /* RECLS_F_STOP_ON_ACCESS_FAILURE */
     {
 #if 0
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        ssFlags |= sequence_t::throwOnAccessFailure;
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+        {
+            ssFlags |= sequence_t::throwOnAccessFailure;
+        }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #endif /* platform */
     }
+
 
     return ssFlags;
 }
@@ -134,41 +148,66 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
 
     ssFlags |= sequence_t::directories;
 
+
+    /* fullPath */
+    {
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
-# ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
-#  pragma message(_sscomp_fileline_message("TODO: Make this for all, once findfile_sequence supports fullPath"))
-# endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
+// TODO: Make this for all, once findfile_sequence supports fullPath
 
-    ssFlags |= sequence_t::fullPath;
-#endif /* platform */
-
-    if (0 == (flags & RECLS_F_ALLOW_REPARSE_DIRS))
-    {
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
-        ssFlags |= sequence_t::skipReparseDirs;
+        ssFlags |= sequence_t::fullPath;
 #endif /* platform */
     }
 
-    if (0 != (flags & RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS))
-    {
-// TODO: Update this for UNIX when functionality available in UNIXSTL
 
-#ifdef RECLS_PLATFORM_IS_WINDOWS
-        ssFlags |= sequence_t::skipHiddenFiles;
-        ssFlags |= sequence_t::skipHiddenDirs;
-#endif /* RECLS_PLATFORM_IS_WINDOWS */
-    }
-
-    if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+    /* RECLS_F_ALLOW_REPARSE_DIRS */
     {
+        if (0 == (flags & RECLS_F_ALLOW_REPARSE_DIRS))
+        {
 #if 0
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+            ssFlags |= sequence_t::skipReparseDirs;
+#endif /* platform */
+        }
+    }
+
+
+    /* RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS */
+    {
+        if (0 != (flags & RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS))
+        {
+// TODO: Update this for UNIX when functionality available in UNIXSTL
+
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+            ssFlags |= sequence_t::skipHiddenFiles;
+            ssFlags |= sequence_t::skipHiddenDirs;
+#endif /* platform */
+        }
+    }
+
+
+    /* RECLS_F_STOP_ON_ACCESS_FAILURE */
+    {
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        ssFlags |= sequence_t::throwOnAccessFailure;
+        if (0 == (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+        {
+        }
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+        {
+            ssFlags |= sequence_t::throwOnAccessFailure;
+        }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #endif /* platform */
     }
+
 
     return ssFlags;
 }
