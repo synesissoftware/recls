@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 28th April 2025
+ * Updated: 29th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -2379,7 +2379,11 @@ c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 #endif /* RECLS_PLATFORM_API_UNIX */
 
 #if !defined(RECLS_PURE_API)
-# if defined(RECLS_PLATFORM_IS_WINDOWS)
+# if 0
+# elif defined(RECLS_PLATFORM_IS_UNIX)
+#  include <recls/unix.h>
+#  define RECLS_PLATFORM_API_UNIX
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
 #  include <recls/windows.h>
 #  define RECLS_PLATFORM_API_WINDOWS
 #  ifdef RECLS_PLATFORM_IS_WIN32
@@ -2388,9 +2392,6 @@ c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 #  ifdef RECLS_PLATFORM_IS_WIN64
 #   define RECLS_PLATFORM_API_WIN64
 #  endif /* RECLS_PLATFORM_IS_WIN64 */
-# elif defined(RECLS_PLATFORM_IS_UNIX)
-#  include <recls/unix.h>
-#  define RECLS_PLATFORM_API_UNIX
 # else
 #  error Platform not recognised
 # endif /* platform */

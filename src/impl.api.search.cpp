@@ -4,7 +4,7 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 28th April 2025
+ * Updated: 29th April 2025
  *
  * Home:    http://recls.org/
  *
@@ -672,7 +672,7 @@ Recls_SearchProcessFeedback_(
             {
                 int res;
 
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#ifdef RECLS_PLATFORM_IS_WINDOWS
 
                 if (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
                 {

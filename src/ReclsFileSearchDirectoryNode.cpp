@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 28th April 2025
+ * Updated: 29th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -38,7 +38,8 @@
 #include "impl.trace.h"
 
 #if defined(RECLS_CHAR_TYPE_IS_WCHAR)
-# if defined(RECLS_PLATFORM_IS_WINDOWS)
+# if 0
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
 #  include <winstl/conversion/char_conversions.hpp>
 # endif /* RECLS_PLATFORM_IS_WINDOWS */
 #endif /* RECLS_CHAR_TYPE_IS_???? */
@@ -109,12 +110,12 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
 
     if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
     {
-#if defined(_WINSTL_VER) && \
-    _WINSTL_VER >= 0x010a05ff
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         ssFlags |= sequence_t::throwOnAccessFailure;
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#endif
+#endif /* platform */
     }
 
     return ssFlags;
@@ -161,12 +162,12 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
 
     if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
     {
-#if defined(_WINSTL_VER) && \
-    _WINSTL_VER >= 0x010a05ff
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         ssFlags |= sequence_t::throwOnAccessFailure;
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#endif
+#endif /* platform */
     }
 
     return ssFlags;
@@ -297,7 +298,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     , m_patternLen(patternLen)
     , m_directories(
             searchDir
-#if defined(RECLS_PLATFORM_IS_WINDOWS)    // Windows uses findfile_sequence, which takes wildcards
+#ifdef RECLS_PLATFORM_IS_WINDOWS // Windows uses findfile_sequence, which takes wildcards
         ,   types::traits_type::pattern_all()
 #endif /* platform */
         ,   dssFlags_from_reclsFlags_(flags)
@@ -547,7 +548,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
     if (ss_nullptr_k != m_pfn)
     {
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
         if (m_flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
         {
             typedef int (RECLS_CALLCONV_STDDECL *stdcall_progress_fn_t)(recls_char_t const*
@@ -561,7 +563,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
             (*pfn_stdcall)(m_searchDir.data(), m_searchDir.size(), m_param, ss_nullptr_k, 0);
         }
         else
-#endif /* RECLS_PLATFORM_IS_WINDOWS */
+#endif /* platform */
         {
             if (0 == (*m_pfn)(m_searchDir.data(), m_searchDir.size(), m_param, ss_nullptr_k, 0))
             {
