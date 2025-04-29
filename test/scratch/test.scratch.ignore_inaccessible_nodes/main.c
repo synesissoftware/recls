@@ -11,6 +11,10 @@
 /* Standard C header files */
 #include <stdio.h>
 
+#ifdef STLSOFT_COMPILER_IS_MSVC
+# include <crtdbg.h>
+#endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -92,22 +96,34 @@ int main(int argc, char* argv[])
     }
     else
     {
-#if 0
         recls_log_severities_t severities = {
             PANTHEIOS_SEV_ALERT,
             PANTHEIOS_SEV_ERROR,
             PANTHEIOS_SEV_WARNING,
-            -1, //PANTHEIOS_SEV_INFORMATIONAL,
-            -1, //PANTHEIOS_SEV_DEBUG,
+            PANTHEIOS_SEV_INFORMATIONAL,
+            PANTHEIOS_SEV_DEBUG,
             -1,
             -1,
             -1,
         };
-#endif
 
-        Recls_SetApiLogFunction(recls_log_to_pantheios, 0, NULL);//&severities);
+#if defined(_MSC_VER) && \
+    defined(_DEBUG)
+
+        _CrtMemState    memState;
+
+        _CrtMemCheckpoint(&memState);
+#endif /* _MSC_VER && _MSC_VER */
+
+        Recls_SetApiLogFunction(recls_log_to_pantheios, 0, &severities);
 
         int const rm = main_(program_name, argc, argv);
+
+#if defined(_MSC_VER) && \
+    defined(_DEBUG)
+
+        _CrtMemDumpAllObjectsSince(&memState);
+#endif /* _MSC_VER) && _DEBUG */
 
         pantheios_uninit();
 
