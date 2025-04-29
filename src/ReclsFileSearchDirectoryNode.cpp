@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 28th April 2025
+ * Updated: 29th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -42,6 +42,21 @@
 #  include <winstl/conversion/char_conversions.hpp>
 # endif /* RECLS_PLATFORM_IS_WINDOWS */
 #endif /* RECLS_CHAR_TYPE_IS_???? */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if _STLSOFT_VER < 0x01097bff
+# error Requires STLSoft 1.9.123 or later
+#endif
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+# if _WINSTL_VER < 0x010a05ff
+#  error Requires WinSTL 1.10.5 or later
+# endif
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,8 +109,8 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
 
     if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
     {
-#if defined(_WINSTL_VER) && \
-    _WINSTL_VER >= 0x010a05ff
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         ssFlags |= sequence_t::throwOnAccessFailure;
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -146,8 +161,8 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
 
     if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
     {
-#if defined(_WINSTL_VER) && \
-    _WINSTL_VER >= 0x010a05ff
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         ssFlags |= sequence_t::throwOnAccessFailure;
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
