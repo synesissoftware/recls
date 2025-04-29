@@ -385,9 +385,10 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::FindAndCreate");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("%s:%d:%s(flags=%08x, searchDir='%.*s', pattern='%.*s')"), __STLSOFT_FILE_LINE_FUNCTION__
+    recls_debug0_trace_printf_(RECLS_LITERAL("%s:%d:%s(flags=%08x, searchDir='%s' (%zu), rootDirLen=%zu, pattern='%.*s')"), __STLSOFT_FILE_LINE_FUNCTION__
     ,   flags
-    ,   int(rootDirLen), searchDir
+    ,   searchDir, types::traits_type::str_len(searchDir)
+    ,   rootDirLen
     ,   int(patternLen), pattern
     );
 
@@ -423,17 +424,18 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 # elif defined(PLATFORMSTL_OS_IS_UNIX)
     catch (unixstl::readdir_sequence_exception& x)
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-    catch (winstl_ns_qual(access_exception)& x)
+    catch (winstl_ns_qual(winstl_exception)& x)
 # endif
     {
         recls_error_trace_printf_(
-            RECLS_LITERAL("failed to enumerate contents of directory '%.*s': %s")
-        ,   static_cast<int>(rootDirLen), searchDir
+            RECLS_LITERAL("failed to enumerate contents of directory '%s': %s (%ld)")
+        ,   searchDir
 # if defined(RECLS_CHAR_TYPE_IS_WCHAR)
         ,   winstl::a2t(x.what()).c_str()
 # else
         ,   x.what()
 # endif
+        ,   static_cast<signed long int>(x.status_code())
         );
 
 # if 0
@@ -463,7 +465,24 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
         }
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
-        *prc = RECLS_RC_ACCESS_DENIED;
+        switch (x.status_code())
+        {
+        case ERROR_ACCESS_DENIED:
+
+            *prc = RECLS_RC_ACCESS_DENIED;
+            break;
+# ifdef ERROR_FILENAME_EXCED_RANGE
+        case ERROR_FILENAME_EXCED_RANGE:
+
+            *prc = RECLS_RC_PATH_LIMIT_EXCEEDED;
+            break;
+# endif // ERROR_FILENAME_EXCED_RANGE
+        default:
+
+            *prc = RECLS_RC_FAIL;
+            break;
+        }
+
 # endif
 
         node = ss_nullptr_k;
