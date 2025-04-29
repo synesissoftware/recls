@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
          * nul-terminated.
          */
 
-        rc = Recls_SearchProcess(search_dir, Recls_GetWildcardsAll(), flags, example_c_5_process_fn, (void*)home->path.begin);
+        rc = Recls_SearchProcess(search_dir, patterns, flags, example_c_5_process_fn, (void*)home->path.begin);
 
         /* Close the home entry. */
 
