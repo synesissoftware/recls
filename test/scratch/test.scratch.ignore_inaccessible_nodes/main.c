@@ -103,7 +103,7 @@ int main(int argc, char* argv[])
     {
 #ifdef HAS_Pantheios
 
-        recls_log_severities_t severities = {
+        recls_log_severities_t severities = { .severities = {
             PANTHEIOS_SEV_ALERT,
             PANTHEIOS_SEV_ERROR,
             PANTHEIOS_SEV_WARNING,
@@ -112,7 +112,7 @@ int main(int argc, char* argv[])
             -1,
             -1,
             -1,
-        };
+        }};
 #endif /* HAS_Pantheios */
 
 #if defined(_MSC_VER) && \
