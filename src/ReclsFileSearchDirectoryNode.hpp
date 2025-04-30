@@ -222,8 +222,8 @@ private:
     recls_uint32_t const                    m_flags;
     size_t const                            m_rootDirLen;
     path_buffer_type const                  m_searchDir;
-    string_type const                       m_pattern;
-    size_t const                            m_patternLen;
+    string_type const                       m_patterns;
+    size_t const                            m_patternsLen;
     directory_sequence_type                 m_directories;
     directory_sequence_type::const_iterator m_directoriesBegin;
     entry_sequence_type                     m_entries;
