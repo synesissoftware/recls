@@ -66,6 +66,7 @@ ReclsFileSearch::operator new(
     size_t  cb
 ,   size_t  cDirParts
 ,   size_t  cbRootDir
+,   size_t  cbPatterns
 )
 {
     function_scope_trace("ReclsFileSearch::operator new");
@@ -79,6 +80,7 @@ ReclsFileSearch::operator new(
     cb  =   STLSOFT_RAW_OFFSETOF(ReclsFileSearch, data);
     cb  +=  (cDirParts) * sizeof(recls_strptrs_t);
     cb  +=  cbRootDir;
+    cb  +=  cbPatterns;
 
     void* const pv = malloc(cb);
 
@@ -101,6 +103,7 @@ ReclsFileSearch::operator delete(
     void*       pv
 ,   size_t   /* cDirParts */
 ,   size_t   /* cbRootDir */
+,   size_t   /* cbPatterns */
 )
 {
     function_scope_trace("ReclsFileSearch::operator delete");
@@ -231,7 +234,7 @@ ReclsFileSearch::FindAndCreate_(
         try
         {
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
-            si = new(cDirParts, sizeof(char_type) * (1 + searchDirLen)) ReclsFileSearch(cDirParts, searchDir, searchDirLen, patterns, patternsLen, pfn, param, flags, &rc);
+            si = new(cDirParts, sizeof(char_type) * (1 + searchDirLen), sizeof(char_type) * (1 + patternsLen)) ReclsFileSearch(cDirParts, searchDir, searchDirLen, patterns, patternsLen, pfn, param, flags, &rc);
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
         }
         catch (std::bad_alloc&)
@@ -274,6 +277,30 @@ ReclsFileSearch::FindAndCreate_(
 }
 
 ReclsFileSearch::char_type const*
+ReclsFileSearch::emplace_patterns_(
+    size_t              cDirParts
+,   size_t              searchDirLen
+,   char_type const*    patterns
+,   size_t              patternsLen
+)
+{
+    function_scope_trace("ReclsFileSearch::emplace_patterns_");
+
+    // Patterns located after directory parts and patterns
+
+    size_t const        cbOffset    =   0
+                                    +   sizeof(recls_strptrs_t) * cDirParts
+                                    +   sizeof(char_type) * (1 + searchDirLen)
+                                    +   0;
+    char_type* const    s           =   ::stlsoft::sap_cast<char_type*>(&data[cbOffset]);
+
+    types::traits_type::char_copy(s, patterns, patternsLen);
+    s[searchDirLen] = '\0';
+
+    return s;
+}
+
+ReclsFileSearch::char_type const*
 ReclsFileSearch::emplace_rootDir_(
     size_t              cDirParts
 ,   char_type const*    searchDir
@@ -282,8 +309,12 @@ ReclsFileSearch::emplace_rootDir_(
 {
     function_scope_trace("ReclsFileSearch::emplace_rootDir_");
 
-    // Root dir is located after file parts, and before pattern
-    char_type* const s = ::stlsoft::sap_cast<char_type*>(&data[cDirParts * sizeof(recls_strptrs_t)]);
+    // Search-dir located after directory parts, and before patterns
+
+    size_t const        cbOffset    =   0
+                                    +   sizeof(recls_strptrs_t) * cDirParts
+                                    +   0;
+    char_type* const    s           =   ::stlsoft::sap_cast<char_type*>(&data[cbOffset]);
 
     types::traits_type::char_copy(s, searchDir, searchDirLen);
     s[searchDirLen] = '\0';
@@ -305,6 +336,8 @@ ReclsFileSearch::ReclsFileSearch(
     : m_flags(flags)
     , m_searchDir(emplace_rootDir_(cDirParts, searchDir, searchDirLen))
     , m_searchDirLen(searchDirLen)
+    , m_patterns(emplace_patterns_(cDirParts, searchDirLen, patterns, patternsLen))
+    , m_patternsLen(patternsLen)
     , m_pfn(pfn)
     , m_param(param)
 {

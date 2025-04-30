@@ -69,6 +69,7 @@ private: // allocation
         size_t  cb
     ,   size_t  cDirParts
     ,   size_t  cbRootDir
+    ,   size_t  cbPatterns
     );
 #ifdef RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE
     void
@@ -76,6 +77,7 @@ private: // allocation
         void*   pv
     ,   size_t  cDirParts
     ,   size_t  cbRootDir
+    ,   size_t  cbPatterns
     );
 #endif /* RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE */
 public:
@@ -131,6 +133,13 @@ public:
 
 private: // implementation
     char_type const*
+    emplace_patterns_(
+        size_t              cDirParts
+    ,   size_t              searchDirLen
+    ,   char_type const*    patterns
+    ,   size_t              patternsLen
+    );
+    char_type const*
     emplace_rootDir_(
         size_t              cDirParts
     ,   char_type const*    searchDir
@@ -154,6 +163,8 @@ private: // fields
     recls_uint32_t                  m_flags;
     char_type const* const          m_searchDir;
     size_t const                    m_searchDirLen;
+    char_type const* const          m_patterns;
+    size_t const                    m_patternsLen;
     hrecls_progress_fn_t const      m_pfn;
     recls_progress_fn_param_t const m_param;
 
@@ -164,6 +175,7 @@ private: // fields
      *
      *  - root dir;
      *  - directory parts;
+     *  - patterns;
      *  - <padding>;
      *  - `ReclsFileSearch` instance data;
      */
