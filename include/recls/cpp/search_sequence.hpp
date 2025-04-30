@@ -4,7 +4,7 @@
  * Purpose: recls C++ mapping - search_sequence class.
  *
  * Created: 10th September 2003
- * Updated: 28th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MINOR      1
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   14
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       104
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   15
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       105
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -219,47 +219,47 @@ public:
 /// \name Construction
 /// @{
 public:
-    /// Commence a search according to the given search pattern and flags
+    /// Commence a search according to the given search pattern(s) and flags
     search_sequence(
-        char_type const*    pattern
+        char_type const*    patterns
     ,   recls_uint32_t      flags
     );
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
 
-    /// Commence a search according to the given search pattern and flags
+    /// Commence a search according to the given search pattern(s) and flags
     template <typename S>
     search_sequence(
-        S const&        pattern
+        S const&        patterns
     ,   recls_uint32_t  flags
     )
         : m_directory_(1)
         , m_pattern_(1)
         , m_directory(ss_nullptr_k)
-        , m_pattern(copy_or_null(m_pattern_, pattern))
+        , m_pattern(copy_or_null(m_pattern_, patterns))
         , m_flags(flags)
         , m_pfnProgress(ss_nullptr_k)
         , m_paramProgress(ss_nullptr_k)
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
-    /// Commence a search according to the given search pattern and flags, relative to \c directory
+    /// Commence a search according to the given search pattern(s) and flags, relative to \c directory
     search_sequence(
         char_type const*    directory
-    ,   char_type const*    pattern
+    ,   char_type const*    patterns
     ,   recls_uint32_t      flags
     );
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
 
-    /// Commence a search according to the given search pattern and flags, relative to \c directory
+    /// Commence a search according to the given search pattern(s) and flags, relative to \c directory
     template <typename S1, typename S2>
     search_sequence(
         S1 const&       directory
-    ,   S2 const&       pattern
+    ,   S2 const&       patterns
     ,   recls_uint32_t  flags
     )
         : m_directory_(1)
         , m_pattern_(1)
         , m_directory(copy_or_null(m_directory_, directory))
-        , m_pattern(copy_or_null(m_pattern_, pattern))
+        , m_pattern(copy_or_null(m_pattern_, patterns))
         , m_flags(flags)
         , m_pfnProgress(ss_nullptr_k)
         , m_paramProgress(ss_nullptr_k)
@@ -267,11 +267,11 @@ public:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
 
-    /// Commence a search according to the given search pattern and flags, relative to \c directory
+    /// Commence a search according to the given search pattern(s) and flags, relative to \c directory
     template <typename S1, typename S2>
     search_sequence(
         S1 const&                   directory
-    ,   S2 const&                   pattern
+    ,   S2 const&                   patterns
     ,   recls_uint32_t              flags
     ,   hrecls_progress_fn_t        pfnProgress
     ,   recls_progress_fn_param_t   paramProgress
@@ -279,7 +279,7 @@ public:
         : m_directory_(1)
         , m_pattern_(1)
         , m_directory(copy_or_null(m_directory_, directory))
-        , m_pattern(copy_or_null(m_pattern_, pattern))
+        , m_pattern(copy_or_null(m_pattern_, patterns))
         , m_flags(flags)
         , m_pfnProgress(pfnProgress)
         , m_paramProgress(paramProgress)
@@ -447,13 +447,13 @@ is_empty(
 // Construction
 inline
 search_sequence::search_sequence(
-    char_type const*    pattern
+    char_type const*    patterns
 ,   recls_uint32_t      flags
 )
     : m_directory_(1)
     , m_pattern_(1)
     , m_directory(ss_nullptr_k)
-    , m_pattern(copy_or_null(m_pattern_, pattern))
+    , m_pattern(copy_or_null(m_pattern_, patterns))
     , m_flags(flags)
     , m_pfnProgress(ss_nullptr_k)
     , m_paramProgress(ss_nullptr_k)
@@ -462,13 +462,13 @@ search_sequence::search_sequence(
 inline
 search_sequence::search_sequence(
     char_type const*    directory
-,   char_type const*    pattern
+,   char_type const*    patterns
 ,   recls_uint32_t      flags
 )
     : m_directory_(1)
     , m_pattern_(1)
     , m_directory(copy_or_null(m_directory_, directory))
-    , m_pattern(copy_or_null(m_pattern_, pattern))
+    , m_pattern(copy_or_null(m_pattern_, patterns))
     , m_flags(flags)
     , m_pfnProgress(ss_nullptr_k)
     , m_paramProgress(ss_nullptr_k)

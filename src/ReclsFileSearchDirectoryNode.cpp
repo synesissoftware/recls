@@ -328,8 +328,8 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     recls_uint32_t              flags
 ,   recls_char_t const*         searchDir
 ,   size_t                      rootDirLen
-,   recls_char_t const*         pattern
-,   size_t                      patternLen
+,   recls_char_t const*         patterns
+,   size_t                      patternsLen
 ,   hrecls_progress_fn_t        pfn
 ,   recls_progress_fn_param_t   param
 )
@@ -338,8 +338,8 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     , m_flags(flags)
     , m_rootDirLen(rootDirLen)
     , m_searchDir(prepare_searchDir_(searchDir))
-    , m_pattern(pattern)
-    , m_patternLen(patternLen)
+    , m_pattern(patterns)
+    , m_patternLen(patternsLen)
     , m_directories(
             searchDir
 #ifdef RECLS_PLATFORM_IS_WINDOWS // Windows uses findfile_sequence, which takes wildcards
@@ -350,7 +350,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     , m_directoriesBegin(select_iter_if_((flags & RECLS_F_RECURSIVE), m_directories.begin(), m_directories.end()))
     , m_entries(
             searchDir
-        ,   pattern
+        ,   patterns
 #ifdef RECLS_SUPPORTS_MULTIPATTERN_
         ,   types::traits_type::path_separator()
 #endif /* RECLS_SUPPORTS_MULTIPATTERN_ */
@@ -380,8 +380,8 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     recls_uint32_t              flags
 ,   recls_char_t const*         searchDir
 ,   size_t                      rootDirLen
-,   recls_char_t const*         pattern
-,   size_t                      patternLen
+,   recls_char_t const*         patterns
+,   size_t                      patternsLen
 ,   hrecls_progress_fn_t        pfn
 ,   recls_progress_fn_param_t   param
 ,   recls_rc_t*                 prc
@@ -389,11 +389,11 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::FindAndCreate");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("%s:%d:%s(flags=%08x, searchDir='%s' (%zu), rootDirLen=%zu, pattern='%.*s')"), __STLSOFT_FILE_LINE_FUNCTION__
+    recls_debug0_trace_printf_(RECLS_LITERAL("%s:%d:%s(flags=%08x, searchDir='%s' (%zu), rootDirLen=%zu, patterns='%.*s')"), __STLSOFT_FILE_LINE_FUNCTION__
     ,   flags
     ,   searchDir, types::traits_type::str_len(searchDir)
     ,   rootDirLen
-    ,   int(patternLen), pattern
+    ,   int(patternsLen), patterns
     );
 
 
@@ -402,8 +402,8 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     RECLS_ASSERT(ss_nullptr_k != searchDir);
     RECLS_ASSERT(rootDirLen <= types::traits_type::str_len(searchDir));
 
-    RECLS_MESSAGE_ASSERT("patternLen is an advisory, and we still require pattern to not be null", ss_nullptr_k != pattern);
-    RECLS_ASSERT(patternLen == types::traits_type::str_len(pattern));
+    RECLS_MESSAGE_ASSERT("patternsLen is an advisory, and we still require patterns to not be null", ss_nullptr_k != patterns);
+    RECLS_ASSERT(patternsLen == types::traits_type::str_len(patterns));
     RECLS_ASSERT(ss_nullptr_k != prc);
 
 
@@ -413,7 +413,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     try
     {
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-        node = new ReclsFileSearchDirectoryNode(flags, searchDir, rootDirLen, pattern, patternLen, pfn, param);
+        node = new ReclsFileSearchDirectoryNode(flags, searchDir, rootDirLen, patterns, patternsLen, pfn, param);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
     catch (std::bad_alloc&)

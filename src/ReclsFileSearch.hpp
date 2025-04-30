@@ -4,7 +4,7 @@
  * Purpose: Definition of the ReclsFileSearch class.
  *
  * Created: 31st May 2004
- * Updated: 28th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -76,8 +76,8 @@ protected:
         size_t                      cDirParts
     ,   recls_char_t const*         searchDir
     ,   size_t                      searchDirLen
-    ,   recls_char_t const*         pattern
-    ,   size_t                      patternLen
+    ,   recls_char_t const*         patterns
+    ,   size_t                      patternsLen
     ,   hrecls_progress_fn_t        pfn
     ,   recls_progress_fn_param_t   param
     ,   recls_uint32_t              flags
@@ -89,8 +89,8 @@ public:
     //
     // \param searchDir Search directory
     // \param searchDirLen Number of elements in \c searchDir
-    // \param pattern Search pattern
-    // \param patternLen Number of elements in \c pattern
+    // \param patterns Search pattern(s)
+    // \param patternsLen Number of elements in \c patterns
     // \param flags Flags to control the search
     // \param pfn Progress callback function
     // \param param Progress callback function parameter
@@ -100,15 +100,15 @@ public:
     // \pre len(searchDir) == searchDir
     // \pre types::traits_type::is_path_absolute(searchDir, searchDirLen)
     //
-    // \pre nullptr != pattern
-    // \pre len(patternDir) == pattern
+    // \pre nullptr != patterns
+    // \pre len(patterns) == patternsLen
     static
     recls_rc_t
     FindAndCreate(
         recls_char_t const*         searchDir
     ,   size_t                      searchDirLen
-    ,   recls_char_t const*         pattern
-    ,   size_t                      patternLen
+    ,   recls_char_t const*         patterns
+    ,   size_t                      patternsLen
     ,   recls_uint32_t              flags
     ,   hrecls_progress_fn_t        pfn
     ,   recls_progress_fn_param_t   param
@@ -132,8 +132,8 @@ private: // implementation
     FindAndCreate_(
         recls_char_t const*         searchDir
     ,   size_t                      searchDirLen
-    ,   recls_char_t const*         pattern
-    ,   size_t                      patternLen
+    ,   recls_char_t const*         patterns
+    ,   size_t                      patternsLen
     ,   recls_uint32_t              flags
     ,   hrecls_progress_fn_t        pfn
     ,   recls_progress_fn_param_t   param

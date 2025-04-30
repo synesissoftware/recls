@@ -4,7 +4,7 @@
  * Purpose: ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 28th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -119,8 +119,8 @@ protected: // Not private, or GCC whines
         recls_uint32_t              flags
     ,   recls_char_t const*         rootDir
     ,   size_t                      rootDirLen
-    ,   recls_char_t const*         pattern
-    ,   size_t                      patternLen
+    ,   recls_char_t const*         patterns
+    ,   size_t                      patternsLen
     ,   hrecls_progress_fn_t        pfn
     ,   recls_progress_fn_param_t   param
     );
@@ -137,8 +137,8 @@ public:
         recls_uint32_t              flags
     ,   recls_char_t const*         rootDir
     ,   size_t                      rootDirLen
-    ,   recls_char_t const*         pattern
-    ,   size_t                      patternLen
+    ,   recls_char_t const*         patterns
+    ,   size_t                      patternsLen
     ,   hrecls_progress_fn_t        pfn
     ,   recls_progress_fn_param_t   param
     ,   recls_rc_t*                 prc

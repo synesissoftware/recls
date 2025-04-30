@@ -4,7 +4,7 @@
  * Purpose: Traits for recls C++ mapping.
  *
  * Created: 25th March 2004
- * Updated: 28th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MAJOR       5
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MINOR       1
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    5
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        30
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    6
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        31
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/traits.hpp
@@ -119,11 +119,11 @@ public:
 public:
 #if defined(RECLS_API_FTP)
     /// traits-form of Recls_SearchFtp()
-    static recls_rc_t       SearchFtp(char_type const* host, char_type const* username, char_type const* password, char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_t* phSrch);
+    static recls_rc_t       SearchFtp(char_type const* host, char_type const* username, char_type const* password, char_type const* searchRoot, char_type const* patterns, recls_uint32_t flags, hrecls_t* phSrch);
 #endif /* RECLS_API_FTP */
 
     /// traits-form of Recls_Search()
-    static recls_rc_t       Search(char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_t* phSrch);
+    static recls_rc_t       Search(char_type const* searchRoot, char_type const* patterns, recls_uint32_t flags, hrecls_t* phSrch);
 
     /// traits-form of Recls_GetDetails()
     static recls_rc_t       GetDetails(hrecls_t hSrch, entry_type *pinfo);
@@ -176,20 +176,20 @@ public:
 
 public:
 #if defined(RECLS_API_FTP)
-    static recls_rc_t SearchFtp(char_type const* host, char_type const* username, char_type const* password, char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_t* phSrch)
+    static recls_rc_t SearchFtp(char_type const* host, char_type const* username, char_type const* password, char_type const* searchRoot, char_type const* patterns, recls_uint32_t flags, hrecls_t* phSrch)
     {
-        return Recls_SearchFtp(host, username, password, searchRoot, pattern, flags, phSrch);
+        return Recls_SearchFtp(host, username, password, searchRoot, patterns, flags, phSrch);
     }
 #endif /* RECLS_API_FTP */
 
-    static recls_rc_t Search(char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_t* phSrch)
+    static recls_rc_t Search(char_type const* searchRoot, char_type const* patterns, recls_uint32_t flags, hrecls_t* phSrch)
     {
-        return Recls_Search(searchRoot, pattern, flags, phSrch);
+        return Recls_Search(searchRoot, patterns, flags, phSrch);
     }
 
-    static recls_rc_t SearchFeedback(char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_progress_fn_t pfn, recls_progress_fn_param_t param, hrecls_t* phSrch)
+    static recls_rc_t SearchFeedback(char_type const* searchRoot, char_type const* patterns, recls_uint32_t flags, hrecls_progress_fn_t pfn, recls_progress_fn_param_t param, hrecls_t* phSrch)
     {
-        return Recls_SearchFeedback(searchRoot, pattern, flags, pfn, param, phSrch);
+        return Recls_SearchFeedback(searchRoot, patterns, flags, pfn, param, phSrch);
     }
 
     static recls_rc_t GetDetails(hrecls_t hSrch, entry_type *pinfo)
@@ -267,20 +267,20 @@ public:
 
 public:
 #if defined(RECLS_API_FTP)
-    static recls_rc_t SearchFtp(char_type const* host, char_type const* username, char_type const* password, char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_t* phSrch)
+    static recls_rc_t SearchFtp(char_type const* host, char_type const* username, char_type const* password, char_type const* searchRoot, char_type const* patterns, recls_uint32_t flags, hrecls_t* phSrch)
     {
-        return Recls_SearchFtp(host, username, password, searchRoot, pattern, flags, phSrch);
+        return Recls_SearchFtp(host, username, password, searchRoot, patterns, flags, phSrch);
     }
 #endif /* RECLS_API_FTP */
 
-    static recls_rc_t Search(char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_t* phSrch)
+    static recls_rc_t Search(char_type const* searchRoot, char_type const* patterns, recls_uint32_t flags, hrecls_t* phSrch)
     {
-        return Recls_Search(searchRoot, pattern, flags, phSrch);
+        return Recls_Search(searchRoot, patterns, flags, phSrch);
     }
 
-    static recls_rc_t SearchFeedback(char_type const* searchRoot, char_type const* pattern, recls_uint32_t flags, hrecls_progress_fn_t pfn, recls_progress_fn_param_t param, hrecls_t* phSrch)
+    static recls_rc_t SearchFeedback(char_type const* searchRoot, char_type const* patterns, recls_uint32_t flags, hrecls_progress_fn_t pfn, recls_progress_fn_param_t param, hrecls_t* phSrch)
     {
-        return Recls_SearchFeedback(searchRoot, pattern, flags, pfn, param, phSrch);
+        return Recls_SearchFeedback(searchRoot, patterns, flags, pfn, param, phSrch);
     }
 
     static recls_rc_t GetDetails(hrecls_t hSrch, entry_type *pinfo)

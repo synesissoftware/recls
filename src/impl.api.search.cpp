@@ -646,7 +646,7 @@ recls_rc_t
 Recls_SearchProcessFeedback_(
     /* [in] */ char const*                  function
 ,   /* [in] */ recls_char_t const*          searchRoot
-,   /* [in] */ recls_char_t const*          pattern
+,   /* [in] */ recls_char_t const*          patterns
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_process_fn_t          pfn
 ,   /* [in] */ recls_process_fn_param_t     param
@@ -659,7 +659,7 @@ Recls_SearchProcessFeedback_(
     recls_debug0_trace_printf_(
         RECLS_LITERAL("Recls_SearchProcessFeedback_(??, %s, %s, 0x%08x, %p, %p, %p, %p)")
     ,   stlsoft::c_str_ptr(searchRoot)
-    ,   stlsoft::c_str_ptr(pattern)
+    ,   stlsoft::c_str_ptr(patterns)
     ,   flags
     ,   STLSOFT_C_CAST(void*, pfn)
     ,   param
@@ -671,7 +671,7 @@ Recls_SearchProcessFeedback_(
     recls_rc_t  rc  =   Recls_SearchFeedback_(
                             function
                         ,   searchRoot
-                        ,   pattern
+                        ,   patterns
                         ,   flags
                         ,   pfnProgress
                         ,   paramProgress

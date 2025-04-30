@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 29th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      24
 # define RECLS_VER_RECLS_H_RECLS_REVISION   1
-# define RECLS_VER_RECLS_H_RECLS_EDIT       150
+# define RECLS_VER_RECLS_H_RECLS_EDIT       151
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -929,7 +929,7 @@ Recls1_FileSystem_GetWildcardsAll(void);
  */
 /** @{ */
 
-/** Searches a given directory for matching files of the given pattern
+/** Searches a given directory for matching files of the given pattern(s)
  *
  * \ingroup group__recls
  *
@@ -938,7 +938,7 @@ Recls1_FileSystem_GetWildcardsAll(void);
  *   RECLS_F_USE_TILDE_ON_NO_SEARCHROOT
  *   is specified, in which case the calling identity's home directory is
  *   assumed.
- * \param pattern The search pattern, e.g. "*.c". NULL means "all files". ""
+ * \param patterns The search pattern(s), e.g. "*.c". NULL means "all files". ""
  *   means no files.
  * \param flags A combination of 0 or more
  *   RECLS_FLAG values.
@@ -951,19 +951,19 @@ Recls1_FileSystem_GetWildcardsAll(void);
 RECLS_API
 Recls_Search(
     /* [in] */ recls_char_t const*  searchRoot
-,   /* [in] */ recls_char_t const*  pattern
+,   /* [in] */ recls_char_t const*  patterns
 ,   /* [in] */ recls_uint32_t       flags
 ,   /* [out] */ hrecls_t*           phSrch
 );
 
-/** Searches a given directory for matching files of the given pattern, calling back
+/** Searches a given directory for matching files of the given pattern(s), calling back
  * on the given progress function pointer to inform the caller as each (sub-)directory
  * is traversed.
  *
  * \ingroup group__recls
  *
  * \param searchRoot The directory representing the root of the search
- * \param pattern The search pattern, e.g. "*.c"
+ * \param patterns The search pattern(s), e.g. "*.c"
  * \param flags A combination of 0 or more
  *   RECLS_FLAG values.
  * \param pfn The function that will be invoked for each directory traversed
@@ -975,7 +975,7 @@ Recls_Search(
 RECLS_API
 Recls_SearchFeedback(
     /* [in] */ recls_char_t const*          searchRoot
-,   /* [in] */ recls_char_t const*          pattern
+,   /* [in] */ recls_char_t const*          patterns
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_progress_fn_t         pfn
 ,   /* [in] */ recls_progress_fn_param_t    param
@@ -985,7 +985,7 @@ Recls_SearchFeedback(
 RECLS_API
 Recls_SearchProcessFeedback(
     /* [in] */ recls_char_t const*          searchRoot
-,   /* [in] */ recls_char_t const*          pattern
+,   /* [in] */ recls_char_t const*          patterns
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_process_fn_t          pfn
 ,   /* [in] */ recls_process_fn_param_t     param
@@ -993,12 +993,12 @@ Recls_SearchProcessFeedback(
 ,   /* [out] */ recls_progress_fn_param_t   paramProgress
 );
 
-/** Searches a given directory for matching files of the given pattern, and processes them according to the given process function
+/** Searches a given directory for matching files of the given pattern(s), and processes them according to the given process function
  *
  * \ingroup group__recls
  *
  * \param searchRoot The directory representing the root of the search
- * \param pattern The search pattern, e.g. "*.c"
+ * \param patterns The search pattern(s), e.g. "*.c"
  * \param flags A combination of 0 or more
  *   RECLS_FLAG values.
  * \param pfn The processing function
@@ -1012,7 +1012,7 @@ Recls_SearchProcessFeedback(
 RECLS_API
 Recls_SearchProcess(
     /* [in] */ recls_char_t const*      searchRoot
-,   /* [in] */ recls_char_t const*      pattern
+,   /* [in] */ recls_char_t const*      patterns
 ,   /* [in] */ recls_uint32_t           flags
 ,   /* [in] */ hrecls_process_fn_t      pfn
 ,   /* [in] */ recls_process_fn_param_t param
