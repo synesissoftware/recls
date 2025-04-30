@@ -295,7 +295,7 @@ ReclsFileSearch::emplace_patterns_(
     char_type* const    s           =   ::stlsoft::sap_cast<char_type*>(&data[cbOffset]);
 
     types::traits_type::char_copy(s, patterns, patternsLen);
-    s[searchDirLen] = '\0';
+    s[patternsLen] = '\0';
 
     return s;
 }
