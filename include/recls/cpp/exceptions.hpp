@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - exception classes.
  *
  * Created: 10th September 2003
- * Updated: 30th December 2023
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,10 +52,11 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MAJOR       4
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       2
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    1
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        48
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       3
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    0
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        50
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -69,6 +70,7 @@
 
 #include <stdexcept>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -79,6 +81,7 @@ namespace recls
 namespace cpp
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -119,7 +122,7 @@ public:
     /// \param rc The result code to be associated with the exception.
     /// \param context The context (message) to be associated with the exception.
     /// \param path The path to be associated with the exception.
-    /// \param patterns The patterns to be associated with the exception.
+    /// \param patterns The pattern(s) to be associated with the exception.
     /// \param flags The flags to be associated with the exception.
     recls_exception(
         recls_rc_t          rc
@@ -164,7 +167,16 @@ public:
     {
         return m_path;
     }
-    /// The user-supplied patterns associated with the exception
+    /// [DEPRECATED]
+    ///
+    /// The user-supplied pattern(s) associated with the exception
+    ///
+    /// \deprecated This is deprecated in favour of get_patterns().
+    string_type get_pattern() const
+    {
+        return m_patterns;
+    }
+    /// The user-supplied pattern(s) associated with the exception
     string_type get_patterns() const
     {
         return m_patterns;
@@ -267,6 +279,7 @@ public: // Construction
         : parent_class_type(rc, context, path, patterns, flags)
     {}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

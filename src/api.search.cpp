@@ -4,7 +4,7 @@
  * Purpose: Main (platform-independent) implementation file for the recls API.
  *
  * Created: 16th August 2003
- * Updated: 28th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -76,7 +76,7 @@ using ::recls::impl::recls_debug0_trace_printf_;
 
 RECLS_API Recls_Search(
     recls_char_t const* searchRoot
-,   recls_char_t const* pattern
+,   recls_char_t const* patterns
 ,   recls_uint32_t      flags
 ,   hrecls_t*           phSrch
 )
@@ -102,14 +102,14 @@ RECLS_API Recls_Search(
     recls_debug0_trace_printf_(
         RECLS_LITERAL("Recls_Search(%s, %s, %08x, ...)")
     ,   stlsoft::c_str_ptr(searchRoot)
-    ,   stlsoft::c_str_ptr(pattern)
+    ,   stlsoft::c_str_ptr(patterns)
     ,   flags
     );
 
     return Recls_SearchFeedback_(
         "Recls_Search"
     ,   searchRoot
-    ,   pattern
+    ,   patterns
     ,   flags
     ,   ss_nullptr_k
     ,   ss_nullptr_k
@@ -119,7 +119,7 @@ RECLS_API Recls_Search(
 
 RECLS_API Recls_SearchFeedback(
     recls_char_t const*         searchRoot
-,   recls_char_t const*         pattern
+,   recls_char_t const*         patterns
 ,   recls_uint32_t              flags
 ,   hrecls_progress_fn_t        pfn
 ,   recls_progress_fn_param_t   param
@@ -131,7 +131,7 @@ RECLS_API Recls_SearchFeedback(
     recls_debug0_trace_printf_(
         RECLS_LITERAL("Recls_SearchFeedback(%s, %s, 0x%04x, ..., %p, ...)")
     ,   stlsoft::c_str_ptr(searchRoot)
-    ,   stlsoft::c_str_ptr(pattern)
+    ,   stlsoft::c_str_ptr(patterns)
     ,   flags
     ,   param
     );
@@ -139,7 +139,7 @@ RECLS_API Recls_SearchFeedback(
     return Recls_SearchFeedback_(
         "Recls_SearchFeedback"
     ,   searchRoot
-    ,   pattern
+    ,   patterns
     ,   flags
     ,   pfn
     ,   param
@@ -168,7 +168,7 @@ Recls_SearchClose(hrecls_t hSrch)
 
 RECLS_API Recls_SearchProcessFeedback(
     recls_char_t const*         searchRoot
-,   recls_char_t const*         pattern
+,   recls_char_t const*         patterns
 ,   recls_uint32_t              flags
 ,   hrecls_process_fn_t         pfn
 ,   recls_process_fn_param_t    param
@@ -181,7 +181,7 @@ RECLS_API Recls_SearchProcessFeedback(
     recls_debug0_trace_printf_(
         RECLS_LITERAL("Recls_SearchProcessFeedback(%s, %s, 0x%04x, ..., %p, ..., %p)")
     ,   stlsoft::c_str_ptr(searchRoot)
-    ,   stlsoft::c_str_ptr(pattern)
+    ,   stlsoft::c_str_ptr(patterns)
     ,   flags
     ,   param
     ,   paramProgress
@@ -190,7 +190,7 @@ RECLS_API Recls_SearchProcessFeedback(
     return Recls_SearchProcessFeedback_(
         "Recls_SearchProcessFeedback"
     ,   searchRoot
-    ,   pattern
+    ,   patterns
     ,   flags
     ,   pfn
     ,   param
@@ -201,7 +201,7 @@ RECLS_API Recls_SearchProcessFeedback(
 
 RECLS_API Recls_SearchProcess(
     recls_char_t const*         searchRoot
-,   recls_char_t const*         pattern
+,   recls_char_t const*         patterns
 ,   recls_uint32_t              flags
 ,   hrecls_process_fn_t         pfn
 ,   recls_process_fn_param_t    param
@@ -212,7 +212,7 @@ RECLS_API Recls_SearchProcess(
     recls_debug0_trace_printf_(
         RECLS_LITERAL("Recls_SearchProcess(%s, %s, 0x%04x, ..., %p)")
     ,   stlsoft::c_str_ptr(searchRoot)
-    ,   stlsoft::c_str_ptr(pattern)
+    ,   stlsoft::c_str_ptr(patterns)
     ,   flags
     ,   param
     );
@@ -220,7 +220,7 @@ RECLS_API Recls_SearchProcess(
     return Recls_SearchProcessFeedback_(
         "Recls_SearchProcess"
     ,   searchRoot
-    ,   pattern
+    ,   patterns
     ,   flags
     ,   pfn
     ,   param

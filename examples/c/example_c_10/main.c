@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
 #endif /* HAS_Pantheios */
 {
     /* Declare a search handle, define search directory as named or current,
-     * pattern matching all names, flags for recursive search of devices,
+     * pattern(s) matching all names, flags for recursive search of devices,
      * and start a search.
      */
     hrecls_t        hSrch;

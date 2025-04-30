@@ -4,11 +4,11 @@
  * Purpose: Definition of the ReclsSearch and ReclsSearchDirectoryNode classes.
  *
  * Created: 15th August 2003
- * Updated: 30th December 2023
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -33,6 +33,7 @@
 
 #include <recls/recls.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler / language features
  *
@@ -48,6 +49,7 @@
 # define RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -58,6 +60,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * interfaces
@@ -124,6 +127,7 @@ protected:
     recls_rc_t                  m_lastError;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -132,8 +136,6 @@ protected:
 } /* namespace impl */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !RECLS_INCL_HPP_RECLS_SEARCH */
 
