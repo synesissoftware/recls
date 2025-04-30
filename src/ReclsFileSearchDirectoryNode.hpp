@@ -81,6 +81,7 @@ class ReclsFileSearchDirectoryNode
 {
 public:
     typedef ReclsFileSearchDirectoryNode                    class_type;
+    typedef types::char_type                                char_type;
     typedef types::path_buffer_type                         path_buffer_type;
     typedef types::string_type                              string_type;
 private:
@@ -222,7 +223,7 @@ private:
     recls_uint32_t const                    m_flags;
     size_t const                            m_rootDirLen;
     path_buffer_type const                  m_searchDir;
-    string_type const                       m_patterns;
+    char_type const* const                  m_patterns;
     size_t const                            m_patternsLen;
     directory_sequence_type                 m_directories;
     directory_sequence_type::const_iterator m_directoriesBegin;

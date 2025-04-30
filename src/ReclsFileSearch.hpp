@@ -60,23 +60,35 @@ class ReclsFileSearch
 {
 public: // types
     typedef ReclsFileSearch                                 class_type;
-
-// Allocation
+    typedef recls_char_t                                    char_type;
 private:
-    void* operator new(size_t cb, size_t cDirParts, size_t cbRootDir);
+
+private: // allocation
+    void*
+    operator new(
+        size_t  cb
+    ,   size_t  cDirParts
+    ,   size_t  cbRootDir
+    ,   size_t  cbPatterns
+    );
 #ifdef RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE
-    void operator delete(void* pv, size_t cDirParts, size_t cbRootDir);
+    void
+    operator delete(
+        void*   pv
+    ,   size_t  cDirParts
+    ,   size_t  cbRootDir
+    ,   size_t  cbPatterns
+    );
 #endif /* RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE */
 public:
     void operator delete(void* pv);
 
-// Construction
-protected:
+protected: // construction
     ReclsFileSearch(
         size_t                      cDirParts
-    ,   recls_char_t const*         searchDir
+    ,   char_type const*            searchDir
     ,   size_t                      searchDirLen
-    ,   recls_char_t const*         patterns
+    ,   char_type const*            patterns
     ,   size_t                      patternsLen
     ,   hrecls_progress_fn_t        pfn
     ,   recls_progress_fn_param_t   param
@@ -87,9 +99,9 @@ protected:
 public:
     // TBC
     //
-    // \param searchDir Search directory
+    // \param searchDir Search directory. May not be NULL
     // \param searchDirLen Number of elements in \c searchDir
-    // \param patterns Search pattern(s)
+    // \param patterns Search pattern(s). May not be NULL
     // \param patternsLen Number of elements in \c patterns
     // \param flags Flags to control the search
     // \param pfn Progress callback function
@@ -105,9 +117,9 @@ public:
     static
     recls_rc_t
     FindAndCreate(
-        recls_char_t const*         searchDir
+        char_type const*            searchDir
     ,   size_t                      searchDirLen
-    ,   recls_char_t const*         patterns
+    ,   char_type const*            patterns
     ,   size_t                      patternsLen
     ,   recls_uint32_t              flags
     ,   hrecls_progress_fn_t        pfn
@@ -120,19 +132,26 @@ private:
 public:
 
 private: // implementation
-    recls_char_t const*
-    calc_rootDir_(
+    char_type const*
+    emplace_patterns_(
         size_t              cDirParts
-    ,   recls_char_t const* searchDir
+    ,   size_t              searchDirLen
+    ,   char_type const*    patterns
+    ,   size_t              patternsLen
+    );
+    char_type const*
+    emplace_rootDir_(
+        size_t              cDirParts
+    ,   char_type const*    searchDir
     ,   size_t              searchDirLen
     );
 
     static
     recls_rc_t
     FindAndCreate_(
-        recls_char_t const*         searchDir
+        char_type const*            searchDir
     ,   size_t                      searchDirLen
-    ,   recls_char_t const*         patterns
+    ,   char_type const*            patterns
     ,   size_t                      patternsLen
     ,   recls_uint32_t              flags
     ,   hrecls_progress_fn_t        pfn
@@ -142,8 +161,10 @@ private: // implementation
 
 private: // fields
     recls_uint32_t                  m_flags;
-    recls_char_t const* const       m_searchDir;
+    char_type const* const          m_searchDir;
     size_t const                    m_searchDirLen;
+    char_type const* const          m_patterns;
+    size_t const                    m_patternsLen;
     hrecls_progress_fn_t const      m_pfn;
     recls_progress_fn_param_t const m_param;
 
@@ -152,8 +173,11 @@ private: // fields
     /*
      * The data comprises:
      *
-     *  - root dir
-     *
+     *  - root dir;
+     *  - directory parts;
+     *  - patterns;
+     *  - <padding>;
+     *  - `ReclsFileSearch` instance data;
      */
 };
 
