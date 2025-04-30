@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        recls_log_severities_t severities = {
+        recls_log_severities_t severities = { .severities = {
             PANTHEIOS_SEV_ALERT,
             PANTHEIOS_SEV_ERROR,
             PANTHEIOS_SEV_WARNING,
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
             -1,
             -1,
             -1,
-        };
+        }};
 
         Recls_SetApiLogFunction(recls_log_to_pantheios, 0, &severities);
 
