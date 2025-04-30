@@ -60,7 +60,13 @@ namespace impl
  * ReclsFileSearch
  */
 
-inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t cbRootDir)
+inline
+void*
+ReclsFileSearch::operator new(
+    size_t  cb
+,   size_t  cDirParts
+,   size_t  cbRootDir
+)
 {
     function_scope_trace("ReclsFileSearch::operator new");
 
@@ -74,7 +80,7 @@ inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t c
     cb  +=  (cDirParts) * sizeof(recls_strptrs_t);
     cb  +=  cbRootDir;
 
-    void* pv = malloc(cb);
+    void* const pv = malloc(cb);
 
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
     if (ss_nullptr_k == pv)
@@ -87,10 +93,15 @@ inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t c
 
     return pv;
 }
-
 #ifdef RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE
 
-inline void ReclsFileSearch::operator delete(void* pv, size_t /* cDirParts */, size_t /* cbRootDir */)
+inline
+void
+ReclsFileSearch::operator delete(
+    void*       pv
+,   size_t   /* cDirParts */
+,   size_t   /* cbRootDir */
+)
 {
     function_scope_trace("ReclsFileSearch::operator delete");
 
@@ -98,7 +109,9 @@ inline void ReclsFileSearch::operator delete(void* pv, size_t /* cDirParts */, s
 }
 #endif /* RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE */
 
-inline void ReclsFileSearch::operator delete(void* pv)
+inline
+void
+ReclsFileSearch::operator delete(void* pv)
 {
     function_scope_trace("ReclsFileSearch::operator delete");
 
