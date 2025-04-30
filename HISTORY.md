@@ -9,6 +9,7 @@
  * Added **example_9** (which searches for sockets);
  * Adjusted logging threshold constants in order to be compatible with Pantheios (as configured via `Recls_SetApiLogFunction()`);
  * Reduction in memory use (by sharing patterns string rather than replicating at every directory node);
+ * **prepare_cmake.sh**: added '--no-b64', '--no-pantheios', '--no-shwild' flags;
  * Various tidyings and consistency fixes;
 
 
