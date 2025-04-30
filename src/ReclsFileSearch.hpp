@@ -99,9 +99,9 @@ protected: // construction
 public:
     // TBC
     //
-    // \param searchDir Search directory
+    // \param searchDir Search directory. May not be NULL
     // \param searchDirLen Number of elements in \c searchDir
-    // \param patterns Search pattern(s)
+    // \param patterns Search pattern(s). May not be NULL
     // \param patternsLen Number of elements in \c patterns
     // \param flags Flags to control the search
     // \param pfn Progress callback function

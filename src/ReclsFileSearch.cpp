@@ -366,7 +366,7 @@ ReclsFileSearch::ReclsFileSearch(
 #endif /* platform*/
 
     // Now start the search
-    m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(m_flags, searchDir, m_searchDirLen, patterns, patternsLen, pfn, param, prc);
+    m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(m_flags, m_searchDir, m_searchDirLen, m_patterns, m_patternsLen, m_pfn, m_param, prc);
 }
 
 ReclsFileSearch::~ReclsFileSearch() STLSOFT_NOEXCEPT
