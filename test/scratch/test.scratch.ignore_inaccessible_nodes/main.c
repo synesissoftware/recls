@@ -1,3 +1,13 @@
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    test.scratch.cpp_api.cpp
+ *
+ * Purpose: Scratch-test exercising the skipping of inaccessible nodes.
+ *
+ * Created: 28th April 2025
+ * Updated: 29th April 2025
+ *
+ * ////////////////////////////////////////////////////////////////////// */
+
 
 /* recls header files */
 #include <recls/recls.h>
