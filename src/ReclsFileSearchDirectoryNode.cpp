@@ -653,15 +653,20 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
         if (m_flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
         {
-            typedef int (RECLS_CALLCONV_STDDECL *stdcall_progress_fn_t)(recls_char_t const*
-                                                                    ,   size_t
-                                                                    ,   recls_progress_fn_param_t
-                                                                    ,   void*
-                                                                    ,   recls_uint32_t);
+            typedef int (RECLS_CALLCONV_STDDECL *stdcall_progress_fn_t)
+                (recls_char_t const*
+            ,   size_t
+            ,   recls_progress_fn_param_t
+            ,   void*
+            ,   recls_uint32_t
+            );
 
-            stdcall_progress_fn_t   pfn_stdcall =   (stdcall_progress_fn_t)m_pfn;
+            stdcall_progress_fn_t pfn_stdcall = (stdcall_progress_fn_t)m_pfn;
 
-            (*pfn_stdcall)(m_searchDir.data(), m_searchDir.size(), m_param, ss_nullptr_k, 0);
+            if (0 == (*pfn_stdcall)(m_searchDir.data(), m_searchDir.size(), m_param, ss_nullptr_k, 0))
+            {
+                return RECLS_RC_USER_CANCELLED_SEARCH;
+            }
         }
         else
 #endif /* platform */
