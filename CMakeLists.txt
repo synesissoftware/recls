@@ -171,17 +171,20 @@ endif()
 # ############################
 # Pantheios
 
-if(BUILD_TESTING)
+if(NOT (CMAKE_NO_PANTHEIOS))
 
-	find_package(Pantheios QUIET)
+	if(BUILD_TESTING)
 
-	if(Pantheios_FOUND)
+		find_package(Pantheios QUIET)
 
-		message("-- CMake package Pantheios found (version ${Pantheios_VERSION})")
+		if(Pantheios_FOUND)
 
-		add_compile_definitions(HAS_Pantheios)
-	endif(Pantheios_FOUND)
-endif(BUILD_TESTING)
+			message("-- CMake package Pantheios found (version ${Pantheios_VERSION})")
+
+			add_compile_definitions(HAS_Pantheios)
+		endif(Pantheios_FOUND)
+	endif(BUILD_TESTING)
+endif()
 
 
 # ############################
