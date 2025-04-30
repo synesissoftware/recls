@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  23rd February 2025
+# Updated:  30th April 2025
 #
 # ######################################################################## #
 
@@ -175,6 +175,8 @@ if(BUILD_TESTING)
 	if(Pantheios_FOUND)
 
 		message("-- CMake package Pantheios found (version ${Pantheios_VERSION})")
+
+		add_compile_definitions(HAS_Pantheios)
 	endif(Pantheios_FOUND)
 endif(BUILD_TESTING)
 

@@ -1,8 +1,8 @@
-define_example_program(test.scratch.ignore_inaccessible_nodes main.c)
+define_example_program(example_c_9 main.c)
 
 if(Pantheios_FOUND)
 
-	target_link_libraries(test.scratch.ignore_inaccessible_nodes
+	target_link_libraries(example_c_9
 		PRIVATE
 			Pantheios::Pantheios.core
 			Pantheios::Pantheios.fe.all
