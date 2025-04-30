@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 30th April 2025
+ * Updated: 1st May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -699,22 +699,11 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         {
             do
             {
-#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
-# pragma message(_sscomp_fileline_message("TODO: Merge these once we've got findfile_sequence supporting fullPath"))
-#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
-
-//              RECLS_ASSERT('\0' != (*m_directoriesBegin).get_path()[0]);
+                RECLS_ASSERT(m_directoriesBegin != m_directories.end());
 
                 m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                     m_flags
-#if 0
-#elif defined(RECLS_PLATFORM_IS_UNIX)
-                // The way glob_sequence works
-                ,   *m_directoriesBegin
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
-                // The way basic_findfile_sequence<> works
-                ,   (*m_directoriesBegin).get_path()
-#endif /* RECLS_PLATFORM_IS_??? */
+                ,   stlsoft::c_str_ptr(*m_directoriesBegin)
                 ,   m_rootDirLen
                 ,   stlsoft::c_str_ptr(m_patterns)
                 ,   m_patternsLen
@@ -863,12 +852,7 @@ ReclsFileSearchDirectoryNode::GetNext()
 
                     m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                         m_flags
-#if 0
-#elif defined(RECLS_PLATFORM_IS_UNIX)
-                    ,   *m_directoriesBegin
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
-                    ,   (*m_directoriesBegin).get_path()
-#endif /* RECLS_PLATFORM_IS_??? */
+                    ,   stlsoft::c_str_ptr(*m_directoriesBegin)
                     ,   m_rootDirLen
                     ,   stlsoft::c_str_ptr(m_patterns)
                     ,   m_patternsLen
