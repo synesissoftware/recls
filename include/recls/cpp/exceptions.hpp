@@ -8,7 +8,7 @@
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,10 +52,11 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MAJOR       4
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       2
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    1
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        48
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       3
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    0
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        49
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -69,6 +70,7 @@
 
 #include <stdexcept>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -79,6 +81,7 @@ namespace recls
 namespace cpp
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -110,7 +113,7 @@ public:
         , m_rc(rc)
         , m_context()
         , m_path()
-        , m_patterns()
+        , m_pattern()
         , m_flags(0)
     {}
     /// Constructs an exception from the given error code, message,
@@ -119,20 +122,20 @@ public:
     /// \param rc The result code to be associated with the exception.
     /// \param context The context (message) to be associated with the exception.
     /// \param path The path to be associated with the exception.
-    /// \param patterns The patterns to be associated with the exception.
+    /// \param pattern The pattern to be associated with the exception.
     /// \param flags The flags to be associated with the exception.
     recls_exception(
         recls_rc_t          rc
     ,   char const*         context
     ,   recls_char_t const* path
-    ,   recls_char_t const* patterns
+    ,   recls_char_t const* pattern
     ,   int                 flags
     )
         : parent_class_type(create_message_(rc, context, path, flags))
         , m_rc(rc)
         , m_context(stlsoft::c_str_ptr(context))
         , m_path(stlsoft::c_str_ptr(path))
-        , m_patterns(stlsoft::c_str_ptr(patterns))
+        , m_pattern(stlsoft::c_str_ptr(pattern))
         , m_flags(0)
     {}
 #if 0 || \
@@ -164,10 +167,19 @@ public:
     {
         return m_path;
     }
+    /// The user-supplied pattern associated with the exception
+    string_type get_pattern() const
+    {
+        return m_pattern;
+    }
+    /// [DEPRECATED]
+    ///
     /// The user-supplied patterns associated with the exception
+    ///
+    /// \deprecated This is deprecated in favour of get_pattern().
     string_type get_patterns() const
     {
-        return m_patterns;
+        return m_pattern;
     }
     /// The user-supplied flags associated with the exception
     int get_flags() const
@@ -236,7 +248,7 @@ private:
     recls_rc_t const          m_rc;
     message_string_type const m_context;
     string_type const         m_path;
-    string_type const         m_patterns;
+    string_type const         m_pattern;
     int const                 m_flags;
 /// @}
 };
@@ -261,12 +273,13 @@ public: // Construction
         recls_rc_t          rc
     ,   char const*         context
     ,   recls_char_t const* path
-    ,   recls_char_t const* patterns
+    ,   recls_char_t const* pattern
     ,   int                 flags
     )
-        : parent_class_type(rc, context, path, patterns, flags)
+        : parent_class_type(rc, context, path, pattern, flags)
     {}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
