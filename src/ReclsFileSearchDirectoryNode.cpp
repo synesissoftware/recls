@@ -338,8 +338,8 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     , m_flags(flags)
     , m_rootDirLen(rootDirLen)
     , m_searchDir(prepare_searchDir_(searchDir))
-    , m_pattern(patterns)
-    , m_patternLen(patternsLen)
+    , m_patterns(patterns)
+    , m_patternsLen(patternsLen)
     , m_directories(
             searchDir
 #ifdef RECLS_PLATFORM_IS_WINDOWS // Windows uses findfile_sequence, which takes wildcards
@@ -716,8 +716,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
                 ,   (*m_directoriesBegin).get_path()
 #endif /* RECLS_PLATFORM_IS_??? */
                 ,   m_rootDirLen
-                ,   stlsoft::c_str_ptr(m_pattern)
-                ,   m_patternLen
+                ,   stlsoft::c_str_ptr(m_patterns)
+                ,   m_patternsLen
                 ,   m_pfn
                 ,   m_param
                 ,   &rc
@@ -870,8 +870,8 @@ ReclsFileSearchDirectoryNode::GetNext()
                     ,   (*m_directoriesBegin).get_path()
 #endif /* RECLS_PLATFORM_IS_??? */
                     ,   m_rootDirLen
-                    ,   stlsoft::c_str_ptr(m_pattern)
-                    ,   m_patternLen
+                    ,   stlsoft::c_str_ptr(m_patterns)
+                    ,   m_patternsLen
                     ,   m_pfn
                     ,   m_param
                     ,   &rc
