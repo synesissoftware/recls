@@ -106,7 +106,7 @@ private:
 // Implementation
 private:
     recls_char_t const*
-    calc_rootDir_(
+    emplace_rootDir_(
         size_t              cDirParts
     ,   recls_char_t const* rootDir
     ,   size_t              rootDirLen
