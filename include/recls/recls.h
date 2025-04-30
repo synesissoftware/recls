@@ -1552,6 +1552,21 @@ Recls_IsFileDirectory(
     /* [in] */ recls_entry_t hEntry
 );
 
+/** Returns non-zero if the entry represents a device.
+ *
+ * \ingroup group__recls
+ *
+ * \param hEntry The entry info structure to test. May not be NULL
+ * \retval true entry is a device
+ * \retval false entry is not device
+ *
+ * \note There is no error return
+ */
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryDevice(
+    /* [in] */ recls_entry_t hEntry
+);
+
 /** Returns non-zero if the entry represents a link.
  *
  * \ingroup group__recls

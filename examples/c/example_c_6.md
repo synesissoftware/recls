@@ -19,7 +19,7 @@ Demonstrates use of `Recls_Stat()` on current directory or named path, showing v
  *  - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 16th April 2025
+ * Updated: 30th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -70,6 +70,10 @@ int main(int argc, char* argv[])
             printf("<directory>");
         }
         else
+        if (Recls_IsEntryDevice(entry))
+        {
+            printf("<device>");
+        }
         if (Recls_IsEntrySocket(entry))
         {
             printf("<socket>");

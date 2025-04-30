@@ -4,7 +4,7 @@
  * Purpose: Return codes for the  recls API.
  *
  * Created: 15th August 2003
- * Updated: 21st April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -135,6 +135,9 @@ namespace recls
 
 /** Given path was a socket when one was not expected */
 #define RECLS_RC_ENTRY_IS_SOCKET                            RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1027))
+
+/** Given path was a device when one was not expected */
+#define RECLS_RC_ENTRY_IS_DEVICE                            RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1028))
 /** @} */
 
 

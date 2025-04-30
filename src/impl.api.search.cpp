@@ -149,6 +149,7 @@ recls_uint32_t const s_supportedTypes   =   0
                                         |   RECLS_F_FILES
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+                                        |   RECLS_F_DEVICES
                                         |   RECLS_F_SOCKETS
 #endif
                                         ;
