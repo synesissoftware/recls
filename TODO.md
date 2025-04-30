@@ -8,7 +8,9 @@
 * [x] `RECLS_F_DEVICES`;
 * [ ] Add `RECLS_REMDIR_F_REMOVE_SOCKETS`;
 * [ ] Deal with non-default searching of .-names on Unix (because `glob()` does not by default);
-* [ ] Expand progress feedbacks to provide warning about inaccessible directories;
+* [ ] Expand progress feedbacks to:
+  * [ ] provide warning about inaccessible directories;
+  * [ ] indicate visit count (for directory hard-links, as found on macOS);
 * [ ] Remove old makefiles, Visual C++ project files, etc.
 
 
@@ -18,6 +20,7 @@
 * [ ] **recls.NET**-like ability to handle in-process failures - such as inaccessible directories - and allow a handler to specify to skip the failed directory, thereby continuing;
 * [ ] Ensure links are processed sensibly;
 * [ ] Bazel, Jam, SCons, etc. scripts;
+* [ ] Filtering by callback (within the search function(s)), possibly supporting lambdas;
 
 
 <!-- ########################### end of file ########################### -->
