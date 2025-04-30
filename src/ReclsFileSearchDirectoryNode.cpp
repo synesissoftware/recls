@@ -805,6 +805,11 @@ ReclsFileSearchDirectoryNode::GetNext()
             // Still enumerating, so just update m_current
             m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDir.size(), m_flags, m_entriesBegin);
 
+            if (ss_nullptr_k == m_current)
+            {
+                return RECLS_RC_OUT_OF_MEMORY;
+            }
+
             rc = RECLS_RC_OK;
         }
         else
