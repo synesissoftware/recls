@@ -9,6 +9,7 @@ MakeCmd=${SIS_CMAKE_COMMAND:-make}
 Configuration=Release
 ExamplesDisabled=0
 MinGW=0
+NO_b64=0
 RunMake=0
 STLSoftDirGiven=
 TestingDisabled=0
@@ -40,6 +41,10 @@ while [[ $# -gt 0 ]]; do
     --mingw)
 
       MinGW=1
+      ;;
+    --no-b64)
+
+      NO_b64=1
       ;;
     -m|--run-make)
 
@@ -85,6 +90,9 @@ Flags/options:
     --mingw
         uses explicitly the "MinGW Makefiles" generator
 
+    --no-b64
+        prevents recognising b64 library
+
     -m
     --run-make
         executes make after a successful running of CMake
@@ -127,6 +135,7 @@ cd $CMakeDir
 echo "Executing CMake (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $NO_b64 -eq 0 ]; then CMakeNoB64="OFF" ; else CMakeNoB64="ON" ; fi
 if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
@@ -138,6 +147,7 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
+    -DCMAKE_NO_B64:BOOL=$CMakeNoB64 \
     -G "MinGW Makefiles" \
     -S $Dir \
     -B $CMakeDir \
@@ -149,6 +159,7 @@ else
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
+    -DCMAKE_NO_B64:BOOL=$CMakeNoB64 \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
     -S $Dir \
     -B $CMakeDir \

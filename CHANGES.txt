@@ -25,6 +25,7 @@ recls 1.10.1 (beta 6) released - 30th April 2025
  * Ensuring full support across operating systems for `RECLS_F_STOP_ON_ACCESS_FAILURE`, including adding **test.scratch.ignore_inaccessible_nodes**;
  * Added **example_9** (which searches for sockets);
  * Adjusted logging threshold constants in order to be compatible with Pantheios (as configured via `Recls_SetApiLogFunction()`);
+ * Reduction in memory use (by sharing patterns string rather than replicating at every directory node);
  * Various tidyings and consistency fixes;
 
 
