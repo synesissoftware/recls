@@ -4,11 +4,11 @@
  * Purpose: #includes the UNIXSTL root header and verifies the version.
  *
  * Created: 8th November 2007
- * Updated: 30th December 2023
+ * Updated: 29th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -19,10 +19,14 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
 #ifndef RECLS_INCL_SRC_H_INCL_UNIXSTL
 #define RECLS_INCL_SRC_H_INCL_UNIXSTL
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 #include "incl.stlsoft.h"
 
@@ -30,11 +34,12 @@
 # error Must not #include unixstl/unixstl.h before this file
 #endif /* UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
-#include <unixstl/unixstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.10.1 or later, as required. */
+#include <unixstl/unixstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.11.1 or later, as required. */
 #if !defined(_UNIXSTL_VER) || \
-    _UNIXSTL_VER < 0x01080183
-# error Requires UNIXSTL 1.8.1 (beta 3), or later. (www.stlsoft.org/downloads.html)
+    _UNIXSTL_VER < 0x01080682
+# error Requires UNIXSTL 1.8.8 (beta 2), or later. (www.stlsoft.org/downloads.html)
 #endif /* UNIXSTL version */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -44,7 +49,10 @@
 # error recls 1.10+ is not compatible with UNIXSTL namespace suppression
 #endif /* _UNIXSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
 
 #endif /* !RECLS_INCL_SRC_H_INCL_UNIXSTL */
 

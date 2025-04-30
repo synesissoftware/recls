@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearch class for Windows.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -60,7 +60,14 @@ namespace impl
  * ReclsFileSearch
  */
 
-inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t cbRootDir)
+inline
+void*
+ReclsFileSearch::operator new(
+    size_t  cb
+,   size_t  cDirParts
+,   size_t  cbRootDir
+,   size_t  cbPatterns
+)
 {
     function_scope_trace("ReclsFileSearch::operator new");
 
@@ -73,8 +80,9 @@ inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t c
     cb  =   STLSOFT_RAW_OFFSETOF(ReclsFileSearch, data);
     cb  +=  (cDirParts) * sizeof(recls_strptrs_t);
     cb  +=  cbRootDir;
+    cb  +=  cbPatterns;
 
-    void* pv = malloc(cb);
+    void* const pv = malloc(cb);
 
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
     if (ss_nullptr_k == pv)
@@ -87,10 +95,16 @@ inline void* ReclsFileSearch::operator new(size_t cb, size_t cDirParts, size_t c
 
     return pv;
 }
-
 #ifdef RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE
 
-inline void ReclsFileSearch::operator delete(void* pv, size_t /* cDirParts */, size_t /* cbRootDir */)
+inline
+void
+ReclsFileSearch::operator delete(
+    void*       pv
+,   size_t   /* cDirParts */
+,   size_t   /* cbRootDir */
+,   size_t   /* cbPatterns */
+)
 {
     function_scope_trace("ReclsFileSearch::operator delete");
 
@@ -98,7 +112,9 @@ inline void ReclsFileSearch::operator delete(void* pv, size_t /* cDirParts */, s
 }
 #endif /* RECLS_COMPILER_REQUIRES_MATCHING_PLACEMENT_DELETE */
 
-inline void ReclsFileSearch::operator delete(void* pv)
+inline
+void
+ReclsFileSearch::operator delete(void* pv)
 {
     function_scope_trace("ReclsFileSearch::operator delete");
 
@@ -107,17 +123,23 @@ inline void ReclsFileSearch::operator delete(void* pv)
 
 /* static */ recls_rc_t
 ReclsFileSearch::FindAndCreate(
-    recls_char_t const*         searchDir
+    char_type const*            searchDir
 ,   size_t                      searchDirLen
-,   recls_char_t const*         pattern
-,   size_t                      patternLen
+,   char_type const*            patterns
+,   size_t                      patternsLen
 ,   recls_uint32_t              flags
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 ,   ReclsFileSearch**           ppsi
 )
 {
     function_scope_trace("ReclsFileSearch::FindAndCreate");
+
+    recls_debug0_trace_printf_(RECLS_LITERAL("%s:%d:%s(flags=%08x, searchDir='%.*s', patterns='%.*s')"), __STLSOFT_FILE_LINE_FUNCTION__
+    ,   flags
+    ,   int(searchDirLen), searchDir
+    ,   int(patternsLen), patterns
+    );
 
 
     // pre-conditions
@@ -127,8 +149,8 @@ ReclsFileSearch::FindAndCreate(
     RECLS_ASSERT(types::traits_type::is_path_absolute(searchDir, searchDirLen));
     RECLS_ASSERT(types::traits_type::has_dir_end(searchDir, searchDirLen));
 
-    RECLS_ASSERT(ss_nullptr_k != pattern);
-    RECLS_ASSERT(patternLen == types::traits_type::str_len(pattern));
+    RECLS_ASSERT(ss_nullptr_k != patterns);
+    RECLS_ASSERT(patternsLen == types::traits_type::str_len(patterns));
 
     RECLS_ASSERT(ss_nullptr_k != ppsi);
 
@@ -136,24 +158,24 @@ ReclsFileSearch::FindAndCreate(
     recls_debug1_trace_printf_(
         RECLS_LITERAL("ReclsFileSearch::FindAndCreate(%.*s, %.*s, 0x%08x, %p, %p, ...)")
     ,   int(searchDirLen), searchDir
-    ,   int(patternLen), pattern
+    ,   int(patternsLen), patterns
     ,   flags
-    ,   pfn
+    ,   STLSOFT_C_CAST(void*, pfn)
     ,   param
     );
 
-    return FindAndCreate_(searchDir, searchDirLen, pattern, patternLen, flags, pfn, param, ppsi);
+    return FindAndCreate_(searchDir, searchDirLen, patterns, patternsLen, flags, pfn, param, ppsi);
 }
 
 /* static */ recls_rc_t
 ReclsFileSearch::FindAndCreate_(
-    recls_char_t const*         searchDir
+    char_type const*            searchDir
 ,   size_t                      searchDirLen
-,   recls_char_t const*         pattern
-,   size_t                      patternLen
+,   char_type const*            patterns
+,   size_t                      patternsLen
 ,   recls_uint32_t              flags
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 ,   class_type**                ppsi
 )
 {
@@ -169,19 +191,19 @@ ReclsFileSearch::FindAndCreate_(
 #else /* ? UNIX */
     RECLS_ASSERT(ss_nullptr_k == types::traits_type::str_chr(searchDir, '/'));
 #endif /* UNIX */
-    RECLS_ASSERT(ss_nullptr_k != pattern);
-    RECLS_ASSERT(types::traits_type::str_len(pattern) == patternLen);
+    RECLS_ASSERT(ss_nullptr_k != patterns);
+    RECLS_ASSERT(types::traits_type::str_len(patterns) == patternsLen);
 #if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX)
-    RECLS_ASSERT(ss_nullptr_k == types::traits_type::str_chr(pattern, ';'));
+    RECLS_ASSERT(ss_nullptr_k == types::traits_type::str_chr(patterns, ';'));
 #else /* ? UNIX */
 #if 0
     // Does not work, because pattern might be "C:\\dir\\file.ext"
-    RECLS_ASSERT(ss_nullptr_k == types::traits_type::str_chr(pattern, ':'));
+    RECLS_ASSERT(ss_nullptr_k == types::traits_type::str_chr(patterns, ':'));
 #endif /* 0 */
 #if 1
     // Would only work for pattern with only one pattern argument
-    RECLS_ASSERT(ss_nullptr_k != types::traits_type::str_chr(pattern, ';') || types::traits_type::is_path_absolute(pattern) || ss_nullptr_k == types::traits_type::str_chr(pattern, ':'));
+    RECLS_ASSERT(ss_nullptr_k != types::traits_type::str_chr(patterns, ';') || types::traits_type::is_path_absolute(patterns) || ss_nullptr_k == types::traits_type::str_chr(patterns, ':'));
 #endif /* 0 */
 #endif /* UNIX */
 
@@ -201,9 +223,9 @@ ReclsFileSearch::FindAndCreate_(
     {
         // Count the directory parts. This is always done for the ReclsFileSearch class, since it
         // uses them to recurse.
-        recls_char_t const*         dir0        =   recls_find_directory_0_(searchDir);
-        recls_char_t const* const   end         =   searchDir + searchDirLen;
-        size_t const                cDirParts   =   types::count_dir_parts(dir0, end);
+        char_type const*        dir0        =   recls_find_directory_0_(searchDir);
+        char_type const* const  end         =   searchDir + searchDirLen;
+        size_t const            cDirParts   =   types::count_dir_parts(dir0, end);
 
         // Create the search handle
         ReclsFileSearch* si;
@@ -212,7 +234,7 @@ ReclsFileSearch::FindAndCreate_(
         try
         {
 #endif /* RECLS_COMPILER_THROWS_ON_NEW_FAIL */
-            si = new(cDirParts, sizeof(recls_char_t) * (1 + searchDirLen)) ReclsFileSearch(cDirParts, searchDir, searchDirLen, pattern, patternLen, pfn, param, flags, &rc);
+            si = new(cDirParts, sizeof(char_type) * (1 + searchDirLen), sizeof(char_type) * (1 + patternsLen)) ReclsFileSearch(cDirParts, searchDir, searchDirLen, patterns, patternsLen, pfn, param, flags, &rc);
 #ifdef RECLS_COMPILER_THROWS_ON_NEW_FAIL
         }
         catch (std::bad_alloc&)
@@ -254,17 +276,45 @@ ReclsFileSearch::FindAndCreate_(
     return rc;
 }
 
-recls_char_t const*
-ReclsFileSearch::calc_rootDir_(
+ReclsFileSearch::char_type const*
+ReclsFileSearch::emplace_patterns_(
     size_t              cDirParts
-,   recls_char_t const* searchDir
+,   size_t              searchDirLen
+,   char_type const*    patterns
+,   size_t              patternsLen
+)
+{
+    function_scope_trace("ReclsFileSearch::emplace_patterns_");
+
+    // Patterns located after directory parts and patterns
+
+    size_t const        cbOffset    =   0
+                                    +   sizeof(recls_strptrs_t) * cDirParts
+                                    +   sizeof(char_type) * (1 + searchDirLen)
+                                    +   0;
+    char_type* const    s           =   ::stlsoft::sap_cast<char_type*>(&data[cbOffset]);
+
+    types::traits_type::char_copy(s, patterns, patternsLen);
+    s[patternsLen] = '\0';
+
+    return s;
+}
+
+ReclsFileSearch::char_type const*
+ReclsFileSearch::emplace_rootDir_(
+    size_t              cDirParts
+,   char_type const*    searchDir
 ,   size_t              searchDirLen
 )
 {
-    function_scope_trace("ReclsFileSearch::calc_rootDir_");
+    function_scope_trace("ReclsFileSearch::emplace_rootDir_");
 
-    // Root dir is located after file parts, and before pattern
-    recls_char_t* s = ::stlsoft::sap_cast<recls_char_t*>(&data[cDirParts * sizeof(recls_strptrs_t)]);
+    // Search-dir located after directory parts, and before patterns
+
+    size_t const        cbOffset    =   0
+                                    +   sizeof(recls_strptrs_t) * cDirParts
+                                    +   0;
+    char_type* const    s           =   ::stlsoft::sap_cast<char_type*>(&data[cbOffset]);
 
     types::traits_type::char_copy(s, searchDir, searchDirLen);
     s[searchDirLen] = '\0';
@@ -274,18 +324,20 @@ ReclsFileSearch::calc_rootDir_(
 
 ReclsFileSearch::ReclsFileSearch(
     size_t                      cDirParts
-,   recls_char_t const*         searchDir
+,   char_type const*            searchDir
 ,   size_t                      searchDirLen
-,   recls_char_t const*         pattern
-,   size_t                      patternLen
+,   char_type const*            patterns
+,   size_t                      patternsLen
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 ,   recls_uint32_t              flags
 ,   recls_rc_t*                 prc
 )
     : m_flags(flags)
-    , m_searchDir(calc_rootDir_(cDirParts, searchDir, searchDirLen))
+    , m_searchDir(emplace_rootDir_(cDirParts, searchDir, searchDirLen))
     , m_searchDirLen(searchDirLen)
+    , m_patterns(emplace_patterns_(cDirParts, searchDirLen, patterns, patternsLen))
+    , m_patternsLen(patternsLen)
     , m_pfn(pfn)
     , m_param(param)
 {
@@ -296,8 +348,8 @@ ReclsFileSearch::ReclsFileSearch(
     RECLS_ASSERT(types::traits_type::is_path_absolute(searchDir));
     RECLS_ASSERT(types::traits_type::has_dir_end(searchDir, searchDirLen));
 
-    RECLS_ASSERT(ss_nullptr_k != pattern);
-    RECLS_ASSERT(ss_nullptr_k != types::traits_type::str_chr(pattern, types::traits_type::path_separator()) || types::traits_type::str_len(pattern) < types::traits_type::path_max());
+    RECLS_ASSERT(ss_nullptr_k != patterns);
+    RECLS_ASSERT(ss_nullptr_k != types::traits_type::str_chr(patterns, types::traits_type::path_separator()) || types::traits_type::str_len(patterns) < types::traits_type::path_max());
 
     RECLS_ASSERT(ss_nullptr_k != prc);
 
@@ -314,7 +366,7 @@ ReclsFileSearch::ReclsFileSearch(
 #endif /* platform*/
 
     // Now start the search
-    m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(m_flags, searchDir, m_searchDirLen, pattern, patternLen, pfn, param, prc);
+    m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(m_flags, m_searchDir, m_searchDirLen, m_patterns, m_patternsLen, m_pfn, m_param, prc);
 }
 
 ReclsFileSearch::~ReclsFileSearch() STLSOFT_NOEXCEPT

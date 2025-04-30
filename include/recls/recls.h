@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 22nd April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      24
 # define RECLS_VER_RECLS_H_RECLS_REVISION   1
-# define RECLS_VER_RECLS_H_RECLS_EDIT       148
+# define RECLS_VER_RECLS_H_RECLS_EDIT       152
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -140,11 +140,12 @@
 #define RECLS_VER_1_10_0_B03                                0x010a0083
 #define RECLS_VER_1_10_0_B04                                0x010a0084
 #define RECLS_VER_1_10_0_B05                                0x010a0085
+#define RECLS_VER_1_10_0_B06                                0x010a0086
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_B05
+#define RECLS_VER               RECLS_VER_1_10_0_B06
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -623,8 +624,8 @@ enum RECLS_REMDIR_FLAG
 #if !defined(__cplusplus) && \
     !defined(RECLS_DOCUMENTATION_SKIP_SECTION)
 
-typedef enum RECLS_FLAG         RECLS_FLAG;
-typedef enum RECLS_ROOTS_FLAG   RECLS_ROOTS_FLAG;
+typedef enum RECLS_FLAG                                     RECLS_FLAG;
+typedef enum RECLS_ROOTS_FLAG                               RECLS_ROOTS_FLAG;
 #endif /* !__cplusplus && !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -709,6 +710,13 @@ typedef recls_entry_t                                       recls_info_t;
  */
 typedef void*                                               recls_process_fn_param_t;
 
+/** Opaque type representing a user-defined parameter to the progress
+ * function.
+ *
+ * \ingroup group__recls
+ */
+typedef void*                                               recls_progress_fn_param_t;
+
 /** User-supplied process function, used by Recls_SearchProcess()
  *
  * \ingroup group__recls
@@ -739,11 +747,11 @@ typedef int (RECLS_CALLCONV_DEFAULT *hrecls_process_fn_t)(
  * \retval non-0 continue the processing
  */
 typedef int (RECLS_CALLCONV_DEFAULT *hrecls_progress_fn_t)(
-    /* [in] */ recls_char_t const*      dir
-,   /* [in] */ size_t                   dirLen
-,   /* [in] */ recls_process_fn_param_t param
-,   /* [in] */ void*                    reserved0
-,   /* [in] */ recls_uint32_t           reserved1
+    /* [in] */ recls_char_t const*          dir
+,   /* [in] */ size_t                       dirLen
+,   /* [in] */ recls_progress_fn_param_t    param
+,   /* [in] */ void*                        reserved0
+,   /* [in] */ recls_uint32_t               reserved1
 );
 
 
@@ -753,7 +761,10 @@ typedef int (RECLS_CALLCONV_DEFAULT *hrecls_progress_fn_t)(
 
 #if !defined(RECLS_NO_NAMESPACE)
 typedef recls_entry_t                                       info_t;
+typedef hrecls_process_fn_t                                 process_fn_t;
+typedef hrecls_progress_fn_t                                progress_fn_t;
 typedef recls_process_fn_param_t                            process_fn_param_t;
+typedef recls_progress_fn_param_t                           progress_fn_param_t;
 #endif /* !RECLS_NO_NAMESPACE */
 
 
@@ -918,7 +929,7 @@ Recls1_FileSystem_GetWildcardsAll(void);
  */
 /** @{ */
 
-/** Searches a given directory for matching files of the given pattern
+/** Searches a given directory for matching files of the given pattern(s)
  *
  * \ingroup group__recls
  *
@@ -927,7 +938,7 @@ Recls1_FileSystem_GetWildcardsAll(void);
  *   RECLS_F_USE_TILDE_ON_NO_SEARCHROOT
  *   is specified, in which case the calling identity's home directory is
  *   assumed.
- * \param pattern The search pattern, e.g. "*.c". NULL means "all files". ""
+ * \param patterns The search pattern(s), e.g. "*.c". NULL means "all files". ""
  *   means no files.
  * \param flags A combination of 0 or more
  *   RECLS_FLAG values.
@@ -940,19 +951,19 @@ Recls1_FileSystem_GetWildcardsAll(void);
 RECLS_API
 Recls_Search(
     /* [in] */ recls_char_t const*  searchRoot
-,   /* [in] */ recls_char_t const*  pattern
+,   /* [in] */ recls_char_t const*  patterns
 ,   /* [in] */ recls_uint32_t       flags
 ,   /* [out] */ hrecls_t*           phSrch
 );
 
-/** Searches a given directory for matching files of the given pattern, calling back
+/** Searches a given directory for matching files of the given pattern(s), calling back
  * on the given progress function pointer to inform the caller as each (sub-)directory
  * is traversed.
  *
  * \ingroup group__recls
  *
  * \param searchRoot The directory representing the root of the search
- * \param pattern The search pattern, e.g. "*.c"
+ * \param patterns The search pattern(s), e.g. "*.c"
  * \param flags A combination of 0 or more
  *   RECLS_FLAG values.
  * \param pfn The function that will be invoked for each directory traversed
@@ -964,43 +975,44 @@ Recls_Search(
 RECLS_API
 Recls_SearchFeedback(
     /* [in] */ recls_char_t const*          searchRoot
-,   /* [in] */ recls_char_t const*          pattern
+,   /* [in] */ recls_char_t const*          patterns
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_progress_fn_t         pfn
-,   /* [in] */ recls_process_fn_param_t     param
+,   /* [in] */ recls_progress_fn_param_t    param
 ,   /* [out] */ hrecls_t*                   phSrch
 );
 
 RECLS_API
 Recls_SearchProcessFeedback(
     /* [in] */ recls_char_t const*          searchRoot
-,   /* [in] */ recls_char_t const*          pattern
+,   /* [in] */ recls_char_t const*          patterns
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_process_fn_t          pfn
 ,   /* [in] */ recls_process_fn_param_t     param
 ,   /* [in] */ hrecls_progress_fn_t         pfnProgress
-,   /* [out] */ recls_process_fn_param_t    paramProgress
+,   /* [out] */ recls_progress_fn_param_t   paramProgress
 );
 
-/** Searches a given directory for matching files of the given pattern, and processes them according to the given process function
+/** Searches a given directory for matching files of the given pattern(s), and processes them according to the given process function
  *
  * \ingroup group__recls
  *
  * \param searchRoot The directory representing the root of the search
- * \param pattern The search pattern, e.g. "*.c"
+ * \param patterns The search pattern(s), e.g. "*.c"
  * \param flags A combination of 0 or more
  *   RECLS_FLAG values.
  * \param pfn The processing function
  * \param param A caller-supplied parameter that is passed through to \c pfn on each invocation. The function can cancel the enumeration by returning 0
  *
- * \return A status code indicating success/failure
+ * \return A status code indicating success/failure. The value
+ *  RECLS_RC_NO_MORE_DATA will be translated to RECLS_RC_OK.
  *
  * \note Available from version 1.1 of the <b>recls</b> API
  */
 RECLS_API
 Recls_SearchProcess(
     /* [in] */ recls_char_t const*      searchRoot
-,   /* [in] */ recls_char_t const*      pattern
+,   /* [in] */ recls_char_t const*      patterns
 ,   /* [in] */ recls_uint32_t           flags
 ,   /* [in] */ hrecls_process_fn_t      pfn
 ,   /* [in] */ recls_process_fn_param_t param
@@ -1540,6 +1552,21 @@ Recls_IsFileDirectory(
     /* [in] */ recls_entry_t hEntry
 );
 
+/** Returns non-zero if the entry represents a device.
+ *
+ * \ingroup group__recls
+ *
+ * \param hEntry The entry info structure to test. May not be NULL
+ * \retval true entry is a device
+ * \retval false entry is not device
+ *
+ * \note There is no error return
+ */
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryDevice(
+    /* [in] */ recls_entry_t hEntry
+);
+
 /** Returns non-zero if the entry represents a link.
  *
  * \ingroup group__recls
@@ -1997,10 +2024,10 @@ Recls_CalcDirectoryEntrySize(
  */
 RECLS_FNDECL(recls_filesize_t)
 Recls_CalcDirectorySizeFeedback(
-    /* [in] */ recls_char_t const*      dir
-,   /* [in] */ recls_uint32_t           flags
-,   /* [in] */ hrecls_progress_fn_t     pfn
-,   /* [in] */ recls_process_fn_param_t param
+    /* [in] */ recls_char_t const*          dir
+,   /* [in] */ recls_uint32_t               flags
+,   /* [in] */ hrecls_progress_fn_t         pfn
+,   /* [in] */ recls_progress_fn_param_t    param
 );
 /** @} */
 
@@ -2367,7 +2394,11 @@ c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 #endif /* RECLS_PLATFORM_API_UNIX */
 
 #if !defined(RECLS_PURE_API)
-# if defined(RECLS_PLATFORM_IS_WINDOWS)
+# if 0
+# elif defined(RECLS_PLATFORM_IS_UNIX)
+#  include <recls/unix.h>
+#  define RECLS_PLATFORM_API_UNIX
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
 #  include <recls/windows.h>
 #  define RECLS_PLATFORM_API_WINDOWS
 #  ifdef RECLS_PLATFORM_IS_WIN32
@@ -2376,9 +2407,6 @@ c_str_len_w(RECLS_QUAL(recls_rc_t) rc)
 #  ifdef RECLS_PLATFORM_IS_WIN64
 #   define RECLS_PLATFORM_API_WIN64
 #  endif /* RECLS_PLATFORM_IS_WIN64 */
-# elif defined(RECLS_PLATFORM_IS_UNIX)
-#  include <recls/unix.h>
-#  define RECLS_PLATFORM_API_UNIX
 # else
 #  error Platform not recognised
 # endif /* platform */

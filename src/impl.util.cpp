@@ -4,7 +4,7 @@
  * Purpose: Platform-independent utility functions for recls API.
  *
  * Created: 17th August 2003
- * Updated: 10th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -214,17 +214,17 @@ RECLS_LINKAGE_C recls_bool_t recls_file_exists_(
 /* ////////////////////////////////////////////////////////////////////// */
 
 RECLS_API recls_is_valid_pattern_(
-    recls_char_t const*     pattern
-,   size_t               /* patternLen */
+    recls_char_t const*     patterns
+,   size_t               /* patternsLen */
 ,   recls_uint32_t          flags
 ,   size_t                  maxPathCompLen
 )
 {
     STLSOFT_SUPPRESS_UNUSED(maxPathCompLen);
 
-    RECLS_ASSERT(ss_nullptr_k != pattern);
+    RECLS_ASSERT(ss_nullptr_k != patterns);
 
-    if ('\0' == *pattern)
+    if ('\0' == *patterns)
     {
         return RECLS_RC_NO_MORE_DATA;
     }
@@ -241,21 +241,21 @@ RECLS_API recls_is_valid_pattern_(
 # ifdef RECLS_MULTIPATTERN_SEARCH_MANUAL
 
         recls_char_t const          sep =   *Recls_GetPathSeparator();
-        size_t const                len =   recls_strlen_(pattern);
-        recls_char_t const* const   end =   pattern + len;
+        size_t const                len =   recls_strlen_(patterns);
+        recls_char_t const* const   end =   patterns + len;
 
         if (1 == len)
         {
             if (0 != (flags & RECLS_F_RECURSIVE) &&
-                '.' == pattern[0])
+                '.' == patterns[0])
             {
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
         }
         else if (2 == len)
         {
-            if ('.' == pattern[0] &&
-                '.' == pattern[1])
+            if ('.' == patterns[0] &&
+                '.' == patterns[1])
             {
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
@@ -269,8 +269,8 @@ RECLS_API recls_is_valid_pattern_(
             dotPattern[0] = dotPattern[2] = dotdotPattern[0] = dotdotPattern[3] = sep;
 
             if ((   0 != (flags & RECLS_F_RECURSIVE) &&
-                    0 == strncmp(pattern, &dotPattern[1], 2)) ||
-                0 == strncmp(pattern, &dotdotPattern[1], 3))
+                    0 == strncmp(patterns, &dotPattern[1], 2)) ||
+                0 == strncmp(patterns, &dotdotPattern[1], 3))
             {
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
@@ -283,8 +283,8 @@ RECLS_API recls_is_valid_pattern_(
             }
 
             if ((   0 != (flags & RECLS_F_RECURSIVE) &&
-                    ss_nullptr_k != strstr(pattern, dotPattern)) ||
-                ss_nullptr_k != strstr(pattern, dotdotPattern))
+                    ss_nullptr_k != strstr(patterns, dotPattern)) ||
+                ss_nullptr_k != strstr(patterns, dotdotPattern))
             {
                 return RECLS_RC_DOT_RECURSIVE_SEARCH;
             }
@@ -305,13 +305,19 @@ RECLS_API recls_is_valid_pattern_(
     (   defined(RECLS_COMPILER_IS_MSVC) && \
         _MSC_VER < 1300 && \
         _STLSOFT_VER < 0x00010807)
-        typedef ::stlsoft::string_tokeniser<string_t, char>         tokeniser_t;
+        typedef ::stlsoft::string_tokeniser<
+            string_t
+        ,   char
+        >                                                   tokeniser_t;
 
-        tokeniser_t     tokens(pattern, *Recls_GetPathSeparator());
+        tokeniser_t     tokens(patterns, *Recls_GetPathSeparator());
 # else /* ? compiler */
-        typedef ::stlsoft::string_tokeniser<string_t, string_t>     tokeniser_t;
+        typedef ::stlsoft::string_tokeniser<
+            string_t
+        ,   string_t
+        >                                                   tokeniser_t;
 
-        tokeniser_t     tokens(pattern, Recls_GetPathSeparator());
+        tokeniser_t     tokens(patterns, Recls_GetPathSeparator());
 # endif /* compiler */
 
         if (tokens.end() != std::find(tokens.begin(), tokens.end(), constants::parent_directory()) ||

@@ -4,11 +4,11 @@
  * Purpose: Implementation header.
  *
  * Created: 13th December 2008
- * Updated: 30th December 2023
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -75,13 +75,13 @@ struct ftp_types_base;
 template<>
 struct ftp_types_base<recls_char_a_t>
 {
-    typedef platformstl::path_buffer_a                          path_buffer_type;
+    typedef platformstl::path_buffer_a                      path_buffer_type;
 };
 
 template<>
 struct ftp_types_base<recls_char_w_t>
 {
-    typedef platformstl::path_buffer_w                          path_buffer_type;
+    typedef platformstl::path_buffer_w                      path_buffer_type;
 };
 
 struct ftp_types
@@ -154,7 +154,8 @@ public: // operations
     }
 };
 
-typedef ftp_types   types; // This is required to avoid bad linker behaviour (which makes sense!)
+typedef ftp_types                                           types; // This is required to avoid bad linker behaviour (which makes sense!)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -164,6 +165,7 @@ typedef ftp_types   types; // This is required to avoid bad linker behaviour (wh
 } /* namespace impl */
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

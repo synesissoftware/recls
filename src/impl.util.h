@@ -4,7 +4,7 @@
  * Purpose: Implementation header.
  *
  * Created: 17th August 2003
- * Updated: 20th February 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -117,8 +117,8 @@ recls_get_string_property_(
 /* impl.fileutil.h */
 RECLS_API
 recls_is_valid_pattern_(
-    recls_char_t const* pattern
-,   size_t              patternLen
+    recls_char_t const* patterns
+,   size_t              patternsLen
 ,   recls_uint32_t      flags
 ,   size_t              maxPathCompLen
 );

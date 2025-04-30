@@ -5,7 +5,7 @@
  *          `recls::create_directory()`).
  *
  * Created: 30th January 2010
- * Updated: 17th October 2024
+ * Updated: 28th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -85,7 +85,7 @@ namespace
 {
 
     using recls::recls_char_t;
-    typedef platformstl::basic_path<recls_char_t>   path_t;
+    typedef platformstl::basic_path<recls_char_t>           path_t;
 } // anonymous namespace
 
 

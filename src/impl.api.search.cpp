@@ -4,7 +4,7 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    http://recls.org/
  *
@@ -60,6 +60,7 @@
 
 #include "impl.trace.h"
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -72,6 +73,7 @@
 # error
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -82,6 +84,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -117,6 +120,7 @@ has_checked(
     return 0 != (checks & mask);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -136,6 +140,21 @@ recls_char_t const s_path_separators[] =
     ,   '\0'
 };
 
+recls_uint32_t const s_defaultTypes     =   0
+                                        |   RECLS_F_FILES
+                                        ;
+
+recls_uint32_t const s_supportedTypes   =   0
+                                        |   RECLS_F_DIRECTORIES
+                                        |   RECLS_F_FILES
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+                                        |   RECLS_F_DEVICES
+                                        |   RECLS_F_SOCKETS
+#endif
+                                        ;
+
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper/internal functions
  */
@@ -151,9 +170,10 @@ Recls_SearchFeedback_x_(
 ,   /* [in] */ size_t                       patternsLen
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_progress_fn_t         pfn
-,   /* [in] */ recls_process_fn_param_t     param
+,   /* [in] */ recls_progress_fn_param_t    param
 ,   /* [out] */ hrecls_t*                   phSrch
 );
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * search control
@@ -172,7 +192,7 @@ Recls_SearchFeedback_(
 ,   /* [in] */ recls_char_t const*          patterns
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_progress_fn_t         pfn
-,   /* [in] */ recls_process_fn_param_t     param
+,   /* [in] */ recls_progress_fn_param_t    param
 ,   /* [out] */ hrecls_t*                   phSrch
 )
 {
@@ -247,7 +267,7 @@ Recls_SearchFeedback_x_(
 ,   /* [in] */ size_t                       patternsLen
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_progress_fn_t         pfn
-,   /* [in] */ recls_process_fn_param_t     param
+,   /* [in] */ recls_progress_fn_param_t    param
 ,   /* [out] */ hrecls_t*                   phSrch
 )
 {
@@ -256,7 +276,7 @@ Recls_SearchFeedback_x_(
     ,   stlsoft::c_str_ptr(searchRoot)
     ,   stlsoft::c_str_ptr(patterns)
     ,   flags
-    ,   pfn
+    ,   STLSOFT_C_CAST(void*, pfn)
     ,   param
     );
 
@@ -563,11 +583,13 @@ Recls_SearchFeedback_x_(
     // Default the flags
     if (0 == (flags & RECLS_F_TYPEMASK))
     {
-        flags |= RECLS_F_FILES;
+        flags |= s_defaultTypes;
     }
 
-    if (0 == (flags & (RECLS_F_FILES | RECLS_F_DIRECTORIES)))
+    if (0 == (flags & s_supportedTypes))
     {
+        recls_warning_trace_printf_("requested flags 0x%08x does not contain a supported set of types", flags);
+
         rc = RECLS_RC_INVALID_SEARCH_TYPE;
     }
     // Validate the pattern.
@@ -624,12 +646,12 @@ recls_rc_t
 Recls_SearchProcessFeedback_(
     /* [in] */ char const*                  function
 ,   /* [in] */ recls_char_t const*          searchRoot
-,   /* [in] */ recls_char_t const*          pattern
+,   /* [in] */ recls_char_t const*          patterns
 ,   /* [in] */ recls_uint32_t               flags
 ,   /* [in] */ hrecls_process_fn_t          pfn
 ,   /* [in] */ recls_process_fn_param_t     param
 ,   /* [in] */ hrecls_progress_fn_t         pfnProgress
-,   /* [out] */ recls_process_fn_param_t    paramProgress
+,   /* [out] */ recls_progress_fn_param_t   paramProgress
 )
 {
     RECLS_ASSERT(ss_nullptr_k != pfn);
@@ -637,11 +659,11 @@ Recls_SearchProcessFeedback_(
     recls_debug0_trace_printf_(
         RECLS_LITERAL("Recls_SearchProcessFeedback_(??, %s, %s, 0x%08x, %p, %p, %p, %p)")
     ,   stlsoft::c_str_ptr(searchRoot)
-    ,   stlsoft::c_str_ptr(pattern)
+    ,   stlsoft::c_str_ptr(patterns)
     ,   flags
-    ,   pfn
+    ,   STLSOFT_C_CAST(void*, pfn)
     ,   param
-    ,   pfnProgress
+    ,   STLSOFT_C_CAST(void*, pfnProgress)
     ,   paramProgress
     );
 
@@ -649,7 +671,7 @@ Recls_SearchProcessFeedback_(
     recls_rc_t  rc  =   Recls_SearchFeedback_(
                             function
                         ,   searchRoot
-                        ,   pattern
+                        ,   patterns
                         ,   flags
                         ,   pfnProgress
                         ,   paramProgress
@@ -672,7 +694,7 @@ Recls_SearchProcessFeedback_(
             {
                 int res;
 
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#ifdef RECLS_PLATFORM_IS_WINDOWS
 
                 if (flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
                 {
@@ -707,6 +729,11 @@ Recls_SearchProcessFeedback_(
         }
         while (RECLS_SUCCEEDED(rc = Recls_GetNext(hSrch)));
 
+        recls_debug0_trace_printf_(
+            RECLS_LITERAL("Recls_SearchProcessFeedback_() completed with rc=%s")
+        ,   Recls_GetSearchCodeString(rc)
+        );
+
         Recls_SearchClose(hSrch);
     }
 
@@ -717,6 +744,7 @@ Recls_SearchProcessFeedback_(
 
     return rc;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

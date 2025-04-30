@@ -240,13 +240,13 @@ ReclsFtpSearch::FindAndCreate(
 }
 
 recls_char_t const*
-ReclsFtpSearch::calc_rootDir_(
+ReclsFtpSearch::emplace_rootDir_(
     size_t              cDirParts
 ,   recls_char_t const* rootDir
 ,   size_t              rootDirLen
 )
 {
-    function_scope_trace("ReclsFtpSearch::calc_rootDir_");
+    function_scope_trace("ReclsFtpSearch::emplace_rootDir_");
 
     // Root dir is located after file parts, and before pattern
     recls_char_t* s = ::stlsoft::sap_cast<recls_char_t*>(&data[cDirParts * sizeof(recls_strptrs_t)]);
@@ -270,7 +270,7 @@ ReclsFtpSearch::ReclsFtpSearch(
     : m_session(hSess)
     , m_connection(hConn)
     , m_flags(flags)
-    , m_rootDir(calc_rootDir_(cDirParts, rootDir, rootDirLen))
+    , m_rootDir(emplace_rootDir_(cDirParts, rootDir, rootDirLen))
 {
     function_scope_trace("ReclsFtpSearch::ReclsFtpSearch");
 

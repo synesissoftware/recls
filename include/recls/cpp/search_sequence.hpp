@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - search_sequence class.
  *
  * Created: 10th September 2003
- * Updated: 30th December 2023
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MAJOR      4
 # define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_MINOR      1
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   13
-# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       103
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_REVISION   15
+# define RECLS_VER_RECLS_CPP_HPP_SEARCH_SEQUENCE_EDIT       105
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -62,6 +62,7 @@
  *  \link recls::cpp::search_sequence search_sequence\endlink
  *  class, and supporting classes.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <tchar.h>
 #endif /* WIN32 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -92,6 +94,7 @@ namespace recls
 namespace cpp
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -108,6 +111,7 @@ class basic_search_sequence_const_iterator;
 
 class ftp_search_sequence;
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * utility classes
@@ -126,7 +130,7 @@ public:
         : hSrch(h)
         , cRefs(1)
     {}
-    void Release()
+    void Release() STLSOFT_NOEXCEPT
     {
         if (--cRefs == 0)
         {
@@ -150,8 +154,12 @@ private:
             Recls_SearchClose(hSrch);
         }
     }
+private:
+    rss_shared_handle(rss_shared_handle const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(rss_shared_handle const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -211,47 +219,47 @@ public:
 /// \name Construction
 /// @{
 public:
-    /// Commence a search according to the given search pattern and flags
+    /// Commence a search according to the given search pattern(s) and flags
     search_sequence(
-        char_type const*    pattern
+        char_type const*    patterns
     ,   recls_uint32_t      flags
     );
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
 
-    /// Commence a search according to the given search pattern and flags
+    /// Commence a search according to the given search pattern(s) and flags
     template <typename S>
     search_sequence(
-        S const&        pattern
+        S const&        patterns
     ,   recls_uint32_t  flags
     )
         : m_directory_(1)
         , m_pattern_(1)
         , m_directory(ss_nullptr_k)
-        , m_pattern(copy_or_null(m_pattern_, pattern))
+        , m_pattern(copy_or_null(m_pattern_, patterns))
         , m_flags(flags)
         , m_pfnProgress(ss_nullptr_k)
         , m_paramProgress(ss_nullptr_k)
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
-    /// Commence a search according to the given search pattern and flags, relative to \c directory
+    /// Commence a search according to the given search pattern(s) and flags, relative to \c directory
     search_sequence(
         char_type const*    directory
-    ,   char_type const*    pattern
+    ,   char_type const*    patterns
     ,   recls_uint32_t      flags
     );
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
 
-    /// Commence a search according to the given search pattern and flags, relative to \c directory
+    /// Commence a search according to the given search pattern(s) and flags, relative to \c directory
     template <typename S1, typename S2>
     search_sequence(
         S1 const&       directory
-    ,   S2 const&       pattern
+    ,   S2 const&       patterns
     ,   recls_uint32_t  flags
     )
         : m_directory_(1)
         , m_pattern_(1)
         , m_directory(copy_or_null(m_directory_, directory))
-        , m_pattern(copy_or_null(m_pattern_, pattern))
+        , m_pattern(copy_or_null(m_pattern_, patterns))
         , m_flags(flags)
         , m_pfnProgress(ss_nullptr_k)
         , m_paramProgress(ss_nullptr_k)
@@ -259,19 +267,19 @@ public:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
 
-    /// Commence a search according to the given search pattern and flags, relative to \c directory
+    /// Commence a search according to the given search pattern(s) and flags, relative to \c directory
     template <typename S1, typename S2>
     search_sequence(
         S1 const&                   directory
-    ,   S2 const&                   pattern
+    ,   S2 const&                   patterns
     ,   recls_uint32_t              flags
     ,   hrecls_progress_fn_t        pfnProgress
-    ,   recls_process_fn_param_t    paramProgress
+    ,   recls_progress_fn_param_t   paramProgress
     )
         : m_directory_(1)
         , m_pattern_(1)
         , m_directory(copy_or_null(m_directory_, directory))
-        , m_pattern(copy_or_null(m_pattern_, pattern))
+        , m_pattern(copy_or_null(m_pattern_, patterns))
         , m_flags(flags)
         , m_pfnProgress(pfnProgress)
         , m_paramProgress(paramProgress)
@@ -330,7 +338,7 @@ private:
     char_type const* const          m_pattern;
     recls_uint32_t                  m_flags;
     hrecls_progress_fn_t const      m_pfnProgress;
-    recls_process_fn_param_t const  m_paramProgress;
+    recls_progress_fn_param_t const m_paramProgress;
 /// @}
 };
 
@@ -404,6 +412,7 @@ private:
     rss_shared_handle*  m_handle;
 };
 
+
 ////////////////////////////////////////////////////////////////////////////
 // shims
 
@@ -421,10 +430,11 @@ inline
 recls_bool_t
 is_empty(
     search_sequence const& s
-)
+) STLSOFT_NOEXCEPT
 {
     return s.empty();
 }
+
 
 ////////////////////////////////////////////////////////////////////////////
 // implementation
@@ -437,13 +447,13 @@ is_empty(
 // Construction
 inline
 search_sequence::search_sequence(
-    char_type const*    pattern
+    char_type const*    patterns
 ,   recls_uint32_t      flags
 )
     : m_directory_(1)
     , m_pattern_(1)
     , m_directory(ss_nullptr_k)
-    , m_pattern(copy_or_null(m_pattern_, pattern))
+    , m_pattern(copy_or_null(m_pattern_, patterns))
     , m_flags(flags)
     , m_pfnProgress(ss_nullptr_k)
     , m_paramProgress(ss_nullptr_k)
@@ -452,13 +462,13 @@ search_sequence::search_sequence(
 inline
 search_sequence::search_sequence(
     char_type const*    directory
-,   char_type const*    pattern
+,   char_type const*    patterns
 ,   recls_uint32_t      flags
 )
     : m_directory_(1)
     , m_pattern_(1)
     , m_directory(copy_or_null(m_directory_, directory))
-    , m_pattern(copy_or_null(m_pattern_, pattern))
+    , m_pattern(copy_or_null(m_pattern_, patterns))
     , m_flags(flags)
     , m_pfnProgress(ss_nullptr_k)
     , m_paramProgress(ss_nullptr_k)
@@ -687,6 +697,7 @@ basic_search_sequence_const_iterator<C, T, V>::operator !=(
     return !operator ==(rhs);
 }
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

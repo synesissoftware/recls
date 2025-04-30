@@ -4,7 +4,7 @@
  * Purpose: recls C++ mapping - entry class.
  *
  * Created: 18th August 2003
- * Updated: 20th February 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -52,9 +52,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    12
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 1
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     118
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    13
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 0
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     120
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,21 +106,21 @@ class entry
 {
 public: // Member Types
     /// This type
-    typedef entry                       class_type;
+    typedef entry                                           class_type;
     /// The character type
-    typedef char_t                      char_type;
+    typedef char_t                                          char_type;
     /// The traits type
-    typedef reclstl_traits<char_type>   traits_type;
+    typedef reclstl_traits<char_type>                       traits_type;
     /// The size type
-    typedef size_t                      size_type;
+    typedef size_t                                          size_type;
     /// The string type
-    typedef string_t                    string_type;
+    typedef string_t                                        string_type;
     /// The directory parts type
-    typedef directory_parts             directory_parts_type;
+    typedef directory_parts                                 directory_parts_type;
 private:
     typedef platformstl::filesystem_traits<
         char_type
-    >                                   traits_type_;
+    >                                                       traits_type_;
 public:
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
@@ -359,6 +359,13 @@ public:
         return 0 != Recls_EntryExists(m_entry);
     }
 
+    /// Indicates if the entry is a device.
+    bool is_device() const STLSOFT_NOEXCEPT
+    {
+        STLSOFT_ASSERT(NULL != m_entry);
+
+        return 0 != Recls_IsEntryDevice(m_entry);
+    }
     /// Indicates if the entry is a directory.
     bool is_directory() const STLSOFT_NOEXCEPT
     {

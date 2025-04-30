@@ -4,7 +4,7 @@
  * Purpose: recls::internal::sequence_helper struct.
  *
  * Created: 10th September 2003
- * Updated: 16th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    http://recls.org/
  *
@@ -54,7 +54,7 @@
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_MAJOR     5
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_MINOR     0
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_REVISION  7
-# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_EDIT      105
+# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_EDIT      106
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -207,7 +207,9 @@ public:
     {
         enum { SrcIsIntegralType = stlsoft::is_integral_type<T_src>::value };
 
-        typedef ss_typename_type_k stlsoft::value_to_yesno_type<SrcIsIntegralType>::type  is_integral_type_t;
+        typedef ss_typename_type_k stlsoft::value_to_yesno_type<
+            SrcIsIntegralType
+        >::type                                             is_integral_type_t;
 
         return copy_or_null_(dest, src, is_integral_type_t());
     }

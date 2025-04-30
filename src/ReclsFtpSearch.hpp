@@ -4,11 +4,11 @@
  * Purpose: Definition of the ReclsFtpSearch class.
  *
  * Created: 31st May 2004
- * Updated: 30th December 2023
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -29,6 +29,7 @@
 
 #include <inetstl/inetstl.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -40,11 +41,13 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
 class ReclsFtpSearchDirectoryNode;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -58,7 +61,7 @@ class ReclsFtpSearch
     : public ReclsSearch
 {
 public:
-    typedef ReclsFtpSearch  class_type;
+    typedef ReclsFtpSearch                                  class_type;
 
 // Allocation
 private:
@@ -103,7 +106,7 @@ private:
 // Implementation
 private:
     recls_char_t const*
-    calc_rootDir_(
+    emplace_rootDir_(
         size_t              cDirParts
     ,   recls_char_t const* rootDir
     ,   size_t              rootDirLen
@@ -125,6 +128,7 @@ private:
      *
      */
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

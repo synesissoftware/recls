@@ -4,7 +4,7 @@
  * Purpose: Unit-test of recls C++ API function `recls::derive_relative_path()`.
  *
  * Created: 7th June 2008
- * Updated: 17th April 2025
+ * Updated: 29th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -381,7 +381,7 @@ static void test_1_0(void)
 
 static void test_1_1(void)
 {
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#ifdef RECLS_PLATFORM_IS_WINDOWS
 
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("H:\\abc\\defghi"), recls::derive_relative_path(RECLS_LITERAL("C:\\"), RECLS_LITERAL("H:\\abc\\defghi")));
     XTESTS_TEST_STRING_EQUAL(RECLS_LITERAL("abc\\defghi"), recls::derive_relative_path(RECLS_LITERAL("C:\\"), RECLS_LITERAL("C:\\abc\\defghi")));

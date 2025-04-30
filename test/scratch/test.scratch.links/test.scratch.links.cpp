@@ -4,7 +4,7 @@
  * Purpose: Finds and lists multiply-linked files.
  *
  * Created: 23rd February 2011
- * Updated: 17th October 2024
+ * Updated: 28th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,34 +35,36 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * types
+ */
+
+namespace {
+
+    typedef stlsoft::string_slice_m_t                       sslice_t;
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    typedef std::basic_string<
+        char
+    >                                                       string_r_t;
+#endif
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * helpers
  */
 
-static
-int
-show_usage(
-    FILE*       out
-,   char const* arg0
-,   int         xc
-)
-{
-    stlsoft::string_slice_m_t const xname = platformstl::get_executable_name_from_path(arg0);
-
-    fprintf(
-        out
-    ,   "USAGE: %.*s  [ { --help | <search-root-dir> | } ]\n"
-    ,   int(xname.len), xname.ptr
-    );
-
-    return xc;
-}
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
  */
 
-static int main_(int argc, char* argv[])
+static int main_(
+    sslice_t const  program_name
+,   int             argc
+,   char*           argv[]
+)
 {
     char const* searchRoot = NULL;
 
@@ -75,7 +77,13 @@ static int main_(int argc, char* argv[])
 
         if (0 == ::strcmp("--help", argv[1]))
         {
-            return show_usage(stdout, argv[0], EXIT_SUCCESS);
+            std::cout
+                << "USAGE: "
+                << program_name
+                << " [ { --help | <search-root-dir> | } ]"
+                << std::endl;
+
+            return EXIT_SUCCESS;
         }
         else
         {
@@ -84,7 +92,12 @@ static int main_(int argc, char* argv[])
         break;
     default:
 
-        return show_usage(stderr, argv[0], EXIT_FAILURE);
+        std::cerr
+            << program_name
+            << ": too many arguments; use --help for usage"
+            << std::endl;
+
+        return EXIT_FAILURE;
     }
 
     std::cout
@@ -95,18 +108,14 @@ static int main_(int argc, char* argv[])
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 
-    typedef std::basic_string<
-        char
-    >                                   string_r_t;
-
-    string_r_t                          longest_dir;
+    string_r_t longest_dir;
 
     struct callback
     {
         static int function(
             /* [in] */ recls::char_t const*         dir
         ,   /* [in] */ size_t                       dirLen
-        ,   /* [in] */ recls::process_fn_param_t    param
+        ,   /* [in] */ recls::progress_fn_param_t   param
         ,   /* [in] */ void*                     /* reserved0 */
         ,   /* [in] */ recls::uint32_t           /* reserved1 */
         )
@@ -182,28 +191,23 @@ static int main_(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
-    char const* const program_name = platformstl::get_executable_name_from_path(argv[0]).ptr;
-
-#if 0
-    { for (size_t i = 0; i < 0xffffffff; ++i){} }
-#endif /* 0 */
+    sslice_t const program_name = platformstl::get_executable_name_from_path(argv[0]);
 
     try
     {
-#if defined(_DEBUG) || \
-    defined(__SYNSOFT_DBS_DEBUG)
-        puts("test.scratch.links: " __STLSOFT_COMPILER_LABEL_STRING);
-#endif /* debug */
-
-        return main_(argc, argv);
+        return main_(program_name, argc, argv);
     }
     catch (std::bad_alloc&)
     {
-        fprintf(stderr, "%s: out of memory\n", program_name);
+        fprintf(stderr, "%.*s: out of memory\n", int(program_name.len), program_name.ptr);
+    }
+    catch (recls::recls_exception& x)
+    {
+        fprintf(stderr, "%.*s: %s\n", int(program_name.len), program_name.ptr, x.what());
     }
     catch (std::exception& x)
     {
-        fprintf(stderr, "%s: Unhandled exception (%s): %s\n", program_name, typeid(x).name(), x.what());
+        fprintf(stderr, "%.*s: Unhandled exception (%s): %s\n", int(program_name.len), program_name.ptr, typeid(x).name(), x.what());
     }
     catch (...)
     {

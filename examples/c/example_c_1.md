@@ -9,20 +9,20 @@ Demonstrates recursive search for all files under a given directory including al
 
 ```C
 /* /////////////////////////////////////////////////////////////////////////
- * File:    examples/c/example_c_3/main.c
+ * File:    examples/c/example_c_1/main.c
  *
  * Purpose: C example program for the recls core library. Demonstrates:
  *
  *  - search in current or named directory
- *  - search matching all names - implicitly, by specifying NULL for the patterns parameter
- *  - search non-recursively for directories, files, and sockets
+ *  - search matching all names
+ *  - search recursively for files and sockets
  *  - search by Recls_Search()
- *  - display of entry-name for each matched entry, squeezed into maximum 64-characters via Recls_SqueezePath()
- *  - display of file-size for each matched file; display of directory size (sum of all file-sizes in all subdirectories, via Recls_CalcDirectoryEntrySize()) for matched directory
+ *  - display of full path of each entry
  *  - detecting failure and reporting of failure reason
+ *  - elicitation of entry properties via entry structure members
  *
  * Created: 29th May 2006
- * Updated: 22nd April 2025
+ * Updated: 21st April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,22 +36,19 @@ Demonstrates recursive search for all files under a given directory including al
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * constants
- */
-
-#define CCH_SQUEEZED_PATH                                   (36)
-
-
-/* /////////////////////////////////////////////////////////////////////////
  * main()
  */
 
 int main(int argc, char* argv[])
 {
+    /* Declare a search handle, define search directory as named or current,
+     * pattern matching all names, flags for recursive search of files, and
+     * start a search.
+     */
     hrecls_t        hSrch;
     char const*     search_dir  =   argc > 1 ? argv[1] : ".";
-    char const*     patterns    =   "*|.*";
-    recls_uint32_t  flags       =   RECLS_F_DIRECTORIES | RECLS_F_FILES | RECLS_F_SOCKETS;
+    char const*     patterns    =   Recls_GetWildcardsAll();
+    recls_uint32_t  flags       =   RECLS_F_RECURSIVE | RECLS_F_FILES | RECLS_F_SOCKETS;
     recls_rc_t      rc          =   Recls_Search(search_dir, patterns, flags, &hSrch);
 
     if (RECLS_RC_NO_MORE_DATA == rc)
@@ -83,61 +80,8 @@ failed:
 
         do
         {
-            recls_filesize_t    size;
-            recls_filesize_t    unit_size;
-            char const*         unit_label;
-            char const*         type_label;
-            recls_char_t        squeezedPath[CCH_SQUEEZED_PATH];
-            size_t              cch;
-
-
-            if (Recls_IsEntryDirectory(entry))
-            {
-                size = Recls_CalcDirectoryEntrySize(entry);
-                type_label = "directory";
-            }
-            else
-            if (Recls_IsEntrySocket(entry))
-            {
-                size = 0;
-                type_label = "socket";
-            }
-            else
-            {
-                size = Recls_GetSizeProperty(entry);
-                type_label = "file";
-            }
-
-            if (0 != (unit_size = Recls_GetFileSizeGigaBytes(size)))
-            {
-                unit_label = "GB";
-            }
-            else if (0 != (unit_size = Recls_GetFileSizeMegaBytes(size)))
-            {
-                unit_label = "MB";
-            }
-            else if (0 != (unit_size = Recls_GetFileSizeKiloBytes(size)))
-            {
-                unit_label = "KB";
-            }
-            else
-            {
-                unit_label = "byte(s)";
-            }
-
-
-            /* ... squeeze name+ext into CCH_SQUEEZED_PATH characters, ... */
-            cch = Recls_SqueezePath(entry->fileName.begin, &squeezedPath[0], CCH_SQUEEZED_PATH - 1);
-
-            ((void)&cch);
-
-            printf("%36s: %9s; %4lu %s\n"
-            ,   squeezedPath
-            ,   type_label
-            ,   (unsigned long)unit_size
-            ,   unit_label
-            );
-
+            /* ... display the full path, ... */
+            printf("%.*s\n", (int)(entry->path.end - entry->path.begin), entry->path.begin);
 
             /* ... close the entry handle, ... */
             Recls_CloseDetails(entry);

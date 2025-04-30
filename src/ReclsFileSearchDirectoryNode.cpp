@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 20th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -38,10 +38,26 @@
 #include "impl.trace.h"
 
 #if defined(RECLS_CHAR_TYPE_IS_WCHAR)
-# if defined(RECLS_PLATFORM_IS_WINDOWS)
+# if 0
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
 #  include <winstl/conversion/char_conversions.hpp>
 # endif /* RECLS_PLATFORM_IS_WINDOWS */
 #endif /* RECLS_CHAR_TYPE_IS_???? */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if _STLSOFT_VER < 0x01097bff
+# error Requires STLSoft 1.9.123 or later
+#endif
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+# if _WINSTL_VER < 0x010a05ff
+#  error Requires WinSTL 1.10.5 or later
+# endif
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,31 +92,49 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
 
     int ssFlags = 0;
 
-    if (0 != (flags & RECLS_F_DIRECTORIES))
+
+    /* types */
     {
-        ssFlags |= sequence_t::directories;
-    }
-    if (0 != (flags & RECLS_F_FILES))
-    {
-        ssFlags |= sequence_t::files;
-    }
+        if (0 != (flags & RECLS_F_DIRECTORIES))
+        {
+            ssFlags |= sequence_t::directories;
+        }
+        if (0 != (flags & RECLS_F_FILES))
+        {
+            ssFlags |= sequence_t::files;
+        }
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
-    if (0 != (flags & RECLS_F_SOCKETS))
-    {
-        ssFlags |= sequence_t::sockets;
-    }
+        if (0 != (flags & RECLS_F_DEVICES))
+        {
+            ssFlags |= sequence_t::devices;
+        }
+        if (0 != (flags & RECLS_F_SOCKETS))
+        {
+            ssFlags |= sequence_t::sockets;
+        }
 #endif
+    }
 
-    if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+
+    /* RECLS_F_STOP_ON_ACCESS_FAILURE */
     {
-#if defined(_WINSTL_VER) && \
-    _WINSTL_VER >= 0x010a05ff
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        ssFlags |= sequence_t::throwOnAccessFailure;
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#endif
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+        {
+            ssFlags |= sequence_t::throwOnAccessFailure;
+        }
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* platform */
     }
+
 
     return ssFlags;
 }
@@ -112,47 +146,73 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_");
 
-    typedef directory_sequence_type sequence_t;
+    typedef directory_sequence_type                         sequence_t;
 
     int ssFlags = 0;
 
     ssFlags |= sequence_t::directories;
 
+
+    /* fullPath */
+    {
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
-# ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
-#  pragma message(_sscomp_fileline_message("TODO: Make this for all, once findfile_sequence supports fullPath"))
-# endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
+// TODO: Make this for all, once findfile_sequence supports fullPath
 
-    ssFlags |= sequence_t::fullPath;
-#endif /* platform */
-
-    if (0 == (flags & RECLS_F_ALLOW_REPARSE_DIRS))
-    {
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
-        ssFlags |= sequence_t::skipReparseDirs;
+        ssFlags |= sequence_t::fullPath;
 #endif /* platform */
     }
 
-    if (0 != (flags & RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS))
+
+    /* RECLS_F_ALLOW_REPARSE_DIRS */
     {
+        if (0 == (flags & RECLS_F_ALLOW_REPARSE_DIRS))
+        {
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+            ssFlags |= sequence_t::skipReparseDirs;
+#endif /* platform */
+        }
+    }
+
+
+    /* RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS */
+    {
+        if (0 != (flags & RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS))
+        {
 // TODO: Update this for UNIX when functionality available in UNIXSTL
 
-#ifdef RECLS_PLATFORM_IS_WINDOWS
-        ssFlags |= sequence_t::skipHiddenFiles;
-        ssFlags |= sequence_t::skipHiddenDirs;
-#endif /* RECLS_PLATFORM_IS_WINDOWS */
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+            ssFlags |= sequence_t::skipHiddenFiles;
+            ssFlags |= sequence_t::skipHiddenDirs;
+#endif /* platform */
+        }
     }
 
-    if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+
+    /* RECLS_F_STOP_ON_ACCESS_FAILURE */
     {
-#if defined(_WINSTL_VER) && \
-    _WINSTL_VER >= 0x010a05ff
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        ssFlags |= sequence_t::throwOnAccessFailure;
+        if (0 == (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+        {
+            ssFlags |= sequence_t::noThrowOnAccessFailure;
+        }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#endif
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
+        {
+            ssFlags |= sequence_t::throwOnAccessFailure;
+        }
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* platform */
     }
+
 
     return ssFlags;
 }
@@ -268,21 +328,21 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     recls_uint32_t              flags
 ,   recls_char_t const*         searchDir
 ,   size_t                      rootDirLen
-,   recls_char_t const*         pattern
-,   size_t                      patternLen
+,   recls_char_t const*         patterns
+,   size_t                      patternsLen
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 )
     : m_current(ss_nullptr_k)
     , m_dnode(ss_nullptr_k)
     , m_flags(flags)
     , m_rootDirLen(rootDirLen)
     , m_searchDir(prepare_searchDir_(searchDir))
-    , m_pattern(pattern)
-    , m_patternLen(patternLen)
+    , m_patterns(patterns)
+    , m_patternsLen(patternsLen)
     , m_directories(
             searchDir
-#if defined(RECLS_PLATFORM_IS_WINDOWS)    // Windows uses findfile_sequence, which takes wildcards
+#ifdef RECLS_PLATFORM_IS_WINDOWS // Windows uses findfile_sequence, which takes wildcards
         ,   types::traits_type::pattern_all()
 #endif /* platform */
         ,   dssFlags_from_reclsFlags_(flags)
@@ -290,7 +350,7 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
     , m_directoriesBegin(select_iter_if_((flags & RECLS_F_RECURSIVE), m_directories.begin(), m_directories.end()))
     , m_entries(
             searchDir
-        ,   pattern
+        ,   patterns
 #ifdef RECLS_SUPPORTS_MULTIPATTERN_
         ,   types::traits_type::path_separator()
 #endif /* RECLS_SUPPORTS_MULTIPATTERN_ */
@@ -320,22 +380,30 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     recls_uint32_t              flags
 ,   recls_char_t const*         searchDir
 ,   size_t                      rootDirLen
-,   recls_char_t const*         pattern
-,   size_t                      patternLen
+,   recls_char_t const*         patterns
+,   size_t                      patternsLen
 ,   hrecls_progress_fn_t        pfn
-,   recls_process_fn_param_t    param
+,   recls_progress_fn_param_t   param
 ,   recls_rc_t*                 prc
 )
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::FindAndCreate");
+
+    recls_debug0_trace_printf_(RECLS_LITERAL("%s:%d:%s(flags=%08x, searchDir='%s' (%zu), rootDirLen=%zu, patterns='%.*s')"), __STLSOFT_FILE_LINE_FUNCTION__
+    ,   flags
+    ,   searchDir, types::traits_type::str_len(searchDir)
+    ,   rootDirLen
+    ,   int(patternsLen), patterns
+    );
+
 
     // pre-conditions
 
     RECLS_ASSERT(ss_nullptr_k != searchDir);
     RECLS_ASSERT(rootDirLen <= types::traits_type::str_len(searchDir));
 
-    RECLS_MESSAGE_ASSERT("patternLen is an advisory, and we still require pattern to not be null", ss_nullptr_k != pattern);
-    RECLS_ASSERT(patternLen == types::traits_type::str_len(pattern));
+    RECLS_MESSAGE_ASSERT("patternsLen is an advisory, and we still require patterns to not be null", ss_nullptr_k != patterns);
+    RECLS_ASSERT(patternsLen == types::traits_type::str_len(patterns));
     RECLS_ASSERT(ss_nullptr_k != prc);
 
 
@@ -345,21 +413,9 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     try
     {
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-        node = new ReclsFileSearchDirectoryNode(flags, searchDir, rootDirLen, pattern, patternLen, pfn, param);
+        node = new ReclsFileSearchDirectoryNode(flags, searchDir, rootDirLen, patterns, patternsLen, pfn, param);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-# if _STLSOFT_VER >= 0x01097bff
-#  if defined(PLATFORMSTL_OS_IS_UNIX)
-    catch (unixstl::readdir_sequence_exception& x)
-    {
-        recls_error_trace_printf_(RECLS_LITERAL("could not enumerate contents of directory '%s'"), x.Directory.c_str());
-
-        *prc = RECLS_RC_ACCESS_DENIED;
-
-        node = ss_nullptr_k;
-    }
-#  endif /* OS */
-# endif /* _STLSOFT_VER */
     catch (std::bad_alloc&)
     {
         recls_error_trace_printf_(RECLS_LITERAL("out of memory"));
@@ -368,23 +424,85 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 
         node = ss_nullptr_k;
     }
-# if defined(_WINSTL_VER) && \
-     _WINSTL_VER >= 0x010a05ff
-    catch (winstl_ns_qual(access_exception)& x)
+# if 0
+# elif defined(PLATFORMSTL_OS_IS_UNIX)
+    catch (unixstl::readdir_sequence_exception& x)
+# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+    catch (winstl_ns_qual(winstl_exception)& x)
+# endif
     {
-#  if defined(RECLS_CHAR_TYPE_IS_WCHAR)
-        recls_error_trace_printf_(winstl::a2t(x.what()).c_str());
-#  else
-        recls_error_trace_printf_(x.what());
-#  endif
+        recls_error_trace_printf_(
+            RECLS_LITERAL("failed to enumerate contents of directory '%s': %s (%ld)")
+        ,   searchDir
+# if defined(RECLS_CHAR_TYPE_IS_WCHAR)
+        ,   winstl::a2t(x.what()).c_str()
+# else
+        ,   x.what()
+# endif
+        ,   static_cast<signed long int>(x.status_code())
+        );
 
-        *prc = RECLS_RC_ACCESS_DENIED;
+# if 0
+# elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+        switch (x.status_code())
+        {
+        case EACCES:
+#  ifdef ENOTDIR
+        case ENOTDIR:
+#  endif // ENOTDIR
+#  ifdef EPERM
+        case EPERM:
+#  endif // EPERM
+
+            *prc = RECLS_RC_ACCESS_DENIED;
+
+            break;
+#  ifdef ENAMETOOLONG
+        case ENAMETOOLONG:
+
+            *prc = RECLS_RC_PATH_LIMIT_EXCEEDED;
+
+        break;
+#  endif // ENAMETOOLONG
+        default:
+
+            *prc = RECLS_RC_FAIL;
+            break;
+        }
+# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+        switch (x.status_code())
+        {
+        case ERROR_ACCESS_DENIED:
+
+            *prc = RECLS_RC_ACCESS_DENIED;
+            break;
+# ifdef ERROR_FILENAME_EXCED_RANGE
+        case ERROR_FILENAME_EXCED_RANGE:
+
+            *prc = RECLS_RC_PATH_LIMIT_EXCEEDED;
+            break;
+# endif // ERROR_FILENAME_EXCED_RANGE
+        default:
+
+            *prc = RECLS_RC_FAIL;
+            break;
+        }
+
+# endif
 
         node = ss_nullptr_k;
     }
-# endif
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif
 
+    if (RECLS_RC_ACCESS_DENIED == *prc)
+    {
+        delete node;
+
+        node = NULL;
+    }
+    else
     if (ss_nullptr_k != node)
     {
         // Ensure that it, or one of its sub-nodes, has matching entries.
@@ -531,12 +649,13 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
     if (ss_nullptr_k != m_pfn)
     {
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
         if (m_flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
         {
             typedef int (RECLS_CALLCONV_STDDECL *stdcall_progress_fn_t)(recls_char_t const*
                                                                     ,   size_t
-                                                                    ,   recls_process_fn_param_t
+                                                                    ,   recls_progress_fn_param_t
                                                                     ,   void*
                                                                     ,   recls_uint32_t);
 
@@ -545,7 +664,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
             (*pfn_stdcall)(m_searchDir.data(), m_searchDir.size(), m_param, ss_nullptr_k, 0);
         }
         else
-#endif /* RECLS_PLATFORM_IS_WINDOWS */
+#endif /* platform */
         {
             if (0 == (*m_pfn)(m_searchDir.data(), m_searchDir.size(), m_param, ss_nullptr_k, 0))
             {
@@ -597,8 +716,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
                 ,   (*m_directoriesBegin).get_path()
 #endif /* RECLS_PLATFORM_IS_??? */
                 ,   m_rootDirLen
-                ,   stlsoft::c_str_ptr(m_pattern)
-                ,   m_patternLen
+                ,   stlsoft::c_str_ptr(m_patterns)
+                ,   m_patternsLen
                 ,   m_pfn
                 ,   m_param
                 ,   &rc
@@ -721,6 +840,12 @@ ReclsFileSearchDirectoryNode::GetNext()
             }
         }
 
+        if (RECLS_RC_ACCESS_DENIED == rc &&
+            0 != (RECLS_F_STOP_ON_ACCESS_FAILURE & m_flags))
+        {
+            return rc;
+        }
+        else
         if (m_directoriesBegin == m_directories.end())
         {
             // Enumeration is complete.
@@ -745,8 +870,8 @@ ReclsFileSearchDirectoryNode::GetNext()
                     ,   (*m_directoriesBegin).get_path()
 #endif /* RECLS_PLATFORM_IS_??? */
                     ,   m_rootDirLen
-                    ,   stlsoft::c_str_ptr(m_pattern)
-                    ,   m_patternLen
+                    ,   stlsoft::c_str_ptr(m_patterns)
+                    ,   m_patternsLen
                     ,   m_pfn
                     ,   m_param
                     ,   &rc

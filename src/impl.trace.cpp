@@ -4,7 +4,7 @@
  * Purpose: Tracing.
  *
  * Created: 30th September 2003
- * Updated: 17th April 2025
+ * Updated: 28th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -66,11 +66,11 @@ namespace
 #endif /* !RECLS_NO_NAMESPACE */
 
     int const fatalSeverity_DEFAULT         = 1;
-    int const errorSeverity_DEFAULT         = 4;
-    int const warningSeverity_DEFAULT       = 5;
-    int const informationalSeverity_DEFAULT = 7;
-    int const debug0Severity_DEFAULT        = 8;
-    int const debug1Severity_DEFAULT        = 9;
+    int const errorSeverity_DEFAULT         = 3;
+    int const warningSeverity_DEFAULT       = 4;
+    int const informationalSeverity_DEFAULT = 6;
+    int const debug0Severity_DEFAULT        = 7;
+    int const debug1Severity_DEFAULT        = 8;
     int const debug2Severity_DEFAULT        = -1;
     int const debug3Severity_DEFAULT        = -1;
 
@@ -251,10 +251,10 @@ namespace impl
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
 
-typedef stlsoft::errno_scope                error_scope_t;
+typedef stlsoft::errno_scope                                error_scope_t;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
-typedef winstl::last_error_scope            error_scope_t;
+typedef winstl::last_error_scope                            error_scope_t;
 #else /* ? platform */
 
 # error Unrecognised platform
