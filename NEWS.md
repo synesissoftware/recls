@@ -4,6 +4,7 @@
 
 | Date                  | News Item                                                 |
 | --------------------- | --------------------------------------------------------- |
+| 30th April 2025       |   recls 1.10.1 (beta 6) released                          |
 | 22nd April 2025       |   recls 1.10.1 (beta 5) released                          |
 | 17th April 2025       |   recls 1.10.1 (beta 4) released                          |
 | 17th April 2025       |   recls 1.10.1 (beta 3) released                          |

@@ -148,66 +148,80 @@ endif()
 # ############################
 # b64
 
-if(BUILD_TESTING)
+if(NOT (CMAKE_NO_B64))
 
-	find_package(b64 QUIET)
+	if(BUILD_TESTING)
 
-	if(b64_FOUND)
+		find_package(b64 QUIET)
 
-		message("-- CMake package b64 found (version ${b64_VERSION})")
+		if(b64_FOUND)
 
-		add_compile_definitions(HAS_b64)
-	else(b64_FOUND)
+			message("-- CMake package b64 found (version ${b64_VERSION})")
 
-		add_compile_definitions(PANTHEIOS_NO_B64)
-		add_compile_definitions(RECLS_NO_B64)
-	endif(b64_FOUND)
-endif(BUILD_TESTING)
+			add_compile_definitions(HAS_b64)
+		else(b64_FOUND)
+
+			add_compile_definitions(PANTHEIOS_NO_B64)
+			add_compile_definitions(RECLS_NO_B64)
+		endif(b64_FOUND)
+	endif(BUILD_TESTING)
+endif()
 
 
 # ############################
 # Pantheios
 
-if(BUILD_TESTING)
+if(NOT (CMAKE_NO_PANTHEIOS))
 
-	find_package(Pantheios QUIET)
+	if(BUILD_TESTING)
 
-	if(Pantheios_FOUND)
+		find_package(Pantheios QUIET)
 
-		message("-- CMake package Pantheios found (version ${Pantheios_VERSION})")
+		if(Pantheios_FOUND)
 
-		add_compile_definitions(HAS_Pantheios)
-	endif(Pantheios_FOUND)
-endif(BUILD_TESTING)
+			message("-- CMake package Pantheios found (version ${Pantheios_VERSION})")
+
+			add_compile_definitions(HAS_Pantheios)
+		endif(Pantheios_FOUND)
+	endif(BUILD_TESTING)
+endif()
 
 
 # ############################
 # shwild
 
-if(BUILD_TESTING)
+if(NOT (CMAKE_NO_SHWILD))
 
-	find_package(shwild QUIET)
+	if(BUILD_TESTING)
 
-	if(shwild_FOUND)
+		find_package(shwild QUIET)
 
-		message("-- CMake package shwild found (version ${shwild_VERSION})")
+		if(shwild_FOUND)
 
-		add_compile_definitions(HAS_shwild)
-		add_compile_definitions(PANTHEIOS_HAS_SHWILD)
-		add_compile_definitions(RECLS_HAS_SHWILD)
-		add_compile_definitions(XTESTS_HAS_SHWILD)
-	else(shwild_FOUND)
+			message("-- CMake package shwild found (version ${shwild_VERSION})")
+
+			add_compile_definitions(HAS_shwild)
+			add_compile_definitions(PANTHEIOS_HAS_SHWILD)
+			add_compile_definitions(RECLS_HAS_SHWILD)
+			add_compile_definitions(XTESTS_HAS_SHWILD)
+		else(shwild_FOUND)
+
+			add_compile_definitions(PANTHEIOS_NO_SHWILD)
+			add_compile_definitions(RECLS_NO_SHWILD)
+			add_compile_definitions(XTESTS_NO_SHWILD)
+		endif(shwild_FOUND)
+	else(BUILD_TESTING)
 
 		add_compile_definitions(PANTHEIOS_NO_SHWILD)
 		add_compile_definitions(RECLS_NO_SHWILD)
 		add_compile_definitions(XTESTS_NO_SHWILD)
-	endif(shwild_FOUND)
-else(BUILD_TESTING)
+	endif(BUILD_TESTING)
+else()
 
 	add_compile_definitions(PANTHEIOS_NO_SHWILD)
 	add_compile_definitions(RECLS_NO_SHWILD)
 	add_compile_definitions(XTESTS_NO_SHWILD)
-endif(BUILD_TESTING)
+endif()
 
 
 # ############################
