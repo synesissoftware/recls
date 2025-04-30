@@ -200,6 +200,16 @@ recls_rc_t Recls_Stat_X_(
             }
 
 #ifndef _WIN32
+            if (types::traits_type::is_device(&stat_data))
+            {
+                if (0 == (flags & RECLS_F_DEVICES))
+                {
+                    return RECLS_RC_ENTRY_IS_DEVICE;
+                }
+            }
+#endif
+
+#ifndef _WIN32
             if (types::traits_type::is_socket(&stat_data))
             {
                 if (0 == (flags & RECLS_F_SOCKETS))

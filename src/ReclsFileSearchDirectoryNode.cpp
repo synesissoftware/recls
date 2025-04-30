@@ -105,6 +105,10 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
         }
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+        if (0 != (flags & RECLS_F_DEVICES))
+        {
+            ssFlags |= sequence_t::devices;
+        }
         if (0 != (flags & RECLS_F_SOCKETS))
         {
             ssFlags |= sequence_t::sockets;
@@ -444,6 +448,9 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
         switch (x.status_code())
         {
         case EACCES:
+#  ifdef ENOTDIR
+        case ENOTDIR:
+#  endif // ENOTDIR
 #  ifdef EPERM
         case EPERM:
 #  endif // EPERM

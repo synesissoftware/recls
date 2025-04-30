@@ -1,6 +1,16 @@
 # recls - History
 
 
+30th April 2025 - 1.10.1 beta6
+------------------------------
+
+ * Added support for searching for/stat()-ing devices: `RECLS_F_DEVICES`, `RECLS_RC_ENTRY_IS_DEVICE`, **example_10** (which searches for devices), `recls::cpp::entry#is_device()`;
+ * Ensuring full support across operating systems for `RECLS_F_STOP_ON_ACCESS_FAILURE`, including adding **test.scratch.ignore_inaccessible_nodes**;
+ * Added **example_9** (which searches for sockets);
+ * Adjusted logging threshold constants in order to be compatible with Pantheios (as configured via `Recls_SetApiLogFunction()`);
+ * Various tidyings and consistency fixes;
+
+
 22nd April 2025 - 1.10.1 beta5
 ------------------------------
 

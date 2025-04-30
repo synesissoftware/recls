@@ -321,6 +321,45 @@ Recls_IsFileReadOnly(
     return Recls_IsEntryReadOnly(hEntry);
 }
 
+RECLS_FNDECL(recls_bool_t)
+Recls_IsEntryDevice(
+    /* [in] */ recls_entry_t hEntry
+)
+{
+    function_scope_trace("Recls_IsEntryDevice");
+
+    RECLS_ASSERT(ss_nullptr_k != hEntry);
+
+#if defined(RECLS_PLATFORM_IS_UNIX) && \
+    !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+
+    switch (hEntry->attributes & S_IFMT)
+    {
+# ifdef S_IFBLK
+    case S_IFBLK:
+# endif // S_IFBLK
+# ifdef S_IFCHR
+    case S_IFCHR:
+# endif // S_IFCHR
+# ifdef S_IFIFO
+    case S_IFIFO:
+# endif // S_IFIFO
+# ifdef S_IFWHT
+    case S_IFWHT:
+# endif // S_IFWHT
+        return true;
+
+    default:
+
+        return false;
+    }
+#else /* unrecognised platform */
+
+    STLSOFT_SUPPRESS_UNUSED(hEntry);
+
+    return false;
+#endif /* platform */
+}
 
 RECLS_FNDECL(recls_bool_t)
 Recls_IsEntryDirectory(recls_entry_t fileInfo)

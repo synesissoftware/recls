@@ -4,7 +4,7 @@
  * Purpose: Unit-test of recls status codes via C API.
  *
  * Created: 13th December 2008
- * Updated: 21st April 2025
+ * Updated: 30th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -106,6 +106,7 @@ static recls_rc_t const s_FAILURE_CODES[] =
     ,   RECLS_RC_ROOTED_PATHS_IN_PATTERNS
     ,   RECLS_RC_ENTRY_IS_FILE
     ,   RECLS_RC_ENTRY_IS_SOCKET
+    ,   RECLS_RC_ENTRY_IS_DEVICE
 };
 
 
