@@ -34,6 +34,7 @@
 #include "impl.entryinfo.hpp"
 
 #include "ReclsFileSearchDirectoryNode.hpp"
+#include "ReclsFileSearch.hpp"
 
 #include "impl.trace.h"
 
@@ -325,15 +326,17 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
 }
 
 ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
-    recls_uint32_t              flags
-,   recls_char_t const*         searchDir
-,   size_t                      rootDirLen
-,   recls_char_t const*         patterns
-,   size_t                      patternsLen
-,   hrecls_progress_fn_t        pfn
-,   recls_progress_fn_param_t   param
+    recls_uint32_t                  flags
+,   ReclsSearchDirectoryControl*    dc
+,   recls_char_t const*             searchDir
+,   size_t                          rootDirLen
+,   recls_char_t const*             patterns
+,   size_t                          patternsLen
+,   hrecls_progress_fn_t            pfn
+,   recls_progress_fn_param_t       param
 )
     : m_current(ss_nullptr_k)
+    , m_dc(dc)
     , m_dnode(ss_nullptr_k)
     , m_flags(flags)
     , m_rootDirLen(rootDirLen)
@@ -377,20 +380,22 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
 /* static */ ReclsFileSearchDirectoryNode*
 ReclsFileSearchDirectoryNode::FindAndCreate(
-    recls_uint32_t              flags
-,   recls_char_t const*         searchDir
-,   size_t                      rootDirLen
-,   recls_char_t const*         patterns
-,   size_t                      patternsLen
-,   hrecls_progress_fn_t        pfn
-,   recls_progress_fn_param_t   param
-,   recls_rc_t*                 prc
+    recls_uint32_t                  flags
+,   ReclsSearchDirectoryControl*    dc
+,   recls_char_t const*             searchDir
+,   size_t                          rootDirLen
+,   recls_char_t const*             patterns
+,   size_t                          patternsLen
+,   hrecls_progress_fn_t            pfn
+,   recls_progress_fn_param_t       param
+,   recls_rc_t*                     prc
 )
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::FindAndCreate");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("%s:%d:%s(flags=%08x, searchDir='%s' (%zu), rootDirLen=%zu, patterns='%.*s')"), __STLSOFT_FILE_LINE_FUNCTION__
+    recls_debug0_trace_printf_(RECLS_LITERAL("%s(flags=%08x, dc=%p, searchDir='%s' (%zu), rootDirLen=%zu, patterns='%.*s')"), STLSOFT_FUNCTION_SYMBOL
     ,   flags
+    ,   static_cast<void*>(dc)
     ,   searchDir, types::traits_type::str_len(searchDir)
     ,   rootDirLen
     ,   int(patternsLen), patterns
@@ -399,12 +404,30 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 
     // pre-conditions
 
+    RECLS_ASSERT(ss_nullptr_k != dc);
+
     RECLS_ASSERT(ss_nullptr_k != searchDir);
     RECLS_ASSERT(rootDirLen <= types::traits_type::str_len(searchDir));
 
     RECLS_MESSAGE_ASSERT("patternsLen is an advisory, and we still require patterns to not be null", ss_nullptr_k != patterns);
     RECLS_ASSERT(patternsLen == types::traits_type::str_len(patterns));
+
     RECLS_ASSERT(ss_nullptr_k != prc);
+
+
+
+    // ask whether can process
+
+    if (!dc->CanProcessDirectory(searchDir, NULL))
+    {
+        // TODO: invoke progress function
+
+        recls_warning_trace_printf_(RECLS_LITERAL("processing of directory '%s' prevented"), searchDir);
+
+        *prc = RECLS_RC_DIRECTORY_SKIPPED;
+
+        return NULL;
+    }
 
 
     ReclsFileSearchDirectoryNode* node;
@@ -413,7 +436,14 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     try
     {
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-        node = new ReclsFileSearchDirectoryNode(flags, searchDir, rootDirLen, patterns, patternsLen, pfn, param);
+        node = new ReclsFileSearchDirectoryNode(
+                    flags
+                ,   dc
+                ,   searchDir
+                ,   rootDirLen
+                ,   patterns, patternsLen
+                ,   pfn, param
+                );
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
     catch (std::bad_alloc&)
@@ -708,6 +738,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 
                 m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                     m_flags
+                ,   m_dc
                 ,   stlsoft::c_str_ptr(*m_directoriesBegin)
                 ,   m_rootDirLen
                 ,   stlsoft::c_str_ptr(m_patterns)
@@ -718,6 +749,11 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
                 );
 
             } while (ss_nullptr_k == m_dnode && ++m_directoriesBegin != m_directories.end());
+
+            if (RECLS_RC_DIRECTORY_SKIPPED == rc)
+            {
+                rc = RECLS_RC_NO_MORE_DATA;
+            }
 
             if (RECLS_SUCCEEDED(rc))
             {
@@ -862,6 +898,7 @@ ReclsFileSearchDirectoryNode::GetNext()
 
                     m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                         m_flags
+                    ,   m_dc
                     ,   stlsoft::c_str_ptr(*m_directoriesBegin)
                     ,   m_rootDirLen
                     ,   stlsoft::c_str_ptr(m_patterns)
@@ -881,6 +918,11 @@ ReclsFileSearchDirectoryNode::GetNext()
                     }
 
                 } while (ss_nullptr_k == m_dnode && m_directoriesBegin != m_directories.end());
+
+                if (RECLS_RC_DIRECTORY_SKIPPED == rc)
+                {
+                    rc = RECLS_RC_NO_MORE_DATA;
+                }
             }
         }
     }

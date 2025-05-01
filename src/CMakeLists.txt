@@ -5,7 +5,7 @@
 # Purpose:  CMake lists file for recls core library
 #
 # Created:  ...
-# Updated:  18th October 2024
+# Updated:  1st May 2025
 #
 # ######################################################################## #
 
@@ -44,6 +44,8 @@ endif()
 set(COMMON_IMPLEMENTATION_FILES
 
 	ReclsFileSearch.cpp
+	ReclsFileSearchDirectoryControlAlwaysAllow.cpp
+	ReclsFileSearchDirectoryControlPreventInfiniteLoops.cpp
 	ReclsFileSearchDirectoryNode.cpp
 	ReclsSearch.cpp
 
@@ -107,7 +109,6 @@ add_library(core
 
 set_target_properties(core PROPERTIES
 	OUTPUT_NAME "recls"
-	# PUBLIC_HEADER "${CORE_PUBLIC_HEADERS}"
 )
 
 target_include_directories(core
@@ -127,7 +128,6 @@ target_compile_options(core
 			-Werror -Wall -Wextra -pedantic
 
 			-Wno-deprecated-copy
-			-Wno-unused-parameter
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:
 			/WX /W4

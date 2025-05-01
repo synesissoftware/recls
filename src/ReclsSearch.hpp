@@ -76,8 +76,8 @@ struct ReclsSearchDirectoryNode
 public:
     /// Destructor
     ///
-    /// ReclsSearchDirectoryNode instances are <b>not</b> reference-counted, but are
-    /// deleted by their owner. They are non-shareable.
+    /// ReclsSearchDirectoryNode instances are <b>not</b> reference-counted,
+    /// but are deleted by their owner. They are non-shareable.
     virtual ~ReclsSearchDirectoryNode() = 0;
 
 // Operations

@@ -4,7 +4,7 @@
  * Purpose: Demonstrates using Pantheios for recls API logging.
  *
  * Created: 13th December 2008
- * Updated: 28th April 2025
+ * Updated: 1st May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -57,6 +57,7 @@ void RECLS_CALLCONV_DEFAULT recls_log_to_pantheios(
 static int main_(int /* argc */, char** /*argv*/)
 {
     using recls::RECLS_FAILED;
+    using recls::RECLS_F_PREVENT_INFINITE_LOOPS;
     using recls::RECLS_F_RECURSIVE;
     using recls::RECLS_SUCCEEDED;
     using recls::Recls_GetDetails;
@@ -68,11 +69,13 @@ static int main_(int /* argc */, char** /*argv*/)
     using recls::recls_info_t;
     using recls::recls_log_pfn_t;
     using recls::recls_rc_t;
+    using recls::recls_uint32_t;
 
     Recls_SetApiLogFunction(recls_log_to_pantheios, 0, NULL);
 
-    hrecls_t    hSrch;
-    recls_rc_t  rc = Recls_Search(".", Recls_GetWildcardsAll(), RECLS_F_RECURSIVE, &hSrch);
+    hrecls_t        hSrch;
+    recls_uint32_t  flags   =   RECLS_F_RECURSIVE | RECLS_F_PREVENT_INFINITE_LOOPS;
+    recls_rc_t      rc      =   Recls_Search(".", Recls_GetWildcardsAll(), flags, &hSrch);
 
     if (RECLS_RC_NO_MORE_DATA == rc)
     {

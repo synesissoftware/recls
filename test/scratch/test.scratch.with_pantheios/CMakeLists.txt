@@ -5,7 +5,7 @@ target_link_libraries(test.scratch.with_pantheios
 	PRIVATE
 		Pantheios::Pantheios.core
 		Pantheios::Pantheios.fe.all
-		Pantheios::Pantheios.be.fprintf
-		Pantheios::Pantheios.bec.fprintf
+		Pantheios::Pantheios.be.AnsiConsole
+		Pantheios::Pantheios.bec.AnsiConsole
 		Pantheios::Pantheios.util
 )

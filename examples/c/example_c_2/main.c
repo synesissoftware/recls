@@ -13,7 +13,7 @@
  *  - display of progress of each directory traversed, squeezed into the console width via Recls_SqueezePath()
  *
  * Created: 29th May 2006
- * Updated: 28th April 2025
+ * Updated: 1st May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
     hrecls_t            hSrch;
     char const*         search_dir  =   argc > 1 ? argv[1] : ".";
     char const*         patterns    =   SEARCH_PATTERN;
-    recls_uint32_t      flags       =   RECLS_F_RECURSIVE | RECLS_F_FILES;
+    recls_uint32_t      flags       =   RECLS_F_PREVENT_INFINITE_LOOPS | RECLS_F_RECURSIVE | RECLS_F_FILES;
     recls_rc_t          rc;
 
     struct feedback_t   feedback    =   { 0 };

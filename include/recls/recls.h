@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 30th April 2025
+ * Updated: 1st May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
-# define RECLS_VER_RECLS_H_RECLS_MINOR      24
-# define RECLS_VER_RECLS_H_RECLS_REVISION   2
-# define RECLS_VER_RECLS_H_RECLS_EDIT       153
+# define RECLS_VER_RECLS_H_RECLS_MINOR      25
+# define RECLS_VER_RECLS_H_RECLS_REVISION   0
+# define RECLS_VER_RECLS_H_RECLS_EDIT       154
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -141,11 +141,12 @@
 #define RECLS_VER_1_10_0_B04                                0x010a0084
 #define RECLS_VER_1_10_0_B05                                0x010a0085
 #define RECLS_VER_1_10_0_B06                                0x010a0086
+#define RECLS_VER_1_10_0_B07                                0x010a0087
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_B06
+#define RECLS_VER               RECLS_VER_1_10_0_B07
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -473,6 +474,7 @@ enum RECLS_FLAG
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
     ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WIN32      =   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+    ,   RECLS_F_PREVENT_INFINITE_LOOPS              =   0x10000000  /*!< XXXX */
 
 #if !defined(FILES)
     ,   FILES = RECLS_F_FILES /*!< RECLS_F_FILES. */
@@ -577,6 +579,10 @@ enum RECLS_FLAG
     ,   DIR_SIZE_IS_NUM_FILES = RECLS_F_DIR_SIZE_IS_NUM_FILES /*!< RECLS_F_DIR_SIZE_IS_NUM_FILES. */
 #endif /* !RECLS_F_DIR_SIZE_IS_NUM_FILES */
 #endif /* 0 */
+
+#if !defined(PREVENT_INFINITE_LOOPS)
+    ,   PREVENT_INFINITE_LOOPS = RECLS_F_PREVENT_INFINITE_LOOPS /*!< RECLS_F_PREVENT_INFINITE_LOOPS. */
+#endif /* !PREVENT_INFINITE_LOOPS */
 };
 
 /** Flags that moderate the search behaviour of the Recls_GetSelectedRoots() function.

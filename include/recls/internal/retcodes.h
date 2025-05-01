@@ -138,6 +138,9 @@ namespace recls
 
 /** Given path was a device when one was not expected */
 #define RECLS_RC_ENTRY_IS_DEVICE                            RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1028))
+
+/** Directory was skipped */
+#define RECLS_RC_DIRECTORY_SKIPPED                          RECLS_STATIC_CAST_(RECLS_QUAL(recls_rc_t), RECLS_RC_VALUE(-1 - 1029))
 /** @} */
 
 
