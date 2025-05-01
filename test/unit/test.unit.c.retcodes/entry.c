@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.c.retcodes.c
+ * File:    test/unit/test.unit.c.retcodes/entry.c
  *
  * Purpose: Unit-test of recls status codes via C API.
  *
  * Created: 13th December 2008
- * Updated: 30th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

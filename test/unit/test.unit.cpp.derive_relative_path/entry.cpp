@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.cpp.derive_relative_path/test.unit.cpp.derive_relative_path.cpp
+ * File:    test/unit/test.unit.cpp.derive_relative_path/entry.cpp
  *
  * Purpose: Unit-test of recls C++ API function `recls::derive_relative_path()`.
  *
  * Created: 7th June 2008
- * Updated: 29th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

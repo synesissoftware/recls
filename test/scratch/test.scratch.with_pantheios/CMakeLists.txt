@@ -1,5 +1,5 @@
 
-define_example_program(test.scratch.with_pantheios test.scratch.with_pantheios.cpp)
+define_example_program(test.scratch.with_pantheios main.cpp)
 
 target_link_libraries(test.scratch.with_pantheios
 	PRIVATE

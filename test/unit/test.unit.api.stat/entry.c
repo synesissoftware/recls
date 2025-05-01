@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.api.stat.c
+ * File:    test/unit/test.unit.api.stat/entry.c
  *
  * Purpose: Test stat functionality of recls C API function `Recls_Stat()`.
  *
  * Created: 13th December 2008
- * Updated: 21st April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.component.util.cpp.remove_directory/test.component.util.cpp.remove_directory.cpp
+ * File:    test/unit/test.component.util.cpp.remove_directory/entry.cpp
  *
  * Purpose: Test removal of directories (via recls C++ API function
  *          `recls::remove_directory()`).
  *
  * Created: 30th January 2010
- * Updated: 28th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

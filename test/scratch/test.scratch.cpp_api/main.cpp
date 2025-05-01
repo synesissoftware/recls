@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.scratch.cpp_api.cpp
+ * File:    test/scratch/test.scratch.cpp_api/main.cpp
  *
  * Purpose: Scratch-test exercising various parts of recls C++ API.
  *
  * Created: 4th January 2010
- * Updated: 17th October 2024
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

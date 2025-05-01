@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.cpp.combine_paths/test.unit.cpp.combine_paths.cpp
+ * File:    test/unit/test.unit.cpp.combine_paths/entry.cpp
  *
  * Purpose: Unit-test of recls C++ API function `recls::combine_paths()`.
  *
  * Created: 7th June 2008
- * Updated: 17th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

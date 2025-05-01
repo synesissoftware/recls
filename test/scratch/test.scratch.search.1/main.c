@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.scratch.search.1.c
+ * File:    test/scratch/test.scratch.search.1/main.c
  *
  * Purpose: Demonstrates use of recls C API for searching.
  *
  * Created: 12th August 2009
- * Updated: 21st April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
