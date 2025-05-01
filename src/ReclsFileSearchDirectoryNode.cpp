@@ -671,10 +671,10 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::Initialise");
 
-    recls_rc_t rc = RECLS_RC_OK;
-
     RECLS_ASSERT(ss_nullptr_k == m_current);
     RECLS_ASSERT(ss_nullptr_k == m_dnode);
+
+    // invoke progress hook
 
     if (ss_nullptr_k != m_pfn)
     {
@@ -707,6 +707,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         }
     }
 
+
+    recls_rc_t rc = RECLS_RC_OK;
 
     if (m_entries.end() != m_entriesBegin)
     {
@@ -741,14 +743,27 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
                 ,   m_dc
                 ,   stlsoft::c_str_ptr(*m_directoriesBegin)
                 ,   m_rootDirLen
-                ,   stlsoft::c_str_ptr(m_patterns)
-                ,   m_patternsLen
-                ,   m_pfn
-                ,   m_param
+                ,   stlsoft::c_str_ptr(m_patterns), m_patternsLen
+                ,   m_pfn, m_param
                 ,   &rc
                 );
 
-            } while (ss_nullptr_k == m_dnode && ++m_directoriesBegin != m_directories.end());
+                if (ss_nullptr_k != m_dnode)
+                {
+                    rc = RECLS_RC_OK;
+
+                    break;
+                }
+
+                if (RECLS_RC_ACCESS_DENIED == rc &&
+                    0 != (RECLS_F_STOP_ON_ACCESS_FAILURE & m_flags))
+                {
+                    break;
+                }
+
+                RECLS_ASSERT(ss_nullptr_k == m_dnode);
+
+            } while (m_directories.end() != ++m_directoriesBegin);
 
             if (RECLS_RC_DIRECTORY_SKIPPED == rc)
             {
@@ -901,29 +916,27 @@ ReclsFileSearchDirectoryNode::GetNext()
                     ,   m_dc
                     ,   stlsoft::c_str_ptr(*m_directoriesBegin)
                     ,   m_rootDirLen
-                    ,   stlsoft::c_str_ptr(m_patterns)
-                    ,   m_patternsLen
-                    ,   m_pfn
-                    ,   m_param
+                    ,   stlsoft::c_str_ptr(m_patterns), m_patternsLen
+                    ,   m_pfn, m_param
                     ,   &rc
                     );
 
                     if (ss_nullptr_k != m_dnode)
                     {
                         rc = RECLS_RC_OK;
+
+                        break;
                     }
-                    else
+
                     if (RECLS_RC_ACCESS_DENIED == rc &&
                         0 != (RECLS_F_STOP_ON_ACCESS_FAILURE & m_flags))
                     {
                         break;
                     }
-                    else
-                    {
-                        ++m_directoriesBegin;
-                    }
 
-                } while (ss_nullptr_k == m_dnode && m_directoriesBegin != m_directories.end());
+                    RECLS_ASSERT(ss_nullptr_k == m_dnode);
+
+                } while (m_directories.end() != ++m_directoriesBegin);
 
                 if (RECLS_RC_DIRECTORY_SKIPPED == rc)
                 {
