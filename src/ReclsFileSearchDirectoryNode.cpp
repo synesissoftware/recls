@@ -393,11 +393,11 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::FindAndCreate");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("%s(flags=%08x, dc=%p, searchDir='%s' (%zu), rootDirLen=%zu, patterns='%.*s')"), STLSOFT_FUNCTION_SYMBOL
+    recls_debug0_trace_printf_(RECLS_LITERAL("%s(flags=%08x, dc=%p, searchDir='%s' (%llu), rootDirLen=%llu, patterns='%.*s')"), STLSOFT_FUNCTION_SYMBOL
     ,   flags
     ,   static_cast<void*>(dc)
-    ,   searchDir, types::traits_type::str_len(searchDir)
-    ,   rootDirLen
+    ,   searchDir, static_cast<unsigned long long>(types::traits_type::str_len(searchDir))
+    ,   static_cast<unsigned long long>(rootDirLen)
     ,   int(patternsLen), patterns
     );
 

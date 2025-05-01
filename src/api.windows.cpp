@@ -4,7 +4,7 @@
  * Purpose: This file contains the Windows versions of recls API.
  *
  * Created: 16th August 2003
- * Updated: 28th April 2025
+ * Updated: 1st May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -270,7 +270,7 @@ Recls_GetRoots(
         size_t          index   =   static_cast<size_t>(-static_cast<signed_t>(cRoots) - 1);
         size_t          cch     =   Recls_GetRoots_(&roots_[0], STLSOFT_NUM_ELEMENTS(roots_), 0);
 
-        recls_debug1_trace_printf_(RECLS_LITERAL("Recls_GetRoots() [.NET hack]: index=%u"), index);
+        recls_debug1_trace_printf_(RECLS_LITERAL("Recls_GetRoots() [.NET hack]: index=%llu"), static_cast<unsigned long long>(index));
 
         if (index < cch)
         {
