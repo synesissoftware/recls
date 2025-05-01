@@ -519,7 +519,6 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
             *prc = RECLS_RC_FAIL;
             break;
         }
-
 # endif
 
         node = ss_nullptr_k;
@@ -911,6 +910,12 @@ ReclsFileSearchDirectoryNode::GetNext()
                     if (ss_nullptr_k != m_dnode)
                     {
                         rc = RECLS_RC_OK;
+                    }
+                    else
+                    if (RECLS_RC_ACCESS_DENIED == rc &&
+                        0 != (RECLS_F_STOP_ON_ACCESS_FAILURE & m_flags))
+                    {
+                        break;
                     }
                     else
                     {
