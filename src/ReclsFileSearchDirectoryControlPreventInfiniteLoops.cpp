@@ -25,16 +25,19 @@
  */
 
 #include <recls/recls.h>
-// #include "impl.assert.h"
-// #include "impl.root.h"
-// #include "impl.util.h"
-// #include "impl.string.hpp"
 #include "impl.types.hpp"
 
 #include "ReclsFileSearch.hpp"
 #include "ReclsFileSearchDirectoryControlPreventInfiniteLoops.hpp"
 
 #include "impl.trace.h"
+
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS) || \
+      defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+# define RECLS_USE_WINSTL_LINK_FUNCTIONS_
+# include <winstl/filesystem/link_functions.h>
+#endif /* OS */
 
 #include <ctype.h>
 #include <stdio.h>
@@ -97,7 +100,42 @@ ReclsFileSearchDirectoryControlPreventInfiniteLoops::CanProcessDirectory(
     }
     else
     {
-        key_type            k   =   { recls_sint64_t(psd->st_dev), recls_sint64_t(psd->st_ino) };
+        recls_sint64_t  dev;
+        recls_sint64_t  ino;
+
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
+        DWORD   fileIndexHigh;
+        DWORD   fileIndexLow;
+        DWORD   deviceId;
+        DWORD   numLinks;
+
+        if (!winstl::hard_link_get_link_information(
+                directoryPath
+            ,   &fileIndexHigh
+            ,   &fileIndexLow
+            ,   &deviceId
+            ,   &numLinks
+            ))
+        {
+            recls_warning_trace_printf_(RECLS_LITERAL("skipping directory '%s' because could not invoke `winstl::hard_link_get_link_information()` on it"), directoryPath);
+
+            return false;
+        }
+        else
+        {
+            dev = recls_sint64_t(deviceId);
+            ino = recls_sint64_t(recls_uint64_t(fileIndexHigh) << 32 | fileIndexLow);
+        }
+#else
+
+        dev = recls_sint64_t(psd->st_dev);
+        ino = recls_sint64_t(psd->st_ino);
+#endif
+
+
+        key_type            k   =   { dev, ino };
         map_type_::iterator i   =   m_counts.find(k);
 
         if (m_counts.end() == i)
@@ -112,8 +150,8 @@ ReclsFileSearchDirectoryControlPreventInfiniteLoops::CanProcessDirectory(
 
             recls_warning_trace_printf_(RECLS_LITERAL("skipping directory '%s' because it has already been visited by another name: dev=%lld, ino=%lld")
             ,   directoryPath
-            ,   static_cast<signed long long>(psd->st_dev)
-            ,   static_cast<signed long long>(psd->st_ino)
+            ,   dev
+            ,   ino
             );
 
             return false;
