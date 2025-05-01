@@ -6,7 +6,7 @@
 #           on the Win32 platform
 #
 # Created:  23rd September 2003
-# Updated:  2nd January 2021
+# Updated:  2nd May 2025
 #
 ############################################################################
 
@@ -25,8 +25,8 @@
 # project & compiler version
 
 COMP_TAG            =   vc16
-ARCH_TAG            =   
-OS_TAG              =   
+ARCH_TAG            =
+OS_TAG              =
 PROJ_TAG            =   recls
 PROJ_VER_MAJOR      =   1
 PROJ_TAG_VER        =   $(PROJ_TAG).$(PROJ_VER_MAJOR)
@@ -67,7 +67,7 @@ PROJ_TEST_PERFORMANCE_DIR	=	$(PROJ_TEST_ROOT_DIR)\performance
 PROJ_TEST_SCRATCH_DIR   =   $(PROJ_TEST_ROOT_DIR)\scratch
 PROJ_TEST_UNIT_DIR      =   $(PROJ_TEST_ROOT_DIR)\unit
 
-SHWILD_PROJ_INCLUDE		=	
+SHWILD_PROJ_INCLUDE		=
 !ifdef RECLS_SHWILD_BASE_DIR
 SHWILD_INCLUDE_DIR		=   $(RECLS_SHWILD_BASE_DIR)\include
 SHWILD_SRC_DIR			=   $(RECLS_SHWILD_BASE_DIR)\src
@@ -77,9 +77,9 @@ SHWILD_INCLUDE_DIR		=   $(PROJ_BASE_DIR)\include
 SHWILD_SRC_DIR			=   $(PROJ_SRC_DIR)\shwild
 !endif # !RECLS_SHWILD_BASE_DIR
 
-XCONTRACT_PROJ_INCLUDE	=	
+XCONTRACT_PROJ_INCLUDE	=
 
-XTESTS_PROJ_INCLUDE		=	
+XTESTS_PROJ_INCLUDE		=
 !ifdef RECLS_XTESTS_BASE_DIR
 XTESTS_INCLUDE_DIR		=   $(RECLS_XTESTS_BASE_DIR)\include
 XTESTS_SRC_DIR			=   $(RECLS_XTESTS_BASE_DIR)\src
@@ -111,7 +111,7 @@ RC                      =   rc
 
 # includes
 
-INCLUDES_LEADER         =   
+INCLUDES_LEADER         =
 
 PROJ_INCLUDE            =   -I$(PROJ_INCLUDE_DIR)
 
@@ -125,7 +125,7 @@ COMMON_INCLUDES         =
 
 # lib
 
-LIBS_LEADER             =   
+LIBS_LEADER             =
 
 # lib paths
 
@@ -191,7 +191,7 @@ COMMON_DEFS			= \
  $(COMMON_DEFS_)\
  \
 
-CUSTOM_DEFS			=	
+CUSTOM_DEFS			=
 
 CC_CUSTOM_DEFS		=	$(CUSTOM_DEFS)
 
@@ -256,10 +256,10 @@ CPPC_F_WARNING_MAX      =   -W4 -wd4800
 CPPC_F_WARNING_ERR      =   -WX
 CPPC_F_EXCEPTIONS_ON    =   -EHsc
 CPPC_F_EXCEPTIONS_OFF   =   -GX- -wd4530
-CPPC_F_EXCEPTIONS		=	
+CPPC_F_EXCEPTIONS		=
 CPPC_F_RTTI_ON          =   -GR
 CPPC_F_RTTI_OFF         =   -GR-
-CPPC_F_RTTI             =   
+CPPC_F_RTTI             =
 CPPC_F_MINIMUM_SIZE     =   -O1
 CPPC_F_MAXIMUM_SPEED	=	-O2
 
@@ -2160,7 +2160,7 @@ OBJS_XTESTS=\
  $(OBJ_XTESTS_WS_MT_REL)\
  \
 
-# Examples 
+# Examples
 OBJS_EXAMPLE=\
  $(OBJ_EX_ex_c_1_DLL_DBG)\
  $(OBJ_EX_ex_c_2_DLL_DBG)\
@@ -5514,8 +5514,8 @@ $(TARG_TEST_COMP_api_crdir_DLL_DBG):    \
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_COMP_api_crdir_DLL_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
+$(OBJ_TEST_COMP_api_crdir_DLL_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_crdir_DLL_REL):    \
 		$(OBJ_TEST_COMP_api_crdir_DLL_REL)\
@@ -5530,8 +5530,8 @@ $(TARG_TEST_COMP_api_crdir_DLL_REL):    \
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_COMP_api_crdir_DLL_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
+$(OBJ_TEST_COMP_api_crdir_DLL_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_crdir_MT_DBG):    \
 		$(OBJ_TEST_COMP_api_crdir_MT_DBG)\
@@ -5546,8 +5546,8 @@ $(TARG_TEST_COMP_api_crdir_MT_DBG):    \
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_COMP_api_crdir_MT_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
+$(OBJ_TEST_COMP_api_crdir_MT_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_crdir_MT_REL):    \
 		$(OBJ_TEST_COMP_api_crdir_MT_REL)\
@@ -5562,8 +5562,8 @@ $(TARG_TEST_COMP_api_crdir_MT_REL):    \
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_COMP_api_crdir_MT_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
+$(OBJ_TEST_COMP_api_crdir_MT_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_crdir_WS_DLL_DBG):    \
 		$(OBJ_TEST_COMP_api_crdir_WS_DLL_DBG)\
@@ -5578,8 +5578,8 @@ $(TARG_TEST_COMP_api_crdir_WS_DLL_DBG):    \
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_COMP_api_crdir_WS_DLL_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
+$(OBJ_TEST_COMP_api_crdir_WS_DLL_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_crdir_WS_DLL_REL):    \
 		$(OBJ_TEST_COMP_api_crdir_WS_DLL_REL)\
@@ -5594,8 +5594,8 @@ $(TARG_TEST_COMP_api_crdir_WS_DLL_REL):    \
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_COMP_api_crdir_WS_DLL_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
+$(OBJ_TEST_COMP_api_crdir_WS_DLL_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_crdir_WS_MT_DBG):    \
 		$(OBJ_TEST_COMP_api_crdir_WS_MT_DBG)\
@@ -5610,8 +5610,8 @@ $(TARG_TEST_COMP_api_crdir_WS_MT_DBG):    \
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_COMP_api_crdir_WS_MT_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
+$(OBJ_TEST_COMP_api_crdir_WS_MT_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_crdir_WS_MT_REL):    \
 		$(OBJ_TEST_COMP_api_crdir_WS_MT_REL)\
@@ -5626,8 +5626,8 @@ $(TARG_TEST_COMP_api_crdir_WS_MT_REL):    \
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_COMP_api_crdir_WS_MT_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\test.component.util.cpp.create_directory.cpp
+$(OBJ_TEST_COMP_api_crdir_WS_MT_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.create_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_rmdir_DLL_DBG):    \
 		$(OBJ_TEST_COMP_api_rmdir_DLL_DBG)\
@@ -5642,8 +5642,8 @@ $(TARG_TEST_COMP_api_rmdir_DLL_DBG):    \
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_COMP_api_rmdir_DLL_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
+$(OBJ_TEST_COMP_api_rmdir_DLL_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_rmdir_DLL_REL):    \
 		$(OBJ_TEST_COMP_api_rmdir_DLL_REL)\
@@ -5658,8 +5658,8 @@ $(TARG_TEST_COMP_api_rmdir_DLL_REL):    \
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_COMP_api_rmdir_DLL_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
+$(OBJ_TEST_COMP_api_rmdir_DLL_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_rmdir_MT_DBG):    \
 		$(OBJ_TEST_COMP_api_rmdir_MT_DBG)\
@@ -5674,8 +5674,8 @@ $(TARG_TEST_COMP_api_rmdir_MT_DBG):    \
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_COMP_api_rmdir_MT_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
+$(OBJ_TEST_COMP_api_rmdir_MT_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_rmdir_MT_REL):    \
 		$(OBJ_TEST_COMP_api_rmdir_MT_REL)\
@@ -5690,8 +5690,8 @@ $(TARG_TEST_COMP_api_rmdir_MT_REL):    \
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_COMP_api_rmdir_MT_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
+$(OBJ_TEST_COMP_api_rmdir_MT_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_rmdir_WS_DLL_DBG):    \
 		$(OBJ_TEST_COMP_api_rmdir_WS_DLL_DBG)\
@@ -5706,8 +5706,8 @@ $(TARG_TEST_COMP_api_rmdir_WS_DLL_DBG):    \
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_COMP_api_rmdir_WS_DLL_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
+$(OBJ_TEST_COMP_api_rmdir_WS_DLL_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_rmdir_WS_DLL_REL):    \
 		$(OBJ_TEST_COMP_api_rmdir_WS_DLL_REL)\
@@ -5722,8 +5722,8 @@ $(TARG_TEST_COMP_api_rmdir_WS_DLL_REL):    \
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_COMP_api_rmdir_WS_DLL_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
+$(OBJ_TEST_COMP_api_rmdir_WS_DLL_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_rmdir_WS_MT_DBG):    \
 		$(OBJ_TEST_COMP_api_rmdir_WS_MT_DBG)\
@@ -5738,8 +5738,8 @@ $(TARG_TEST_COMP_api_rmdir_WS_MT_DBG):    \
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_COMP_api_rmdir_WS_MT_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
+$(OBJ_TEST_COMP_api_rmdir_WS_MT_DBG): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp
 
 $(TARG_TEST_COMP_api_rmdir_WS_MT_REL):    \
 		$(OBJ_TEST_COMP_api_rmdir_WS_MT_REL)\
@@ -5754,8 +5754,8 @@ $(TARG_TEST_COMP_api_rmdir_WS_MT_REL):    \
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_COMP_api_rmdir_WS_MT_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\test.component.util.cpp.remove_directory.cpp
+$(OBJ_TEST_COMP_api_rmdir_WS_MT_REL): $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.util.cpp.remove_directory\entry.cpp
 
 
 ##############################
@@ -5774,8 +5774,8 @@ $(TARG_TEST_SCRT_cppapi_DLL_DBG):    \
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_SCRT_cppapi_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+$(OBJ_TEST_SCRT_cppapi_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp
 
 
 $(TARG_TEST_SCRT_cppapi_DLL_REL):    \
@@ -5791,8 +5791,8 @@ $(TARG_TEST_SCRT_cppapi_DLL_REL):    \
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_SCRT_cppapi_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+$(OBJ_TEST_SCRT_cppapi_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp
 
 
 $(TARG_TEST_SCRT_cppapi_MT_DBG):    \
@@ -5808,8 +5808,8 @@ $(TARG_TEST_SCRT_cppapi_MT_DBG):    \
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_SCRT_cppapi_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+$(OBJ_TEST_SCRT_cppapi_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp
 
 
 $(TARG_TEST_SCRT_cppapi_MT_REL):    \
@@ -5825,8 +5825,8 @@ $(TARG_TEST_SCRT_cppapi_MT_REL):    \
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_SCRT_cppapi_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+$(OBJ_TEST_SCRT_cppapi_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp
 
 
 $(TARG_TEST_SCRT_cppapi_WS_DLL_DBG):    \
@@ -5842,8 +5842,8 @@ $(TARG_TEST_SCRT_cppapi_WS_DLL_DBG):    \
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_SCRT_cppapi_WS_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+$(OBJ_TEST_SCRT_cppapi_WS_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp
 
 
 $(TARG_TEST_SCRT_cppapi_WS_DLL_REL):    \
@@ -5859,8 +5859,8 @@ $(TARG_TEST_SCRT_cppapi_WS_DLL_REL):    \
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_SCRT_cppapi_WS_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+$(OBJ_TEST_SCRT_cppapi_WS_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp
 
 
 $(TARG_TEST_SCRT_cppapi_WS_MT_DBG):    \
@@ -5876,8 +5876,8 @@ $(TARG_TEST_SCRT_cppapi_WS_MT_DBG):    \
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_SCRT_cppapi_WS_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+$(OBJ_TEST_SCRT_cppapi_WS_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp
 
 
 $(TARG_TEST_SCRT_cppapi_WS_MT_REL):    \
@@ -5893,8 +5893,8 @@ $(TARG_TEST_SCRT_cppapi_WS_MT_REL):    \
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_SCRT_cppapi_WS_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\test.scratch.cpp_api.cpp
+$(OBJ_TEST_SCRT_cppapi_WS_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.cpp_api\main.cpp
 
 
 $(TARG_TEST_SCRT_srch1_DLL_DBG):    \
@@ -5910,8 +5910,8 @@ $(TARG_TEST_SCRT_srch1_DLL_DBG):    \
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_SCRT_srch1_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c
+$(OBJ_TEST_SCRT_srch1_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c
 
 
 $(TARG_TEST_SCRT_srch1_DLL_REL):    \
@@ -5927,8 +5927,8 @@ $(TARG_TEST_SCRT_srch1_DLL_REL):    \
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_SCRT_srch1_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c
+$(OBJ_TEST_SCRT_srch1_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c
 
 
 $(TARG_TEST_SCRT_srch1_MT_DBG):    \
@@ -5944,8 +5944,8 @@ $(TARG_TEST_SCRT_srch1_MT_DBG):    \
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_SCRT_srch1_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c
+$(OBJ_TEST_SCRT_srch1_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c
 
 
 $(TARG_TEST_SCRT_srch1_MT_REL):    \
@@ -5961,8 +5961,8 @@ $(TARG_TEST_SCRT_srch1_MT_REL):    \
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_SCRT_srch1_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c
+$(OBJ_TEST_SCRT_srch1_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c
 
 
 $(TARG_TEST_SCRT_srch1_WS_DLL_DBG):    \
@@ -5978,8 +5978,8 @@ $(TARG_TEST_SCRT_srch1_WS_DLL_DBG):    \
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_SCRT_srch1_WS_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c
+$(OBJ_TEST_SCRT_srch1_WS_DLL_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c
 
 
 $(TARG_TEST_SCRT_srch1_WS_DLL_REL):    \
@@ -5995,8 +5995,8 @@ $(TARG_TEST_SCRT_srch1_WS_DLL_REL):    \
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_SCRT_srch1_WS_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c
+$(OBJ_TEST_SCRT_srch1_WS_DLL_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c
 
 
 $(TARG_TEST_SCRT_srch1_WS_MT_DBG):    \
@@ -6012,8 +6012,8 @@ $(TARG_TEST_SCRT_srch1_WS_MT_DBG):    \
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_SCRT_srch1_WS_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c
+$(OBJ_TEST_SCRT_srch1_WS_MT_DBG): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c
 
 
 $(TARG_TEST_SCRT_srch1_WS_MT_REL):    \
@@ -6029,8 +6029,8 @@ $(TARG_TEST_SCRT_srch1_WS_MT_REL):    \
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_SCRT_srch1_WS_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\test.scratch.search.1.c
+$(OBJ_TEST_SCRT_srch1_WS_MT_REL): $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.search.1\main.c
 
 
 $(TARG_TEST_SCRT_links_DLL_DBG):    \
@@ -6185,8 +6185,8 @@ $(TARG_TEST_UNIT_api_cmbpaths_DLL_DBG):    \
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_UNIT_api_cmbpaths_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c
+$(OBJ_TEST_UNIT_api_cmbpaths_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c
 
 $(TARG_TEST_UNIT_api_cmbpaths_DLL_REL):    \
 		$(OBJ_TEST_UNIT_api_cmbpaths_DLL_REL)\
@@ -6201,8 +6201,8 @@ $(TARG_TEST_UNIT_api_cmbpaths_DLL_REL):    \
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_UNIT_api_cmbpaths_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c
+$(OBJ_TEST_UNIT_api_cmbpaths_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c
 
 $(TARG_TEST_UNIT_api_cmbpaths_MT_DBG):    \
 		$(OBJ_TEST_UNIT_api_cmbpaths_MT_DBG)\
@@ -6217,8 +6217,8 @@ $(TARG_TEST_UNIT_api_cmbpaths_MT_DBG):    \
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_UNIT_api_cmbpaths_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c
+$(OBJ_TEST_UNIT_api_cmbpaths_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c
 
 $(TARG_TEST_UNIT_api_cmbpaths_MT_REL):    \
 		$(OBJ_TEST_UNIT_api_cmbpaths_MT_REL)\
@@ -6233,8 +6233,8 @@ $(TARG_TEST_UNIT_api_cmbpaths_MT_REL):    \
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_UNIT_api_cmbpaths_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c
+$(OBJ_TEST_UNIT_api_cmbpaths_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c
 
 $(TARG_TEST_UNIT_api_cmbpaths_WS_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_api_cmbpaths_WS_DLL_DBG)\
@@ -6249,8 +6249,8 @@ $(TARG_TEST_UNIT_api_cmbpaths_WS_DLL_DBG):    \
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_UNIT_api_cmbpaths_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c
+$(OBJ_TEST_UNIT_api_cmbpaths_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c
 
 $(TARG_TEST_UNIT_api_cmbpaths_WS_DLL_REL):    \
 		$(OBJ_TEST_UNIT_api_cmbpaths_WS_DLL_REL)\
@@ -6265,8 +6265,8 @@ $(TARG_TEST_UNIT_api_cmbpaths_WS_DLL_REL):    \
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_UNIT_api_cmbpaths_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c
+$(OBJ_TEST_UNIT_api_cmbpaths_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c
 
 $(TARG_TEST_UNIT_api_cmbpaths_WS_MT_DBG):    \
 		$(OBJ_TEST_UNIT_api_cmbpaths_WS_MT_DBG)\
@@ -6281,8 +6281,8 @@ $(TARG_TEST_UNIT_api_cmbpaths_WS_MT_DBG):    \
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_UNIT_api_cmbpaths_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c
+$(OBJ_TEST_UNIT_api_cmbpaths_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c
 
 $(TARG_TEST_UNIT_api_cmbpaths_WS_MT_REL):    \
 		$(OBJ_TEST_UNIT_api_cmbpaths_WS_MT_REL)\
@@ -6297,8 +6297,8 @@ $(TARG_TEST_UNIT_api_cmbpaths_WS_MT_REL):    \
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_UNIT_api_cmbpaths_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\test.unit.api.combine_paths.c
+$(OBJ_TEST_UNIT_api_cmbpaths_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.combine_paths\entry.c
 
 $(TARG_TEST_UNIT_api_drvrel_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_api_drvrel_DLL_DBG)\
@@ -6441,8 +6441,8 @@ $(TARG_TEST_UNIT_api_sqzpath_DLL_DBG):    \
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_UNIT_api_sqzpath_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c
+$(OBJ_TEST_UNIT_api_sqzpath_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c
 
 $(TARG_TEST_UNIT_api_sqzpath_DLL_REL):    \
 		$(OBJ_TEST_UNIT_api_sqzpath_DLL_REL)\
@@ -6457,8 +6457,8 @@ $(TARG_TEST_UNIT_api_sqzpath_DLL_REL):    \
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_UNIT_api_sqzpath_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c
+$(OBJ_TEST_UNIT_api_sqzpath_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c
 
 $(TARG_TEST_UNIT_api_sqzpath_MT_DBG):    \
 		$(OBJ_TEST_UNIT_api_sqzpath_MT_DBG)\
@@ -6473,8 +6473,8 @@ $(TARG_TEST_UNIT_api_sqzpath_MT_DBG):    \
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_UNIT_api_sqzpath_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c
+$(OBJ_TEST_UNIT_api_sqzpath_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c
 
 $(TARG_TEST_UNIT_api_sqzpath_MT_REL):    \
 		$(OBJ_TEST_UNIT_api_sqzpath_MT_REL)\
@@ -6489,8 +6489,8 @@ $(TARG_TEST_UNIT_api_sqzpath_MT_REL):    \
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_UNIT_api_sqzpath_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c
+$(OBJ_TEST_UNIT_api_sqzpath_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c
 
 $(TARG_TEST_UNIT_api_sqzpath_WS_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_api_sqzpath_WS_DLL_DBG)\
@@ -6505,8 +6505,8 @@ $(TARG_TEST_UNIT_api_sqzpath_WS_DLL_DBG):    \
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_UNIT_api_sqzpath_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c
+$(OBJ_TEST_UNIT_api_sqzpath_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c
 
 $(TARG_TEST_UNIT_api_sqzpath_WS_DLL_REL):    \
 		$(OBJ_TEST_UNIT_api_sqzpath_WS_DLL_REL)\
@@ -6521,8 +6521,8 @@ $(TARG_TEST_UNIT_api_sqzpath_WS_DLL_REL):    \
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_UNIT_api_sqzpath_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c
+$(OBJ_TEST_UNIT_api_sqzpath_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c
 
 $(TARG_TEST_UNIT_api_sqzpath_WS_MT_DBG):    \
 		$(OBJ_TEST_UNIT_api_sqzpath_WS_MT_DBG)\
@@ -6537,8 +6537,8 @@ $(TARG_TEST_UNIT_api_sqzpath_WS_MT_DBG):    \
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_UNIT_api_sqzpath_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c
+$(OBJ_TEST_UNIT_api_sqzpath_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c
 
 $(TARG_TEST_UNIT_api_sqzpath_WS_MT_REL):    \
 		$(OBJ_TEST_UNIT_api_sqzpath_WS_MT_REL)\
@@ -6553,8 +6553,8 @@ $(TARG_TEST_UNIT_api_sqzpath_WS_MT_REL):    \
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_UNIT_api_sqzpath_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\test.unit.api.squeeze_path.c
+$(OBJ_TEST_UNIT_api_sqzpath_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.api.squeeze_path\entry.c
 
 
 $(TARG_TEST_UNIT_cpp_cmbpaths_DLL_DBG):    \
@@ -6570,8 +6570,8 @@ $(TARG_TEST_UNIT_cpp_cmbpaths_DLL_DBG):    \
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_UNIT_cpp_cmbpaths_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp
+$(OBJ_TEST_UNIT_cpp_cmbpaths_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_cmbpaths_DLL_REL):    \
 		$(OBJ_TEST_UNIT_cpp_cmbpaths_DLL_REL)\
@@ -6586,8 +6586,8 @@ $(TARG_TEST_UNIT_cpp_cmbpaths_DLL_REL):    \
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_UNIT_cpp_cmbpaths_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp
+$(OBJ_TEST_UNIT_cpp_cmbpaths_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_cmbpaths_MT_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_cmbpaths_MT_DBG)\
@@ -6602,8 +6602,8 @@ $(TARG_TEST_UNIT_cpp_cmbpaths_MT_DBG):    \
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_UNIT_cpp_cmbpaths_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp
+$(OBJ_TEST_UNIT_cpp_cmbpaths_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_cmbpaths_MT_REL):    \
 		$(OBJ_TEST_UNIT_cpp_cmbpaths_MT_REL)\
@@ -6618,8 +6618,8 @@ $(TARG_TEST_UNIT_cpp_cmbpaths_MT_REL):    \
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_UNIT_cpp_cmbpaths_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp
+$(OBJ_TEST_UNIT_cpp_cmbpaths_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_cmbpaths_WS_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_DLL_DBG)\
@@ -6634,8 +6634,8 @@ $(TARG_TEST_UNIT_cpp_cmbpaths_WS_DLL_DBG):    \
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp
+$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_cmbpaths_WS_DLL_REL):    \
 		$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_DLL_REL)\
@@ -6650,8 +6650,8 @@ $(TARG_TEST_UNIT_cpp_cmbpaths_WS_DLL_REL):    \
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp
+$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_cmbpaths_WS_MT_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_MT_DBG)\
@@ -6666,8 +6666,8 @@ $(TARG_TEST_UNIT_cpp_cmbpaths_WS_MT_DBG):    \
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp
+$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_cmbpaths_WS_MT_REL):    \
 		$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_MT_REL)\
@@ -6682,8 +6682,8 @@ $(TARG_TEST_UNIT_cpp_cmbpaths_WS_MT_REL):    \
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\test.unit.cpp.combine_paths.cpp
+$(OBJ_TEST_UNIT_cpp_cmbpaths_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.combine_paths\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_drvrel_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_drvrel_DLL_DBG)\
@@ -6698,8 +6698,8 @@ $(TARG_TEST_UNIT_cpp_drvrel_DLL_DBG):    \
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_UNIT_cpp_drvrel_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp
+$(OBJ_TEST_UNIT_cpp_drvrel_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_drvrel_DLL_REL):    \
 		$(OBJ_TEST_UNIT_cpp_drvrel_DLL_REL)\
@@ -6714,8 +6714,8 @@ $(TARG_TEST_UNIT_cpp_drvrel_DLL_REL):    \
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_UNIT_cpp_drvrel_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp
+$(OBJ_TEST_UNIT_cpp_drvrel_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_drvrel_MT_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_drvrel_MT_DBG)\
@@ -6730,8 +6730,8 @@ $(TARG_TEST_UNIT_cpp_drvrel_MT_DBG):    \
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_UNIT_cpp_drvrel_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp
+$(OBJ_TEST_UNIT_cpp_drvrel_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_drvrel_MT_REL):    \
 		$(OBJ_TEST_UNIT_cpp_drvrel_MT_REL)\
@@ -6746,8 +6746,8 @@ $(TARG_TEST_UNIT_cpp_drvrel_MT_REL):    \
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_UNIT_cpp_drvrel_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp
+$(OBJ_TEST_UNIT_cpp_drvrel_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_drvrel_WS_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_drvrel_WS_DLL_DBG)\
@@ -6762,8 +6762,8 @@ $(TARG_TEST_UNIT_cpp_drvrel_WS_DLL_DBG):    \
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_UNIT_cpp_drvrel_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp
+$(OBJ_TEST_UNIT_cpp_drvrel_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_drvrel_WS_DLL_REL):    \
 		$(OBJ_TEST_UNIT_cpp_drvrel_WS_DLL_REL)\
@@ -6778,8 +6778,8 @@ $(TARG_TEST_UNIT_cpp_drvrel_WS_DLL_REL):    \
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_UNIT_cpp_drvrel_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp
+$(OBJ_TEST_UNIT_cpp_drvrel_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_drvrel_WS_MT_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_drvrel_WS_MT_DBG)\
@@ -6794,8 +6794,8 @@ $(TARG_TEST_UNIT_cpp_drvrel_WS_MT_DBG):    \
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_UNIT_cpp_drvrel_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp
+$(OBJ_TEST_UNIT_cpp_drvrel_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_drvrel_WS_MT_REL):    \
 		$(OBJ_TEST_UNIT_cpp_drvrel_WS_MT_REL)\
@@ -6810,8 +6810,8 @@ $(TARG_TEST_UNIT_cpp_drvrel_WS_MT_REL):    \
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_UNIT_cpp_drvrel_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\test.unit.cpp.derive_relative_path.cpp
+$(OBJ_TEST_UNIT_cpp_drvrel_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.derive_relative_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_sqzpath_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_sqzpath_DLL_DBG)\
@@ -6826,8 +6826,8 @@ $(TARG_TEST_UNIT_cpp_sqzpath_DLL_DBG):    \
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_UNIT_cpp_sqzpath_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp
+$(OBJ_TEST_UNIT_cpp_sqzpath_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_sqzpath_DLL_REL):    \
 		$(OBJ_TEST_UNIT_cpp_sqzpath_DLL_REL)\
@@ -6842,8 +6842,8 @@ $(TARG_TEST_UNIT_cpp_sqzpath_DLL_REL):    \
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_UNIT_cpp_sqzpath_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp
+$(OBJ_TEST_UNIT_cpp_sqzpath_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_sqzpath_MT_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_sqzpath_MT_DBG)\
@@ -6858,8 +6858,8 @@ $(TARG_TEST_UNIT_cpp_sqzpath_MT_DBG):    \
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_UNIT_cpp_sqzpath_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp
+$(OBJ_TEST_UNIT_cpp_sqzpath_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_sqzpath_MT_REL):    \
 		$(OBJ_TEST_UNIT_cpp_sqzpath_MT_REL)\
@@ -6874,8 +6874,8 @@ $(TARG_TEST_UNIT_cpp_sqzpath_MT_REL):    \
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_UNIT_cpp_sqzpath_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp
+$(OBJ_TEST_UNIT_cpp_sqzpath_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_sqzpath_WS_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_sqzpath_WS_DLL_DBG)\
@@ -6890,8 +6890,8 @@ $(TARG_TEST_UNIT_cpp_sqzpath_WS_DLL_DBG):    \
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_UNIT_cpp_sqzpath_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp
+$(OBJ_TEST_UNIT_cpp_sqzpath_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_sqzpath_WS_DLL_REL):    \
 		$(OBJ_TEST_UNIT_cpp_sqzpath_WS_DLL_REL)\
@@ -6906,8 +6906,8 @@ $(TARG_TEST_UNIT_cpp_sqzpath_WS_DLL_REL):    \
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_UNIT_cpp_sqzpath_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp
+$(OBJ_TEST_UNIT_cpp_sqzpath_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_sqzpath_WS_MT_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_sqzpath_WS_MT_DBG)\
@@ -6922,8 +6922,8 @@ $(TARG_TEST_UNIT_cpp_sqzpath_WS_MT_DBG):    \
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_UNIT_cpp_sqzpath_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp
+$(OBJ_TEST_UNIT_cpp_sqzpath_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_sqzpath_WS_MT_REL):    \
 		$(OBJ_TEST_UNIT_cpp_sqzpath_WS_MT_REL)\
@@ -6938,8 +6938,8 @@ $(TARG_TEST_UNIT_cpp_sqzpath_WS_MT_REL):    \
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_UNIT_cpp_sqzpath_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\test.unit.cpp.squeeze_path.cpp
+$(OBJ_TEST_UNIT_cpp_sqzpath_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.squeeze_path\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_retcodes_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_retcodes_DLL_DBG)\
@@ -6954,8 +6954,8 @@ $(TARG_TEST_UNIT_cpp_retcodes_DLL_DBG):    \
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_UNIT_cpp_retcodes_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp
+$(OBJ_TEST_UNIT_cpp_retcodes_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_retcodes_DLL_REL):    \
 		$(OBJ_TEST_UNIT_cpp_retcodes_DLL_REL)\
@@ -6970,8 +6970,8 @@ $(TARG_TEST_UNIT_cpp_retcodes_DLL_REL):    \
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_UNIT_cpp_retcodes_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp
+$(OBJ_TEST_UNIT_cpp_retcodes_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_retcodes_MT_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_retcodes_MT_DBG)\
@@ -6986,8 +6986,8 @@ $(TARG_TEST_UNIT_cpp_retcodes_MT_DBG):    \
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_UNIT_cpp_retcodes_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp
+$(OBJ_TEST_UNIT_cpp_retcodes_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_retcodes_MT_REL):    \
 		$(OBJ_TEST_UNIT_cpp_retcodes_MT_REL)\
@@ -7002,8 +7002,8 @@ $(TARG_TEST_UNIT_cpp_retcodes_MT_REL):    \
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_UNIT_cpp_retcodes_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp
+$(OBJ_TEST_UNIT_cpp_retcodes_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_retcodes_WS_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_retcodes_WS_DLL_DBG)\
@@ -7018,8 +7018,8 @@ $(TARG_TEST_UNIT_cpp_retcodes_WS_DLL_DBG):    \
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_UNIT_cpp_retcodes_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp
+$(OBJ_TEST_UNIT_cpp_retcodes_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_retcodes_WS_DLL_REL):    \
 		$(OBJ_TEST_UNIT_cpp_retcodes_WS_DLL_REL)\
@@ -7034,8 +7034,8 @@ $(TARG_TEST_UNIT_cpp_retcodes_WS_DLL_REL):    \
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_UNIT_cpp_retcodes_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp
+$(OBJ_TEST_UNIT_cpp_retcodes_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_retcodes_WS_MT_DBG):    \
 		$(OBJ_TEST_UNIT_cpp_retcodes_WS_MT_DBG)\
@@ -7050,8 +7050,8 @@ $(TARG_TEST_UNIT_cpp_retcodes_WS_MT_DBG):    \
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_UNIT_cpp_retcodes_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp
+$(OBJ_TEST_UNIT_cpp_retcodes_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp
 
 $(TARG_TEST_UNIT_cpp_retcodes_WS_MT_REL):    \
 		$(OBJ_TEST_UNIT_cpp_retcodes_WS_MT_REL)\
@@ -7066,8 +7066,8 @@ $(TARG_TEST_UNIT_cpp_retcodes_WS_MT_REL):    \
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_UNIT_cpp_retcodes_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\test.unit.cpp.retcodes.cpp
+$(OBJ_TEST_UNIT_cpp_retcodes_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.cpp.retcodes\entry.cpp
 
 $(TARG_TEST_UNIT_c_retcodes_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_c_retcodes_DLL_DBG)\
@@ -7082,8 +7082,8 @@ $(TARG_TEST_UNIT_c_retcodes_DLL_DBG):    \
 		$(LIB_XTESTS_DLL_DBG)\
 		$(TARGET_LIB_DLL_DBG)
 
-$(OBJ_TEST_UNIT_c_retcodes_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c
+$(OBJ_TEST_UNIT_c_retcodes_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c
 
 $(TARG_TEST_UNIT_c_retcodes_DLL_REL):    \
 		$(OBJ_TEST_UNIT_c_retcodes_DLL_REL)\
@@ -7098,8 +7098,8 @@ $(TARG_TEST_UNIT_c_retcodes_DLL_REL):    \
 		$(LIB_XTESTS_DLL_REL)\
 		$(TARGET_LIB_DLL_REL)
 
-$(OBJ_TEST_UNIT_c_retcodes_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c
+$(OBJ_TEST_UNIT_c_retcodes_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c
 
 $(TARG_TEST_UNIT_c_retcodes_MT_DBG):    \
 		$(OBJ_TEST_UNIT_c_retcodes_MT_DBG)\
@@ -7114,8 +7114,8 @@ $(TARG_TEST_UNIT_c_retcodes_MT_DBG):    \
 		$(LIB_XTESTS_MT_DBG)\
 		$(TARGET_LIB_MT_DBG)
 
-$(OBJ_TEST_UNIT_c_retcodes_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c
+$(OBJ_TEST_UNIT_c_retcodes_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c
 
 $(TARG_TEST_UNIT_c_retcodes_MT_REL):    \
 		$(OBJ_TEST_UNIT_c_retcodes_MT_REL)\
@@ -7130,8 +7130,8 @@ $(TARG_TEST_UNIT_c_retcodes_MT_REL):    \
 		$(LIB_XTESTS_MT_REL)\
 		$(TARGET_LIB_MT_REL)
 
-$(OBJ_TEST_UNIT_c_retcodes_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c
+$(OBJ_TEST_UNIT_c_retcodes_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c
 
 $(TARG_TEST_UNIT_c_retcodes_WS_DLL_DBG):    \
 		$(OBJ_TEST_UNIT_c_retcodes_WS_DLL_DBG)\
@@ -7146,8 +7146,8 @@ $(TARG_TEST_UNIT_c_retcodes_WS_DLL_DBG):    \
 		$(LIB_XTESTS_WS_DLL_DBG)\
 		$(TARGET_LIB_WS_DLL_DBG)
 
-$(OBJ_TEST_UNIT_c_retcodes_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c
+$(OBJ_TEST_UNIT_c_retcodes_WS_DLL_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_DLL_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c
 
 $(TARG_TEST_UNIT_c_retcodes_WS_DLL_REL):    \
 		$(OBJ_TEST_UNIT_c_retcodes_WS_DLL_REL)\
@@ -7162,8 +7162,8 @@ $(TARG_TEST_UNIT_c_retcodes_WS_DLL_REL):    \
 		$(LIB_XTESTS_WS_DLL_REL)\
 		$(TARGET_LIB_WS_DLL_REL)
 
-$(OBJ_TEST_UNIT_c_retcodes_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c
+$(OBJ_TEST_UNIT_c_retcodes_WS_DLL_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_DLL_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c
 
 $(TARG_TEST_UNIT_c_retcodes_WS_MT_DBG):    \
 		$(OBJ_TEST_UNIT_c_retcodes_WS_MT_DBG)\
@@ -7178,8 +7178,8 @@ $(TARG_TEST_UNIT_c_retcodes_WS_MT_DBG):    \
 		$(LIB_XTESTS_WS_MT_DBG)\
 		$(TARGET_LIB_WS_MT_DBG)
 
-$(OBJ_TEST_UNIT_c_retcodes_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c
+$(OBJ_TEST_UNIT_c_retcodes_WS_MT_DBG): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_MT_DBG) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c
 
 $(TARG_TEST_UNIT_c_retcodes_WS_MT_REL):    \
 		$(OBJ_TEST_UNIT_c_retcodes_WS_MT_REL)\
@@ -7194,8 +7194,8 @@ $(TARG_TEST_UNIT_c_retcodes_WS_MT_REL):    \
 		$(LIB_XTESTS_WS_MT_REL)\
 		$(TARGET_LIB_WS_MT_REL)
 
-$(OBJ_TEST_UNIT_c_retcodes_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\test.unit.c.retcodes.c
+$(OBJ_TEST_UNIT_c_retcodes_WS_MT_REL): $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c $(C_API_HEADERS) $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_WS_MT_REL) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.c.retcodes\entry.c
 
 
 ############################### end of file ################################

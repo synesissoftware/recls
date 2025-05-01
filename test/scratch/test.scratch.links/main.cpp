@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.scratch.links.cpp
+ * File:    test/scratch/test.scratch.links/main.cpp
  *
  * Purpose: Finds and lists multiply-linked files.
  *
  * Created: 23rd February 2011
- * Updated: 28th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

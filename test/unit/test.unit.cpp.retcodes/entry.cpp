@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.cpp.retcodes.cpp
+ * File:    test/unit/test.unit.cpp.retcodes/entry.cpp
  *
  * Purpose: Unit-test of recls status codes via C++ API.
  *
  * Created: 13th December 2008
- * Updated: 1st May 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

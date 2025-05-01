@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.scratch.with_pantheios.cpp
+ * File:    test/scratch/test.scratch.with_pantheios/main.cpp
  *
  * Purpose: Demonstrates using Pantheios for recls API logging.
  *

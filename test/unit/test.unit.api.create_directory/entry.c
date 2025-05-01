@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.api.createdirectory.c
+ * File:    test/unit/test.unit.api.createdirectory/entry.c
  *
  * Purpose: Test creation of directories (via recls C API function
  *          `Recls_CreateDirectory()`).
  *
  * Created: 29th January 2009
- * Updated: 17th October 2024
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

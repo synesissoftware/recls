@@ -329,8 +329,8 @@ component/test.component.util.cpp.is_socket/entry.cpp
 component/test.component.util.cpp.create_directory/entry.cpp
 component/test.component.util.cpp.remove_directory/entry.cpp
 scratch/test.scratch.with_pantheios/test.scratch.with_pantheios.cpp
-scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp
-scratch/test.scratch.search.1/test.scratch.search.1.c
+scratch/test.scratch.cpp_api/main.cpp
+scratch/test.scratch.search.1/main.c
 scratch/test_c_1/test_c_1.c
 scratch/test.scratch.links/test.scratch.links.cpp
 ```

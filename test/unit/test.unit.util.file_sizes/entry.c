@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.util.file_sizes.cpp
+ * File:    test/unit/test.unit.util.file_sizes/entry.c
  *
  * Purpose: Unit-test of recls file-size utility functions.
  *
  * Created: 17th April 2025
- * Updated: 17th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

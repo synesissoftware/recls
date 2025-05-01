@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.api.combine_paths.c
+ * File:    test/unit/test.unit.api.combine_paths/entry.c
  *
  * Purpose: Unit-test of recls C API function `Recls_CombinePaths()`.
  *
  * Created: 13th December 2008
- * Updated: 17th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

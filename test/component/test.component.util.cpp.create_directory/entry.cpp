@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.component.util.cpp.create_directory/test.component.util.cpp.create_directory.cpp
+ * File:    test/unit/test.component.util.cpp.create_directory/entry.cpp
  *
  * Purpose: Test creation of directories (via recls C++ API function
  *          `recls::create_directory()`).
  *
  * Created: 30th January 2010
- * Updated: 28th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
