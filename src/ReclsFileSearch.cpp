@@ -137,13 +137,6 @@ ReclsFileSearch::FindAndCreate(
 {
     function_scope_trace("ReclsFileSearch::FindAndCreate");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("%s(flags=%08x, searchDir='%.*s', patterns='%.*s')"), STLSOFT_FUNCTION_SYMBOL
-    ,   flags
-    ,   int(searchDirLen), searchDir
-    ,   int(patternsLen), patterns
-    );
-
-
     // pre-conditions
 
     RECLS_ASSERT(ss_nullptr_k != searchDir);

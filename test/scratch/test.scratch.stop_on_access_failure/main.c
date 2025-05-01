@@ -4,7 +4,7 @@
  * Purpose: Scratch-test exercising the skipping of inaccessible nodes.
  *
  * Created: 1st May 2025
- * Updated: 1st May 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -64,8 +64,6 @@ void RECLS_CALLCONV_DEFAULT recls_log_to_pantheios(
     recls_uint64_t* num_found = param;
 
     ++*num_found;
-
-    // fprintf(stderr, "%s:%d:%s(hEntry=%s, param=%p) => num_found=%llu\n", __STLSOFT_FILE_LINE_FUNCTION__, hEntry->path.begin, param, (unsigned long long)*num_found);
 
     fprintf(stdout, "\t%s\n", hEntry->path.begin);
 
