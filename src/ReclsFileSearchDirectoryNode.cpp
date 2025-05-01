@@ -707,7 +707,8 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         }
     }
 
-    if (m_entriesBegin != m_entries.end())
+
+    if (m_entries.end() != m_entriesBegin)
     {
         recls_debug2_trace_printf_(RECLS_LITERAL("Next entry in %s"), static_cast<recls_char_t const*>(m_searchDir.data()));
 
@@ -725,7 +726,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
     }
     else
     {
-        if (m_directoriesBegin == m_directories.end())
+        if (m_directories.end() == m_directoriesBegin)
         {
             rc = RECLS_RC_NO_MORE_DATA;
         }
@@ -733,7 +734,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         {
             do
             {
-                RECLS_ASSERT(m_directoriesBegin != m_directories.end());
+                RECLS_ASSERT(m_directories.end() != m_directoriesBegin);
 
                 m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                     m_flags
@@ -828,14 +829,14 @@ ReclsFileSearchDirectoryNode::GetNext()
     if (ss_nullptr_k != m_current)
     {
         // Currently enumerating through the files
-        RECLS_ASSERT(m_entriesBegin != m_entries.end());
+        RECLS_ASSERT(m_entries.end() != m_entriesBegin);
         RECLS_ASSERT(ss_nullptr_k == m_dnode);
 
         // Advance, and check for end of sequence
         ++m_entriesBegin;
 
         Entry_Release(m_current);
-        if (m_entriesBegin != m_entries.end())
+        if (m_entries.end() != m_entriesBegin)
         {
             // Still enumerating, so just update m_current
             m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDir.size(), m_flags, m_entriesBegin);
@@ -880,7 +881,7 @@ ReclsFileSearchDirectoryNode::GetNext()
             return rc;
         }
         else
-        if (m_directoriesBegin == m_directories.end())
+        if (m_directories.end() == m_directoriesBegin)
         {
             // Enumeration is complete.
             rc = RECLS_RC_NO_MORE_DATA;
@@ -893,7 +894,7 @@ ReclsFileSearchDirectoryNode::GetNext()
                 {
                     // Creation of the node will cause it to enter the first enumeration
                     // state. However, if there are no matching, then NULL will be returned
-                    RECLS_ASSERT(m_directoriesBegin != m_directories.end());
+                    RECLS_ASSERT(m_directories.end() != m_directoriesBegin);
 
                     m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                         m_flags
