@@ -27,11 +27,12 @@
 #include "impl.types.hpp"
 #include "incl.stlsoft.h"
 
-// #if __cplusplus >= 201103L
-// # include <unordered_map>
-// #else
+#if __cplusplus >= 201103L
+# include <functional>
+# include <unordered_map>
+#else
 # include <map>
-// #endif
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,6 +76,25 @@ private:
     {
         recls_sint64_t  dev;
         recls_sint64_t  ino;
+#if __cplusplus >= 201103L
+
+        bool operator ==(key_type const& rhs) const STLSOFT_NOEXCEPT
+        {
+            key_type const& lhs = *this;
+
+            if (lhs.dev != rhs.dev)
+            {
+                return false;
+            }
+
+            if (lhs.ino != rhs.ino)
+            {
+                return false;
+            }
+
+            return true;
+        }
+#else
 
         bool operator <(key_type const& rhs) const STLSOFT_NOEXCEPT
         {
@@ -96,7 +116,33 @@ private:
 
             return false;
         }
+#endif
     };
+#if __cplusplus >= 201103L
+
+    struct                                                  key_hasher_type
+    {
+        std::size_t
+        operator()(key_type const& k) const STLSOFT_NOEXCEPT
+        {
+            return std::hash<recls_sint64_t>()(k.ino);
+        }
+    };
+#endif
+#if __cplusplus >= 201103L
+
+    typedef std::unordered_map<
+        key_type
+    ,   size_t
+    ,   key_hasher_type
+    >                                                       map_type_;
+#else
+
+    typedef std::map<
+        key_type
+    ,   size_t
+    >                                                       map_type_;
+#endif
 
 
 public: // construction
@@ -108,24 +154,17 @@ private:
     ReclsFileSearchDirectoryControlPreventInfiniteLoops(class_type const &); // copy-construction proscribed
     void operator =(class_type const &);                            // copy-assignment proscribed
 
+
 public:
     virtual bool CanProcessDirectory(
         char_type const*        directoryPath
     ,   stat_data_type const*   psd
     );
 
+
 private: // fields
     recls_uint32_t const    m_flags;
-
-    typedef std::map<key_type, size_t>                      map_type_;
     map_type_               m_counts;
-
-    // #if __cplusplus >= 201103L
-    // # include <unordered_map>
-    // #else
-    // # include <map>
-    // #endif
-
 };
 
 
