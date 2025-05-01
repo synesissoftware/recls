@@ -17,7 +17,7 @@
 * [x] Remove Visual C++ project files, etc.;
 * [ ] Remove plethora of old makefiles;
 * [ ] Provide small number of more "intelligent" makefiles;
-* [ ] Change all remaining example/test program source files to generic names;
+* [x] Change all remaining example/test program source files to generic names;
 
 
 ## recls 1.11
