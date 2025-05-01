@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test_c_1.c
+ * File:    test/scratch/test.scratch.entry_attributes/main.c
  *
  * Purpose: Demonstrates use of recls C API functions for accessing entry
  *          attributes, searching for files under the home directory.
  *
  * Created: 28th February 2007
- * Updated: 20th February 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.cpp.squeeze_path/test.unit.cpp.squeeze_path.cpp
+ * File:    test/unit/test.unit.cpp.squeeze_path/entry.cpp
  *
  * Purpose: Test path-squeezing (via recls C++ API function
  *          `recls::squeeze_path()`).
  *
  * Created: 7th June 2008
- * Updated: 17th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

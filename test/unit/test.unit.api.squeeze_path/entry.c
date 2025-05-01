@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.api.squeeze_path.c
+ * File:    test/unit/test.unit.api.squeeze_path/entry.c
  *
  * Purpose: Test path-squeezing (via recls C API function
  *          `Recls_SqueezePath()`).
  *
  * Created: 13th December 2008
- * Updated: 15th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
