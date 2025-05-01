@@ -22,7 +22,7 @@ Demonstrates recursive search for all files under a given directory including al
  *  - elicitation of entry properties via entry structure members
  *
  * Created: 29th May 2006
- * Updated: 21st April 2025
+ * Updated: 30th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,8 +42,8 @@ Demonstrates recursive search for all files under a given directory including al
 int main(int argc, char* argv[])
 {
     /* Declare a search handle, define search directory as named or current,
-     * pattern matching all names, flags for recursive search of files, and
-     * start a search.
+     * pattern(s) matching all names, flags for recursive search of files,
+     * and start a search.
      */
     hrecls_t        hSrch;
     char const*     search_dir  =   argc > 1 ? argv[1] : ".";

@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearch class.
  *
  * Created: 16th August 2003
- * Updated: 1st May 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -283,7 +283,15 @@ ReclsFileSearch::create_dc_(
     recls_uint32_t      flags
 )
 {
-    if (0 != (RECLS_F_PREVENT_INFINITE_LOOPS & flags))
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
+    flags |= RECLS_F_NO_BREAK_INFINITE_LOOPS;
+#endif
+
+    if (0 == (RECLS_F_NO_BREAK_INFINITE_LOOPS & flags))
     {
         return new ReclsFileSearchDirectoryControlPreventInfiniteLoops(flags);
     }
@@ -291,9 +299,7 @@ ReclsFileSearch::create_dc_(
     {
         return new ReclsFileSearchDirectoryControlAlwaysAllow(flags);
     }
-
 }
-
 
 ReclsFileSearch::char_type const*
 ReclsFileSearch::emplace_patterns_(

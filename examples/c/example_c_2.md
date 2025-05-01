@@ -23,7 +23,7 @@ Demonstrates recursive search with feedback for all files matching a multi-part 
  *  - display of progress of each directory traversed, squeezed into the console width via Recls_SqueezePath()
  *
  * Created: 29th May 2006
- * Updated: 28th April 2025
+ * Updated: 1st May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

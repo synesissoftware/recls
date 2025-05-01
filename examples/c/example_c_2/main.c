@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
     hrecls_t            hSrch;
     char const*         search_dir  =   argc > 1 ? argv[1] : ".";
     char const*         patterns    =   SEARCH_PATTERN;
-    recls_uint32_t      flags       =   RECLS_F_PREVENT_INFINITE_LOOPS | RECLS_F_RECURSIVE | RECLS_F_FILES;
+    recls_uint32_t      flags       =   RECLS_F_RECURSIVE | RECLS_F_FILES;
     recls_rc_t          rc;
 
     struct feedback_t   feedback    =   { 0 };

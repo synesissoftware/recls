@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryControlPreventInfiniteLoops.
  *
  * Created: 1st May 2025
- * Updated: 1st May 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -63,6 +63,9 @@ namespace impl
 
 /* /////////////////////////////////////////////////////////////////////////
  * ReclsFileSearchDirectoryControlPreventInfiniteLoops
+ *
+ * NOTE: in actuality, the Windows-specific logic in this class is never
+ * exercised, and remains as a vestige of the R&D of the feature.
  */
 
 ReclsFileSearchDirectoryControlPreventInfiniteLoops::ReclsFileSearchDirectoryControlPreventInfiniteLoops(

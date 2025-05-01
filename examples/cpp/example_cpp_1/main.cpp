@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
     try
     {
         char const*             search_dir  =   argc > 1 ? argv[1] : ".";
-        int                     flags       =   recls::PREVENT_INFINITE_LOOPS | recls::RECURSIVE | recls::FILES | recls::SOCKETS;
+        int                     flags       =   recls::RECURSIVE | recls::FILES | recls::SOCKETS;
         recls::search_sequence  files(search_dir, recls::wildcardsAll(), flags);
 
         { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)

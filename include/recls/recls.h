@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 1st May 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
-# define RECLS_VER_RECLS_H_RECLS_MINOR      25
+# define RECLS_VER_RECLS_H_RECLS_MINOR      26
 # define RECLS_VER_RECLS_H_RECLS_REVISION   0
-# define RECLS_VER_RECLS_H_RECLS_EDIT       154
+# define RECLS_VER_RECLS_H_RECLS_EDIT       155
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -474,7 +474,7 @@ enum RECLS_FLAG
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
     ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WIN32      =   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
-    ,   RECLS_F_PREVENT_INFINITE_LOOPS              =   0x10000000  /*!< XXXX */
+    ,   RECLS_F_NO_BREAK_INFINITE_LOOPS             =   0x10000000  /*!< Specifying this flag will prevent the machanism that, on Linux and macOS, guards against infinite loops by remembering the device+inode of directories as they are traversed; it has no effect on Windows because such loops are not possible. Specifying this flag avoids paying the mechanism's time and space cost, though does make code prone to infinite directory traversal. */
 
 #if !defined(FILES)
     ,   FILES = RECLS_F_FILES /*!< RECLS_F_FILES. */
@@ -580,9 +580,9 @@ enum RECLS_FLAG
 #endif /* !RECLS_F_DIR_SIZE_IS_NUM_FILES */
 #endif /* 0 */
 
-#if !defined(PREVENT_INFINITE_LOOPS)
-    ,   PREVENT_INFINITE_LOOPS = RECLS_F_PREVENT_INFINITE_LOOPS /*!< RECLS_F_PREVENT_INFINITE_LOOPS. */
-#endif /* !PREVENT_INFINITE_LOOPS */
+#if !defined(NO_BREAK_INFINITE_LOOPS)
+    ,   NO_BREAK_INFINITE_LOOPS = RECLS_F_NO_BREAK_INFINITE_LOOPS /*!< RECLS_F_NO_BREAK_INFINITE_LOOPS. */
+#endif /* !NO_BREAK_INFINITE_LOOPS */
 };
 
 /** Flags that moderate the search behaviour of the Recls_GetSelectedRoots() function.
