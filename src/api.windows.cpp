@@ -268,7 +268,7 @@ Recls_GetRoots(
 
         recls_root_t    roots_[26];
         size_t          index   =   static_cast<size_t>(-static_cast<signed_t>(cRoots) - 1);
-        size_t          cch     =   Recls_GetRoots_(&roots_[0], STLSOFT_NUM_ELEMENTS(roots_), 0);
+        size_t          cch     =   Recls_GetRoots_(&roots_[0], RECLS_NUM_ELEMENTS(roots_), 0);
 
         recls_debug1_trace_printf_(RECLS_LITERAL("Recls_GetRoots() [.NET hack]: index=%llu"), static_cast<unsigned long long>(index));
 
@@ -307,7 +307,7 @@ Recls_GetSelectedRoots(
 
         recls_root_t    roots_[26];
         size_t          index   =   static_cast<size_t>(-static_cast<signed_t>(cRoots) - 1);
-        size_t          cch     =   Recls_GetRoots_(&roots_[0], STLSOFT_NUM_ELEMENTS(roots_), flags);
+        size_t          cch     =   Recls_GetRoots_(&roots_[0], RECLS_NUM_ELEMENTS(roots_), flags);
 
         if (index < cch)
         {

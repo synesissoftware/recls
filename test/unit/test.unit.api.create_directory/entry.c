@@ -256,7 +256,7 @@ int main(int argc, char **argv)
  */
 
 #define RECLS_TEST_DIR_ROOT                                 RECLS_LITERAL("~/recls_test_dir_root_D01441CA_A1CD_4916_B095_B2D65B15E517")
-#define RECLS_TEST_DIR_ROOT_LEN                             ((STLSOFT_NUM_ELEMENTS(RECLS_TEST_DIR_ROOT) - 1))
+#define RECLS_TEST_DIR_ROOT_LEN                             ((RECLS_NUM_ELEMENTS(RECLS_TEST_DIR_ROOT) - 1))
 
 
 static void test_create_directory_invalid_name(void)
@@ -322,7 +322,7 @@ static void test_create_directory_under_home(void)
 static void test_create_subdirectory_under_home(void)
 {
 #define TEST_1_3_SUBDIR                                     RECLS_LITERAL("abc/def/ghi/jkl/mno")
-#define TEST_1_3_SUBDIR_LEN                                 (STLSOFT_NUM_ELEMENTS(TEST_1_3_SUBDIR) - 1)
+#define TEST_1_3_SUBDIR_LEN                                 (RECLS_NUM_ELEMENTS(TEST_1_3_SUBDIR) - 1)
 
     {
         recls_directoryResults_t    results;

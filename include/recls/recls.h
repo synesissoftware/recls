@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      26
-# define RECLS_VER_RECLS_H_RECLS_REVISION   0
-# define RECLS_VER_RECLS_H_RECLS_EDIT       155
+# define RECLS_VER_RECLS_H_RECLS_REVISION   1
+# define RECLS_VER_RECLS_H_RECLS_EDIT       156
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -218,9 +218,12 @@ namespace recls
 #elif defined(STLSOFT_NUM_ELEMENTS)
 
 # define RECLS_NUM_ELEMENTS(x)                              STLSOFT_NUM_ELEMENTS(x)
-#else /* ? STLSOFT_NUM_ELEMENTS */
+#elif defined(__DMC__)
 
 # define RECLS_NUM_ELEMENTS(x)                              (sizeof(x) / sizeof((x)[0]))
+#else /* ? STLSOFT_NUM_ELEMENTS */
+
+# define RECLS_NUM_ELEMENTS(x)                              (sizeof(x) / sizeof(0[(x)]))
 #endif /* STLSOFT_NUM_ELEMENTS */
 
 

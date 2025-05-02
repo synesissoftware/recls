@@ -115,7 +115,7 @@ static void test_measure_0(void)
 static void test_measure_1(void)
 {
     recls_char_t    result[101];
-    size_t          cch = Recls_CombinePaths(NULL, RECLS_LITERAL(""), &result[0], STLSOFT_NUM_ELEMENTS(result));
+    size_t          cch = Recls_CombinePaths(NULL, RECLS_LITERAL(""), &result[0], RECLS_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
@@ -126,7 +126,7 @@ static void test_1_2(void)
 {
     {
         recls_char_t    result[101];
-        size_t          cch = Recls_CombinePaths(NULL, RECLS_LITERAL("abc"), &result[0], STLSOFT_NUM_ELEMENTS(result));
+        size_t          cch = Recls_CombinePaths(NULL, RECLS_LITERAL("abc"), &result[0], RECLS_NUM_ELEMENTS(result));
 
         result[cch] = '\0';
 
@@ -136,7 +136,7 @@ static void test_1_2(void)
 
     {
         recls_char_t    result[101];
-        size_t          cch = Recls_CombinePaths(RECLS_LITERAL("abc"), NULL, &result[0], STLSOFT_NUM_ELEMENTS(result));
+        size_t          cch = Recls_CombinePaths(RECLS_LITERAL("abc"), NULL, &result[0], RECLS_NUM_ELEMENTS(result));
 
         result[cch] = '\0';
 
@@ -148,7 +148,7 @@ static void test_1_2(void)
 static void test_1_3(void)
 {
     recls_char_t    result[101];
-    size_t          cch = Recls_CombinePaths(RECLS_LITERAL("abc"), RECLS_LITERAL("def"), &result[0], STLSOFT_NUM_ELEMENTS(result));
+    size_t          cch = Recls_CombinePaths(RECLS_LITERAL("abc"), RECLS_LITERAL("def"), &result[0], RECLS_NUM_ELEMENTS(result));
 
     result[cch] = '\0';
 
