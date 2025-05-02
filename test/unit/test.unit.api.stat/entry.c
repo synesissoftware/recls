@@ -82,7 +82,7 @@
 #endif
 
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#elif defined(RECLS_PLATFORM_IS_WINDOWS) || \
       defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
 # define THIS_MAX_PATH                                      _MAX_PATH
@@ -312,7 +312,7 @@ static void test_stat_dot(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the current directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_cwd, entry->path.begin);
@@ -343,7 +343,7 @@ static void test_stat_dot_slash(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the current directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_cwd, entry->path.begin);
@@ -374,7 +374,7 @@ static void test_stat_tilde(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the home directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_home, entry->path.begin);
@@ -405,7 +405,7 @@ static void test_stat_tilde_slash(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the home directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_home, entry->path.begin);
@@ -436,7 +436,7 @@ static void test_stat_tilde_MARK_DIRS(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the home directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
@@ -467,7 +467,7 @@ static void test_stat_tilde_slash_MARK_DIRS(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the home directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
@@ -507,7 +507,7 @@ static void test_1_12(void)
 
     if (RECLS_RC_OK == rc)
     {
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         recls_char_t    expected[1001];
@@ -587,7 +587,7 @@ static void test_2_1(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the current directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_cwd, entry->path.begin);
@@ -618,7 +618,7 @@ static void test_2_2(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the current directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_cwd, entry->path.begin);
@@ -649,7 +649,7 @@ static void test_2_3(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the home directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_home, entry->path.begin);
@@ -680,7 +680,7 @@ static void test_2_4(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the home directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_home, entry->path.begin);
@@ -711,7 +711,7 @@ static void test_2_5(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the home directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
@@ -742,7 +742,7 @@ static void test_2_6(void)
         XTESTS_TEST_PASSED();
 
         /* Verify that it's the home directory */
-#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#if defined(RECLS_PLATFORM_IS_WINDOWS) || \
     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
