@@ -330,8 +330,8 @@ Recls_IsEntryDevice(
 
     RECLS_ASSERT(ss_nullptr_k != hEntry);
 
-#if defined(RECLS_PLATFORM_IS_UNIX) && \
-    !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS)
 
     switch (hEntry->attributes & S_IFMT)
     {
@@ -398,8 +398,8 @@ Recls_IsEntryLink(recls_entry_t fileInfo)
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
-#if defined(RECLS_PLATFORM_IS_UNIX) && \
-    !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS)
 
     return (fileInfo->attributes & S_IFMT) == S_IFLNK;
 #else /* unrecognised platform */
@@ -462,8 +462,8 @@ Recls_IsEntrySocket(
 
     RECLS_ASSERT(ss_nullptr_k != hEntry);
 
-#if defined(RECLS_PLATFORM_IS_UNIX) && \
-    !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS)
 
     return (hEntry->attributes & S_IFMT) == S_IFSOCK;
 #else /* unrecognised platform */

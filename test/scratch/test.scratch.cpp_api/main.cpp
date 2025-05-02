@@ -14,15 +14,13 @@
 
 /* STLSoft header files */
 #include <platformstl/platformstl.hpp>
-#if defined(PLATFORMSTL_OS_IS_UNIX) && \
-    defined(_WIN32)
-
+#ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
 # include <platformstl/filesystem/current_directory_scope.hpp>
 # include <platformstl/filesystem/path.hpp>
 #endif
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # include <winstl/conversion/char_conversions.hpp>
 #else
 # error platform not discriminated
@@ -38,8 +36,8 @@
 #include <stdlib.h>
 
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # include <tchar.h>
 #else
 # error platform not discriminated
@@ -124,7 +122,8 @@ static int main_(int /* argc */, char* argv[])
         {
             std::_tcout << s_CR << RECLS_LITERAL("  stat(argv[0]):") << std::endl;
 
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
             recls::cpp::entry e = recls::cpp::stat(winstl::a2t(argv[0]), recls::DIRECTORY_PARTS);
 #else
@@ -193,8 +192,7 @@ static int main_(int /* argc */, char* argv[])
             break;
         }}
 
-#if defined(PLATFORMSTL_OS_IS_UNIX) && \
-    defined(_WIN32)
+#ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
         {
             // since we're synthesising, and UNIX uses ':' as a patterns separator, and full Windows
             // paths that are drive rooted are of the form 'H:\...', we need to change to the root dir
@@ -230,8 +228,7 @@ static int main_(int /* argc */, char* argv[])
             }}
         }
 
-#if defined(PLATFORMSTL_OS_IS_UNIX) && \
-    defined(_WIN32)
+#ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
         }
 #endif
     }

@@ -78,8 +78,7 @@ namespace
 
 #if defined(RECLS_DEBUG) && \
     (   defined(RECLS_PLATFORM_IS_WINDOWS) || \
-        (   defined(RECLS_PLATFORM_IS_UNIX) && \
-            defined(_WIN32)))
+        defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS))
 
     void RECLS_CALLCONV_DEFAULT default_debug_log_fn_(
         int                 severity

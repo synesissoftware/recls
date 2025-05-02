@@ -4,7 +4,7 @@
  * Purpose: Implementation header.
  *
  * Created: 12th December 2008
- * Updated: 21st April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -103,10 +103,10 @@ public: /// Member Types
     /// The stat() data type
     typedef traits_type::stat_data_type                     stat_data_type;
 
-#ifdef PLATFORMSTL_OS_IS_WINDOWS
+#ifdef RECLS_PLATFORM_IS_WINDOWS
     /// The find data type
     typedef traits_type::find_data_type                     find_data_type;
-#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#endif /* RECLS_PLATFORM_IS_WINDOWS */
 
     /// The path buffer type
     typedef file_types_base<

@@ -4,7 +4,7 @@
  * Purpose: more recls API extended functions.
  *
  * Created: 30th January 2009
- * Updated: 27th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -340,9 +340,10 @@ Recls_CreateDirectory(
         recls_fatal_trace_printf_(RECLS_LITERAL("Exception in Recls_CreateDirectory(): %s"), x.what());
 
         // TODO: write a system_error_code_2_recls_rc() translator
-# if defined(PLATFORMSTL_OS_IS_UNIX)
+# if 0
+# elif defined(RECLS_PLATFORM_IS_UNIX)
         if (ENOENT == get_exception_status_code(x))
-# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
         if (ERROR_INVALID_NAME == get_exception_status_code(x))
 # else /* ? OS */
 #  error Platform not discriminated

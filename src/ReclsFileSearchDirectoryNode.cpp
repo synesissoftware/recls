@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 1st May 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -121,11 +121,11 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
     /* RECLS_F_STOP_ON_ACCESS_FAILURE */
     {
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
@@ -195,7 +195,7 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
     /* RECLS_F_STOP_ON_ACCESS_FAILURE */
     {
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if (0 == (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
@@ -203,7 +203,7 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
             ssFlags |= sequence_t::noThrowOnAccessFailure;
         }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
@@ -276,7 +276,8 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
 
     typedef int (*PfnStat)(char const*, struct stat*);
 
-# if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+# if 0
+# elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
     PfnStat             pfn =   ::stat;
 # else /* ? RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
     PfnStat             pfn =   (RECLS_F_LINKS == (flags & RECLS_F_LINKS)) ? ::lstat : ::stat;
@@ -455,9 +456,9 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
         node = ss_nullptr_k;
     }
 # if 0
-# elif defined(PLATFORMSTL_OS_IS_UNIX)
+# elif defined(RECLS_PLATFORM_IS_UNIX)
     catch (unixstl::readdir_sequence_exception& x)
-# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
     catch (winstl_ns_qual(winstl_exception)& x)
 # endif
     {
@@ -473,7 +474,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
         );
 
 # if 0
-# elif defined(PLATFORMSTL_OS_IS_UNIX)
+# elif defined(RECLS_PLATFORM_IS_UNIX)
 
         switch (x.status_code())
         {
@@ -500,7 +501,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
             *prc = RECLS_RC_FAIL;
             break;
         }
-# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
         switch (x.status_code())
         {
@@ -602,13 +603,16 @@ ReclsFileSearchDirectoryNode::Stat(
         types::traits_type::char_copy(&path_[0], path, pathLen + 1);
         RECLS_ASSERT('\0' == path_[path_.size() - 1]);
 
-#if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+
         // emulated UNIX
         if (!types::traits_type::is_path_UNC(path))
         {
             std::replace(&path_[0], &path_[0] + path_.size(), RECLS_LITERAL('\\'), RECLS_LITERAL('/'));
         }
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
         std::replace(&path_[0], &path_[0] + path_.size(), RECLS_LITERAL('/'), RECLS_LITERAL('\\'));
 # endif /* Windows && EMULATE_UNIX_ON_WINDOWS */
 

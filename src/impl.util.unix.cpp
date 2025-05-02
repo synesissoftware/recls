@@ -67,7 +67,9 @@ namespace impl
 
 RECLS_LINKAGE_C recls_char_t const* recls_find_directory_0_(recls_char_t const* path)
 {
-#if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+
     if (':' == path[1])
     {
         // It's a drive-prefixed absolute path, so ...
@@ -131,6 +133,7 @@ bad_path_given:
 
     return path + types::traits_type::str_len(path);
 #else /* ? Windows */
+
 # if RECLS_TRACE_LEVEL > 0
     if ('/' != path[0])
     {
