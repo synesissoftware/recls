@@ -18,11 +18,6 @@
  * test component header file include(s)
  */
 
-#if defined(__FUNCTION__) && \
-    defined(__COUNTER__)
-# include <recls/recls.h>
-#endif
-
 #include <recls/recls.hpp>
 
 /* /////////////////////////////////////

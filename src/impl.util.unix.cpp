@@ -29,6 +29,7 @@
 #include "impl.root.h"
 #include "incl.unixstl.h"
 #include "impl.types.hpp"
+#include "impl.util.h"
 
 #ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
 # include "impl.string.hpp"

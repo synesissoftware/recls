@@ -4,7 +4,7 @@
  * Purpose: recls C++ mapping - common types and feature discrimination.
  *
  * Created: 18th August 2003
- * Updated: 29th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -53,9 +53,10 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MINOR       0
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    19
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        56
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    20
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        57
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes - 1
@@ -64,6 +65,7 @@
 #include <recls/recls.h>
 
 #include <stlsoft/stlsoft.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * version checks
@@ -77,6 +79,7 @@
 #if defined(_STLSOFT_NO_NAMESPACE)
 # error The recls C++ mapping cannot be used with STLSoft in namespace suppression mode
 #endif /* _STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * feature support - 1: Properties (see chapter 35 of Imperfect C++; http://imperfectcplusplus.com/)
@@ -124,15 +127,21 @@
 # define RECLS_CPP_OPT_METHOD_PROPERTY_GETSET_PROP(RG, RS, C, GM, SM, P)
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * feature support - 2: string type
  */
 
 #define RECLS_CPP_USE_STD_STRING
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes - 2
  */
+
+#ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
+# include <windows.h>
+#endif /* RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
 
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
 # include <stlsoft/properties/method_properties.hpp>
@@ -141,6 +150,7 @@
 #if defined(RECLS_CPP_USE_STD_STRING)
 # include <string>
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -159,6 +169,7 @@ namespace cpp
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -170,6 +181,7 @@ typedef std::string                                         string_a_t;
 typedef std::wstring                                        string_w_t;
 typedef std::basic_string<recls_char_t>                     string_t;
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

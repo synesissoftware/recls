@@ -47,6 +47,7 @@
 
 #include "impl.api.search.h"
 #include "impl.assert.h"
+#include "impl.root.h"
 #include "impl.constants.hpp"
 #include "impl.string.hpp"
 #include "impl.types.hpp"

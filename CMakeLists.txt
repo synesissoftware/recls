@@ -102,6 +102,7 @@ option(BUILD_EXAMPLES "Build examples" ON)
 # - b64 - may be needed by Pantheios;
 # - Pantheios - ...
 # - shwild - required for testing;
+# - UNIXem - required for examples/testing on Windows if USE_UNIXEM and WIN32 are defined;
 
 
 # ############################
@@ -225,6 +226,24 @@ endif()
 
 
 # ############################
+# UNIXem
+
+if((USE_UNIXEM) AND (WIN32))
+
+	set(UNIXem_REQUIRED_VERSION_ 1.12.7)
+
+	find_package(UNIXem ${UNIXem_REQUIRED_VERSION_} REQUIRED)
+
+	message("-- CMake package UNIXem found (version ${UNIXem_VERSION}; ${UNIXem_REQUIRED_VERSION_} requested)")
+
+	add_compile_definitions(_STLSOFT_FORCE_ANY_COMPILER)
+	add_compile_definitions(EMULATE_UNIX_ON_WINDOWS)
+	add_compile_definitions(RECLS_HAS_UNIXEM)
+	add_compile_definitions(STLSOFT_HAS_UNIXEM)
+endif()
+
+
+# ############################
 # xTests
 
 if(BUILD_TESTING)
@@ -250,6 +269,27 @@ include(GNUInstallDirs)
 
 # ##########################################################
 # targets
+
+# ################################################
+# custom definitions
+
+if(UNIX)
+
+    set(_BUILD_AS_UNIX 1)
+else(UNIX)
+
+    if(WIN32)
+
+        if(USE_UNIXEM)
+
+            set(_BUILD_AS_UNIX 1)
+        else(USE_UNIXEM)
+
+            set(_BUILD_AS_WIN32 1)
+        endif(USE_UNIXEM)
+    endif(WIN32)
+endif(UNIX)
+
 
 # ################################################
 # main libraries

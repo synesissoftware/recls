@@ -5,18 +5,18 @@
 # Purpose:  CMake lists file for recls core library
 #
 # Created:  ...
-# Updated:  1st May 2025
+# Updated:  2nd May 2025
 #
 # ######################################################################## #
 
 
-if(UNIX)
+if(_BUILD_AS_UNIX)
 
 	add_definitions(-DUNIX)
 	add_definitions(-Dunix)
-endif(UNIX)
+endif(_BUILD_AS_UNIX)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 
@@ -31,7 +31,7 @@ if(WIN32)
 	endif()
 
 	add_definitions(-DRECLS_API_FTP)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 
@@ -91,15 +91,15 @@ set(WINDOWS_IMPLEMENTATION_FILES
 )
 
 
-if(UNIX)
+if(_BUILD_AS_UNIX)
 
 	set(COMMON_IMPLEMENTATION_FILES "${COMMON_IMPLEMENTATION_FILES};${UNIX_IMPLEMENTATION_FILES};")
-endif(UNIX)
+endif(_BUILD_AS_UNIX)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	set(COMMON_IMPLEMENTATION_FILES "${COMMON_IMPLEMENTATION_FILES};${WINDOWS_IMPLEMENTATION_FILES};")
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 
 
@@ -120,6 +120,7 @@ target_include_directories(core
 target_link_libraries(core
 	PRIVATE
 		$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
+		$<$<BOOL:${UNIXem_FOUND}>:UNIXem::UNIXem>
 )
 
 target_compile_options(core

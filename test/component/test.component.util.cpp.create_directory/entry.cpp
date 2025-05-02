@@ -18,11 +18,6 @@
  * test component header file include(s)
  */
 
-#if defined(__FUNCTION__) && \
-    defined(__COUNTER__)
-# include <recls/recls.h>
-#endif
-
 #include <xtests/test/util/compiler_warnings_suppression.first_include.h>
 
 #ifdef __GNUC__

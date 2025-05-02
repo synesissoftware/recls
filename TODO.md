@@ -18,6 +18,7 @@
 * [ ] Remove plethora of old makefiles;
 * [ ] Provide small number of more "intelligent" makefiles;
 * [x] Change all remaining example/test program source files to generic names;
+* [x] **UNIXem** support;
 
 
 ## recls 1.11

@@ -27,6 +27,7 @@
 /* recls header files */
 #include <recls/recls.h>
 #include "impl.assert.h"
+#include "impl.root.h"
 #include "incl.platformstl.h"
 #include "impl.trace.h"
 #include "impl.util.h"

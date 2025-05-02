@@ -66,13 +66,15 @@
 
 
 #ifndef RECLS_OVERRIDE_PLATFORM
-# if defined(unix) || \
-     defined(UNIX) || \
-     defined(__unix) || \
-     defined(__unix__) || \
-     (   defined(__xlC__) && \
-         defined(_POWER) && \
-         defined(_AIX))
+# if 0 ||\
+     defined(unix) ||\
+     defined(UNIX) ||\
+     defined(__unix) ||\
+     defined(__unix__) ||\
+     (   defined(__xlC__) &&\
+         defined(_POWER) &&\
+         defined(_AIX)) ||\
+     0
    /* Platform is UNIX */
 #  define RECLS_PLATFORM_IS_UNIX
    /* Now determine whether this is being emulated on Windows */

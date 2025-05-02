@@ -4,7 +4,7 @@
  * Purpose: UNIX implementation for the file information blocks of recls API.
  *
  * Created: 2nd November 2003
- * Updated: 10th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -28,6 +28,7 @@
 #include "impl.assert.h"
 #include "impl.root.h"
 #include "incl.unixstl.h"
+#include "impl.util.h"
 
 #include "impl.trace.h"
 
