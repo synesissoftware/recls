@@ -4,7 +4,7 @@
  * Purpose: recls API functions pertaining to entry info.
  *
  * Created: 16th August 2003
- * Updated: 29th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -72,12 +72,15 @@ always_false_()
 
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
 # define GetCreationTime_                                   modificationTime
 # define GetLastStatusChangeTime_                           lastStatusChangeTime
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
 # define GetCreationTime_                                   creationTime
 # define GetLastStatusChangeTime_                           modificationTime
 #else /* unrecognised platform */
+
 # error platform is not recognised
 #endif /* platform */
 

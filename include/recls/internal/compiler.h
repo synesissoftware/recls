@@ -4,7 +4,7 @@
  * Purpose: Compiler discrimination for recls API.
  *
  * Created: 15th August 2003
- * Updated: 28th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -28,7 +28,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_MAJOR      4
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_MINOR      1
 # define RECLS_VER_RECLS_INTERNAL_H_COMPILER_REVISION   2
-# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_EDIT       24
+# define RECLS_VER_RECLS_INTERNAL_H_COMPILER_EDIT       25
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/compiler.h
@@ -131,7 +131,9 @@
  */
 
 #define RECLS_CALLCONV_NULL
-#if defined(RECLS_OVERRIDE_PLATFORM)
+#if 0
+#elif defined(RECLS_OVERRIDE_PLATFORM)
+
 # ifndef RECLS_CALLCONV_CDECL
 #  define RECLS_CALLCONV_CDECL
 # endif /* !RECLS_CALLCONV_CDECL */
@@ -145,31 +147,37 @@
 #  define RECLS_CALLCONV_DEFAULT
 # endif /* !RECLS_CALLCONV_DEFAULT */
 #elif defined(RECLS_DOCUMENTATION_SKIP_SECTION)
+
 # define RECLS_CALLCONV_CDECL
 # define RECLS_CALLCONV_STDDECL
 # define RECLS_CALLCONV_FASTDECL
 # define RECLS_CALLCONV_DEFAULT
 #elif defined(RECLS_PLATFORM_IS_WIN64)
+
 # define RECLS_CALLCONV_CDECL
 # define RECLS_CALLCONV_STDDECL
 # define RECLS_CALLCONV_FASTDECL
 # define RECLS_CALLCONV_DEFAULT
 #elif defined(RECLS_PLATFORM_IS_WIN32)
+
 # define RECLS_CALLCONV_CDECL                               __cdecl
 # define RECLS_CALLCONV_STDDECL                             __stdcall
 # define RECLS_CALLCONV_FASTDECL                            __fastcall
 # define RECLS_CALLCONV_DEFAULT                             __cdecl
 #elif defined(RECLS_PLATFORM_IS_WIN16)
+
 # define RECLS_CALLCONV_CDECL                               _cdecl
 # define RECLS_CALLCONV_STDDECL                             _pascal
 # define RECLS_CALLCONV_FASTDECL                            _pascal
 # define RECLS_CALLCONV_DEFAULT                             _cdecl
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
 # define RECLS_CALLCONV_CDECL
 # define RECLS_CALLCONV_STDDECL
 # define RECLS_CALLCONV_FASTDECL
 # define RECLS_CALLCONV_DEFAULT
 #else /* ? OS */
+
 # error Platform not recognised
 #endif /* __SYNSOFT_VAL_OS_WIN16 */
 
