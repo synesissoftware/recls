@@ -121,7 +121,7 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
     /* RECLS_F_STOP_ON_ACCESS_FAILURE */
     {
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -195,7 +195,7 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
     /* RECLS_F_STOP_ON_ACCESS_FAILURE */
     {
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if (0 == (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
@@ -455,7 +455,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
         node = ss_nullptr_k;
     }
 # if 0
-# elif defined(PLATFORMSTL_OS_IS_UNIX)
+# elif defined(RECLS_PLATFORM_IS_UNIX)
     catch (unixstl::readdir_sequence_exception& x)
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
     catch (winstl_ns_qual(winstl_exception)& x)
@@ -473,7 +473,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
         );
 
 # if 0
-# elif defined(PLATFORMSTL_OS_IS_UNIX)
+# elif defined(RECLS_PLATFORM_IS_UNIX)
 
         switch (x.status_code())
         {

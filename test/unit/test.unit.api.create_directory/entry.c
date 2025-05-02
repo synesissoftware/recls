@@ -48,7 +48,7 @@
 # include <tchar.h>
 #endif
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # include <unistd.h>
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -71,7 +71,7 @@
 #endif
 
 #if 0
-#elif defined (PLATFORMSTL_OS_IS_UNIX)
+#elif defined (RECLS_PLATFORM_IS_UNIX)
 
 # define this_getcwd                                        getcwd
 #elif defined (PLATFORMSTL_OS_IS_WINDOWS)
@@ -88,7 +88,7 @@
         defined(_WIN32))
 
 # define THIS_MAX_PATH                                      _MAX_PATH
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # ifdef PATH_MAX
 

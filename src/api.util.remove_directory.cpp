@@ -35,7 +35,7 @@
 
 #include <platformstl/exception/platformstl_exception.hpp>
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # include <stlsoft/error/error_desc.hpp>
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <winstl/error/error_desc.hpp>
@@ -156,7 +156,7 @@ namespace
                 if (types::traits_type::is_readonly(&stat_data))
                 {
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
                     ::_chmod(path, stat_data.st_mode | _S_IWRITE);
 # else /* ? RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
@@ -179,7 +179,7 @@ namespace
                 RECLS_LITERAL("failed to delete file '%s': %s")
             ,   path
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
             ,   stlsoft::error_desc(e).c_str()
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
             ,   winstl::error_desc(e).c_str()
@@ -327,7 +327,7 @@ namespace
                             RECLS_LITERAL("failed to remove directory '%s': %s")
                         ,   directory.c_str()
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
                         ,   stlsoft::error_desc(e).c_str()
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
                         ,   winstl::error_desc(e).c_str()
@@ -356,7 +356,7 @@ namespace
                     RECLS_LITERAL("failed to remove directory '%s': %s")
                 ,   path
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
                 ,   stlsoft::error_desc(e).c_str()
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
                 ,   winstl::error_desc(e).c_str()
@@ -469,7 +469,7 @@ Recls_RemoveDirectory(
 
         // TODO: write a system_error_code_2_recls_rc() translator
 # if 0
-# elif defined(PLATFORMSTL_OS_IS_UNIX)
+# elif defined(RECLS_PLATFORM_IS_UNIX)
         if (ENOENT == get_exception_status_code(x))
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
         if (ERROR_INVALID_NAME == get_exception_status_code(x))

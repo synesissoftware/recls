@@ -4,7 +4,7 @@
  * Purpose: Platform discrimination for recls API.
  *
  * Created: 15th August 2003
- * Updated: 17th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -28,7 +28,7 @@
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       30
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       31
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -130,6 +130,7 @@
 # endif /* _M_?? */
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -147,6 +148,7 @@
 # error Platform not (yet) recognised
 #endif /* platform */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * FTP support
  */
@@ -158,6 +160,7 @@
 # endif
 #endif /* RECLS_API_FTP */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -167,9 +170,11 @@ namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants and definitions
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

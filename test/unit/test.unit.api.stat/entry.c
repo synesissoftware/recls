@@ -47,7 +47,7 @@
 # include <tchar.h>
 #endif
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # include <unistd.h>
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -70,7 +70,7 @@
 #endif
 
 #if 0
-#elif defined (PLATFORMSTL_OS_IS_UNIX)
+#elif defined (RECLS_PLATFORM_IS_UNIX)
 
 # define this_getcwd                                        getcwd
 #elif defined (PLATFORMSTL_OS_IS_WINDOWS)
@@ -87,7 +87,7 @@
         defined(_WIN32))
 
 # define THIS_MAX_PATH                                      _MAX_PATH
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # ifdef PATH_MAX
 
@@ -319,7 +319,7 @@ static void test_stat_dot(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_cwd, entry->path.begin);
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL(s_cwd, entry->path.begin);
 #else
@@ -352,7 +352,7 @@ static void test_stat_dot_slash(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_cwd, entry->path.begin);
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL(s_cwd, entry->path.begin);
 #else
@@ -385,7 +385,7 @@ static void test_stat_tilde(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_home, entry->path.begin);
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL(s_home, entry->path.begin);
 #else
@@ -418,7 +418,7 @@ static void test_stat_tilde_slash(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_home, entry->path.begin);
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL(s_home, entry->path.begin);
 #else
@@ -451,7 +451,7 @@ static void test_stat_tilde_MARK_DIRS(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N(s_home, entry->path.begin, strlen(s_home));
 #else
@@ -484,7 +484,7 @@ static void test_stat_tilde_slash_MARK_DIRS(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N(s_home, entry->path.begin, strlen(s_home));
 #else
@@ -527,7 +527,7 @@ static void test_1_12(void)
 
         _tcscpy(expected, s_cwd);
 # if 0
-# elif defined(PLATFORMSTL_OS_IS_UNIX)
+# elif defined(RECLS_PLATFORM_IS_UNIX)
 
         strcat(expected, "/");
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -540,7 +540,7 @@ static void test_1_12(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(expected, entry->path.begin);
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N(s_home, entry->path.begin, strlen(s_home));
 #else
@@ -606,7 +606,7 @@ static void test_2_1(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_cwd, entry->path.begin);
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL(s_cwd, entry->path.begin);
 #else
@@ -639,7 +639,7 @@ static void test_2_2(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_cwd, entry->path.begin);
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL(s_cwd, entry->path.begin);
 #else
@@ -672,7 +672,7 @@ static void test_2_3(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_home, entry->path.begin);
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL(s_home, entry->path.begin);
 #else
@@ -705,7 +705,7 @@ static void test_2_4(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_APPROX(s_home, entry->path.begin);
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL(s_home, entry->path.begin);
 #else
@@ -738,7 +738,7 @@ static void test_2_5(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N(s_home, entry->path.begin, strlen(s_home));
 #else
@@ -771,7 +771,7 @@ static void test_2_6(void)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N_APPROX(s_home, entry->path.begin, (int)_tcslen(s_home));
 
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
         XTESTS_TEST_RECLS_STRING_EQUAL_N(s_home, entry->path.begin, strlen(s_home));
 #else

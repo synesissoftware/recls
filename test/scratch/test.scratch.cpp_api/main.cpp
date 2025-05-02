@@ -21,7 +21,7 @@
 # include <platformstl/filesystem/path.hpp>
 #endif
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <winstl/conversion/char_conversions.hpp>
 #else
@@ -38,7 +38,7 @@
 #include <stdlib.h>
 
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <tchar.h>
 #else
