@@ -8,7 +8,7 @@
 * [x] `RECLS_F_DEVICES`;
 * [ ] `RECLS_F_NO_FOLLOW_LINKS`;
 * [ ] Add `RECLS_REMDIR_F_REMOVE_SOCKETS`;
-* [ ] Prefer wherever possible to use `RECLS_PLATFORM_*` to `PLATFORMSTL_OS_IS_*`;
+* [x] Prefer wherever possible to use `RECLS_PLATFORM_*` to `PLATFORMSTL_OS_IS_*`;
 * [ ] Renamed/replace **master-1.10** branch to/with **master**;
 * [ ] Deal with non-default searching of .-names on Unix (because `glob()` does not by default);
 * [ ] Expand progress feedbacks to:

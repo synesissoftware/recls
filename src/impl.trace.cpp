@@ -4,7 +4,7 @@
  * Purpose: Tracing.
  *
  * Created: 30th September 2003
- * Updated: 28th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -77,8 +77,7 @@ namespace
 
 #if defined(RECLS_DEBUG) && \
     (   defined(RECLS_PLATFORM_IS_WINDOWS) || \
-        (   defined(RECLS_PLATFORM_IS_UNIX) && \
-            defined(_WIN32)))
+        defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS))
 
     void RECLS_CALLCONV_DEFAULT default_debug_log_fn_(
         int                 severity
