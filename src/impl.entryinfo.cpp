@@ -4,7 +4,7 @@
  * Purpose: Implementation of the create_entryinfo() function.
  *
  * Created: 31st May 2004
- * Updated: 29th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -61,6 +61,7 @@
 # include <winstl/filesystem/link_functions.h>
 #endif /* OS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -71,6 +72,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * utility functions
@@ -265,11 +267,14 @@ create_entryinfo(
         // drive, directory, file (name + ext)
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
         info->directory.begin               =   &fullPath[dir0 - entryPath];
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
         info->drive                         =   ('\\' == fullPath[0]) ? '\0' : fullPath[0];
         info->directory.begin               =   &fullPath[dir0 - entryPath];
 #else /* ? platform */
+
 # error Platform not discriminated
 #endif /* platform */
         info->directory.end                 =   fullPath + (entryPathLen - entryFileLen);
@@ -350,10 +355,13 @@ create_entryinfo(
             // time, size
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
             info->lastStatusChangeTime  =   no_time;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
             info->creationTime          =   no_time;
 #else /* ? platform */
+
 # error Platform not discriminated
 #endif /* platform */
             info->modificationTime      =   no_time;
@@ -376,26 +384,32 @@ create_entryinfo(
             // attributes
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
             info->attributes            =   st->st_mode;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
             info->attributes            =   st->dwFileAttributes;
 #else /* ? platform */
+
 # error Platform not discriminated
 #endif /* platform */
 
             // time, size
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
             info->lastStatusChangeTime  =   st->st_ctime;
             info->modificationTime      =   st->st_mtime;
             info->lastAccessTime        =   st->st_atime;
             info->size                  =   stlsoft::to_uint64(*st);
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
             info->creationTime          =   st->ftCreationTime;
             info->modificationTime      =   st->ftLastWriteTime;
             info->lastAccessTime        =   st->ftLastAccessTime;
             info->size                  =   stlsoft::to_uint64(*st);
 #else /* ? platform */
+
 # error Platform not discriminated
 #endif /* platform */
 
@@ -485,6 +499,7 @@ create_drive_entryinfo(
         // Number of (hard) links
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
         if (0 != (RECLS_F_LINK_COUNT & flags) &&
             ss_nullptr_k != st)
         {
@@ -501,6 +516,7 @@ create_drive_entryinfo(
         // node index and device Id
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
         if (0 != (RECLS_F_NODE_INDEX & flags) &&
             ss_nullptr_k != st)
         {
@@ -521,9 +537,12 @@ create_drive_entryinfo(
         info->directory.begin               =   info->path.end;
 #if 0
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
         info->drive                         =   ('\\' == fullPath[0]) ? '\0' : fullPath[0];
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
 #else /* ? platform */
+
 # error Platform not discriminated
 #endif /* platform */
         info->directory.begin               =   info->path.end;
@@ -557,20 +576,26 @@ create_drive_entryinfo(
             // attributes
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
             info->attributes            =   S_IFDIR;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
             info->attributes            =   FILE_ATTRIBUTE_DIRECTORY;
 #else /* ? platform */
+
 # error Platform not discriminated
 #endif /* platform */
 
             // time, size
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
             info->lastStatusChangeTime  =   no_time;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
             info->creationTime          =   no_time;
 #else /* ? platform */
+
 # error Platform not discriminated
 #endif /* platform */
             info->modificationTime      =   no_time;
@@ -588,26 +613,32 @@ create_drive_entryinfo(
             // attributes
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
             info->attributes            =   st->st_mode;
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
             info->attributes            =   st->dwFileAttributes;
 #else /* ? platform */
+
 # error Platform not discriminated
 #endif /* platform */
 
             // time, size
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
             info->lastStatusChangeTime  =   st->st_ctime;
             info->modificationTime      =   st->st_mtime;
             info->lastAccessTime        =   st->st_atime;
             info->size                  =   stlsoft::to_uint64(*st);
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
             info->creationTime          =   st->ftCreationTime;
             info->modificationTime      =   st->ftLastWriteTime;
             info->lastAccessTime        =   st->ftLastAccessTime;
             info->size                  =   stlsoft::to_uint64(*st);
 #else /* ? platform */
+
 # error Platform not discriminated
 #endif /* platform */
 
@@ -640,6 +671,7 @@ create_drive_entryinfo(
 
     return info;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
