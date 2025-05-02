@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 2nd May 2025
+ * Updated: 3rd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
-# define RECLS_VER_RECLS_H_RECLS_MINOR      26
-# define RECLS_VER_RECLS_H_RECLS_REVISION   1
-# define RECLS_VER_RECLS_H_RECLS_EDIT       156
+# define RECLS_VER_RECLS_H_RECLS_MINOR      27
+# define RECLS_VER_RECLS_H_RECLS_REVISION   0
+# define RECLS_VER_RECLS_H_RECLS_EDIT       157
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -473,9 +473,10 @@ enum RECLS_FLAG
 #if 0
     ,   RECLS_F_DIR_SIZE_IS_NUM_FILES               =   0x02000000  /*!< This causes the size of the directory to be the number of files contained within it, rather than being 0. */
 #endif /* 0 */
-    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS    =   0x08000000  /*!< This causes hidden files to be ignored. Currently supported on Windows only. */
+    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES               =   0x08000000  /*!< This causes hidden files to be ignored. Supported on Windows and, since 1.10 (beta 7), Unix. */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
-    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WIN32      =   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS
+    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS    =   RECLS_F_IGNORE_HIDDEN_ENTRIES
+    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WIN32      =   RECLS_F_IGNORE_HIDDEN_ENTRIES
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
     ,   RECLS_F_NO_BREAK_INFINITE_LOOPS             =   0x10000000  /*!< Specifying this flag will prevent the machanism that, on Linux and macOS, guards against infinite loops by remembering the device+inode of directories as they are traversed; it has no effect on Windows because such loops are not possible. Specifying this flag avoids paying the mechanism's time and space cost, though does make code prone to infinite directory traversal. */
 
@@ -568,10 +569,13 @@ enum RECLS_FLAG
     ,   USE_TILDE_ON_NO_SEARCHROOT = RECLS_F_USE_TILDE_ON_NO_SEARCHROOT /*!< RECLS_F_USE_TILDE_ON_NO_SEARCHROOT. */
 #endif /* !RECLS_F_USE_TILDE_ON_NO_SEARCHROOT */
 
-#if !defined(IGNORE_HIDDEN_ENTRIES_ON_WINDOWS)
-    ,   IGNORE_HIDDEN_ENTRIES_ON_WINDOWS = RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS /*!< RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS. */
-#endif /* !IGNORE_HIDDEN_ENTRIES_ON_WINDOWS */
+#if !defined(IGNORE_HIDDEN_ENTRIES)
+    ,   IGNORE_HIDDEN_ENTRIES = RECLS_F_IGNORE_HIDDEN_ENTRIES /*!< RECLS_F_IGNORE_HIDDEN_ENTRIES. */
+#endif /* !IGNORE_HIDDEN_ENTRIES */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
+# if !defined(IGNORE_HIDDEN_ENTRIES_ON_WINDOWS)
+    ,   IGNORE_HIDDEN_ENTRIES_ON_WINDOWS = RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS
+# endif /* !IGNORE_HIDDEN_ENTRIES_ON_WINDOWS */
 # if !defined(IGNORE_HIDDEN_ENTRIES_ON_WIN32)
     ,   IGNORE_HIDDEN_ENTRIES_ON_WIN32 = RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WIN32
 # endif /* !IGNORE_HIDDEN_ENTRIES_ON_WIN32 */
