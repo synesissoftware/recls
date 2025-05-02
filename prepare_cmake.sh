@@ -15,6 +15,7 @@ NO_shwild=0
 RunMake=0
 STLSoftDirGiven=
 TestingDisabled=0
+USE_UNIXem=0
 VerboseMakefile=0
 
 
@@ -64,6 +65,10 @@ while [[ $# -gt 0 ]]; do
 
       shift
       STLSoftDirGiven=$1
+      ;;
+    --use-unixem)
+
+      USE_UNIXem=1
       ;;
     --help)
 
@@ -119,6 +124,12 @@ Flags/options:
         as the variable STLSOFT, and which will override the environment
         variable STLSOFT (if present)
 
+    --use-unixem
+        when building on Windows, use the UNIXem library and define the
+        preprocessor symbol _STLSOFT_FORCE_ANY_COMPILER so as to emulate and
+        exercise UNIXSTL, not WinSTL (or COMSTL, etc.). Has no effect when
+        not executing on Windows
+
 
     standard flags:
 
@@ -156,6 +167,7 @@ if [ $NO_Pantheios -eq 0 ]; then CMakeNoPantheios="OFF" ; else CMakeNoPantheios=
 if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
+if [ $USE_UNIXem -ne 0 ]; then CMakeUSE_UNIXem="ON" ; else CMakeUSE_UNIXem="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
 if [ $MinGW -ne 0 ]; then
@@ -168,6 +180,7 @@ if [ $MinGW -ne 0 ]; then
     -DCMAKE_NO_B64:BOOL=$CMakeNoB64 \
     -DCMAKE_NO_PANTHEIOS:BOOL=$CMakeNoPantheios \
     -DCMAKE_NO_SHWILD:BOOL=$CMakeNoShwild \
+    -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -G "MinGW Makefiles" \
     -S $Dir \
     -B $CMakeDir \
@@ -183,6 +196,7 @@ else
     -DCMAKE_NO_PANTHEIOS:BOOL=$CMakeNoPantheios \
     -DCMAKE_NO_SHWILD:BOOL=$CMakeNoShwild \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
+    -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -S $Dir \
     -B $CMakeDir \
     || (cd ->/dev/null ; exit 1)
