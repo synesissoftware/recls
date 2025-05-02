@@ -124,7 +124,8 @@ static int main_(int /* argc */, char* argv[])
         {
             std::_tcout << s_CR << RECLS_LITERAL("  stat(argv[0]):") << std::endl;
 
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
             recls::cpp::entry e = recls::cpp::stat(winstl::a2t(argv[0]), recls::DIRECTORY_PARTS);
 #else

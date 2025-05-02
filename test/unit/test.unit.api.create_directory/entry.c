@@ -229,7 +229,8 @@ int main(int argc, char **argv)
                 }}
 #endif
 
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
                 s_cwdLen = _tcslen(s_cwd);
 #else

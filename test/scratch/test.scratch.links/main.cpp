@@ -19,7 +19,8 @@
 /* STLSoft header files */
 #include <platformstl/platformstl.h>
 #include <platformstl/filesystem/path_functions.h>
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <winstl/conversion/char_conversions.hpp>
 # include <winstl/conversion/int_to_string.hpp>
 # include <winstl/diagnostics/output_debug_line.hpp>
@@ -41,7 +42,8 @@
 namespace {
 
     typedef stlsoft::string_slice_m_t                       sslice_t;
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
     typedef std::basic_string<
         char
@@ -106,7 +108,8 @@ static int main_(
         << "' that have a link count > 1:"
         << std::endl;
 
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
     string_r_t longest_dir;
 
@@ -137,7 +140,8 @@ static int main_(
 #endif
 
 
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
     recls::search_sequence files(
         winstl::a2t(searchRoot)
     ,   NULL
@@ -165,7 +169,8 @@ static int main_(
         {
             std::cout
                 << '\t'
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
                 << winstl::t2a(e.get_path())
 #else
                 << e.get_path()
@@ -181,7 +186,8 @@ static int main_(
         }
     }}
 
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
     winstl::diagnostics::output_debug_line("longest directory searched: '", longest_dir.c_str(), "' (", winstl::int_to_string<char>(longest_dir.size()), ")");
 #endif
