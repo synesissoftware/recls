@@ -4,7 +4,7 @@
  * Purpose: This file contains the Windows versions of recls API.
  *
  * Created: 16th August 2003
- * Updated: 1st May 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -86,50 +86,50 @@ check_drives(char (*drives)[26], recls_uint32_t flags)
 
             switch (type)
             {
-                case    DRIVE_UNKNOWN:
+            case DRIVE_UNKNOWN:
 
+                continue;
+            case DRIVE_NO_ROOT_DIR:
+
+                continue;
+            case DRIVE_REMOVABLE:
+
+                if (0 == (flags & RECLS_F_REMOVABLE_DRIVES))
+                {
                     continue;
-                case    DRIVE_NO_ROOT_DIR:
+                }
+                break;
+            case DRIVE_FIXED:
 
+                if (0 == (flags & RECLS_F_FIXED_DRIVES))
+                {
                     continue;
-                case    DRIVE_REMOVABLE:
+                }
+                break;
+            case DRIVE_REMOTE:
 
-                    if (0 == (flags & RECLS_F_REMOVABLE_DRIVES))
-                    {
-                        continue;
-                    }
-                    break;
-                case    DRIVE_FIXED:
+                if (0 == (flags & RECLS_F_NETWORK_DRIVES))
+                {
+                    continue;
+                }
+                break;
+            case DRIVE_CDROM:
 
-                    if (0 == (flags & RECLS_F_FIXED_DRIVES))
-                    {
-                        continue;
-                    }
-                    break;
-                case    DRIVE_REMOTE:
+                if (0 == (flags & RECLS_F_CDROM_DRIVES))
+                {
+                    continue;
+                }
+                break;
+            case DRIVE_RAMDISK:
 
-                    if (0 == (flags & RECLS_F_NETWORK_DRIVES))
-                    {
-                        continue;
-                    }
-                    break;
-                case    DRIVE_CDROM:
+                if (0 == (flags & RECLS_F_RAM_DRIVES))
+                {
+                    continue;
+                }
+                break;
+            default:
 
-                    if (0 == (flags & RECLS_F_CDROM_DRIVES))
-                    {
-                        continue;
-                    }
-                    break;
-                case    DRIVE_RAMDISK:
-
-                    if (0 == (flags & RECLS_F_RAM_DRIVES))
-                    {
-                        continue;
-                    }
-                    break;
-                default:
-
-                    continue;   // No match
+                continue;   // No match
             }
         }
 
