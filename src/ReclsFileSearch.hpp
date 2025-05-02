@@ -4,11 +4,11 @@
  * Purpose: Definition of the ReclsFileSearch class.
  *
  * Created: 31st May 2004
- * Updated: 30th April 2025
+ * Updated: 1st May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-20245, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -26,6 +26,9 @@
 
 #include <recls/recls.h>
 #include "ReclsSearch.hpp"
+
+#include "impl.types.hpp"
+#include "incl.stlsoft.h"
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -45,6 +48,43 @@ namespace impl
  */
 
 class ReclsFileSearchDirectoryNode;
+class ReclsSearchDirectoryControl;
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * interfaces
+ */
+
+// class ReclsSearchDirectoryControl
+/// Interface for controlling how (and whether) directories are to be
+/// traversed.
+///
+/// \note It has an ugly name-prefix if need to compile with compiler that does not support namespaces
+class ReclsSearchDirectoryControl
+{
+public: // types
+    typedef ReclsSearchDirectoryControl                     class_type;
+    typedef recls_char_t                                    char_type;
+    typedef types::traits_type::stat_data_type              stat_data_type;
+private:
+
+public: // construction
+    /// Destructor
+    ///
+    /// ReclsSearchDirectoryControl instances are <b>not</b>
+    /// reference-counted, but are deleted by their owner. They are
+    /// non-shareable.
+    virtual ~ReclsSearchDirectoryControl() = 0;
+
+public: // operations
+    virtual bool CanProcessDirectory(
+        char_type const*        directoryPath
+    ,   stat_data_type const*   psd
+    ) = 0;
+};
+
+inline ReclsSearchDirectoryControl::~ReclsSearchDirectoryControl()
+{}
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,6 +172,10 @@ private:
 public:
 
 private: // implementation
+    ReclsSearchDirectoryControl*
+    create_dc_(
+        recls_uint32_t      flags
+    );
     char_type const*
     emplace_patterns_(
         size_t              cDirParts
@@ -160,16 +204,17 @@ private: // implementation
     );
 
 private: // fields
-    recls_uint32_t                  m_flags;
-    char_type const* const          m_searchDir;
-    size_t const                    m_searchDirLen;
-    char_type const* const          m_patterns;
-    size_t const                    m_patternsLen;
-    hrecls_progress_fn_t const      m_pfn;
-    recls_progress_fn_param_t const m_param;
+    recls_uint32_t                      m_flags;
+    ReclsSearchDirectoryControl* const  m_dc;
+    char_type const* const              m_searchDir;
+    size_t const                        m_searchDirLen;
+    char_type const* const              m_patterns;
+    size_t const                        m_patternsLen;
+    hrecls_progress_fn_t const          m_pfn;
+    recls_progress_fn_param_t const     m_param;
 
     /** The opaque data of the search */
-    recls_byte_t                    data[1];
+    recls_byte_t                        data[1];
     /*
      * The data comprises:
      *

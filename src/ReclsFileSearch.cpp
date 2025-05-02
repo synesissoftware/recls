@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    src/ReclsFileSearch.cpp
  *
- * Purpose: Implementation of the ReclsFileSearch class for Windows.
+ * Purpose: Implementation of the ReclsFileSearch class.
  *
  * Created: 16th August 2003
- * Updated: 30th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -33,6 +33,8 @@
 #include "ReclsSearch.hpp"
 #include "ReclsFileSearch.hpp"
 #include "ReclsFileSearchDirectoryNode.hpp"
+#include "ReclsFileSearchDirectoryControlAlwaysAllow.hpp"
+#include "ReclsFileSearchDirectoryControlPreventInfiniteLoops.hpp"
 
 #include "impl.trace.h"
 
@@ -134,13 +136,6 @@ ReclsFileSearch::FindAndCreate(
 )
 {
     function_scope_trace("ReclsFileSearch::FindAndCreate");
-
-    recls_debug0_trace_printf_(RECLS_LITERAL("%s:%d:%s(flags=%08x, searchDir='%.*s', patterns='%.*s')"), __STLSOFT_FILE_LINE_FUNCTION__
-    ,   flags
-    ,   int(searchDirLen), searchDir
-    ,   int(patternsLen), patterns
-    );
-
 
     // pre-conditions
 
@@ -276,6 +271,29 @@ ReclsFileSearch::FindAndCreate_(
     return rc;
 }
 
+ReclsSearchDirectoryControl*
+ReclsFileSearch::create_dc_(
+    recls_uint32_t      flags
+)
+{
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
+    flags |= RECLS_F_NO_BREAK_INFINITE_LOOPS;
+#endif
+
+    if (0 == (RECLS_F_NO_BREAK_INFINITE_LOOPS & flags))
+    {
+        return new ReclsFileSearchDirectoryControlPreventInfiniteLoops(flags);
+    }
+    else
+    {
+        return new ReclsFileSearchDirectoryControlAlwaysAllow(flags);
+    }
+}
+
 ReclsFileSearch::char_type const*
 ReclsFileSearch::emplace_patterns_(
     size_t              cDirParts
@@ -334,6 +352,7 @@ ReclsFileSearch::ReclsFileSearch(
 ,   recls_rc_t*                 prc
 )
     : m_flags(flags)
+    , m_dc(create_dc_(flags))
     , m_searchDir(emplace_rootDir_(cDirParts, searchDir, searchDirLen))
     , m_searchDirLen(searchDirLen)
     , m_patterns(emplace_patterns_(cDirParts, searchDirLen, patterns, patternsLen))
@@ -366,12 +385,21 @@ ReclsFileSearch::ReclsFileSearch(
 #endif /* platform*/
 
     // Now start the search
-    m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(m_flags, m_searchDir, m_searchDirLen, m_patterns, m_patternsLen, m_pfn, m_param, prc);
+    m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
+        m_flags
+    ,   m_dc
+    ,   m_searchDir, m_searchDirLen
+    ,   m_patterns, m_patternsLen
+    ,   m_pfn, m_param
+    ,   prc
+    );
 }
 
 ReclsFileSearch::~ReclsFileSearch() STLSOFT_NOEXCEPT
 {
     function_scope_trace("ReclsFileSearch::~ReclsFileSearch");
+
+    delete m_dc;
 }
 
 

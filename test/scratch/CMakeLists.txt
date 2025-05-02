@@ -4,6 +4,7 @@ add_subdirectory(test.scratch.entry_attributes)
 add_subdirectory(test.scratch.ignore_inaccessible_nodes)
 add_subdirectory(test.scratch.links)
 add_subdirectory(test.scratch.search.1)
+add_subdirectory(test.scratch.stop_on_access_failure)
 if(Pantheios_FOUND)
 
 	add_subdirectory(test.scratch.with_pantheios)

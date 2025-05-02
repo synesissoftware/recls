@@ -4,7 +4,7 @@
  * Purpose: ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 30th April 2025
+ * Updated: 1st April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -61,6 +61,7 @@
 
 #include "ReclsSearch.hpp"
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -71,6 +72,14 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
+class ReclsSearchDirectoryControl;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -117,13 +126,14 @@ private:
 // Construction
 protected: // Not private, or GCC whines
     ReclsFileSearchDirectoryNode(
-        recls_uint32_t              flags
-    ,   recls_char_t const*         rootDir
-    ,   size_t                      rootDirLen
-    ,   recls_char_t const*         patterns
-    ,   size_t                      patternsLen
-    ,   hrecls_progress_fn_t        pfn
-    ,   recls_progress_fn_param_t   param
+        recls_uint32_t                  flags
+    ,   ReclsSearchDirectoryControl*    dc
+    ,   recls_char_t const*             rootDir
+    ,   size_t                          rootDirLen
+    ,   recls_char_t const*             patterns
+    ,   size_t                          patternsLen
+    ,   hrecls_progress_fn_t            pfn
+    ,   recls_progress_fn_param_t       param
     );
 public:
     virtual ~ReclsFileSearchDirectoryNode();
@@ -135,14 +145,15 @@ public:
     static
     class_type*
     FindAndCreate(
-        recls_uint32_t              flags
-    ,   recls_char_t const*         rootDir
-    ,   size_t                      rootDirLen
-    ,   recls_char_t const*         patterns
-    ,   size_t                      patternsLen
-    ,   hrecls_progress_fn_t        pfn
-    ,   recls_progress_fn_param_t   param
-    ,   recls_rc_t*                 prc
+        recls_uint32_t                  flags
+    ,   ReclsSearchDirectoryControl*    dc
+    ,   recls_char_t const*             rootDir
+    ,   size_t                          rootDirLen
+    ,   recls_char_t const*             patterns
+    ,   size_t                          patternsLen
+    ,   hrecls_progress_fn_t            pfn
+    ,   recls_progress_fn_param_t       param
+    ,   recls_rc_t*                     prc
     );
 
     //
@@ -219,6 +230,7 @@ private:
 // Members
 private:
     recls_entry_t                           m_current;
+    ReclsSearchDirectoryControl* const      m_dc;
     class_type*                             m_dnode;
     recls_uint32_t const                    m_flags;
     size_t const                            m_rootDirLen;
@@ -232,6 +244,7 @@ private:
     hrecls_progress_fn_t const              m_pfn;
     recls_progress_fn_param_t const         m_param;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

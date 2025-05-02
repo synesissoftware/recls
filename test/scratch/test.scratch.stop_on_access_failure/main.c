@@ -1,9 +1,9 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.scratch.ignore_inaccessible_nodes.cpp
+ * File:    test.scratch.stop_on_access_failure.cpp
  *
  * Purpose: Scratch-test exercising the skipping of inaccessible nodes.
  *
- * Created: 28th April 2025
+ * Created: 1st May 2025
  * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -32,7 +32,7 @@
  * globals
  */
 
-const char PANTHEIOS_FE_PROCESS_IDENTITY[]    =   "test.scratch.ignore_inaccessible_nodes";
+const char PANTHEIOS_FE_PROCESS_IDENTITY[]    =   "test.scratch.stop_on_access_failure";
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@ int main_(
 {
     char const*                 search_dir      =   argc > 1 ? argv[1] : ".";
     char const*                 patterns        =   "*|.*";
-    recls_uint32_t const        flags           =   RECLS_F_RECURSIVE | RECLS_F_DEVICES | RECLS_F_FILES | RECLS_F_SOCKETS;
+    recls_uint32_t const        flags           =   RECLS_F_RECURSIVE | RECLS_F_STOP_ON_ACCESS_FAILURE | RECLS_F_DEVICES | RECLS_F_FILES | RECLS_F_SOCKETS;
     recls_uint64_t              num_found       =   0;
     recls_rc_t                  rc              =   Recls_SearchProcess(search_dir, patterns, flags, process_fn, &num_found);
 

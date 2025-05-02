@@ -4,7 +4,7 @@
  * Purpose: This file contains the Windows versions of recls API.
  *
  * Created: 13th November 2010
- * Updated: 30th April 2025
+ * Updated: 1st May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -115,6 +115,7 @@ Recls_ResultCodeToWindowsErrorCode(
         CASE_2_(RECLS_RC_ENTRY_IS_FILE,             ERROR_INVALID_NAME)
         CASE_2_(RECLS_RC_ENTRY_IS_SOCKET,           ERROR_INVALID_NAME)
         CASE_2_(RECLS_RC_ENTRY_IS_DEVICE,           ERROR_INVALID_NAME)
+        CASE_2_(RECLS_RC_DIRECTORY_SKIPPED,         static_cast<DWORD>(E_FAIL))
 
     SWITCH_END_()
 }

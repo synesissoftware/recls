@@ -11,7 +11,7 @@
  *  - elicitation of entry properties via method calls
  *
  * Created: 18th June 2006
- * Updated: 21st April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,6 +44,7 @@ int main(int /* argc */, char* /* argv */[])
         int                     flags   =   recls::RECURSIVE | recls::FILES | recls::SOCKETS;
 
         recls::search_sequence  files(home, SEARCH_PATTERN, flags);
+        recls::uint64_t         n_found =   0;
 
         /* and display each entry's search-relative path */
         { for (recls::search_sequence::const_iterator i = files.begin(); i != files.end(); ++i)
@@ -52,7 +53,11 @@ int main(int /* argc */, char* /* argv */[])
             recls::string_t     relativePath    =   entry.get_search_relative_path();
 
             std::cout << relativePath << ' ' << entry.get_size() << std::endl;
+
+            ++n_found;
         }}
+
+        std::cout << '\t' << n_found << " item(s) found" << std::endl;
 
         return EXIT_SUCCESS;
     }

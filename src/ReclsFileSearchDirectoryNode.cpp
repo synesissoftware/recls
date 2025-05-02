@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 30th April 2025
+ * Updated: 1st May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -34,6 +34,7 @@
 #include "impl.entryinfo.hpp"
 
 #include "ReclsFileSearchDirectoryNode.hpp"
+#include "ReclsFileSearch.hpp"
 
 #include "impl.trace.h"
 
@@ -325,15 +326,17 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
 }
 
 ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
-    recls_uint32_t              flags
-,   recls_char_t const*         searchDir
-,   size_t                      rootDirLen
-,   recls_char_t const*         patterns
-,   size_t                      patternsLen
-,   hrecls_progress_fn_t        pfn
-,   recls_progress_fn_param_t   param
+    recls_uint32_t                  flags
+,   ReclsSearchDirectoryControl*    dc
+,   recls_char_t const*             searchDir
+,   size_t                          rootDirLen
+,   recls_char_t const*             patterns
+,   size_t                          patternsLen
+,   hrecls_progress_fn_t            pfn
+,   recls_progress_fn_param_t       param
 )
     : m_current(ss_nullptr_k)
+    , m_dc(dc)
     , m_dnode(ss_nullptr_k)
     , m_flags(flags)
     , m_rootDirLen(rootDirLen)
@@ -377,34 +380,54 @@ ReclsFileSearchDirectoryNode::ReclsFileSearchDirectoryNode(
 
 /* static */ ReclsFileSearchDirectoryNode*
 ReclsFileSearchDirectoryNode::FindAndCreate(
-    recls_uint32_t              flags
-,   recls_char_t const*         searchDir
-,   size_t                      rootDirLen
-,   recls_char_t const*         patterns
-,   size_t                      patternsLen
-,   hrecls_progress_fn_t        pfn
-,   recls_progress_fn_param_t   param
-,   recls_rc_t*                 prc
+    recls_uint32_t                  flags
+,   ReclsSearchDirectoryControl*    dc
+,   recls_char_t const*             searchDir
+,   size_t                          rootDirLen
+,   recls_char_t const*             patterns
+,   size_t                          patternsLen
+,   hrecls_progress_fn_t            pfn
+,   recls_progress_fn_param_t       param
+,   recls_rc_t*                     prc
 )
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::FindAndCreate");
 
-    recls_debug0_trace_printf_(RECLS_LITERAL("%s:%d:%s(flags=%08x, searchDir='%s' (%zu), rootDirLen=%zu, patterns='%.*s')"), __STLSOFT_FILE_LINE_FUNCTION__
+    recls_debug0_trace_printf_(RECLS_LITERAL("%s(flags=%08x, dc=%p, searchDir='%s' (%llu), rootDirLen=%llu, patterns='%.*s')"), STLSOFT_FUNCTION_SYMBOL
     ,   flags
-    ,   searchDir, types::traits_type::str_len(searchDir)
-    ,   rootDirLen
+    ,   static_cast<void*>(dc)
+    ,   searchDir, static_cast<unsigned long long>(types::traits_type::str_len(searchDir))
+    ,   static_cast<unsigned long long>(rootDirLen)
     ,   int(patternsLen), patterns
     );
 
 
     // pre-conditions
 
+    RECLS_ASSERT(ss_nullptr_k != dc);
+
     RECLS_ASSERT(ss_nullptr_k != searchDir);
     RECLS_ASSERT(rootDirLen <= types::traits_type::str_len(searchDir));
 
     RECLS_MESSAGE_ASSERT("patternsLen is an advisory, and we still require patterns to not be null", ss_nullptr_k != patterns);
     RECLS_ASSERT(patternsLen == types::traits_type::str_len(patterns));
+
     RECLS_ASSERT(ss_nullptr_k != prc);
+
+
+
+    // ask whether can process
+
+    if (!dc->CanProcessDirectory(searchDir, NULL))
+    {
+        // TODO: invoke progress function
+
+        recls_warning_trace_printf_(RECLS_LITERAL("processing of directory '%s' prevented"), searchDir);
+
+        *prc = RECLS_RC_DIRECTORY_SKIPPED;
+
+        return NULL;
+    }
 
 
     ReclsFileSearchDirectoryNode* node;
@@ -413,7 +436,14 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     try
     {
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-        node = new ReclsFileSearchDirectoryNode(flags, searchDir, rootDirLen, patterns, patternsLen, pfn, param);
+        node = new ReclsFileSearchDirectoryNode(
+                    flags
+                ,   dc
+                ,   searchDir
+                ,   rootDirLen
+                ,   patterns, patternsLen
+                ,   pfn, param
+                );
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
     catch (std::bad_alloc&)
@@ -489,7 +519,6 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
             *prc = RECLS_RC_FAIL;
             break;
         }
-
 # endif
 
         node = ss_nullptr_k;
@@ -642,10 +671,10 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::Initialise");
 
-    recls_rc_t rc = RECLS_RC_OK;
-
     RECLS_ASSERT(ss_nullptr_k == m_current);
     RECLS_ASSERT(ss_nullptr_k == m_dnode);
+
+    // invoke progress hook
 
     if (ss_nullptr_k != m_pfn)
     {
@@ -653,15 +682,20 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
         if (m_flags & RECLS_F_CALLBACKS_STDCALL_ON_WINDOWS)
         {
-            typedef int (RECLS_CALLCONV_STDDECL *stdcall_progress_fn_t)(recls_char_t const*
-                                                                    ,   size_t
-                                                                    ,   recls_progress_fn_param_t
-                                                                    ,   void*
-                                                                    ,   recls_uint32_t);
+            typedef int (RECLS_CALLCONV_STDDECL *stdcall_progress_fn_t)
+                (recls_char_t const*
+            ,   size_t
+            ,   recls_progress_fn_param_t
+            ,   void*
+            ,   recls_uint32_t
+            );
 
-            stdcall_progress_fn_t   pfn_stdcall =   (stdcall_progress_fn_t)m_pfn;
+            stdcall_progress_fn_t pfn_stdcall = (stdcall_progress_fn_t)m_pfn;
 
-            (*pfn_stdcall)(m_searchDir.data(), m_searchDir.size(), m_param, ss_nullptr_k, 0);
+            if (0 == (*pfn_stdcall)(m_searchDir.data(), m_searchDir.size(), m_param, ss_nullptr_k, 0))
+            {
+                return RECLS_RC_USER_CANCELLED_SEARCH;
+            }
         }
         else
 #endif /* platform */
@@ -673,7 +707,10 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         }
     }
 
-    if (m_entriesBegin != m_entries.end())
+
+    recls_rc_t rc = RECLS_RC_OK;
+
+    if (m_entries.end() != m_entriesBegin)
     {
         recls_debug2_trace_printf_(RECLS_LITERAL("Next entry in %s"), static_cast<recls_char_t const*>(m_searchDir.data()));
 
@@ -691,7 +728,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
     }
     else
     {
-        if (m_directoriesBegin == m_directories.end())
+        if (m_directories.end() == m_directoriesBegin)
         {
             rc = RECLS_RC_NO_MORE_DATA;
         }
@@ -699,31 +736,39 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         {
             do
             {
-#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
-# pragma message(_sscomp_fileline_message("TODO: Merge these once we've got findfile_sequence supporting fullPath"))
-#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
-
-//              RECLS_ASSERT('\0' != (*m_directoriesBegin).get_path()[0]);
+                RECLS_ASSERT(m_directories.end() != m_directoriesBegin);
 
                 m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                     m_flags
-#if 0
-#elif defined(RECLS_PLATFORM_IS_UNIX)
-                // The way glob_sequence works
-                ,   *m_directoriesBegin
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
-                // The way basic_findfile_sequence<> works
-                ,   (*m_directoriesBegin).get_path()
-#endif /* RECLS_PLATFORM_IS_??? */
+                ,   m_dc
+                ,   stlsoft::c_str_ptr(*m_directoriesBegin)
                 ,   m_rootDirLen
-                ,   stlsoft::c_str_ptr(m_patterns)
-                ,   m_patternsLen
-                ,   m_pfn
-                ,   m_param
+                ,   stlsoft::c_str_ptr(m_patterns), m_patternsLen
+                ,   m_pfn, m_param
                 ,   &rc
                 );
 
-            } while (ss_nullptr_k == m_dnode && ++m_directoriesBegin != m_directories.end());
+                if (ss_nullptr_k != m_dnode)
+                {
+                    rc = RECLS_RC_OK;
+
+                    break;
+                }
+
+                if (RECLS_RC_ACCESS_DENIED == rc &&
+                    0 != (RECLS_F_STOP_ON_ACCESS_FAILURE & m_flags))
+                {
+                    break;
+                }
+
+                RECLS_ASSERT(ss_nullptr_k == m_dnode);
+
+            } while (m_directories.end() != ++m_directoriesBegin);
+
+            if (RECLS_RC_DIRECTORY_SKIPPED == rc)
+            {
+                rc = RECLS_RC_NO_MORE_DATA;
+            }
 
             if (RECLS_SUCCEEDED(rc))
             {
@@ -799,17 +844,22 @@ ReclsFileSearchDirectoryNode::GetNext()
     if (ss_nullptr_k != m_current)
     {
         // Currently enumerating through the files
-        RECLS_ASSERT(m_entriesBegin != m_entries.end());
+        RECLS_ASSERT(m_entries.end() != m_entriesBegin);
         RECLS_ASSERT(ss_nullptr_k == m_dnode);
 
         // Advance, and check for end of sequence
         ++m_entriesBegin;
 
         Entry_Release(m_current);
-        if (m_entriesBegin != m_entries.end())
+        if (m_entries.end() != m_entriesBegin)
         {
             // Still enumerating, so just update m_current
             m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDir.size(), m_flags, m_entriesBegin);
+
+            if (ss_nullptr_k == m_current)
+            {
+                return RECLS_RC_OUT_OF_MEMORY;
+            }
 
             rc = RECLS_RC_OK;
         }
@@ -846,7 +896,7 @@ ReclsFileSearchDirectoryNode::GetNext()
             return rc;
         }
         else
-        if (m_directoriesBegin == m_directories.end())
+        if (m_directories.end() == m_directoriesBegin)
         {
             // Enumeration is complete.
             rc = RECLS_RC_NO_MORE_DATA;
@@ -859,34 +909,39 @@ ReclsFileSearchDirectoryNode::GetNext()
                 {
                     // Creation of the node will cause it to enter the first enumeration
                     // state. However, if there are no matching, then NULL will be returned
-                    RECLS_ASSERT(m_directoriesBegin != m_directories.end());
+                    RECLS_ASSERT(m_directories.end() != m_directoriesBegin);
 
                     m_dnode = ReclsFileSearchDirectoryNode::FindAndCreate(
                         m_flags
-#if 0
-#elif defined(RECLS_PLATFORM_IS_UNIX)
-                    ,   *m_directoriesBegin
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
-                    ,   (*m_directoriesBegin).get_path()
-#endif /* RECLS_PLATFORM_IS_??? */
+                    ,   m_dc
+                    ,   stlsoft::c_str_ptr(*m_directoriesBegin)
                     ,   m_rootDirLen
-                    ,   stlsoft::c_str_ptr(m_patterns)
-                    ,   m_patternsLen
-                    ,   m_pfn
-                    ,   m_param
+                    ,   stlsoft::c_str_ptr(m_patterns), m_patternsLen
+                    ,   m_pfn, m_param
                     ,   &rc
                     );
 
                     if (ss_nullptr_k != m_dnode)
                     {
                         rc = RECLS_RC_OK;
-                    }
-                    else
-                    {
-                        ++m_directoriesBegin;
+
+                        break;
                     }
 
-                } while (ss_nullptr_k == m_dnode && m_directoriesBegin != m_directories.end());
+                    if (RECLS_RC_ACCESS_DENIED == rc &&
+                        0 != (RECLS_F_STOP_ON_ACCESS_FAILURE & m_flags))
+                    {
+                        break;
+                    }
+
+                    RECLS_ASSERT(ss_nullptr_k == m_dnode);
+
+                } while (m_directories.end() != ++m_directoriesBegin);
+
+                if (RECLS_RC_DIRECTORY_SKIPPED == rc)
+                {
+                    rc = RECLS_RC_NO_MORE_DATA;
+                }
             }
         }
     }

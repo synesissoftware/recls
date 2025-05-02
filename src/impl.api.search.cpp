@@ -4,7 +4,7 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 30th April 2025
+ * Updated: 1st May 2025
  *
  * Home:    http://recls.org/
  *
@@ -588,7 +588,7 @@ Recls_SearchFeedback_x_(
 
     if (0 == (flags & s_supportedTypes))
     {
-        recls_warning_trace_printf_("requested flags 0x%08x does not contain a supported set of types", flags);
+        recls_warning_trace_printf_(RECLS_LITERAL("requested flags 0x%08x does not contain a supported set of types"), flags);
 
         rc = RECLS_RC_INVALID_SEARCH_TYPE;
     }

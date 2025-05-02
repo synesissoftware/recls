@@ -4,7 +4,7 @@
  * Purpose: Tracing.
  *
  * Created: 30th September 2003
- * Updated: 28th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -127,7 +127,7 @@ private: /// Member Variables
     recls_char_t const* m_fn;
 };
 
-# define function_scope_trace(f)        recls::impl::function_scope  recls_function_scope_ ## __LINE__(RECLS_LITERAL(f))
+# define function_scope_trace(f)                            recls::impl::function_scope  recls_function_scope_ ## __LINE__(RECLS_LITERAL(f))
 #endif /* __cplusplus */
 
 
