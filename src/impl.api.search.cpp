@@ -4,7 +4,7 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 1st May 2025
+ * Updated: 2nd May 2025
  *
  * Home:    http://recls.org/
  *
@@ -47,6 +47,7 @@
 
 #include "impl.api.search.h"
 #include "impl.assert.h"
+#include "impl.root.h"
 #include "impl.constants.hpp"
 #include "impl.string.hpp"
 #include "impl.types.hpp"

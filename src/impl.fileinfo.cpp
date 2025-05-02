@@ -4,7 +4,7 @@
  * Purpose: Main (platform-independent) implementation file for recls API.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -26,10 +26,13 @@
 
 #include <recls/recls.h>
 #include "impl.assert.h"
+#include "impl.root.h"
+#include "impl.util.h"
 #include "impl.atomic.h"
 #include "impl.entryfunctions.h"
 
 #include "impl.trace.h"
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
