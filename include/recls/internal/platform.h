@@ -27,8 +27,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       31
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   2
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       32
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -136,15 +136,19 @@
  */
 
 #if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+
+# include <unistd.h>
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
 # if !defined(RECLS_PURE_API)
 #  include <windows.h>
 # endif /* !RECLS_PURE_API */
-#elif defined(RECLS_PLATFORM_IS_UNIX)
-# include <unistd.h>
 #elif defined(RECLS_OVERRIDE_PLATFORM)
-  /* Assume that the appropriate inclusions are made */
+
+/* Assume that the appropriate inclusions are made */
 #else
+
 # error Platform not (yet) recognised
 #endif /* platform */
 
@@ -153,7 +157,8 @@
  * FTP support
  */
 
-#if defined(RECLS_API_FTP)
+#if 0
+#elif defined(RECLS_API_FTP)
 # if !defined(WIN32) && \
      !defined(WIN64)
 #  undef RECLS_API_FTP

@@ -4,7 +4,7 @@
  * Purpose: Implementation root header.
  *
  * Created: 7th March 2005
- * Updated: 17th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -97,7 +97,8 @@
 #else /* ? */
 
  /* Neither NDEBUG nor DEBUG (/_DEBUG) are defined */
-# if defined(RECLS_PLATFORM_IS_UNIX)
+# if 0
+# elif defined(RECLS_PLATFORM_IS_UNIX)
 
   /* On UNIX, we define RECLS_DEBUG */
 #  ifndef RECLS_DEBUG

@@ -276,7 +276,8 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
 
     typedef int (*PfnStat)(char const*, struct stat*);
 
-# if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+# if 0
+# elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
     PfnStat             pfn =   ::stat;
 # else /* ? RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
     PfnStat             pfn =   (RECLS_F_LINKS == (flags & RECLS_F_LINKS)) ? ::lstat : ::stat;
@@ -602,7 +603,8 @@ ReclsFileSearchDirectoryNode::Stat(
         types::traits_type::char_copy(&path_[0], path, pathLen + 1);
         RECLS_ASSERT('\0' == path_[path_.size() - 1]);
 
-#if defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
         // emulated UNIX
         if (!types::traits_type::is_path_UNC(path))
         {
