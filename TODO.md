@@ -26,6 +26,8 @@
 * [ ] Ensure links are processed sensibly:
   * [ ] `RECLS_F_NO_FOLLOW_LINKS`;
   * [ ] T.B.C.;
+* [ ] Proper handling of Windows drives, UNC, etc. - current implementation is pretty naive;
+* [ ] Deprecate the FTP search;
 * [ ] Remove plethora of old makefiles;
 * [ ] Provide small number of more "intelligent" makefiles;
 * [ ] Bazel, Jam, SCons, etc. scripts;
