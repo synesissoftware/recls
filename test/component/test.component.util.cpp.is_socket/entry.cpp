@@ -4,7 +4,7 @@
  * Purpose: Tests `recls::entry#is_socket()`.
  *
  * Created: 20th February 2025
- * Updated: 16th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -16,11 +16,6 @@
 /* /////////////////////////////////////
  * test component header file include(s)
  */
-
-#if defined(__FUNCTION__) && \
-    defined(__COUNTER__)
-# include <recls/recls.h>
-#endif
 
 #include <xtests/test/util/compiler_warnings_suppression.first_include.h>
 
