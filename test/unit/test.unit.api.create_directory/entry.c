@@ -84,8 +84,7 @@
 
 #if 0
 #elif defined(RECLS_PLATFORM_IS_WINDOWS) || \
-      ( defined(PLATFORMSTL_OS_IS_UNIX) && \
-        defined(_WIN32))
+     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
 # define THIS_MAX_PATH                                      _MAX_PATH
 #elif defined(RECLS_PLATFORM_IS_UNIX)
@@ -211,8 +210,8 @@ int main(int argc, char **argv)
             }
             else
             {
-#if defined(PLATFORMSTL_OS_IS_UNIX) && \
-    defined(_WIN32)
+#ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
+
                 { char* s; for (s = s_cwd; *s; ++s)
                 {
                     if ('\\' == *s)

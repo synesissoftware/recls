@@ -4,7 +4,7 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 1st May 2025
+ * Updated: 2nd May 2025
  *
  * Home:    http://recls.org/
  *
@@ -547,14 +547,14 @@ Recls_SearchFeedback_x_(
     if (!has_checked(checks, CheckRootSlashes))
     {
 #if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+
+        if (ss_nullptr_k != stlsoft::c_string::strnchr(searchRoot, searchRootLen, '\\'))
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
         if (ss_nullptr_k != stlsoft::c_string::strnchr(searchRoot, searchRootLen, '/'))
-#elif defined(RECLS_PLATFORM_IS_UNIX) && \
-      defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
-
-        if (ss_nullptr_k != stlsoft::c_string::strnchr(searchRoot, searchRootLen, '\\'))
 #else
+
         if (false)
 #endif
         {

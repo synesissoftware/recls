@@ -14,9 +14,7 @@
 
 /* STLSoft header files */
 #include <platformstl/platformstl.hpp>
-#if defined(PLATFORMSTL_OS_IS_UNIX) && \
-    defined(_WIN32)
-
+#ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
 # include <platformstl/filesystem/current_directory_scope.hpp>
 # include <platformstl/filesystem/path.hpp>
 #endif
@@ -194,8 +192,7 @@ static int main_(int /* argc */, char* argv[])
             break;
         }}
 
-#if defined(PLATFORMSTL_OS_IS_UNIX) && \
-    defined(_WIN32)
+#ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
         {
             // since we're synthesising, and UNIX uses ':' as a patterns separator, and full Windows
             // paths that are drive rooted are of the form 'H:\...', we need to change to the root dir
@@ -231,8 +228,7 @@ static int main_(int /* argc */, char* argv[])
             }}
         }
 
-#if defined(PLATFORMSTL_OS_IS_UNIX) && \
-    defined(_WIN32)
+#ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
         }
 #endif
     }

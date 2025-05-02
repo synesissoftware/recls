@@ -605,12 +605,14 @@ ReclsFileSearchDirectoryNode::Stat(
 
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+
         // emulated UNIX
         if (!types::traits_type::is_path_UNC(path))
         {
             std::replace(&path_[0], &path_[0] + path_.size(), RECLS_LITERAL('\\'), RECLS_LITERAL('/'));
         }
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
         std::replace(&path_[0], &path_[0] + path_.size(), RECLS_LITERAL('/'), RECLS_LITERAL('\\'));
 # endif /* Windows && EMULATE_UNIX_ON_WINDOWS */
 
