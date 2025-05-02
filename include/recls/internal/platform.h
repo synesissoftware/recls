@@ -26,9 +26,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   2
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       32
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      4
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   0
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       33
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -76,7 +76,8 @@
    /* Platform is UNIX */
 #  define RECLS_PLATFORM_IS_UNIX
    /* Now determine whether this is being emulated on Windows */
-#  if defined(_WIN64) && \
+#  if 0
+#  elif defined(_WIN64) && \
       ( defined(EMULATE_UNIX_ON_WIN64) || \
         defined(EMULATE_UNIX_ON_WINDOWS))
 #   define RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WIN64
@@ -86,6 +87,9 @@
         defined(EMULATE_UNIX_ON_WINDOWS))
 #   define RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WIN32
 #   define RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
+#  elif !defined(_WIN32)
+#   define RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS
+#  else
 #  endif /* Windows */
 # elif defined(WIN64)
    /* Platform is Win64 */
