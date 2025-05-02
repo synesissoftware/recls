@@ -22,7 +22,7 @@
 #endif
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # include <winstl/conversion/char_conversions.hpp>
 #else
 # error platform not discriminated
@@ -39,7 +39,7 @@
 
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # include <tchar.h>
 #else
 # error platform not discriminated
@@ -125,7 +125,7 @@ static int main_(int /* argc */, char* argv[])
             std::_tcout << s_CR << RECLS_LITERAL("  stat(argv[0]):") << std::endl;
 
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
             recls::cpp::entry e = recls::cpp::stat(winstl::a2t(argv[0]), recls::DIRECTORY_PARTS);
 #else

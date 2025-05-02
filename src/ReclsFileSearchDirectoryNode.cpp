@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 1st May 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -125,7 +125,7 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
@@ -203,7 +203,7 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
             ssFlags |= sequence_t::noThrowOnAccessFailure;
         }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if (0 != (flags & RECLS_F_STOP_ON_ACCESS_FAILURE))
@@ -457,7 +457,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 # if 0
 # elif defined(RECLS_PLATFORM_IS_UNIX)
     catch (unixstl::readdir_sequence_exception& x)
-# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
     catch (winstl_ns_qual(winstl_exception)& x)
 # endif
     {
@@ -500,7 +500,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
             *prc = RECLS_RC_FAIL;
             break;
         }
-# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
         switch (x.status_code())
         {

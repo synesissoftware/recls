@@ -51,7 +51,7 @@
 #elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # include <unistd.h>
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
 # include <windows.h>
 #else
@@ -74,7 +74,7 @@
 #elif defined (RECLS_PLATFORM_IS_UNIX)
 
 # define this_getcwd                                        getcwd
-#elif defined (PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined (RECLS_PLATFORM_IS_WINDOWS)
 
 # define this_getcwd                                        _tgetcwd
 #else
@@ -83,7 +83,7 @@
 #endif
 
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+#elif defined(RECLS_PLATFORM_IS_WINDOWS) || \
       ( defined(PLATFORMSTL_OS_IS_UNIX) && \
         defined(_WIN32))
 
@@ -230,7 +230,7 @@ int main(int argc, char **argv)
 #endif
 
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
                 s_cwdLen = _tcslen(s_cwd);
 #else

@@ -46,7 +46,7 @@
 #include <platformstl/filesystem/directory_functions.hpp>
 #include <platformstl/filesystem/path.hpp>
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # include <winstl/conversion/char_conversions.hpp>
 # define CONVERTER_m2t(s)   winstl::m2t(s)
 #else

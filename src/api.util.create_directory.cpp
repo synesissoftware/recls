@@ -343,7 +343,7 @@ Recls_CreateDirectory(
 # if 0
 # elif defined(RECLS_PLATFORM_IS_UNIX)
         if (ENOENT == get_exception_status_code(x))
-# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
         if (ERROR_INVALID_NAME == get_exception_status_code(x))
 # else /* ? OS */
 #  error Platform not discriminated

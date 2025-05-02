@@ -37,7 +37,7 @@
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
 # include <stlsoft/error/error_desc.hpp>
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # include <winstl/error/error_desc.hpp>
 #endif
 
@@ -162,7 +162,7 @@ namespace
 # else /* ? RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
                     ::chmod(path, stat_data.st_mode | S_IWUSR);
 # endif /* RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
                     ::SetFileAttributes(path, stat_data.dwFileAttributes & ~(FILE_ATTRIBUTE_READONLY));
 #else /* ? OS */
 # error Platform not discriminated
@@ -181,7 +181,7 @@ namespace
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
             ,   stlsoft::error_desc(e).c_str()
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
             ,   winstl::error_desc(e).c_str()
 #endif
             );
@@ -329,7 +329,7 @@ namespace
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
                         ,   stlsoft::error_desc(e).c_str()
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
                         ,   winstl::error_desc(e).c_str()
 #endif
                         );
@@ -358,7 +358,7 @@ namespace
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
                 ,   stlsoft::error_desc(e).c_str()
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
                 ,   winstl::error_desc(e).c_str()
 #endif
                 );
@@ -471,7 +471,7 @@ Recls_RemoveDirectory(
 # if 0
 # elif defined(RECLS_PLATFORM_IS_UNIX)
         if (ENOENT == get_exception_status_code(x))
-# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
         if (ERROR_INVALID_NAME == get_exception_status_code(x))
 # else /* ? OS */
 #  error Platform not discriminated
