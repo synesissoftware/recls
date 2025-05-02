@@ -120,6 +120,7 @@ target_include_directories(core
 target_link_libraries(core
 	PRIVATE
 		$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
+		$<$<BOOL:${UNIXem_FOUND}>:UNIXem::UNIXem>
 )
 
 target_compile_options(core
