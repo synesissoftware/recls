@@ -2,7 +2,7 @@
 # File:     makefile
 #
 # Purpose:  Makefile for the recls project,
-#           for the GCC 9.3 compiler,
+#           for the GCC 9.3 (UNIX) compiler,
 #           on the UNIX platform
 #
 # Created:  28th March 2021
@@ -24,100 +24,100 @@ endif # !STLSOFT
 ########################################
 # project & compiler version
 
-COMP_TAG            =   gcc93
-ARCH_TAG            =
-OS_TAG              =
-PROJ_TAG            =   recls
-PROJ_VER_MAJOR      =   1
-PROJ_TAG_VER        =   $(PROJ_TAG).$(PROJ_VER_MAJOR)
-COMP_ARCH_OS_TAG    =   $(COMP_TAG)$(OS_TAG)$(ARCH_TAG)
+COMP_TAG                    =   gcc93
+ARCH_TAG                    =
+OS_TAG                      =
+PROJ_TAG                    =   recls
+PROJ_VER_MAJOR              =   1
+PROJ_TAG_VER                =   $(PROJ_TAG).$(PROJ_VER_MAJOR)
+COMP_ARCH_OS_TAG            =   $(COMP_TAG)$(OS_TAG)$(ARCH_TAG)
 
-SHWILD_VER_MAJOR    =   0
-SHWILD_TAG_VER      =   shwild.$(SHWILD_VER_MAJOR)
+SHWILD_VER_MAJOR            =   0
+SHWILD_TAG_VER              =   shwild.$(SHWILD_VER_MAJOR)
 
-XTESTS_VER_MAJOR    =   0
-XTESTS_TAG_VER      =   xtests.$(XTESTS_VER_MAJOR)
+XTESTS_VER_MAJOR            =   0
+XTESTS_TAG_VER              =   xtests.$(XTESTS_VER_MAJOR)
 
-UNIXEM_VER_MAJOR    =   1
-UNIXEM_TAG_VER      =   unixem.$(UNIXEM_VER_MAJOR)
+UNIXEM_VER_MAJOR            =   1
+UNIXEM_TAG_VER              =   unixem.$(UNIXEM_VER_MAJOR)
 
-PROJ_MAKEFILE_NAME  =   makefile
+PROJ_MAKEFILE_NAME          =   makefile
 
 ########################################
 # testing verbosity
 
 ifndef TEST_VERBOSITY
-TEST_VERBOSITY      =   2
+TEST_VERBOSITY              =   2
 endif # !TEST_VERBOSITY
 
 ########################################
 # directories
 
-PROJ_BASE_DIR           =   ../..
-PROJ_BIN_DIR            =   $(PROJ_BASE_DIR)/bin
-PROJ_INCLUDE_DIR        =   $(PROJ_BASE_DIR)/include
-PROJ_LIB_DIR            =   $(PROJ_BASE_DIR)/lib
-PROJ_OBJ_DIR            =   .
-PROJ_SRC_DIR            =   $(PROJ_BASE_DIR)/src
-PROJ_EXAMPLES_DIR       =   $(PROJ_BASE_DIR)/examples
-PROJ_SAMPLES_DIR        =   $(PROJ_BASE_DIR)/samples
-PROJ_TEST_ROOT_DIR      =   $(PROJ_BASE_DIR)/test
-PROJ_TEST_COMPONENT_DIR =   $(PROJ_TEST_ROOT_DIR)/component
-PROJ_TEST_PERFORMANCE_DIR	=	$(PROJ_TEST_ROOT_DIR)/performance
-PROJ_TEST_SCRATCH_DIR   =   $(PROJ_TEST_ROOT_DIR)/scratch
-PROJ_TEST_UNIT_DIR      =   $(PROJ_TEST_ROOT_DIR)/unit
+PROJ_BASE_DIR               =   ../..
+PROJ_BIN_DIR                =   $(PROJ_BASE_DIR)/bin
+PROJ_INCLUDE_DIR            =   $(PROJ_BASE_DIR)/include
+PROJ_LIB_DIR                =   $(PROJ_BASE_DIR)/lib
+PROJ_OBJ_DIR                =   .
+PROJ_SRC_DIR                =   $(PROJ_BASE_DIR)/src
+PROJ_EXAMPLES_DIR           =   $(PROJ_BASE_DIR)/examples
+PROJ_SAMPLES_DIR            =   $(PROJ_BASE_DIR)/samples
+PROJ_TEST_ROOT_DIR          =   $(PROJ_BASE_DIR)/test
+PROJ_TEST_COMPONENT_DIR     =   $(PROJ_TEST_ROOT_DIR)/component
+PROJ_TEST_PERFORMANCE_DIR   =   $(PROJ_TEST_ROOT_DIR)/performance
+PROJ_TEST_SCRATCH_DIR       =   $(PROJ_TEST_ROOT_DIR)/scratch
+PROJ_TEST_UNIT_DIR          =   $(PROJ_TEST_ROOT_DIR)/unit
 
-SHWILD_PROJ_INCLUDE		=
+SHWILD_PROJ_INCLUDE         =
 ifdef RECLS_SHWILD_BASE_DIR
-SHWILD_INCLUDE_DIR		=   $(RECLS_SHWILD_BASE_DIR)/include
-SHWILD_SRC_DIR			=   $(RECLS_SHWILD_BASE_DIR)/src
-SHWILD_PROJ_INCLUDE		=	-I$(SHWILD_INCLUDE_DIR)
+SHWILD_INCLUDE_DIR          =   $(RECLS_SHWILD_BASE_DIR)/include
+SHWILD_SRC_DIR              =   $(RECLS_SHWILD_BASE_DIR)/src
+SHWILD_PROJ_INCLUDE         =   -I$(SHWILD_INCLUDE_DIR)
 else
-SHWILD_INCLUDE_DIR		=   $(PROJ_BASE_DIR)/include
-SHWILD_SRC_DIR			=   $(PROJ_SRC_DIR)/shwild
+SHWILD_INCLUDE_DIR          =   $(PROJ_BASE_DIR)/include
+SHWILD_SRC_DIR              =   $(PROJ_SRC_DIR)/shwild
 endif # !RECLS_SHWILD_BASE_DIR
 
-XCONTRACT_PROJ_INCLUDE	=
+XCONTRACT_PROJ_INCLUDE      =
 
-XTESTS_PROJ_INCLUDE		=
+XTESTS_PROJ_INCLUDE         =
 ifdef RECLS_XTESTS_BASE_DIR
-XTESTS_INCLUDE_DIR		=   $(RECLS_XTESTS_BASE_DIR)/include
-XTESTS_SRC_DIR			=   $(RECLS_XTESTS_BASE_DIR)/src
-XTESTS_PROJ_INCLUDE		=	-I$(XTESTS_INCLUDE_DIR)
+XTESTS_INCLUDE_DIR          =   $(RECLS_XTESTS_BASE_DIR)/include
+XTESTS_SRC_DIR              =   $(RECLS_XTESTS_BASE_DIR)/src
+XTESTS_PROJ_INCLUDE         =   -I$(XTESTS_INCLUDE_DIR)
 else
-XTESTS_INCLUDE_DIR		=   $(PROJ_BASE_DIR)/include
-XTESTS_SRC_DIR			=   $(PROJ_SRC_DIR)/xtests
+XTESTS_INCLUDE_DIR          =   $(PROJ_BASE_DIR)/include
+XTESTS_SRC_DIR              =   $(PROJ_SRC_DIR)/xtests
 endif # !RECLS_XTESTS_BASE_DIR
 
 ifdef STLSOFT_1_10
-STLSOFT_1_10_INCLUDE	=	-I$(STLSOFT_1_10)/include
+STLSOFT_1_10_INCLUDE        =   -I$(STLSOFT_1_10)/include
 else # ? STLSOFT_1_10
-STLSOFT_1_10_INCLUDE	=
+STLSOFT_1_10_INCLUDE        =
 endif # !STLSOFT_1_10
 
 
-STLSOFT_PROJ_INCLUDE	=	-I$(STLSOFT)/include
+STLSOFT_PROJ_INCLUDE        =   -I$(STLSOFT)/include
 
 ########################################
 # tools
 
-CC                      =   gcc
-CPPC                    =   g++
-AR                      =   ar
-LD                      =   g++
-RM                      =   rm -f
-CP                      =   cp
-RC                      =
+CC                          =   gcc
+CPPC                        =   g++
+AR                          =   ar
+LD                          =   g++
+RM                          =   rm -f
+CP                          =   cp
+RC                          =
 
 # includes
 
-INCLUDES_LEADER         =
+INCLUDES_LEADER             =
 
-PROJ_INCLUDE            =   -I$(PROJ_INCLUDE_DIR)
+PROJ_INCLUDE                =   -I$(PROJ_INCLUDE_DIR)
 
-ENV_INCLUDES            =
+ENV_INCLUDES                =
 
-COMMON_INCLUDES         =
+COMMON_INCLUDES             =
 
 
 
@@ -125,12 +125,12 @@ COMMON_INCLUDES         =
 
 # lib
 
-LIBS_LEADER             =
+LIBS_LEADER                 =
 
 # lib paths
 
-ENV_LIBPATHS        =
-COMMON_LIBPATHS         =
+ENV_LIBPATHS                =
+COMMON_LIBPATHS             =
 
 
 LIBPATHS=\
@@ -161,9 +161,9 @@ TARGET_LIB_ST_R=\
 
 # #defines
 
-OS_DEFS				=	-Dunix
+OS_DEFS                     =   -Dunix
 
-COMMON_DEFS_		= \
+COMMON_DEFS_                = \
  -DB64_NO_USE_XCONTRACT\
  -DB64_NO_USE_XCOVER\
  -DRECLS_NO_IMPLICIT_LINK\
@@ -171,21 +171,22 @@ COMMON_DEFS_		= \
  -DSHWILD_QUALITY_NO_USE_XCOVER\
  \
 
-COMMON_DEFS			= \
+COMMON_DEFS                 = \
  $(COMMON_DEFS_)\
  \
 
-CUSTOM_DEFS			=
+CUSTOM_DEFS                 =
 
-CC_CUSTOM_DEFS		=	$(CUSTOM_DEFS)
+CC_CUSTOM_DEFS              =   $(CUSTOM_DEFS)
 
-CPPC_CUSTOM_DEFS	=	$(CUSTOM_DEFS)
+CPPC_CUSTOM_DEFS            =   $(CUSTOM_DEFS)
 
 
 
 # CC flags
 
 CC_F_NOLOGO           =
+CC_F_LANGUAGE        	=   -std=c17
 CC_F_COMPILE_ONLY     =   -c
 CC_F_WARNING_MAX      =   -Wall -pedantic -Wno-long-long -Wno-unused-value -Wundef -Wshadow
 CC_F_WARNING_ERR      =   -Werror
@@ -194,6 +195,7 @@ CC_F_MAXIMUM_SPEED    =   -O3
 
 CC_FLAGS_BASE=\
  $(CC_F_NOLOGO)\
+ $(CC_F_LANGUAGE)\
  $(CC_F_COMPILE_ONLY)\
  $(CC_F_WARNING_MAX)\
  $(CC_F_WARNING_ERR)\
@@ -219,18 +221,18 @@ CC_FLAGS_ST_R=\
 # CPPC flags
 
 CPPC_F_NOLOGO           =
-CPPC_F_LANGUAGE         =   -std=c++11
+CPPC_F_LANGUAGE         =   -std=c++17
 CPPC_F_COMPILE_ONLY     =   -c
-CPPC_F_WARNING_MAX      =   -Wall -pedantic -Wno-long-long -Wno-unused-value -Wno-non-virtual-dtor
+CPPC_F_WARNING_MAX      =   -Wall -pedantic -Wno-long-long -Wno-non-virtual-dtor -Wno-unused-value
 CPPC_F_WARNING_ERR      =   -Werror
 CPPC_F_EXCEPTIONS_ON    =
 CPPC_F_EXCEPTIONS_OFF   =
-CPPC_F_EXCEPTIONS		=	$(CPPC_F_EXCEPTIONS_ON)
+CPPC_F_EXCEPTIONS       =   $(CPPC_F_EXCEPTIONS_ON)
 CPPC_F_RTTI_ON          =
 CPPC_F_RTTI_OFF         =
 CPPC_F_RTTI             =   $(CPPC_F_RTTI_ON)
 CPPC_F_MINIMUM_SIZE     =   -O1
-CPPC_F_MAXIMUM_SPEED	=	-O3
+CPPC_F_MAXIMUM_SPEED    =   -O3
 
 CPPC_FLAGS_BASE=\
  $(CPPC_F_NOLOGO)\
@@ -544,12 +546,12 @@ CPPC_ARGS_core_ST_R=\
 
 # AR Args
 
-AR_ARGS             =
+AR_ARGS                     =
 
 
 # LD flags
 
-LD_F_NOLOGO				=
+LD_F_NOLOGO                 =
 
 LD_FLAGS_BASE=\
  $(LD_F_NOLOGO)\
@@ -610,19 +612,19 @@ LD_ARGS_ST_R= $(LD_FLAGS_ST_R)  $(LD_INCLUDES_ST_R)
  \
 
 
-3PTY_LIBS_MT_D	=\
+3PTY_LIBS_MT_D=\
  $(3PTY_LIBS_BASE)\
  \
 
-3PTY_LIBS_MT_R	=\
+3PTY_LIBS_MT_R=\
  $(3PTY_LIBS_BASE)\
  \
 
-3PTY_LIBS_ST_D	=\
+3PTY_LIBS_ST_D=\
  $(3PTY_LIBS_BASE)\
  \
 
-3PTY_LIBS_ST_R	=\
+3PTY_LIBS_ST_R=\
  $(3PTY_LIBS_BASE)\
  \
 
@@ -634,7 +636,6 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)/recls/assert.h\
  $(PROJ_INCLUDE_DIR)/recls/ftp.h\
  $(PROJ_INCLUDE_DIR)/recls/implicit_link.h\
- $(PROJ_INCLUDE_DIR)/recls/internal/compiler.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_borland.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_ch.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_clang.h\
@@ -646,9 +647,10 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_mwerks.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_vectorc.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/compiler_watcom.h\
+ $(PROJ_INCLUDE_DIR)/recls/internal/compiler.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/language.h\
- $(PROJ_INCLUDE_DIR)/recls/internal/platform.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/platform_types.h\
+ $(PROJ_INCLUDE_DIR)/recls/internal/platform.h\
  $(PROJ_INCLUDE_DIR)/recls/internal/retcodes.h\
  $(PROJ_INCLUDE_DIR)/recls/recls.h\
  $(PROJ_INCLUDE_DIR)/recls/unix.h\
@@ -676,8 +678,8 @@ SHWILD_HEADERS=\
  \
 
 XTESTS_HEADERS=\
- $(XTESTS_INCLUDE_DIR)/xtests/xtests.h\
  $(XTESTS_INCLUDE_DIR)/xtests/internal/safestr.h\
+ $(XTESTS_INCLUDE_DIR)/xtests/xtests.h\
  \
 
 ############################################################################
@@ -847,6 +849,8 @@ OBJ_CR_impl_fileinfo_MT_D		= $(PROJ_OBJ_DIR)/impl.fileinfo.mt.debug.o
 OBJ_CR_impl_snprintf_MT_D		= $(PROJ_OBJ_DIR)/impl.snprintf.mt.debug.o
 OBJ_CR_impl_util_MT_D			= $(PROJ_OBJ_DIR)/impl.util.mt.debug.o
 OBJ_CR_Srch_MT_D				= $(PROJ_OBJ_DIR)/ReclsSearch.mt.debug.o
+OBJ_CR_FlSrchDCAA_MT_D			= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.mt.debug.o
+OBJ_CR_FlSrchDCPIL_MT_D			= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.mt.debug.o
 OBJ_CR_FlSrch_MT_D			= $(PROJ_OBJ_DIR)/ReclsFileSearch.mt.debug.o
 OBJ_CR_FlSchDirNode_MT_D		= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryNode.mt.debug.o
 OBJ_CR_api_unix_MT_D				= $(PROJ_OBJ_DIR)/api.unix.mt.debug.o
@@ -874,6 +878,8 @@ OBJ_CORE_MT_D=\
  $(OBJ_CR_impl_snprintf_MT_D)\
  $(OBJ_CR_impl_util_MT_D)\
  $(OBJ_CR_Srch_MT_D)\
+ $(OBJ_CR_FlSrchDCAA_MT_D)\
+ $(OBJ_CR_FlSrchDCPIL_MT_D)\
  $(OBJ_CR_FlSrch_MT_D)\
  $(OBJ_CR_FlSchDirNode_MT_D)\
  $(OBJ_CR_api_unix_MT_D)\
@@ -899,6 +905,8 @@ OBJ_CR_impl_fileinfo_MT_R		= $(PROJ_OBJ_DIR)/impl.fileinfo.mt.o
 OBJ_CR_impl_snprintf_MT_R		= $(PROJ_OBJ_DIR)/impl.snprintf.mt.o
 OBJ_CR_impl_util_MT_R			= $(PROJ_OBJ_DIR)/impl.util.mt.o
 OBJ_CR_Srch_MT_R				= $(PROJ_OBJ_DIR)/ReclsSearch.mt.o
+OBJ_CR_FlSrchDCAA_MT_R			= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.mt.o
+OBJ_CR_FlSrchDCPIL_MT_R			= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.mt.o
 OBJ_CR_FlSrch_MT_R			= $(PROJ_OBJ_DIR)/ReclsFileSearch.mt.o
 OBJ_CR_FlSchDirNode_MT_R		= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryNode.mt.o
 OBJ_CR_api_unix_MT_R				= $(PROJ_OBJ_DIR)/api.unix.mt.o
@@ -926,6 +934,8 @@ OBJ_CORE_MT_R=\
  $(OBJ_CR_impl_snprintf_MT_R)\
  $(OBJ_CR_impl_util_MT_R)\
  $(OBJ_CR_Srch_MT_R)\
+ $(OBJ_CR_FlSrchDCAA_MT_R)\
+ $(OBJ_CR_FlSrchDCPIL_MT_R)\
  $(OBJ_CR_FlSrch_MT_R)\
  $(OBJ_CR_FlSchDirNode_MT_R)\
  $(OBJ_CR_api_unix_MT_R)\
@@ -951,6 +961,8 @@ OBJ_CR_impl_fileinfo_ST_D		= $(PROJ_OBJ_DIR)/impl.fileinfo.debug.o
 OBJ_CR_impl_snprintf_ST_D		= $(PROJ_OBJ_DIR)/impl.snprintf.debug.o
 OBJ_CR_impl_util_ST_D			= $(PROJ_OBJ_DIR)/impl.util.debug.o
 OBJ_CR_Srch_ST_D				= $(PROJ_OBJ_DIR)/ReclsSearch.debug.o
+OBJ_CR_FlSrchDCAA_ST_D			= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.debug.o
+OBJ_CR_FlSrchDCPIL_ST_D			= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.debug.o
 OBJ_CR_FlSrch_ST_D			= $(PROJ_OBJ_DIR)/ReclsFileSearch.debug.o
 OBJ_CR_FlSchDirNode_ST_D		= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryNode.debug.o
 OBJ_CR_api_unix_ST_D				= $(PROJ_OBJ_DIR)/api.unix.debug.o
@@ -978,6 +990,8 @@ OBJ_CORE_ST_D=\
  $(OBJ_CR_impl_snprintf_ST_D)\
  $(OBJ_CR_impl_util_ST_D)\
  $(OBJ_CR_Srch_ST_D)\
+ $(OBJ_CR_FlSrchDCAA_ST_D)\
+ $(OBJ_CR_FlSrchDCPIL_ST_D)\
  $(OBJ_CR_FlSrch_ST_D)\
  $(OBJ_CR_FlSchDirNode_ST_D)\
  $(OBJ_CR_api_unix_ST_D)\
@@ -1003,6 +1017,8 @@ OBJ_CR_impl_fileinfo_ST_R		= $(PROJ_OBJ_DIR)/impl.fileinfo.o
 OBJ_CR_impl_snprintf_ST_R		= $(PROJ_OBJ_DIR)/impl.snprintf.o
 OBJ_CR_impl_util_ST_R			= $(PROJ_OBJ_DIR)/impl.util.o
 OBJ_CR_Srch_ST_R				= $(PROJ_OBJ_DIR)/ReclsSearch.o
+OBJ_CR_FlSrchDCAA_ST_R			= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.o
+OBJ_CR_FlSrchDCPIL_ST_R			= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.o
 OBJ_CR_FlSrch_ST_R			= $(PROJ_OBJ_DIR)/ReclsFileSearch.o
 OBJ_CR_FlSchDirNode_ST_R		= $(PROJ_OBJ_DIR)/ReclsFileSearchDirectoryNode.o
 OBJ_CR_api_unix_ST_R				= $(PROJ_OBJ_DIR)/api.unix.o
@@ -1030,6 +1046,8 @@ OBJ_CORE_ST_R=\
  $(OBJ_CR_impl_snprintf_ST_R)\
  $(OBJ_CR_impl_util_ST_R)\
  $(OBJ_CR_Srch_ST_R)\
+ $(OBJ_CR_FlSrchDCAA_ST_R)\
+ $(OBJ_CR_FlSrchDCPIL_ST_R)\
  $(OBJ_CR_FlSrch_ST_R)\
  $(OBJ_CR_FlSchDirNode_ST_R)\
  $(OBJ_CR_api_unix_ST_R)\
@@ -1695,6 +1713,18 @@ test.ex.c_:
 
 test.ex.cpp_:
 	@echo C++ Example programs ...
+	-$(TARG_EX_ex_cpp_1_MT_D)
+	-$(TARG_EX_ex_cpp_2_MT_D)
+	-$(TARG_EX_ex_cpp_3_MT_D)
+	-$(TARG_EX_ex_cpp_1_MT_R)
+	-$(TARG_EX_ex_cpp_2_MT_R)
+	-$(TARG_EX_ex_cpp_3_MT_R)
+	-$(TARG_EX_ex_cpp_1_ST_D)
+	-$(TARG_EX_ex_cpp_2_ST_D)
+	-$(TARG_EX_ex_cpp_3_ST_D)
+	-$(TARG_EX_ex_cpp_1_ST_R)
+	-$(TARG_EX_ex_cpp_2_ST_R)
+	-$(TARG_EX_ex_cpp_3_ST_R)
 
 
 test.component:             build.test.component test.component_
@@ -1705,7 +1735,7 @@ test.unit:                  build.test.unit test.unit_
 
 test.ex.c:					build.ex.c test.ex.c_
 
-test.ex.cpp:				build.ex.cpp test.ex.cpp_
+test.ex.cpp:				build.ex.c++ test.ex.cpp_
 
 test.examples:              test.ex.c test.ex.cpp
 
@@ -1742,6 +1772,8 @@ clean.libs.core:
 	@-$(RM) $(OBJ_CR_impl_snprintf_MT_D)
 	@-$(RM) $(OBJ_CR_impl_util_MT_D)
 	@-$(RM) $(OBJ_CR_Srch_MT_D)
+	@-$(RM) $(OBJ_CR_FlSrchDCAA_MT_D)
+	@-$(RM) $(OBJ_CR_FlSrchDCPIL_MT_D)
 	@-$(RM) $(OBJ_CR_FlSrch_MT_D)
 	@-$(RM) $(OBJ_CR_FlSchDirNode_MT_D)
 	@-$(RM) $(OBJ_CR_api_unix_MT_D)
@@ -1765,6 +1797,8 @@ clean.libs.core:
 	@-$(RM) $(OBJ_CR_impl_snprintf_MT_R)
 	@-$(RM) $(OBJ_CR_impl_util_MT_R)
 	@-$(RM) $(OBJ_CR_Srch_MT_R)
+	@-$(RM) $(OBJ_CR_FlSrchDCAA_MT_R)
+	@-$(RM) $(OBJ_CR_FlSrchDCPIL_MT_R)
 	@-$(RM) $(OBJ_CR_FlSrch_MT_R)
 	@-$(RM) $(OBJ_CR_FlSchDirNode_MT_R)
 	@-$(RM) $(OBJ_CR_api_unix_MT_R)
@@ -1788,6 +1822,8 @@ clean.libs.core:
 	@-$(RM) $(OBJ_CR_impl_snprintf_ST_D)
 	@-$(RM) $(OBJ_CR_impl_util_ST_D)
 	@-$(RM) $(OBJ_CR_Srch_ST_D)
+	@-$(RM) $(OBJ_CR_FlSrchDCAA_ST_D)
+	@-$(RM) $(OBJ_CR_FlSrchDCPIL_ST_D)
 	@-$(RM) $(OBJ_CR_FlSrch_ST_D)
 	@-$(RM) $(OBJ_CR_FlSchDirNode_ST_D)
 	@-$(RM) $(OBJ_CR_api_unix_ST_D)
@@ -1811,6 +1847,8 @@ clean.libs.core:
 	@-$(RM) $(OBJ_CR_impl_snprintf_ST_R)
 	@-$(RM) $(OBJ_CR_impl_util_ST_R)
 	@-$(RM) $(OBJ_CR_Srch_ST_R)
+	@-$(RM) $(OBJ_CR_FlSrchDCAA_ST_R)
+	@-$(RM) $(OBJ_CR_FlSrchDCPIL_ST_R)
 	@-$(RM) $(OBJ_CR_FlSrch_ST_R)
 	@-$(RM) $(OBJ_CR_FlSchDirNode_ST_R)
 	@-$(RM) $(OBJ_CR_api_unix_ST_R)
@@ -2102,6 +2140,10 @@ $(OBJ_CR_impl_util_MT_D): $(PROJ_SRC_DIR)/impl.util.cpp $(CORE_HEADERS) $(PROJ_M
 	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)/impl.util.cpp
 $(OBJ_CR_Srch_MT_D): $(PROJ_SRC_DIR)/ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)/ReclsSearch.cpp
+$(OBJ_CR_FlSrchDCAA_MT_D): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.cpp
+$(OBJ_CR_FlSrchDCPIL_MT_D): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.cpp
 $(OBJ_CR_FlSrch_MT_D): $(PROJ_SRC_DIR)/ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_D) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_MT_D): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -2154,6 +2196,10 @@ $(OBJ_CR_impl_util_MT_R): $(PROJ_SRC_DIR)/impl.util.cpp $(CORE_HEADERS) $(PROJ_M
 	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)/impl.util.cpp
 $(OBJ_CR_Srch_MT_R): $(PROJ_SRC_DIR)/ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)/ReclsSearch.cpp
+$(OBJ_CR_FlSrchDCAA_MT_R): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.cpp
+$(OBJ_CR_FlSrchDCPIL_MT_R): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.cpp
 $(OBJ_CR_FlSrch_MT_R): $(PROJ_SRC_DIR)/ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_MT_R) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_MT_R): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -2206,6 +2252,10 @@ $(OBJ_CR_impl_util_ST_D): $(PROJ_SRC_DIR)/impl.util.cpp $(CORE_HEADERS) $(PROJ_M
 	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)/impl.util.cpp
 $(OBJ_CR_Srch_ST_D): $(PROJ_SRC_DIR)/ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)/ReclsSearch.cpp
+$(OBJ_CR_FlSrchDCAA_ST_D): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.cpp
+$(OBJ_CR_FlSrchDCPIL_ST_D): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.cpp
 $(OBJ_CR_FlSrch_ST_D): $(PROJ_SRC_DIR)/ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_D) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_ST_D): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -2258,6 +2308,10 @@ $(OBJ_CR_impl_util_ST_R): $(PROJ_SRC_DIR)/impl.util.cpp $(CORE_HEADERS) $(PROJ_M
 	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)/impl.util.cpp
 $(OBJ_CR_Srch_ST_R): $(PROJ_SRC_DIR)/ReclsSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)/ReclsSearch.cpp
+$(OBJ_CR_FlSrchDCAA_ST_R): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlAlwaysAllow.cpp
+$(OBJ_CR_FlSrchDCPIL_ST_R): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryControlPreventInfiniteLoops.cpp
 $(OBJ_CR_FlSrch_ST_R): $(PROJ_SRC_DIR)/ReclsFileSearch.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_core_ST_R) -o $@ $(PROJ_SRC_DIR)/ReclsFileSearch.cpp
 $(OBJ_CR_FlSchDirNode_ST_R): $(PROJ_SRC_DIR)/ReclsFileSearchDirectoryNode.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -2365,8 +2419,8 @@ $(TARG_EX_ex_c_1_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_EX_ex_c_1_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_1/example_c_1.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_1/example_c_1.c
+$(OBJ_EX_ex_c_1_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_1/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_1/main.c
 
 $(TARG_EX_ex_c_1_MT_R):    \
 		$(OBJ_EX_ex_c_1_MT_R)\
@@ -2379,8 +2433,8 @@ $(TARG_EX_ex_c_1_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_EX_ex_c_1_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_1/example_c_1.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_1/example_c_1.c
+$(OBJ_EX_ex_c_1_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_1/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_1/main.c
 
 $(TARG_EX_ex_c_1_ST_D):    \
 		$(OBJ_EX_ex_c_1_ST_D)\
@@ -2393,8 +2447,8 @@ $(TARG_EX_ex_c_1_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_EX_ex_c_1_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_1/example_c_1.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_1/example_c_1.c
+$(OBJ_EX_ex_c_1_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_1/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_1/main.c
 
 $(TARG_EX_ex_c_1_ST_R):    \
 		$(OBJ_EX_ex_c_1_ST_R)\
@@ -2407,8 +2461,8 @@ $(TARG_EX_ex_c_1_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_EX_ex_c_1_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_1/example_c_1.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_1/example_c_1.c
+$(OBJ_EX_ex_c_1_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_1/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_1/main.c
 
 $(TARG_EX_ex_c_2_MT_D):    \
 		$(OBJ_EX_ex_c_2_MT_D)\
@@ -2421,8 +2475,8 @@ $(TARG_EX_ex_c_2_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_EX_ex_c_2_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_2/example_c_2.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_2/example_c_2.c
+$(OBJ_EX_ex_c_2_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_2/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_2/main.c
 
 $(TARG_EX_ex_c_2_MT_R):    \
 		$(OBJ_EX_ex_c_2_MT_R)\
@@ -2435,8 +2489,8 @@ $(TARG_EX_ex_c_2_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_EX_ex_c_2_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_2/example_c_2.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_2/example_c_2.c
+$(OBJ_EX_ex_c_2_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_2/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_2/main.c
 
 $(TARG_EX_ex_c_2_ST_D):    \
 		$(OBJ_EX_ex_c_2_ST_D)\
@@ -2449,8 +2503,8 @@ $(TARG_EX_ex_c_2_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_EX_ex_c_2_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_2/example_c_2.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_2/example_c_2.c
+$(OBJ_EX_ex_c_2_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_2/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_2/main.c
 
 $(TARG_EX_ex_c_2_ST_R):    \
 		$(OBJ_EX_ex_c_2_ST_R)\
@@ -2463,8 +2517,8 @@ $(TARG_EX_ex_c_2_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_EX_ex_c_2_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_2/example_c_2.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_2/example_c_2.c
+$(OBJ_EX_ex_c_2_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_2/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_2/main.c
 
 $(TARG_EX_ex_c_3_MT_D):    \
 		$(OBJ_EX_ex_c_3_MT_D)\
@@ -2477,8 +2531,8 @@ $(TARG_EX_ex_c_3_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_EX_ex_c_3_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_3/example_c_3.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_3/example_c_3.c
+$(OBJ_EX_ex_c_3_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_3/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_3/main.c
 
 $(TARG_EX_ex_c_3_MT_R):    \
 		$(OBJ_EX_ex_c_3_MT_R)\
@@ -2491,8 +2545,8 @@ $(TARG_EX_ex_c_3_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_EX_ex_c_3_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_3/example_c_3.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_3/example_c_3.c
+$(OBJ_EX_ex_c_3_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_3/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_3/main.c
 
 $(TARG_EX_ex_c_3_ST_D):    \
 		$(OBJ_EX_ex_c_3_ST_D)\
@@ -2505,8 +2559,8 @@ $(TARG_EX_ex_c_3_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_EX_ex_c_3_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_3/example_c_3.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_3/example_c_3.c
+$(OBJ_EX_ex_c_3_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_3/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_3/main.c
 
 $(TARG_EX_ex_c_3_ST_R):    \
 		$(OBJ_EX_ex_c_3_ST_R)\
@@ -2519,8 +2573,8 @@ $(TARG_EX_ex_c_3_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_EX_ex_c_3_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_3/example_c_3.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_3/example_c_3.c
+$(OBJ_EX_ex_c_3_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_3/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_3/main.c
 
 $(TARG_EX_ex_c_4_MT_D):    \
 		$(OBJ_EX_ex_c_4_MT_D)\
@@ -2533,8 +2587,8 @@ $(TARG_EX_ex_c_4_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_EX_ex_c_4_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_4/example_c_4.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_4/example_c_4.c
+$(OBJ_EX_ex_c_4_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_4/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_4/main.c
 
 $(TARG_EX_ex_c_4_MT_R):    \
 		$(OBJ_EX_ex_c_4_MT_R)\
@@ -2547,8 +2601,8 @@ $(TARG_EX_ex_c_4_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_EX_ex_c_4_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_4/example_c_4.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_4/example_c_4.c
+$(OBJ_EX_ex_c_4_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_4/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_4/main.c
 
 $(TARG_EX_ex_c_4_ST_D):    \
 		$(OBJ_EX_ex_c_4_ST_D)\
@@ -2561,8 +2615,8 @@ $(TARG_EX_ex_c_4_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_EX_ex_c_4_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_4/example_c_4.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_4/example_c_4.c
+$(OBJ_EX_ex_c_4_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_4/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_4/main.c
 
 $(TARG_EX_ex_c_4_ST_R):    \
 		$(OBJ_EX_ex_c_4_ST_R)\
@@ -2575,8 +2629,8 @@ $(TARG_EX_ex_c_4_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_EX_ex_c_4_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_4/example_c_4.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_4/example_c_4.c
+$(OBJ_EX_ex_c_4_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_4/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_4/main.c
 
 $(TARG_EX_ex_c_5_MT_D):    \
 		$(OBJ_EX_ex_c_5_MT_D)\
@@ -2589,8 +2643,8 @@ $(TARG_EX_ex_c_5_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_EX_ex_c_5_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_5/example_c_5.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_5/example_c_5.c
+$(OBJ_EX_ex_c_5_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_5/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_5/main.c
 
 $(TARG_EX_ex_c_5_MT_R):    \
 		$(OBJ_EX_ex_c_5_MT_R)\
@@ -2603,8 +2657,8 @@ $(TARG_EX_ex_c_5_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_EX_ex_c_5_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_5/example_c_5.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_5/example_c_5.c
+$(OBJ_EX_ex_c_5_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_5/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_5/main.c
 
 $(TARG_EX_ex_c_5_ST_D):    \
 		$(OBJ_EX_ex_c_5_ST_D)\
@@ -2617,8 +2671,8 @@ $(TARG_EX_ex_c_5_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_EX_ex_c_5_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_5/example_c_5.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_5/example_c_5.c
+$(OBJ_EX_ex_c_5_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_5/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_5/main.c
 
 $(TARG_EX_ex_c_5_ST_R):    \
 		$(OBJ_EX_ex_c_5_ST_R)\
@@ -2631,8 +2685,8 @@ $(TARG_EX_ex_c_5_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_EX_ex_c_5_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_5/example_c_5.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_5/example_c_5.c
+$(OBJ_EX_ex_c_5_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_5/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_5/main.c
 
 $(TARG_EX_ex_c_6_MT_D):    \
 		$(OBJ_EX_ex_c_6_MT_D)\
@@ -2645,8 +2699,8 @@ $(TARG_EX_ex_c_6_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_EX_ex_c_6_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_6/example_c_6.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_6/example_c_6.c
+$(OBJ_EX_ex_c_6_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_6/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_6/main.c
 
 $(TARG_EX_ex_c_6_MT_R):    \
 		$(OBJ_EX_ex_c_6_MT_R)\
@@ -2659,8 +2713,8 @@ $(TARG_EX_ex_c_6_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_EX_ex_c_6_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_6/example_c_6.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_6/example_c_6.c
+$(OBJ_EX_ex_c_6_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_6/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_6/main.c
 
 $(TARG_EX_ex_c_6_ST_D):    \
 		$(OBJ_EX_ex_c_6_ST_D)\
@@ -2673,8 +2727,8 @@ $(TARG_EX_ex_c_6_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_EX_ex_c_6_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_6/example_c_6.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_6/example_c_6.c
+$(OBJ_EX_ex_c_6_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_6/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_6/main.c
 
 $(TARG_EX_ex_c_6_ST_R):    \
 		$(OBJ_EX_ex_c_6_ST_R)\
@@ -2687,8 +2741,8 @@ $(TARG_EX_ex_c_6_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_EX_ex_c_6_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_6/example_c_6.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_6/example_c_6.c
+$(OBJ_EX_ex_c_6_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_6/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_6/main.c
 
 $(TARG_EX_ex_c_7_MT_D):    \
 		$(OBJ_EX_ex_c_7_MT_D)\
@@ -2701,8 +2755,8 @@ $(TARG_EX_ex_c_7_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_EX_ex_c_7_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_7/example_c_7.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_7/example_c_7.c
+$(OBJ_EX_ex_c_7_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_7/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_7/main.c
 
 $(TARG_EX_ex_c_7_MT_R):    \
 		$(OBJ_EX_ex_c_7_MT_R)\
@@ -2715,8 +2769,8 @@ $(TARG_EX_ex_c_7_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_EX_ex_c_7_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_7/example_c_7.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_7/example_c_7.c
+$(OBJ_EX_ex_c_7_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_7/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_7/main.c
 
 $(TARG_EX_ex_c_7_ST_D):    \
 		$(OBJ_EX_ex_c_7_ST_D)\
@@ -2729,8 +2783,8 @@ $(TARG_EX_ex_c_7_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_EX_ex_c_7_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_7/example_c_7.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_7/example_c_7.c
+$(OBJ_EX_ex_c_7_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_7/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_7/main.c
 
 $(TARG_EX_ex_c_7_ST_R):    \
 		$(OBJ_EX_ex_c_7_ST_R)\
@@ -2743,8 +2797,8 @@ $(TARG_EX_ex_c_7_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_EX_ex_c_7_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_7/example_c_7.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_7/example_c_7.c
+$(OBJ_EX_ex_c_7_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_7/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_7/main.c
 
 $(TARG_EX_ex_c_8_MT_D):    \
 		$(OBJ_EX_ex_c_8_MT_D)\
@@ -2757,8 +2811,8 @@ $(TARG_EX_ex_c_8_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_EX_ex_c_8_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_8/example_c_8.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_8/example_c_8.c
+$(OBJ_EX_ex_c_8_MT_D): $(PROJ_EXAMPLES_DIR)/c/example_c_8/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_8/main.c
 
 $(TARG_EX_ex_c_8_MT_R):    \
 		$(OBJ_EX_ex_c_8_MT_R)\
@@ -2771,8 +2825,8 @@ $(TARG_EX_ex_c_8_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_EX_ex_c_8_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_8/example_c_8.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_8/example_c_8.c
+$(OBJ_EX_ex_c_8_MT_R): $(PROJ_EXAMPLES_DIR)/c/example_c_8/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_8/main.c
 
 $(TARG_EX_ex_c_8_ST_D):    \
 		$(OBJ_EX_ex_c_8_ST_D)\
@@ -2785,8 +2839,8 @@ $(TARG_EX_ex_c_8_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_EX_ex_c_8_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_8/example_c_8.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_8/example_c_8.c
+$(OBJ_EX_ex_c_8_ST_D): $(PROJ_EXAMPLES_DIR)/c/example_c_8/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_8/main.c
 
 $(TARG_EX_ex_c_8_ST_R):    \
 		$(OBJ_EX_ex_c_8_ST_R)\
@@ -2799,8 +2853,8 @@ $(TARG_EX_ex_c_8_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_EX_ex_c_8_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_8/example_c_8.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_8/example_c_8.c
+$(OBJ_EX_ex_c_8_ST_R): $(PROJ_EXAMPLES_DIR)/c/example_c_8/main.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/c/example_c_8/main.c
 
 
 $(TARG_EX_ex_cpp_1_MT_D):    \
@@ -2814,8 +2868,8 @@ $(TARG_EX_ex_cpp_1_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_EX_ex_cpp_1_MT_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/example_cpp_1.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/example_cpp_1.cpp
+$(OBJ_EX_ex_cpp_1_MT_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/main.cpp
 
 $(TARG_EX_ex_cpp_1_MT_R):    \
 		$(OBJ_EX_ex_cpp_1_MT_R)\
@@ -2828,8 +2882,8 @@ $(TARG_EX_ex_cpp_1_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_EX_ex_cpp_1_MT_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/example_cpp_1.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/example_cpp_1.cpp
+$(OBJ_EX_ex_cpp_1_MT_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/main.cpp
 
 $(TARG_EX_ex_cpp_1_ST_D):    \
 		$(OBJ_EX_ex_cpp_1_ST_D)\
@@ -2842,8 +2896,8 @@ $(TARG_EX_ex_cpp_1_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_EX_ex_cpp_1_ST_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/example_cpp_1.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/example_cpp_1.cpp
+$(OBJ_EX_ex_cpp_1_ST_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/main.cpp
 
 $(TARG_EX_ex_cpp_1_ST_R):    \
 		$(OBJ_EX_ex_cpp_1_ST_R)\
@@ -2856,8 +2910,8 @@ $(TARG_EX_ex_cpp_1_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_EX_ex_cpp_1_ST_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/example_cpp_1.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/example_cpp_1.cpp
+$(OBJ_EX_ex_cpp_1_ST_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_1/main.cpp
 
 $(TARG_EX_ex_cpp_2_MT_D):    \
 		$(OBJ_EX_ex_cpp_2_MT_D)\
@@ -2870,8 +2924,8 @@ $(TARG_EX_ex_cpp_2_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_EX_ex_cpp_2_MT_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/example_cpp_2.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/example_cpp_2.cpp
+$(OBJ_EX_ex_cpp_2_MT_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/main.cpp
 
 $(TARG_EX_ex_cpp_2_MT_R):    \
 		$(OBJ_EX_ex_cpp_2_MT_R)\
@@ -2884,8 +2938,8 @@ $(TARG_EX_ex_cpp_2_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_EX_ex_cpp_2_MT_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/example_cpp_2.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/example_cpp_2.cpp
+$(OBJ_EX_ex_cpp_2_MT_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/main.cpp
 
 $(TARG_EX_ex_cpp_2_ST_D):    \
 		$(OBJ_EX_ex_cpp_2_ST_D)\
@@ -2898,8 +2952,8 @@ $(TARG_EX_ex_cpp_2_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_EX_ex_cpp_2_ST_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/example_cpp_2.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/example_cpp_2.cpp
+$(OBJ_EX_ex_cpp_2_ST_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/main.cpp
 
 $(TARG_EX_ex_cpp_2_ST_R):    \
 		$(OBJ_EX_ex_cpp_2_ST_R)\
@@ -2912,8 +2966,8 @@ $(TARG_EX_ex_cpp_2_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_EX_ex_cpp_2_ST_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/example_cpp_2.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/example_cpp_2.cpp
+$(OBJ_EX_ex_cpp_2_ST_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_2/main.cpp
 
 $(TARG_EX_ex_cpp_3_MT_D):    \
 		$(OBJ_EX_ex_cpp_3_MT_D)\
@@ -2926,8 +2980,8 @@ $(TARG_EX_ex_cpp_3_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_EX_ex_cpp_3_MT_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/example_cpp_3.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/example_cpp_3.cpp
+$(OBJ_EX_ex_cpp_3_MT_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/main.cpp
 
 $(TARG_EX_ex_cpp_3_MT_R):    \
 		$(OBJ_EX_ex_cpp_3_MT_R)\
@@ -2940,8 +2994,8 @@ $(TARG_EX_ex_cpp_3_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_EX_ex_cpp_3_MT_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/example_cpp_3.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/example_cpp_3.cpp
+$(OBJ_EX_ex_cpp_3_MT_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/main.cpp
 
 $(TARG_EX_ex_cpp_3_ST_D):    \
 		$(OBJ_EX_ex_cpp_3_ST_D)\
@@ -2954,8 +3008,8 @@ $(TARG_EX_ex_cpp_3_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_EX_ex_cpp_3_ST_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/example_cpp_3.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/example_cpp_3.cpp
+$(OBJ_EX_ex_cpp_3_ST_D): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/main.cpp
 
 $(TARG_EX_ex_cpp_3_ST_R):    \
 		$(OBJ_EX_ex_cpp_3_ST_R)\
@@ -2968,8 +3022,8 @@ $(TARG_EX_ex_cpp_3_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_EX_ex_cpp_3_ST_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/example_cpp_3.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/example_cpp_3.cpp
+$(OBJ_EX_ex_cpp_3_ST_R): $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/main.cpp $(CPP_API_HEADERS) $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_EXAMPLES_DIR)/cpp/example_cpp_3/main.cpp
 
 
 ##################################################
@@ -3126,7 +3180,7 @@ $(TARG_TEST_SCRT_cppapi_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_TEST_SCRT_cppapi_MT_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_cppapi_MT_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp $(CORE_HEADERS) $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp
 
 
@@ -3143,7 +3197,7 @@ $(TARG_TEST_SCRT_cppapi_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_TEST_SCRT_cppapi_MT_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_cppapi_MT_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp $(CORE_HEADERS) $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp
 
 
@@ -3160,7 +3214,7 @@ $(TARG_TEST_SCRT_cppapi_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_TEST_SCRT_cppapi_ST_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_cppapi_ST_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp $(CORE_HEADERS) $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp
 
 
@@ -3177,7 +3231,7 @@ $(TARG_TEST_SCRT_cppapi_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_TEST_SCRT_cppapi_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_cppapi_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp $(CORE_HEADERS) $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.cpp_api/main.cpp
 
 
@@ -3262,7 +3316,7 @@ $(TARG_TEST_SCRT_links_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_TEST_SCRT_links_MT_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_links_MT_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
@@ -3279,7 +3333,7 @@ $(TARG_TEST_SCRT_links_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_TEST_SCRT_links_MT_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_links_MT_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
@@ -3296,7 +3350,7 @@ $(TARG_TEST_SCRT_links_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_TEST_SCRT_links_ST_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_links_ST_D): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
@@ -3313,7 +3367,7 @@ $(TARG_TEST_SCRT_links_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_TEST_SCRT_links_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_TEST_SCRT_links_ST_R): $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp $(CORE_HEADERS) $(CPP_API_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.links/test.scratch.links.cpp
 
 
@@ -3397,8 +3451,8 @@ $(TARG_TEST_UNIT_api_drvrel_MT_D):    \
 		$(LIB_XTESTS_MT_D)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_TEST_UNIT_api_drvrel_MT_D): $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/test.unit.api.derive_relative_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/test.unit.api.derive_relative_path.c
+$(OBJ_TEST_UNIT_api_drvrel_MT_D): $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_D) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/entry.c
 
 $(TARG_TEST_UNIT_api_drvrel_MT_R):    \
 		$(OBJ_TEST_UNIT_api_drvrel_MT_R)\
@@ -3413,8 +3467,8 @@ $(TARG_TEST_UNIT_api_drvrel_MT_R):    \
 		$(LIB_XTESTS_MT_R)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_TEST_UNIT_api_drvrel_MT_R): $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/test.unit.api.derive_relative_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/test.unit.api.derive_relative_path.c
+$(OBJ_TEST_UNIT_api_drvrel_MT_R): $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_MT_R) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/entry.c
 
 $(TARG_TEST_UNIT_api_drvrel_ST_D):    \
 		$(OBJ_TEST_UNIT_api_drvrel_ST_D)\
@@ -3429,8 +3483,8 @@ $(TARG_TEST_UNIT_api_drvrel_ST_D):    \
 		$(LIB_XTESTS_ST_D)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_TEST_UNIT_api_drvrel_ST_D): $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/test.unit.api.derive_relative_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/test.unit.api.derive_relative_path.c
+$(OBJ_TEST_UNIT_api_drvrel_ST_D): $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_D) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/entry.c
 
 $(TARG_TEST_UNIT_api_drvrel_ST_R):    \
 		$(OBJ_TEST_UNIT_api_drvrel_ST_R)\
@@ -3445,8 +3499,8 @@ $(TARG_TEST_UNIT_api_drvrel_ST_R):    \
 		$(LIB_XTESTS_ST_R)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_TEST_UNIT_api_drvrel_ST_R): $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/test.unit.api.derive_relative_path.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/test.unit.api.derive_relative_path.c
+$(OBJ_TEST_UNIT_api_drvrel_ST_R): $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/entry.c $(CORE_HEADERS) $(SHWILD_HEADERS) $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.api.derive_relative_path/entry.c
 
 $(TARG_TEST_UNIT_api_sqzpath_MT_D):    \
 		$(OBJ_TEST_UNIT_api_sqzpath_MT_D)\
@@ -3835,3 +3889,4 @@ $(OBJ_TEST_UNIT_c_retcodes_ST_R): $(PROJ_TEST_UNIT_DIR)/test.unit.c.retcodes/ent
 
 
 ############################### end of file ################################
+
