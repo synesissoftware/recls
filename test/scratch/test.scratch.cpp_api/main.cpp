@@ -77,7 +77,7 @@ namespace {
 # define _tcerr                                             cerr
 # define _tcout                                             cout
 #endif
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////

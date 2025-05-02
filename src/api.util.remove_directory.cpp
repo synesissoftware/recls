@@ -123,7 +123,7 @@ get_exception_status_code(
 {
     return x.status_code();
 }
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -422,7 +422,7 @@ namespace
             return Recls_RemoveDirectory4_(path, pathLen, flags, results);
         }
     }
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -63,7 +63,7 @@ always_false_()
     return 0;
 }
 #endif
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
