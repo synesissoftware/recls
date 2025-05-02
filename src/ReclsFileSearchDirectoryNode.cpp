@@ -302,6 +302,7 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
         return create_entryinfo(rootDirLen, searchDir, searchDirLen, entryPath, entryPathLen, entryFile, entryFileLen, flags, &st);
     }
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
     // In this case:
     //
     // - searchDir contains the directory that was searched
@@ -322,6 +323,7 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
 
     return create_entryinfo(rootDirLen, searchDir, searchDirLen, entryPath, entryPathLen, entryFile, entryFileLen, flags, &value.get_find_data());
 #else /* ? platform */
+
 # error Platform not discriminated
 #endif /* platform */
 }
@@ -614,7 +616,7 @@ ReclsFileSearchDirectoryNode::Stat(
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
         std::replace(&path_[0], &path_[0] + path_.size(), RECLS_LITERAL('/'), RECLS_LITERAL('\\'));
-# endif /* Windows && EMULATE_UNIX_ON_WINDOWS */
+#endif /* Windows && EMULATE_UNIX_ON_WINDOWS */
 
         types::traits_type::remove_dir_end(path_);
 

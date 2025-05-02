@@ -44,6 +44,7 @@
 # include <sys/types.h>
 #endif /* RECLS_PLATFORM_IS_UNIX */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -52,6 +53,7 @@
     _MSC_VER >= 1310
 # pragma warning(disable : 4702)
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -68,8 +70,8 @@ using ::recls::impl::recls_debug1_trace_printf_;
 using ::recls::impl::recls_error_trace_printf_;
 using ::recls::impl::recls_fatal_trace_printf_;
 using ::recls::impl::recls_is_home_start_;
-
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -78,40 +80,40 @@ using ::recls::impl::recls_is_home_start_;
 namespace
 {
 
-inline
-#if 0
-#elif defined(RECLS_PLATFORM_IS_UNIX)
-int
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
-DWORD
-#endif /* platform */
-get_exception_status_code(
-#if 0
-#elif defined(RECLS_PLATFORM_IS_UNIX)
+    inline
+    #if 0
+    #elif defined(RECLS_PLATFORM_IS_UNIX)
+    int
+    #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+    DWORD
+    #endif /* platform */
+    get_exception_status_code(
+    #if 0
+    #elif defined(RECLS_PLATFORM_IS_UNIX)
 
-# if _STLSOFT_VER >= 0x010a0200
+    # if _STLSOFT_VER >= 0x010a0200
 
-    unixstl::unixstl_exception& x
-# else /* ? 1.10.2+ */
+        unixstl::unixstl_exception& x
+    # else /* ? 1.10.2+ */
 
-    unixstl::unix_exception&    x
-# endif /* 1.10.2+ */
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+        unixstl::unix_exception&    x
+    # endif /* 1.10.2+ */
+    #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
-# if _STLSOFT_VER >= 0x010a0200
+    # if _STLSOFT_VER >= 0x010a0200
 
-    winstl::winstl_exception&   x
-# else /* ? 1.10.2+ */
+        winstl::winstl_exception&   x
+    # else /* ? 1.10.2+ */
 
-    winstl::windows_exception&  x
-# endif /* 1.10.2+ */
-#endif /* platform */
-)
-{
-    return x.status_code();
-}
+        winstl::windows_exception&  x
+    # endif /* 1.10.2+ */
+    #endif /* platform */
+    )
+    {
+        return x.status_code();
+    }
+} // anonymous namespace
 
-} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation functions
@@ -299,9 +301,8 @@ namespace
             return Recls_CreateDirectory3_(path, pathLen, results);
         }
     }
+} // anonymous namespace
 
-
-} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * extended API functions
@@ -401,6 +402,7 @@ Recls_CreateDirectory_X_(
         return Recls_CreateDirectory_(path, types::traits_type::str_len(path), results);
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

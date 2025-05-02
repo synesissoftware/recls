@@ -173,14 +173,14 @@ static void process_search(hrecls_t hSrch)
         {
             printf("\t%.*s\n", (int)(info->path.end - info->path.begin), info->path.begin);
 
-            { size_t i; for (i = 0; i < STLSOFT_NUM_ELEMENTS(fns); ++i)
+            { size_t i; for (i = 0; i < RECLS_NUM_ELEMENTS(fns); ++i)
             {
-                fns[i](info, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+                fns[i](info, &buff[0], RECLS_NUM_ELEMENTS(buff));
             }}
 
             { size_t i; for (i = 0; i < Recls_GetDirectoryPartProperty(info, -1, NULL, 0); ++i)
             {
-                Recls_GetDirectoryPartProperty(info, (int)i, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+                Recls_GetDirectoryPartProperty(info, (int)i, &buff[0], RECLS_NUM_ELEMENTS(buff));
             }}
 
             Recls_IsEntryReadOnly(info);

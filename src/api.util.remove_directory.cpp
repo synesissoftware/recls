@@ -49,6 +49,7 @@
 # include <sys/types.h>
 #endif /* RECLS_PLATFORM_IS_UNIX */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -57,6 +58,7 @@
     _MSC_VER >= 1310
 # pragma warning(disable : 4702)
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -71,7 +73,16 @@ using ::recls::impl::recls_fatal_trace_printf_;
 using ::recls::impl::recls_error_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 
+# if 0
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
+typedef winstl::error_desc                                  error_desc_t;
+# else
+
+typedef stlsoft::error_desc                                 error_desc_t;
+# endif
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -112,8 +123,8 @@ get_exception_status_code(
 {
     return x.status_code();
 }
+} // anonymous namespace
 
-} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation functions
@@ -178,12 +189,7 @@ namespace
             recls_error_trace_printf_(
                 RECLS_LITERAL("failed to delete file '%s': %s")
             ,   path
-#if 0
-#elif defined(RECLS_PLATFORM_IS_UNIX)
-            ,   stlsoft::error_desc(e).c_str()
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
-            ,   winstl::error_desc(e).c_str()
-#endif
+            ,   error_desc_t(e).c_str()
             );
 
             info.rc = RECLS_RC_ACCESS_DENIED;
@@ -326,12 +332,7 @@ namespace
                         recls_error_trace_printf_(
                             RECLS_LITERAL("failed to remove directory '%s': %s")
                         ,   directory.c_str()
-#if 0
-#elif defined(RECLS_PLATFORM_IS_UNIX)
-                        ,   stlsoft::error_desc(e).c_str()
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
-                        ,   winstl::error_desc(e).c_str()
-#endif
+                        ,   error_desc_t(e).c_str()
                         );
 
                         return RECLS_RC_ACCESS_DENIED;
@@ -355,14 +356,8 @@ namespace
                 recls_error_trace_printf_(
                     RECLS_LITERAL("failed to remove directory '%s': %s")
                 ,   path
-#if 0
-#elif defined(RECLS_PLATFORM_IS_UNIX)
-                ,   stlsoft::error_desc(e).c_str()
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
-                ,   winstl::error_desc(e).c_str()
-#endif
+                ,   error_desc_t(e).c_str()
                 );
-
 
                 return RECLS_RC_ACCESS_DENIED;
             }
@@ -427,8 +422,8 @@ namespace
             return Recls_RemoveDirectory4_(path, pathLen, flags, results);
         }
     }
+} // anonymous namespace
 
-} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * extended API functions
@@ -534,6 +529,7 @@ Recls_RemoveDirectory_X_(
         return Recls_RemoveDirectory_(path, types::traits_type::str_len(path), flags, results);
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

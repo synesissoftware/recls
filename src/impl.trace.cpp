@@ -96,7 +96,7 @@ namespace
             // treat it as a number
 
             n1 = recls_snprintf(&message[0]
-                        ,   STLSOFT_NUM_ELEMENTS(message) - 2
+                        ,   RECLS_NUM_ELEMENTS(message) - 2
                         ,   RECLS_LITERAL("%-2d: "), severity);
         }
         else
@@ -104,22 +104,22 @@ namespace
             // treat it as a set of flags
 
             n1 = recls_snprintf(&message[0]
-                        ,   STLSOFT_NUM_ELEMENTS(message) - 2
+                        ,   RECLS_NUM_ELEMENTS(message) - 2
                         ,   RECLS_LITERAL("0x%-16x: "), severity);
         }
 
         n2 = recls_vsnprintf(&message[0] + n1
-                        ,   STLSOFT_NUM_ELEMENTS(message) - 2 - n1
+                        ,   RECLS_NUM_ELEMENTS(message) - 2 - n1
                         ,   fmt, args);
 
         if (n2 < 0)
         {
-            n2 = static_cast<int>(STLSOFT_NUM_ELEMENTS(message)) - 2 - n1;
+            n2 = static_cast<int>(RECLS_NUM_ELEMENTS(message)) - 2 - n1;
         }
 
         n = n1 + n2;
 
-        RECLS_ASSERT(n <= int(STLSOFT_NUM_ELEMENTS(message)) - 2);
+        RECLS_ASSERT(n <= int(RECLS_NUM_ELEMENTS(message)) - 2);
 
         message[n + 0] = '\n';
         message[n + 1] = '\0';
@@ -158,7 +158,7 @@ namespace
           defined(STLSOFT_CF_static_assert_SUPPORT))
 
     static_assert(RECLS_SEVIX_UNKNOWN >= 0, "cannot be negative");
-    static_assert(RECLS_SEVIX_DBG3 < STLSOFT_NUM_ELEMENTS(s_severities), "constant too large for severities array");
+    static_assert(RECLS_SEVIX_DBG3 < RECLS_NUM_ELEMENTS(s_severities), "constant too large for severities array");
 #endif /* __cplusplus */
 
 } // anonymous namespace
@@ -275,10 +275,10 @@ recls_log_vprintf_(
 {
     RECLS_ASSERT(ss_nullptr_k != fmt);
 
-    RECLS_ASSERT(sevIndex >= 0 && sevIndex < int(STLSOFT_NUM_ELEMENTS(s_severities)));
+    RECLS_ASSERT(sevIndex >= 0 && sevIndex < int(RECLS_NUM_ELEMENTS(s_severities)));
 
     recls_log_pfn_t const   loggingFunction =   s_loggingFunction;
-    int const               severity        =   s_severities[sevIndex % STLSOFT_NUM_ELEMENTS(s_severities)];
+    int const               severity        =   s_severities[sevIndex % RECLS_NUM_ELEMENTS(s_severities)];
 
     if (severity >= 0 &&
         ss_nullptr_k != loggingFunction)

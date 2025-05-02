@@ -126,7 +126,7 @@ static void test_1_1(void)
 
 static void test_1_2(void)
 {
-    { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_FAILURE_CODES); ++i)
+    { size_t i; for (i = 0; i != RECLS_NUM_ELEMENTS(s_FAILURE_CODES); ++i)
     {
         recls_rc_t const rc = s_FAILURE_CODES[i];
 

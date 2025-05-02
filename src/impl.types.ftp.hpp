@@ -4,7 +4,7 @@
  * Purpose: Implementation header.
  *
  * Created: 13th December 2008
- * Updated: 28th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -26,6 +26,7 @@
 # ifdef RECLS_INCL_SRC_HPP_IMPL_TYPES
 #  error Cannot include impl.types.ftp.hpp and impl.types.hpp in same compilation unit
 # endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -52,6 +53,7 @@
 
 #include <algorithm>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -62,6 +64,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
