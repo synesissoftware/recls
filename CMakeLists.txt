@@ -237,6 +237,7 @@ if((USE_UNIXEM) AND (WIN32))
 	message("-- CMake package UNIXem found (version ${UNIXem_VERSION}; ${UNIXem_REQUIRED_VERSION_} requested)")
 
 	add_compile_definitions(_STLSOFT_FORCE_ANY_COMPILER)
+	add_compile_definitions(EMULATE_UNIX_ON_WINDOWS)
 	add_compile_definitions(RECLS_HAS_UNIXEM)
 	add_compile_definitions(STLSOFT_HAS_UNIXEM)
 endif()
