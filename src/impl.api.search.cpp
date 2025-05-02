@@ -296,8 +296,7 @@ Recls_SearchFeedback_x_(
     if (0 != searchRootLen)
     {
 #if 0
-#elif defined(RECLS_PLATFORM_IS_UNIX) && \
-      defined(_WIN32)
+#elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         recls_char_t const* colon0  =   types::traits_type::str_chr(searchRoot, RECLS_LITERAL(':'));
         recls_char_t const* colon1  =   (ss_nullptr_k != colon0) ? types::traits_type::str_chr(colon0 + 1, RECLS_LITERAL(':')) : ss_nullptr_k;
