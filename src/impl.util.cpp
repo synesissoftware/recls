@@ -4,7 +4,7 @@
  * Purpose: Platform-independent utility functions for recls API.
  *
  * Created: 17th August 2003
- * Updated: 30th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *

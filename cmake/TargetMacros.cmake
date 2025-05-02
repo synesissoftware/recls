@@ -50,6 +50,7 @@ function(define_automated_test_program program_name entry_point_source_name)
 			core
 			$<$<BOOL:${shwild_FOUND}>:shwild::core>
 			$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
+			$<$<BOOL:${UNIXem_FOUND}>:UNIXem::UNIXem>
 			$<IF:$<VERSION_LESS:${xTests_VERSION},"0.23">,xTests::xTests.core,xTests::core>
 	)
 
@@ -76,6 +77,7 @@ function(define_example_program program_name entry_point_source_name)
 			core
 			$<$<BOOL:${shwild_FOUND}>:shwild::core>
 			$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
+			$<$<BOOL:${UNIXem_FOUND}>:UNIXem::UNIXem>
 	)
 
 	if(WIN32)

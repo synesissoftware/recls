@@ -25,6 +25,8 @@
  */
 
 #include <recls/recls.h>
+#include "impl.assert.h"
+#include "impl.root.h"
 #include "impl.types.hpp"
 
 #include "ReclsFileSearch.hpp"

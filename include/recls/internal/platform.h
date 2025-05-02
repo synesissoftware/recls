@@ -4,7 +4,7 @@
  * Purpose: Platform discrimination for recls API.
  *
  * Created: 15th August 2003
- * Updated: 17th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -27,8 +27,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       30
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   2
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       31
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -66,13 +66,15 @@
 
 
 #ifndef RECLS_OVERRIDE_PLATFORM
-# if defined(unix) || \
-     defined(UNIX) || \
-     defined(__unix) || \
-     defined(__unix__) || \
-     (   defined(__xlC__) && \
-         defined(_POWER) && \
-         defined(_AIX))
+# if 0 ||\
+     defined(unix) ||\
+     defined(UNIX) ||\
+     defined(__unix) ||\
+     defined(__unix__) ||\
+     (   defined(__xlC__) &&\
+         defined(_POWER) &&\
+         defined(_AIX)) ||\
+     0
    /* Platform is UNIX */
 #  define RECLS_PLATFORM_IS_UNIX
    /* Now determine whether this is being emulated on Windows */

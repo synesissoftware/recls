@@ -4,7 +4,7 @@
  * Purpose: Windows utility functions for recls API.
  *
  * Created: 17th August 2003
- * Updated: 10th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -29,6 +29,7 @@
 #include "impl.root.h"
 #include "incl.unixstl.h"
 #include "impl.types.hpp"
+#include "impl.util.h"
 
 #ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
 # include "impl.string.hpp"

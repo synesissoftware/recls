@@ -4,7 +4,7 @@
  * Purpose: Tracing.
  *
  * Created: 30th September 2003
- * Updated: 28th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -27,6 +27,7 @@
 /* recls header files */
 #include <recls/recls.h>
 #include "impl.assert.h"
+#include "impl.root.h"
 #include "incl.platformstl.h"
 #include "impl.trace.h"
 #include "impl.util.h"
