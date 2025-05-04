@@ -52,6 +52,7 @@ while [[ $# -gt 0 ]]; do
     --no-pantheios|--no-pan)
 
       NO_Pantheios=1
+      NO_b64=1
       ;;
     --no-shwild)
 
@@ -110,7 +111,8 @@ Flags/options:
 
     --no-pan
     --no-pantheios
-        suppresses discovery of Pantheios package
+        suppresses discovery of Pantheios package (and of the b64 package
+        also)
 
     --no-shwild
         suppresses discovery of shwild package
