@@ -50,9 +50,10 @@ while [[ $# -gt 0 ]]; do
 
       NO_b64=1
       ;;
-    --no-pantheios)
+    --no-pantheios|--no-pan)
 
       NO_Pantheios=1
+      NO_b64=1
       ;;
     --no-shwild)
 
@@ -108,13 +109,15 @@ Flags/options:
         make-command to "mingw32-make.exe"
 
     --no-b64
-        prevents recognising b64 library
+        suppresses discovery of b64 package
 
+    --no-pan
     --no-pantheios
-        prevents recognising Pantheios library
+        suppresses discovery of Pantheios package (and of the b64 package
+        also)
 
     --no-shwild
-        prevents recognising shwild library
+        suppresses discovery of shwild package
 
     -m
     --run-make

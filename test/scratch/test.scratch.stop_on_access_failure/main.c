@@ -99,6 +99,8 @@ int main_(
 int main(int argc, char* argv[])
 {
     stlsoft_C_string_slice_m_t  program_name    =   platformstl_C_get_executable_name_from_path(argv[0]);
+#ifdef HAS_Pantheios
+
     int const                   ri              =   pantheios_init();
 
     if (0 != ri)
@@ -109,8 +111,6 @@ int main(int argc, char* argv[])
     }
     else
     {
-#ifdef HAS_Pantheios
-
         recls_log_severities_t severities = { .severities = {
             PANTHEIOS_SEV_ALERT,
             PANTHEIOS_SEV_ERROR,
@@ -121,6 +121,8 @@ int main(int argc, char* argv[])
             -1,
             -1,
         }};
+#else  /* ? HAS_Pantheios */
+    {
 #endif /* HAS_Pantheios */
 
 #if defined(_MSC_VER) && \
