@@ -4,7 +4,7 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
-MakeCmd=${SIS_CMAKE_COMMAND:-make}
+MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-make}}
 
 Configuration=Release
 ExamplesDisabled=0
@@ -44,6 +44,7 @@ while [[ $# -gt 0 ]]; do
     --mingw)
 
       MinGW=1
+      MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-mingw32-make.exe}}
       ;;
     --no-b64)
 
@@ -103,7 +104,8 @@ Flags/options:
         disables building of tests (by setting BUILD_TESTING=OFF)
 
     --mingw
-        uses explicitly the "MinGW Makefiles" generator
+        uses explicitly the "MinGW Makefiles" generator, and defaults the
+        make-command to "mingw32-make.exe"
 
     --no-b64
         prevents recognising b64 library
