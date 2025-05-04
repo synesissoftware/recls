@@ -106,13 +106,13 @@ Flags/options:
         uses explicitly the "MinGW Makefiles" generator
 
     --no-b64
-        prevents recognising b64 library
+        suppresses discovery of b64 package
 
     --no-pantheios
-        prevents recognising Pantheios library
+        suppresses discovery of Pantheios package
 
     --no-shwild
-        prevents recognising shwild library
+        suppresses discovery of shwild package
 
     -m
     --run-make
