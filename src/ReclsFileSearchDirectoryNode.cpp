@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 2nd May 2025
+ * Updated: 3rd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -137,6 +137,16 @@ ReclsFileSearchDirectoryNode::essFlags_from_reclsFlags_(
     }
 
 
+    /* RECLS_F_IGNORE_HIDDEN_ENTRIES */
+    {
+        if (0 != (flags & RECLS_F_IGNORE_HIDDEN_ENTRIES))
+        {
+            ssFlags |= sequence_t::skipHiddenFiles;
+            ssFlags |= sequence_t::skipHiddenDirs;
+        }
+    }
+
+
     return ssFlags;
 }
 
@@ -177,21 +187,6 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
     }
 
 
-    /* RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS */
-    {
-        if (0 != (flags & RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS))
-        {
-// TODO: Update this for UNIX when functionality available in UNIXSTL
-
-#if 0
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
-            ssFlags |= sequence_t::skipHiddenFiles;
-            ssFlags |= sequence_t::skipHiddenDirs;
-#endif /* platform */
-        }
-    }
-
-
     /* RECLS_F_STOP_ON_ACCESS_FAILURE */
     {
 #if 0
@@ -212,6 +207,16 @@ ReclsFileSearchDirectoryNode::dssFlags_from_reclsFlags_(
         }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #endif /* platform */
+    }
+
+
+    /* RECLS_F_IGNORE_HIDDEN_ENTRIES */
+    {
+        if (0 != (flags & RECLS_F_IGNORE_HIDDEN_ENTRIES))
+        {
+            ssFlags |= sequence_t::skipHiddenFiles;
+            ssFlags |= sequence_t::skipHiddenDirs;
+        }
     }
 
 

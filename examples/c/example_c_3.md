@@ -15,14 +15,14 @@ Demonstrates non-recursive search for all files and directories under a given di
  *
  *  - search in current or named directory
  *  - search matching all names - implicitly, by specifying NULL for the patterns parameter
- *  - search non-recursively for directories, files, and sockets
+ *  - search non-recursively for non-hidden directories, files, and sockets
  *  - search by Recls_Search()
  *  - display of entry-name for each matched entry, squeezed into maximum 64-characters via Recls_SqueezePath()
  *  - display of file-size for each matched file; display of directory size (sum of all file-sizes in all subdirectories, via Recls_CalcDirectoryEntrySize()) for matched directory
  *  - detecting failure and reporting of failure reason
  *
  * Created: 29th May 2006
- * Updated: 22nd April 2025
+ * Updated: 3rd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
     hrecls_t        hSrch;
     char const*     search_dir  =   argc > 1 ? argv[1] : ".";
     char const*     patterns    =   "*|.*";
-    recls_uint32_t  flags       =   RECLS_F_DIRECTORIES | RECLS_F_FILES | RECLS_F_SOCKETS;
+    recls_uint32_t  flags       =   RECLS_F_IGNORE_HIDDEN_ENTRIES | RECLS_F_DIRECTORIES | RECLS_F_FILES | RECLS_F_SOCKETS;
     recls_rc_t      rc          =   Recls_Search(search_dir, patterns, flags, &hSrch);
 
     if (RECLS_RC_NO_MORE_DATA == rc)
@@ -243,6 +243,45 @@ then it produces results such as:
                       incl.stlsoft.h:      file;    2 KB
                       incl.unixstl.h:      file;    1 KB
                        incl.winstl.h:      file;    1 KB
+```
+
+and when run with:
+
+```
+$ ./_build/examples/c/example_c_3/example_c_3 .
+```
+
+then it produces results such as:
+
+```
+                          AUTHORS.md:      file;    0 byte(s)
+                         CHANGES.txt:      file;   81 KB
+                      CMakeLists.txt:      file;    9 KB
+                         EXAMPLES.md:      file;    4 KB
+                              FAQ.md:      file;    6 KB
+                          HISTORY.md:      file;    2 KB
+                          INSTALL.md:      file;    5 KB
+                             LICENSE:      file;    1 KB
+                             NEWS.md:      file;    4 KB
+                           README.md:      file;    2 KB
+                             TODO.md:      file;    1 KB
+                                 bin: directory;    0 byte(s)
+                               build: directory;    8 MB
+                      build_cmake.sh:      file;    2 KB
+                      clean_cmake.sh:      file;    1 KB
+                               cmake: directory;    4 KB
+                            examples: directory;  184 KB
+                             include: directory;  344 KB
+                                 lib: directory;    0 byte(s)
+                    prepare_cmake.sh:      file;    5 KB
+                            projects: directory;   26 KB
+           remove_cmake_artefacts.sh:      file;    2 KB
+                 run_all_examples.sh:      file;    2 KB
+            run_all_scratch_tests.sh:      file;    2 KB
+               run_all_unit_tests.sh:      file;    2 KB
+                             scratch: directory;    0 byte(s)
+                                 src: directory;  378 KB
+                                test: directory;  162 KB
 ```
 
 

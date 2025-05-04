@@ -4,7 +4,7 @@
  * Purpose: Scratch-test exercising the skipping of inaccessible nodes.
  *
  * Created: 1st May 2025
- * Updated: 3rd May 2025
+ * Updated: 4th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

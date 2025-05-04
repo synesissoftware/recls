@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 2nd May 2025
+ * Updated: 4th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
-# define RECLS_VER_RECLS_H_RECLS_MINOR      26
-# define RECLS_VER_RECLS_H_RECLS_REVISION   1
-# define RECLS_VER_RECLS_H_RECLS_EDIT       156
+# define RECLS_VER_RECLS_H_RECLS_MINOR      28
+# define RECLS_VER_RECLS_H_RECLS_REVISION   0
+# define RECLS_VER_RECLS_H_RECLS_EDIT       158
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -473,9 +473,10 @@ enum RECLS_FLAG
 #if 0
     ,   RECLS_F_DIR_SIZE_IS_NUM_FILES               =   0x02000000  /*!< This causes the size of the directory to be the number of files contained within it, rather than being 0. */
 #endif /* 0 */
-    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS    =   0x08000000  /*!< This causes hidden files to be ignored. Currently supported on Windows only. */
+    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES               =   0x08000000  /*!< This causes hidden files to be ignored. Supported on Windows and, since 1.10 (beta 7), Unix. */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
-    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WIN32      =   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS
+    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS    =   RECLS_F_IGNORE_HIDDEN_ENTRIES
+    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WIN32      =   RECLS_F_IGNORE_HIDDEN_ENTRIES
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
     ,   RECLS_F_NO_BREAK_INFINITE_LOOPS             =   0x10000000  /*!< Specifying this flag will prevent the machanism that, on Linux and macOS, guards against infinite loops by remembering the device+inode of directories as they are traversed; it has no effect on Windows because such loops are not possible. Specifying this flag avoids paying the mechanism's time and space cost, though does make code prone to infinite directory traversal. */
 
@@ -568,10 +569,13 @@ enum RECLS_FLAG
     ,   USE_TILDE_ON_NO_SEARCHROOT = RECLS_F_USE_TILDE_ON_NO_SEARCHROOT /*!< RECLS_F_USE_TILDE_ON_NO_SEARCHROOT. */
 #endif /* !RECLS_F_USE_TILDE_ON_NO_SEARCHROOT */
 
-#if !defined(IGNORE_HIDDEN_ENTRIES_ON_WINDOWS)
-    ,   IGNORE_HIDDEN_ENTRIES_ON_WINDOWS = RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS /*!< RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS. */
-#endif /* !IGNORE_HIDDEN_ENTRIES_ON_WINDOWS */
+#if !defined(IGNORE_HIDDEN_ENTRIES)
+    ,   IGNORE_HIDDEN_ENTRIES = RECLS_F_IGNORE_HIDDEN_ENTRIES /*!< RECLS_F_IGNORE_HIDDEN_ENTRIES. */
+#endif /* !IGNORE_HIDDEN_ENTRIES */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
+# if !defined(IGNORE_HIDDEN_ENTRIES_ON_WINDOWS)
+    ,   IGNORE_HIDDEN_ENTRIES_ON_WINDOWS = RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS
+# endif /* !IGNORE_HIDDEN_ENTRIES_ON_WINDOWS */
 # if !defined(IGNORE_HIDDEN_ENTRIES_ON_WIN32)
     ,   IGNORE_HIDDEN_ENTRIES_ON_WIN32 = RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WIN32
 # endif /* !IGNORE_HIDDEN_ENTRIES_ON_WIN32 */
@@ -628,6 +632,7 @@ enum RECLS_REMDIR_FLAG
         RECLS_REMDIR_F_NO_REMOVE_SUBDIRS    =   0x0001  /*!< By default, empty sub-directories are removed, unless this flag is specified */
     ,   RECLS_REMDIR_F_REMOVE_FILES         =   0x0002  /*!< By default, files are not removed, unless this flag is specified */
     ,   RECLS_REMDIR_F_REMOVE_READONLY      =   0x0004  /*!< By default, read-only files are not removed, unless this flag is specified */
+    ,   RECLS_REMDIR_F_REMOVE_SOCKETS       =   0x0008  /*!< By default, sockets are not removed, unless this flag is specified */
 };
 
 #if !defined(__cplusplus) && \
@@ -682,8 +687,8 @@ struct recls_directoryResults_t
     unsigned    numResultingElements;   /*!< (Maximum) number of parts in the resulting directory after the operation returns. */
     size_t      existingLength;         /*!< For create operation, the length of the directory before the operation; for remove operation, the length of the longest sub-directory removed. */
     size_t      resultingLength;        /*!< Length of the directory after the operation */
-    unsigned    numExistingFiles;       /*!< Number of files existing before a remove operation */
-    unsigned    numDeletedFiles;        /*!< Number of files existing after a remove operation */
+    unsigned    numExistingFiles;       /*!< Number of entries existing before a remove operation */
+    unsigned    numDeletedFiles;        /*!< Number of entries existing after a remove operation */
 };
 
 # ifndef RECLS_NO_NAMESPACE
@@ -2230,12 +2235,48 @@ Recls_RemoveDirectory(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * shims
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
+
+#ifdef __cplusplus
+
+template <
+    class T_stream
+>
+inline
+T_stream&
+operator <<(
+    T_stream&               stm
+#ifdef RECLS_NO_NAMESPACE
+,   recls_rc_t              rc
+#else /* ? RECLS_NO_NAMESPACE*/
+,   recls::recls_rc_t       rc
+#endif /* RECLS_NO_NAMESPACE */
+)
+{
+#ifndef RECLS_NO_NAMESPACE
+    using recls::Recls_GetSearchCodeString;
+#endif /* RECLS_NO_NAMESPACE */
+
+    stm << Recls_GetSearchCodeString(rc);
+
+    return stm;
+}
+#endif /* __cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * shims
+ */
 
 #ifdef __cplusplus
 
