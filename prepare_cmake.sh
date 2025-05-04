@@ -49,7 +49,7 @@ while [[ $# -gt 0 ]]; do
 
       NO_b64=1
       ;;
-    --no-pantheios)
+    --no-pantheios|--no-pan)
 
       NO_Pantheios=1
       ;;
@@ -108,6 +108,7 @@ Flags/options:
     --no-b64
         suppresses discovery of b64 package
 
+    --no-pan
     --no-pantheios
         suppresses discovery of Pantheios package
 
