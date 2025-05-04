@@ -4,7 +4,7 @@
  * Purpose: Scratch-test exercising the skipping of inaccessible nodes.
  *
  * Created: 28th April 2025
- * Updated: 2nd May 2025
+ * Updated: 4th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -144,7 +144,10 @@ int main(int argc, char* argv[])
         _CrtMemDumpAllObjectsSince(&memState);
 #endif /* _MSC_VER) && _DEBUG */
 
+#ifdef HAS_Pantheios
+
         pantheios_uninit();
+#endif /* HAS_Pantheios */
 
         return rm;
     }
