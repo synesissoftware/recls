@@ -13,6 +13,7 @@
 * [ ] Expand progress feedbacks to:
   * [ ] provide warning about inaccessible directories;
   * [ ] indicate visit count (for directory hard-links, as found on macOS);
+* [ ] Add `RECLS_REMDIR_F_REMOVE_SOCKETS`;
 * [x] Remove Visual C++ project files, etc.;
 * [x] Change all remaining example/test program source files to generic names;
 * [x] **UNIXem** support;
@@ -21,7 +22,6 @@
 ## recls 1.11
 
 * [ ] `Recls_SetApiLogFunction()` flags;
-* [ ] Add `RECLS_REMDIR_F_REMOVE_SOCKETS`;
 * [ ] **recls.NET**-like ability to handle in-process failures - such as inaccessible directories - and allow a handler to specify to skip the failed directory, thereby continuing;
 * [ ] Ensure links are processed sensibly:
   * [ ] `RECLS_F_NO_FOLLOW_LINKS`;

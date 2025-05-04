@@ -12,7 +12,7 @@
  *  - elicitation of entry properties via entry structure members
  *
  * Created: 30th April 2025
- * Updated: 30th April 2025
+ * Updated: 4th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -64,9 +64,8 @@ void RECLS_CALLCONV_DEFAULT recls_log_to_pantheios(
  * main()
  */
 
-
-/* Pantheios header files */
 #ifdef HAS_Pantheios
+
 static int main_(int argc, char* argv[]);
 
 int main(int argc, char* argv[])
