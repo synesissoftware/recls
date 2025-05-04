@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 3rd May 2025
+ * Updated: 4th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
-# define RECLS_VER_RECLS_H_RECLS_MINOR      27
+# define RECLS_VER_RECLS_H_RECLS_MINOR      28
 # define RECLS_VER_RECLS_H_RECLS_REVISION   0
-# define RECLS_VER_RECLS_H_RECLS_EDIT       157
+# define RECLS_VER_RECLS_H_RECLS_EDIT       158
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -632,6 +632,7 @@ enum RECLS_REMDIR_FLAG
         RECLS_REMDIR_F_NO_REMOVE_SUBDIRS    =   0x0001  /*!< By default, empty sub-directories are removed, unless this flag is specified */
     ,   RECLS_REMDIR_F_REMOVE_FILES         =   0x0002  /*!< By default, files are not removed, unless this flag is specified */
     ,   RECLS_REMDIR_F_REMOVE_READONLY      =   0x0004  /*!< By default, read-only files are not removed, unless this flag is specified */
+    ,   RECLS_REMDIR_F_REMOVE_SOCKETS       =   0x0008  /*!< By default, sockets are not removed, unless this flag is specified */
 };
 
 #if !defined(__cplusplus) && \
@@ -686,8 +687,8 @@ struct recls_directoryResults_t
     unsigned    numResultingElements;   /*!< (Maximum) number of parts in the resulting directory after the operation returns. */
     size_t      existingLength;         /*!< For create operation, the length of the directory before the operation; for remove operation, the length of the longest sub-directory removed. */
     size_t      resultingLength;        /*!< Length of the directory after the operation */
-    unsigned    numExistingFiles;       /*!< Number of files existing before a remove operation */
-    unsigned    numDeletedFiles;        /*!< Number of files existing after a remove operation */
+    unsigned    numExistingFiles;       /*!< Number of entries existing before a remove operation */
+    unsigned    numDeletedFiles;        /*!< Number of entries existing after a remove operation */
 };
 
 # ifndef RECLS_NO_NAMESPACE
@@ -2234,12 +2235,45 @@ Recls_RemoveDirectory(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * shims
+ * namespace
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
 } /* namespace recls */
 #endif /* !RECLS_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
+
+template <
+    class T_stream
+>
+inline
+T_stream&
+operator <<(
+    T_stream&               stm
+#ifdef RECLS_NO_NAMESPACE
+,   recls_rc_t              rc
+#else /* ? RECLS_NO_NAMESPACE*/
+,   recls::recls_rc_t       rc
+#endif /* RECLS_NO_NAMESPACE */
+)
+{
+#ifndef RECLS_NO_NAMESPACE
+    using recls::Recls_GetSearchCodeString;
+#endif /* RECLS_NO_NAMESPACE */
+
+    stm << Recls_GetSearchCodeString(rc);
+
+    return stm;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * shims
+ */
 
 #ifdef __cplusplus
 

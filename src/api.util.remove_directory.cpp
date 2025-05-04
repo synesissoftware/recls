@@ -277,16 +277,29 @@ namespace
         }
         else
         {
-            if (RECLS_REMDIR_F_REMOVE_FILES & flags)
+            if (0 != ((RECLS_REMDIR_F_REMOVE_FILES | RECLS_REMDIR_F_REMOVE_SOCKETS) & flags))
             {
-                // Remove all files
+                // Remove all files and/or sockets
 
                 file_removal_info_t_    info(flags);
                 recls_rc_t              rc;
+                recls_uint32_t          srch_flags  =   0;
+
+                if (0 != (RECLS_REMDIR_F_REMOVE_FILES & flags))
+                {
+                    srch_flags |= RECLS_F_FILES;
+                }
+
+                if (0 != (RECLS_REMDIR_F_REMOVE_SOCKETS & flags))
+                {
+                    srch_flags |= RECLS_F_SOCKETS;
+                }
+
+                srch_flags |= RECLS_F_DETAILS_LATER | RECLS_F_RECURSIVE;
 
                 rc = Recls_SearchProcess(   path
                                         ,   ss_nullptr_k
-                                        ,   RECLS_F_DETAILS_LATER | RECLS_F_RECURSIVE | RECLS_F_FILES | RECLS_F_SOCKETS
+                                        ,   srch_flags
                                         ,   file_removal_fn_
                                         ,   &info
                                         );
