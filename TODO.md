@@ -8,7 +8,7 @@
 * [x] `RECLS_F_DEVICES`;
 * [x] Prefer wherever possible to use `RECLS_PLATFORM_*` to `PLATFORMSTL_OS_IS_*`;
 * [x] Change `RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS` to `RECLS_F_IGNORE_HIDDEN_ENTRIES` and implement for **Unix**;
-* [ ] Renamed/replace **master-1.10** branch to/with **master**;
+* [ ] Rename/replace **master-1.10** branch to/with **master**;
 * [ ] Deal with non-default searching of .-names on Unix (because `glob()` does not by default);
 * [ ] Expand progress feedbacks to:
   * [ ] provide warning about inaccessible directories;

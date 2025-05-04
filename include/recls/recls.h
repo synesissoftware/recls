@@ -2247,6 +2247,8 @@ Recls_RemoveDirectory(
  * namespace
  */
 
+#ifdef __cplusplus
+
 template <
     class T_stream
 >
@@ -2269,6 +2271,7 @@ operator <<(
 
     return stm;
 }
+#endif /* __cplusplus */
 
 
 /* /////////////////////////////////////////////////////////////////////////

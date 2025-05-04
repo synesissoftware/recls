@@ -38,7 +38,7 @@
 
 #ifdef HAS_Pantheios
 
-const char PANTHEIOS_FE_PROCESS_IDENTITY[]    =   "example_cpp_4";
+PANTHEIOS_EXTERN_C const char PANTHEIOS_FE_PROCESS_IDENTITY[]    =   "example_cpp_4";
 #endif /* HAS_Pantheios */
 
 
@@ -54,7 +54,7 @@ void RECLS_CALLCONV_DEFAULT recls_log_to_pantheios(
 ,   va_list     args
 )
 {
-    pantheios_logvprintf(severity, fmt, args);
+    pantheios::pantheios_logvprintf(severity, fmt, args);
 }
 #endif /* HAS_Pantheios */
 
