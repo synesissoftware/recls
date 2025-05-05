@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearch class.
  *
  * Created: 16th August 2003
- * Updated: 2nd May 2025
+ * Updated: 5th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -35,6 +35,10 @@
 #include "ReclsFileSearchDirectoryNode.hpp"
 #include "ReclsFileSearchDirectoryControlAlwaysAllow.hpp"
 #include "ReclsFileSearchDirectoryControlPreventInfiniteLoops.hpp"
+
+#if __cplusplus < 201103L
+# include <stlsoft/conversion/union_cast.hpp>
+#endif
 
 #include "impl.trace.h"
 
@@ -155,7 +159,11 @@ ReclsFileSearch::FindAndCreate(
     ,   int(searchDirLen), searchDir
     ,   int(patternsLen), patterns
     ,   flags
+#if __cplusplus < 201103L
+    ,   static_cast<void const*>(stlsoft::union_cast<void*>(pfn))
+#else
     ,   STLSOFT_C_CAST(void*, pfn)
+#endif
     ,   param
     );
 

@@ -4,7 +4,7 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 2nd May 2025
+ * Updated: 5th May 2025
  *
  * Home:    http://recls.org/
  *
@@ -56,6 +56,9 @@
 #include "ReclsSearch.hpp"
 #include "ReclsFileSearch.hpp"
 
+#if __cplusplus < 201103L
+# include <stlsoft/conversion/union_cast.hpp>
+#endif
 #include <stlsoft/string/c_string/strnchr.h>
 #include <stlsoft/string/tokeniser_functions.hpp>
 
@@ -277,7 +280,11 @@ Recls_SearchFeedback_x_(
     ,   stlsoft::c_str_ptr(searchRoot)
     ,   stlsoft::c_str_ptr(patterns)
     ,   flags
+#if __cplusplus < 201103L
+    ,   static_cast<void const*>(stlsoft::union_cast<void*>(pfn))
+#else
     ,   STLSOFT_C_CAST(void*, pfn)
+#endif
     ,   param
     );
 
@@ -661,9 +668,17 @@ Recls_SearchProcessFeedback_(
     ,   stlsoft::c_str_ptr(searchRoot)
     ,   stlsoft::c_str_ptr(patterns)
     ,   flags
+#if __cplusplus < 201103L
+    ,   static_cast<void const*>(stlsoft::union_cast<void*>(pfn))
+#else
     ,   STLSOFT_C_CAST(void*, pfn)
+#endif
     ,   param
+#if __cplusplus < 201103L
+    ,   static_cast<void const*>(stlsoft::union_cast<void*>(pfnProgress))
+#else
     ,   STLSOFT_C_CAST(void*, pfnProgress)
+#endif
     ,   paramProgress
     );
 

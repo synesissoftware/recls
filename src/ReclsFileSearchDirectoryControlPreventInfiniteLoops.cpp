@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryControlPreventInfiniteLoops.
  *
  * Created: 1st May 2025
- * Updated: 2nd May 2025
+ * Updated: 5th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -153,11 +153,21 @@ ReclsFileSearchDirectoryControlPreventInfiniteLoops::CanProcessDirectory(
         {
             ++(*i).second;
 
+#if __cplusplus < 201103L
+
+            recls_warning_trace_printf_(RECLS_LITERAL("skipping directory '%s' because it has already been visited by another name: dev=%ld, ino=%ld")
+            ,   directoryPath
+            ,   static_cast<signed long>(dev)
+            ,   static_cast<signed long>(ino)
+            );
+#else
+
             recls_warning_trace_printf_(RECLS_LITERAL("skipping directory '%s' because it has already been visited by another name: dev=%lld, ino=%lld")
             ,   directoryPath
             ,   static_cast<signed long long>(dev)
             ,   static_cast<signed long long>(ino)
             );
+#endif
 
             return false;
         }
