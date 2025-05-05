@@ -8,6 +8,7 @@ MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-make}}
 
 Configuration=Release
 ExamplesDisabled=0
+MSVC_MT=0
 MinGW=0
 NO_b64=0
 NO_Pantheios=0
@@ -45,6 +46,10 @@ while [[ $# -gt 0 ]]; do
 
       MinGW=1
       MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-mingw32-make.exe}}
+      ;;
+    --msvc-mt)
+
+      MSVC_MT=1
       ;;
     --no-b64)
 
@@ -108,6 +113,10 @@ Flags/options:
         uses explicitly the "MinGW Makefiles" generator, and defaults the
         make-command to "mingw32-make.exe"
 
+    --msvc-mt
+        when using Visual C++ (MSVC), the static runtime library will be
+        selected; the default is the dynamic runtime library
+
     --no-b64
         suppresses discovery of b64 package
 
@@ -167,6 +176,7 @@ cd $CMakeDir
 echo "Executing CMake (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
 if [ $NO_b64 -eq 0 ]; then CMakeNoB64="OFF" ; else CMakeNoB64="ON" ; fi
 if [ $NO_Pantheios -eq 0 ]; then CMakeNoPantheios="OFF" ; else CMakeNoPantheios="ON" ; fi
 if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
@@ -201,6 +211,7 @@ else
     -DCMAKE_NO_PANTHEIOS:BOOL=$CMakeNoPantheios \
     -DCMAKE_NO_SHWILD:BOOL=$CMakeNoShwild \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
+    -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
     -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -S $Dir \
     -B $CMakeDir \
