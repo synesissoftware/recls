@@ -4,7 +4,7 @@
  * Purpose: UNIX implementation for the file information blocks of recls API.
  *
  * Created: 2nd November 2003
- * Updated: 2nd May 2025
+ * Updated: 5th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -58,7 +58,7 @@
 # include <stlsoft/synch/null_mutex.hpp>
 #endif /* RECLS_MT */
 
-#include "impl.atomic.h"
+#include "impl.atomic.hpp"
 
 
 /* /////////////////////////////////////////////////////////////////////////

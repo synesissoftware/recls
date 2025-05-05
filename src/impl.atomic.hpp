@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    src/impl.atomic.h
+ * File:    src/impl.atomic.hpp
  *
  * Purpose: Implementation header.
  *
  * Created: 11th March 2005
- * Updated: 16th October 2024
+ * Updated: 5th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
