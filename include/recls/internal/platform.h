@@ -4,7 +4,7 @@
  * Purpose: Platform discrimination for recls API.
  *
  * Created: 15th August 2003
- * Updated: 2nd May 2025
+ * Updated: 4th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
