@@ -33,12 +33,19 @@ if(_BUILD_AS_WIN32)
 	add_definitions(-DRECLS_API_FTP)
 endif(_BUILD_AS_WIN32)
 
-if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+if(MSVC)
+	if(MSVC_VERSION LESS 1920)
 
-	add_compile_options("/Zc:__cplusplus")
+		add_compile_options("/wd4822")
+	endif()
 
-	add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
-endif()
+	if(MSVC_VERSION GREATER_EQUAL 1914)
+
+		add_compile_options("/Zc:__cplusplus")
+
+		add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
+	endif()
+endif(MSVC)
 
 
 set(COMMON_IMPLEMENTATION_FILES
