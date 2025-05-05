@@ -72,6 +72,8 @@ typedef int                                                 rc_atomic_t;
 # define rc_atomic_init(x)                                  x
 #endif /* RECLS_MT && RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 
+typedef rc_atomic_t volatile&                               rc_atomic_ref_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -79,24 +81,24 @@ typedef int                                                 rc_atomic_t;
 
 void
 RC_Increment(
-    rc_atomic_t volatile& p
+    rc_atomic_ref_t p
 );
 
 rc_atomic_t
 RC_PreDecrement(
-    rc_atomic_t volatile& p
+    rc_atomic_ref_t p
 );
 
 rc_atomic_t
 RC_ReadValue(
-    rc_atomic_t volatile& p
+    rc_atomic_ref_t p
 );
 
 /** Returns the block count of an entry. */
 void
 Entry_BlockCount(
-    rc_atomic_t&    pcCreated
-,   rc_atomic_t&    pcShared
+    rc_atomic_ref_t cCreated
+,   rc_atomic_ref_t cShared
 );
 
 

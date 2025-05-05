@@ -168,15 +168,15 @@ RECLS_API Entry_Copy(
 
 void
 Entry_BlockCount(
-    rc_atomic_t& pcCreated
-,   rc_atomic_t& pcShared
+    rc_atomic_ref_t cCreated
+,   rc_atomic_ref_t cShared
 )
 {
-    RECLS_ASSERT(ss_nullptr_k != &pcCreated);
-    RECLS_ASSERT(ss_nullptr_k != &pcShared);
+    RECLS_ASSERT(ss_nullptr_k != &cCreated);
+    RECLS_ASSERT(ss_nullptr_k != &cShared);
 
-    pcCreated   =   RC_ReadValue(s_createdInfoBlocks);
-    pcShared    =   RC_ReadValue(s_sharedInfoBlocks);
+    cCreated    =   RC_ReadValue(s_createdInfoBlocks);
+    cShared     =   RC_ReadValue(s_sharedInfoBlocks);
 }
 
 

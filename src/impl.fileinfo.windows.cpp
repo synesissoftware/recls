@@ -57,7 +57,7 @@ namespace impl
 
 void
 RC_Increment(
-    rc_atomic_t volatile& p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_MT)
@@ -71,7 +71,7 @@ RC_Increment(
 
 rc_atomic_t
 RC_PreDecrement(
-    rc_atomic_t volatile& p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_MT)
@@ -85,7 +85,7 @@ RC_PreDecrement(
 
 rc_atomic_t
 RC_ReadValue(
-    rc_atomic_t volatile& p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_MT)

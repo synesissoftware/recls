@@ -102,7 +102,7 @@ namespace
 
 void
 RC_Increment(
-    rc_atomic_t volatile& p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
@@ -118,7 +118,7 @@ RC_Increment(
 
 rc_atomic_t
 RC_PreDecrement(
-    rc_atomic_t volatile& p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
@@ -134,7 +134,7 @@ RC_PreDecrement(
 
 rc_atomic_t
 RC_ReadValue(
-    rc_atomic_t volatile& p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
