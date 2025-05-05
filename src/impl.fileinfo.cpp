@@ -45,6 +45,7 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -55,6 +56,7 @@ struct counted_recls_info_t
     recls_uint32_t              _;
     struct recls_entryinfo_t    info;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -72,11 +74,14 @@ volatile rc_atomic_t s_sharedInfoBlocks  =   rc_atomic_init(0);
 } // anonymous namespace
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
 
-inline struct counted_recls_info_t* counted_info_from_info(recls_entry_t i)
+inline
+struct counted_recls_info_t*
+counted_info_from_info(recls_entry_t i)
 {
     RECLS_ASSERT(i != ss_nullptr_k);
 
@@ -87,12 +92,15 @@ inline struct counted_recls_info_t* counted_info_from_info(recls_entry_t i)
     return reinterpret_cast<struct counted_recls_info_t*>(i3 - offsetof(counted_recls_info_t, info));
 }
 
-inline recls_entry_t info_from_counted_info(struct counted_recls_info_t* ci)
+inline
+recls_entry_t
+info_from_counted_info(struct counted_recls_info_t* ci)
 {
     RECLS_ASSERT(ci != ss_nullptr_k);
 
     return &ci->info;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * file info functions

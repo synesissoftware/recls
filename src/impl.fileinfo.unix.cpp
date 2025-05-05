@@ -97,7 +97,7 @@ namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * helpers
+ * internal API
  */
 
 void
@@ -116,7 +116,7 @@ RC_Increment(
 #endif /* !RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 }
 
-rc_atomic_t
+rc_atomic_v_t
 RC_PreDecrement(
     rc_atomic_ref_t p
 )
@@ -132,7 +132,7 @@ RC_PreDecrement(
 #endif /* !RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 }
 
-rc_atomic_t
+rc_atomic_v_t
 RC_ReadValue(
     rc_atomic_ref_t p
 )

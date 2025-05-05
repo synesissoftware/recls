@@ -72,6 +72,7 @@ typedef int                                                 rc_atomic_t;
 # define rc_atomic_init(x)                                  x
 #endif /* RECLS_MT && RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 
+typedef rc_atomic_t                                         rc_atomic_v_t;
 typedef rc_atomic_t volatile&                               rc_atomic_ref_t;
 
 
@@ -84,12 +85,12 @@ RC_Increment(
     rc_atomic_ref_t p
 );
 
-rc_atomic_t
+rc_atomic_v_t
 RC_PreDecrement(
     rc_atomic_ref_t p
 );
 
-rc_atomic_t
+rc_atomic_v_t
 RC_ReadValue(
     rc_atomic_ref_t p
 );

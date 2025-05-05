@@ -52,7 +52,7 @@ namespace impl
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * functions
+ * internal API
  */
 
 void
@@ -69,7 +69,7 @@ RC_Increment(
 #endif /* RECLS_MT */
 }
 
-rc_atomic_t
+rc_atomic_v_t
 RC_PreDecrement(
     rc_atomic_ref_t p
 )
@@ -83,7 +83,7 @@ RC_PreDecrement(
 #endif /* RECLS_MT */
 }
 
-rc_atomic_t
+rc_atomic_v_t
 RC_ReadValue(
     rc_atomic_ref_t p
 )
