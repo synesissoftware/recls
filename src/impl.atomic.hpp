@@ -92,6 +92,13 @@ RC_ReadValue(
     rc_atomic_t volatile* p
 );
 
+/** Returns the block count of an entry. */
+RECLS_FNDECL(void)
+Entry_BlockCount(
+    rc_atomic_t*    pcCreated
+,   rc_atomic_t*    pcShared
+);
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
