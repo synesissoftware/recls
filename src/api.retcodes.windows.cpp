@@ -4,7 +4,7 @@
  * Purpose: This file contains the Windows versions of recls API.
  *
  * Created: 13th November 2010
- * Updated: 1st May 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -36,6 +36,7 @@
 
 #include "impl.trace.h"
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -47,6 +48,7 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -56,19 +58,20 @@ namespace impl
     defined(STLSOFT_COMPILER_IS_GCC) || \
     0
 
-# define SWITCH_BEGIN_()        if (0) {}
-# define SWITCH_END_()          return static_cast<DWORD>(E_FAIL);
+# define SWITCH_BEGIN_()                                    if (0) {}
+# define SWITCH_END_()                                      return static_cast<DWORD>(E_FAIL);
 
-# define CASE_1_(r)             else if (rc == (r)) {}
-# define CASE_2_(r, wec)        else if (rc == (r)) { return (wec); }
+# define CASE_1_(r)                                         else if (rc == (r)) {}
+# define CASE_2_(r, wec)                                    else if (rc == (r)) { return (wec); }
 #else /* ? compiler */
 
-# define SWITCH_BEGIN_()        switch (STLSOFT_REINTERPRET_CAST(recls_uintptr_t, rc)) {
-# define SWITCH_END_()          } return static_cast<DWORD>(E_FAIL);
+# define SWITCH_BEGIN_()                                    switch (STLSOFT_REINTERPRET_CAST(recls_uintptr_t, rc)) {
+# define SWITCH_END_()                                      } return static_cast<DWORD>(E_FAIL);
 
-# define CASE_1_(r)             case STLSOFT_REINTERPRET_CAST(recls_uintptr_t, r): break;
-# define CASE_2_(r, wec)        case STLSOFT_REINTERPRET_CAST(recls_uintptr_t, r): return (wec);
+# define CASE_1_(r)                                         case STLSOFT_REINTERPRET_CAST(recls_uintptr_t, r): break;
+# define CASE_2_(r, wec)                                    case STLSOFT_REINTERPRET_CAST(recls_uintptr_t, r): return (wec);
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -79,6 +82,7 @@ namespace impl
 
 //using ::recls::impl::check_drives;
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * error handling
@@ -119,6 +123,7 @@ Recls_ResultCodeToWindowsErrorCode(
 
     SWITCH_END_()
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

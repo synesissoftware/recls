@@ -4,7 +4,7 @@
  * Purpose: more recls API extended functions.
  *
  * Created: 30th January 2009
- * Updated: 28th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -35,9 +35,9 @@
 
 #include <platformstl/exception/platformstl_exception.hpp>
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # include <stlsoft/error/error_desc.hpp>
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # include <winstl/error/error_desc.hpp>
 #endif
 
@@ -49,6 +49,7 @@
 # include <sys/types.h>
 #endif /* RECLS_PLATFORM_IS_UNIX */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -57,6 +58,7 @@
     _MSC_VER >= 1310
 # pragma warning(disable : 4702)
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -71,7 +73,16 @@ using ::recls::impl::recls_fatal_trace_printf_;
 using ::recls::impl::recls_error_trace_printf_;
 using ::recls::impl::recls_debug0_trace_printf_;
 
+# if 0
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
+typedef winstl::error_desc                                  error_desc_t;
+# else
+
+typedef stlsoft::error_desc                                 error_desc_t;
+# endif
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -112,8 +123,8 @@ get_exception_status_code(
 {
     return x.status_code();
 }
+} // anonymous namespace
 
-} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation functions
@@ -155,13 +166,14 @@ namespace
             {
                 if (types::traits_type::is_readonly(&stat_data))
                 {
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 # ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
                     ::_chmod(path, stat_data.st_mode | _S_IWRITE);
 # else /* ? RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
                     ::chmod(path, stat_data.st_mode | S_IWUSR);
 # endif /* RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS */
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
                     ::SetFileAttributes(path, stat_data.dwFileAttributes & ~(FILE_ATTRIBUTE_READONLY));
 #else /* ? OS */
 # error Platform not discriminated
@@ -177,12 +189,7 @@ namespace
             recls_error_trace_printf_(
                 RECLS_LITERAL("failed to delete file '%s': %s")
             ,   path
-#if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
-            ,   stlsoft::error_desc(e).c_str()
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-            ,   winstl::error_desc(e).c_str()
-#endif
+            ,   error_desc_t(e).c_str()
             );
 
             info.rc = RECLS_RC_ACCESS_DENIED;
@@ -270,16 +277,29 @@ namespace
         }
         else
         {
-            if (RECLS_REMDIR_F_REMOVE_FILES & flags)
+            if (0 != ((RECLS_REMDIR_F_REMOVE_FILES | RECLS_REMDIR_F_REMOVE_SOCKETS) & flags))
             {
-                // Remove all files
+                // Remove all files and/or sockets
 
                 file_removal_info_t_    info(flags);
                 recls_rc_t              rc;
+                recls_uint32_t          srch_flags  =   0;
+
+                if (0 != (RECLS_REMDIR_F_REMOVE_FILES & flags))
+                {
+                    srch_flags |= RECLS_F_FILES;
+                }
+
+                if (0 != (RECLS_REMDIR_F_REMOVE_SOCKETS & flags))
+                {
+                    srch_flags |= RECLS_F_SOCKETS;
+                }
+
+                srch_flags |= RECLS_F_DETAILS_LATER | RECLS_F_RECURSIVE;
 
                 rc = Recls_SearchProcess(   path
                                         ,   ss_nullptr_k
-                                        ,   RECLS_F_DETAILS_LATER | RECLS_F_RECURSIVE | RECLS_F_FILES | RECLS_F_SOCKETS
+                                        ,   srch_flags
                                         ,   file_removal_fn_
                                         ,   &info
                                         );
@@ -325,12 +345,7 @@ namespace
                         recls_error_trace_printf_(
                             RECLS_LITERAL("failed to remove directory '%s': %s")
                         ,   directory.c_str()
-#if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
-                        ,   stlsoft::error_desc(e).c_str()
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-                        ,   winstl::error_desc(e).c_str()
-#endif
+                        ,   error_desc_t(e).c_str()
                         );
 
                         return RECLS_RC_ACCESS_DENIED;
@@ -354,14 +369,8 @@ namespace
                 recls_error_trace_printf_(
                     RECLS_LITERAL("failed to remove directory '%s': %s")
                 ,   path
-#if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
-                ,   stlsoft::error_desc(e).c_str()
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-                ,   winstl::error_desc(e).c_str()
-#endif
+                ,   error_desc_t(e).c_str()
                 );
-
 
                 return RECLS_RC_ACCESS_DENIED;
             }
@@ -426,8 +435,8 @@ namespace
             return Recls_RemoveDirectory4_(path, pathLen, flags, results);
         }
     }
+} // anonymous namespace
 
-} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * extended API functions
@@ -467,9 +476,10 @@ Recls_RemoveDirectory(
         recls_fatal_trace_printf_(RECLS_LITERAL("Exception in Recls_RemoveDirectory(): %s"), x.what());
 
         // TODO: write a system_error_code_2_recls_rc() translator
-# if defined(PLATFORMSTL_OS_IS_UNIX)
+# if 0
+# elif defined(RECLS_PLATFORM_IS_UNIX)
         if (ENOENT == get_exception_status_code(x))
-# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# elif defined(RECLS_PLATFORM_IS_WINDOWS)
         if (ERROR_INVALID_NAME == get_exception_status_code(x))
 # else /* ? OS */
 #  error Platform not discriminated
@@ -532,6 +542,7 @@ Recls_RemoveDirectory_X_(
         return Recls_RemoveDirectory_(path, types::traits_type::str_len(path), flags, results);
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

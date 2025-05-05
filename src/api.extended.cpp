@@ -4,7 +4,7 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 28th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -32,6 +32,7 @@
 
 #include "impl.trace.h"
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -43,8 +44,8 @@ namespace recls
 using ::recls::impl::types;
 
 using ::recls::impl::recls_debug0_trace_printf_;
-
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -52,22 +53,27 @@ using ::recls::impl::recls_debug0_trace_printf_;
 
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
 # define RAPI_PATHNAMESEP                                   '/'
 # define RAPI_PATHSEP                                       ':'
 # define RAPI_WILDCARDSALL                                  '*'
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
 # define RAPI_PATHNAMESEP                                   '\\'
 # define RAPI_PATHSEP                                       ';'
 # define RAPI_WILDCARDSALL                                  '*', '.', '*'
 #else /* unrecognised platform */
+
 # error platform is not recognised
 #endif /* platform */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * extended API functions
  */
 
-RECLS_LINKAGE_C recls_char_t const* Recls_GetPathNameSeparator()
+RECLS_FNDECL(recls_char_t const*)
+Recls_GetPathNameSeparator()
 {
     function_scope_trace("Recls_GetPathNameSeparator");
 
@@ -76,7 +82,8 @@ RECLS_LINKAGE_C recls_char_t const* Recls_GetPathNameSeparator()
     return s_pathNameSeparator;
 }
 
-RECLS_LINKAGE_C recls_char_t const* Recls_GetPathSeparator()
+RECLS_FNDECL(recls_char_t const*)
+Recls_GetPathSeparator()
 {
     function_scope_trace("Recls_GetPathSeparator");
 
@@ -85,7 +92,8 @@ RECLS_LINKAGE_C recls_char_t const* Recls_GetPathSeparator()
     return s_pathSeparator;
 }
 
-RECLS_LINKAGE_C recls_char_t const* Recls_GetWildcardsAll()
+RECLS_FNDECL(recls_char_t const*)
+Recls_GetWildcardsAll()
 {
     function_scope_trace("Recls_GetWildcardsAll");
 
@@ -94,8 +102,9 @@ RECLS_LINKAGE_C recls_char_t const* Recls_GetWildcardsAll()
     return s_wildcardsAll;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * extended API functions
+ * helper functions
  */
 
 static
@@ -107,6 +116,26 @@ RECLS_CALLCONV_DEFAULT IsDirectoryEmpty_proc(
 {
     return 0; // Cancel on any entry
 }
+
+static
+int
+RECLS_CALLCONV_DEFAULT CalcDirectorySize_proc(
+    recls_entry_t               hEntry
+,   recls_process_fn_param_t    param
+)
+{
+    recls_filesize_t&   total   =   *static_cast<recls_filesize_t*>(param);
+    recls_filesize_t    size    =   Recls_GetSizeProperty(hEntry);
+
+    total = total + size;
+
+    return 1; // Never cancel
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * extended API functions
+ */
 
 RECLS_FNDECL(recls_bool_t)
 Recls_IsDirectoryEmpty(recls_char_t const* dir)
@@ -131,21 +160,6 @@ Recls_IsDirectoryEntryEmpty(recls_entry_t hEntry)
     RECLS_ASSERT(Recls_IsEntryDirectory(hEntry));
 
     return Recls_IsDirectoryEmpty(hEntry->path.begin);
-}
-
-static
-int
-RECLS_CALLCONV_DEFAULT CalcDirectorySize_proc(
-    recls_entry_t               hEntry
-,   recls_process_fn_param_t    param
-)
-{
-    recls_filesize_t&   total   =   *static_cast<recls_filesize_t*>(param);
-    recls_filesize_t    size    =   Recls_GetSizeProperty(hEntry);
-
-    total = total + size;
-
-    return 1; // Never cancel
 }
 
 RECLS_FNDECL(recls_filesize_t)

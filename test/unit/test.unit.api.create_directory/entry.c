@@ -48,10 +48,10 @@
 # include <tchar.h>
 #endif
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # include <unistd.h>
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
 # include <windows.h>
 #else
@@ -71,10 +71,10 @@
 #endif
 
 #if 0
-#elif defined (PLATFORMSTL_OS_IS_UNIX)
+#elif defined (RECLS_PLATFORM_IS_UNIX)
 
 # define this_getcwd                                        getcwd
-#elif defined (PLATFORMSTL_OS_IS_WINDOWS)
+#elif defined (RECLS_PLATFORM_IS_WINDOWS)
 
 # define this_getcwd                                        _tgetcwd
 #else
@@ -83,12 +83,11 @@
 #endif
 
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS) || \
-      ( defined(PLATFORMSTL_OS_IS_UNIX) && \
-        defined(_WIN32))
+#elif defined(RECLS_PLATFORM_IS_WINDOWS) || \
+     defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
 # define THIS_MAX_PATH                                      _MAX_PATH
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(RECLS_PLATFORM_IS_UNIX)
 
 # ifdef PATH_MAX
 
@@ -211,8 +210,8 @@ int main(int argc, char **argv)
             }
             else
             {
-#if defined(PLATFORMSTL_OS_IS_UNIX) && \
-    defined(_WIN32)
+#ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
+
                 { char* s; for (s = s_cwd; *s; ++s)
                 {
                     if ('\\' == *s)
@@ -229,7 +228,8 @@ int main(int argc, char **argv)
                 }}
 #endif
 
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
                 s_cwdLen = _tcslen(s_cwd);
 #else
@@ -256,7 +256,7 @@ int main(int argc, char **argv)
  */
 
 #define RECLS_TEST_DIR_ROOT                                 RECLS_LITERAL("~/recls_test_dir_root_D01441CA_A1CD_4916_B095_B2D65B15E517")
-#define RECLS_TEST_DIR_ROOT_LEN                             ((STLSOFT_NUM_ELEMENTS(RECLS_TEST_DIR_ROOT) - 1))
+#define RECLS_TEST_DIR_ROOT_LEN                             ((RECLS_NUM_ELEMENTS(RECLS_TEST_DIR_ROOT) - 1))
 
 
 static void test_create_directory_invalid_name(void)
@@ -322,7 +322,7 @@ static void test_create_directory_under_home(void)
 static void test_create_subdirectory_under_home(void)
 {
 #define TEST_1_3_SUBDIR                                     RECLS_LITERAL("abc/def/ghi/jkl/mno")
-#define TEST_1_3_SUBDIR_LEN                                 (STLSOFT_NUM_ELEMENTS(TEST_1_3_SUBDIR) - 1)
+#define TEST_1_3_SUBDIR_LEN                                 (RECLS_NUM_ELEMENTS(TEST_1_3_SUBDIR) - 1)
 
     {
         recls_directoryResults_t    results;

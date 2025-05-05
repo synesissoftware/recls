@@ -62,19 +62,19 @@ public: // types
 public: // constants
     static string_type  default_search_root()
     {
-        return string_type(RECLS_S_DEFAULT_SEARCH_ROOT_, STLSOFT_NUM_ELEMENTS(RECLS_S_DEFAULT_SEARCH_ROOT_) - 1);
+        return string_type(RECLS_S_DEFAULT_SEARCH_ROOT_, RECLS_NUM_ELEMENTS(RECLS_S_DEFAULT_SEARCH_ROOT_) - 1);
     }
     static string_type  home()
     {
-        return string_type(RECLS_S_HOME_, STLSOFT_NUM_ELEMENTS(RECLS_S_HOME_) - 1);
+        return string_type(RECLS_S_HOME_, RECLS_NUM_ELEMENTS(RECLS_S_HOME_) - 1);
     }
     static string_type  local_directory()
     {
-        return string_type(RECLS_S_LOCAL_DIR_, STLSOFT_NUM_ELEMENTS(RECLS_S_LOCAL_DIR_) - 1);
+        return string_type(RECLS_S_LOCAL_DIR_, RECLS_NUM_ELEMENTS(RECLS_S_LOCAL_DIR_) - 1);
     }
     static string_type  parent_directory()
     {
-        return string_type(RECLS_S_PARENT_DIR_, STLSOFT_NUM_ELEMENTS(RECLS_S_PARENT_DIR_) - 1);
+        return string_type(RECLS_S_PARENT_DIR_, RECLS_NUM_ELEMENTS(RECLS_S_PARENT_DIR_) - 1);
     }
 
 private: // construction

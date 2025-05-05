@@ -129,6 +129,7 @@ target_compile_options(core
 			-Werror -Wall -Wextra -pedantic
 
 			-Wno-deprecated-copy
+			$<$<BOOL:CMAKE_CXX_STANDARD GREATER_EQUAL 2000>:-Wno-deprecated-volatile>
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:
 			/WX /W4

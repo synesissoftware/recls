@@ -155,8 +155,8 @@ ReclsFileSearchDirectoryControlPreventInfiniteLoops::CanProcessDirectory(
 
             recls_warning_trace_printf_(RECLS_LITERAL("skipping directory '%s' because it has already been visited by another name: dev=%lld, ino=%lld")
             ,   directoryPath
-            ,   dev
-            ,   ino
+            ,   static_cast<signed long long>(dev)
+            ,   static_cast<signed long long>(ino)
             );
 
             return false;

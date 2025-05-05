@@ -4,7 +4,7 @@
  * Purpose: recls API functions pertaining to entry info.
  *
  * Created: 16th August 2003
- * Updated: 29th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -63,7 +63,7 @@ always_false_()
     return 0;
 }
 #endif
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,12 +72,15 @@ always_false_()
 
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
 # define GetCreationTime_                                   modificationTime
 # define GetLastStatusChangeTime_                           lastStatusChangeTime
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
 # define GetCreationTime_                                   creationTime
 # define GetLastStatusChangeTime_                           modificationTime
 #else /* unrecognised platform */
+
 # error platform is not recognised
 #endif /* platform */
 
@@ -330,8 +333,8 @@ Recls_IsEntryDevice(
 
     RECLS_ASSERT(ss_nullptr_k != hEntry);
 
-#if defined(RECLS_PLATFORM_IS_UNIX) && \
-    !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS)
 
     switch (hEntry->attributes & S_IFMT)
     {
@@ -398,8 +401,8 @@ Recls_IsEntryLink(recls_entry_t fileInfo)
 
     RECLS_ASSERT(ss_nullptr_k != fileInfo);
 
-#if defined(RECLS_PLATFORM_IS_UNIX) && \
-    !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS)
 
     return (fileInfo->attributes & S_IFMT) == S_IFLNK;
 #else /* unrecognised platform */
@@ -462,8 +465,8 @@ Recls_IsEntrySocket(
 
     RECLS_ASSERT(ss_nullptr_k != hEntry);
 
-#if defined(RECLS_PLATFORM_IS_UNIX) && \
-    !defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS)
 
     return (hEntry->attributes & S_IFMT) == S_IFSOCK;
 #else /* unrecognised platform */
