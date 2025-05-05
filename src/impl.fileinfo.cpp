@@ -116,7 +116,7 @@ Entry_Allocate(size_t cb)
         ci->rc  =   initial; // One initial reference
         info    =   info_from_counted_info(ci);
 
-        RC_Increment(&s_createdInfoBlocks);
+        RC_Increment(s_createdInfoBlocks);
     }
 
     return info;
@@ -129,15 +129,15 @@ Entry_Release(recls_entry_t fileInfo)
     {
         counted_recls_info_t* pci = counted_info_from_info(fileInfo);
 
-        if (0 == RC_PreDecrement(&pci->rc))
+        if (0 == RC_PreDecrement(pci->rc))
         {
             free(pci);
 
-            RC_PreDecrement(&s_createdInfoBlocks);
+            RC_PreDecrement(s_createdInfoBlocks);
         }
         else
         {
-            RC_PreDecrement(&s_sharedInfoBlocks);
+            RC_PreDecrement(s_sharedInfoBlocks);
         }
     }
 }
@@ -157,8 +157,8 @@ RECLS_API Entry_Copy(
         recls_trace_printf_(RECLS_LITERAL("Entry_Copy(%p): %s"), fileInfo, fileInfo->path.begin);
 #endif /* 0 */
 
-        RC_Increment(&pci->rc);
-        RC_Increment(&s_sharedInfoBlocks);
+        RC_Increment(pci->rc);
+        RC_Increment(s_sharedInfoBlocks);
     }
 
     *pinfo = fileInfo;
@@ -166,17 +166,17 @@ RECLS_API Entry_Copy(
     return RECLS_RC_OK;
 }
 
-RECLS_FNDECL(void)
+void
 Entry_BlockCount(
-    rc_atomic_t* pcCreated
-,   rc_atomic_t* pcShared
+    rc_atomic_t& pcCreated
+,   rc_atomic_t& pcShared
 )
 {
-    RECLS_ASSERT(ss_nullptr_k != pcCreated);
-    RECLS_ASSERT(ss_nullptr_k != pcShared);
+    RECLS_ASSERT(ss_nullptr_k != &pcCreated);
+    RECLS_ASSERT(ss_nullptr_k != &pcShared);
 
-    *pcCreated  =   RC_ReadValue(&s_createdInfoBlocks);
-    *pcShared   =   RC_ReadValue(&s_sharedInfoBlocks);
+    pcCreated   =   RC_ReadValue(s_createdInfoBlocks);
+    pcShared    =   RC_ReadValue(s_sharedInfoBlocks);
 }
 
 

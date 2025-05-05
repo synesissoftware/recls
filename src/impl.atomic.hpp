@@ -77,26 +77,26 @@ typedef int                                                 rc_atomic_t;
  * functions
  */
 
-RECLS_FNDECL(void)
+void
 RC_Increment(
-    rc_atomic_t volatile* p
+    rc_atomic_t volatile& p
 );
 
-RECLS_FNDECL(rc_atomic_t)
+rc_atomic_t
 RC_PreDecrement(
-    rc_atomic_t volatile* p
+    rc_atomic_t volatile& p
 );
 
-RECLS_FNDECL(rc_atomic_t)
+rc_atomic_t
 RC_ReadValue(
-    rc_atomic_t volatile* p
+    rc_atomic_t volatile& p
 );
 
 /** Returns the block count of an entry. */
-RECLS_FNDECL(void)
+void
 Entry_BlockCount(
-    rc_atomic_t*    pcCreated
-,   rc_atomic_t*    pcShared
+    rc_atomic_t&    pcCreated
+,   rc_atomic_t&    pcShared
 );
 
 

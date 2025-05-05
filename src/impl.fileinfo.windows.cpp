@@ -55,45 +55,45 @@ namespace impl
  * functions
  */
 
-RECLS_FNDECL(void)
+void
 RC_Increment(
-    rc_atomic_t volatile *p
+    rc_atomic_t volatile& p
 )
 {
 #if defined(RECLS_MT)
 
-    winstl::atomic_increment(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
+    winstl::atomic_increment(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(&p)));
 #else /* ? RECLS_MT */
 
-    ++*p;
+    ++p;
 #endif /* RECLS_MT */
 }
 
-RECLS_FNDECL(rc_atomic_t)
+rc_atomic_t
 RC_PreDecrement(
-    rc_atomic_t volatile *p
+    rc_atomic_t volatile& p
 )
 {
 #if defined(RECLS_MT)
 
-    return winstl::atomic_predecrement(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
+    return winstl::atomic_predecrement(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(&p)));
 #else /* ? RECLS_MT */
 
-    return --*p;
+    return --p;
 #endif /* RECLS_MT */
 }
 
-RECLS_FNDECL(rc_atomic_t)
+rc_atomic_t
 RC_ReadValue(
-    rc_atomic_t volatile *p
+    rc_atomic_t volatile& p
 )
 {
 #if defined(RECLS_MT)
 
-    return winstl::atomic_read(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
+    return winstl::atomic_read(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(&p)));
 #else /* ? RECLS_MT */
 
-    return *p;
+    return p;
 #endif /* RECLS_MT */
 }
 
