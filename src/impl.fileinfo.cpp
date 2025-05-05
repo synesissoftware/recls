@@ -52,7 +52,11 @@ namespace impl
 
 struct counted_recls_info_t
 {
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+    rc_atomic_t                 rc;
+#else // ? RECLS_ATOMIC_USE_std_atomic_
     volatile rc_atomic_t        rc;
+#endif // RECLS_ATOMIC_USE_std_atomic_
     recls_uint32_t              _;
     struct recls_entryinfo_t    info;
 };
@@ -67,8 +71,15 @@ namespace
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+
+rc_atomic_t s_createdInfoBlocks;
+rc_atomic_t s_sharedInfoBlocks;
+#else // ? RECLS_ATOMIC_USE_std_atomic_
+
 volatile rc_atomic_t s_createdInfoBlocks =   rc_atomic_init(0);
 volatile rc_atomic_t s_sharedInfoBlocks  =   rc_atomic_init(0);
+#endif // RECLS_ATOMIC_USE_std_atomic_
 
 #if !defined(RECLS_NO_NAMESPACE)
 } // anonymous namespace
@@ -119,9 +130,15 @@ Entry_Allocate(size_t cb)
     }
     else
     {
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+
+        ci->rc  =   1;
+#else // ? RECLS_ATOMIC_USE_std_atomic_
+
         rc_atomic_t initial = rc_atomic_init(1);
 
         ci->rc  =   initial; // One initial reference
+#endif // RECLS_ATOMIC_USE_std_atomic_
         info    =   info_from_counted_info(ci);
 
         RC_Increment(s_createdInfoBlocks);
@@ -183,9 +200,48 @@ Entry_BlockCount(
     RECLS_ASSERT(ss_nullptr_k != &cCreated);
     RECLS_ASSERT(ss_nullptr_k != &cShared);
 
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+
+    cCreated.store(RC_ReadValue(s_createdInfoBlocks));
+    cShared.store(RC_ReadValue(s_sharedInfoBlocks));
+#else // ? RECLS_ATOMIC_USE_std_atomic_
+
     cCreated    =   RC_ReadValue(s_createdInfoBlocks);
     cShared     =   RC_ReadValue(s_sharedInfoBlocks);
+#endif // RECLS_ATOMIC_USE_std_atomic_
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * internal API
+ */
+
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+
+void
+RC_Increment(
+    rc_atomic_ref_t p
+)
+{
+    ++p;
+}
+
+rc_atomic_v_t
+RC_PreDecrement(
+    rc_atomic_ref_t p
+)
+{
+    return --p;
+}
+
+rc_atomic_v_t
+RC_ReadValue(
+    rc_atomic_ref_t p
+)
+{
+    return p.load();
+}
+#endif // RECLS_ATOMIC_USE_std_atomic_
 
 
 /* /////////////////////////////////////////////////////////////////////////

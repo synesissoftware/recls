@@ -24,18 +24,43 @@
 #define RECLS_INCL_SRC_H_IMPL_ATOMIC
 
 /* /////////////////////////////////////////////////////////////////////////
- * includes
+ * includes - 1
  */
 
 /* recls header files */
 #include <recls/recls.h>
-#include "impl.root.h"
-#include "incl.platformstl.h"
 
-#include <platformstl/synch/util/features.h>
-#ifdef PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS
-# include <platformstl/synch/atomic_functions.h>
-#endif /* PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if __cplusplus >= 201402L
+
+# define RECLS_ATOMIC_USE_std_atomic_
+#else
+
+#endif
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes - 2
+ */
+
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+
+# include <atomic>
+# include <cstdint>
+#else // ? RECLS_ATOMIC_USE_std_atomic_
+
+# include "impl.root.h"
+# include "incl.platformstl.h"
+
+# include <platformstl/synch/util/features.h>
+# ifdef PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS
+#  include <platformstl/synch/atomic_functions.h>
+# endif /* PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
+#endif // RECLS_ATOMIC_USE_std_atomic_
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -54,26 +79,34 @@ namespace impl
  * typedefs
  */
 
-#if 1 &&\
-    defined(RECLS_PLATFORM_IS_UNIX) &&\
-    defined(RECLS_MT) && \
-    defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS) &&\
-    1
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+
+typedef std::intptr_t                                       rc_atomic_v_t;
+typedef std::atomic<rc_atomic_v_t>                          rc_atomic_t;
+typedef rc_atomic_t&                                        rc_atomic_ref_t;
+#else // ? RECLS_ATOMIC_USE_std_atomic_
+
+# if 1 &&\
+     defined(RECLS_PLATFORM_IS_UNIX) &&\
+     defined(RECLS_MT) && \
+     defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS) &&\
+     1
 
 typedef atomic_t                                            rc_atomic_t;
-# define rc_atomic_init(x)                                  ATOMIC_INIT(x)
-#elif defined(PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS)
+#  define rc_atomic_init(x)                                  ATOMIC_INIT(x)
+# elif defined(PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS)
 
 typedef platformstl_ns_qual(atomic_int_t)                   rc_atomic_t;
-# define rc_atomic_init(x)                                  x
-#else /* ? RECLS_MT && RECLS_UNIX_USE_ATOMIC_OPERATIONS */
+#  define rc_atomic_init(x)                                  x
+# else /* ? RECLS_MT && RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 
 typedef int                                                 rc_atomic_t;
-# define rc_atomic_init(x)                                  x
-#endif /* RECLS_MT && RECLS_UNIX_USE_ATOMIC_OPERATIONS */
+#  define rc_atomic_init(x)                                  x
+# endif /* RECLS_MT && RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 
 typedef rc_atomic_t                                         rc_atomic_v_t;
 typedef rc_atomic_t volatile&                               rc_atomic_ref_t;
+#endif // RECLS_ATOMIC_USE_std_atomic_
 
 
 /* /////////////////////////////////////////////////////////////////////////
