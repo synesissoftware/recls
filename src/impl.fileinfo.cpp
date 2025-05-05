@@ -4,7 +4,7 @@
  * Purpose: Main (platform-independent) implementation file for recls API.
  *
  * Created: 16th August 2003
- * Updated: 2nd May 2025
+ * Updated: 5th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -28,7 +28,7 @@
 #include "impl.assert.h"
 #include "impl.root.h"
 #include "impl.util.h"
-#include "impl.atomic.h"
+#include "impl.atomic.hpp"
 #include "impl.entryfunctions.h"
 
 #include "impl.trace.h"
@@ -45,16 +45,22 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 struct counted_recls_info_t
 {
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+    rc_atomic_t                 rc;
+#else // ? RECLS_ATOMIC_USE_std_atomic_
     volatile rc_atomic_t        rc;
+#endif // RECLS_ATOMIC_USE_std_atomic_
     recls_uint32_t              _;
     struct recls_entryinfo_t    info;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -65,18 +71,28 @@ namespace
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+
+rc_atomic_t s_createdInfoBlocks;
+rc_atomic_t s_sharedInfoBlocks;
+#else // ? RECLS_ATOMIC_USE_std_atomic_
+
 volatile rc_atomic_t s_createdInfoBlocks =   rc_atomic_init(0);
 volatile rc_atomic_t s_sharedInfoBlocks  =   rc_atomic_init(0);
+#endif // RECLS_ATOMIC_USE_std_atomic_
 
 #if !defined(RECLS_NO_NAMESPACE)
 } // anonymous namespace
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
 
-inline struct counted_recls_info_t* counted_info_from_info(recls_entry_t i)
+inline
+struct counted_recls_info_t*
+counted_info_from_info(recls_entry_t i)
 {
     RECLS_ASSERT(i != ss_nullptr_k);
 
@@ -87,12 +103,15 @@ inline struct counted_recls_info_t* counted_info_from_info(recls_entry_t i)
     return reinterpret_cast<struct counted_recls_info_t*>(i3 - offsetof(counted_recls_info_t, info));
 }
 
-inline recls_entry_t info_from_counted_info(struct counted_recls_info_t* ci)
+inline
+recls_entry_t
+info_from_counted_info(struct counted_recls_info_t* ci)
 {
     RECLS_ASSERT(ci != ss_nullptr_k);
 
     return &ci->info;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * file info functions
@@ -111,12 +130,18 @@ Entry_Allocate(size_t cb)
     }
     else
     {
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+
+        ci->rc  =   1;
+#else // ? RECLS_ATOMIC_USE_std_atomic_
+
         rc_atomic_t initial = rc_atomic_init(1);
 
         ci->rc  =   initial; // One initial reference
+#endif // RECLS_ATOMIC_USE_std_atomic_
         info    =   info_from_counted_info(ci);
 
-        RC_Increment(&s_createdInfoBlocks);
+        RC_Increment(s_createdInfoBlocks);
     }
 
     return info;
@@ -129,15 +154,15 @@ Entry_Release(recls_entry_t fileInfo)
     {
         counted_recls_info_t* pci = counted_info_from_info(fileInfo);
 
-        if (0 == RC_PreDecrement(&pci->rc))
+        if (0 == RC_PreDecrement(pci->rc))
         {
             free(pci);
 
-            RC_PreDecrement(&s_createdInfoBlocks);
+            RC_PreDecrement(s_createdInfoBlocks);
         }
         else
         {
-            RC_PreDecrement(&s_sharedInfoBlocks);
+            RC_PreDecrement(s_sharedInfoBlocks);
         }
     }
 }
@@ -157,8 +182,8 @@ RECLS_API Entry_Copy(
         recls_trace_printf_(RECLS_LITERAL("Entry_Copy(%p): %s"), fileInfo, fileInfo->path.begin);
 #endif /* 0 */
 
-        RC_Increment(&pci->rc);
-        RC_Increment(&s_sharedInfoBlocks);
+        RC_Increment(pci->rc);
+        RC_Increment(s_sharedInfoBlocks);
     }
 
     *pinfo = fileInfo;
@@ -166,18 +191,57 @@ RECLS_API Entry_Copy(
     return RECLS_RC_OK;
 }
 
-RECLS_FNDECL(void)
+void
 Entry_BlockCount(
-    rc_atomic_t* pcCreated
-,   rc_atomic_t* pcShared
+    rc_atomic_ref_t cCreated
+,   rc_atomic_ref_t cShared
 )
 {
-    RECLS_ASSERT(ss_nullptr_k != pcCreated);
-    RECLS_ASSERT(ss_nullptr_k != pcShared);
+    RECLS_ASSERT(ss_nullptr_k != &cCreated);
+    RECLS_ASSERT(ss_nullptr_k != &cShared);
 
-    *pcCreated  =   RC_ReadValue(&s_createdInfoBlocks);
-    *pcShared   =   RC_ReadValue(&s_sharedInfoBlocks);
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+
+    cCreated.store(RC_ReadValue(s_createdInfoBlocks));
+    cShared.store(RC_ReadValue(s_sharedInfoBlocks));
+#else // ? RECLS_ATOMIC_USE_std_atomic_
+
+    cCreated    =   RC_ReadValue(s_createdInfoBlocks);
+    cShared     =   RC_ReadValue(s_sharedInfoBlocks);
+#endif // RECLS_ATOMIC_USE_std_atomic_
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * internal API
+ */
+
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+
+void
+RC_Increment(
+    rc_atomic_ref_t p
+)
+{
+    ++p;
+}
+
+rc_atomic_v_t
+RC_PreDecrement(
+    rc_atomic_ref_t p
+)
+{
+    return --p;
+}
+
+rc_atomic_v_t
+RC_ReadValue(
+    rc_atomic_ref_t p
+)
+{
+    return p.load();
+}
+#endif // RECLS_ATOMIC_USE_std_atomic_
 
 
 /* /////////////////////////////////////////////////////////////////////////

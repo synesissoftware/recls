@@ -5,7 +5,7 @@
  *          recls API.
  *
  * Created: 16th August 2003
- * Updated: 2nd May 2025
+ * Updated: 5th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -30,13 +30,22 @@
 #include "impl.root.h"
 #include "incl.winstl.h"
 #include "impl.util.h"
-#include "impl.atomic.h"
+#include "impl.atomic.hpp"
 
 #include "impl.trace.h"
 
 #if defined(RECLS_MT)
 # include <winstl/synch/atomic_functions.h>
 #endif /* RECLS_MT */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+# error This file cannot be built with C++14 or later
+#endif // RECLS_ATOMIC_USE_std_atomic_
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -52,48 +61,48 @@ namespace impl
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * functions
+ * internal API
  */
 
-RECLS_FNDECL(void)
+void
 RC_Increment(
-    rc_atomic_t volatile *p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_MT)
 
-    winstl::atomic_increment(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
+    winstl::atomic_increment(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(&p)));
 #else /* ? RECLS_MT */
 
-    ++*p;
+    ++p;
 #endif /* RECLS_MT */
 }
 
-RECLS_FNDECL(rc_atomic_t)
+rc_atomic_v_t
 RC_PreDecrement(
-    rc_atomic_t volatile *p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_MT)
 
-    return winstl::atomic_predecrement(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
+    return winstl::atomic_predecrement(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(&p)));
 #else /* ? RECLS_MT */
 
-    return --*p;
+    return --p;
 #endif /* RECLS_MT */
 }
 
-RECLS_FNDECL(rc_atomic_t)
+rc_atomic_v_t
 RC_ReadValue(
-    rc_atomic_t volatile *p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_MT)
 
-    return winstl::atomic_read(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(p)));
+    return winstl::atomic_read(static_cast<winstl::atomic_int_t volatile*>(static_cast<void volatile*>(&p)));
 #else /* ? RECLS_MT */
 
-    return *p;
+    return p;
 #endif /* RECLS_MT */
 }
 

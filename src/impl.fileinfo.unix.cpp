@@ -4,7 +4,7 @@
  * Purpose: UNIX implementation for the file information blocks of recls API.
  *
  * Created: 2nd November 2003
- * Updated: 2nd May 2025
+ * Updated: 5th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -58,7 +58,16 @@
 # include <stlsoft/synch/null_mutex.hpp>
 #endif /* RECLS_MT */
 
-#include "impl.atomic.h"
+#include "impl.atomic.hpp"
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#ifdef RECLS_ATOMIC_USE_std_atomic_
+# error This file cannot be built with C++14 or later
+#endif // RECLS_ATOMIC_USE_std_atomic_
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,12 +106,12 @@ namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * helpers
+ * internal API
  */
 
-RECLS_FNDECL(void)
+void
 RC_Increment(
-    rc_atomic_t volatile* p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
@@ -112,13 +121,13 @@ RC_Increment(
 
     ::stlsoft::lock_scope<mutex_t>        lock(s_mx);
 
-    ++(*p);
+    ++p;
 #endif /* !RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 }
 
-RECLS_FNDECL(rc_atomic_t)
+rc_atomic_v_t
 RC_PreDecrement(
-    rc_atomic_t volatile* p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
@@ -128,13 +137,13 @@ RC_PreDecrement(
 
     ::stlsoft::lock_scope<mutex_t>        lock(s_mx);
 
-    return --(*p);
+    return --p;
 #endif /* !RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 }
 
-RECLS_FNDECL(rc_atomic_t)
+rc_atomic_v_t
 RC_ReadValue(
-    rc_atomic_t volatile* p
+    rc_atomic_ref_t p
 )
 {
 #if defined(RECLS_UNIX_USE_ATOMIC_OPERATIONS)
@@ -144,7 +153,7 @@ RC_ReadValue(
 
     ::stlsoft::lock_scope<mutex_t>        lock(s_mx);
 
-    return (*p);
+    return p;
 #endif /* !RECLS_UNIX_USE_ATOMIC_OPERATIONS */
 }
 

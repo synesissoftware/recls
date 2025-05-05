@@ -4,7 +4,7 @@
  * Purpose: Main (platform-independent) implementation file for the recls API.
  *
  * Created: 16th August 2003
- * Updated: 2nd May 2025
+ * Updated: 5th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -31,12 +31,12 @@
 #include "impl.constants.hpp"
 #include "impl.entryfunctions.h"
 #include "impl.string.hpp"
-#include "impl.types.hpp"
 #include "impl.util.h"
 
 #include "ReclsSearch.hpp"
 
 #include "impl.trace.h"
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -49,6 +49,7 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -60,16 +61,13 @@ using ::recls::impl::Recls_SearchFeedback_;
 using ::recls::impl::Recls_SearchProcessFeedback_;
 
 using ::recls::impl::ReclsSearch;
-using ::recls::impl::constants;
-using ::recls::impl::types;
 
-using ::recls::impl::Entry_BlockCount;
 using ::recls::impl::Entry_Copy;
 using ::recls::impl::Entry_Release;
 
 using ::recls::impl::recls_debug0_trace_printf_;
-
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -162,6 +160,7 @@ Recls_SearchClose(hrecls_t hSrch)
 
     delete si;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * search enumeration
@@ -295,6 +294,7 @@ RECLS_API Recls_CopyDetails(
 
     return Entry_Copy(fileInfo, pinfo);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

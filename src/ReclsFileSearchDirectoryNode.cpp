@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 3rd May 2025
+ * Updated: 5th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -401,6 +401,17 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::FindAndCreate");
 
+#if __cplusplus < 201103L
+
+    recls_debug0_trace_printf_(RECLS_LITERAL("%s(flags=%08x, dc=%p, searchDir='%s' (%lu), rootDirLen=%lu, patterns='%.*s')"), STLSOFT_FUNCTION_SYMBOL
+    ,   flags
+    ,   static_cast<void*>(dc)
+    ,   searchDir, static_cast<unsigned long>(types::traits_type::str_len(searchDir))
+    ,   static_cast<unsigned long>(rootDirLen)
+    ,   int(patternsLen), patterns
+    );
+#else
+
     recls_debug0_trace_printf_(RECLS_LITERAL("%s(flags=%08x, dc=%p, searchDir='%s' (%llu), rootDirLen=%llu, patterns='%.*s')"), STLSOFT_FUNCTION_SYMBOL
     ,   flags
     ,   static_cast<void*>(dc)
@@ -408,6 +419,7 @@ ReclsFileSearchDirectoryNode::FindAndCreate(
     ,   static_cast<unsigned long long>(rootDirLen)
     ,   int(patternsLen), patterns
     );
+#endif
 
 
     // pre-conditions
