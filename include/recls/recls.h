@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 4th May 2025
+ * Updated: 6th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      28
 # define RECLS_VER_RECLS_H_RECLS_REVISION   0
-# define RECLS_VER_RECLS_H_RECLS_EDIT       158
+# define RECLS_VER_RECLS_H_RECLS_EDIT       159
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -141,12 +141,12 @@
 #define RECLS_VER_1_10_0_B04                                0x010a0084
 #define RECLS_VER_1_10_0_B05                                0x010a0085
 #define RECLS_VER_1_10_0_B06                                0x010a0086
-#define RECLS_VER_1_10_0_B07                                0x010a0087
+#define RECLS_VER_1_10_0_RC_1                               0x010a00c1
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_REVISION      0
-#define RECLS_VER               RECLS_VER_1_10_0_B07
+#define RECLS_VER               RECLS_VER_1_10_0_RC_1
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -473,7 +473,7 @@ enum RECLS_FLAG
 #if 0
     ,   RECLS_F_DIR_SIZE_IS_NUM_FILES               =   0x02000000  /*!< This causes the size of the directory to be the number of files contained within it, rather than being 0. */
 #endif /* 0 */
-    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES               =   0x08000000  /*!< This causes hidden files to be ignored. Supported on Windows and, since 1.10 (beta 7), Unix. */
+    ,   RECLS_F_IGNORE_HIDDEN_ENTRIES               =   0x08000000  /*!< This causes hidden files to be ignored. Supported on Windows and, since 1.10 (release candidate 1), Unix. */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
     ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS    =   RECLS_F_IGNORE_HIDDEN_ENTRIES
     ,   RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WIN32      =   RECLS_F_IGNORE_HIDDEN_ENTRIES

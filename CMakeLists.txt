@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  30th April 2025
+# Updated:  5th May 2025
 #
 # ######################################################################## #
 
@@ -260,7 +260,7 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.26)
+	set(xTests_REQUIRED_VERSION_ 0.26.3)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 

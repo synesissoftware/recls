@@ -1,6 +1,33 @@
 # recls - History
 
 
+6th May 2025 - 1.10.1 release candidate 1
+-----------------------------------------
+
+ * Added `RECLS_F_NO_BREAK_INFINITE_LOOPS` search flag and (initial) supporting logic, which cures the macOS infinite-loop problem;
+ * Added `RECLS_REMDIR_F_REMOVE_SOCKETS` flag and supporting logic in `Recls_RemoveDirectory()`;
+ * Changed search flag `RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS` to `RECLS_F_IGNORE_HIDDEN_ENTRIES` and implemented hidden entry suppression on Unix (as it already was for Windows);
+ * Fixed logic to ensure `RECLS_F_STOP_ON_ACCESS_FAILURE` works correctly for UNIX and consistently with Windows behaviour;
+ * Ensuring `RECLS_RC_ACCESS_DENIED` is propagated fully and enhanced associated diagnostics warnings;
+
+ * Added **UNIXem** support, which allows UNIX-like functionality to be evaluated on Windows, using the **UNIXem** library, activated by '--use-unixem' for **prepare_cmake.sh**;
+ * Added '--msvc-mt' flag to **prepare_cmake.sh**, which causes CMake build to use statically linked runtime library;
+ * Added '--no-b64' flag to **prepare_cmake.sh**, which suppresses discovery of **b64** package;
+ * Added '--no-pantheios' flag to **prepare_cmake.sh**, which suppresses discovery of **Pantheios** package;
+ * Added '--no-shwild' flag to **prepare_cmake.sh**, which suppresses discovery of **shwild** package;
+ * CMake helper script files now all specify the make command default to "mingw32-make.exe" when detected use of MinGW;
+
+ * Compatibility improvements, for compilers (Clang, GCC, VC++), language versions (C++98, C++11, C++14, C++17, C++20) and operating systems (Linux, macOS, Windows);
+ * Added insertion operator for `recls_rc_t`;
+ * Removed dependency on **PThreads** / **Windows threads** in favour of **std::atomic** for C++14 or later;
+ * Simplified testing/assertion of STLSoft projects' versions;
+
+ * Added **example_c_9**, which demonstrates recursive search for all sockets under a given directory including all appropriate failure handling;
+ * Added **example_c_10**, which demonstrates recursive search for all devices under a given directory including all appropriate failure handling;
+ * Added **example_cpp_4**, which demonstrates use of `Recls_RemoveDirectory()`, optionally including files and sockets;
+ * Added scratch test **test.scratch.stop_on_access_failure**;
+
+
 30th April 2025 - 1.10.1 beta6
 ------------------------------
 
