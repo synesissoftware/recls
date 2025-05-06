@@ -70,6 +70,7 @@
 #include <stlsoft/shims/access/string.hpp>
 #include <platformstl/filesystem/filesystem_traits.hpp>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -80,6 +81,7 @@ namespace recls
 namespace cpp
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -606,6 +608,7 @@ stat(
     return entry::stat_impl::create(path, flags);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * comparison
  */
@@ -669,6 +672,7 @@ operator !=(
 {
     return lhs.compare(rhs) != 0;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -802,8 +806,10 @@ c_str_len_w(
 # endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 #endif /* !RECLS_PURE_API */
 
-////////////////////////////////////////////////////////////////////////////
-// IOStream compatibility
+
+/* /////////////////////////////////////////////////////////////////////////
+ * IOStream compatibility
+ */
 
 template <typename S>
 inline
@@ -817,6 +823,7 @@ operator <<(
 
     return s;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -845,7 +852,6 @@ operator <<(
     return s;
 }
 # endif /* compiler */
-
 
 #ifdef RECLS_DOCUMENTATION_SKIP_SECTION
 
@@ -882,6 +888,7 @@ namespace stlsoft
 }
 #endif /* !RECLS_NO_NAMESPACE */
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_ENTRY */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -5,7 +5,7 @@
  *          API. (Was borrowed from Pantheios.)
  *
  * Created: 21st June 2005
- * Updated: 10th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -42,6 +42,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -52,6 +53,7 @@ namespace recls
 namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler / feature discrimination
@@ -69,22 +71,28 @@ namespace impl
             (   defined(STLSOFT_COMPILER_IS_COMO) && \
                 defined(_MSC_VER)))) || \
     defined(STLSOFT_COMPILER_IS_MSVC)
+
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-#  define recls_vsnprintf_a_(d, n, f, a)    _vsnprintf_s((d), (n), _TRUNCATE, (f), (a))
-#  define recls_vsnprintf_w_(d, n, f, a)    _vsnwprintf_s((d), (n), _TRUNCATE, (f), (a))
+
+#  define recls_vsnprintf_a_(d, n, f, a)                    _vsnprintf_s((d), (n), _TRUNCATE, (f), (a))
+#  define recls_vsnprintf_w_(d, n, f, a)                    _vsnwprintf_s((d), (n), _TRUNCATE, (f), (a))
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-#  define recls_vsnprintf_a_(d, n, f, a)    _vsnprintf((d), (n), (f), (a))
-#  define recls_vsnprintf_w_(d, n, f, a)    _vsnwprintf((d), (n), (f), (a))
+
+#  define recls_vsnprintf_a_(d, n, f, a)                    _vsnprintf((d), (n), (f), (a))
+#  define recls_vsnprintf_w_(d, n, f, a)                    _vsnwprintf((d), (n), (f), (a))
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
 #else /* ? compiler */
-#  define recls_vsnprintf_a_(d, n, f, a)    vsnprintf((d), (n), (f), (a))
-#  define recls_vsnprintf_w_(d, n, f, a)    vsnwprintf((d), (n), (f), (a))
+
+#  define recls_vsnprintf_a_(d, n, f, a)                    vsnprintf((d), (n), (f), (a))
+#  define recls_vsnprintf_w_(d, n, f, a)                    vsnwprintf((d), (n), (f), (a))
 #endif /* compiler */
 
 #ifdef RECLS_CHAR_TYPE_IS_WCHAR
-# define recls_vsnprintf_(d, n, f, a)       recls_vsnprintf_w_(d, n, f, a)
+
+# define recls_vsnprintf_(d, n, f, a)                       recls_vsnprintf_w_(d, n, f, a)
 #else /* ? RECLS_CHAR_TYPE_IS_WCHAR */
-# define recls_vsnprintf_(d, n, f, a)       recls_vsnprintf_a_(d, n, f, a)
+
+# define recls_vsnprintf_(d, n, f, a)                       recls_vsnprintf_a_(d, n, f, a)
 #endif /* RECLS_CHAR_TYPE_IS_WCHAR */
 
 

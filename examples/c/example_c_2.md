@@ -23,7 +23,7 @@ Demonstrates recursive search with feedback for all files matching a multi-part 
  *  - display of progress of each directory traversed, squeezed into the console width via Recls_SqueezePath()
  *
  * Created: 29th May 2006
- * Updated: 28th April 2025
+ * Updated: 1st May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -329,8 +329,8 @@ component/test.component.util.cpp.is_socket/entry.cpp
 component/test.component.util.cpp.create_directory/entry.cpp
 component/test.component.util.cpp.remove_directory/entry.cpp
 scratch/test.scratch.with_pantheios/test.scratch.with_pantheios.cpp
-scratch/test.scratch.cpp_api/test.scratch.cpp_api.cpp
-scratch/test.scratch.search.1/test.scratch.search.1.c
+scratch/test.scratch.cpp_api/main.cpp
+scratch/test.scratch.search.1/main.c
 scratch/test_c_1/test_c_1.c
 scratch/test.scratch.links/test.scratch.links.cpp
 ```

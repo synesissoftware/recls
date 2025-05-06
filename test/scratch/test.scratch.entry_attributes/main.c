@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test_c_1.c
+ * File:    test/scratch/test.scratch.entry_attributes/main.c
  *
  * Purpose: Demonstrates use of recls C API functions for accessing entry
  *          attributes, searching for files under the home directory.
  *
  * Created: 28th February 2007
- * Updated: 20th February 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -173,14 +173,14 @@ static void process_search(hrecls_t hSrch)
         {
             printf("\t%.*s\n", (int)(info->path.end - info->path.begin), info->path.begin);
 
-            { size_t i; for (i = 0; i < STLSOFT_NUM_ELEMENTS(fns); ++i)
+            { size_t i; for (i = 0; i < RECLS_NUM_ELEMENTS(fns); ++i)
             {
-                fns[i](info, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+                fns[i](info, &buff[0], RECLS_NUM_ELEMENTS(buff));
             }}
 
             { size_t i; for (i = 0; i < Recls_GetDirectoryPartProperty(info, -1, NULL, 0); ++i)
             {
-                Recls_GetDirectoryPartProperty(info, (int)i, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+                Recls_GetDirectoryPartProperty(info, (int)i, &buff[0], RECLS_NUM_ELEMENTS(buff));
             }}
 
             Recls_IsEntryReadOnly(info);

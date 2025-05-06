@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.component.util.cpp.create_directory/test.component.util.cpp.create_directory.cpp
+ * File:    test/unit/test.component.util.cpp.create_directory/entry.cpp
  *
  * Purpose: Test creation of directories (via recls C++ API function
  *          `recls::create_directory()`).
  *
  * Created: 30th January 2010
- * Updated: 28th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -17,11 +17,6 @@
 /* /////////////////////////////////////
  * test component header file include(s)
  */
-
-#if defined(__FUNCTION__) && \
-    defined(__COUNTER__)
-# include <recls/recls.h>
-#endif
 
 #include <xtests/test/util/compiler_warnings_suppression.first_include.h>
 
@@ -45,7 +40,8 @@
 /* STLSoft header files */
 #include <platformstl/filesystem/directory_functions.hpp>
 #include <platformstl/filesystem/path.hpp>
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#if 0
+#elif defined(RECLS_PLATFORM_IS_WINDOWS)
 # include <winstl/conversion/char_conversions.hpp>
 # define CONVERTER_m2t(s)   winstl::m2t(s)
 #else

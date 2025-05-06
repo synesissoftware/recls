@@ -4,7 +4,7 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 30th April 2025
+ * Updated: 5th May 2025
  *
  * Home:    http://recls.org/
  *
@@ -47,6 +47,7 @@
 
 #include "impl.api.search.h"
 #include "impl.assert.h"
+#include "impl.root.h"
 #include "impl.constants.hpp"
 #include "impl.string.hpp"
 #include "impl.types.hpp"
@@ -55,6 +56,9 @@
 #include "ReclsSearch.hpp"
 #include "ReclsFileSearch.hpp"
 
+#if __cplusplus < 201103L
+# include <stlsoft/conversion/union_cast.hpp>
+#endif
 #include <stlsoft/string/c_string/strnchr.h>
 #include <stlsoft/string/tokeniser_functions.hpp>
 
@@ -276,7 +280,11 @@ Recls_SearchFeedback_x_(
     ,   stlsoft::c_str_ptr(searchRoot)
     ,   stlsoft::c_str_ptr(patterns)
     ,   flags
+#if __cplusplus < 201103L
+    ,   static_cast<void const*>(stlsoft::union_cast<void*>(pfn))
+#else
     ,   STLSOFT_C_CAST(void*, pfn)
+#endif
     ,   param
     );
 
@@ -296,8 +304,7 @@ Recls_SearchFeedback_x_(
     if (0 != searchRootLen)
     {
 #if 0
-#elif defined(RECLS_PLATFORM_IS_UNIX) && \
-      defined(_WIN32)
+#elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         recls_char_t const* colon0  =   types::traits_type::str_chr(searchRoot, RECLS_LITERAL(':'));
         recls_char_t const* colon1  =   (ss_nullptr_k != colon0) ? types::traits_type::str_chr(colon0 + 1, RECLS_LITERAL(':')) : ss_nullptr_k;
@@ -547,14 +554,14 @@ Recls_SearchFeedback_x_(
     if (!has_checked(checks, CheckRootSlashes))
     {
 #if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
+
+        if (ss_nullptr_k != stlsoft::c_string::strnchr(searchRoot, searchRootLen, '\\'))
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
         if (ss_nullptr_k != stlsoft::c_string::strnchr(searchRoot, searchRootLen, '/'))
-#elif defined(RECLS_PLATFORM_IS_UNIX) && \
-      defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
-
-        if (ss_nullptr_k != stlsoft::c_string::strnchr(searchRoot, searchRootLen, '\\'))
 #else
+
         if (false)
 #endif
         {
@@ -588,7 +595,7 @@ Recls_SearchFeedback_x_(
 
     if (0 == (flags & s_supportedTypes))
     {
-        recls_warning_trace_printf_("requested flags 0x%08x does not contain a supported set of types", flags);
+        recls_warning_trace_printf_(RECLS_LITERAL("requested flags 0x%08x does not contain a supported set of types"), flags);
 
         rc = RECLS_RC_INVALID_SEARCH_TYPE;
     }
@@ -661,9 +668,17 @@ Recls_SearchProcessFeedback_(
     ,   stlsoft::c_str_ptr(searchRoot)
     ,   stlsoft::c_str_ptr(patterns)
     ,   flags
+#if __cplusplus < 201103L
+    ,   static_cast<void const*>(stlsoft::union_cast<void*>(pfn))
+#else
     ,   STLSOFT_C_CAST(void*, pfn)
+#endif
     ,   param
+#if __cplusplus < 201103L
+    ,   static_cast<void const*>(stlsoft::union_cast<void*>(pfnProgress))
+#else
     ,   STLSOFT_C_CAST(void*, pfnProgress)
+#endif
     ,   paramProgress
     );
 

@@ -5,18 +5,18 @@
 # Purpose:  CMake lists file for recls core library
 #
 # Created:  ...
-# Updated:  18th October 2024
+# Updated:  2nd May 2025
 #
 # ######################################################################## #
 
 
-if(UNIX)
+if(_BUILD_AS_UNIX)
 
 	add_definitions(-DUNIX)
 	add_definitions(-Dunix)
-endif(UNIX)
+endif(_BUILD_AS_UNIX)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 
@@ -31,19 +31,28 @@ if(WIN32)
 	endif()
 
 	add_definitions(-DRECLS_API_FTP)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
-if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+if(MSVC)
+	if(MSVC_VERSION LESS 1920)
 
-	add_compile_options("/Zc:__cplusplus")
+		add_compile_options("/wd4822")
+	endif()
 
-	add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
-endif()
+	if(MSVC_VERSION GREATER_EQUAL 1914)
+
+		add_compile_options("/Zc:__cplusplus")
+
+		add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
+	endif()
+endif(MSVC)
 
 
 set(COMMON_IMPLEMENTATION_FILES
 
 	ReclsFileSearch.cpp
+	ReclsFileSearchDirectoryControlAlwaysAllow.cpp
+	ReclsFileSearchDirectoryControlPreventInfiniteLoops.cpp
 	ReclsFileSearchDirectoryNode.cpp
 	ReclsSearch.cpp
 
@@ -89,16 +98,31 @@ set(WINDOWS_IMPLEMENTATION_FILES
 )
 
 
-if(UNIX)
+if(_BUILD_AS_UNIX)
 
 	set(COMMON_IMPLEMENTATION_FILES "${COMMON_IMPLEMENTATION_FILES};${UNIX_IMPLEMENTATION_FILES};")
-endif(UNIX)
+endif(_BUILD_AS_UNIX)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	set(COMMON_IMPLEMENTATION_FILES "${COMMON_IMPLEMENTATION_FILES};${WINDOWS_IMPLEMENTATION_FILES};")
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
+
+if(X_CMAKE_CXX_FULLSTANDARD GREATER_EQUAL 2014)
+
+	if(_BUILD_AS_UNIX)
+
+		set(COMMON_IMPLEMENTATION_FILES "${COMMON_IMPLEMENTATION_FILES};${UNIX_IMPLEMENTATION_FILES};")
+		list(FILTER COMMON_IMPLEMENTATION_FILES EXCLUDE REGEX "impl.fileinfo.unix")
+	endif(_BUILD_AS_UNIX)
+
+	if(_BUILD_AS_WIN32)
+
+		set(COMMON_IMPLEMENTATION_FILES "${COMMON_IMPLEMENTATION_FILES};${WINDOWS_IMPLEMENTATION_FILES};")
+		list(FILTER COMMON_IMPLEMENTATION_FILES EXCLUDE REGEX "impl.fileinfo.win")
+	endif(_BUILD_AS_WIN32)
+endif()
 
 
 add_library(core
@@ -107,7 +131,6 @@ add_library(core
 
 set_target_properties(core PROPERTIES
 	OUTPUT_NAME "recls"
-	# PUBLIC_HEADER "${CORE_PUBLIC_HEADERS}"
 )
 
 target_include_directories(core
@@ -119,6 +142,7 @@ target_include_directories(core
 target_link_libraries(core
 	PRIVATE
 		$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
+		$<$<BOOL:${UNIXem_FOUND}>:UNIXem::UNIXem>
 )
 
 target_compile_options(core
@@ -127,7 +151,7 @@ target_compile_options(core
 			-Werror -Wall -Wextra -pedantic
 
 			-Wno-deprecated-copy
-			-Wno-unused-parameter
+			$<$<BOOL:CMAKE_CXX_STANDARD GREATER_EQUAL 2000>:-Wno-deprecated-volatile>
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:
 			/WX /W4

@@ -1,3 +1,13 @@
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    test.scratch.ignore_inaccessible_nodes.cpp
+ *
+ * Purpose: Scratch-test exercising the skipping of inaccessible nodes.
+ *
+ * Created: 28th April 2025
+ * Updated: 4th May 2025
+ *
+ * ////////////////////////////////////////////////////////////////////// */
+
 
 /* recls header files */
 #include <recls/recls.h>
@@ -55,8 +65,6 @@ void RECLS_CALLCONV_DEFAULT recls_log_to_pantheios(
 
     ++*num_found;
 
-    // fprintf(stderr, "%s:%d:%s(hEntry=%s, param=%p) => num_found=%llu\n", __STLSOFT_FILE_LINE_FUNCTION__, hEntry->path.begin, param, (unsigned long long)*num_found);
-
     fprintf(stdout, "\t%s\n", hEntry->path.begin);
 
     return 1;
@@ -70,7 +78,7 @@ int main_(
 {
     char const*                 search_dir      =   argc > 1 ? argv[1] : ".";
     char const*                 patterns        =   "*|.*";
-    recls_uint32_t const        flags           =   RECLS_F_RECURSIVE | RECLS_F_STOP_ON_ACCESS_FAILURE | RECLS_F_DEVICES | RECLS_F_FILES | RECLS_F_SOCKETS;
+    recls_uint32_t const        flags           =   RECLS_F_RECURSIVE | RECLS_F_DEVICES | RECLS_F_FILES | RECLS_F_SOCKETS;
     recls_uint64_t              num_found       =   0;
     recls_rc_t                  rc              =   Recls_SearchProcess(search_dir, patterns, flags, process_fn, &num_found);
 
@@ -91,6 +99,8 @@ int main_(
 int main(int argc, char* argv[])
 {
     stlsoft_C_string_slice_m_t  program_name    =   platformstl_C_get_executable_name_from_path(argv[0]);
+#ifdef HAS_Pantheios
+
     int const                   ri              =   pantheios_init();
 
     if (0 != ri)
@@ -101,8 +111,6 @@ int main(int argc, char* argv[])
     }
     else
     {
-#ifdef HAS_Pantheios
-
         recls_log_severities_t severities = { .severities = {
             PANTHEIOS_SEV_ALERT,
             PANTHEIOS_SEV_ERROR,
@@ -113,6 +121,8 @@ int main(int argc, char* argv[])
             -1,
             -1,
         }};
+#else  /* ? HAS_Pantheios */
+    {
 #endif /* HAS_Pantheios */
 
 #if defined(_MSC_VER) && \
@@ -136,7 +146,10 @@ int main(int argc, char* argv[])
         _CrtMemDumpAllObjectsSince(&memState);
 #endif /* _MSC_VER) && _DEBUG */
 
+#ifdef HAS_Pantheios
+
         pantheios_uninit();
+#endif /* HAS_Pantheios */
 
         return rm;
     }

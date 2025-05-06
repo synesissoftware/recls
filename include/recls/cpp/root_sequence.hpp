@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MINOR    1
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 7
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     32
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 8
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     33
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/root_sequence.hpp
@@ -63,6 +63,7 @@
  *  class, and supporting classes, representing the
  *  \ref group__recls__cpp "recls C++ mapping".
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +77,7 @@
 
 #include <functional>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -87,6 +89,7 @@ namespace cpp
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
  */
@@ -97,11 +100,11 @@ namespace root_sequence_impl
 {
 
     struct make_root_string
-#if __cplusplus < 201402L
+#if __cplusplus < 201103L
         : std::unary_function<recls_root_t, string_t>
 #endif
     {
-#if __cplusplus >= 201402L
+#if __cplusplus >= 201103L
         typedef recls_root_t                                argument_type;
         typedef string_t                                    result_type;
 #endif
@@ -113,8 +116,8 @@ namespace root_sequence_impl
     };
 
 } /* namespace root_sequence_impl */
-
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -223,6 +226,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -245,6 +249,7 @@ is_empty(
 {
     return s.empty();
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -339,8 +344,8 @@ root_sequence::operator [](
 
     return m_roots[index].name;
 }
-
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

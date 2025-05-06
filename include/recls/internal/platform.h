@@ -4,7 +4,7 @@
  * Purpose: Platform discrimination for recls API.
  *
  * Created: 15th August 2003
- * Updated: 17th April 2025
+ * Updated: 4th May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -26,9 +26,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      3
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   1
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       30
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      4
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   0
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       33
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -66,17 +66,20 @@
 
 
 #ifndef RECLS_OVERRIDE_PLATFORM
-# if defined(unix) || \
-     defined(UNIX) || \
-     defined(__unix) || \
-     defined(__unix__) || \
-     (   defined(__xlC__) && \
-         defined(_POWER) && \
-         defined(_AIX))
+# if 0 ||\
+     defined(unix) ||\
+     defined(UNIX) ||\
+     defined(__unix) ||\
+     defined(__unix__) ||\
+     (   defined(__xlC__) &&\
+         defined(_POWER) &&\
+         defined(_AIX)) ||\
+     0
    /* Platform is UNIX */
 #  define RECLS_PLATFORM_IS_UNIX
    /* Now determine whether this is being emulated on Windows */
-#  if defined(_WIN64) && \
+#  if 0
+#  elif defined(_WIN64) && \
       ( defined(EMULATE_UNIX_ON_WIN64) || \
         defined(EMULATE_UNIX_ON_WINDOWS))
 #   define RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WIN64
@@ -86,6 +89,9 @@
         defined(EMULATE_UNIX_ON_WINDOWS))
 #   define RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WIN32
 #   define RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
+#  elif !defined(_WIN32)
+#   define RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS
+#  else
 #  endif /* Windows */
 # elif defined(WIN64)
    /* Platform is Win64 */
@@ -130,33 +136,41 @@
 # endif /* _M_?? */
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
 #if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+
+# include <unistd.h>
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
 # if !defined(RECLS_PURE_API)
 #  include <windows.h>
 # endif /* !RECLS_PURE_API */
-#elif defined(RECLS_PLATFORM_IS_UNIX)
-# include <unistd.h>
 #elif defined(RECLS_OVERRIDE_PLATFORM)
-  /* Assume that the appropriate inclusions are made */
+
+/* Assume that the appropriate inclusions are made */
 #else
+
 # error Platform not (yet) recognised
 #endif /* platform */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * FTP support
  */
 
-#if defined(RECLS_API_FTP)
+#if 0
+#elif defined(RECLS_API_FTP)
 # if !defined(WIN32) && \
      !defined(WIN64)
 #  undef RECLS_API_FTP
 # endif
 #endif /* RECLS_API_FTP */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -167,9 +181,11 @@ namespace recls
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants and definitions
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

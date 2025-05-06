@@ -4,10 +4,12 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
-MakeCmd=${SIS_CMAKE_COMMAND:-make}
+[[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
+MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
 
 Configuration=Release
 ExamplesDisabled=0
+MSVC_MT=0
 MinGW=0
 NO_b64=0
 NO_Pantheios=0
@@ -15,6 +17,7 @@ NO_shwild=0
 RunMake=0
 STLSoftDirGiven=
 TestingDisabled=0
+USE_UNIXem=0
 VerboseMakefile=0
 
 
@@ -24,19 +27,20 @@ VerboseMakefile=0
 while [[ $# -gt 0 ]]; do
 
   case $1 in
-    -v|--cmake-verbose-makefile)
+    --cmake-verbose-makefile|-v)
 
       VerboseMakefile=1
       ;;
-    -d|--debug-configuration)
+    --debug-configuration|-d)
 
       Configuration=Debug
 
       ;;
-    -E|--disable-examples)
+    --disable-examples|-E)
+
       ExamplesDisabled=1
       ;;
-    -T|--disable-testing)
+    --disable-testing|-T)
 
       TestingDisabled=1
       ;;
@@ -44,26 +48,35 @@ while [[ $# -gt 0 ]]; do
 
       MinGW=1
       ;;
+    --msvc-mt)
+
+      MSVC_MT=1
+      ;;
     --no-b64)
 
       NO_b64=1
       ;;
-    --no-pantheios)
+    --no-pantheios|--no-pan)
 
       NO_Pantheios=1
+      NO_b64=1
       ;;
     --no-shwild)
 
       NO_shwild=1
       ;;
-    -m|--run-make)
+    --run-make|-m)
 
       RunMake=1
       ;;
-    -s|--stlsoft-root-dir)
+    --stlsoft-root-dir|-s)
 
       shift
       STLSoftDirGiven=$1
+      ;;
+    --use-unixem)
+
+      USE_UNIXem=1
       ;;
     --help)
 
@@ -98,16 +111,23 @@ Flags/options:
         disables building of tests (by setting BUILD_TESTING=OFF)
 
     --mingw
-        uses explicitly the "MinGW Makefiles" generator
+        uses explicitly the "MinGW Makefiles" generator, and defaults the
+        make-command to "mingw32-make.exe"
+
+    --msvc-mt
+        when using Visual C++ (MSVC), the static runtime library will be
+        selected; the default is the dynamic runtime library
 
     --no-b64
-        prevents recognising b64 library
+        suppresses discovery of b64 package
 
+    --no-pan
     --no-pantheios
-        prevents recognising Pantheios library
+        suppresses discovery of Pantheios package (and of the b64 package
+        also)
 
     --no-shwild
-        prevents recognising shwild library
+        suppresses discovery of shwild package
 
     -m
     --run-make
@@ -118,6 +138,12 @@ Flags/options:
         specifies the STLSoft root-directory, which will be passed to CMake
         as the variable STLSOFT, and which will override the environment
         variable STLSOFT (if present)
+
+    --use-unixem
+        when building on Windows, use the UNIXem library and define the
+        preprocessor symbol _STLSOFT_FORCE_ANY_COMPILER so as to emulate and
+        exercise UNIXSTL, not WinSTL (or COMSTL, etc.). Has no effect when
+        not executing on Windows
 
 
     standard flags:
@@ -151,11 +177,13 @@ cd $CMakeDir
 echo "Executing CMake (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
 if [ $NO_b64 -eq 0 ]; then CMakeNoB64="OFF" ; else CMakeNoB64="ON" ; fi
 if [ $NO_Pantheios -eq 0 ]; then CMakeNoPantheios="OFF" ; else CMakeNoPantheios="ON" ; fi
 if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
+if [ $USE_UNIXem -ne 0 ]; then CMakeUSE_UNIXem="ON" ; else CMakeUSE_UNIXem="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
 if [ $MinGW -ne 0 ]; then
@@ -168,6 +196,7 @@ if [ $MinGW -ne 0 ]; then
     -DCMAKE_NO_B64:BOOL=$CMakeNoB64 \
     -DCMAKE_NO_PANTHEIOS:BOOL=$CMakeNoPantheios \
     -DCMAKE_NO_SHWILD:BOOL=$CMakeNoShwild \
+    -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -G "MinGW Makefiles" \
     -S $Dir \
     -B $CMakeDir \
@@ -183,6 +212,8 @@ else
     -DCMAKE_NO_PANTHEIOS:BOOL=$CMakeNoPantheios \
     -DCMAKE_NO_SHWILD:BOOL=$CMakeNoShwild \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
+    -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
+    -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -S $Dir \
     -B $CMakeDir \
     || (cd ->/dev/null ; exit 1)

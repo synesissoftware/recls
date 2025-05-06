@@ -5,14 +5,14 @@
  *
  *  - search in current or named directory
  *  - search matching all names - implicitly, by specifying NULL for the patterns parameter
- *  - search non-recursively for directories, files, and sockets
+ *  - search non-recursively for non-hidden directories, files, and sockets
  *  - search by Recls_Search()
  *  - display of entry-name for each matched entry, squeezed into maximum 64-characters via Recls_SqueezePath()
  *  - display of file-size for each matched file; display of directory size (sum of all file-sizes in all subdirectories, via Recls_CalcDirectoryEntrySize()) for matched directory
  *  - detecting failure and reporting of failure reason
  *
  * Created: 29th May 2006
- * Updated: 22nd April 2025
+ * Updated: 3rd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
     hrecls_t        hSrch;
     char const*     search_dir  =   argc > 1 ? argv[1] : ".";
     char const*     patterns    =   "*|.*";
-    recls_uint32_t  flags       =   RECLS_F_DIRECTORIES | RECLS_F_FILES | RECLS_F_SOCKETS;
+    recls_uint32_t  flags       =   RECLS_F_IGNORE_HIDDEN_ENTRIES | RECLS_F_DIRECTORIES | RECLS_F_FILES | RECLS_F_SOCKETS;
     recls_rc_t      rc          =   Recls_Search(search_dir, patterns, flags, &hSrch);
 
     if (RECLS_RC_NO_MORE_DATA == rc)

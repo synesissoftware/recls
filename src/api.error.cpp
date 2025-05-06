@@ -4,7 +4,7 @@
  * Purpose: Main (platform-independent) implementation file for recls API.
  *
  * Created: 16th August 2003
- * Updated: 30th April 2025
+ * Updated: 1st May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -130,6 +130,7 @@ lookup_error_string_(
     RC_STR_DECL(RECLS_RC_ENTRY_IS_FILE,             EFAIL,          "given path was a file when one was not expected");
     RC_STR_DECL(RECLS_RC_ENTRY_IS_SOCKET,           EFAIL,          "given path was a socket when one was not expected");
     RC_STR_DECL(RECLS_RC_ENTRY_IS_DEVICE,           EFAIL,          "given path was a device when one was not expected");
+    RC_STR_DECL(RECLS_RC_DIRECTORY_SKIPPED,         EFAIL,          "a directory was skipped from processing");
 
     static const StringEntry* entries[] =
     {
@@ -165,6 +166,7 @@ lookup_error_string_(
         RC_STR_ENTRY(RECLS_RC_ENTRY_IS_FILE),
         RC_STR_ENTRY(RECLS_RC_ENTRY_IS_SOCKET),
         RC_STR_ENTRY(RECLS_RC_ENTRY_IS_DEVICE),
+        RC_STR_ENTRY(RECLS_RC_DIRECTORY_SKIPPED),
     };
     int                         e_;     // Null object pattern
     size_t                      len_;   // Null object pattern

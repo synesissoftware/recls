@@ -4,7 +4,7 @@
  * Purpose: recls API extended functions.
  *
  * Created: 16th August 2003
- * Updated: 21st April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -199,7 +199,7 @@ recls_rc_t Recls_Stat_X_(
                 }
             }
 
-#ifndef _WIN32
+#ifdef RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS
             if (types::traits_type::is_device(&stat_data))
             {
                 if (0 == (flags & RECLS_F_DEVICES))
@@ -209,7 +209,7 @@ recls_rc_t Recls_Stat_X_(
             }
 #endif
 
-#ifndef _WIN32
+#ifdef RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS
             if (types::traits_type::is_socket(&stat_data))
             {
                 if (0 == (flags & RECLS_F_SOCKETS))

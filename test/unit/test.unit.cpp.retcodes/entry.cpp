@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.cpp.retcodes.cpp
+ * File:    test/unit/test.unit.cpp.retcodes/entry.cpp
  *
  * Purpose: Unit-test of recls status codes via C++ API.
  *
  * Created: 13th December 2008
- * Updated: 30th April 2025
+ * Updated: 2nd May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -126,6 +126,7 @@ static recls_rc_t const s_FAILURE_CODES[] =
     ,   RECLS_RC_ENTRY_IS_FILE
     ,   RECLS_RC_ENTRY_IS_SOCKET
     ,   RECLS_RC_ENTRY_IS_DEVICE
+    ,   RECLS_RC_DIRECTORY_SKIPPED
 };
 
 
@@ -144,7 +145,7 @@ static void test_1_1(void)
 
 static void test_1_2(void)
 {
-    { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_FAILURE_CODES); ++i)
+    { size_t i; for (i = 0; i != RECLS_NUM_ELEMENTS(s_FAILURE_CODES); ++i)
     {
         recls_rc_t const rc = s_FAILURE_CODES[i];
 

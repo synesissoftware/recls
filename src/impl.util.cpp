@@ -4,7 +4,7 @@
  * Purpose: Platform-independent utility functions for recls API.
  *
  * Created: 17th August 2003
- * Updated: 30th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -63,6 +63,7 @@
 
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
  */
@@ -72,6 +73,7 @@
 #  pragma warning(disable : 4127)
 # endif /* _MSC_VER < 1300 */
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -84,25 +86,32 @@ namespace impl
 {
 #endif /* !RECLS_NO_NAMESPACE */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(RECLS_CHAR_TYPE_IS_CHAR)
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+
 #  define recls_strncpy__(s1, s2, n)    strncpy_s(s1, _TRUNCATE, s2, n)
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
 #  define recls_strncpy__                                   strncpy
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
 # define recls_strlen__                                     strlen
 #elif defined(RECLS_CHAR_TYPE_IS_WCHAR)
+
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
 #  define recls_strncpy__(s1, s2, n)    wcsncpy_s(s1, _TRUNCATE, s2, n)
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
 #  define recls_strncpy__                                   wcsncpy
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
 # define recls_strlen__                                     wcslen
 #else /* ? RECLS_CHAR_TYPE_IS_???? */
+
 # error Unrecognised char type
 #endif /* RECLS_CHAR_TYPE_IS_???? */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -117,6 +126,7 @@ struct cmp_str_len
         return stlsoft::c_str_len(s1) < stlsoft::c_str_len(s2);
     }
 };
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -176,12 +186,14 @@ RECLS_LINKAGE_C size_t recls_align_up_size_(
 
 #if defined(RECLS_COMPILER_IS_DMC) || \
     defined(RECLS_COMPILER_IS_WATCOM)
+
 RECLS_FNDECL(size_t)
 recls_get_string_property_(
     struct recls_strptrs_t const*       ptrs
 ,   recls_char_t *                      buffer
 ,   size_t                              cchBuffer
 #else /* ? compiler */
+
 RECLS_FNDECL(size_t)
 recls_get_string_property_(
     struct recls_strptrs_t const* const ptrs
@@ -202,6 +214,7 @@ recls_get_string_property_(
     return cch;
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 RECLS_LINKAGE_C recls_bool_t recls_file_exists_(
@@ -210,6 +223,7 @@ RECLS_LINKAGE_C recls_bool_t recls_file_exists_(
 {
     return types::traits_type::file_exists(f);
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -293,8 +307,10 @@ RECLS_API recls_is_valid_pattern_(
 
         // "." can only be specified as a pattern in non-recursive searches
 # ifdef RECLS_USE_STRING_VIEW_FOR_PATTERN_SEARCH_
+
         typedef ::stlsoft::basic_string_view<recls_char_t>  string_t;
 # else /* ? RECLS_USE_STRING_VIEW_FOR_PATTERN_SEARCH_ */
+
         typedef RECLS_STRING_TEMPLATE_1(recls_char_t)       string_t;
 # endif /* RECLS_USE_STRING_VIEW_FOR_PATTERN_SEARCH_ */
 
@@ -305,6 +321,7 @@ RECLS_API recls_is_valid_pattern_(
     (   defined(RECLS_COMPILER_IS_MSVC) && \
         _MSC_VER < 1300 && \
         _STLSOFT_VER < 0x00010807)
+
         typedef ::stlsoft::string_tokeniser<
             string_t
         ,   char
@@ -312,6 +329,7 @@ RECLS_API recls_is_valid_pattern_(
 
         tokeniser_t     tokens(patterns, *Recls_GetPathSeparator());
 # else /* ? compiler */
+
         typedef ::stlsoft::string_tokeniser<
             string_t
         ,   string_t
@@ -378,6 +396,7 @@ recls_is_home_start_(
 
     return false;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
