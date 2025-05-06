@@ -108,12 +108,14 @@ include/pantheios/internal/dos2unix.has.been.performed
 # files (by pattern)
 
 *~
+*.???_obj
 *.a
 *.app
 *.aps
 *.b64
 *.bak
 *.chm
+*.d
 *.dll
 *.dsp
 *.dylib
@@ -121,8 +123,13 @@ include/pantheios/internal/dos2unix.has.been.performed
 *.gch
 *.idb
 *.ilk
+*.iobj
 *.ipch
+*.ipdb
+*.la
+*.lai
 *.lib
+*.lo
 *.log
 *.ncb
 *.o
@@ -133,10 +140,12 @@ include/pantheios/internal/dos2unix.has.been.performed
 *.out
 *.pch
 *.pdb
+*.rar
 *.res
 *.sbr
 *.scc
 *.sdf
+*.slo
 *.so
 *.suo
 *.swp
