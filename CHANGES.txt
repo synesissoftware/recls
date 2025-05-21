@@ -3,7 +3,7 @@ recls - Changes
 ---------------
 
 ; Created:  28th May 2006
-; Updated:  6th May 2025
+; Updated:  21st May 2025
 
 
 ============================================================================
@@ -18,7 +18,7 @@ recls - Changes
     *******************************************************************
 
 
-recls 1.10.1 (release candidate 1) released - 6th May 2025
+recls 1.10.0 (release candidate 1) released - 6th May 2025
 ==========================================================
 
  * Added `RECLS_F_NO_BREAK_INFINITE_LOOPS` search flag and (initial) supporting logic, which cures the macOS infinite-loop problem;
@@ -59,7 +59,7 @@ recls 1.10.1 (release candidate 1) released - 6th May 2025
  * Sorting of **TODO.md** in readiness for 1.11 work streams;
 
 
-recls 1.10.1 (beta 6) released - 30th April 2025
+recls 1.10.0 (beta 6) released - 30th April 2025
 ================================================
 
  * Added support for searching for/stat()-ing devices: `RECLS_F_DEVICES`, `RECLS_RC_ENTRY_IS_DEVICE`, **example_10** (which searches for devices), `recls::cpp::entry#is_device()`;
@@ -71,13 +71,13 @@ recls 1.10.1 (beta 6) released - 30th April 2025
  * Various tidyings and consistency fixes;
 
 
-recls 1.10.1 (beta 5) released - 22nd April 2025
+recls 1.10.0 (beta 5) released - 22nd April 2025
 ================================================
 
  * Added support for searching for/stat()-ing sockets: `RECLS_F_SOCKETS`, `RECLS_RC_ENTRY_IS_FILE`, `RECLS_RC_ENTRY_IS_SOCKET`;
 
 
-recls 1.10.1 (beta 4) released - 17th April 2025
+recls 1.10.0 (beta 4) released - 17th April 2025
 ================================================
 
  * Added `Recls_GetFileSizeGibiBytes()`, `Recls_GetFileSizeKibiBytes()`, `Recls_GetFileSizeMebiBytes()`, `Recls_GetFileSizeTebiBytes()`;
@@ -88,7 +88,7 @@ recls 1.10.1 (beta 4) released - 17th April 2025
  * Removed all Visual C++ solution/project files;
 
 
-recls 1.10.1 (beta 3) released - 17th April 2025
+recls 1.10.0 (beta 3) released - 17th April 2025
 ================================================
 
 Summary:
@@ -106,14 +106,14 @@ Updated dependency requirements:
  * now depends on 1.11.1-beta3+ of **STLSoft**;
 
 
-recls 1.10.1 (beta 2) released - 23rd February 2025
+recls 1.10.0 (beta 2) released - 23rd February 2025
 ===================================================
 
  * GCC compatibility;
  * tidying;
 
 
-recls 1.10.1 (beta 1) released - 23rd February 2025
+recls 1.10.0 (beta 1) released - 23rd February 2025
 ===================================================
 
 Summary:
@@ -141,7 +141,7 @@ Updated dependency requirements:
  * now depends on 0.26.0-beta3+ of **xTests**;
 
 
-recls 1.10.1 (alpha 9) released - 23rd October 2024
+recls 1.10.0 (alpha 9) released - 23rd October 2024
 ===================================================
 
 Summary:
@@ -160,7 +160,7 @@ Updated dependency requirements:
  * now depends on 0.25+ of **xTests**;
 
 
-recls 1.10.1 (alpha 8) released - 18th October 2024
+recls 1.10.0 (alpha 8) released - 18th October 2024
 ===================================================
 
 Summary:
@@ -177,7 +177,7 @@ CMake build scripts enhancements:
  * canonicalised CMake build script files;
 
 
-recls 1.10.1 (alpha 7) released - 17th October 2024
+recls 1.10.0 (alpha 7) released - 17th October 2024
 ===================================================
 
 Summary:
@@ -200,7 +200,7 @@ CMake build scripts enhancements:
  * renamed CMake project for core library from **recls::recls** to **recls::core**;
 
 
-recls 1.10.1 (alpha 6) released - 10th July 2024
+recls 1.10.0 (alpha 6) released - 10th July 2024
 ================================================
 
 Summary:
@@ -223,7 +223,7 @@ GCC compatibility improvements:
  * large number of small fixes, particularly to deal with conformance warnings;
 
 
-recls 1.10.1 (alpha 5) released - 4th January 2024
+recls 1.10.0 (alpha 5) released - 4th January 2024
 ==================================================
 
 Summary:
@@ -237,7 +237,7 @@ Details:
  T.B.C.
 
 
-recls 1.10.1 (alpha 3) released - 29th March 2021
+recls 1.10.0 (alpha 3) released - 29th March 2021
 =================================================
 
 Summary:
@@ -303,7 +303,7 @@ Core:
 
  ~ src/impl.trace.cpp:
     ~ fixes in diagnostics
-    ~ fix to internal severity-level management (that was broken in 1.10.1 alpha 1)
+    ~ fix to internal severity-level management (that was broken in 1.10.0 alpha 1)
 
 Makefiles / Project-files:
 
@@ -378,7 +378,7 @@ Depends on:
 
 
 
-recls 1.10.1 (alpha 1) released - 4th January 2021
+recls 1.10.0 (alpha 1) released - 4th January 2021
 ==================================================
 
 Summary:
