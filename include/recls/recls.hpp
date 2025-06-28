@@ -4,7 +4,7 @@
  * Purpose: recls C++ mapping.
  *
  * Created: 5th January 2010
- * Updated: 29th April 2025
+ * Updated: 28th June 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_HPP_RECLS_MAJOR    1
-# define RECLS_VER_RECLS_HPP_RECLS_MINOR    2
-# define RECLS_VER_RECLS_HPP_RECLS_REVISION 5
-# define RECLS_VER_RECLS_HPP_RECLS_EDIT     10
+# define RECLS_VER_RECLS_HPP_RECLS_MINOR    3
+# define RECLS_VER_RECLS_HPP_RECLS_REVISION 1
+# define RECLS_VER_RECLS_HPP_RECLS_EDIT     11
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,9 +107,13 @@ namespace recls
     using ::recls::cpp::calculate_directory_size;
     using ::recls::cpp::create_directory;
     using ::recls::cpp::combine_paths;
+    using ::recls::cpp::device;
+    using ::recls::cpp::directory;
     using ::recls::cpp::derive_relative_path;
+    using ::recls::cpp::file;
     using ::recls::cpp::is_directory_empty;
     using ::recls::cpp::remove_directory;
+    using ::recls::cpp::socket;
     using ::recls::cpp::squeeze_path;
     using ::recls::cpp::stat;
 

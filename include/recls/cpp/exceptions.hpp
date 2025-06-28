@@ -4,7 +4,7 @@
  * Purpose: recls C++ mapping - exception classes.
  *
  * Created: 10th September 2003
- * Updated: 30th April 2025
+ * Updated: 28th June 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -52,9 +52,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MAJOR       4
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       3
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       4
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    0
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        50
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        51
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -270,6 +270,33 @@ public: // Construction
     {}
 
     NO_MORE_DATA_exception(
+        recls_rc_t          rc
+    ,   char const*         context
+    ,   recls_char_t const* path
+    ,   recls_char_t const* patterns
+    ,   int                 flags
+    )
+        : parent_class_type(rc, context, path, patterns, flags)
+    {}
+};
+
+/// Thrown to indicate that an entry was not of a requested type
+class wrong_entry_type_exception
+    : public recls_exception
+{
+public: // Types
+    typedef recls_exception                                 parent_class_type;
+    typedef wrong_entry_type_exception                      class_type;
+
+public: // Construction
+    explicit
+    wrong_entry_type_exception(
+        recls_rc_t rc
+    )
+        : parent_class_type(rc)
+    {}
+
+    wrong_entry_type_exception(
         recls_rc_t          rc
     ,   char const*         context
     ,   recls_char_t const* path
