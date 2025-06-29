@@ -18,6 +18,13 @@ recls - Changes
     *******************************************************************
 
 
+recls 1.10.0 (release candidate 2) released - 30th June 2025
+============================================================
+
+ * Added `recls::device()`, `recls::directory()`, `recls::file()`, `recls::socket()` stat-like functions, that attempt to obtain a file-system entry and then filter (or throw) for specific file type;
+ * Fixed errors in boilerplate;
+
+
 recls 1.10.0 (release candidate 1) released - 6th May 2025
 ==========================================================
 
