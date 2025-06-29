@@ -181,6 +181,8 @@ static void TEST_is_socket(void)
 
                     TEST_BOOLEAN_FALSE(re.is_directory());
                     TEST_BOOLEAN_TRUE(re.is_socket());
+
+                    recls::socket(sk_path);
                 }
             }
         }
