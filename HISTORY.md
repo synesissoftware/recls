@@ -1,7 +1,7 @@
 # recls - History
 
 
-6th May 2025 - 1.10.1 release candidate 1
+6th May 2025 - 1.10.0 release candidate 1
 -----------------------------------------
 
  * Added `RECLS_F_NO_BREAK_INFINITE_LOOPS` search flag and (initial) supporting logic, which cures the macOS infinite-loop problem;
@@ -28,7 +28,7 @@
  * Added scratch test **test.scratch.stop_on_access_failure**;
 
 
-30th April 2025 - 1.10.1 beta6
+30th April 2025 - 1.10.0 beta6
 ------------------------------
 
  * Added support for searching for/stat()-ing devices: `RECLS_F_DEVICES`, `RECLS_RC_ENTRY_IS_DEVICE`, **example_10** (which searches for devices), `recls::cpp::entry#is_device()`;
@@ -40,13 +40,13 @@
  * Various tidyings and consistency fixes;
 
 
-22nd April 2025 - 1.10.1 beta5
+22nd April 2025 - 1.10.0 beta5
 ------------------------------
 
  * Added support for searching for/stat()-ing sockets: `RECLS_F_SOCKETS`, `RECLS_RC_ENTRY_IS_FILE`, `RECLS_RC_ENTRY_IS_SOCKET`;
 
 
-17th April 2025 - 1.10.1 beta4
+17th April 2025 - 1.10.0 beta4
 ------------------------------
 
  * Added `Recls_GetFileSizeGibiBytes()`, `Recls_GetFileSizeKibiBytes()`, `Recls_GetFileSizeMebiBytes()`, `Recls_GetFileSizeTebiBytes()`;
@@ -57,21 +57,21 @@
  * Removed all Visual C++ solution/project files;
 
 
-16th April 2025 - 1.10.1 beta3
+16th April 2025 - 1.10.0 beta3
 ------------------------------
 
  * Fixes to `Recls_SqueezePath()`;
  * Wholesale improvements to examples;
 
 
-23rd February 2025 - 1.10.1 beta2
+23rd February 2025 - 1.10.0 beta2
 ---------------------------------
 
  * GCC compatibility;
  * tidying;
 
 
-23rd February 2025 - 1.10.1 beta1
+23rd February 2025 - 1.10.0 beta1
 ---------------------------------
 
  * added `Recls_IsEntrySocket()` API function and refactored Entry API;

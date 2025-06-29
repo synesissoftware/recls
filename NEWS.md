@@ -4,20 +4,20 @@
 
 | Date                  | News Item                                                 |
 | --------------------- | --------------------------------------------------------- |
-| 6th May 2025          |   recls 1.10.1 (release candidate 1) released             |
-| 30th April 2025       |   recls 1.10.1 (beta 6) released                          |
-| 22nd April 2025       |   recls 1.10.1 (beta 5) released                          |
-| 17th April 2025       |   recls 1.10.1 (beta 4) released                          |
-| 17th April 2025       |   recls 1.10.1 (beta 3) released                          |
-| 23rd February 2025    |   recls 1.10.1 (beta 2) released                          |
-| 23rd February 2025    |   recls 1.10.1 (beta 1) released                          |
-| 23rd October 2024     |   recls 1.10.1 (alpha 9) released                         |
-| 18th October 2024     |   recls 1.10.1 (alpha 8) released                         |
-| 17th October 2024     |   recls 1.10.1 (alpha 7) released                         |
-| 10th July 2024        |   recls 1.10.1 (alpha 6) released                         |
-| 4th January 2024      |   recls 1.10.1 (alpha 5) released                         |
-| 29th March 2021       |   recls 1.10.1 (alpha 3) released                         |
-| 4th January 2021      |   recls 1.10.1 (alpha 1) released                         |
+| 6th May 2025          |   recls 1.10.0 (release candidate 1) released             |
+| 30th April 2025       |   recls 1.10.0 (beta 6) released                          |
+| 22nd April 2025       |   recls 1.10.0 (beta 5) released                          |
+| 17th April 2025       |   recls 1.10.0 (beta 4) released                          |
+| 17th April 2025       |   recls 1.10.0 (beta 3) released                          |
+| 23rd February 2025    |   recls 1.10.0 (beta 2) released                          |
+| 23rd February 2025    |   recls 1.10.0 (beta 1) released                          |
+| 23rd October 2024     |   recls 1.10.0 (alpha 9) released                         |
+| 18th October 2024     |   recls 1.10.0 (alpha 8) released                         |
+| 17th October 2024     |   recls 1.10.0 (alpha 7) released                         |
+| 10th July 2024        |   recls 1.10.0 (alpha 6) released                         |
+| 4th January 2024      |   recls 1.10.0 (alpha 5) released                         |
+| 29th March 2021       |   recls 1.10.0 (alpha 3) released                         |
+| 4th January 2021      |   recls 1.10.0 (alpha 1) released                         |
 | 29th January 2017     |   recls 1.9.6 released                                    |
 | 9th October 2015      |   recls 1.9.4 released                                    |
 | 7th October 2015      |   recls 1.9.2 released                                    |
