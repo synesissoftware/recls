@@ -5,7 +5,7 @@
  *          `recls::create_directory()`).
  *
  * Created: 30th January 2010
- * Updated: 2nd May 2025
+ * Updated: 28th June 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -154,6 +154,8 @@ static int teardown(void*)
 static void test_1_0(void)
 {
     recls::create_directory(RECLS_LITERAL("."));
+
+    recls::entry e = recls::directory(RECLS_LITERAL("."));
 
     XTESTS_TEST_PASSED();
 }

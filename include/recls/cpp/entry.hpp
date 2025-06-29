@@ -4,7 +4,7 @@
  * Purpose: recls C++ mapping - entry class.
  *
  * Created: 18th August 2003
- * Updated: 30th April 2025
+ * Updated: 28th June 2025
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -52,9 +52,9 @@
 /* File version */
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_MAJOR    4
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    13
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_MINOR    14
 # define RECLS_VER_RECLS_CPP_HPP_ENTRY_REVISION 0
-# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     120
+# define RECLS_VER_RECLS_CPP_HPP_ENTRY_EDIT     121
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,6 +132,7 @@ public:
     struct stat_impl
     {
     public:
+
         template <typename S>
         static
         entry
@@ -145,6 +146,7 @@ public:
             return create_(c_str_ptr(path), flags);
         }
     private:
+
         static
         entry
         create_(
@@ -160,6 +162,39 @@ public:
                 if (RECLS_RC_NO_MORE_DATA == rc)
                 {
                     throw NO_MORE_DATA_exception(rc, "path does not exist", path, NULL, flags);
+                }
+
+                if (RECLS_RC_ENTRY_IS_DEVICE == rc ||
+                    RECLS_RC_ENTRY_IS_DIRECTORY == rc ||
+                    RECLS_RC_ENTRY_IS_FILE == rc ||
+                    RECLS_RC_ENTRY_IS_SOCKET == rc)
+                {
+                    char const* context = "";
+
+                    fprintf(stderr, "%s:%d:%s: flags=0x%08x\n", __STLSOFT_FILE_LINE_FUNCTION__, flags);
+
+                    if (RECLS_F_DEVICES == (flags & RECLS_F_TYPEMASK))
+                    {
+                        context = "entry exists but is not a device";
+                    }
+
+                    if (RECLS_F_DIRECTORIES == (flags & RECLS_F_TYPEMASK))
+                    {
+                        context = "entry exists but is not a directory";
+                    }
+
+                    if (RECLS_F_FILES == (flags & RECLS_F_TYPEMASK))
+                    {
+                        context = "entry exists but is not a file";
+                    }
+
+                    if (RECLS_F_SOCKETS == (flags & RECLS_F_TYPEMASK))
+                    {
+                        context = "entry exists but is not a socket";
+                    }
+
+
+                    throw wrong_entry_type_exception(rc, context, path, NULL, flags);
                 }
 
                 throw recls_exception(rc, "failed to stat path", path, NULL, flags);
@@ -606,6 +641,98 @@ stat(
 )
 {
     return entry::stat_impl::create(path, flags);
+}
+
+/// Retrieves an entry corresponding to the given path if it is a device,
+/// otherwise throwing an exception.
+///
+/// \param path A string containing the path whose information is to be
+///   elicited.
+///
+/// \return An instance representing the "stat'd" device
+///
+/// \exception recls::NO_MORE_DATA_exception Thrown if no entry is found
+/// \exception recls::wrong_entry_type_exception Thrown if an entry is found
+///  but is not a device
+/// \exception recls::recls_exception if the information cannot otherwise be
+///   retrieved.
+template <typename S>
+inline
+entry
+device(
+    S const&    path
+)
+{
+    return entry::stat_impl::create(path, RECLS_F_DEVICES);
+}
+
+/// Retrieves an entry corresponding to the given path if it is a directory,
+/// otherwise throwing an exception.
+///
+/// \param path A string containing the path whose information is to be
+///   elicited.
+///
+/// \return An instance representing the "stat'd" directory
+///
+/// \exception recls::NO_MORE_DATA_exception Thrown if no entry is found
+/// \exception recls::wrong_entry_type_exception Thrown if an entry is found
+///  but is not a directory
+/// \exception recls::recls_exception if the information cannot otherwise be
+///   retrieved.
+template <typename S>
+inline
+entry
+directory(
+    S const&    path
+)
+{
+    return entry::stat_impl::create(path, RECLS_F_DIRECTORIES);
+}
+
+/// Retrieves an entry corresponding to the given path if it is a file,
+/// otherwise throwing an exception.
+///
+/// \param path A string containing the path whose information is to be
+///   elicited.
+///
+/// \return An instance representing the "stat'd" file
+///
+/// \exception recls::NO_MORE_DATA_exception Thrown if no entry is found
+/// \exception recls::wrong_entry_type_exception Thrown if an entry is found
+///  but is not a file
+/// \exception recls::recls_exception if the information cannot otherwise be
+///   retrieved.
+template <typename S>
+inline
+entry
+file(
+    S const&    path
+)
+{
+    return entry::stat_impl::create(path, RECLS_F_FILES);
+}
+
+/// Retrieves an entry corresponding to the given path if it is a socket,
+/// otherwise throwing an exception.
+///
+/// \param path A string containing the path whose information is to be
+///   elicited.
+///
+/// \return An instance representing the "stat'd" socket
+///
+/// \exception recls::NO_MORE_DATA_exception Thrown if no entry is found
+/// \exception recls::wrong_entry_type_exception Thrown if an entry is found
+///  but is not a socket
+/// \exception recls::recls_exception if the information cannot otherwise be
+///   retrieved.
+template <typename S>
+inline
+entry
+socket(
+    S const&    path
+)
+{
+    return entry::stat_impl::create(path, RECLS_F_SOCKETS);
 }
 
 

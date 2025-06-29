@@ -1,4 +1,5 @@
 
+add_subdirectory(libver)
 add_subdirectory(test.scratch.cpp_api)
 add_subdirectory(test.scratch.entry_attributes)
 add_subdirectory(test.scratch.ignore_inaccessible_nodes)
