@@ -9,7 +9,7 @@
 * Trimmed **INSTALL.md** and **README.md** (badges; Components; CMake-only guidance); README CI badge now targets **ci.yml**;
 * CMake: added `option(BUILD_TESTING …)` for parity with peer libraries;
 * Enhanced **run_all_unit_tests.sh** (`--unit-only` / `--component-only` and `--no-make` guard);
-* Project boilerplate updates;
+* Project boilerplate updates (**.gitattributes**, **.vimrc**, **.vscode/settings.json**);
 
 
 ## 1.10.0 (release candidate 2) - 30th June 2025
