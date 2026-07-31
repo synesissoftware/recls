@@ -11,6 +11,7 @@ on:
       - rc4
       - rc5
       - update
+      - boilerplate
   pull_request:
 
 concurrency:
