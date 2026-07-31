@@ -40,6 +40,10 @@
 
 ## Packaging improvements
 
+* [x] ~~~Modular GitHub Actions CI (**ci.yml** / **ci-cell.yml**) with install-smoke~~~ - ✅;
+* [x] ~~~**CHANGES.txt** → **CHANGES.md**; remove **HISTORY.md**~~~ - ✅;
+* [x] ~~~README badges / Components; **INSTALL.md** hygiene~~~ - ✅;
+
 * [x] ~~~Remove Visual C++ project files, etc.~~~ - ✅;
 * [x] ~~~Remove plethora of old makefiles~~~ - ✅;
 * [-] ~~~Provide small number of more "intelligent" makefiles~~~ - ❌;
