@@ -33,10 +33,8 @@ while [[ $# -gt 0 ]]; do
       ;;
     --help)
 
+      [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-recls is a platform-independent recursive file-system search library
-Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
-Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
 Runs all (matching) scratch test programs
 
 $ScriptPath [ ... flags/options ... ]
