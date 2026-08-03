@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test_c_1 project.
  *
  * Created:     28th February 2007
- * Updated:     30th December 2023
+ * Updated:     3rd August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -175,13 +175,12 @@ static void process_search(hrecls_t hSrch)
     {
         recls_char_t        buff[256];
         recls_info_t        info;
-        recls_filesize_t    size;
 
         rc = Recls_GetDetails(hSrch, &info);
 
         if (RECLS_SUCCEEDED(rc))
         {
-            printf("\t%.*s\n", info->path.end - info->path.begin, info->path.begin);
+            printf("\t%.*s\n", (int)(info->path.end - info->path.begin), info->path.begin);
 
             { size_t i; for(i = 0; i < STLSOFT_NUM_ELEMENTS(fns); ++i)
             {
@@ -199,7 +198,7 @@ static void process_search(hrecls_t hSrch)
 
             Recls_DoesEntryExist(info);
             Recls_IsFileUNC(info);
-            Recls_GetSizeProperty(info, &size);
+            (void)Recls_GetSizeProperty(info);
             Recls_GetCreationTime(info);
             Recls_GetModificationTime(info);
             Recls_GetLastAccessTime(info);

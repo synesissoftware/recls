@@ -4,7 +4,7 @@
  * Purpose:     recls C++ mapping - root_sequence class.
  *
  * Created:     25th March 2004
- * Updated:     19th December 2023
+ * Updated:     3rd August 2026
  *
  * Home:        https://github.com/synesissoftware/recls
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_MINOR    1
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 2
-# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     23
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_REVISION 3
+# define RECLS_VER_RECLS_CPP_HPP_ROOT_SEQUENCE_EDIT     24
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/root_sequence.hpp
@@ -97,8 +97,15 @@ namespace root_sequence_impl
 {
 
     struct make_root_string
+#if __cplusplus < 201103L
         : std::unary_function<recls_root_t, string_t>
+#endif
     {
+#if __cplusplus >= 201103L
+        typedef recls_root_t                                argument_type;
+        typedef string_t                                    result_type;
+#endif
+
         string_t operator ()(recls_root_t const& root) const
         {
             return string_t(root.name);
@@ -157,7 +164,7 @@ public:
     /// The reference type
     typedef void                                    reference;
     /// The non-mutable (const) reference type
-    typedef value_type const                        const_reference;
+    typedef value_type                              const_reference;
     /// The size type
     typedef size_t                                  size_type;
 /// @}

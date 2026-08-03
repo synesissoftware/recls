@@ -3,11 +3,15 @@ recls - News
 ------------
 
 ; Created:  28th May 2006
-; Updated:  29th January 2017
+; Updated:  3rd August 2026
 
 ============================================================================
 
 News:
+
+  3rd August 2026           -   recls 1.9.8 released
+
+  30th December 2023        -   recls 1.9.7 released
 
   29th January 2017         -   recls 1.9.6 released
 

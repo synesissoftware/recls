@@ -4,11 +4,11 @@
  * Purpose:     more recls API extended functions.
  *
  * Created:     30th January 2009
- * Updated:     30th December 2023
+ * Updated:     3rd August 2026
  *
  * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -103,9 +103,23 @@ DWORD
 get_exception_status_code(
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
+
+# if _STLSOFT_VER >= 0x010a0200
+
+    unixstl::unixstl_exception& x
+# else /* ? 1.10.2+ */
+
     unixstl::unix_exception&    x
+# endif /* 1.10.2+ */
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
+
+# if _STLSOFT_VER >= 0x010a0200
+
+    winstl::winstl_exception&   x
+# else /* ? 1.10.2+ */
+
     winstl::windows_exception&  x
+# endif /* 1.10.2+ */
 #endif /* platform */
 )
 {

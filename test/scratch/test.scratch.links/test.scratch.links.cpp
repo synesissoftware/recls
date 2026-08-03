@@ -59,7 +59,7 @@ typedef std::basic_string<char_t>   string_t;
  * main()
  */
 
-static int main_(int argc, char** argv)
+static int main_(int /* argc */, char** /* argv */)
 {
     recls::search_sequence files(NULL, NULL, recls::RECURSIVE | recls::LINK_COUNT);
 

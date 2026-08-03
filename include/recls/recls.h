@@ -4,11 +4,11 @@
  * Purpose:     Main header file for the recls API.
  *
  * Created:     15th August 2003
- * Updated:     30th December 2023
+ * Updated:     3rd August 2026
  *
  * Home:        https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,7 +52,7 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      21
-# define RECLS_VER_RECLS_H_RECLS_REVISION   9
+# define RECLS_VER_RECLS_H_RECLS_REVISION   10
 # define RECLS_VER_RECLS_H_RECLS_EDIT       128
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
@@ -124,11 +124,13 @@
 #define RECLS_VER_1_9_5                                     0x010905ff
 #define RECLS_VER_1_9_6                                     0x010906ff
 #define RECLS_VER_1_9_7                                     0x010907ff
+#define RECLS_VER_1_9_8                                     0x010908ff
 
-#define RECLS_VER_MAJOR         1
-#define RECLS_VER_MINOR         9
-#define RECLS_VER_REVISION      7
-#define RECLS_VER                                           RECLS_VER_1_9_7
+#define RECLS_VER_MAJOR                                     1
+#define RECLS_VER_MINOR                                     9
+#define RECLS_VER_PATCH                                     8
+#define RECLS_VER_REVISION                                  RECLS_VER_PATCH
+#define RECLS_VER                                           RECLS_VER_1_9_8
 
 /* /////////////////////////////////////////////////////////////////////////
  * strictness
