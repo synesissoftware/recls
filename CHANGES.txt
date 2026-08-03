@@ -3,7 +3,7 @@ recls - Changes
 ---------------
 
 ; Created:  28th May 2006
-; Updated:  29th January 2017
+; Updated:  3rd August 2026
 
 ============================================================================
 
@@ -15,6 +15,46 @@ recls - Changes
     *  -  means removal of something (mapping / file / functionality) *
     *                                                                 *
     *******************************************************************
+
+
+recls 1.9.8 released - 3rd August 2026
+======================================
+
+Summary:
+--------
+
+ * added CMake build (CMakeLists.txt, cmake/, examples and tests) for the
+   1.9 line, alongside retained build/ makefiles and Visual C++ projects
+ * added modular GitHub Actions CI (ci.yml / ci-cell.yml) with
+   multi-platform matrix and install-smoke coverage
+ * added CMake helper scripts (prepare_cmake.sh, build_cmake.sh,
+   clean_cmake.sh, remove_cmake_artefacts.sh, run_all_examples.sh,
+   run_all_unit_tests.sh, run_all_scratch_tests.sh) and .sis project
+   metadata
+ * added editor/meta boilerplate (.vimrc, .vscode/settings.json; expanded
+   .gitattributes / .gitignore, preserving 1.9 makefile and .dsp trees)
+ * README CI badge targets ci.yml on branch dev-1.9
+ * added RECLS_VER_PATCH (aliased as RECLS_VER_REVISION); version 1.9.8
+ * compatibility with modern STLSoft (unixstl_exception /
+   winstl_exception; C++11+ root_sequence without std::unary_function;
+   MSVC /wd4996 for deprecated file_path_buffer)
+ * build/CI hygiene across examples and tests (strict C prototypes,
+   getcwd checks, unused-parameter silencing, MinGW FTP node init,
+   platformstl_C_get_console_width, create-directory unit tests under
+   $HOME)
+
+NOTE: see also CHANGES.md for the canonical Markdown form of this and
+later 1.9.x entries.
+
+
+recls 1.9.7 released - 30th December 2023
+=========================================
+
+Summary:
+--------
+
+ * version bump to 1.9.7
+ * copyright years updated in include/recls/recls.h
 
 
 recls 1.9.6 released - 29th January 2017
