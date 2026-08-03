@@ -9,7 +9,7 @@
  *            - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 30th December 2023
+ * Updated: 3rd August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,7 +32,7 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(void)
 {
     /* stat() the current directory */
     recls_info_t    current;

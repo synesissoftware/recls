@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.api.stat project.
  *
  * Created:     13th December 2008
- * Updated:     30th December 2023
+ * Updated:     3rd August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -89,14 +89,6 @@ recls_char_t*   s_cwd;
 recls_char_t*   s_home;
 size_t          path_max;
 
-static void finish_off_directory(recls_char_t* s)
-{
-    size_t n = strlen(s);
-
-    if (n > 0)
-    {
-    }
-}
 
 int main(int argc, char **argv)
 {
@@ -198,15 +190,15 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-static void test_1_0()
+static void test_1_0(void)
 {
     recls_info_t    entry;
     recls_rc_t      rc = Recls_Stat("", 0, &entry);
 
-    XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_INVALID_NAME, rc);
+    XTESTS_TEST_POINTER_EQUAL(RECLS_RC_INVALID_NAME, rc);
 }
 
-static void test_1_1()
+static void test_1_1(void)
 {
     recls_info_t    entry;
     recls_rc_t      rc = Recls_Stat(".", 0, &entry);
@@ -233,11 +225,11 @@ static void test_1_1()
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
-static void test_1_2()
+static void test_1_2(void)
 {
     recls_info_t    entry;
     recls_rc_t      rc = Recls_Stat("~", 0, &entry);
@@ -264,11 +256,11 @@ static void test_1_2()
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
-static void test_1_3()
+static void test_1_3(void)
 {
     recls_info_t    entry;
     recls_rc_t      rc = Recls_Stat("~", RECLS_F_MARK_DIRS, &entry);
@@ -295,71 +287,71 @@ static void test_1_3()
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(RECLS_RC_OK, rc);
+        XTESTS_TEST_POINTER_EQUAL(RECLS_RC_OK, rc);
     }
 }
 
-static void test_1_4()
+static void test_1_4(void)
 {
 }
 
-static void test_1_5()
+static void test_1_5(void)
 {
 }
 
-static void test_1_6()
+static void test_1_6(void)
 {
 }
 
-static void test_1_7()
+static void test_1_7(void)
 {
 }
 
-static void test_1_8()
+static void test_1_8(void)
 {
 }
 
-static void test_1_9()
+static void test_1_9(void)
 {
 }
 
-static void test_1_10()
+static void test_1_10(void)
 {
 }
 
-static void test_1_11()
+static void test_1_11(void)
 {
 }
 
-static void test_1_12()
+static void test_1_12(void)
 {
 }
 
-static void test_1_13()
+static void test_1_13(void)
 {
 }
 
-static void test_1_14()
+static void test_1_14(void)
 {
 }
 
-static void test_1_15()
+static void test_1_15(void)
 {
 }
 
-static void test_1_16()
+static void test_1_16(void)
 {
 }
 
-static void test_1_17()
+static void test_1_17(void)
 {
 }
 
-static void test_1_18()
+static void test_1_18(void)
 {
 }
 
-static void test_1_19()
+static void test_1_19(void)
 {
 }
 

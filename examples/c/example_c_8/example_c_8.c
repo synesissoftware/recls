@@ -10,7 +10,7 @@
  *              Recls_CalcDirectorySize())
  *
  * Created: 17th June 2006
- * Updated: 30th December 2023
+ * Updated: 3rd August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,7 +33,7 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(void)
 {
     /* Display all the roots on the host system. */
     {

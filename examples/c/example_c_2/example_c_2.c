@@ -13,7 +13,7 @@
  *            - display of progress (of each directory traversed)
  *
  * Created: 29th May 2006
- * Updated: 30th December 2023
+ * Updated: 3rd August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,7 +63,7 @@ struct feedback_t
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(void)
 {
     const recls_char_t  SEARCH_PATTERN[]    =   RECLS_LITERAL("*.h|*.hpp|*.c|*.cpp|*.cs|*.d|*.java|*.pl|*.py|*.rb");
 

@@ -13,7 +13,7 @@
  *            - handling of errors and reporting of error information
  *
  * Created: 17th June 2006
- * Updated: 30th December 2023
+ * Updated: 3rd August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -49,7 +49,7 @@ static int RECLS_CALLCONV_DEFAULT example_c_5_process_fn(   recls_info_t        
 }
 
 
-int main()
+int main(void)
 {
     /* First, determine the home directory by stat()-ing ~ */
     recls_info_t    home;

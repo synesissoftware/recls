@@ -15,7 +15,7 @@
  *            - elicitation of entry properties via API function calls
  *
  * Created: 29th May 2006
- * Updated: 30th December 2023
+ * Updated: 3rd August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,7 +38,7 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(void)
 {
     /* stat() the current directory */
     recls_info_t    current;
