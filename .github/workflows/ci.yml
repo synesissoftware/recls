@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+      - master-1.9
+      - master-1.10
       - dev
       - rc1
       - rc2
