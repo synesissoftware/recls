@@ -22,9 +22,7 @@
 #include <recls/internal/safestr.h>
 
 /* STLSoft Header Files */
-#ifdef RECLS_PLATFORM_API_WINDOWS
-# include <winstl/system/console_functions.h>
-#endif /* RECLS_PLATFORM_API_WINDOWS */
+#include <platformstl/system/console_functions.h>
 
 /* Standard C Library Files */
 #include <stdio.h>      /* for printf() / fprintf()         */
@@ -160,15 +158,7 @@ static void write_blank_line(FILE* stm, size_t n)
 
 static size_t get_console_width_(void)
 {
-    /* In reality, this should evaluate as appropriate to the operating
-     * system.
-     */
-
-#ifdef RECLS_PLATFORM_API_WINDOWS
-    return winstl__get_console_width();
-#else /* ? RECLS_PLATFORM_API_??? */
-    return 48;
-#endif /* RECLS_PLATFORM_API_??? */
+    return platformstl_C_get_console_width();
 }
 
 static size_t get_console_width(void)

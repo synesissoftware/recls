@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.cpp_api project.
  *
  * Created:     4th January 2010
- * Updated:     30th December 2023
+ * Updated:     3rd August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,12 +14,9 @@
 
 /* STLSoft Header Files */
 #include <platformstl/platformstl.hpp>
-
-/* UNIXem Header Files */
-#if defined(_WIN32) || \
-    defined(_WIN64)
+#ifdef RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS
 # include <unixem/unixem.h>
-#endif /* Win32 || Win64 */
+#endif
 
 /* Standard C++ Header Files */
 #include <exception>

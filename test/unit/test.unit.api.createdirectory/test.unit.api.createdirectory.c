@@ -133,7 +133,7 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    if (NULL == getcwd(s_cwd, 1 + path_max))
+    if (NULL == getcwd(s_cwd, (int)(1 + path_max)))
     {
         int const e = errno;
 
