@@ -1,7 +1,7 @@
 # **recls** Changes <!-- omit in toc -->
 
 
-## 1.10.0 (release candidate 3) - 31st July 2026
+## 1.10.0 (release candidate 3) - 3rd August 2026
 
 * Added modular GitHub Actions CI (**ci.yml** / **ci-cell.yml**) with install-smoke coverage;
 * Removed **HISTORY.md** (content merged into **CHANGES.md**);

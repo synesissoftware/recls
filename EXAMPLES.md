@@ -1,4 +1,4 @@
-# CLASP.Ruby Examples
+# recls - Examples <!-- omit in toc -->
 
 | Name | Language | Source & Description | Summary |
 | --- | --- | --- | --- |

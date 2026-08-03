@@ -1,10 +1,9 @@
 # recls - News <!-- omit in toc -->
 
 
-
 | Date                  | News Item                                                 |
 | --------------------- | --------------------------------------------------------- |
-| 31st July 2026        |   recls 1.10.0 (release candidate 3) released             |
+| 3rd August 2026       |   [recls 1.10.0 (release candidate 3)](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc3) released  |
 | 30th June 2025        |   recls 1.10.0 (release candidate 2) released             |
 | 6th May 2025          |   recls 1.10.0 (release candidate 1) released             |
 | 30th April 2025       |   recls 1.10.0 (beta 6) released                          |
