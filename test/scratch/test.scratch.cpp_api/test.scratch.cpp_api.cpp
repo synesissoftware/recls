@@ -186,7 +186,7 @@ typedef std::string     string_t;
  * forward declarations
  */
 
-static void display_entry(recls::entry const& e);
+static void display_entry(recls::entry const& fe);
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -243,37 +243,37 @@ static int main_(int /* argc */, char** argv)
     return EXIT_SUCCESS;
 }
 
-static void display_entry(recls::entry const& e)
+static void display_entry(recls::entry const& fe)
 {
     using namespace recls;
 
-    unsigned width = 25;
+    size_t width = 25;
 
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
-    std::cout << std::setw(width) << "Path:" << "    " << e.Path << std::endl;
-    std::cout << std::setw(width) << "DirectoryPath:" << "    " << e.DirectoryPath << std::endl;
-    std::cout << std::setw(width) << "Drive:" << "    " << e.Drive << std::endl;
-    std::cout << std::setw(width) << "Directory:" << "    " << std::setw(e.get_drive().length()) << "" << e.Directory << std::endl;
-    std::cout << std::setw(width) << "File:" << "    " << std::setw(e.get_directory_path().length()) << "" << e.File << std::endl;
-    std::cout << std::setw(width) << "FileName:" << "    " << std::setw(e.get_directory_path().length()) << "" << e.FileName << std::endl;
-    std::cout << std::setw(width) << "FileExtension:" << "    " << std::setw(e.get_directory_path().length() + e.get_file_name().length()) << "" << e.FileExtension << std::endl;
+    std::cout << std::setw(width) << "Path:" << "    " << fe.Path << std::endl;
+    std::cout << std::setw(width) << "DirectoryPath:" << "    " << fe.DirectoryPath << std::endl;
+    std::cout << std::setw(width) << "Drive:" << "    " << fe.Drive << std::endl;
+    std::cout << std::setw(width) << "Directory:" << "    " << std::setw(fe.get_drive().length()) << "" << fe.Directory << std::endl;
+    std::cout << std::setw(width) << "File:" << "    " << std::setw(fe.get_directory_path().length()) << "" << fe.File << std::endl;
+    std::cout << std::setw(width) << "FileName:" << "    " << std::setw(fe.get_directory_path().length()) << "" << fe.FileName << std::endl;
+    std::cout << std::setw(width) << "FileExtension:" << "    " << std::setw(fe.get_directory_path().length() + fe.get_file_name().length()) << "" << fe.FileExtension << std::endl;
 #else /* ? RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    std::cout << std::setw(width) << "path:" << "    " << e.get_path() << std::endl;
-    std::cout << std::setw(width) << "directory_path:" << "    " << e.get_directory_path() << std::endl;
-    std::cout << std::setw(width) << "drive:" << "    " << e.get_drive() << std::endl;
-    std::cout << std::setw(width) << "directory:" << "    " << std::setw(e.get_drive().length()) << "" << e.get_directory() << std::endl;
-    std::cout << std::setw(width) << "file:" << "    " << std::setw(e.get_directory_path().length()) << "" << e.get_file() << std::endl;
-    std::cout << std::setw(width) << "file name:" << "    " << std::setw(e.get_directory_path().length()) << "" << e.get_file_name() << std::endl;
-    std::cout << std::setw(width) << "file extension:" << "    " << std::setw(e.get_directory_path().length() + e.get_file_name().length()) << "" << e.get_file_extension() << std::endl;
+    std::cout << std::setw(width) << "path:" << "    " << fe.get_path() << std::endl;
+    std::cout << std::setw(width) << "directory_path:" << "    " << fe.get_directory_path() << std::endl;
+    std::cout << std::setw(width) << "drive:" << "    " << fe.get_drive() << std::endl;
+    std::cout << std::setw(width) << "directory:" << "    " << std::setw(fe.get_drive().length()) << "" << fe.get_directory() << std::endl;
+    std::cout << std::setw(width) << "file:" << "    " << std::setw(fe.get_directory_path().length()) << "" << fe.get_file() << std::endl;
+    std::cout << std::setw(width) << "file name:" << "    " << std::setw(fe.get_directory_path().length()) << "" << fe.get_file_name() << std::endl;
+    std::cout << std::setw(width) << "file extension:" << "    " << std::setw(fe.get_directory_path().length() + fe.get_file_name().length()) << "" << fe.get_file_extension() << std::endl;
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
 
     std::cout << std::setw(width) << "directory parts:" << std::endl;
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
-    directory_parts parts = e.DirectoryParts;
+    directory_parts parts = fe.DirectoryParts;
 #else /* ? RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    directory_parts parts = e.get_directory_parts();
+    directory_parts parts = fe.get_directory_parts();
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    unsigned partWidth = width + e.get_drive().length();
+    size_t partWidth = width + fe.get_drive().length();
     size_t numParts = parts.end() - parts.begin();
     STLSOFT_ASSERT(parts.size() == numParts);
 #if 0
@@ -296,28 +296,28 @@ static void display_entry(recls::entry const& e)
     }}
 
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
-    std::cout << std::setw(width) << "Attributes:" << "    " << "0x" << std::setw(8) << std::setfill('0') << std::setbase(16) << static_cast<unsigned>(e.Attributes) << std::setfill(' ') << std::endl;
+    std::cout << std::setw(width) << "Attributes:" << "    " << "0x" << std::setw(8) << std::setfill('0') << std::setbase(16) << static_cast<unsigned>(fe.Attributes) << std::setfill(' ') << std::endl;
 
-    std::cout << std::setw(width) << "Size:" << "    " << static_cast<unsigned>(e.Size) << std::endl;
+    std::cout << std::setw(width) << "Size:" << "    " << static_cast<unsigned>(fe.Size) << std::endl;
 #else /* ? RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    std::cout << std::setw(width) << "attributes:" << "    " << "0x" << std::setw(8) << std::setfill('0') << std::setbase(16) << static_cast<unsigned>(e.get_attributes()) << std::setfill(' ') << std::endl;
+    std::cout << std::setw(width) << "attributes:" << "    " << "0x" << std::setw(8) << std::setfill('0') << std::setbase(16) << static_cast<unsigned>(fe.get_attributes()) << std::setfill(' ') << std::endl;
 
-    std::cout << std::setw(width) << "size:" << "    " << static_cast<unsigned>(e.get_size()) << std::endl;
+    std::cout << std::setw(width) << "size:" << "    " << static_cast<unsigned>(fe.get_size()) << std::endl;
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
 
-//      std::cout << std::setw(width) << "creation time:" << "    " << e.get_creation_time() << std::endl;
-//      std::cout << std::setw(width) << "last access time:" << "    " << e.get_creation_time() << std::endl;
-//      std::cout << std::setw(width) << "last status change time:" << "    " << e.get_creation_time() << std::endl;
-//      std::cout << std::setw(width) << "modification time:" << "    " << e.get_creation_time() << std::endl;
+//      std::cout << std::setw(width) << "creation time:" << "    " << fe.get_creation_time() << std::endl;
+//      std::cout << std::setw(width) << "last access time:" << "    " << fe.get_creation_time() << std::endl;
+//      std::cout << std::setw(width) << "last status change time:" << "    " << fe.get_creation_time() << std::endl;
+//      std::cout << std::setw(width) << "modification time:" << "    " << fe.get_creation_time() << std::endl;
 
 #ifdef RECLS_CPP_METHOD_PROPERTY_SUPPORT
-    std::cout << std::setw(width) << "IsDirectory:" << "    " << (e.IsDirectory ? "true" : "false") << std::endl;
-    std::cout << std::setw(width) << "IsReadOnly:" << "    " << (e.IsReadOnly ? "true" : "false") << std::endl;
-    std::cout << std::setw(width) << "IsUnc:" << "    " << (e.IsUnc ? "true" : "false") << std::endl;
+    std::cout << std::setw(width) << "IsDirectory:" << "    " << (fe.IsDirectory ? "true" : "false") << std::endl;
+    std::cout << std::setw(width) << "IsReadOnly:" << "    " << (fe.IsReadOnly ? "true" : "false") << std::endl;
+    std::cout << std::setw(width) << "IsUnc:" << "    " << (fe.IsUnc ? "true" : "false") << std::endl;
 #else /* ? RECLS_CPP_METHOD_PROPERTY_SUPPORT */
-    std::cout << std::setw(width) << "is_directory:" << "    " << (e.is_directory() ? "true" : "false") << std::endl;
-    std::cout << std::setw(width) << "is_readonly:" << "    " << (e.is_readonly() ? "true" : "false") << std::endl;
-    std::cout << std::setw(width) << "is_unc:" << "    " << (e.is_unc() ? "true" : "false") << std::endl;
+    std::cout << std::setw(width) << "is_directory:" << "    " << (fe.is_directory() ? "true" : "false") << std::endl;
+    std::cout << std::setw(width) << "is_readonly:" << "    " << (fe.is_readonly() ? "true" : "false") << std::endl;
+    std::cout << std::setw(width) << "is_unc:" << "    " << (fe.is_unc() ? "true" : "false") << std::endl;
 #endif /* RECLS_CPP_METHOD_PROPERTY_SUPPORT */
 }
 
