@@ -27,6 +27,7 @@
 #include <platformstl/platformstl.h>
 
 /* Standard C Header Files */
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -132,7 +133,18 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    getcwd(s_cwd, 1 + path_max);
+    if (NULL == getcwd(s_cwd, 1 + path_max))
+    {
+        int const e = errno;
+
+        fprintf(stderr, "failed to obtain current directory: %d / %s\n", e, strerror(e));
+
+        free(s_cwd);
+        free(s_home);
+        free(s_testRoot);
+
+        return EXIT_FAILURE;
+    }
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
     (   defined(PLATFORMSTL_OS_IS_UNIX) && \
         defined(_WIN32))

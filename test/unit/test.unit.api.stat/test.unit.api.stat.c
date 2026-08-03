@@ -27,7 +27,10 @@
 #include <platformstl/platformstl.h>
 
 /* Standard C Header Files */
+#include <errno.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # include <unistd.h>
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -120,7 +123,14 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    getcwd(s_cwd, 1 + path_max);
+    if (NULL == getcwd(s_cwd, 1 + path_max))
+    {
+        int const e = errno;
+
+        fprintf(stderr, "failed to obtain current directory: %d / %s\n", e, strerror(e));
+
+        return EXIT_FAILURE;
+    }
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
     (   defined(PLATFORMSTL_OS_IS_UNIX) && \
         defined(_WIN32))
@@ -150,6 +160,7 @@ int main(int argc, char **argv)
         }
     }}
 #endif
+
 
 
     if (XTESTS_START_RUNNER("test.unit.api.stat", verbosity))

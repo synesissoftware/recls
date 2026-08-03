@@ -164,7 +164,7 @@ public:
     /// The reference type
     typedef void                                    reference;
     /// The non-mutable (const) reference type
-    typedef value_type const                        const_reference;
+    typedef value_type                              const_reference;
     /// The size type
     typedef size_t                                  size_type;
 /// @}

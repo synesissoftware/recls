@@ -35,6 +35,7 @@ macro(define_target_compile_options target_name)
 			$<$<CXX_COMPILER_ID:MSVC>:
 				/WX /W4
 
+				/wd4996
 				${X_MSVC_CUSTOM_WARNINGS_}
 			>
 	)
