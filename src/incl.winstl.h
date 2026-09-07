@@ -54,7 +54,7 @@
  * inclusion control
  */
 
- #endif /* !RECLS_INCL_SRC_H_INCL_WINSTL */
+#endif /* !RECLS_INCL_SRC_H_INCL_WINSTL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
