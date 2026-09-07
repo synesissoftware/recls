@@ -4,7 +4,7 @@
  * Purpose: Scratch-test exercising the skipping of inaccessible nodes.
  *
  * Created: 28th April 2025
- * Updated: 4th May 2025
+ * Updated: 18th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -56,7 +56,7 @@ void RECLS_CALLCONV_DEFAULT recls_log_to_pantheios(
  * main()
  */
 
- int RECLS_CALLCONV_DEFAULT process_fn(
+int RECLS_CALLCONV_DEFAULT process_fn(
     /* [in] */ recls_entry_t            hEntry
 ,   /* [in] */ recls_process_fn_param_t param
 )

@@ -48,6 +48,7 @@
 * [x] ~~~Remove plethora of old makefiles~~~ - ✅;
 * [-] ~~~Provide small number of more "intelligent" makefiles~~~ - ❌;
 * [ ] Bazel, Jam, SCons, etc. scripts;
+* [ ] Remove '--no-b64' flag and associated support (in **prepare_cmake.sh** and **CMakeLists.txt**), rendered redundant by recent improvements to **Pantheios**' CMake usage;
 
 
 <!-- ########################### end of file ########################### -->

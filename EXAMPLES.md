@@ -15,6 +15,7 @@
 |**example_cpp_1**|C++|[examples/cpp/example_cpp_1/main.cpp](./examples/cpp/example_cpp_1/main.cpp)<br/>[examples/cpp/example_cpp_1.md](./examples/cpp/example_cpp_1.md)|Demonstrates recursive search for all files under a given directory including all appropriate failure handling.|
 |**example_cpp_2**|C++|[examples/cpp/example_cpp_2/main.cpp](./examples/cpp/example_cpp_2/main.cpp)<br/>[examples/cpp/example_cpp_2.md](./examples/cpp/example_cpp_2.md)|Demonstrates obtaining `stat()` of home directory using `recls::stat`, then recursive search under that of files matching a complex pattern|
 |**example_cpp_3**|C++|[examples/cpp/example_cpp_3/main.cpp](./examples/cpp/example_cpp_3/main.cpp)<br/>[examples/cpp/example_cpp_3.md](./examples/cpp/example_cpp_3.md)|Demonstrates use of `recls::stat()` on current directory or named path, optionally specifying a type filter (use `"--help"` for usage), showing various elements of the path in exploded form|
+|**example_cpp_4**|C++|[examples/cpp/example_cpp_4/main.cpp](./examples/cpp/example_cpp_4/main.cpp)<br/>[examples/cpp/example_cpp_4.md](./examples/cpp/example_cpp_4.md)|Demonstrates use of `Recls_RemoveDirectory()`, optionally including files and sockets.|
 
 
 <!-- ########################### end of file ########################### -->
