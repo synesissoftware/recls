@@ -1,6 +1,12 @@
 # recls - Changes <!-- omit in toc -->
 
 
+## Unreleased
+
+* Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates on **boilerplate**;
+* Restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
+
+
 ## 1.10.0-rc4 - 10th September 2026
 
 * Canonicalised CMake exclusion variables from reserved `CMAKE_NO_*` (`CMAKE_NO_B64`, `CMAKE_NO_PANTHEIOS`, `CMAKE_NO_SHWILD`) to canonical `NO_*` in **CMakeLists.txt** and **prepare_cmake.sh**;
