@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 
-#define PROGRAM_NAME                                        "libver"
+#define PROGRAM_NAME                                        "versions"
 
 
 template<
