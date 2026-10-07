@@ -50,6 +50,12 @@ jobs:
             os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
+          # Visual C++ with UNIXem. -Dunix selects the UNIX arm.
+          - id: windows-cl-unixem
+            os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+            use_unixem: true
           - id: windows-mingw
             os: windows-latest
             c_compiler: mingw
@@ -61,6 +67,7 @@ jobs:
       c-compiler: ${{ matrix.c_compiler }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
+      use-unixem: ${{ matrix.use_unixem == true }}
     secrets: inherit
 
   install-smoke:

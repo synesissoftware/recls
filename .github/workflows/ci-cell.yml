@@ -19,6 +19,10 @@ on:
         required: false
         type: string
         default: Release
+      use-unixem:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -193,16 +197,43 @@ jobs:
             cmake --install "$B64BUILD"
           fi
 
+      - name: Install UNIXem
+        if: inputs.use-unixem
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.c-compiler }}" != "cl" ]; then
+            echo "The UNIXem CI cell builds with Visual C++ only."
+            exit 1
+          fi
+          DEPS="${RUNNER_TEMP}/sis-deps"
+          UXSRC="${RUNNER_TEMP}/unixem-src"
+          UXBUILD="${RUNNER_TEMP}/unixem-build"
+          git clone --depth 1 https://github.com/synesissoftware/UNIXem "$UXSRC"
+          cmake -S "$UXSRC" -B "$UXBUILD" \
+            -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
+            -DCMAKE_INSTALL_PREFIX="$DEPS" \
+            -DCMAKE_PREFIX_PATH="$DEPS" \
+            -DBUILD_EXAMPLES=OFF \
+            -DBUILD_TESTING=OFF
+          cmake --build "$UXBUILD" --config "${{ inputs.build-type }}" --parallel
+          cmake --install "$UXBUILD" --config "${{ inputs.build-type }}"
+
       - name: Configure
         shell: bash
         run: |
           set -euo pipefail
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
+            UNIXEM_CMAKE_ARG=()
+            if [ "${{ inputs.use-unixem }}" = "true" ]; then
+              UNIXEM_CMAKE_ARG=(-DUSE_UNIXEM:BOOL=ON)
+            fi
             cmake -B build -S . \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON
+              -DBUILD_TESTING=ON \
+              "${UNIXEM_CMAKE_ARG[@]}"
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -G "MinGW Makefiles" \
