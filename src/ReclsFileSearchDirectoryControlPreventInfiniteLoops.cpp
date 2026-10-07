@@ -4,11 +4,11 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryControlPreventInfiniteLoops.
  *
  * Created: 1st May 2025
- * Updated: 5th May 2025
+ * Updated: 8th October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -66,8 +66,10 @@ namespace impl
 /* /////////////////////////////////////////////////////////////////////////
  * ReclsFileSearchDirectoryControlPreventInfiniteLoops
  *
- * NOTE: in actuality, the Windows-specific logic in this class is never
- * exercised, and remains as a vestige of the R&D of the feature.
+ * NOTE: the file-index path is used for native Windows and for UNIX
+ * emulated on Windows. The Windows CRT `stat()` reports `st_ino` as 0, so
+ * device+inode identity would treat every directory as the same node and
+ * skip the rest of a recursive search.
  */
 
 ReclsFileSearchDirectoryControlPreventInfiniteLoops::ReclsFileSearchDirectoryControlPreventInfiniteLoops(
@@ -109,7 +111,8 @@ ReclsFileSearchDirectoryControlPreventInfiniteLoops::CanProcessDirectory(
         recls_sint64_t  ino;
 
 #if 0
-#elif defined(RECLS_PLATFORM_IS_WINDOWS)
+#elif defined(RECLS_PLATFORM_IS_WINDOWS) || \
+      defined(RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS)
 
         DWORD   fileIndexHigh;
         DWORD   fileIndexLow;
