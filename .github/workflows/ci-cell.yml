@@ -197,6 +197,48 @@ jobs:
             cmake --install "$B64BUILD"
           fi
 
+      - name: Install example dependency (2be)
+        shell: bash
+        run: |
+          set -euxo pipefail
+
+          DEPS="${RUNNER_TEMP}/sis-deps"
+          TWOBSRC="${RUNNER_TEMP}/2be-src"
+          TWOBBUILD="${RUNNER_TEMP}/2be-build"
+
+          git clone --depth 1 https://github.com/synesissoftware/2be "$TWOBSRC"
+          if [ "${{ inputs.c-compiler }}" = "cl" ]; then
+            cmake -S "$TWOBSRC" -B "$TWOBBUILD" \
+              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$TWOBBUILD" --config "${{ inputs.build-type }}" --parallel
+            cmake --install "$TWOBBUILD" --config "${{ inputs.build-type }}"
+          elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake -S "$TWOBSRC" -B "$TWOBBUILD" -G "MinGW Makefiles" \
+              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$TWOBBUILD" --parallel 2
+            cmake --install "$TWOBBUILD"
+          else
+            cmake -S "$TWOBSRC" -B "$TWOBBUILD" \
+              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
+              -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$TWOBBUILD" --parallel
+            cmake --install "$TWOBBUILD"
+          fi
+
       - name: Install UNIXem
         if: inputs.use-unixem
         shell: bash
