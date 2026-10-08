@@ -19,6 +19,10 @@ on:
         required: false
         type: string
         default: Release
+      use-unixem:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -193,16 +197,85 @@ jobs:
             cmake --install "$B64BUILD"
           fi
 
+      - name: Install example dependency (2be)
+        shell: bash
+        run: |
+          set -euxo pipefail
+
+          DEPS="${RUNNER_TEMP}/sis-deps"
+          TWOBSRC="${RUNNER_TEMP}/2be-src"
+          TWOBBUILD="${RUNNER_TEMP}/2be-build"
+
+          git clone --depth 1 https://github.com/synesissoftware/2be "$TWOBSRC"
+          if [ "${{ inputs.c-compiler }}" = "cl" ]; then
+            cmake -S "$TWOBSRC" -B "$TWOBBUILD" \
+              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$TWOBBUILD" --config "${{ inputs.build-type }}" --parallel
+            cmake --install "$TWOBBUILD" --config "${{ inputs.build-type }}"
+          elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake -S "$TWOBSRC" -B "$TWOBBUILD" -G "MinGW Makefiles" \
+              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$TWOBBUILD" --parallel 2
+            cmake --install "$TWOBBUILD"
+          else
+            cmake -S "$TWOBSRC" -B "$TWOBBUILD" \
+              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
+              -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$TWOBBUILD" --parallel
+            cmake --install "$TWOBBUILD"
+          fi
+
+      - name: Install UNIXem
+        if: inputs.use-unixem
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.c-compiler }}" != "cl" ]; then
+            echo "The UNIXem CI cell builds with Visual C++ only."
+            exit 1
+          fi
+          DEPS="${RUNNER_TEMP}/sis-deps"
+          UXSRC="${RUNNER_TEMP}/unixem-src"
+          UXBUILD="${RUNNER_TEMP}/unixem-build"
+          git clone --depth 1 https://github.com/synesissoftware/UNIXem "$UXSRC"
+          cmake -S "$UXSRC" -B "$UXBUILD" \
+            -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
+            -DCMAKE_INSTALL_PREFIX="$DEPS" \
+            -DCMAKE_PREFIX_PATH="$DEPS" \
+            -DBUILD_EXAMPLES=OFF \
+            -DBUILD_TESTING=OFF
+          cmake --build "$UXBUILD" --config "${{ inputs.build-type }}" --parallel
+          cmake --install "$UXBUILD" --config "${{ inputs.build-type }}"
+
       - name: Configure
         shell: bash
         run: |
           set -euo pipefail
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
+            UNIXEM_CMAKE_ARG=()
+            if [ "${{ inputs.use-unixem }}" = "true" ]; then
+              UNIXEM_CMAKE_ARG=(-DUSE_UNIXEM:BOOL=ON)
+            fi
             cmake -B build -S . \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON
+              -DBUILD_TESTING=ON \
+              "${UNIXEM_CMAKE_ARG[@]}"
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -G "MinGW Makefiles" \
@@ -333,7 +406,7 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_component_tests.sh -M
 
   test-scratch:
     name: Scratch tests (${{ inputs.cell-id }})

@@ -4,11 +4,11 @@
  * Purpose: #includes the STLSoft root header and verifies the version.
  *
  * Created: 8th November 2007
- * Updated: 9th July 2024
+ * Updated: 8th October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,6 +49,10 @@
 # endif
 
 #elif defined(_STLSOFT_VER)
+
+# if _STLSOFT_VER < 0x010B01C7
+#  error requires STLSoft 1.11.1-rc7 or later
+# endif
 
 # if 0
 # elif _STLSOFT_VER >= 0x010c0000

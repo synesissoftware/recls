@@ -1,4 +1,4 @@
-# recls Example - **example_cpp_4**
+# recls - Example - **example_cpp_4**
 
 ## Summary
 
@@ -17,13 +17,16 @@ Demonstrates use of `Recls_RemoveDirectory()`, optionally including files and so
  *    directory;
  *
  * Created: 4th May 2025
- * Updated: 4th May 2025
+ * Updated: 8th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* recls header files */
 #include <recls/recls.hpp>
+
+/* 2be header files */
+#include <2be/2be.h>
 
 /* Pantheios header files */
 #ifdef HAS_Pantheios
@@ -36,10 +39,16 @@ Demonstrates use of `Recls_RemoveDirectory()`, optionally including files and so
 
 /* Standard C++ Library Files */
 #include <iostream>
+#include <string>
 
 /* Standard C Library Files */
 #include <stdio.h>
 #include <stdlib.h>
+#if defined(RECLS_PLATFORM_IS_WINDOWS)
+# include <process.h>
+#else
+# include <unistd.h>
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,6 +77,46 @@ void RECLS_CALLCONV_DEFAULT recls_log_to_pantheios(
 }
 #endif /* HAS_Pantheios */
 
+/* When SIS_EXAMPLE_SMOKE is truey and no directory was given, create an
+ * empty directory in the current directory and remove that. The smoke
+ * runner sets the variable so this example can be executed with no
+ * arguments. 2be classifies the variable.
+ */
+static
+int
+example_process_id_(void)
+{
+#if defined(RECLS_PLATFORM_IS_WINDOWS)
+
+    return _getpid();
+#else
+
+    return getpid();
+#endif
+}
+
+static
+int
+prepare_smoke_directory_(std::string& path)
+{
+    recls::directoryResults_t   cr;
+    recls::recls_rc_t           rc;
+
+    path = ".recls_example_cpp_4_";
+    path += std::to_string(example_process_id_());
+
+    rc = recls::Recls_CreateDirectory(path.c_str(), &cr);
+
+    if (RECLS_FAILED(rc))
+    {
+        std::cerr << "example_cpp_4: could not create smoke directory '" << path << "': " << rc << std::endl;
+
+        return EXIT_FAILURE;
+    }
+
+    return EXIT_SUCCESS;
+}
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -92,6 +141,7 @@ int main_(stlsoft::string_slice_m_t program_name, int argc, char* argv[])
 #endif /* HAS_Pantheios */
 
     char const*         dir_to_remove   =   NULL;
+    std::string         smoke_dir;
     recls::uint32_t     flags           =   0;
 
     stlsoft::cmdargs    args(argc, argv);
@@ -128,9 +178,21 @@ int main_(stlsoft::string_slice_m_t program_name, int argc, char* argv[])
     {
     case 0:
 
-        std::cerr << program_name << ": " << "must specify directory to remove; use --help for usage" << std::endl;
+        if (!twob_string_is_truey(getenv("SIS_EXAMPLE_SMOKE")))
+        {
+            std::cerr << program_name << ": " << "must specify directory to remove; use --help for usage" << std::endl;
 
-        return EXIT_FAILURE;
+            return EXIT_FAILURE;
+        }
+
+        if (EXIT_SUCCESS != prepare_smoke_directory_(smoke_dir))
+        {
+            return EXIT_FAILURE;
+        }
+
+        dir_to_remove = smoke_dir.c_str();
+
+        break;
     case 1:
 
         dir_to_remove = args.values()[0].name.data();

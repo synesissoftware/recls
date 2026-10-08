@@ -1,4 +1,4 @@
-# recls Example - **example_c_6**
+# recls - Example - **example_c_6**
 
 ## Summary
 
