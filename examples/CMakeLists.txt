@@ -1,7 +1,6 @@
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-
 if(_BUILD_AS_WIN32)
 
 	if(CMAKE_SIZEOF_VOID_P EQUAL 8)

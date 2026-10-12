@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  10th September 2026
+# Updated:  8th October 2026
 #
 # ######################################################################## #
 
@@ -294,6 +294,8 @@ if((USE_UNIXEM) AND (WIN32))
 
 	add_compile_definitions(_STLSOFT_FORCE_ANY_COMPILER)
 	add_compile_definitions(EMULATE_UNIX_ON_WINDOWS)
+	add_compile_definitions(UNIX)
+	add_compile_definitions(unix)
 	add_compile_definitions(RECLS_HAS_UNIXEM)
 	add_compile_definitions(STLSOFT_HAS_UNIXEM)
 endif()

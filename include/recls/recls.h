@@ -146,6 +146,7 @@
 # define RECLS_VER_1_10_0_RC_2                              0x010a00c2
 # define RECLS_VER_1_10_0_RC_3                              0x010a00c3
 # define RECLS_VER_1_10_0_RC_4                              0x010a00c4
+# define RECLS_VER_1_10_0_RC_5                              0x010a00c5
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 #define RECLS_VER_MAJOR         1

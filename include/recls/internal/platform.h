@@ -4,11 +4,11 @@
  * Purpose: Platform discrimination for recls API.
  *
  * Created: 15th August 2003
- * Updated: 4th May 2025
+ * Updated: 8th October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -27,8 +27,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      4
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   0
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       33
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   1
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       34
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -71,6 +71,14 @@
      defined(UNIX) ||\
      defined(__unix) ||\
      defined(__unix__) ||\
+     defined(__APPLE__) ||\
+     defined(__MACH__) ||\
+     defined(__MACOSX__) ||\
+     defined(__linux__) ||\
+     defined(__FreeBSD__) ||\
+     defined(__NetBSD__) ||\
+     defined(__OpenBSD__) ||\
+     defined(__DragonFly__) ||\
      (   defined(__xlC__) &&\
          defined(_POWER) &&\
          defined(_AIX)) ||\
@@ -93,11 +101,19 @@
 #   define RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS
 #  else
 #  endif /* Windows */
-# elif defined(WIN64)
+# elif 0 ||\
+       defined(WIN64) ||\
+       defined(_WIN64) ||\
+       defined(__WIN64__) ||\
+       0
    /* Platform is Win64 */
 #  define RECLS_PLATFORM_IS_WIN64
 #  define RECLS_PLATFORM_IS_WINDOWS
-# elif defined(WIN32)
+# elif 0 ||\
+       defined(WIN32) ||\
+       defined(_WIN32) ||\
+       defined(__WIN32__) ||\
+       0
    /* Platform is Win32 */
 #  define RECLS_PLATFORM_IS_WIN32
 #  define RECLS_PLATFORM_IS_WINDOWS
@@ -108,11 +124,15 @@
 
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
-# if defined(__amd64__) || \
-     defined(__amd64) || \
-     defined(_AMD64_) || \
-     defined(_M_AMD64) || \
-     defined(_M_X64)
+# if defined(__aarch64__) || \
+     defined(__arm64__) || \
+     defined(_M_ARM64)
+#  define RECLS_ARCH_IS_ARM64
+# elif defined(__amd64__) || \
+       defined(__amd64) || \
+       defined(_AMD64_) || \
+       defined(_M_AMD64) || \
+       defined(_M_X64)
 #  define RECLS_ARCH_IS_X64
 # elif defined(__ia64__) || \
        defined(__ia64) || \
@@ -126,7 +146,11 @@
 #  define RECLS_ARCH_IS_X86
 # endif /* _M_?? */
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
-# if defined(_M_IA64)
+# if defined(__aarch64__) || \
+     defined(__arm64__) || \
+     defined(_M_ARM64)
+#  define RECLS_ARCH_IS_ARM64
+# elif defined(_M_IA64)
 #  define RECLS_ARCH_IS_IA64
 # elif defined(_M_X64) || \
        defined(_M_AMD64)
