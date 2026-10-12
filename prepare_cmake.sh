@@ -191,9 +191,9 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
-    -DCMAKE_NO_B64:BOOL=$CMakeNoB64 \
-    -DCMAKE_NO_PANTHEIOS:BOOL=$CMakeNoPantheios \
-    -DCMAKE_NO_SHWILD:BOOL=$CMakeNoShwild \
+    -DNO_B64:BOOL=$CMakeNoB64 \
+    -DNO_PANTHEIOS:BOOL=$CMakeNoPantheios \
+    -DNO_SHWILD:BOOL=$CMakeNoShwild \
     -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -G "MinGW Makefiles" \
     -S $Dir \
@@ -206,9 +206,9 @@ else
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
-    -DCMAKE_NO_B64:BOOL=$CMakeNoB64 \
-    -DCMAKE_NO_PANTHEIOS:BOOL=$CMakeNoPantheios \
-    -DCMAKE_NO_SHWILD:BOOL=$CMakeNoShwild \
+    -DNO_B64:BOOL=$CMakeNoB64 \
+    -DNO_PANTHEIOS:BOOL=$CMakeNoPantheios \
+    -DNO_SHWILD:BOOL=$CMakeNoShwild \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
     -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
     -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \

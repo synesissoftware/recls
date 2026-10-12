@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  29th June 2025
+# Updated:  10th September 2026
 #
 # ######################################################################## #
 
@@ -166,11 +166,32 @@ if(DEFINED STLSOFT_INCLUDE_DIR)
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
 
+if(DEFINED CMAKE_NO_B64 AND NOT DEFINED NO_B64)
+
+	message(WARNING "variable 'CMAKE_NO_B64' is obsolete and will not be supported in a future version; use 'NO_B64' instead")
+
+	set(NO_B64 ${CMAKE_NO_B64})
+endif()
+
+if(DEFINED CMAKE_NO_PANTHEIOS AND NOT DEFINED NO_PANTHEIOS)
+
+	message(WARNING "variable 'CMAKE_NO_PANTHEIOS' is obsolete and will not be supported in a future version; use 'NO_PANTHEIOS' instead")
+
+	set(NO_PANTHEIOS ${CMAKE_NO_PANTHEIOS})
+endif()
+
+if(DEFINED CMAKE_NO_SHWILD AND NOT DEFINED NO_SHWILD)
+
+	message(WARNING "variable 'CMAKE_NO_SHWILD' is obsolete and will not be supported in a future version; use 'NO_SHWILD' instead")
+
+	set(NO_SHWILD ${CMAKE_NO_SHWILD})
+endif()
+
 
 # ############################
 # b64
 
-if(NOT (CMAKE_NO_B64))
+if(NOT NO_B64)
 
 	if(BUILD_TESTING)
 
@@ -193,7 +214,7 @@ endif()
 # ############################
 # Pantheios
 
-if(NOT (CMAKE_NO_PANTHEIOS))
+if(NOT NO_PANTHEIOS)
 
 	if(BUILD_TESTING)
 
@@ -212,7 +233,7 @@ endif()
 # ############################
 # shwild
 
-if(NOT (CMAKE_NO_SHWILD))
+if(NOT NO_SHWILD)
 
 	if(BUILD_TESTING)
 
