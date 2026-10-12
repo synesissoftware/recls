@@ -324,6 +324,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -337,14 +338,38 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Run examples
+      # download-artifact does not restore Unix execute bits;
+      # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      - name: Restore execute bits on test and example binaries
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-          fi
+          find build -type f \( \
+            -name 'test_unit*' -o -name 'test.unit.*' -o \
+            -name 'test_component*' -o -name 'test.component.*' -o \
+            -name 'test_performance*' -o -name 'test.performance.*' -o \
+            -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+            \( -name 'example*' ! -name '*.md' \) \
+          \) -exec chmod +x {} +
+
+      - name: Run examples (Bash)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
+
+      - name: Run examples (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_examples.cmd
+          if errorlevel 1 exit /b 1
 
   test-unit:
     name: Unit tests (${{ inputs.cell-id }})
@@ -355,6 +380,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -368,14 +394,38 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Run unit tests
+      # download-artifact does not restore Unix execute bits;
+      # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      - name: Restore execute bits on test and example binaries
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-          fi
+          find build -type f \( \
+            -name 'test_unit*' -o -name 'test.unit.*' -o \
+            -name 'test_component*' -o -name 'test.component.*' -o \
+            -name 'test_performance*' -o -name 'test.performance.*' -o \
+            -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+            \( -name 'example*' ! -name '*.md' \) \
+          \) -exec chmod +x {} +
+
+      - name: Run unit tests (Bash)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
+
+      - name: Run unit tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_unit_tests.cmd --unit-only
+          if errorlevel 1 exit /b 1
 
   test-component:
     name: Component tests (${{ inputs.cell-id }})
@@ -386,6 +436,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -399,14 +450,38 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Run component tests
+      # download-artifact does not restore Unix execute bits;
+      # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      - name: Restore execute bits on test and example binaries
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-          fi
+          find build -type f \( \
+            -name 'test_unit*' -o -name 'test.unit.*' -o \
+            -name 'test_component*' -o -name 'test.component.*' -o \
+            -name 'test_performance*' -o -name 'test.performance.*' -o \
+            -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+            \( -name 'example*' ! -name '*.md' \) \
+          \) -exec chmod +x {} +
+
+      - name: Run component tests (Bash)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_component_tests.sh -M
+
+      - name: Run component tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_component_tests.cmd
+          if errorlevel 1 exit /b 1
 
   test-scratch:
     name: Scratch tests (${{ inputs.cell-id }})
@@ -418,6 +493,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -431,11 +507,35 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Run scratch tests
+      # download-artifact does not restore Unix execute bits;
+      # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      - name: Restore execute bits on test and example binaries
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-          fi
+          find build -type f \( \
+            -name 'test_unit*' -o -name 'test.unit.*' -o \
+            -name 'test_component*' -o -name 'test.component.*' -o \
+            -name 'test_performance*' -o -name 'test.performance.*' -o \
+            -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+            \( -name 'example*' ! -name '*.md' \) \
+          \) -exec chmod +x {} +
+
+      - name: Run scratch tests (Bash)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
+
+      - name: Run scratch tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_scratch_tests.cmd
+          if errorlevel 1 exit /b 1
