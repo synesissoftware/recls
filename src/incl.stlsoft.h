@@ -50,8 +50,8 @@
 
 #elif defined(_STLSOFT_VER)
 
-# if _STLSOFT_VER < 0x010B01C7
-#  error requires STLSoft 1.11.1-rc7 or later
+# if _STLSOFT_VER < 0x010B01C8
+#  error requires STLSoft 1.11.1-rc8 or later
 # endif
 
 # if 0
