@@ -1,7 +1,7 @@
 # recls - Changes <!-- omit in toc -->
 
 
-## 1.10.0-rc4 - 10th September 2026
+## 1.10.0-rc4 - 13th October 2026
 
 * Canonicalised CMake exclusion variables from reserved `CMAKE_NO_*` (`CMAKE_NO_B64`, `CMAKE_NO_PANTHEIOS`, `CMAKE_NO_SHWILD`) to canonical `NO_*` in **CMakeLists.txt** and **prepare_cmake.sh**;
 * Added backwards-compatibility mappings with obsolete-variable warnings for legacy `CMAKE_NO_*` in **CMakeLists.txt**;
