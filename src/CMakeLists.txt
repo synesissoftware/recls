@@ -5,16 +5,11 @@
 # Purpose:  CMake lists file for recls core library
 #
 # Created:  ...
-# Updated:  2nd May 2025
+# Updated:  13th October 2026
 #
 # ######################################################################## #
 
 
-if(_BUILD_AS_UNIX)
-
-	add_definitions(-DUNIX)
-	add_definitions(-Dunix)
-endif(_BUILD_AS_UNIX)
 
 if(_BUILD_AS_WIN32)
 

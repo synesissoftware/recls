@@ -1,11 +1,6 @@
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-if(_BUILD_AS_UNIX)
-
-	add_definitions(-DUNIX)
-	add_definitions(-Dunix)
-endif(_BUILD_AS_UNIX)
 
 if(_BUILD_AS_WIN32)
 
