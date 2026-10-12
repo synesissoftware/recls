@@ -1,13 +1,7 @@
 # recls - Changes <!-- omit in toc -->
 
 
-## Unreleased
-
-* Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates on **boilerplate**;
-* Restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
-
-
-## 1.10.0-rc4 - 10th September 2026
+## 1.10.0-rc4 - 13th October 2026
 
 * Canonicalised CMake exclusion variables from reserved `CMAKE_NO_*` (`CMAKE_NO_B64`, `CMAKE_NO_PANTHEIOS`, `CMAKE_NO_SHWILD`) to canonical `NO_*` in **CMakeLists.txt** and **prepare_cmake.sh**;
 * Added backwards-compatibility mappings with obsolete-variable warnings for legacy `CMAKE_NO_*` in **CMakeLists.txt**;
@@ -17,6 +11,8 @@
 * Added **example_cpp_4** entry to **EXAMPLES.md**;
 * Corrected step numbering, script name, and cross-references in **INSTALL.md**;
 * Cleaned up formatting and indentation in **src/incl.winstl.h** and scratch test sources;
+* Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates on **boilerplate**;
+* Restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
 
 
 ## 1.10.0-rc3 - 3rd August 2026

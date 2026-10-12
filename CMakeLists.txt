@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  8th October 2026
+# Updated:  10th September 2026
 #
 # ######################################################################## #
 
