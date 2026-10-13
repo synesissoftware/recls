@@ -16,15 +16,15 @@
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Components](#components)
-	- [C API / core library](#c-api--core-library)
-	- [C++ API](#c-api)
+  - [C API / core library](#c-api--core-library)
+  - [C++ API](#c-api)
 - [Examples](#examples)
 - [Project Information](#project-information)
-	- [Where to get help](#where-to-get-help)
-	- [Contribution guidelines](#contribution-guidelines)
-	- [Dependencies](#dependencies)
-	- [Related projects](#related-projects)
-	- [License](#license)
+  - [Where to get help](#where-to-get-help)
+  - [Contribution guidelines](#contribution-guidelines)
+  - [Dependencies](#dependencies)
+  - [Related projects](#related-projects)
+  - [License](#license)
 
 
 ## Introduction
@@ -77,17 +77,23 @@ If you'd like to help out with the project, please raise an issue via [GitHub Pa
 
 #### STLSoft <!-- omit in toc -->
 
-**recls** depends on the **STLSoft** libraries, version 1.11.1 (or later).
+**recls** depends on the **STLSoft** libraries, version **1.11.1-rc8** (or later).
 
 * [STLSoft](https://github.com/synesissoftware/STLSoft/);
+
+
+#### Development Dependencies (optional for examples) <!-- omit in toc -->
+
+* [2be](https://github.com/synesissoftware/2be/) (**example_cpp_4** smoke — skipped when absent or with **`--no-2be`**);
 
 
 #### Development Dependencies (required for testing) <!-- omit in toc -->
 
 * [xTests](https://github.com/synesissoftware/xTests/);
-* [shwild](https://github.com/synesissoftware/shwild/) (optional);
-* [Pantheios](https://github.com/synesissoftware/Pantheios/) (optional);
 * [b64](https://github.com/synesissoftware/b64/) (optional; often via Pantheios);
+* [Diagnosticism](https://github.com/synesissoftware/Diagnosticism/) (optional; version-string formatting in **test.scratch.versions**);
+* [Pantheios](https://github.com/synesissoftware/Pantheios/) (optional);
+* [shwild](https://github.com/synesissoftware/shwild/) (optional);
 * [UNIXem](https://github.com/synesissoftware/UNIXem/) (optional; Windows UNIX-emulation builds);
 
 

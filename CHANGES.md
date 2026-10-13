@@ -1,7 +1,49 @@
-# **recls** Changes <!-- omit in toc -->
+# recls - Changes <!-- omit in toc -->
 
 
-## 1.10.0 (release candidate 3) - 3rd August 2026
+## 1.10.0-rc4 - 13th October 2026
+
+* build:
+  * Canonicalised CMake exclusion variables from reserved `CMAKE_NO_*` (`CMAKE_NO_B64`, `CMAKE_NO_PANTHEIOS`, `CMAKE_NO_SHWILD`) to canonical `NO_*` in **CMakeLists.txt** and **prepare_cmake.sh**;
+  * Added backwards-compatibility mappings with obsolete-variable warnings for legacy `CMAKE_NO_*` in **CMakeLists.txt**;
+  * Moved `-DUNIX` / `-Dunix` compile definitions into the `USE_UNIXEM` path in top-level **CMakeLists.txt** (removed the blanket `_BUILD_AS_UNIX` adds from **examples/** and **test/**);
+* dependencies:
+  * Optional examples-only **2be** (`find_package(2be QUIET)` when `BUILD_EXAMPLES`; `NO_2BE` / **prepare_cmake.sh --no-2be**); **example_cpp_4** is skipped when **2be** is absent or suppressed;
+  * Optional test-only **Diagnosticism** (`find_package(Diagnosticism QUIET)` when `BUILD_TESTING`; `NO_DIAGNOSTICISM` / **prepare_cmake.sh --no-diagnosticism**);
+  * Raised compile-time **STLSoft** floor to **1.11.1-rc8** (legacy `_STLSOFT_VER` path in **src/incl.stlsoft.h**);
+  * Raised **UNIXem** floor to **1.14.1** when `USE_UNIXEM` is enabled;
+* version:
+  * Migrated to the `RECLS_VER_RELSTATUS` symbol pattern (`RECLS_VER_AB` / `RECLS_VER_ALPHABETA` aliases);
+  * Added `RECLS_VER_1_10_0_RC_2`, `RECLS_VER_1_10_0_RC_3`, and `RECLS_VER_1_10_0_RC_4`, and set release status to `0xC4` in **include/recls/recls.h**;
+  * Provided legacy `RECLS_VER_REVISION` compatibility alias of `RECLS_VER_PATCH`;
+* fixes:
+  * **include/recls/internal/platform.h** — recognise Apple / `__unix__` / BSD / AIX tokens so UNIX is selected without `-Dunix`;
+  * Recursive search under **UNIXem** uses the Windows file-index identity path (CRT `stat()` reports `st_ino` as 0, which skipped every directory after the first);
+* examples:
+  * Skip **example_c_9** (sockets) and **example_c_10** (devices) when CMake `WIN32` is set — those search types need a real UNIX host;
+  * **example_cpp_4** — built only when **2be** is found; when `SIS_EXAMPLE_SMOKE` is truey (**2be** `twob_string_is_truey()`), a no-arg run creates and removes a throwaway directory so the smoke runner can exercise `Recls_RemoveDirectory()`;
+* testing:
+  * **test/scratch/versions** → **test.scratch.versions** reports tab-indented efferent dependencies (**2be**, **b64**, **Diagnosticism**, **Pantheios**, **shwild**, **STLSoft**, **UNIXem**), each only when found and linked (no test-only **xTests** on the reporter);
+  * When **Diagnosticism** is found, version lines are formatted via `diagnosticism_calc_version_string()` (hand-rolled dotted form remains as the fallback);
+* CI:
+  * Added Visual C++ **windows-cl-unixem** matrix cell (`USE_UNIXEM`);
+  * Install Synesis deps via **.github/actions/install-sis-deps** (order: **STLSoft**, **shwild**, **xTests**, **b64**, **2be**, **Diagnosticism**, optional **UNIXem**); callers use `${{ env.SIS_DEPS }}`;
+  * Component tests via **run_all_component_tests.sh** / **.cmd**;
+  * Windows cells dogfood native **.cmd** runners; restore execute bits after artifact download before Bash runners;
+* boilerplate:
+  * Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates;
+  * Adopted SisClr CMake helper scripts from **misc-dev-scripts** (including native **run_all_*.cmd** and tip allowed-to-fail support on **run_all_examples** / **run_all_scratch_tests**);
+  * Restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
+  * Cleaned up formatting and indentation in **src/incl.winstl.h** and scratch test sources;
+* documentation:
+  * Standardised top-level headings across C and C++ example companion files (**examples/c/*.md**, **examples/cpp/*.md**);
+  * Fixed title heading typo in **examples/c/example_c_2.md**;
+  * Added **example_cpp_4** entry to **EXAMPLES.md**;
+  * Corrected step numbering, script name, and cross-references in **INSTALL.md**;
+  * **NEWS.md** three-column chronology; **README.md** lists **2be** and **Diagnosticism** as optional development dependencies;
+
+
+## 1.10.0-rc3 - 3rd August 2026
 
 * Added modular GitHub Actions CI (**ci.yml** / **ci-cell.yml**) with install-smoke coverage;
 * Removed **HISTORY.md** (content merged into **CHANGES.md**);
@@ -12,14 +54,14 @@
 * Project boilerplate updates (**.gitattributes**, **.vimrc**, **.vscode/settings.json**);
 
 
-## 1.10.0 (release candidate 2) - 30th June 2025
+## 1.10.0-rc2 - 30th June 2025
 
 * Added `recls::device()`, `recls::directory()`, `recls::file()`, and `recls::socket()` stat-like functions, that attempt to obtain a file-system entry and then filter (or throw) for specific file type;
 * Added **libver** scratch-test;
 * Fixed boilerplate, wherein various 1.10.0-xxx releases were erroneously tagged 1.10.1-xxx;
 
 
-## 1.10.0 (release candidate 1) - 6th May 2025
+## 1.10.0-rc1 - 6th May 2025
 
 * Added `RECLS_F_NO_BREAK_INFINITE_LOOPS` search flag and (initial) supporting logic, which cures the macOS infinite-loop problem;
 * Added `RECLS_REMDIR_F_REMOVE_SOCKETS` flag and supporting logic in `Recls_RemoveDirectory()`;
@@ -55,7 +97,7 @@
 * Sorting of **TODO.md** in readiness for 1.11 work streams;
 
 
-## 1.10.0 (beta 6) - 30th April 2025
+## 1.10.0-beta6 - 30th April 2025
 
 * Added support for searching for/stat()-ing devices: `RECLS_F_DEVICES`, `RECLS_RC_ENTRY_IS_DEVICE`, **example_c_10** (which searches for devices), `recls::cpp::entry#is_device()`;
 * Ensuring full support across operating systems for `RECLS_F_STOP_ON_ACCESS_FAILURE`, including adding **test.scratch.ignore_inaccessible_nodes**;
@@ -70,12 +112,12 @@
 * Various tidyings and consistency fixes;
 
 
-## 1.10.0 (beta 5) - 22nd April 2025
+## 1.10.0-beta5 - 22nd April 2025
 
 * Added support for searching for/stat()-ing sockets: `RECLS_F_SOCKETS`, `RECLS_RC_ENTRY_IS_FILE`, `RECLS_RC_ENTRY_IS_SOCKET`;
 
 
-## 1.10.0 (beta 4) - 17th April 2025
+## 1.10.0-beta4 - 17th April 2025
 
 * Added `Recls_GetFileSizeGibiBytes()`, `Recls_GetFileSizeKibiBytes()`, `Recls_GetFileSizeMebiBytes()`, `Recls_GetFileSizeTebiBytes()`;
 * Fixed calculations (from 1,024 factor to 1,000) for `Recls_GetFileSizeGigaBytes()`, `Recls_GetFileSizeKiloBytes()`, `Recls_GetFileSizeMegaBytes()`;
@@ -86,7 +128,7 @@
 * Removed all Visual C++ solution/project files;
 
 
-## 1.10.0 (beta 3) - 17th April 2025
+## 1.10.0-beta3 - 17th April 2025
 
 * Fixes to `Recls_SqueezePath()`;
 * Wholesale improvements to examples (incl. **example_c_2** feedback, optional search-directory, memory-usage fix);
@@ -95,14 +137,14 @@
 * Updated dependency requirements;
 
 
-## 1.10.0 (beta 2) - 23rd February 2025
+## 1.10.0-beta2 - 23rd February 2025
 
 * GCC compatibility;
 **test.scratch.with_pantheios**: removed need for function pointer cast;
 * Boilerplate and tidying;
 
 
-## 1.10.0 (beta 1) - 23rd February 2025
+## 1.10.0-beta1 - 23rd February 2025
 
 * Added `Recls_IsEntrySocket()` API function and `recls::entry#is_socket()`;
 * Renamed API functions `Recls_IsFile*()` => `Recls_IsEntry*()`, and added backwards-compatible functions;
@@ -111,7 +153,7 @@
 * Updated dependency requirements;
 
 
-## 1.10.0 (alpha 9) - 23rd October 2024
+## 1.10.0-alpha9 - 23rd October 2024
 
 * Fleshed out **INSTALL.md**;
 * CMake build script consistency and minor fixes;
@@ -119,14 +161,14 @@
 * Project boilerplate / settings / ignores improvements;
 
 
-## 1.10.0 (alpha 8) - 18th October 2024
+## 1.10.0-alpha8 - 18th October 2024
 
 * CMake / GCC / MinGW compatibility improvements;
 * Tightening up CMake constructs;
 * Visual C++ (19xx+) compatibility;
 
 
-## 1.10.0 (alpha 7) - 17th October 2024
+## 1.10.0-alpha7 - 17th October 2024
 
 * Ensuring all **recls/cpp/*.hpp** files are self-sufficient;
 * MinGW compatibility;
@@ -139,21 +181,21 @@
 * Updated compatibility with **xTests** latest;
 
 
-## 1.10.0 (alpha 6) - 10th July 2024
+## 1.10.0-alpha6 - 10th July 2024
 
 * Visual C++ 17 (2022) compatibility;
 * CMake Windows compatibility;
 * GCC compatibility improvements;
 
 
-## 1.10.0 (alpha 5) - 4th January 2024
+## 1.10.0-alpha5 - 4th January 2024
 
 * Initial CMake support (building and installation; verified on macOS);
 * Renamed project boilerplate `.txt` files to `.md` (Markdown);
 * Project boilerplate updates;
 
 
-## 1.10.0 (alpha 3) - 29th March 2021
+## 1.10.0-alpha3 - 29th March 2021
 
 * search-relative-path now contains trailing slash for directories when RECLS_F_MARK_DIRS specified;
 * VC++ 15, 16 compatibility;
@@ -165,7 +207,7 @@
 * various fixes and refactorings;
 
 
-## 1.10.0 (alpha 1) - 4th January 2021
+## 1.10.0-alpha1 - 4th January 2021
 
 * improved flexibility in treatment of search-directory and patterns;
 * significant refactoring, simplification, removal of dead code;
@@ -233,7 +275,7 @@
 * NOTE: depends on STLSoft 1.9.121;
 
 
-## 1.9.1 (alpha 8) - 4th June 2012
+## 1.9.1-alpha8 - 4th June 2012
 
 * changed entry field volumeSerialNumber to deviceId;
 * added entry field volumeSerialNumber (and search flag RECLS_F_NODE_INDEX);
@@ -245,7 +287,7 @@
 * NOTE: depends on STLSoft 1.9.113;
 
 
-## 1.9.1 (alpha 7) - 30th November 2011
+## 1.9.1-alpha7 - 30th November 2011
 
 * added numLinks member to recls_entryinfo_t;
 * added member numRelativeDirectoryParts to recls_entryinfo_t;
@@ -270,7 +312,7 @@
 * NOTE: depends on STLSoft 1.9.111;
 
 
-## 1.9.1 (alpha 6) - 18th October 2010
+## 1.9.1-alpha6 - 18th October 2010
 
 * recls::entry: added get_file_size() method, ~ deprecated size() method;
 * recls::recls_exception: added 'patterns' property;
@@ -281,7 +323,7 @@
 * NOTE: depends on STLSoft 1.9.101;
 
 
-## 1.9.1 (alpha 5) - 7th June 2010
+## 1.9.1-alpha5 - 7th June 2010
 
 * added comparison operators for recls::cpp::entry;
 * added subscript operator to recls::cpp::root_sequence;
@@ -293,7 +335,7 @@
 * NOTE: depends on STLSoft 1.9.98;
 
 
-## 1.9.1 (alpha 4) - 4th April 2010
+## 1.9.1-alpha4 - 4th April 2010
 
 * fixed invalid calculation in stat();
 * fixed path-relativity defect;
@@ -303,7 +345,7 @@
 * NOTE: depends on STLSoft 1.9.97;
 
 
-## 1.9.1 (alpha 3) - 10th March 2010
+## 1.9.1-alpha3 - 10th March 2010
 
 * Added support for Visual C++ 10 (including makefiles and implicit linking);
 * NOTE: bundles shwild 0.9.19;
@@ -311,7 +353,7 @@
 * NOTE: depends on STLSoft 1.9.96;
 
 
-## 1.9.1 (alpha 2) - 11th February 2010
+## 1.9.1-alpha2 - 11th February 2010
 
 * added VC++ 9 (Visual Studio 2008) solution/project files;
 * added Recls_GetFileSizeGigaBytes(), Recls_GetFileSizeMegaBytes(), Recls_GetFileSizeKiloBytes() API functions;
@@ -321,7 +363,7 @@
 * NOTE: C++ mapping also depends on STLSoft 1.10 alpha 13 (or later);
 
 
-## 1.9.1 (alpha 1) - 9th February 2010
+## 1.9.1-alpha1 - 9th February 2010
 
 * first release of recls 1.9;
 * merging 1.8's C++ and STL APIs into one: include <recls/recls.hpp> for new C++ API;

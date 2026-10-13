@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  29th June 2025
+# Updated:  13th October 2026
 #
 # ######################################################################## #
 
@@ -120,7 +120,9 @@ option(BUILD_TESTING "Build tests" ON)
 # - xTests - required for testing;
 #
 # optional:
+# - 2be - optional for examples (**example_cpp_4** smoke);
 # - b64 - may be needed by Pantheios;
+# - Diagnosticism - optional for testing (version-string formatting);
 # - Pantheios - ...
 # - shwild - required for testing;
 # - UNIXem - required for examples/testing on Windows if USE_UNIXEM and WIN32 are defined;
@@ -166,11 +168,52 @@ if(DEFINED STLSOFT_INCLUDE_DIR)
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
 
+if(DEFINED CMAKE_NO_B64 AND NOT DEFINED NO_B64)
+
+	message(WARNING "variable 'CMAKE_NO_B64' is obsolete and will not be supported in a future version; use 'NO_B64' instead")
+
+	set(NO_B64 ${CMAKE_NO_B64})
+endif()
+
+if(DEFINED CMAKE_NO_PANTHEIOS AND NOT DEFINED NO_PANTHEIOS)
+
+	message(WARNING "variable 'CMAKE_NO_PANTHEIOS' is obsolete and will not be supported in a future version; use 'NO_PANTHEIOS' instead")
+
+	set(NO_PANTHEIOS ${CMAKE_NO_PANTHEIOS})
+endif()
+
+if(DEFINED CMAKE_NO_SHWILD AND NOT DEFINED NO_SHWILD)
+
+	message(WARNING "variable 'CMAKE_NO_SHWILD' is obsolete and will not be supported in a future version; use 'NO_SHWILD' instead")
+
+	set(NO_SHWILD ${CMAKE_NO_SHWILD})
+endif()
+
+
+# ############################
+# 2be
+
+if(NOT NO_2BE)
+
+	if(BUILD_EXAMPLES)
+
+		find_package(2be QUIET)
+
+		if(2be_FOUND)
+
+			message("-- CMake package 2be found (version ${2be_VERSION})")
+		else(2be_FOUND)
+
+			message("-- CMake package 2be not found; example_cpp_4 will be skipped")
+		endif(2be_FOUND)
+	endif(BUILD_EXAMPLES)
+endif()
+
 
 # ############################
 # b64
 
-if(NOT (CMAKE_NO_B64))
+if(NOT NO_B64)
 
 	if(BUILD_TESTING)
 
@@ -191,9 +234,28 @@ endif()
 
 
 # ############################
+# Diagnosticism
+
+if(NOT NO_DIAGNOSTICISM)
+
+	if(BUILD_TESTING)
+
+		find_package(Diagnosticism QUIET)
+
+		if(Diagnosticism_FOUND)
+
+			message("-- CMake package Diagnosticism found (version ${Diagnosticism_VERSION})")
+
+			add_compile_definitions(HAS_Diagnosticism)
+		endif(Diagnosticism_FOUND)
+	endif(BUILD_TESTING)
+endif()
+
+
+# ############################
 # Pantheios
 
-if(NOT (CMAKE_NO_PANTHEIOS))
+if(NOT NO_PANTHEIOS)
 
 	if(BUILD_TESTING)
 
@@ -212,7 +274,7 @@ endif()
 # ############################
 # shwild
 
-if(NOT (CMAKE_NO_SHWILD))
+if(NOT NO_SHWILD)
 
 	if(BUILD_TESTING)
 
@@ -251,7 +313,7 @@ endif()
 
 if((USE_UNIXEM) AND (WIN32))
 
-	set(UNIXem_REQUIRED_VERSION_ 1.12.7)
+	set(UNIXem_REQUIRED_VERSION_ 1.14.1)
 
 	find_package(UNIXem ${UNIXem_REQUIRED_VERSION_} REQUIRED)
 
@@ -259,6 +321,8 @@ if((USE_UNIXEM) AND (WIN32))
 
 	add_compile_definitions(_STLSOFT_FORCE_ANY_COMPILER)
 	add_compile_definitions(EMULATE_UNIX_ON_WINDOWS)
+	add_compile_definitions(UNIX)
+	add_compile_definitions(unix)
 	add_compile_definitions(RECLS_HAS_UNIXEM)
 	add_compile_definitions(STLSOFT_HAS_UNIXEM)
 endif()
