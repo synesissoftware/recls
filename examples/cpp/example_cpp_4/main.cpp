@@ -7,7 +7,7 @@
  *    directory;
  *
  * Created: 4th May 2025
- * Updated: 8th October 2026
+ * Updated: 13th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* STLSoft header files */
 #include <platformstl/filesystem/path_functions.h>
+#include <platformstl/process/functions.h>
 #include <stlsoft/system/cmdargs.hpp>
 
 /* Standard C++ Library Files */
@@ -76,13 +77,9 @@ static
 int
 example_process_id_(void)
 {
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
+    using namespace platformstl;
 
-    return ::_getpid();
-#else
-
-    return ::getpid();
-#endif
+    return platformstl_C_get_current_process_id();
 }
 
 static
