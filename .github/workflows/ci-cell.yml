@@ -239,6 +239,48 @@ jobs:
             cmake --install "$TWOBBUILD"
           fi
 
+      - name: Install test dependency (Diagnosticism)
+        shell: bash
+        run: |
+          set -euxo pipefail
+
+          DEPS="${RUNNER_TEMP}/sis-deps"
+          DIAGSRC="${RUNNER_TEMP}/diagnosticism-src"
+          DIAGBUILD="${RUNNER_TEMP}/diagnosticism-build"
+
+          git clone --depth 1 https://github.com/synesissoftware/Diagnosticism "$DIAGSRC"
+          if [ "${{ inputs.c-compiler }}" = "cl" ]; then
+            cmake -S "$DIAGSRC" -B "$DIAGBUILD" \
+              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$DIAGBUILD" --config "${{ inputs.build-type }}" --parallel
+            cmake --install "$DIAGBUILD" --config "${{ inputs.build-type }}"
+          elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake -S "$DIAGSRC" -B "$DIAGBUILD" -G "MinGW Makefiles" \
+              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$DIAGBUILD" --parallel 2
+            cmake --install "$DIAGBUILD"
+          else
+            cmake -S "$DIAGSRC" -B "$DIAGBUILD" \
+              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
+              -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$DIAGBUILD" --parallel
+            cmake --install "$DIAGBUILD"
+          fi
+
       - name: Install UNIXem
         if: inputs.use-unixem
         shell: bash

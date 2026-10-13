@@ -4,11 +4,11 @@
  * Purpose: Platform discrimination for recls API.
  *
  * Created: 15th August 2003
- * Updated: 4th May 2025
+ * Updated: 8th October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -27,8 +27,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MAJOR      3
 # define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_MINOR      4
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   0
-# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       33
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_REVISION   2
+# define RECLS_VER_RECLS_INTERNAL_H_PLATFORM_EDIT       35
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/internal/platform.h
@@ -47,19 +47,23 @@
 #if defined(_WIN64)
 # if defined(EMULATE_UNIX_ON_WIN64) && \
      !defined(EMULATE_UNIX_ON_WINDOWS)
+
 #  define EMULATE_UNIX_ON_WINDOWS
 # endif /* EMULATE_UNIX_ON_WIN64 && !EMULATE_UNIX_ON_WINDOWS */
 # if !defined(EMULATE_UNIX_ON_WIN64) && \
      defined(EMULATE_UNIX_ON_WINDOWS)
+
 #  define EMULATE_UNIX_ON_WIN64
 # endif /* !EMULATE_UNIX_ON_WIN64 && EMULATE_UNIX_ON_WINDOWS */
 #elif defined(_WIN32)
 # if defined(EMULATE_UNIX_ON_WIN32) && \
      !defined(EMULATE_UNIX_ON_WINDOWS)
+
 #  define EMULATE_UNIX_ON_WINDOWS
 # endif /* EMULATE_UNIX_ON_WIN32 && !EMULATE_UNIX_ON_WINDOWS */
 # if !defined(EMULATE_UNIX_ON_WIN32) && \
      defined(EMULATE_UNIX_ON_WINDOWS)
+
 #  define EMULATE_UNIX_ON_WIN32
 # endif /* !EMULATE_UNIX_ON_WIN32 && EMULATE_UNIX_ON_WINDOWS */
 #endif /* _WIN32 || _WIN64 */
@@ -69,12 +73,24 @@
 # if 0 ||\
      defined(unix) ||\
      defined(UNIX) ||\
+     0 ||\
      defined(__unix) ||\
      defined(__unix__) ||\
-     (   defined(__xlC__) &&\
-         defined(_POWER) &&\
-         defined(_AIX)) ||\
+     defined(__APPLE__) ||\
+     defined(__MACH__) ||\
+     defined(__MACOSX__) ||\
+     defined(__linux__) ||\
+     defined(__FreeBSD__) ||\
+     defined(__NetBSD__) ||\
+     defined(__OpenBSD__) ||\
+     defined(__DragonFly__) ||\
+     (  1 &&\
+        defined(__xlC__) &&\
+        defined(_POWER) &&\
+        defined(_AIX) &&\
+        1) ||\
      0
+
    /* Platform is UNIX */
 #  define RECLS_PLATFORM_IS_UNIX
    /* Now determine whether this is being emulated on Windows */
@@ -93,11 +109,19 @@
 #   define RECLS_PLATFORM_IS_UNIX_NON_EMULATED_ON_WINDOWS
 #  else
 #  endif /* Windows */
-# elif defined(WIN64)
+# elif 0 ||\
+       defined(_WIN64) ||\
+       defined(__WIN64__) ||\
+       0
+
    /* Platform is Win64 */
 #  define RECLS_PLATFORM_IS_WIN64
 #  define RECLS_PLATFORM_IS_WINDOWS
-# elif defined(WIN32)
+# elif 0 ||\
+       defined(_WIN32) ||\
+       defined(__WIN32__) ||\
+       0
+
    /* Platform is Win32 */
 #  define RECLS_PLATFORM_IS_WIN32
 #  define RECLS_PLATFORM_IS_WINDOWS
@@ -108,30 +132,60 @@
 
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
-# if defined(__amd64__) || \
-     defined(__amd64) || \
-     defined(_AMD64_) || \
-     defined(_M_AMD64) || \
-     defined(_M_X64)
+# if 0
+# elif 0 ||\
+       defined(__aarch64__) ||\
+       defined(__arm64__) ||\
+       defined(_M_ARM64) ||\
+       0
+
+#  define RECLS_ARCH_IS_ARM64
+# elif 0 ||\
+       defined(__amd64__) || \
+       defined(__amd64) || \
+       defined(_AMD64_) || \
+       defined(_M_AMD64) || \
+       defined(_M_X64) ||\
+       0
+
 #  define RECLS_ARCH_IS_X64
-# elif defined(__ia64__) || \
+# elif 0 ||\
+       defined(__ia64__) || \
        defined(__ia64) || \
        defined(_IA64_) || \
-       defined(_M_IA64)
+       defined(_M_IA64) ||\
+       0
+
 #  define RECLS_ARCH_IS_IA64
-# elif defined(__i386__) || \
+# elif 0 ||\
+       defined(__i386__) || \
        defined(__i386) || \
        defined(_X86_) || \
-       defined(_M_IX86)
+       defined(_M_IX86) ||\
+       0
+
 #  define RECLS_ARCH_IS_X86
 # endif /* _M_?? */
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
-# if defined(_M_IA64)
+# if 0
+# elif 0 ||\
+       defined(__aarch64__) || \
+       defined(__arm64__) || \
+       defined(_M_ARM64) ||\
+       0
+
+#  define RECLS_ARCH_IS_ARM64
+# elif defined(_M_IA64)
+
 #  define RECLS_ARCH_IS_IA64
-# elif defined(_M_X64) || \
-       defined(_M_AMD64)
+# elif 0 ||\
+       defined(_M_X64) || \
+       defined(_M_AMD64) ||\
+       0
+
 #  define RECLS_ARCH_IS_X64
 # elif defined(_M_IX86)
+
 #  define RECLS_ARCH_IS_X86
 # endif /* _M_?? */
 #endif

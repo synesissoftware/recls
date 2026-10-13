@@ -82,17 +82,18 @@ If you'd like to help out with the project, please raise an issue via [GitHub Pa
 * [STLSoft](https://github.com/synesissoftware/STLSoft/);
 
 
-#### Development Dependencies (required for examples) <!-- omit in toc -->
+#### Development Dependencies (optional for examples) <!-- omit in toc -->
 
-* [2be](https://github.com/synesissoftware/2be/);
+* [2be](https://github.com/synesissoftware/2be/) (**example_cpp_4** smoke — skipped when absent or with **`--no-2be`**);
 
 
 #### Development Dependencies (required for testing) <!-- omit in toc -->
 
 * [xTests](https://github.com/synesissoftware/xTests/);
-* [shwild](https://github.com/synesissoftware/shwild/) (optional);
-* [Pantheios](https://github.com/synesissoftware/Pantheios/) (optional);
 * [b64](https://github.com/synesissoftware/b64/) (optional; often via Pantheios);
+* [Diagnosticism](https://github.com/synesissoftware/Diagnosticism/) (optional; version-string formatting in **test.scratch.versions**);
+* [Pantheios](https://github.com/synesissoftware/Pantheios/) (optional);
+* [shwild](https://github.com/synesissoftware/shwild/) (optional);
 * [UNIXem](https://github.com/synesissoftware/UNIXem/) (optional; Windows UNIX-emulation builds);
 
 

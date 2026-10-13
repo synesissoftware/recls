@@ -17,7 +17,7 @@ Demonstrates use of `Recls_RemoveDirectory()`, optionally including files and so
  *    directory;
  *
  * Created: 4th May 2025
- * Updated: 8th October 2026
+ * Updated: 13th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -86,13 +86,7 @@ static
 int
 example_process_id_(void)
 {
-#if defined(RECLS_PLATFORM_IS_WINDOWS)
-
-    return _getpid();
-#else
-
-    return getpid();
-#endif
+    return platformstl::get_current_process_id();
 }
 
 static

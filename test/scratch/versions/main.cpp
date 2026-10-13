@@ -7,6 +7,9 @@
 #ifdef HAS_b64
 # include <b64/b64.h>
 #endif /* HAS_b64 */
+#ifdef HAS_Diagnosticism
+# include <diagnosticism/version_string.h>
+#endif /* HAS_Diagnosticism */
 #ifdef HAS_Pantheios
 # include <pantheios/pantheios.h>
 #endif /* HAS_Pantheios */
@@ -27,12 +30,14 @@
 #include <stdlib.h>
 
 
+#define PROGRAM_NAME                                        "test.scratch.versions"
+
 
 template<
     typename T_stream
 ,   typename T_integer
 >
-void
+int
 version(
     T_stream&   stm
 ,   char const* prefix
@@ -41,6 +46,50 @@ version(
 ,   T_integer   libver
 )
 {
+#ifdef HAS_Diagnosticism
+
+    char        buffer[101];
+    size_t      n;
+    int const   r = diagnosticism_calc_version_string(
+        buffer
+    ,   sizeof(buffer) / sizeof(buffer[0])
+    ,   (int)((libver >> 24) & 0xff)
+    ,   (int)((libver >> 16) & 0xff)
+    ,   (int)((libver >> 8) & 0xff)
+    ,   (int)((libver >> 0) & 0xff)
+    ,   &n
+    );
+
+    if (0 != r)
+    {
+        std::cerr
+            << PROGRAM_NAME
+            << ": failed to format version string for "
+            << libname
+            << std::endl
+            ;
+
+        return EXIT_FAILURE;
+    }
+
+    buffer[n] = '\0';
+
+    stm
+        << prefix
+        << libname
+        << ": "
+        << buffer
+        << " ("
+        << macroname
+        << " = 0x"
+        << std::hex << std::setfill('0') << std::setw(8)
+        << static_cast<unsigned>(libver)
+        << std::dec
+        << ")"
+        << std::endl
+        ;
+#else /* ? HAS_Diagnosticism */
+
     stm
         << prefix
         << libname
@@ -61,6 +110,9 @@ version(
         << ")"
         << std::endl
         ;
+#endif /* HAS_Diagnosticism */
+
+    return EXIT_SUCCESS;
 }
 
 
@@ -69,7 +121,10 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = RECLS_VER;
 
-        version(std::cout, "", "recls", "RECLS_VER", libver);
+        if (EXIT_SUCCESS != version(std::cout, "", "recls", "RECLS_VER", libver))
+        {
+            return EXIT_FAILURE;
+        }
     }
 
     std::cout << "\n" << "efferent dependencies:" << std::endl;
@@ -79,7 +134,10 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = TWOB_VER;
 
-        version(std::cout, "\t", "2be", "TWOB_VER", libver);
+        if (EXIT_SUCCESS != version(std::cout, "\t", "2be", "TWOB_VER", libver))
+        {
+            return EXIT_FAILURE;
+        }
     }
 #endif /* HAS_2be */
 
@@ -88,16 +146,34 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = B64_VER;
 
-        version(std::cout, "\t", "b64", "B64_VER", libver);
+        if (EXIT_SUCCESS != version(std::cout, "\t", "b64", "B64_VER", libver))
+        {
+            return EXIT_FAILURE;
+        }
     }
 #endif /* HAS_b64 */
+
+#ifdef HAS_Diagnosticism
+
+    {
+        unsigned const libver = DIAGNOSTICISM_VER;
+
+        if (EXIT_SUCCESS != version(std::cout, "\t", "Diagnosticism", "DIAGNOSTICISM_VER", libver))
+        {
+            return EXIT_FAILURE;
+        }
+    }
+#endif /* HAS_Diagnosticism */
 
 #ifdef HAS_Pantheios
 
     {
         unsigned const libver = PANTHEIOS_VER;
 
-        version(std::cout, "\t", "Pantheios", "PANTHEIOS_VER", libver);
+        if (EXIT_SUCCESS != version(std::cout, "\t", "Pantheios", "PANTHEIOS_VER", libver))
+        {
+            return EXIT_FAILURE;
+        }
     }
 #endif /* HAS_Pantheios */
 
@@ -106,14 +182,20 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = SHWILD_VER;
 
-        version(std::cout, "\t", "shwild", "SHWILD_VER", libver);
+        if (EXIT_SUCCESS != version(std::cout, "\t", "shwild", "SHWILD_VER", libver))
+        {
+            return EXIT_FAILURE;
+        }
     }
 #endif /* HAS_shwild */
 
     {
         unsigned const libver = _STLSOFT_VER;
 
-        version(std::cout, "\t", "STLSoft", "_STLSOFT_VER", libver);
+        if (EXIT_SUCCESS != version(std::cout, "\t", "STLSoft", "_STLSOFT_VER", libver))
+        {
+            return EXIT_FAILURE;
+        }
     }
 
 #ifdef RECLS_HAS_UNIXEM
@@ -121,7 +203,10 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = UNIXEM_VER;
 
-        version(std::cout, "\t", "UNIXem", "UNIXEM_VER", libver);
+        if (EXIT_SUCCESS != version(std::cout, "\t", "UNIXem", "UNIXEM_VER", libver))
+        {
+            return EXIT_FAILURE;
+        }
     }
 #endif /* RECLS_HAS_UNIXEM */
 
@@ -130,7 +215,10 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = _XTESTS_VER;
 
-        version(std::cout, "\t", "xTests", "_XTESTS_VER", libver);
+        if (EXIT_SUCCESS != version(std::cout, "\t", "xTests", "_XTESTS_VER", libver))
+        {
+            return EXIT_FAILURE;
+        }
     }
 #endif /* HAS_xTests */
 

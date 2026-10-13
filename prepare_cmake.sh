@@ -47,7 +47,9 @@ VerboseMakefile=0
 # misc-dev-scripts/shell-scripts/cmake-helpers/prepare_cmake.sh.
 
 
+NO_2be=0
 NO_b64=0
+NO_Diagnosticism=0
 NO_Pantheios=0
 NO_shwild=0
 STLSoftDirGiven=
@@ -173,9 +175,17 @@ while [[ $# -gt 0 ]]; do
 
       MSVC_MT=1
       ;;
+    --no-2be)
+
+      NO_2be=1
+      ;;
     --no-b64)
 
       NO_b64=1
+      ;;
+    --no-diagnosticism)
+
+      NO_Diagnosticism=1
       ;;
     --no-pantheios|--no-pan)
 
@@ -241,8 +251,14 @@ Flags/options:
     --msvc-mt
         when using Visual C++ (MSVC), select the static runtime library
 
+    --no-2be
+        suppresses discovery of 2be package (skips example_cpp_4)
+
     --no-b64
         suppresses discovery of b64 package
+
+    --no-diagnosticism
+        suppresses discovery of Diagnosticism package
 
     --no-pan
     --no-pantheios
@@ -301,7 +317,9 @@ echo "Executing CMake for ${ProjectNameClr} (in ${CMakeDirClr})"
 if [ $BuildSharedLibs -eq 0 ]; then CMakeBuildSharedLibsFlag="OFF" ; else CMakeBuildSharedLibsFlag="ON" ; fi
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
+if [ $NO_2be -eq 0 ]; then CMakeNo2be="OFF" ; else CMakeNo2be="ON" ; fi
 if [ $NO_b64 -eq 0 ]; then CMakeNoB64="OFF" ; else CMakeNoB64="ON" ; fi
+if [ $NO_Diagnosticism -eq 0 ]; then CMakeNoDiagnosticism="OFF" ; else CMakeNoDiagnosticism="ON" ; fi
 if [ $NO_Pantheios -eq 0 ]; then CMakeNoPantheios="OFF" ; else CMakeNoPantheios="ON" ; fi
 if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ -z "$STLSoftDirGiven" ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
@@ -332,7 +350,9 @@ cmake \
   -DCMAKE_BUILD_TYPE=$Configuration \
   -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
   -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
+  -DNO_2BE:BOOL=$CMakeNo2be \
   -DNO_B64:BOOL=$CMakeNoB64 \
+  -DNO_DIAGNOSTICISM:BOOL=$CMakeNoDiagnosticism \
   -DNO_PANTHEIOS:BOOL=$CMakeNoPantheios \
   -DNO_SHWILD:BOOL=$CMakeNoShwild \
   $CMakeSTLSoftVariable \

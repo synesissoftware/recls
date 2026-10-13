@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  10th September 2026
+# Updated:  13th October 2026
 #
 # ######################################################################## #
 
@@ -116,12 +116,13 @@ option(BUILD_TESTING "Build tests" ON)
 # dependencies
 #
 # required:
-# - 2be - required for examples;
 # - STLSoft;
 # - xTests - required for testing;
 #
 # optional:
+# - 2be - optional for examples (**example_cpp_4** smoke);
 # - b64 - may be needed by Pantheios;
+# - Diagnosticism - optional for testing (version-string formatting);
 # - Pantheios - ...
 # - shwild - required for testing;
 # - UNIXem - required for examples/testing on Windows if USE_UNIXEM and WIN32 are defined;
@@ -192,14 +193,21 @@ endif()
 # ############################
 # 2be
 
-if(BUILD_EXAMPLES)
+if(NOT NO_2BE)
 
-	set(2be_REQUIRED_VERSION_ 0.1.1)
+	if(BUILD_EXAMPLES)
 
-	find_package(2be ${2be_REQUIRED_VERSION_} REQUIRED)
+		find_package(2be QUIET)
 
-	message("-- CMake package 2be found (version ${2be_VERSION}; ${2be_REQUIRED_VERSION_} requested)")
-endif(BUILD_EXAMPLES)
+		if(2be_FOUND)
+
+			message("-- CMake package 2be found (version ${2be_VERSION})")
+		else(2be_FOUND)
+
+			message("-- CMake package 2be not found; example_cpp_4 will be skipped")
+		endif(2be_FOUND)
+	endif(BUILD_EXAMPLES)
+endif()
 
 
 # ############################
@@ -221,6 +229,25 @@ if(NOT NO_B64)
 			add_compile_definitions(PANTHEIOS_NO_B64)
 			add_compile_definitions(RECLS_NO_B64)
 		endif(b64_FOUND)
+	endif(BUILD_TESTING)
+endif()
+
+
+# ############################
+# Diagnosticism
+
+if(NOT NO_DIAGNOSTICISM)
+
+	if(BUILD_TESTING)
+
+		find_package(Diagnosticism QUIET)
+
+		if(Diagnosticism_FOUND)
+
+			message("-- CMake package Diagnosticism found (version ${Diagnosticism_VERSION})")
+
+			add_compile_definitions(HAS_Diagnosticism)
+		endif(Diagnosticism_FOUND)
 	endif(BUILD_TESTING)
 endif()
 
@@ -286,7 +313,7 @@ endif()
 
 if((USE_UNIXEM) AND (WIN32))
 
-	set(UNIXem_REQUIRED_VERSION_ 1.12.7)
+	set(UNIXem_REQUIRED_VERSION_ 1.14.1)
 
 	find_package(UNIXem ${UNIXem_REQUIRED_VERSION_} REQUIRED)
 
@@ -294,6 +321,8 @@ if((USE_UNIXEM) AND (WIN32))
 
 	add_compile_definitions(_STLSOFT_FORCE_ANY_COMPILER)
 	add_compile_definitions(EMULATE_UNIX_ON_WINDOWS)
+	add_compile_definitions(UNIX)
+	add_compile_definitions(unix)
 	add_compile_definitions(RECLS_HAS_UNIXEM)
 	add_compile_definitions(STLSOFT_HAS_UNIXEM)
 endif()

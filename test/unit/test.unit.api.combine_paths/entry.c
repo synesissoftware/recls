@@ -4,7 +4,7 @@
  * Purpose: Unit-test of recls C API function `Recls_CombinePaths()`.
  *
  * Created: 13th December 2008
- * Updated: 2nd May 2025
+ * Updated: 13th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
