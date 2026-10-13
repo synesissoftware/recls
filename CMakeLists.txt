@@ -116,6 +116,7 @@ option(BUILD_TESTING "Build tests" ON)
 # dependencies
 #
 # required:
+# - 2be - required for examples;
 # - STLSoft;
 # - xTests - required for testing;
 #
@@ -186,6 +187,19 @@ if(DEFINED CMAKE_NO_SHWILD AND NOT DEFINED NO_SHWILD)
 
 	set(NO_SHWILD ${CMAKE_NO_SHWILD})
 endif()
+
+
+# ############################
+# 2be
+
+if(BUILD_EXAMPLES)
+
+	set(2be_REQUIRED_VERSION_ 0.1.1)
+
+	find_package(2be ${2be_REQUIRED_VERSION_} REQUIRED)
+
+	message("-- CMake package 2be found (version ${2be_VERSION}; ${2be_REQUIRED_VERSION_} requested)")
+endif(BUILD_EXAMPLES)
 
 
 # ############################

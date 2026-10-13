@@ -16,15 +16,15 @@
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Components](#components)
-	- [C API / core library](#c-api--core-library)
-	- [C++ API](#c-api)
+  - [C API / core library](#c-api--core-library)
+  - [C++ API](#c-api)
 - [Examples](#examples)
 - [Project Information](#project-information)
-	- [Where to get help](#where-to-get-help)
-	- [Contribution guidelines](#contribution-guidelines)
-	- [Dependencies](#dependencies)
-	- [Related projects](#related-projects)
-	- [License](#license)
+  - [Where to get help](#where-to-get-help)
+  - [Contribution guidelines](#contribution-guidelines)
+  - [Dependencies](#dependencies)
+  - [Related projects](#related-projects)
+  - [License](#license)
 
 
 ## Introduction
@@ -80,6 +80,11 @@ If you'd like to help out with the project, please raise an issue via [GitHub Pa
 **recls** depends on the **STLSoft** libraries, version 1.11.1 (or later).
 
 * [STLSoft](https://github.com/synesissoftware/STLSoft/);
+
+
+#### Development Dependencies (required for examples) <!-- omit in toc -->
+
+* [2be](https://github.com/synesissoftware/2be/);
 
 
 #### Development Dependencies (required for testing) <!-- omit in toc -->

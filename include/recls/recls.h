@@ -151,7 +151,7 @@
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_PATCH         0
-#define RECLS_VER_AB            0xC4
+#define RECLS_VER_RELSTATUS     0xC4
 
 #define RECLS_VER \
     (0\
@@ -162,8 +162,9 @@
     )
 
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
-# define RECLS_VER_ALPHABETA          RECLS_VER_AB
-# define RECLS_VER_REVISION           RECLS_VER_PATCH
+# define RECLS_VER_AB                                       RECLS_VER_RELSTATUS
+# define RECLS_VER_ALPHABETA                                RECLS_VER_RELSTATUS
+# define RECLS_VER_REVISION                                 RECLS_VER_PATCH
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 

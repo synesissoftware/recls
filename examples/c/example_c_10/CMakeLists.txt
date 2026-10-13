@@ -1,3 +1,10 @@
+# Device search requires a UNIX host, so skip it on Windows (even when
+# emulating UNIX on Windows).
+if(WIN32)
+
+	return()
+endif(WIN32)
+
 define_example_program(example_c_10 main.c)
 
 if(Pantheios_FOUND)
