@@ -13,11 +13,6 @@
  * includes
  */
 
-#if 0
-#elif defined(_WIN32) && defined(UNIX)
-  #include <process.h>
-#endif
-
 /* /////////////////////////////////////
  * test component header file include(s)
  */
