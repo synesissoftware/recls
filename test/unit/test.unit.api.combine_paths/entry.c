@@ -13,7 +13,8 @@
  * includes
  */
 
-#ifdef _WIN32
+#if 0
+#elif defined(_WIN32) && defined(UNIX)
   #include <process.h>
 #endif
 
