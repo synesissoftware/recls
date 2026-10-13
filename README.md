@@ -77,7 +77,7 @@ If you'd like to help out with the project, please raise an issue via [GitHub Pa
 
 #### STLSoft <!-- omit in toc -->
 
-**recls** depends on the **STLSoft** libraries, version 1.11.1 (or later).
+**recls** depends on the **STLSoft** libraries, version **1.11.1-rc8** (or later).
 
 * [STLSoft](https://github.com/synesissoftware/STLSoft/);
 

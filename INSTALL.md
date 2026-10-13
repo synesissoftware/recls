@@ -34,7 +34,7 @@ The primary choice for installation is by use of **CMake**.
    $ ./prepare_cmake.sh -E -T
    ```
 
-   You will still need [**STLSoft**](https://github.com/synesissoftware/STLSoft) (1.11 or later).
+   You will still need [**STLSoft**](https://github.com/synesissoftware/STLSoft) (**1.11.1-rc8** or later).
 
 3. Run a build of the generated **CMake**-derived build files via the
    **build_cmake.sh** script, as in:

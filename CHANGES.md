@@ -10,10 +10,12 @@
 * dependencies:
   * Optional examples-only **2be** (`find_package(2be QUIET)` when `BUILD_EXAMPLES`; `NO_2BE` / **prepare_cmake.sh --no-2be**); **example_cpp_4** is skipped when **2be** is absent or suppressed;
   * Optional test-only **Diagnosticism** (`find_package(Diagnosticism QUIET)` when `BUILD_TESTING`; `NO_DIAGNOSTICISM` / **prepare_cmake.sh --no-diagnosticism**);
+  * Raised compile-time **STLSoft** floor to **1.11.1-rc8** (legacy `_STLSOFT_VER` path in **src/incl.stlsoft.h**);
+  * Raised **UNIXem** floor to **1.14.1** when `USE_UNIXEM` is enabled;
 * version:
   * Migrated to the `RECLS_VER_RELSTATUS` symbol pattern (`RECLS_VER_AB` / `RECLS_VER_ALPHABETA` aliases);
-  * Added `RECLS_VER_1_10_0_RC_2`, `RECLS_VER_1_10_0_RC_3`, and `RECLS_VER_1_10_0_RC_4`, and set release status to `0xC4`, and provided legacy `RECLS_VER_ALPHABETA` and `RECLS_VER_REVISION` compatibility aliases in **include/recls/recls.h**;
-  * Provided legacy `RECLS_VER_REVISION` compatibility alias;
+  * Added `RECLS_VER_1_10_0_RC_2`, `RECLS_VER_1_10_0_RC_3`, and `RECLS_VER_1_10_0_RC_4`, and set release status to `0xC4` in **include/recls/recls.h**;
+  * Provided legacy `RECLS_VER_REVISION` compatibility alias of `RECLS_VER_PATCH`;
 * fixes:
   * **include/recls/internal/platform.h** — recognise Apple / `__unix__` / BSD / AIX tokens so UNIX is selected without `-Dunix`;
   * Recursive search under **UNIXem** uses the Windows file-index identity path (CRT `stat()` reports `st_ino` as 0, which skipped every directory after the first);
@@ -30,6 +32,7 @@
   * Windows cells dogfood native **.cmd** runners; restore execute bits after artifact download before Bash runners;
 * boilerplate:
   * Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates;
+  * Adopted SisClr CMake helper scripts from **misc-dev-scripts** (including native **run_all_*.cmd**);
   * Restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
   * Cleaned up formatting and indentation in **src/incl.winstl.h** and scratch test sources;
 * documentation:
