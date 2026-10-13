@@ -28,6 +28,10 @@ jobs:
   build:
     name: Build (${{ inputs.cell-id }})
     runs-on: ${{ inputs.os }}
+    env:
+      # Dogfood **UNIXem** getpid/**process.h** fix until **1.14.1**; then
+      # drop SIS_UNIXEM_GIT_REF (clone default branch).
+      SIS_UNIXEM_GIT_REF: process-fix
 
     steps:
       - uses: actions/checkout@v4
@@ -293,7 +297,8 @@ jobs:
           DEPS="${RUNNER_TEMP}/sis-deps"
           UXSRC="${RUNNER_TEMP}/unixem-src"
           UXBUILD="${RUNNER_TEMP}/unixem-build"
-          git clone --depth 1 https://github.com/synesissoftware/UNIXem "$UXSRC"
+          git clone --depth 1 --branch "${SIS_UNIXEM_GIT_REF}" \
+            https://github.com/synesissoftware/UNIXem "$UXSRC"
           cmake -S "$UXSRC" -B "$UXBUILD" \
             -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
             -DCMAKE_INSTALL_PREFIX="$DEPS" \
