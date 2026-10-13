@@ -1,3 +1,13 @@
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    test/scratch/versions/main.cpp
+ *
+ * Purpose: Scratch version reporter for recls and optional efferents.
+ *
+ * Created: 30th June 2025
+ * Updated: 13th October 2026
+ *
+ * ////////////////////////////////////////////////////////////////////// */
+
 
 #include <recls/recls.h>
 
@@ -20,9 +30,6 @@
 #ifdef RECLS_HAS_UNIXEM
 # include <unixem/unixem.h>
 #endif /* RECLS_HAS_UNIXEM */
-#ifdef HAS_xTests
-# include <xtests/xtests.h>
-#endif /* HAS_xTests */
 
 #include <iomanip>
 #include <iostream>
@@ -127,6 +134,7 @@ int main(int /* argc */, char* /* argv */[])
         }
     }
 
+    /* STLSoft is always an include of this TU; optional siblings follow. */
     std::cout << "\n" << "efferent dependencies:" << std::endl;
 
 #ifdef HAS_2be
@@ -210,18 +218,9 @@ int main(int /* argc */, char* /* argv */[])
     }
 #endif /* RECLS_HAS_UNIXEM */
 
-#ifdef HAS_xTests
-
-    {
-        unsigned const libver = _XTESTS_VER;
-
-        if (EXIT_SUCCESS != version(std::cout, "\t", "xTests", "_XTESTS_VER", libver))
-        {
-            return EXIT_FAILURE;
-        }
-    }
-#endif /* HAS_xTests */
-
     return EXIT_SUCCESS;
 }
+
+
+/* ///////////////////////////// end of file //////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose: Demonstrates using Pantheios for recls API logging.
  *
  * Created: 13th December 2008
- * Updated: 2nd May 2025
+ * Updated: 13th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -119,8 +119,6 @@ failed:
         {
             goto failed;
         }
-
-        Recls_SearchClose(hSrch);
     }
 
     return EXIT_SUCCESS;

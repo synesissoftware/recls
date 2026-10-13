@@ -23,16 +23,16 @@
   * Skip **example_c_9** (sockets) and **example_c_10** (devices) when CMake `WIN32` is set — those search types need a real UNIX host;
   * **example_cpp_4** — built only when **2be** is found; when `SIS_EXAMPLE_SMOKE` is truey (**2be** `twob_string_is_truey()`), a no-arg run creates and removes a throwaway directory so the smoke runner can exercise `Recls_RemoveDirectory()`;
 * testing:
-  * **test/scratch/versions** → **test.scratch.versions** reports tab-indented efferent dependencies (**2be**, **b64**, **Diagnosticism**, **Pantheios**, **shwild**, **STLSoft**, **UNIXem**, **xTests**), each only when found and linked;
+  * **test/scratch/versions** → **test.scratch.versions** reports tab-indented efferent dependencies (**2be**, **b64**, **Diagnosticism**, **Pantheios**, **shwild**, **STLSoft**, **UNIXem**), each only when found and linked (no test-only **xTests** on the reporter);
   * When **Diagnosticism** is found, version lines are formatted via `diagnosticism_calc_version_string()` (hand-rolled dotted form remains as the fallback);
 * CI:
   * Added Visual C++ **windows-cl-unixem** matrix cell (`USE_UNIXEM`);
-  * Install **2be** and **Diagnosticism** into the shared deps prefix before configure;
+  * Install Synesis deps via **.github/actions/install-sis-deps** (order: **STLSoft**, **shwild**, **xTests**, **b64**, **2be**, **Diagnosticism**, optional **UNIXem**); callers use `${{ env.SIS_DEPS }}`;
   * Component tests via **run_all_component_tests.sh** / **.cmd**;
   * Windows cells dogfood native **.cmd** runners; restore execute bits after artifact download before Bash runners;
 * boilerplate:
   * Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates;
-  * Adopted SisClr CMake helper scripts from **misc-dev-scripts** (including native **run_all_*.cmd**);
+  * Adopted SisClr CMake helper scripts from **misc-dev-scripts** (including native **run_all_*.cmd** and tip allowed-to-fail support on **run_all_examples** / **run_all_scratch_tests**);
   * Restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
   * Cleaned up formatting and indentation in **src/incl.winstl.h** and scratch test sources;
 * documentation:
