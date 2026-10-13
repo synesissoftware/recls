@@ -12,7 +12,7 @@
   * Optional test-only **Diagnosticism** (`find_package(Diagnosticism QUIET)` when `BUILD_TESTING`; `NO_DIAGNOSTICISM` / **prepare_cmake.sh --no-diagnosticism**);
 * version:
   * Migrated to the `RECLS_VER_RELSTATUS` symbol pattern (`RECLS_VER_AB` / `RECLS_VER_ALPHABETA` aliases);
-  * Added `RECLS_VER_1_10_0_RC_2`, `RECLS_VER_1_10_0_RC_3`, and `RECLS_VER_1_10_0_RC_4`, and set release status to `0xC4` in **include/recls/recls.h**;
+  * Added `RECLS_VER_1_10_0_RC_2`, `RECLS_VER_1_10_0_RC_3`, and `RECLS_VER_1_10_0_RC_4`, and set release status to `0xC4`, and provided legacy `RECLS_VER_ALPHABETA` and `RECLS_VER_REVISION` compatibility aliases in **include/recls/recls.h**;
   * Provided legacy `RECLS_VER_REVISION` compatibility alias;
 * fixes:
   * **include/recls/internal/platform.h** — recognise Apple / `__unix__` / BSD / AIX tokens so UNIX is selected without `-Dunix`;
