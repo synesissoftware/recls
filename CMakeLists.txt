@@ -313,7 +313,7 @@ endif()
 
 if((USE_UNIXEM) AND (WIN32))
 
-	set(UNIXem_REQUIRED_VERSION_ 1.14)
+	set(UNIXem_REQUIRED_VERSION_ 1.14.1)
 
 	find_package(UNIXem ${UNIXem_REQUIRED_VERSION_} REQUIRED)
 
