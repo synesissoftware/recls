@@ -3,7 +3,7 @@
 
 | Date                | News Item                                      | Details |
 | ------------------- | ---------------------------------------------- | ------- |
-| 13th October 2026   | [recls 1.10.0-rc4 released](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc4) | **misc-dev-scripts** **0.6.0**; `NO_*` CMake; Apple / `__unix__` platform; **UNIXem** CI; **2be** example smoke; Windows **.cmd** dogfood; **test.scratch.versions** |
+| 13th October 2026   | [recls 1.10.0-rc4 released](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc4) | **misc-dev-scripts** **0.6.0**; `NO_*` CMake; Apple / `__unix__` platform; **UNIXem** CI; optional **2be** (**example_cpp_4**) / **Diagnosticism** (**test.scratch.versions**); Windows **.cmd** dogfood |
 | 3rd August 2026     | [recls 1.10.0-rc3 released](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc3) | modular GitHub Actions CI; **CHANGES.md**; trimmed **INSTALL.md** / **README.md** |
 | 30th June 2025      | recls 1.10.0-rc2 released                      |  |
 | 6th May 2025        | recls 1.10.0-rc1 released                      |  |

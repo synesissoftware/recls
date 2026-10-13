@@ -8,7 +8,8 @@
   * Added backwards-compatibility mappings with obsolete-variable warnings for legacy `CMAKE_NO_*` in **CMakeLists.txt**;
   * Moved `-DUNIX` / `-Dunix` compile definitions into the `USE_UNIXEM` path in top-level **CMakeLists.txt** (removed the blanket `_BUILD_AS_UNIX` adds from **examples/** and **test/**);
 * dependencies:
-  * Examples-only **2be** (`find_package(2be)` when `BUILD_EXAMPLES`); **example_cpp_4** links `2be::core` privately;
+  * Optional examples-only **2be** (`find_package(2be QUIET)` when `BUILD_EXAMPLES`; `NO_2BE` / **prepare_cmake.sh --no-2be**); **example_cpp_4** is skipped when **2be** is absent or suppressed;
+  * Optional test-only **Diagnosticism** (`find_package(Diagnosticism QUIET)` when `BUILD_TESTING`; `NO_DIAGNOSTICISM` / **prepare_cmake.sh --no-diagnosticism**);
 * version:
   * Migrated to the `RECLS_VER_RELSTATUS` symbol pattern (`RECLS_VER_AB` / `RECLS_VER_ALPHABETA` aliases);
   * Added `RECLS_VER_1_10_0_RC_2`, `RECLS_VER_1_10_0_RC_3`, and `RECLS_VER_1_10_0_RC_4`, and set release status to `0xC4` in **include/recls/recls.h**;
@@ -18,12 +19,13 @@
   * Recursive search under **UNIXem** uses the Windows file-index identity path (CRT `stat()` reports `st_ino` as 0, which skipped every directory after the first);
 * examples:
   * Skip **example_c_9** (sockets) and **example_c_10** (devices) when CMake `WIN32` is set — those search types need a real UNIX host;
-  * **example_cpp_4** — when `SIS_EXAMPLE_SMOKE` is truey (**2be** `twob_string_is_truey()`), a no-arg run creates and removes a throwaway directory so the smoke runner can exercise `Recls_RemoveDirectory()`;
+  * **example_cpp_4** — built only when **2be** is found; when `SIS_EXAMPLE_SMOKE` is truey (**2be** `twob_string_is_truey()`), a no-arg run creates and removes a throwaway directory so the smoke runner can exercise `Recls_RemoveDirectory()`;
 * testing:
-  * **test/scratch/versions** → **test.scratch.versions** reports tab-indented efferent dependencies (**2be**, **b64**, **Pantheios**, **shwild**, **STLSoft**, **UNIXem**, **xTests**), each only when found and linked;
+  * **test/scratch/versions** → **test.scratch.versions** reports tab-indented efferent dependencies (**2be**, **b64**, **Diagnosticism**, **Pantheios**, **shwild**, **STLSoft**, **UNIXem**, **xTests**), each only when found and linked;
+  * When **Diagnosticism** is found, version lines are formatted via `diagnosticism_calc_version_string()` (hand-rolled dotted form remains as the fallback);
 * CI:
   * Added Visual C++ **windows-cl-unixem** matrix cell (`USE_UNIXEM`);
-  * Install **2be** into the shared deps prefix before configure;
+  * Install **2be** and **Diagnosticism** into the shared deps prefix before configure;
   * Component tests via **run_all_component_tests.sh** / **.cmd**;
   * Windows cells dogfood native **.cmd** runners; restore execute bits after artifact download before Bash runners;
 * boilerplate:
@@ -35,7 +37,7 @@
   * Fixed title heading typo in **examples/c/example_c_2.md**;
   * Added **example_cpp_4** entry to **EXAMPLES.md**;
   * Corrected step numbering, script name, and cross-references in **INSTALL.md**;
-  * **NEWS.md** three-column chronology; **README.md** lists **2be** as an example dependency;
+  * **NEWS.md** three-column chronology; **README.md** lists **2be** and **Diagnosticism** as optional development dependencies;
 
 
 ## 1.10.0-rc3 - 3rd August 2026

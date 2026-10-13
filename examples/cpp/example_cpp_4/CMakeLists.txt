@@ -1,3 +1,9 @@
+# example_cpp_4 needs 2be for SIS_EXAMPLE_SMOKE classification.
+if(NOT 2be_FOUND)
+
+	return()
+endif(NOT 2be_FOUND)
+
 define_example_program(example_cpp_4 main.cpp)
 
 if(MSVC)
