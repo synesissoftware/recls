@@ -1,6 +1,14 @@
 # recls - Changes <!-- omit in toc -->
 
 
+## 1.10.0-rc5 - 20th October 2026
+
+* build:
+  * Aligned the **run_all_examples.sh**, **run_all_scratch_tests.sh** / **.cmd**, and **run_all_unit_tests.sh** helper scripts with **misc-dev-scripts** gold tip **0754c23**, excluding **CMakeFiles** and `*.d` / `*.o` / `*.obj` from discovery and adding scratch `--skip-interactive`;
+* version:
+  * Added `RECLS_VER_1_10_0_RC_5` and set release status to `0xC5` in **include/recls/recls.h**;
+
+
 ## 1.10.0-rc4 - 13th October 2026
 
 * build:
