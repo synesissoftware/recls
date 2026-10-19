@@ -43,6 +43,7 @@
 * [x] ~~~Modular GitHub Actions CI (**ci.yml** / **ci-cell.yml**) with install-smoke~~~ - ✅;
 * [x] ~~~**CHANGES.txt** → **CHANGES.md**; remove **HISTORY.md**~~~ - ✅;
 * [x] ~~~README badges / Components; **INSTALL.md** hygiene~~~ - ✅;
+* [x] ~~~**Developer Experience** section; era Notable tables; **strategy/COMPONENTS-INVENTORY.md**~~~ - ✅;
 
 * [x] ~~~Remove Visual C++ project files, etc.~~~ - ✅;
 * [x] ~~~Remove plethora of old makefiles~~~ - ✅;
