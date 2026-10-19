@@ -3,6 +3,7 @@
 
 | Date                | News Item                                      | Details |
 | ------------------- | ---------------------------------------------- | ------- |
+| 20th October 2026   | [**recls** 1.10.0-rc5](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc5) | gold tip **misc-dev-scripts** helpers (**0754c23**) |
 | 13th October 2026   | [**recls** 1.10.0-rc4](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc4) | **misc-dev-scripts** **0.6.0**; `NO_*` CMake; Apple / `__unix__` platform; **UNIXem** **1.14.1** + CI; **STLSoft** **1.11.1-rc8**; optional **2be** / **Diagnosticism**; Windows **.cmd** dogfood |
 | 3rd August 2026     | [**recls** 1.10.0-rc3](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc3) | modular GitHub Actions CI; **CHANGES.md**; trimmed **INSTALL.md** / **README.md** |
 | 30th June 2025      | recls 1.10.0-rc2 released                      |  |
