@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MINOR       0
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    20
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        57
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    21
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        58
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,8 +72,8 @@
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010b0186
-# error The recls C++ mapping now requires version 1.11.1 (beta 6) or later of the STLSoft libraries. (www.stlsoft.org/downloads.html)
+    _STLSOFT_VER < 0x010B01C8
+# error The recls C++ mapping now requires version 1.11.1-rc8) or later of the STLSoft libraries. (www.stlsoft.org/downloads.html)
 #endif /* STLSoft version */
 
 #if defined(_STLSOFT_NO_NAMESPACE)
