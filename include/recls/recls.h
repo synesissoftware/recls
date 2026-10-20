@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 20th October 2026
+ * Updated: 21st October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      28
 # define RECLS_VER_RECLS_H_RECLS_REVISION   1
-# define RECLS_VER_RECLS_H_RECLS_EDIT       165
+# define RECLS_VER_RECLS_H_RECLS_EDIT       166
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -468,7 +468,7 @@ enum RECLS_FLAG
         RECLS_F_FILES                               =   0x00000001  /*!< Include files in search. Included by default if none specified */
     ,   RECLS_F_DIRECTORIES                         =   0x00000002  /*!< Include directories in search */
     ,   RECLS_F_LINKS                               =   0x00000004  /*!< Include links in search. Ignored in Windows */
-    ,   RECLS_F_DEVICES                             =   0x00000008  /*!< Include devices in search. Not currently supported */
+    ,   RECLS_F_DEVICES                             =   0x00000008  /*!< Include devices in search */
     ,   RECLS_F_SOCKETS                             =   0x00000010  /*!< Include sockets in search */
     ,   RECLS_F_TYPEMASK                            =   0x00000FFF
     ,   RECLS_F_DIR_PROGRESS                        =   0x00001000  /*!< Reports each traversed directory to the callback function supplied to Recls_SearchFeedback() */
