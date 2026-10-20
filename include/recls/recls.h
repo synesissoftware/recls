@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      28
 # define RECLS_VER_RECLS_H_RECLS_REVISION   2
-# define RECLS_VER_RECLS_H_RECLS_EDIT       167
+# define RECLS_VER_RECLS_H_RECLS_EDIT       168
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -147,12 +147,13 @@
 # define RECLS_VER_1_10_0_RC_3                              0x010a00c3
 # define RECLS_VER_1_10_0_RC_4                              0x010a00c4
 # define RECLS_VER_1_10_0_RC_5                              0x010A00C5
+# define RECLS_VER_1_10_0_RC_6                              0x010A00C6
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_PATCH         0
-#define RECLS_VER_RELSTATUS     0xC5
+#define RECLS_VER_RELSTATUS     0xC6
 
 #define RECLS_VER \
     (0\
