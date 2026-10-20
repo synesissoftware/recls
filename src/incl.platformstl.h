@@ -33,7 +33,7 @@
 #include <platformstl/platformstl.h>      /* If the compiler cannot find this, you are not using STLSoft 1.10.1 or later, as required. */
 #if !defined(_PLATFORMSTL_VER) || \
     _PLATFORMSTL_VER < 0x01090183
-# error Requires PlatformSTL 1.9.1 beta 3, or later. (www.stlsoft.org/downloads.html)
+# error Requires PlatformSTL 1.9.1 beta 3, or later. (github.com/synesissoftware/STLSoft)
 #endif /* PlatformSTL version */
 
 /* /////////////////////////////////////////////////////////////////////////

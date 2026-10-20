@@ -4,7 +4,7 @@
  * Purpose: #includes the STLSoft root header and verifies the version.
  *
  * Created: 8th November 2007
- * Updated: 8th October 2026
+ * Updated: 21st October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -33,37 +33,40 @@
 # undef RECLS_STLSOFT_1_12_OR_LATER
 #endif /* RECLS_STLSOFT_1_12_OR_LATER */
 
-#include <stlsoft/stlsoft.h>    /* If the compiler cannot find this, you are not using STLSoft 1.10.1 or later, as required. */
+#include <stlsoft/stlsoft.h>    /* If the compiler cannot find this, you are not using STLSoft 1.11.1 or later, as required. */
 #if 0
 #elif defined(STLSOFT_VER)
 
+# if STLSOFT_VER < 0x010B01FF
+#  error requires STLSoft 1.11.1 or later
+# endif
+
 # if 0
-# elif STLSOFT_VER >= 0x010c0000
+# elif STLSOFT_VER >= 0x010C0000
 #  define RECLS_STLSOFT_1_12_OR_LATER
-# elif STLSOFT_VER >= 0x010b0000
+# elif STLSOFT_VER >= 0x010B0000
 #  define RECLS_STLSOFT_1_11_OR_LATER
-# elif STLSOFT_VER >= 0x010a02ff
-#  define RECLS_STLSOFT_1_10_1_OR_LATER
 # else
-#  error use of STLSoft 1.10 requires Version 1.10.2 or later
+#  error requires STLSoft 1.11.1 or later
 # endif
 
 #elif defined(_STLSOFT_VER)
 
-# if _STLSOFT_VER < 0x010B01C8
-#  error requires STLSoft 1.11.1-rc8 or later
+# if _STLSOFT_VER < 0x010B01FF
+#  error requires STLSoft 1.11.1 or later
 # endif
 
 # if 0
-# elif _STLSOFT_VER >= 0x010c0000
+# elif _STLSOFT_VER >= 0x010C0000
 #  define RECLS_STLSOFT_1_12_OR_LATER
-# elif _STLSOFT_VER >= 0x010b0000
+# elif _STLSOFT_VER >= 0x010B0000
 #  define RECLS_STLSOFT_1_11_OR_LATER
-# elif _STLSOFT_VER >= 0x010a02ff
-#  define RECLS_STLSOFT_1_10_1_OR_LATER
 # else
-#  error use of STLSoft 1.10 requires Version 1.10.2 or later
+#  error requires STLSoft 1.11.1 or later
 # endif
+#else
+
+# error requires STLSoft 1.11.1 or later
 #endif /* STLSoft version */
 
 
