@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      28
-# define RECLS_VER_RECLS_H_RECLS_REVISION   1
-# define RECLS_VER_RECLS_H_RECLS_EDIT       166
+# define RECLS_VER_RECLS_H_RECLS_REVISION   2
+# define RECLS_VER_RECLS_H_RECLS_EDIT       167
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -1833,7 +1833,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init7(s, f, e, w, i, d0, d1, d2)        Recls_LogSeverities_Init7((s), (f), (e), (w), (i), (d0), (d1), (d2), -1)
+#define Recls_LogSeverities_Init7(s, f, e, w, i, d0, d1, d2)        Recls_LogSeverities_Init8((s), (f), (e), (w), (i), (d0), (d1), (d2), -1)
 
 /** \def Recls_LogSeverities_Init6(s, f, e, w, i, d0, d1)
  *
@@ -1841,7 +1841,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init6(s, f, e, w, i, d0, d1)    Recls_LogSeverities_Init6((s), (f), (e), (w), (i), (d0), (d1), -1)
+#define Recls_LogSeverities_Init6(s, f, e, w, i, d0, d1)    Recls_LogSeverities_Init7((s), (f), (e), (w), (i), (d0), (d1), -1)
 
 /** \def Recls_LogSeverities_Init5(s, f, e, w, i, d0)
  *
@@ -1849,7 +1849,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init5(s, f, e, w, i, d0)        Recls_LogSeverities_Init5((s), (f), (e), (w), (i), (d0), -1)
+#define Recls_LogSeverities_Init5(s, f, e, w, i, d0)        Recls_LogSeverities_Init6((s), (f), (e), (w), (i), (d0), -1)
 
 /** \def Recls_LogSeverities_Init4(s, f, e, w, i)
  *
@@ -1857,7 +1857,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init4(s, f, e, w, i)            Recls_LogSeverities_Init4((s), (f), (e), (w), (i), -1)
+#define Recls_LogSeverities_Init4(s, f, e, w, i)            Recls_LogSeverities_Init5((s), (f), (e), (w), (i), -1)
 
 /** \def Recls_LogSeverities_Init3(s, f, e, w)
  *
@@ -1865,7 +1865,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init3(s, f, e, w)               Recls_LogSeverities_Init4((s), (f), (e), (w), -11)
+#define Recls_LogSeverities_Init3(s, f, e, w)               Recls_LogSeverities_Init4((s), (f), (e), (w), -1)
 
 /** \def Recls_LogSeverities_Init2(s, f, e)
  *
