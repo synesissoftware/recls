@@ -38,6 +38,11 @@
 
 #include "impl.trace.h"
 
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+# include <errno.h>
+#endif /* RECLS_PLATFORM_IS_UNIX */
+
 #if defined(RECLS_CHAR_TYPE_IS_WCHAR)
 # if 0
 # elif defined(RECLS_PLATFORM_IS_WINDOWS)
@@ -265,16 +270,45 @@ ReclsFileSearchDirectoryNode::prepare_searchDir_(
     return r;
 }
 
-/* static */ recls_entry_t
+#if 0
+#elif defined(RECLS_PLATFORM_IS_UNIX)
+
+static recls_rc_t rc_from_stat_errno_(int e)
+{
+    switch (e)
+    {
+    case EACCES:
+# ifdef EPERM
+    case EPERM:
+# endif /* EPERM */
+        return RECLS_RC_ACCESS_DENIED;
+# ifdef ENAMETOOLONG
+    case ENAMETOOLONG:
+        return RECLS_RC_PATH_LIMIT_EXCEEDED;
+# endif /* ENAMETOOLONG */
+    case ENOMEM:
+        return RECLS_RC_OUT_OF_MEMORY;
+    default:
+        return RECLS_RC_FAIL;
+    }
+}
+#endif /* RECLS_PLATFORM_IS_UNIX */
+
+/* static */ recls_rc_t
 ReclsFileSearchDirectoryNode::CreateEntryInfo(
     size_t                                                              rootDirLen
 ,   recls_char_t const*                                                 searchDir
 ,   size_t                                                              searchDirLen
 ,   recls_uint32_t                                                      flags
 ,   ReclsFileSearchDirectoryNode::entry_sequence_type::const_iterator   it
+,   recls_entry_t*                                                      phEntry
 )
 {
     function_scope_trace("ReclsFileSearchDirectoryNode::CreateEntryInfo");
+
+    RECLS_ASSERT(ss_nullptr_k != phEntry);
+
+    *phEntry = ss_nullptr_k;
 
 #if 0
 #elif defined(RECLS_PLATFORM_IS_UNIX)
@@ -292,9 +326,11 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
 
     if (0 != (*pfn)(entryPath, &st))
     {
-        // This will cause RECLS_F_OUT_OF_MEMORY.
-        // TODO: Fix it!
-        return ss_nullptr_k;
+        int const e = errno;
+
+        recls_error_trace_printf_(RECLS_LITERAL("stat() failed on '%s': errno=%d"), entryPath, e);
+
+        return rc_from_stat_errno_(e);
     }
     else
     {
@@ -304,7 +340,9 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
         size_t const        entryFileLen    =   entryPathLen - (entryFile - entryPath);
         RECLS_ASSERT(entryFileLen == types::traits_type::str_len(entryFile));
 
-        return create_entryinfo(rootDirLen, searchDir, searchDirLen, entryPath, entryPathLen, entryFile, entryFileLen, flags, &st);
+        *phEntry = create_entryinfo(rootDirLen, searchDir, searchDirLen, entryPath, entryPathLen, entryFile, entryFileLen, flags, &st);
+
+        return (ss_nullptr_k == *phEntry) ? RECLS_RC_OUT_OF_MEMORY : RECLS_RC_OK;
     }
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
 
@@ -326,7 +364,9 @@ ReclsFileSearchDirectoryNode::CreateEntryInfo(
     size_t const        entryFileLen    =   entryPathLen - (entryFile - entryPath);
     RECLS_ASSERT(entryFileLen == types::traits_type::str_len(entryFile));
 
-    return create_entryinfo(rootDirLen, searchDir, searchDirLen, entryPath, entryPathLen, entryFile, entryFileLen, flags, &value.get_find_data());
+    *phEntry = create_entryinfo(rootDirLen, searchDir, searchDirLen, entryPath, entryPathLen, entryFile, entryFileLen, flags, &value.get_find_data());
+
+    return (ss_nullptr_k == *phEntry) ? RECLS_RC_OUT_OF_MEMORY : RECLS_RC_OK;
 #else /* ? platform */
 
 # error Platform not discriminated
@@ -738,16 +778,7 @@ recls_rc_t ReclsFileSearchDirectoryNode::Initialise()
         recls_debug2_trace_printf_(RECLS_LITERAL("Next entry in %s"), static_cast<recls_char_t const*>(m_searchDir.data()));
 
         // (i) Try getting a file first,
-        m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDir.size(), m_flags, m_entriesBegin);
-
-        if (ss_nullptr_k == m_current)
-        {
-            rc = RECLS_RC_OUT_OF_MEMORY;
-        }
-        else
-        {
-            rc = RECLS_RC_OK;
-        }
+        rc = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDir.size(), m_flags, m_entriesBegin, &m_current);
     }
     else
     {
@@ -877,14 +908,12 @@ ReclsFileSearchDirectoryNode::GetNext()
         if (m_entries.end() != m_entriesBegin)
         {
             // Still enumerating, so just update m_current
-            m_current = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDir.size(), m_flags, m_entriesBegin);
+            rc = CreateEntryInfo(m_rootDirLen, m_searchDir.data(), m_searchDir.size(), m_flags, m_entriesBegin, &m_current);
 
-            if (ss_nullptr_k == m_current)
+            if (RECLS_FAILED(rc))
             {
-                return RECLS_RC_OUT_OF_MEMORY;
+                return rc;
             }
-
-            rc = RECLS_RC_OK;
         }
         else
         {
