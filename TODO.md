@@ -21,7 +21,7 @@
 * [ ] Expand progress feedbacks to:
   * [ ] provide warning about inaccessible directories;
   * [ ] indicate visit count (for directory hard-links, as found on macOS);
-* [ ] Add `RECLS_REMDIR_F_REMOVE_SOCKETS`;
+* [x] ~~~Add `RECLS_REMDIR_F_REMOVE_SOCKETS`~~~ - ✅;
 * [x] ~~~Change all remaining example/test program source files to generic names~~~ - ✅;
 * [x] ~~~**UNIXem** support~~~ - ✅;
 * [ ] `Recls_SetApiLogFunction()` flags;
