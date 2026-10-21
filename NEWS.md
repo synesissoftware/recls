@@ -3,6 +3,7 @@
 
 | Date                | News Item                                      | Details |
 | ------------------- | ---------------------------------------------- | ------- |
+| 21st October 2026   | [**recls** 1.10.0](https://github.com/synesissoftware/recls/releases/tag/1.10.0) | **1.10.0-alpha1** through **1.10.0-rc6**: CMake and CI; sockets and devices; **STLSoft** **1.11.1** floors |
 | 21st October 2026   | [**recls** 1.10.0-rc6](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc6) | **STLSoft** **1.11.1** floors; `stat()` failure `recls_rc_t`; severity-macro repair |
 | 20th October 2026   | [**recls** 1.10.0-rc5](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc5) | gold tip **misc-dev-scripts** helpers (**0754c23**) |
 | 13th October 2026   | [**recls** 1.10.0-rc4](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc4) | **misc-dev-scripts** **0.6.0**; `NO_*` CMake; Apple / `__unix__` platform; **UNIXem** **1.14.1** + CI; **STLSoft** **1.11.1-rc8**; optional **2be** / **Diagnosticism**; Windows **.cmd** dogfood |

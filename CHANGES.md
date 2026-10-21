@@ -1,6 +1,44 @@
 # recls - Changes <!-- omit in toc -->
 
 
+## 1.10.0 - 21st October 2026
+
+* Consolidates **1.10.0-alpha1** through **1.10.0-rc6** (4th January 2021 – 21st October 2026);
+* additions:
+  * CMake is the supported build: **prepare_cmake.sh** (`--use-unixem`, `--msvc-mt`, `--no-b64`, `--no-pantheios` / `--no-pan`, `--no-shwild`, `SIS_CMAKE_MAKE_COMMAND`, and `mingw32-make.exe` when MinGW is detected), **CMakeLists.txt** (`BUILD_TESTING`; canonical `NO_*` with obsolete-variable warnings for legacy `CMAKE_NO_*`), library target **recls::core**, and **cmake/LanguageFullVersion.cmake** / **cmake/TargetMacros.cmake**;
+  * Sockets (`RECLS_F_SOCKETS`, `RECLS_RC_ENTRY_IS_SOCKET`, `Recls_IsEntrySocket()`, `recls::entry::is_socket()`) and devices (`RECLS_F_DEVICES`, `RECLS_RC_ENTRY_IS_DEVICE`, `recls::entry::is_device()`); stat-like `recls::device()`, `recls::directory()`, `recls::file()`, and `recls::socket()`;
+  * `RECLS_F_NO_BREAK_INFINITE_LOOPS` (the macOS directory-loop guard); `RECLS_F_IGNORE_HIDDEN_ENTRIES` on UNIX as well as Windows (renamed from `RECLS_F_IGNORE_HIDDEN_ENTRIES_ON_WINDOWS`); `RECLS_REMDIR_F_REMOVE_SOCKETS` on `Recls_RemoveDirectory()`;
+  * `RECLS_F_STOP_ON_ACCESS_FAILURE` on UNIX and Windows, with `RECLS_RC_ACCESS_DENIED` propagated; `CreateEntryInfo()` returns `recls_rc_t` for a failed `stat()` / `lstat()` (`EACCES` / `EPERM` → `RECLS_RC_ACCESS_DENIED`, `ENAMETOOLONG` → `RECLS_RC_PATH_LIMIT_EXCEEDED`, `ENOMEM` → `RECLS_RC_OUT_OF_MEMORY`, otherwise `RECLS_RC_FAIL`; allocation failure remains `RECLS_RC_OUT_OF_MEMORY`);
+  * Binary and decimal file-size accessors: `Recls_GetFileSizeKibiBytes()` / `Recls_GetFileSizeMebiBytes()` / `Recls_GetFileSizeGibiBytes()` / `Recls_GetFileSizeTebiBytes()`, `Recls_GetFileSizeTeraBytes()`, and 1,000-based `Recls_GetFileSizeKiloBytes()` / `Recls_GetFileSizeMegaBytes()` / `Recls_GetFileSizeGigaBytes()`;
+  * **UNIXem** (`--use-unixem`), so UNIX-like search can be evaluated on Windows; recursive search under **UNIXem** uses the Windows file-index identity (CRT `stat()` reports `st_ino` as 0);
+  * C++ mapping: progress callback on `recls::cpp::search_sequence`; `recls::entry::compare()` via `system_traits<>::path_str_compare()`; insertion operator for `recls_rc_t`; self-sufficient **include/recls/cpp** headers; `std::atomic` in place of **PThreads** / Windows threads when compiling as C++14 or later;
+  * Examples **example_c_9** (sockets), **example_c_10** (devices), and **example_cpp_4** (`Recls_RemoveDirectory()`, built when optional **2be** is found); optional test-only **Diagnosticism**;
+  * Own platform and count macros: `RECLS_PLATFORM_IS_UNIX`, `RECLS_PLATFORM_IS_WINDOWS`, `RECLS_PLATFORM_IS_UNIX_EMULATED_ON_WINDOWS`, and `RECLS_NUM_ELEMENTS()`;
+* breaking changes:
+  * `Recls_IsFile*()` renamed to `Recls_IsEntry*()`; the old names remain as compatibility functions;
+  * CMake target renamed from **recls::recls** to **recls::core**; `CMAKE_NO_*` exclusion variables renamed to `NO_*` (legacy names warn and still map);
+  * Removed Visual C++ 9 and earlier, **xCover**, STLSoft `file_path_buffer`, the implicit-link implementation files, and the Visual C++ solution and project files;
+  * Decimal `Recls_GetFileSizeKiloBytes()` / `Recls_GetFileSizeMegaBytes()` / `Recls_GetFileSizeGigaBytes()` now scale by 1,000;
+* fixes:
+  * `Recls_LogSeverities_Init2` through `Recls_LogSeverities_Init7` each call the next macro and fill omitted levels with `-1` (`Init4`–`Init7` had expanded to themselves, and `Init3` passed `-11`);
+  * `Recls_SqueezePath()`; a search-relative directory path keeps its trailing slash when `RECLS_F_MARK_DIRS` is set;
+  * **include/recls/internal/platform.h** recognises Apple / `__unix__` / BSD / AIX without `-Dunix`;
+  * The patterns string is shared across directory nodes; logging thresholds passed to `Recls_SetApiLogFunction()` match **Pantheios**; `__attribute__((format(printf, ...)))` applied where the logging calls are printf-shaped;
+  * Release tags that had been marked **1.10.1** corrected to **1.10.0**;
+* compatibility:
+  * C++98, C++11, C++14, C++17, and C++20; Clang, GCC, MinGW, and Visual C++ (including `/MT` via `--msvc-mt`); Linux, macOS, and Windows;
+* testing:
+  * Unit, component, and scratch coverage includes file sizes, socket classification, stop-on-access-failure, and entry attributes; **test/scratch/versions** → **test.scratch.versions** reports tab-indented efferent versions (**2be**, **b64**, **Diagnosticism**, **Pantheios**, **shwild**, **STLSoft**, **UNIXem**), formatted with `diagnosticism_calc_version_string()` when **Diagnosticism** is linked;
+  * **run_all_unit_tests.sh** / **.cmd**, **run_all_component_tests.sh** / **.cmd**, **run_all_examples.sh**, and **run_all_scratch_tests.sh** / **.cmd** aligned with **misc-dev-scripts** gold tip **0754c23** (exclude **CMakeFiles** and `*.d` / `*.o` / `*.obj`; scratch `--skip-interactive`);
+* documentation and boilerplate:
+  * **README.md** (badges, components, CI on **ci.yml**, optional **2be** and **Diagnosticism**), **INSTALL.md**, **EXAMPLES.md**, **NEWS.md** (three-column chronology), and **TODO.md**; **CHANGES.txt** converted to **CHANGES.md** and **HISTORY.md** removed once subsumed; example companions use a shared heading shape and entry points **main.c** / **main.cpp**;
+  * GitHub Actions **ci.yml** / **ci-cell.yml** with install-smoke, **.github/actions/install-sis-deps**, a Visual C++ **windows-cl-unixem** cell, native **.cmd** runners on Windows, and execute-bit restore after artifact download; **misc-dev-scripts** **0.6.0** drop-ins; repeated per-release layout tidying across the alpha/beta/rc line is absorbed here;
+* dependencies:
+  * Requires the released **STLSoft** **1.11.1** line: **STLSoft** 1.11.1 (`0x010B01FF`), **WinSTL** 1.13.0 (`0x010D00FF`), **UNIXSTL** 1.8.6 (`0x010806FF`), and **InetSTL** 1.5.0 (`0x010500FF`); **UNIXem** **1.14.1** when `USE_UNIXEM` is enabled; **xTests** 0.25+;
+* version:
+  * Added `RECLS_VER_1_10_0` (`0x010A00FF`) and set `RECLS_VER_RELSTATUS` to `0xFF` in **include/recls/recls.h**;
+
+
 ## 1.10.0-rc6 - 21st October 2026
 
 * dependencies:
