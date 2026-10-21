@@ -4,11 +4,11 @@
  * Purpose: #includes the WinSTL root header and verifies the version.
  *
  * Created: 8th November 2007
- * Updated: 29th April 2025
+ * Updated: 21st October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -36,8 +36,8 @@
 
 #include <winstl/winstl.h>      /* If the compiler cannot find this, you are not using STLSoft 1.11.1 or later, as required. */
 #if !defined(_WINSTL_VER) || \
-    _WINSTL_VER < 0x010d0045
-# error Requires WinSTL 1.13.0 alpha 5, or later. (www.stlsoft.org/downloads.html)
+    _WINSTL_VER < 0x010D00FF
+# error Requires WinSTL 1.13.0, or later. (github.com/synesissoftware/STLSoft)
 #endif /* WINSTL version */
 
 

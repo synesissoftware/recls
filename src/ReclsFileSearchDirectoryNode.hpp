@@ -4,11 +4,11 @@
  * Purpose: ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 1st April 2025
+ * Updated: 21st October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -218,13 +218,14 @@ private:
     );
 
     static
-    recls_entry_t
+    recls_rc_t
     CreateEntryInfo(
         size_t                              rootDirLen
     ,   recls_char_t const*                 searchDir
     ,   size_t                              searchDirLen
     ,   recls_uint32_t                      flags
     ,   entry_sequence_type::const_iterator it
+    ,   recls_entry_t*                      phEntry
     );
 
 // Members

@@ -4,11 +4,11 @@
  * Purpose: #includes the UNIXSTL root header and verifies the version.
  *
  * Created: 8th November 2007
- * Updated: 3rd May 2025
+ * Updated: 21st October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -36,8 +36,8 @@
 
 #include <unixstl/unixstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.11.1 or later, as required. */
 #if !defined(_UNIXSTL_VER) || \
-    _UNIXSTL_VER < 0x01080684
-# error Requires UNIXSTL 1.8.6 (beta 4), or later. (www.stlsoft.org/downloads.html)
+    _UNIXSTL_VER < 0x010806FF
+# error Requires UNIXSTL 1.8.6, or later. (github.com/synesissoftware/STLSoft)
 #endif /* UNIXSTL version */
 
 

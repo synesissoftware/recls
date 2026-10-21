@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 20th October 2026
+ * Updated: 21st October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -52,8 +52,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      28
-# define RECLS_VER_RECLS_H_RECLS_REVISION   1
-# define RECLS_VER_RECLS_H_RECLS_EDIT       165
+# define RECLS_VER_RECLS_H_RECLS_REVISION   2
+# define RECLS_VER_RECLS_H_RECLS_EDIT       168
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -147,12 +147,13 @@
 # define RECLS_VER_1_10_0_RC_3                              0x010a00c3
 # define RECLS_VER_1_10_0_RC_4                              0x010a00c4
 # define RECLS_VER_1_10_0_RC_5                              0x010A00C5
+# define RECLS_VER_1_10_0_RC_6                              0x010A00C6
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
 #define RECLS_VER_PATCH         0
-#define RECLS_VER_RELSTATUS     0xC5
+#define RECLS_VER_RELSTATUS     0xC6
 
 #define RECLS_VER \
     (0\
@@ -468,7 +469,7 @@ enum RECLS_FLAG
         RECLS_F_FILES                               =   0x00000001  /*!< Include files in search. Included by default if none specified */
     ,   RECLS_F_DIRECTORIES                         =   0x00000002  /*!< Include directories in search */
     ,   RECLS_F_LINKS                               =   0x00000004  /*!< Include links in search. Ignored in Windows */
-    ,   RECLS_F_DEVICES                             =   0x00000008  /*!< Include devices in search. Not currently supported */
+    ,   RECLS_F_DEVICES                             =   0x00000008  /*!< Include devices in search */
     ,   RECLS_F_SOCKETS                             =   0x00000010  /*!< Include sockets in search */
     ,   RECLS_F_TYPEMASK                            =   0x00000FFF
     ,   RECLS_F_DIR_PROGRESS                        =   0x00001000  /*!< Reports each traversed directory to the callback function supplied to Recls_SearchFeedback() */
@@ -1833,7 +1834,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init7(s, f, e, w, i, d0, d1, d2)        Recls_LogSeverities_Init7((s), (f), (e), (w), (i), (d0), (d1), (d2), -1)
+#define Recls_LogSeverities_Init7(s, f, e, w, i, d0, d1, d2)        Recls_LogSeverities_Init8((s), (f), (e), (w), (i), (d0), (d1), (d2), -1)
 
 /** \def Recls_LogSeverities_Init6(s, f, e, w, i, d0, d1)
  *
@@ -1841,7 +1842,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init6(s, f, e, w, i, d0, d1)    Recls_LogSeverities_Init6((s), (f), (e), (w), (i), (d0), (d1), -1)
+#define Recls_LogSeverities_Init6(s, f, e, w, i, d0, d1)    Recls_LogSeverities_Init7((s), (f), (e), (w), (i), (d0), (d1), -1)
 
 /** \def Recls_LogSeverities_Init5(s, f, e, w, i, d0)
  *
@@ -1849,7 +1850,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init5(s, f, e, w, i, d0)        Recls_LogSeverities_Init5((s), (f), (e), (w), (i), (d0), -1)
+#define Recls_LogSeverities_Init5(s, f, e, w, i, d0)        Recls_LogSeverities_Init6((s), (f), (e), (w), (i), (d0), -1)
 
 /** \def Recls_LogSeverities_Init4(s, f, e, w, i)
  *
@@ -1857,7 +1858,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init4(s, f, e, w, i)            Recls_LogSeverities_Init4((s), (f), (e), (w), (i), -1)
+#define Recls_LogSeverities_Init4(s, f, e, w, i)            Recls_LogSeverities_Init5((s), (f), (e), (w), (i), -1)
 
 /** \def Recls_LogSeverities_Init3(s, f, e, w)
  *
@@ -1865,7 +1866,7 @@ Recls_LogSeverities_Init(
  *
  * \see Recls_LogSeverities_Init
  */
-#define Recls_LogSeverities_Init3(s, f, e, w)               Recls_LogSeverities_Init4((s), (f), (e), (w), -11)
+#define Recls_LogSeverities_Init3(s, f, e, w)               Recls_LogSeverities_Init4((s), (f), (e), (w), -1)
 
 /** \def Recls_LogSeverities_Init2(s, f, e)
  *

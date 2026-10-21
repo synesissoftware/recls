@@ -21,7 +21,7 @@
 * [ ] Expand progress feedbacks to:
   * [ ] provide warning about inaccessible directories;
   * [ ] indicate visit count (for directory hard-links, as found on macOS);
-* [ ] Add `RECLS_REMDIR_F_REMOVE_SOCKETS`;
+* [x] ~~~Add `RECLS_REMDIR_F_REMOVE_SOCKETS`~~~ - ✅;
 * [x] ~~~Change all remaining example/test program source files to generic names~~~ - ✅;
 * [x] ~~~**UNIXem** support~~~ - ✅;
 * [ ] `Recls_SetApiLogFunction()` flags;
@@ -47,7 +47,7 @@
 
 * [x] ~~~Remove Visual C++ project files, etc.~~~ - ✅;
 * [x] ~~~Remove plethora of old makefiles~~~ - ✅;
-* [-] ~~~Provide small number of more "intelligent" makefiles~~~ - ❌;
+* [X] ~~~Provide small number of more "intelligent" makefiles~~~ - ❌;
 * [ ] Bazel, Jam, SCons, etc. scripts;
 * [ ] Remove '--no-b64' flag and associated support (in **prepare_cmake.sh** and **CMakeLists.txt**), rendered redundant by recent improvements to **Pantheios**' CMake usage;
 

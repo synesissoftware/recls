@@ -1,6 +1,19 @@
 # recls - Changes <!-- omit in toc -->
 
 
+## 1.10.0-rc6 - 21st October 2026
+
+* dependencies:
+  * Raised compile-time minimums, and the **README.md** / **INSTALL.md** requirement, to the released **STLSoft** **1.11.1** subprojects: **STLSoft** 1.11.1 (`0x010B01FF`), **WinSTL** 1.13.0 (`0x010D00FF`), **UNIXSTL** 1.8.6 (`0x010806FF`), and **InetSTL** 1.5.0 (`0x010500FF`);
+* fixes:
+  * `CreateEntryInfo()` now returns `recls_rc_t`: a failed `stat()` / `lstat()` maps `EACCES` and `EPERM` to `RECLS_RC_ACCESS_DENIED`, `ENAMETOOLONG` to `RECLS_RC_PATH_LIMIT_EXCEEDED`, `ENOMEM` to `RECLS_RC_OUT_OF_MEMORY`, and any other `errno` to `RECLS_RC_FAIL`, while allocation failure remains `RECLS_RC_OUT_OF_MEMORY`;
+  * Repaired `Recls_LogSeverities_Init2` through `Recls_LogSeverities_Init7` so each macro calls the next and omitted severity levels are `-1` (`Init4`–`Init7` had expanded to themselves, and `Init3` passed `-11`);
+* documentation:
+  * Removed the stale "Not currently supported" comment from `RECLS_F_DEVICES` in **include/recls/recls.h** (the flag has been implemented since **1.10.0-beta6**);
+* version:
+  * Added `RECLS_VER_1_10_0_RC_6` and set release status to `0xC6` in **include/recls/recls.h**;
+
+
 ## 1.10.0-rc5 - 20th October 2026
 
 * build:
