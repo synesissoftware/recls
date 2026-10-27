@@ -168,6 +168,12 @@ if(DEFINED STLSOFT_INCLUDE_DIR)
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
 
+if(DEFINED STLSOFT_INCLUDE_DIR OR DEFINED STLSoft_FOUND)
+
+	add_compile_definitions(HAS_STLSOFT)
+	add_compile_definitions(HAS_STLSoft)
+endif()
+
 if(DEFINED CMAKE_NO_B64 AND NOT DEFINED NO_B64)
 
 	message(WARNING "variable 'CMAKE_NO_B64' is obsolete and will not be supported in a future version; use 'NO_B64' instead")
