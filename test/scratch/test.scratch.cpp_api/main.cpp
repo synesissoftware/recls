@@ -4,7 +4,7 @@
  * Purpose: Scratch-test exercising various parts of recls C++ API.
  *
  * Created: 4th January 2010
- * Updated: 2nd May 2025
+ * Updated: 27th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -237,12 +237,28 @@ static int main_(int /* argc */, char* argv[])
 
     { // ftp_search_sequence
 
-        recls::cpp::ftp_search_sequence files(RECLS_LITERAL("ftp.digitalmars.com"), RECLS_LITERAL(""), RECLS_LITERAL(""), RECLS_LITERAL("/"), Recls_GetWildcardsAll(), recls::FILES | recls::RECURSIVE | recls::DIRECTORY_PARTS);
-
-        { for (ftp_search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
+        try
         {
-            display_entry(*i);
-        }}
+            recls::cpp::ftp_search_sequence files(RECLS_LITERAL("ftp.digitalmars.com"), RECLS_LITERAL(""), RECLS_LITERAL(""), RECLS_LITERAL("/"), Recls_GetWildcardsAll(), recls::FILES | recls::RECURSIVE | recls::DIRECTORY_PARTS);
+
+            { for (ftp_search_sequence::const_iterator i = files.begin(), e = files.end(); i != e; ++i)
+            {
+                display_entry(*i);
+            }}
+        }
+        catch (recls_exception& x)
+        {
+            /* The public host is outside this process. A rejected
+             * connection is reported and does not fail the program.
+             */
+            if (RECLS_RC_FTP_CONNECTION_FAILED != x.get_rc() &&
+                RECLS_RC_FTP_INIT_FAILED != x.get_rc())
+            {
+                throw;
+            }
+
+            fprintf(stderr, "FTP search skipped: %s\n", x.what());
+        }
     }
 #endif /* RECLS_API_FTP */
 
