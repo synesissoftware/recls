@@ -3,6 +3,7 @@
 
 | Date                | News Item                                      | Details |
 | ------------------- | ---------------------------------------------- | ------- |
+| 27th October 2026   | Release of [recls 1.10.1](https://github.com/synesissoftware/recls/releases/tag/1.10.1) | `HAS_<Pkg>` presence macros; **UNIXem** under `HAS_UNIXem` |
 | 21st October 2026   | [**recls** 1.10.0](https://github.com/synesissoftware/recls/releases/tag/1.10.0) | **1.10.0-alpha1** through **1.10.0-rc6**: CMake and CI; sockets and devices; **STLSoft** **1.11.1** floors |
 | 21st October 2026   | [**recls** 1.10.0-rc6](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc6) | **STLSoft** **1.11.1** floors; `stat()` failure `recls_rc_t`; severity-macro repair |
 | 20th October 2026   | [**recls** 1.10.0-rc5](https://github.com/synesissoftware/recls/releases/tag/1.10.0-rc5) | gold tip **misc-dev-scripts** helpers (**0754c23**) |

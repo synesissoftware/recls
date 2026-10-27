@@ -1,6 +1,12 @@
 # recls - Changes <!-- omit in toc -->
 
 
+## 1.10.1 - 27th October 2026
+
+* Defined `HAS_<Pkg>` and `HAS_<PKG>` when a Synesis package other than **STLSoft** is detected, and stopped defining `RECLS_HAS_SHWILD`, `RECLS_HAS_UNIXEM`, and `STLSOFT_HAS_UNIXEM`;
+* **test.scratch.versions** prints **UNIXem** under `HAS_UNIXem`;
+
+
 ## 1.10.0 - 21st October 2026
 
 * Consolidates **1.10.0-alpha1** through **1.10.0-rc6** (4th January 2021 – 21st October 2026);

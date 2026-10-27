@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  21st October 2026
+# Updated:  27th October 2026
 #
 # ######################################################################## #
 
@@ -202,6 +202,11 @@ if(NOT NO_2BE)
 		if(2be_FOUND)
 
 			message("-- CMake package 2be found (version ${2be_VERSION})")
+
+			add_compile_definitions(
+				HAS_2be
+				HAS_2BE
+			)
 		else(2be_FOUND)
 
 			message("-- CMake package 2be not found; example_cpp_4 will be skipped")
@@ -223,7 +228,10 @@ if(NOT NO_B64)
 
 			message("-- CMake package b64 found (version ${b64_VERSION})")
 
-			add_compile_definitions(HAS_b64)
+			add_compile_definitions(
+				HAS_b64
+				HAS_B64
+			)
 		else(b64_FOUND)
 
 			add_compile_definitions(PANTHEIOS_NO_B64)
@@ -246,7 +254,10 @@ if(NOT NO_DIAGNOSTICISM)
 
 			message("-- CMake package Diagnosticism found (version ${Diagnosticism_VERSION})")
 
-			add_compile_definitions(HAS_Diagnosticism)
+			add_compile_definitions(
+				HAS_Diagnosticism
+				HAS_DIAGNOSTICISM
+			)
 		endif(Diagnosticism_FOUND)
 	endif(BUILD_TESTING)
 endif()
@@ -265,7 +276,10 @@ if(NOT NO_PANTHEIOS)
 
 			message("-- CMake package Pantheios found (version ${Pantheios_VERSION})")
 
-			add_compile_definitions(HAS_Pantheios)
+			add_compile_definitions(
+				HAS_Pantheios
+				HAS_PANTHEIOS
+			)
 		endif(Pantheios_FOUND)
 	endif(BUILD_TESTING)
 endif()
@@ -284,27 +298,23 @@ if(NOT NO_SHWILD)
 
 			message("-- CMake package shwild found (version ${shwild_VERSION})")
 
-			add_compile_definitions(HAS_shwild)
-			add_compile_definitions(PANTHEIOS_HAS_SHWILD)
-			add_compile_definitions(RECLS_HAS_SHWILD)
-			add_compile_definitions(XTESTS_HAS_SHWILD)
+			add_compile_definitions(
+				HAS_shwild
+				HAS_SHWILD
+			)
+
+			add_compile_definitions(XTESTS_HAS_SHWILD) # Legacy form, and should be removed later
 		else(shwild_FOUND)
 
-			add_compile_definitions(PANTHEIOS_NO_SHWILD)
 			add_compile_definitions(RECLS_NO_SHWILD)
-			add_compile_definitions(XTESTS_NO_SHWILD)
 		endif(shwild_FOUND)
 	else(BUILD_TESTING)
 
-		add_compile_definitions(PANTHEIOS_NO_SHWILD)
 		add_compile_definitions(RECLS_NO_SHWILD)
-		add_compile_definitions(XTESTS_NO_SHWILD)
 	endif(BUILD_TESTING)
 else()
 
-	add_compile_definitions(PANTHEIOS_NO_SHWILD)
 	add_compile_definitions(RECLS_NO_SHWILD)
-	add_compile_definitions(XTESTS_NO_SHWILD)
 endif()
 
 
@@ -319,12 +329,15 @@ if((USE_UNIXEM) AND (WIN32))
 
 	message("-- CMake package UNIXem found (version ${UNIXem_VERSION}; ${UNIXem_REQUIRED_VERSION_} requested)")
 
+	add_compile_definitions(
+		HAS_UNIXem
+		HAS_UNIXEM
+	)
+
 	add_compile_definitions(_STLSOFT_FORCE_ANY_COMPILER)
 	add_compile_definitions(EMULATE_UNIX_ON_WINDOWS)
 	add_compile_definitions(UNIX)
 	add_compile_definitions(unix)
-	add_compile_definitions(RECLS_HAS_UNIXEM)
-	add_compile_definitions(STLSOFT_HAS_UNIXEM)
 endif()
 
 
@@ -333,11 +346,16 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.26.3)
+	set(xTests_REQUIRED_VERSION_ 0.28)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+
+	add_compile_definitions(
+		HAS_xTests
+		HAS_XTESTS
+	)
 endif(BUILD_TESTING)
 
 

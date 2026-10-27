@@ -4,7 +4,7 @@
  * Purpose: Scratch version reporter for recls and optional efferents.
  *
  * Created: 30th June 2025
- * Updated: 13th October 2026
+ * Updated: 27th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,22 +14,28 @@
 #ifdef HAS_2be
 # include <2be/2be.h>
 #endif /* HAS_2be */
+
 #ifdef HAS_b64
 # include <b64/b64.h>
 #endif /* HAS_b64 */
+
 #ifdef HAS_Diagnosticism
 # include <diagnosticism/version_string.h>
 #endif /* HAS_Diagnosticism */
+
 #ifdef HAS_Pantheios
 # include <pantheios/pantheios.h>
 #endif /* HAS_Pantheios */
+
 #ifdef HAS_shwild
 # include <shwild/shwild.h>
 #endif /* HAS_shwild */
+
 #include <stlsoft/stlsoft.h>
-#ifdef RECLS_HAS_UNIXEM
+
+#ifdef HAS_UNIXem
 # include <unixem/unixem.h>
-#endif /* RECLS_HAS_UNIXEM */
+#endif /* HAS_UNIXem */
 
 #include <iomanip>
 #include <iostream>
@@ -206,7 +212,7 @@ int main(int /* argc */, char* /* argv */[])
         }
     }
 
-#ifdef RECLS_HAS_UNIXEM
+#ifdef HAS_UNIXem
 
     {
         unsigned const libver = UNIXEM_VER;
@@ -216,7 +222,7 @@ int main(int /* argc */, char* /* argv */[])
             return EXIT_FAILURE;
         }
     }
-#endif /* RECLS_HAS_UNIXEM */
+#endif /* HAS_UNIXem */
 
     return EXIT_SUCCESS;
 }
