@@ -4,7 +4,7 @@
  * Purpose: Scratch version reporter for recls and optional efferents.
  *
  * Created: 30th June 2025
- * Updated: 13th October 2026
+ * Updated: 27th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,22 +14,32 @@
 #ifdef HAS_2be
 # include <2be/2be.h>
 #endif /* HAS_2be */
+
 #ifdef HAS_b64
 # include <b64/b64.h>
 #endif /* HAS_b64 */
+
 #ifdef HAS_Diagnosticism
 # include <diagnosticism/version_string.h>
 #endif /* HAS_Diagnosticism */
+
 #ifdef HAS_Pantheios
 # include <pantheios/pantheios.h>
 #endif /* HAS_Pantheios */
+
 #ifdef HAS_shwild
 # include <shwild/shwild.h>
 #endif /* HAS_shwild */
+
 #include <stlsoft/stlsoft.h>
-#ifdef RECLS_HAS_UNIXEM
+
+#ifdef HAS_UNIXem
 # include <unixem/unixem.h>
-#endif /* RECLS_HAS_UNIXEM */
+#endif /* HAS_UNIXem */
+
+#ifdef HAS_xTests
+# include <xtests/xtests.h>
+#endif /* HAS_xTests */
 
 #include <iomanip>
 #include <iostream>
@@ -125,6 +135,8 @@ version(
 
 int main(int /* argc */, char* /* argv */[])
 {
+    int efferents_count = 0;
+
     {
         unsigned const libver = RECLS_VER;
 
@@ -134,10 +146,12 @@ int main(int /* argc */, char* /* argv */[])
         }
     }
 
-    /* STLSoft is always an include of this TU; optional siblings follow. */
-    std::cout << "\n" << "efferent dependencies:" << std::endl;
-
 #ifdef HAS_2be
+
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = TWOB_VER;
@@ -151,6 +165,11 @@ int main(int /* argc */, char* /* argv */[])
 
 #ifdef HAS_b64
 
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
+
     {
         unsigned const libver = B64_VER;
 
@@ -162,6 +181,11 @@ int main(int /* argc */, char* /* argv */[])
 #endif /* HAS_b64 */
 
 #ifdef HAS_Diagnosticism
+
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = DIAGNOSTICISM_VER;
@@ -175,6 +199,11 @@ int main(int /* argc */, char* /* argv */[])
 
 #ifdef HAS_Pantheios
 
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
+
     {
         unsigned const libver = PANTHEIOS_VER;
 
@@ -187,6 +216,11 @@ int main(int /* argc */, char* /* argv */[])
 
 #ifdef HAS_shwild
 
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
+
     {
         unsigned const libver = SHWILD_VER;
 
@@ -197,6 +231,11 @@ int main(int /* argc */, char* /* argv */[])
     }
 #endif /* HAS_shwild */
 
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
+
     {
         unsigned const libver = _STLSOFT_VER;
 
@@ -206,7 +245,12 @@ int main(int /* argc */, char* /* argv */[])
         }
     }
 
-#ifdef RECLS_HAS_UNIXEM
+#ifdef HAS_UNIXem
+
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = UNIXEM_VER;
@@ -216,11 +260,27 @@ int main(int /* argc */, char* /* argv */[])
             return EXIT_FAILURE;
         }
     }
-#endif /* RECLS_HAS_UNIXEM */
+#endif /* HAS_UNIXem */
+
+#ifdef HAS_xTests
+
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
+
+    {
+        unsigned const libver = _XTESTS_VER;
+
+        if (EXIT_SUCCESS != version(std::cout, "\t", "xTests", "_XTESTS_VER", libver))
+        {
+            return EXIT_FAILURE;
+        }
+    }
+#endif /* HAS_xTests */
 
     return EXIT_SUCCESS;
 }
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

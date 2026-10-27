@@ -4,7 +4,7 @@
  * Purpose: Main header file for recls API.
  *
  * Created: 15th August 2003
- * Updated: 21st October 2026
+ * Updated: 27th October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_H_RECLS_MAJOR      3
 # define RECLS_VER_RECLS_H_RECLS_MINOR      28
 # define RECLS_VER_RECLS_H_RECLS_REVISION   2
-# define RECLS_VER_RECLS_H_RECLS_EDIT       169
+# define RECLS_VER_RECLS_H_RECLS_EDIT       170
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \name recls API Version
@@ -153,7 +153,7 @@
 
 #define RECLS_VER_MAJOR         1
 #define RECLS_VER_MINOR         10
-#define RECLS_VER_PATCH         0
+#define RECLS_VER_PATCH         1
 #define RECLS_VER_RELSTATUS     0xFF
 
 #define RECLS_VER \
