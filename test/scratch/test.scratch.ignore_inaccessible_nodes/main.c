@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.scratch.ignore_inaccessible_nodes.cpp
+ * File:    test/scratch/test.scratch.ignore_inaccessible_nodes/main.c
  *
  * Purpose: Scratch-test exercising the skipping of inaccessible nodes.
  *
  * Created: 28th April 2025
- * Updated: 18th August 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

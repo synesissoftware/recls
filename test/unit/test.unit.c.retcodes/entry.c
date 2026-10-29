@@ -4,7 +4,7 @@
  * Purpose: Unit-test of recls status codes via C API.
  *
  * Created: 13th December 2008
- * Updated: 2nd May 2025
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.c.retcodes", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.test.unit.c.retcodes", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);

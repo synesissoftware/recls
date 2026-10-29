@@ -4,7 +4,7 @@
  * Purpose: Test stat functionality of recls C API function `Recls_Stat()`.
  *
  * Created: 13th December 2008
- * Updated: 2nd May 2025
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -175,7 +175,7 @@ static int main_(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.api.stat", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.test.unit.api.stat", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_stat_dot);

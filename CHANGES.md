@@ -5,6 +5,7 @@
 
 * Converted wide `recls_exception` status text with `stlsoft_C_wcstombs`, so the length passed to the message excludes the terminating NUL;
 * Raised the compile-time `_STLSOFT_VER` floor, and the **README.md** / **INSTALL.md** / **CMakeLists.txt** requirement, to **STLSoft** **1.11.4** (`0x010B04FF`);
+* Aligned unit, component, and scratch `File:` labels and `XTESTS_START_RUNNER` names with the project-relative path;
 
 
 ## 1.10.1 - 27th October 2026
