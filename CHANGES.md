@@ -1,6 +1,12 @@
 # recls - Changes <!-- omit in toc -->
 
 
+## 1.10.2 - 30th October 2026
+
+* Converted wide `recls_exception` status text with `stlsoft_C_wcstombs`, so the length passed to the message excludes the terminating NUL;
+* Raised the compile-time `_STLSOFT_VER` floor, and the **README.md** / **INSTALL.md** / **CMakeLists.txt** requirement, to **STLSoft** **1.11.4** (`0x010B04FF`);
+
+
 ## 1.10.1 - 27th October 2026
 
 * Defined `HAS_<Pkg>` and `HAS_<PKG>` when a Synesis package other than **STLSoft** is detected, and stopped defining `RECLS_HAS_SHWILD`, `RECLS_HAS_UNIXEM`, and `STLSOFT_HAS_UNIXEM`;

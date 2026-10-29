@@ -4,7 +4,7 @@
  * Purpose: #includes the WinSTL root header and verifies the version.
  *
  * Created: 8th November 2007
- * Updated: 21st October 2026
+ * Updated: 29th October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -34,7 +34,7 @@
 # error Must not #include winstl/winstl.h before this file
 #endif /* WINSTL_INCL_WINSTL_H_WINSTL */
 
-#include <winstl/winstl.h>      /* If the compiler cannot find this, you are not using STLSoft 1.11.1 or later, as required. */
+#include <winstl/winstl.h>      /* If the compiler cannot find this, you are not using STLSoft 1.11.4 or later, as required. */
 #if !defined(_WINSTL_VER) || \
     _WINSTL_VER < 0x010D00FF
 # error Requires WinSTL 1.13.0, or later. (github.com/synesissoftware/STLSoft)

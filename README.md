@@ -42,7 +42,7 @@
 
 The shortest path from a clone to a green check:
 
-1. **Need** — a C/C++ toolchain, **CMake**, and [**STLSoft**](https://github.com/synesissoftware/STLSoft/) **1.11.1-rc8** or later on the include path / install prefix. For unit tests, also [**xTests**](https://github.com/synesissoftware/xTests/). Optional: **2be** (for **example_cpp_4**), **Diagnosticism** (richer **test.scratch.versions**), **UNIXem** (UNIX-on-Windows via `./prepare_cmake.sh --use-unixem`);
+1. **Need** — a C/C++ toolchain, **CMake**, and [**STLSoft**](https://github.com/synesissoftware/STLSoft/) **1.11.4** or later on the include path / install prefix. For unit tests, also [**xTests**](https://github.com/synesissoftware/xTests/). Optional: **2be** (for **example_cpp_4**), **Diagnosticism** (richer **test.scratch.versions**), **UNIXem** (UNIX-on-Windows via `./prepare_cmake.sh --use-unixem`);
 2. **Build** —
 
    ```bash
@@ -167,7 +167,7 @@ If you'd like to help out with the project, please raise an issue via [GitHub Pa
 
 #### STLSoft <!-- omit in toc -->
 
-**recls** depends on the **STLSoft** libraries, version **1.11.1** (or later).
+**recls** depends on the **STLSoft** libraries, version **1.11.4** (or later).
 
 * [STLSoft](https://github.com/synesissoftware/STLSoft/);
 

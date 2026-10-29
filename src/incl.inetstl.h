@@ -4,7 +4,7 @@
  * Purpose: #includes the InetSTL root header and verifies the version.
  *
  * Created: 8th November 2007
- * Updated: 21st October 2026
+ * Updated: 29th October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -30,7 +30,7 @@
 # error Must not #include inetstl/inetstl.h before this file
 #endif /* INETSTL_INCL_INETSTL_H_INETSTL */
 
-#include <inetstl/inetstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.11.1 or later, as required. */
+#include <inetstl/inetstl.h>    /* If the compiler cannot find this, you are not using STLSoft 1.11.4 or later, as required. */
 #if !defined(_INETSTL_VER) || \
     _INETSTL_VER < 0x010500FF
 # error Requires InetSTL 1.5.0, or later. (github.com/synesissoftware/STLSoft)
