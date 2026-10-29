@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.scratch.stop_on_access_failure.cpp
+ * File:    test/scratch/test.scratch.stop_on_access_failure/main.c
  *
  * Purpose: Scratch-test exercising the skipping of inaccessible nodes.
  *
  * Created: 1st May 2025
- * Updated: 18th August 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

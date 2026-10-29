@@ -4,7 +4,7 @@
  * Purpose: Unit-test of recls file-size utility functions.
  *
  * Created: 17th April 2025
- * Updated: 2nd May 2025
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -82,7 +82,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.util.file_sizes", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.test.unit.util.file_sizes", verbosity))
     {
         XTESTS_RUN_CASE(TEST_Recls_GetFileSizeKibiBytes);
         XTESTS_RUN_CASE(TEST_Recls_GetFileSizeKiloBytes);

@@ -4,7 +4,7 @@
  * Purpose: Unit-test of recls C++ API function `recls::combine_paths()`.
  *
  * Created: 7th June 2008
- * Updated: 2nd May 2025
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,7 +63,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.cpp.combine_paths", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.test.unit.cpp.combine_paths", verbosity))
     {
         XTESTS_RUN_CASE(test_1_0);
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.component.util.cpp.is_socket/entry.cpp
+ * File:    test/component/test.component.util.cpp.is_socket/entry.cpp
  *
  * Purpose: Tests `recls::entry#is_socket()`.
  *
  * Created: 20th February 2025
- * Updated: 2nd May 2025
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -92,7 +92,7 @@ int main(int argc, char **argv)
     int retCode = EXIT_SUCCESS;
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.component.util.cpp.is_socket", verbosity))
+    if (XTESTS_START_RUNNER("test.component.test.component.util.cpp.is_socket", verbosity))
     {
         XTESTS_RUN_CASE(TEST_is_socket);
 

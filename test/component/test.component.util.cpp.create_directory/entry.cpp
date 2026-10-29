@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.component.util.cpp.create_directory/entry.cpp
+ * File:    test/component/test.component.util.cpp.create_directory/entry.cpp
  *
  * Purpose: Test creation of directories (via recls C++ API function
  *          `recls::create_directory()`).
  *
  * Created: 30th January 2010
- * Updated: 28th June 2025
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.util.cpp.create_directory", verbosity, setup, teardown, NULL))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.test.component.util.cpp.create_directory", verbosity, setup, teardown, NULL))
     {
         XTESTS_RUN_CASE(test_1_0);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT

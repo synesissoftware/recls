@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.api.createdirectory/entry.c
+ * File:    test/unit/test.unit.api.create_directory/entry.c
  *
  * Purpose: Test creation of directories (via recls C API function
  *          `Recls_CreateDirectory()`).
  *
  * Created: 29th January 2009
- * Updated: 2nd May 2025
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -153,7 +153,7 @@ static int main_(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.api.createdirectory", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.test.unit.api.create_directory", verbosity))
     {
         XTESTS_RUN_CASE(test_create_directory_invalid_name);
         XTESTS_RUN_CASE(test_create_directory_pwd);
