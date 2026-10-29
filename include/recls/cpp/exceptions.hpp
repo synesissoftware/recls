@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - exception classes.
  *
  * Created: 10th September 2003
- * Updated: 28th June 2025
+ * Updated: 29th October 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef RECLS_DOCUMENTATION_SKIP_SECTION
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       4
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    0
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        51
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    1
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        52
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -63,10 +63,10 @@
  */
 
 #include <recls/cpp/common.hpp>
-#include <recls/internal/safestr.h>
 
 #include <stlsoft/memory/auto_buffer.hpp>
 #include <stlsoft/shims/access/string/fwd.h>
+#include <stlsoft/string/encoding/wcstombs.h>
 
 #include <stdexcept>
 
@@ -219,17 +219,9 @@ private:
 
         stlsoft::auto_buffer<char>  buffer(1u + codeStringLength);
 
-        size_t  numConverted;
-# ifdef RECLS_USING_SAFE_STR_FUNCTIONS
-        int     err = ::wcstombs_s(&numConverted, &buffer[0], buffer.size(), codeString, codeStringLength);
+        size_t  numConverted = stlsoft_C_wcstombs(buffer.data(), buffer.size(), codeString, codeStringLength);
 
-        if (0 != err)
-# else /* ? RECLS_USING_SAFE_STR_FUNCTIONS */
-
-        numConverted = ::wcstombs(buffer.data(), codeString, buffer.size());
-
-        if (~size_t(0) == numConverted)
-# endif /* RECLS_USING_SAFE_STR_FUNCTIONS */
+        if ((size_t)-1 == numConverted)
         {
             numConverted = 0;
         }
