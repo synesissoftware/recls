@@ -4,7 +4,7 @@
  * Purpose: recls C++ mapping - common types and feature discrimination.
  *
  * Created: 18th August 2003
- * Updated: 29th October 2026
+ * Updated: 2nd November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -72,8 +72,8 @@
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010B04FF
-# error The recls C++ mapping now requires version 1.11.4 or later of the STLSoft libraries. (github.com/synesissoftware/STLSoft)
+    _STLSOFT_VER < 0x010B05FF
+# error The recls C++ mapping now requires version 1.11.5 or later of the STLSoft libraries. (github.com/synesissoftware/STLSoft)
 #endif /* STLSoft version */
 
 #if defined(_STLSOFT_NO_NAMESPACE)

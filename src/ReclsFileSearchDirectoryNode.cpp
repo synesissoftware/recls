@@ -4,7 +4,7 @@
  * Purpose: Implementation of the ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 29th October 2026
+ * Updated: 2nd November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -55,8 +55,8 @@
  * compatibility
  */
 
-#if _STLSOFT_VER < 0x010B04FF
-# error Requires STLSoft 1.11.4 or later
+#if _STLSOFT_VER < 0x010B05FF
+# error Requires STLSoft 1.11.5 or later
 #endif
 #if 0
 #elif defined(RECLS_PLATFORM_IS_WINDOWS)
