@@ -4,7 +4,7 @@
  * Purpose: Tests `recls::entry#is_socket()`.
  *
  * Created: 20th February 2025
- * Updated: 29th October 2026
+ * Updated: 2nd November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -157,7 +157,7 @@ static void TEST_is_socket(void)
 
             struct sockaddr_un  sa;
             size_t              cb_actual;
-            int const           r = inetstl_c_sockaddr_un_init_from_path(&sa, sizeof(sa), sk_path.c_str(), &cb_actual);
+            int const           r = inetstl_C_sockaddr_un_init_from_path(&sa, sizeof(sa), sk_path.c_str(), &cb_actual);
 
             if (0 != r)
             {

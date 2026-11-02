@@ -1,6 +1,13 @@
 # recls - Changes <!-- omit in toc -->
 
 
+## 1.10.3 - 2nd November 2026
+
+* build:
+  * **STLSoft** minimum is **1.11.5** (`0x010B05FF`), including the compile-time checks;
+  * **UNIXem** minimum is **1.14.2**;
+  * **xTests** minimum is **0.28.2**;
+
 ## 1.10.2 - 30th October 2026
 
 * Converted wide `recls_exception` status text with `stlsoft_C_wcstombs`, so the length passed to the message excludes the terminating NUL;

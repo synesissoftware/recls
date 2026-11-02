@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for recls
 #
 # Created:  9th October 2019
-# Updated:  29th October 2026
+# Updated:  2nd November 2026
 #
 # ######################################################################## #
 
@@ -151,7 +151,7 @@ elseif(DEFINED ENV{STLSOFT})
 	set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
 else()
 
-	set(STLSoft_REQUIRED_VERSION_ 1.11.4)
+	set(STLSoft_REQUIRED_VERSION_ 1.11.5)
 
 	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
 
@@ -329,7 +329,7 @@ endif()
 
 if((USE_UNIXEM) AND (WIN32))
 
-	set(UNIXem_REQUIRED_VERSION_ 1.14.1)
+	set(UNIXem_REQUIRED_VERSION_ 1.14.2)
 
 	find_package(UNIXem ${UNIXem_REQUIRED_VERSION_} REQUIRED)
 
@@ -352,7 +352,7 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.28)
+	set(xTests_REQUIRED_VERSION_ 0.28.2)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
