@@ -4,11 +4,11 @@
  * Purpose: recls API utility functions.
  *
  * Created: 10th February 2010
- * Updated: 10th April 2025
+ * Updated: 5th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -102,7 +102,7 @@ Recls_GetFileSizeTeraBytes(recls_filesize_t size)
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace recls */
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

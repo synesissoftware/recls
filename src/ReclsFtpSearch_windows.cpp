@@ -4,11 +4,11 @@
  * Purpose: Implementation of the ReclsFtpSearch class for Windows.
  *
  * Created: 16th August 2003
- * Updated: 10th April 2025
+ * Updated: 5th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -310,8 +310,8 @@ ReclsFtpSearch::~ReclsFtpSearch()
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace impl */
-} /* namespace recls */
+} // namespace impl
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
