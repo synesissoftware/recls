@@ -4,11 +4,11 @@
  * Purpose: Definition of the create_entryinfo() function.
  *
  * Created: 31st May 2004
- * Updated: 30th December 2023
+ * Updated: 6th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -76,8 +76,8 @@ create_drive_entryinfo(
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace impl */
-} /* namespace recls */
+} // namespace impl
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

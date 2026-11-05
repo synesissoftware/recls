@@ -4,7 +4,7 @@
  * Purpose: recls C++ mapping - common types and feature discrimination.
  *
  * Created: 18th August 2003
- * Updated: 2nd November 2026
+ * Updated: 6th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -54,7 +54,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_MINOR       0
 # define RECLS_VER_RECLS_CPP_HPP_COMMON_REVISION    22
-# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        60
+# define RECLS_VER_RECLS_CPP_HPP_COMMON_EDIT        61
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -188,8 +188,8 @@ typedef std::basic_string<recls_char_t>                     string_t;
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace cpp */
-} /* namespace recls */
+} // namespace cpp
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_COMMON */

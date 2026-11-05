@@ -4,11 +4,11 @@
  * Purpose: recls::internal::sequence_helper struct.
  *
  * Created: 10th September 2003
- * Updated: 28th April 2025
+ * Updated: 6th November 2026
  *
  * Home:    http://recls.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_MAJOR     5
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_MINOR     0
 # define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_REVISION  7
-# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_EDIT      106
+# define RECLS_VER_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER_EDIT      107
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/search_sequence.hpp
@@ -272,8 +272,8 @@ public:
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace cpp */
-} /* namespace recls */
+} // namespace cpp
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 #endif /* RECLS_INCL_RECLS_CPP_INTERNAL_HPP_SEQUENCE_HELPER */

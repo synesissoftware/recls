@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - Unix-specific functions.
  *
  * Created: 6th November 2011
- * Updated: 23rd December 2020
+ * Updated: 6th November 2026
  *
  * Home:    http://recls.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define RECLS_VER_RECLS_CPP_CPP_UNIX_MAJOR     1
 # define RECLS_VER_RECLS_CPP_CPP_UNIX_MINOR     0
 # define RECLS_VER_RECLS_CPP_CPP_UNIX_REVISION  1
-# define RECLS_VER_RECLS_CPP_CPP_UNIX_EDIT      1
+# define RECLS_VER_RECLS_CPP_CPP_UNIX_EDIT      2
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,8 +111,8 @@ result_code_to_unix_error_code(
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace cpp */
-} /* namespace recls */
+} // namespace cpp
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 #endif /* !RECLS_INCL_RECLS_CPP_CPP_UNIX */

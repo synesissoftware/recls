@@ -4,11 +4,11 @@
  * Purpose: recls C++ mapping - directory_parts class.
  *
  * Created: 18th August 2003
- * Updated: 30th December 2023
+ * Updated: 6th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_MAJOR    4
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_MINOR    0
 # define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_REVISION 4
-# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_EDIT     57
+# define RECLS_VER_RECLS_CPP_HPP_DIRECTORY_PARTS_EDIT     58
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -145,8 +145,8 @@ private: // Member Variables
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace cpp */
-} /* namespace recls */
+} // namespace cpp
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_DIRECTORY_PARTS */
