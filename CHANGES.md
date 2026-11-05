@@ -1,6 +1,14 @@
 # recls - Changes <!-- omit in toc -->
 
 
+## 1.10.4 - 6th November 2026
+
+* build:
+  * CI installs **woad** before **xTests**, which **xTests** 0.29 requires;
+* documentation and boilerplate:
+  * C++ namespace closers under **include/recls/cpp/** and **src/** are spelled `// namespace`;
+
+
 ## 1.10.3 - 2nd November 2026
 
 * build:
