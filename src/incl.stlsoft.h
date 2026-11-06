@@ -4,7 +4,7 @@
  * Purpose: #includes the STLSoft root header and verifies the version.
  *
  * Created: 8th November 2007
- * Updated: 2nd November 2026
+ * Updated: 6th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -42,7 +42,7 @@
 # endif
 
 # if 0
-# elif STLSOFT_VER >= 0x010C0000
+# elif STLSOFT_VER >= 0x010C0080
 #  define RECLS_STLSOFT_1_12_OR_LATER
 # elif STLSOFT_VER >= 0x010B0000
 #  define RECLS_STLSOFT_1_11_OR_LATER
@@ -57,7 +57,7 @@
 # endif
 
 # if 0
-# elif _STLSOFT_VER >= 0x010C0000
+# elif _STLSOFT_VER >= 0x010C0080
 #  define RECLS_STLSOFT_1_12_OR_LATER
 # elif _STLSOFT_VER >= 0x010B0000
 #  define RECLS_STLSOFT_1_11_OR_LATER

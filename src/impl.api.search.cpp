@@ -4,7 +4,7 @@
  * Purpose: implementation behind API functions.
  *
  * Created: 16th August 2003
- * Updated: 5th November 2026
+ * Updated: 6th November 2026
  *
  * Home:    http://recls.org/
  *
@@ -371,7 +371,7 @@ Recls_SearchFeedback_x_(
 
                 if (0 != len)
                 {
-                    if (types::traits_type::is_path_absolute(p0, len))
+                    if (types::traits_type::path_is_absolute(p0, len))
                     {
                         if (pb.empty())
                         {

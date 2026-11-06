@@ -4,7 +4,7 @@
  * Purpose: more recls API extended functions.
  *
  * Created: 30th January 2009
- * Updated: 5th November 2026
+ * Updated: 6th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -177,7 +177,7 @@ namespace
 
             if (0 == path_0.size())
             {
-                if (types::traits_type::is_path_UNC(path))
+                if (types::traits_type::path_is_UNC(path))
                 {
                     return RECLS_RC_INVALID_NAME;
                 }
@@ -279,7 +279,7 @@ namespace
             }
         }
 
-        if (!types::traits_type::is_path_absolute(path))
+        if (!types::traits_type::path_is_absolute(path))
         {
             types::path_type fullPath(path);
 

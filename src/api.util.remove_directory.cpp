@@ -4,7 +4,7 @@
  * Purpose: more recls API extended functions.
  *
  * Created: 30th January 2009
- * Updated: 5th November 2026
+ * Updated: 6th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -412,7 +412,7 @@ namespace
 
         // ensure path is absolute
 
-        if (!types::traits_type::is_path_absolute(path))
+        if (!types::traits_type::path_is_absolute(path))
         {
             types::path_type    fullPath;
 
