@@ -4,7 +4,7 @@
  * Purpose: recls C++ mapping - exception classes.
  *
  * Created: 10th September 2003
- * Updated: 29th October 2026
+ * Updated: 6th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -54,7 +54,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MAJOR       4
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_MINOR       4
 # define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_REVISION    1
-# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        52
+# define RECLS_VER_RECLS_CPP_HPP_EXCEPTIONS_EDIT        53
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -305,8 +305,8 @@ public: // Construction
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace cpp */
-} /* namespace recls */
+} // namespace cpp
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 #endif /* !RECLS_INCL_RECLS_CPP_HPP_EXCEPTIONS */

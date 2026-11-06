@@ -4,11 +4,11 @@
  * Purpose: Traits for recls C++ mapping.
  *
  * Created: 25th March 2004
- * Updated: 30th April 2025
+ * Updated: 6th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,7 +53,7 @@
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MAJOR       5
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_MINOR       1
 # define RECLS_VER_RECLS_CPP_HPP_TRAITS_REVISION    6
-# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        31
+# define RECLS_VER_RECLS_CPP_HPP_TRAITS_EDIT        32
 #endif /* !RECLS_DOCUMENTATION_SKIP_SECTION */
 
 /** \file recls/cpp/traits.hpp
@@ -339,8 +339,8 @@ public:
 /* ////////////////////////////////////////////////////////////////////// */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace cpp */
-} /* namespace recls */
+} // namespace cpp
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 #endif /* RECLS_INCL_RECLS_CPP_HPP_TRAITS */

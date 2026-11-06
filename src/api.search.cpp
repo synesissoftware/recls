@@ -4,11 +4,11 @@
  * Purpose: Main (platform-independent) implementation file for the recls API.
  *
  * Created: 16th August 2003
- * Updated: 5th May 2025
+ * Updated: 5th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@ namespace impl
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace impl */
+} // namespace impl
 
 using ::recls::impl::Recls_SearchFeedback_;
 using ::recls::impl::Recls_SearchProcessFeedback_;
@@ -301,7 +301,7 @@ RECLS_API Recls_CopyDetails(
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace recls */
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

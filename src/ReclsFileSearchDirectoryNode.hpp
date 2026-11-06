@@ -4,7 +4,7 @@
  * Purpose: ReclsFileSearchDirectoryNode class.
  *
  * Created: 31st May 2004
- * Updated: 21st October 2026
+ * Updated: 6th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -252,8 +252,8 @@ private:
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace impl */
-} /* namespace recls */
+} // namespace impl
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

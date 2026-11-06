@@ -4,11 +4,11 @@
  * Purpose: This file contains the Windows versions of recls API.
  *
  * Created: 16th August 2003
- * Updated: 2nd May 2025
+ * Updated: 5th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -151,7 +151,7 @@ check_drives(char (*drives)[26], recls_uint32_t flags)
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace impl */
+} // namespace impl
 
 using ::recls::impl::check_drives;
 using ::recls::impl::recls_get_string_property_;
@@ -328,7 +328,7 @@ Recls_GetSelectedRoots(
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace recls */
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

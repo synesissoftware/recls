@@ -4,7 +4,7 @@
  * Purpose: Definition of the ReclsFileSearchDirectoryControlPreventInfiniteLoops class.
  *
  * Created: 1st May 2025
- * Updated: 1st May 2025
+ * Updated: 6th November 2026
  *
  * Home:    https://github.com/synesissoftware/recls
  *
@@ -173,8 +173,8 @@ private: // fields
  */
 
 #if !defined(RECLS_NO_NAMESPACE)
-} /* namespace impl */
-} /* namespace recls */
+} // namespace impl
+} // namespace recls
 #endif /* !RECLS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
